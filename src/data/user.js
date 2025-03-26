@@ -44,19 +44,19 @@ const INFO = {
 		],
 		featuredProjects: [
 			{
-				title: "Black Knight (Netflix)",
-				role: "FX Houdini Artist @ Sparx*",
-				description: "Created dynamic effects and environmental VFX using Houdini and Maya for cinematic sequences.",
-				image: "/images/Black_Knight_Thumbnail.jpg",
-				imageAlt: "Black Knight Netflix Series VFX Work",
+				title: "Wolverine – PS5",
+				role: "VFX Artist @ Insomniac",
+				description: "Coming Soon",
+				image: "/images/unkown-images.png",
+				imageAlt: "Wolverine PS5 Game",
 				link: "/projects"
 			},
 			{
-				title: "Marvel's Spider-Man 2",
-				role: "FX Artist @ Sparx*",
-				description: "Developed particle systems and environmental effects for gameplay and cinematics using Houdini and Unreal Engine.",
-				image: "/images/spiderman-2-ps5.jpg",
-				imageAlt: "Spider-Man 2 Game VFX Work",
+				title: "New World – PS5",
+				role: "Technical VFX Artist",
+				description: "Contributed to cinematic trailer production with technical VFX and pipeline optimization.",
+				image: "/images/NWA.jpg",
+				imageAlt: "New World PS5 Game VFX Work",
 				link: "/projects"
 			}
 		]
@@ -218,52 +218,29 @@ const INFO = {
 
 	projects: [
 		{
-			thumbnail: "/images/NWA.jpg",
-			title: "New World – PS5",
-			role: "Technical VFX Artist",
+			thumbnail: "/images/unkown-images.png",
+			title: "Wolverine – PS5",
+			role: "VFX Artist",
+			year: "2025",
+			description: "Coming Soon",
+			categories: ["aaa", "realtime"],
+			link: "/projects/wolverine"
+		},
+		{
+			thumbnail: "/images/Fortnite-Live-Event-Time.jpg",
+			title: "Fortnite – Remix Finale",
+			role: "VFX Artist",
 			year: "2024",
-			description: "Contributed to cinematic trailer production for New World: Aeternum, focusing on technical VFX and pipeline optimization. Worked on Houdini-to-Unreal sync tools, cloth simulation, and complex VFX setups for trailer visuals.",
-			categories: ["aaa", "cinematic"],
-			contributions: [
-				{ type: "technical", text: "Built Houdini-to-Unreal sequence syncing tool to speed up delivery during deadline crunch." },
-				{ type: "effects", text: "Created realistic simulations for cloth, explosions, water, fog, rain, and magic VFX." },
-				{ type: "technical", text: "Developed optimized material systems for real-time rendering of complex effects." }
-			],
-			techStack: ["Houdini", "Blender", "Unreal Engine", "Python", "HLSL"],
-			link: "/projects/new-world",
-			video: "https://www.youtube.com/watch?v=qK8jtTMHCRU"
-		},
-		{
-			thumbnail: "/images/Black_Knight_Thumbnail.jpg",
-			title: "Black Knight (Netflix)",
-			role: "FX Houdini Artist",
-			year: "2023",
-			description: "Created dynamic effects and environmental VFX for Netflix series' cinematic sequences.",
-			categories: ["cinematic"],
-			contributions: [
-				{ type: "effects", text: "Developed complex particle systems for combat effects and environmental destruction." },
-				{ type: "effects", text: "Created atmospheric elements and environmental VFX to enhance visual storytelling." },
-				{ type: "technical", text: "Optimized simulation workflows for faster iteration and rendering." }
-			],
-			techStack: ["Houdini", "Blender", "Maya", "Nuke", "Python"],
-			link: "/projects/black-knight",
-			video: "https://www.youtube.com/embed/Se26Op9sEC8?start=8"
-		},
-		{
-			thumbnail: "/images/spiderman-2-ps5.jpg",
-			title: "Marvel's Spider-Man 2",
-			role: "FX Artist",
-			year: "2023",
-			description: "Developed particle systems and environmental effects for gameplay and cinematics at Insomniac Games.",
+			description: "Created weapon effects and event VFX while optimizing performance across platforms.",
 			categories: ["aaa", "realtime"],
 			contributions: [
-				{ type: "effects", text: "Created particle systems for Spider-Man's web abilities and combat sequences." },
-				{ type: "technical", text: "Developed procedural tools in Houdini for generating dynamic environmental effects." },
-				{ type: "impact", text: "Implemented optimized real-time VFX that maintained performance across PS5 hardware." }
+				{ type: "effects", text: "Developed scalable particle systems for weapons and character abilities." },
+				{ type: "technical", text: "Created tools for VFX batch processing and optimization." },
+				{ type: "impact", text: "Implemented cross-platform performance optimization techniques." }
 			],
-			techStack: ["Houdini", "Blender", "Unreal Engine", "Python", "HLSL", "Perforce"],
-			link: "/projects/spider-man-2",
-			video: "https://www.youtube.com/embed/bgqGdIoa52s?start=1"
+			techStack: ["Unreal Engine", "Houdini", "Blender", "Python", "HLSL", "Perforce"],
+			link: "/projects/fortnite",
+			video: "https://www.youtube.com/embed/c-rtUmJPLQM?start=272"
 		},
 		{
 			thumbnail: "/images/havoc-logo.png",
@@ -282,35 +259,20 @@ const INFO = {
 			images: ["/images/havoc-landing-page.png"]
 		},
 		{
-			thumbnail: "/images/unkown-images.png",
-			title: "Wolverine",
-			role: "VFX Artist",
-			year: "2025",
-			description: "Developing combat VFX systems and gore effects for upcoming Insomniac Games title. 🔒 This project is still under development and cannot be shared in detail due to confidentiality agreements.",
-			categories: ["aaa", "realtime"],
+			thumbnail: "/images/NWA.jpg",
+			title: "New World – PS5",
+			role: "Technical VFX Artist",
+			year: "2024",
+			description: "Contributed to cinematic trailer production for New World: Aeternum, focusing on technical VFX and pipeline optimization. Worked on Houdini-to-Unreal sync tools, cloth simulation, and complex VFX setups for trailer visuals.",
+			categories: ["aaa", "cinematic"],
 			contributions: [
-				{ type: "effects", text: "Creating realistic blood and gore VFX systems for combat sequences." },
-				{ type: "technical", text: "Developing shaders and materials for dynamic character damage." },
-				{ type: "impact", text: "Contributing to VFX pipeline optimization for efficient content creation." }
+				{ type: "technical", text: "Built Houdini-to-Unreal sequence syncing tool to speed up delivery during deadline crunch." },
+				{ type: "effects", text: "Created realistic simulations for cloth, explosions, water, fog, rain, and magic VFX." },
+				{ type: "technical", text: "Developed optimized material systems for real-time rendering of complex effects." }
 			],
-			techStack: ["Houdini", "Blender", "Game Engine", "Shader", "Python", "Perforce"],
-			link: "/projects/wolverine"
-		},
-		{
-			thumbnail: "/images/Fortnite-Live-Event-Time.jpg",
-			title: "Fortnite – Remix Finale",
-			role: "VFX Artist",
-			year: "2023",
-			description: "Created weapon effects and event VFX while optimizing performance across platforms.",
-			categories: ["aaa", "realtime"],
-			contributions: [
-				{ type: "effects", text: "Developed scalable particle systems for weapons and character abilities." },
-				{ type: "technical", text: "Created tools for VFX batch processing and optimization." },
-				{ type: "impact", text: "Implemented cross-platform performance optimization techniques." }
-			],
-			techStack: ["Unreal Engine", "Houdini", "Blender", "Python", "HLSL", "Perforce"],
-			link: "/projects/fortnite",
-			video: "https://www.youtube.com/embed/c-rtUmJPLQM?start=272"
+			techStack: ["Houdini", "Blender", "Unreal Engine", "Python", "HLSL"],
+			link: "/projects/new-world",
+			video: "https://www.youtube.com/watch?v=qK8jtTMHCRU"
 		},
 		{
 			thumbnail: "/images/until-dawn-ps5.jpg",
@@ -328,6 +290,38 @@ const INFO = {
 			techStack: ["Unreal Engine"],
 			link: "/projects/until-dawn",
 			video: "8nApBGPy0ao"
+		},
+		{
+			thumbnail: "/images/spiderman-2-ps5.jpg",
+			title: "Marvel's Spider-Man 2",
+			role: "FX Artist",
+			year: "2023",
+			description: "Developed particle systems and environmental effects for gameplay and cinematics at Insomniac Games.",
+			categories: ["aaa", "realtime"],
+			contributions: [
+				{ type: "effects", text: "Created particle systems for Spider-Man's web abilities and combat sequences." },
+				{ type: "technical", text: "Developed procedural tools in Houdini for generating dynamic environmental effects." },
+				{ type: "impact", text: "Implemented optimized real-time VFX that maintained performance across PS5 hardware." }
+			],
+			techStack: ["Houdini", "Blender", "Unreal Engine", "Python", "HLSL", "Perforce"],
+			link: "/projects/spider-man-2",
+			video: "https://www.youtube.com/embed/bgqGdIoa52s?start=1"
+		},
+		{
+			thumbnail: "/images/Black_Knight_Thumbnail.jpg",
+			title: "Black Knight (Netflix)",
+			role: "FX Houdini Artist",
+			year: "2023",
+			description: "Created dynamic effects and environmental VFX for Netflix series' cinematic sequences.",
+			categories: ["cinematic"],
+			contributions: [
+				{ type: "effects", text: "Developed complex particle systems for combat effects and environmental destruction." },
+				{ type: "effects", text: "Created atmospheric elements and environmental VFX to enhance visual storytelling." },
+				{ type: "technical", text: "Optimized simulation workflows for faster iteration and rendering." }
+			],
+			techStack: ["Houdini", "Blender", "Maya", "Nuke", "Python"],
+			link: "/projects/black-knight",
+			video: "https://www.youtube.com/embed/Se26Op9sEC8?start=8"
 		}
 	],
 };
