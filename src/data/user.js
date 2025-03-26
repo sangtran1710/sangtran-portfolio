@@ -311,6 +311,23 @@ const INFO = {
 			techStack: ["Unreal Engine", "Houdini", "Blender", "Python", "HLSL", "Perforce"],
 			link: "/projects/fortnite",
 			video: "https://www.youtube.com/embed/c-rtUmJPLQM?start=272"
+		},
+		{
+			thumbnail: "/images/until-dawn-ps5.jpg",
+			title: "Until Dawn – PS5",
+			role: "Lighting Artist",
+			year: "2024",
+			description: "Contributed lighting for cinematic sequences in Until Dawn remake on PS5.",
+			longDescription: "Contributed to lighting for cinematic sequences in the PS5 remake of Until Dawn. Worked with Unreal Engine to enhance storytelling through atmospheric lighting and mood design.",
+			categories: ["aaa", "cinematic"],
+			contributions: [
+				{ type: "effects", text: "🎥 Designed cinematic lighting setups to support dramatic storytelling." },
+				{ type: "technical", text: "💡 Adjusted lighting rigs to match camera angles and enhance realism." },
+				{ type: "impact", text: "⚙️ Optimized real-time lighting performance for next-gen hardware." }
+			],
+			techStack: ["Unreal Engine"],
+			link: "/projects/until-dawn",
+			video: "8nApBGPy0ao"
 		}
 	],
 };
