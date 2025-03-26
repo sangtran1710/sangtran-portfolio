@@ -6,6 +6,14 @@
 	padding-top: 120px;
 }
 
+.projects-list {
+	margin-top: 20px;
+}
+
+.projects-subtitle {
+	margin-bottom: 10px;
+}
+
 @media (max-width: 600px) {
 	.projects-container {
 		padding-top: 60px;
@@ -13,5 +21,13 @@
 
 	.projects-project {
 		width: calc(100% / 2);
+	}
+	
+	.projects-list {
+		margin-top: 30px;
+	}
+	
+	.projects-subtitle {
+		margin-bottom: 25px;
 	}
 }
