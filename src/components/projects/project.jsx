@@ -1,38 +1,50 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { 
-	faCalendar, 
-	faStar, 
-	faCode,
-	faWrench,
-	faMagic,
-	faBolt
-} from "@fortawesome/free-solid-svg-icons";
+import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 
 import "./styles/project.css";
 
 const Project = (props) => {
 	const { 
-		thumbnail,
-		title, 
-		role,
-		year,
-		description, 
-		contributions,
-		techStack,
-		link 
-	} = props;
+		thumbnail = '',
+		title = 'Untitled Project', 
+		role = '',
+		year = '',
+		description = '', 
+		link = '' 
+	} = props || {};
 
-	const contributionIcons = {
-		technical: faWrench,
-		effects: faMagic,
-		impact: faBolt
+	// Generate a project URL if link is missing or not properly formatted
+	const getProjectUrl = () => {
+		// If link is already a valid path starting with /projects/, use it
+		if (link && link.startsWith("/projects/")) {
+			return link;
+		}
+		
+		// Otherwise, generate a URL-friendly slug from the title
+		const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+		return `/projects/${slug}`;
+	};
+
+	// Get a short description (first sentence or first 80 characters)
+	const getShortDescription = () => {
+		if (!description) return '';
+		
+		// Try to get the first sentence
+		const firstSentence = description.split('.')[0];
+		
+		// If it's too long, truncate it
+		if (firstSentence.length > 80) {
+			return firstSentence.substring(0, 80) + '...';
+		}
+		
+		return firstSentence;
 	};
 
 	return (
 		<div className="project">
-			<Link to={link}>
+			<Link to={getProjectUrl()}>
 				<div className="project-container">
 					<div className="project-thumbnail">
 						<img src={thumbnail} alt={title} loading="lazy" />
@@ -49,39 +61,7 @@ const Project = (props) => {
 							<span>{year}</span>
 						</div>
 
-						<div className="project-description">{description}</div>
-
-						<div className="project-section">
-							<div className="section-title">
-								<FontAwesomeIcon icon={faStar} />
-								<span>Key Contributions</span>
-							</div>
-							<ul className="project-contributions">
-								{contributions.map((contribution, index) => (
-									<li key={index}>
-										<FontAwesomeIcon 
-											icon={contributionIcons[contribution.type] || faMagic} 
-											className={`contribution-icon ${contribution.type}`}
-										/>
-										<span>{contribution.text}</span>
-									</li>
-								))}
-							</ul>
-						</div>
-
-						<div className="project-section">
-							<div className="section-title">
-								<FontAwesomeIcon icon={faCode} />
-								<span>Tech Stack</span>
-							</div>
-							<div className="project-tech-stack">
-								{techStack.map((tech, index) => (
-									<span key={index} className="tech-item">
-										{tech}
-									</span>
-								))}
-							</div>
-						</div>
+						{description && <div className="project-description">{getShortDescription()}</div>}
 					</div>
 				</div>
 			</Link>

@@ -16,12 +16,22 @@ const AllProjects = () => {
 		{ id: "realtime", label: "Real-time VFX" }
 	];
 
+	// Ensure INFO.projects exists and is an array
+	const projects = Array.isArray(INFO?.projects) ? INFO.projects : [];
+
 	const filteredProjects = useMemo(() => {
-		if (activeFilter === "all") return INFO.projects;
-		return INFO.projects.filter(project => 
-			project.categories?.includes(activeFilter)
+		if (activeFilter === "all") return projects;
+		return projects.filter(project => 
+			Array.isArray(project?.categories) && 
+			project.categories.some(category => 
+				typeof category === 'string' &&
+				category.toLowerCase() === activeFilter.toLowerCase()
+			)
 		);
-	}, [activeFilter]);
+	}, [activeFilter, projects]);
+
+	// Check if there are no projects matching the filter
+	const noProjectsFound = filteredProjects.length === 0;
 
 	return (
 		<div className="all-projects-container">
@@ -39,20 +49,42 @@ const AllProjects = () => {
 				</div>
 			</div>
 
-			{filteredProjects.map((project, index) => (
-				<div className="all-projects-project" key={index}>
-					<Project
-						thumbnail={project.thumbnail}
-						title={project.title}
-						role={project.role}
-						year={project.year}
-						description={project.description}
-						contributions={project.contributions}
-						techStack={project.techStack}
-						link={project.link}
-					/>
+			{noProjectsFound ? (
+				<div className="no-projects-message">
+					<p>No projects found matching this filter.</p>
+					<button 
+						className="filter-button"
+						onClick={() => setActiveFilter("all")}
+					>
+						Show All Projects
+					</button>
 				</div>
-			))}
+			) : (
+				filteredProjects.map((project, index) => {
+					// Safely extract project data with defaults
+					const {
+						thumbnail = '',
+						title = 'Untitled Project',
+						role = '',
+						year = '',
+						description = '',
+						link = ''
+					} = project || {};
+
+					return (
+						<div className="all-projects-project" key={index}>
+							<Project
+								thumbnail={thumbnail}
+								title={title}
+								role={role}
+								year={year}
+								description={description}
+								link={link}
+							/>
+						</div>
+					);
+				})
+			)}
 		</div>
 	);
 };

@@ -20,7 +20,6 @@ This is my personal portfolio built with [Reactfolio](https://github.com/harindu
 - **Fortnite**  
   Worked with stylized real-time VFX loops.
 
-(… tiếp tục thêm nếu cần)
 
 ---
 
