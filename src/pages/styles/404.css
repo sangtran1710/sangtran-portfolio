@@ -3,47 +3,58 @@
 	height: 100vh;
 }
 
-.notfound-logo-container {
-	display: flex;
-	justify-content: left;
-	padding-top: 25px;
-}
-
-.notfound-logo {
-	display: flex;
-	position: fixed;
-	border: 1px solid white;
-	border-radius: 50%;
-	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-	top: 4vh;
-	z-index: 999;
-}
-
 .notfound-container {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
 	margin: 0;
 	padding-top: 120px;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
 }
 
 .notfound-message {
-	position: fixed;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	justify-content: center;
 }
 
 .notfound-title {
-	font-family: var(--secondary-font);
-	color: var(--primary-color);
-	font-size: 80px;
-	padding-top: 15px;
+	font-size: 70px;
 	font-weight: 700;
+	color: var(--primary-color);
+	margin-bottom: 20px;
+}
+
+.notfound-subtitle {
+	font-size: 24px;
+	color: var(--secondary-color);
+	margin-bottom: 30px;
+}
+
+.notfound-icon {
+	font-size: 60px;
+	color: var(--secondary-color);
+	margin-bottom: 30px;
+}
+
+.notfound-button {
+	display: inline-block;
+	padding: 12px 24px;
+	background-color: var(--link-color);
+	color: white;
+	font-size: 16px;
+	font-weight: 600;
+	text-decoration: none;
+	border-radius: 8px;
+	transition: all 0.3s ease;
+}
+
+.notfound-button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .not-found-message {
@@ -69,29 +80,16 @@
 	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-@media (max-width: 500px) {
-	.notfound-message {
-		position: absolute;
-		top: auto;
-		left: auto;
-		width: 100%;
-		transform: none;
+@media (max-width: 600px) {
+	.notfound-container {
+		padding-top: 60px;
 	}
 
 	.notfound-title {
 		font-size: 50px;
 	}
 
-	.not-found-message {
-		width: 100%;
-		font-size: 15px;
-		margin-top: 10px;
-		margin-left: -5px;
-		margin-right: 32px;
-	}
-
-	.not-found-link {
-		font-size: 15px;
-		padding: 15px 15px;
+	.notfound-subtitle {
+		font-size: 20px;
 	}
 }

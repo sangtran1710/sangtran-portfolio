@@ -1,29 +1,66 @@
-.contact-logo-container {
+.contact-container {
 	display: flex;
-	justify-content: left;
-	padding-top: 25px;
+	flex-direction: column;
+	height: 100%;
+	margin: 0;
+	padding-top: 120px;
 }
 
-.contact-logo {
-	display: flex;
-	position: fixed;
-	border: 1px solid white;
-	border-radius: 50%;
-	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-	top: 4vh;
+.contact-title {
+	width: 100% !important;
 }
 
 .contact-subtitle {
 	width: 100% !important;
 }
 
-.contact-container {
+.contact-form {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
-	margin-top: 120px;
+	max-width: 600px;
 }
 
+.contact-input {
+	padding: 12px;
+	margin-bottom: 20px;
+	border: 3px solid var(--secondary-color);
+	border-radius: 8px;
+	font-size: 16px;
+}
+
+.contact-textarea {
+	padding: 12px;
+	margin-bottom: 20px;
+	border: 3px solid var(--secondary-color);
+	border-radius: 8px;
+	font-size: 16px;
+	min-height: 200px;
+	resize: vertical;
+}
+
+.contact-button {
+	padding: 15px 30px;
+	background-color: var(--link-color);
+	color: white;
+	border: none;
+	border-radius: 8px;
+	font-size: 16px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	max-width: 200px;
+}
+
+.contact-button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 600px) {
+	.contact-container {
+		padding-top: 60px;
+	}
+}
 
 .socials-container {
 	display: flex;

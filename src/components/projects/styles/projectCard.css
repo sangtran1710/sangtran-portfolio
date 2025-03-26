@@ -1,0 +1,115 @@
+@import "../../../data/styles.css";
+
+.project-card {
+	width: 100%;
+	border-radius: 20px;
+	overflow: hidden;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+	background-color: white;
+	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.project-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.project-card-container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.project-card-image {
+	width: 100%;
+	padding-top: 56.25%; /* 16:9 Aspect Ratio */
+	position: relative;
+	background-color: #f5f5f5;
+	overflow: hidden;
+}
+
+.project-card-image img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	transition: transform 0.3s ease-in-out;
+}
+
+.project-card:hover .project-card-image img {
+	transform: scale(1.05);
+}
+
+.project-card-image-fallback {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--quaternary-color);
+}
+
+.project-card-image-fallback span {
+	font-size: 48px;
+	font-weight: bold;
+	color: var(--secondary-color);
+}
+
+.project-card-content {
+	padding: 25px;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.project-card-title {
+	color: var(--primary-color);
+	font-size: 20px;
+	font-weight: 600;
+	margin-bottom: 15px;
+}
+
+.project-card-description {
+	color: var(--secondary-color);
+	font-size: 14px;
+	line-height: 1.5;
+	margin-bottom: 20px;
+	flex: 1;
+}
+
+.project-card-link {
+	color: var(--link-color);
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.project-card-link:hover {
+	text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+	.project-card-image {
+		padding-top: 66.67%; /* 3:2 Aspect Ratio for mobile */
+	}
+
+	.project-card-content {
+		padding: 20px;
+	}
+
+	.project-card-title {
+		font-size: 18px;
+		margin-bottom: 12px;
+	}
+
+	.project-card-description {
+		font-size: 13px;
+		margin-bottom: 15px;
+	}
+} 

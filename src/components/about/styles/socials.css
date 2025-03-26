@@ -8,19 +8,46 @@
 .social a,
 .email-wrapper a {
 	text-decoration: none;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	transition: transform 0.3s ease;
+	gap: 10px;
+	white-space: nowrap;
+}
+
+.social a:hover,
+.email-wrapper a:hover {
+	transform: translateY(-2px);
 }
 
 .social-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
 	font-size: 15px;
 	color: var(--secondary-color);
+	transition: color 0.3s ease;
+}
+
+.social a:hover .social-icon,
+.email-wrapper a:hover .social-icon {
+	color: var(--link-color);
 }
 
 .social-text {
 	color: var(--secondary-color);
-	padding-left: 30px;
-	margin-top: -20px;
 	font-weight: 600;
 	font-size: 14px;
+	transition: color 0.3s ease;
+	line-height: 1;
+}
+
+.social a:hover .social-text,
+.email-wrapper a:hover .social-text {
+	color: var(--link-color);
 }
 
 .email::before {

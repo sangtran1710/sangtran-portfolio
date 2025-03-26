@@ -2,15 +2,16 @@ import React from "react";
 
 function article_1() {
 	return {
-		date: "7 May 2023",
-		title: "The Benefits of Cloud Computing",
+		date: "15 March 2024",
+		title: "Bridging Code and Creativity in AAA Game Production",
 		description:
-			"Cloud computing offers a range of benefits, including cost savings and increased flexibility. Find out why more businesses are turning to the cloud.",
+			"Exploring the synergy between technical implementation and artistic vision in modern game development. A deep dive into how technical artists can effectively bridge the gap between programmers and artists while maintaining creative excellence.",
 		keywords: [
-			"The Benefits of Cloud Computing",
-			"Tharindu",
-			"Tharindu N",
-			"Tharindu Nayanajith",
+			"Technical Art",
+			"Game Development",
+			"AAA Production",
+			"VFX Pipeline",
+			"Creative Technology",
 		],
 		style: `
 				.article-content {
@@ -19,20 +20,27 @@ function article_1() {
 					align-items: center;
 				}
 
-				.randImage {
-					align-self: center;
-					outline: 2px solid red;
+				.article-image {
+					max-width: 100%;
+					height: auto;
+					border-radius: 8px;
+					margin: 20px 0;
 				}
 				`,
 		body: (
 			<React.Fragment>
 				<div className="article-content">
-					<div className="paragraph">Content of article 1</div>
-					<img
-						src="https://picsum.photos/200/300"
-						alt="random"
-						className="randImage"
-					/>
+					<div className="paragraph">
+						Read the full article on Medium to learn about bridging the gap between technical implementation and creative vision in AAA game development.
+					</div>
+					<a 
+						href="https://medium.com/@tranminhsang/bridging-code-and-creativity-in-aaa-game-production-2024" 
+						target="_blank"
+						rel="noopener noreferrer"
+						className="article-link"
+					>
+						Read on Medium →
+					</a>
 				</div>
 			</React.Fragment>
 		),
@@ -41,20 +49,54 @@ function article_1() {
 
 function article_2() {
 	return {
-		date: "7 May 2023",
-		title: "Artificial Intelligence in Healthcare",
+		date: "1 March 2024",
+		title: "Python Automation in VFX Pipelines: Lessons Learned",
 		description:
-			"AI is transforming the healthcare industry, from improving patient outcomes to streamlining operations. Discover the latest applications of this game-changing technology.",
-		style: ``,
+			"Practical insights from implementing Python-based automation tools in AAA game VFX pipelines. Sharing key strategies for optimizing artist workflows and maintaining efficiency across large-scale projects.",
+		style: `
+				.article-content {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+				}
+
+				.article-link {
+					display: inline-block;
+					margin-top: 20px;
+					padding: 10px 20px;
+					background-color: #f4f4f5;
+					color: var(--primary-color);
+					text-decoration: none;
+					border-radius: 5px;
+					transition: background-color 0.2s ease;
+				}
+
+				.article-link:hover {
+					background-color: #e4e4e7;
+				}
+				`,
 		keywords: [
-			"Artificial Intelligence in Healthcare",
-			"Tharindu",
-			"Tharindu N",
-			"Tharindu Nayanajith",
+			"Python Automation",
+			"VFX Pipeline",
+			"Technical Art",
+			"Workflow Optimization",
+			"Game Development",
 		],
 		body: (
 			<React.Fragment>
-				<h1>Content of article 2</h1>
+				<div className="article-content">
+					<div className="paragraph">
+						Discover how Python automation can revolutionize VFX pipelines in game development. Read the full article on Medium.
+					</div>
+					<a 
+						href="https://medium.com/@tranminhsang/python-automation-in-vfx-pipelines-lessons-learned-2024" 
+						target="_blank"
+						rel="noopener noreferrer"
+						className="article-link"
+					>
+						Read on Medium →
+					</a>
+				</div>
 			</React.Fragment>
 		),
 	};

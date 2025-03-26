@@ -1,0 +1,11 @@
+.page-content {
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    padding-top: 80px; /* Account for fixed navbar */
+}
+
+@media (max-width: 768px) {
+    .page-content {
+        padding-top: 60px;
+    }
+} 
