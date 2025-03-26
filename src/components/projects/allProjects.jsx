@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from "react";
-
 import Project from "./project";
 
 import INFO from "../../data/user";
@@ -8,7 +7,7 @@ import "./styles/allProjects.css";
 
 const AllProjects = () => {
 	const [activeFilter, setActiveFilter] = useState("all");
-	
+
 	const filters = [
 		{ id: "all", label: "All Projects" },
 		{ id: "aaa", label: "AAA Games" },
@@ -29,7 +28,7 @@ const AllProjects = () => {
 			<div className="all-projects-header">
 				<div className="projects-filter">
 					{filters.map(filter => (
-						<button
+						<button 
 							key={filter.id}
 							className={`filter-button ${activeFilter === filter.id ? 'active' : ''}`}
 							onClick={() => setActiveFilter(filter.id)}

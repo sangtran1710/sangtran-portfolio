@@ -8,7 +8,7 @@ const Skills = () => {
 		<div className="skills-container">
 			<div className="skills-title">{INFO.skills.title}</div>
 			<div className="skills-description">{INFO.skills.description}</div>
-			
+
 			<div className="skills-grid">
 				{INFO.skills.groups.map((group, index) => (
 					<div className="skill-group" key={index}>

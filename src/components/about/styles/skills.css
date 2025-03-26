@@ -1,8 +1,8 @@
 @import "../../../data/styles.css";
 
 .skills-container {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
     margin: 2rem 0;
 }
 
@@ -10,7 +10,7 @@
     color: var(--primary-color);
     font-family: var(--secondary-font);
     font-size: 24px;
-    font-weight: 700;
+	font-weight: 700;
     margin-bottom: 1rem;
 }
 
@@ -21,27 +21,27 @@
 }
 
 .skills-grid {
-    display: grid;
+	display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
 }
 
 .skill-group {
     background-color: #fafafa;
-    border-radius: 12px;
+	border-radius: 12px;
     padding: 1.5rem;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .skill-group:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .skill-group-title {
     color: var(--primary-color);
-    font-size: 18px;
-    font-weight: 600;
+	font-size: 18px;
+	font-weight: 600;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid var(--quaternary-color);
@@ -70,17 +70,17 @@
 }
 
 @media (max-width: 768px) {
-    .skills-grid {
-        grid-template-columns: 1fr;
+	.skills-grid {
+		grid-template-columns: 1fr;
         gap: 1rem;
-    }
+	}
 
     .skill-group {
         padding: 1.25rem;
-    }
+	}
 
     .skill-item {
         font-size: 13px;
         padding: 0.4rem 0.8rem;
-    }
+	}
 } 

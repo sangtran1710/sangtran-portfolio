@@ -1,53 +1,67 @@
 .about-container {
 	display: flex;
 	flex-direction: column;
-	height: 100%;
-	margin: 0;
-	padding-top: 120px;
+	gap: 40px;
+	padding-bottom: 40px;
 }
 
 .about-main {
 	display: flex;
+	flex-direction: row;
+	gap: 30px;
 }
 
 .about-right-side {
-	flex-basis: 900px;
+	width: 55%;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }
 
 .about-title {
-	width: 100% !important;
+	width: 100%;
+	line-height: 1.4;
 }
 
 .about-subtitle {
-	width: 80% !important;
+	width: 100%;
 }
 
 .about-left-side {
+	width: 45%;
 	display: flex;
 	flex-direction: column;
-	flex-basis: 300px;
+	gap: 25px;
 }
 
 .about-image-container {
-	width: 370px;
+	width: 100%;
 }
 
 .about-image-wrapper {
-	display: inline-block;
-	overflow: hidden;
 	width: 100%;
-	border-radius: 10%;
-	transform: rotate(3deg);
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	border-radius: 16px;
 }
 
-.about-image-wrapper img {
-	display: block;
-	width: 100%;
+.about-image {
+	width: 90%;
+	height: auto;
+	object-fit: cover;
+	transition: transform 0.3s ease;
+}
+
+.about-image:hover {
+	transform: scale(1.03);
 }
 
 .about-socials {
-	padding-top: 50px;
-	padding-bottom: 50px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
 }
 
 .about-socials-mobile {
@@ -83,26 +97,33 @@
 }
 
 @media (max-width: 1024px) {
+	.about-container {
+		gap: 30px;
+	}
+
 	.about-main {
-		flex-direction: column;
-	}
-
-	.about-subtitle {
-		padding-top: 20px !important;
-	}
-
-	.about-left-side {
-		flex-basis: 100%;
-		order: 1;
+		flex-direction: column-reverse;
+		gap: 30px;
 	}
 
 	.about-right-side {
-		flex-basis: 100%;
+		width: 100%;
 		order: 2;
 	}
 
-	.about-image-container {
-		padding-bottom: 40px;
+	.about-left-side {
+		width: 100%;
+		order: 1;
+	}
+
+	.about-image-wrapper {
+		width: 100%;
+		max-width: 400px;
+		margin: 0 auto;
+	}
+
+	.about-image {
+		width: 100%;
 	}
 
 	.about-socials {
@@ -110,17 +131,28 @@
 	}
 
 	.about-socials-mobile {
-		padding-top: 30px;
 		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		margin-top: 15px;
 	}
 }
 
 @media (max-width: 600px) {
 	.about-container {
-		padding-top: 60px;
+		gap: 25px;
+		padding-bottom: 30px;
 	}
 
-	.about-image-container {
-		width: 250px;
+	.about-title {
+		font-size: 25px;
+	}
+
+	.about-subtitle {
+		font-size: 15px;
+	}
+
+	.about-image-wrapper {
+		max-width: 280px;
 	}
 }

@@ -4,10 +4,7 @@ import { Helmet } from "react-helmet";
 import NavBar from "../components/common/navBar";
 import Footer from "../components/common/footer";
 import Socials from "../components/about/socials";
-import Education from "../components/about/education";
 import Skills from "../components/about/skills";
-import Experience from "../components/about/experience";
-import CareerGoals from "../components/about/careerGoals";
 
 import INFO from "../data/user";
 import SEO from "../data/seo";
@@ -78,20 +75,8 @@ export default function About() {
 							</div>
 						</div>
 						
-						<div className="about-career-goals">
-							<CareerGoals />
-						</div>
-
 						<div className="about-skills">
 							<Skills />
-						</div>
-
-						<div className="about-experience">
-							<Experience />
-						</div>
-						
-						<div className="about-education">
-							<Education />
 						</div>
 
 						<div className="about-socials-mobile">

@@ -17,10 +17,10 @@ const NavBar = () => {
 			<div className="nav-content">
 				<div className="nav-left">
 					<Link to="/" className="nav-logo" onClick={scrollToTop}>
-						Sang Tran
+				Sang Tran
 					</Link>
 				</div>
-
+				
 				<nav className="nav-center">
 					<Link to="/" className="nav-link">Home</Link>
 					<Link to="/about" className="nav-link">About</Link>
@@ -30,18 +30,18 @@ const NavBar = () => {
 				</nav>
 
 				<div className="nav-right">
-					<a
-						href={INFO.socials.linkedin}
-						target="_blank"
-						rel="noopener noreferrer"
+					<a 
+						href={INFO.socials.linkedin} 
+						target="_blank" 
+						rel="noopener noreferrer" 
 						className="nav-social-link"
 					>
 						LinkedIn
 					</a>
-					<a
-						href={INFO.socials.resume}
-						target="_blank"
-						rel="noopener noreferrer"
+					<a 
+						href={INFO.socials.resume} 
+						target="_blank" 
+						rel="noopener noreferrer" 
 						className="nav-social-link resume"
 					>
 						View Resume

@@ -195,27 +195,23 @@
     .project-detail {
         padding: 20px;
     }
-
+    
     .project-detail-title {
         font-size: 2.4rem;
     }
-
-    .project-detail-meta {
-        gap: 16px;
-    }
-
+    
     .project-description {
         font-size: 1.1rem;
         padding: 0 16px;
     }
-
+    
     .project-tech h2,
     .project-contributions h2,
     .project-proof h2 {
         font-size: 1.6rem;
         padding: 0 16px;
     }
-
+    
     .tech-stack,
     .project-contributions ul,
     .proof-grid {
@@ -226,7 +222,7 @@
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 16px;
     }
-
+    
     .project-detail-landing {
         margin-bottom: 30px;
         max-height: 400px;
@@ -246,23 +242,23 @@
     .project-detail-title {
         font-size: 2rem;
     }
-
+    
     .meta-item {
         font-size: 0.9rem;
     }
-
+    
     .tech-item {
         font-size: 0.9rem;
     }
-
+    
     .proof-grid {
         grid-template-columns: 1fr;
     }
-
+    
     .proof-item {
         height: 200px;
     }
-
+    
     .project-detail-landing {
         margin-bottom: 24px;
         max-height: 300px;

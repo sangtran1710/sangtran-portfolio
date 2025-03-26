@@ -31,6 +31,7 @@
 	width: calc((100% - 1200px) / 2);
 	background-color: #fafafa;
 	border: 1px solid #f4f4f5;
+	z-index: 1;
 }
 
 .page-content:before {
@@ -80,19 +81,6 @@
 @media (max-width: 1270px) {
 	.page-content:before,
 	.page-content:after {
-		width: calc((100% - 90%) / 2);
-	}
-
-	.content-wrapper {
-		max-width: 90%;
-		padding-left: 10%;
-		padding-right: 10%;
-	}
-}
-
-@media (max-width: 1024px) {
-	.page-content:before,
-	.page-content:after {
 		width: calc((100% - 950px) / 2);
 	}
 
@@ -121,3 +109,4 @@
 		width: 100%;
 	}
 }
+

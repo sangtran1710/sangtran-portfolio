@@ -58,13 +58,13 @@
 		gap: 16px;
 		padding: 20px 0;
 	}
-
+	
 	.all-projects-header {
 		flex-direction: column;
 		gap: 16px;
 		align-items: flex-start;
 	}
-
+	
 	.projects-filter {
 		width: 100%;
 		overflow-x: auto;
@@ -75,7 +75,7 @@
 	.filter-button {
 		white-space: nowrap;
 	}
-
+	
 	.all-projects-project {
 		min-height: 450px;
 	}
@@ -86,7 +86,7 @@
 		grid-template-columns: 1fr;
 		gap: 16px;
 	}
-
+	
 	.all-projects-project {
 		min-height: auto;
 	}

@@ -102,6 +102,19 @@ function article_2() {
 	};
 }
 
-const myArticles = [article_1, article_2];
+const articles = [
+	{
+		title: "Updating…",
+		description: "New insights on technical art and game dev pipelines will be shared soon.",
+		date: "2024",
+		link: "#"
+	},
+	{
+		title: "Updating…",
+		description: "New insights on technical art and game dev pipelines will be shared soon.",
+		date: "2024",
+		link: "#"
+	}
+];
 
-export default myArticles;
+export default articles;

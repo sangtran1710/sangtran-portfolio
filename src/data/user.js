@@ -63,9 +63,9 @@ const INFO = {
 	},
 
 	about: {
-		title: "Crafting visual excellence through technical innovation in game development.",
+		title: "I'm Sang Tran. I live in Ho Chi Minh City in Vietnam.",
 		description:
-			"With a proven track record in AAA game development, I've contributed to groundbreaking titles including Spider-Man 2, Until Dawn, Fortnite, Wolverine, and Black Knight (Netflix). My expertise lies in developing sophisticated VFX systems and creating efficient technical solutions that bridge the gap between artistic vision and technical implementation. I specialize in Houdini for procedural content creation, Python for automation and pipeline development, and Unreal Engine for real-time VFX integration. My passion lies in building scalable solutions that empower artists and optimize workflows, consistently pushing the boundaries of what's possible in game visuals and technical art.",
+			"I live at 48 Street No. 4 (next to Do Xuan Hop street), Phuoc Binh Ward, District 9, Ho Chi Minh City. I was born and raised in Vinh Long. In 2015, I moved to Ho Chi Minh City for university. Since 2019, I have followed my career in computer graphics. I have a big passion for visual effects and motion.",
 	},
 
 	careerGoals: {
@@ -199,8 +199,21 @@ const INFO = {
 
 	articles: {
 		title: "Sharing insights on technical art, VFX pipelines, and game development innovation.",
-		description:
-			"In-depth articles exploring the intersection of artistic vision and technical implementation in game development, focusing on pipeline optimization, VFX creation, and workflow automation.",
+		description: "Insights on technical art and workflow automation in game development.",
+		articles: [
+			{
+				title: "Updating...",
+				description: "New insights on technical art and game dev pipelines will be shared soon.",
+				date: "2024",
+				link: "#",
+			},
+			{
+				title: "Updating...",
+				description: "New insights on technical art and game dev pipelines will be shared soon.",
+				date: "2024",
+				link: "#",
+			}
+		]
 	},
 
 	projects: [
