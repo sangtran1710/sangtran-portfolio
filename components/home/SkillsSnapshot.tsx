@@ -20,7 +20,7 @@ const TOP_SKILLS = [
 
 export default function SkillsSnapshot() {
   return (
-    <section className="border-t border-border/60 bg-muted/30">
+    <section id="skills" className="border-t border-border/60 bg-muted/30">
       <div className="mx-auto max-w-5xl px-6 py-16">
         <div className="flex items-end justify-between mb-8">
           <div>

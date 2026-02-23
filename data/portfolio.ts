@@ -13,6 +13,16 @@ export interface Project {
   videoUrl?: string;
   images?: string[];
   isFeatured?: boolean;
+  /** Display period e.g. "12/2022 – 9/2023" */
+  duration?: string;
+  /** e.g. "Console, PC" */
+  platform?: string;
+  /** Client / studio name e.g. "Insomniac Games" */
+  client?: string;
+  /** Short summary of work done (one paragraph) */
+  workSummary?: string;
+  /** Visual style: "stylized" | "realistic" */
+  style?: "stylized" | "realistic";
 }
 
 export interface Experience {
@@ -41,15 +51,15 @@ export const SOCIALS = {
   github: "https://github.com/sangtran1710",
   behance: "https://www.behance.net/sangtranminh",
   resume:
-    "https://drive.google.com/file/d/1ltRqgSClzycOc3jO52RzycEnv4WIIA82/view?usp=sharing",
+    "https://drive.google.com/drive/folders/1MNF25uY-XX6N0hwEDwFb6Dpalw9648gX?hl=vi",
 };
 
 export const HERO = {
   name: "Sang Tran",
-  tagline: "Senior VFX Artist",
-  description:
-    "7+ years creating real-time visual effects for AAA titles, cinematic trailers, and live-service content. Specializing in Unreal Engine, Houdini, and shader development.",
-  showreelUrl: "/video/showreel.mp4",
+  tagline: "Senior VFX Real-time Artist",
+  /** Một dòng ngắn; phần còn lại để video + hình nói. */
+  description: "Real-time VFX for AAA games & cinematics.",
+  showreelUrl: "/video/reel_final.mp4",
   showreelYoutube: "https://www.youtube.com/watch?v=qK8jtTMHCRU",
 };
 
@@ -63,10 +73,35 @@ export const ABOUT = {
   location: "Ho Chi Minh City, Vietnam",
 };
 
+/** For home Profile section. portraitImage = mặt trước, portraitImageSecondary = mặt sau (flip khi hover). */
+export const PROFILE = {
+  headline: "Senior VFX Real-time Artist",
+  title: "Tran Minh Sang.",
+  /** Một dòng; chi tiết để trang About. */
+  paragraph: "**Sony** · **Epic** · **Amazon** · **Netflix**. Based in **HCMC** — open to work.",
+  portraitImage: "/images/Portrait/avatar.png",
+  /** Ảnh flip khi hover (avatar còn lại trong folder Portrait) */
+  portraitImageSecondary: "/images/Portrait/z7554087716035_e6282b2e1378f725e4bcb1b51032c015.jpg",
+  ctaText: "Contact me",
+  stats: [
+    { label: "Game Shipped", value: "8+" },
+    { label: "Commercial Projects", value: "20+" },
+    { label: "Years", value: "7+" },
+    { label: "Tools", value: "Unreal Engine, Unity, Premiere Pro, After Effects, JangaFX" },
+    { label: "3D Software", value: "Blender, Houdini, Maya, 3Ds Max, Cinema 4D" },
+  ] as const,
+};
+
+/** Image beside Technical Skills section (use project thumbnail or custom image). */
+export const SKILLS_SECTION_IMAGE = "/images/NWA.jpg";
+
+/** Image beside Visual Effect and Animation / experience section. */
+export const VFX_EXPERIENCE_IMAGE = "/images/Fortnite-Live-Event-Time.jpg";
+
 export const EXPERIENCES: Experience[] = [
   {
     company: "Sparx*",
-    role: "VFX Artist",
+    role: "Senior VFX Artist",
     duration: "Apr 2022 – Present",
     responsibilities: [
       "Developed and optimized real-time VFX for AAA projects including Marvel's Spider-Man 2, Fortnite Remix Finale, New World: Aeternum, and Until Dawn (PS5)",
@@ -132,6 +167,12 @@ export const PROJECTS: Project[] = [
     title: "Marvel's Spider-Man 2",
     role: "FX Artist",
     year: "2023",
+    duration: "12/2022 – 9/2023",
+    platform: "Console, PC",
+    style: "realistic",
+    client: "Insomniac Games",
+    workSummary:
+      "Created cinematic VFX, gameplay VFX, and in-game UI effects for Insomniac Games' PS5 blockbuster.",
     description:
       "Developed particle systems and environmental VFX for Insomniac Games' PS5 blockbuster, contributing to combat effects, web mechanics, and open-world atmosphere.",
     categories: ["aaa", "realtime"],
@@ -148,9 +189,15 @@ export const PROJECTS: Project[] = [
   {
     slug: "fortnite-remix",
     thumbnail: "/images/Fortnite-Live-Event-Time.jpg",
-    title: "Fortnite – Remix Finale",
-    role: "VFX Artist",
+    title: "Fortnite – Remix The Finale",
+    role: "FX Artist",
     year: "2024",
+    duration: "6/2023 – 10/2023",
+    platform: "PC, Console, Mobile",
+    style: "stylized",
+    client: "Epic Games",
+    workSummary:
+      "Created the cinematic trailer for the October 2023 event \"Remix The Finale\", to promote and advertise the new in-game event.",
     description:
       "Created weapon effects and event VFX for Epic Games' Fortnite Remix Finale live event, delivering high-impact real-time effects for millions of concurrent players.",
     categories: ["aaa", "realtime"],
@@ -161,14 +208,31 @@ export const PROJECTS: Project[] = [
     ],
     techStack: ["Unreal Engine", "Houdini", "Blender", "Python", "HLSL", "Perforce"],
     videoUrl: "https://www.youtube.com/embed/c-rtUmJPLQM?start=272",
+    images: [
+      "/images/Fornite/hq720.jpg",
+      "/images/Fornite/hq720 (1).jpg",
+      "/images/Fornite/hq720 (2).jpg",
+      "/images/Fornite/images (6).jpeg",
+      "/images/Fornite/Screenshot 2025-08-16 003230.png",
+      "/images/Fornite/Screenshot 2025-08-16 005424.png",
+      "/images/Fornite/Screenshot 2025-08-16 005538.png",
+      "/images/Fornite/Screenshot 2025-08-16 005614.png",
+      "/images/Fornite/Screenshot 2025-08-16 005729.png",
+    ],
     isFeatured: true,
   },
   {
     slug: "new-world",
     thumbnail: "/images/NWA.jpg",
     title: "New World: Aeternum",
-    role: "Technical VFX Artist",
+    role: "FX Artist",
     year: "2024",
+    duration: "12/2023 – 5/2024",
+    platform: "PS5, PC",
+    style: "realistic",
+    client: "Amazon Games",
+    workSummary:
+      "FX Artist on the cinematic trailer for the game, to promote the New World PS5 launch. Project from Amazon Games.",
     description:
       "Contributed to cinematic trailer production and in-game VFX for Amazon Games' New World PS5 launch, focusing on environmental and combat effects.",
     categories: ["aaa", "cinematic"],
@@ -184,9 +248,15 @@ export const PROJECTS: Project[] = [
   {
     slug: "until-dawn",
     thumbnail: "/images/until-dawn-ps5.jpg",
-    title: "Until Dawn – PS5",
+    title: "Until Dawn",
     role: "Lighting Artist",
     year: "2024",
+    duration: "9/2023 – 12/2023",
+    platform: "PS5",
+    style: "realistic",
+    client: "Ballistic Moon",
+    workSummary:
+      "Lighting Artist for cinematic content on the PS5 remake. The project had a large volume of cinematics with a tense, horror-inspired art direction. Outsourced from Ballistic Moon.",
     description:
       "Contributed cinematic lighting for key sequences in the PS5 remake, helping achieve the horror atmosphere and cinematic quality Ballistic Moon aimed for.",
     categories: ["aaa", "cinematic"],
@@ -234,19 +304,110 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "wolverine",
-    thumbnail: "/images/unkown-images.png",
-    title: "Wolverine – PS5",
+    thumbnail: "/images/Wolverine.png",
+    title: "Marvel's Wolverine",
     role: "VFX Artist",
     year: "2025",
+    duration: "10/2024 – Present",
+    platform: "PS5",
+    style: "realistic",
+    client: "Insomniac Games",
+    workSummary:
+      "VFX Artist on cinematics, gameplay VFX, and UI for Insomniac Games' next title after Spider-Man 2. Project coming soon (late 2026).",
     description:
       "Contributing VFX work to Insomniac Games' upcoming Wolverine title for PS5. Details under NDA.",
     categories: ["aaa", "realtime"],
     contributions: ["Details under NDA"],
     techStack: ["Unreal Engine", "Houdini", "Perforce"],
+    videoUrl: "https://www.youtube.com/watch?v=s3pDMUWlA6I",
   },
 ];
 
 export const FEATURED_PROJECTS = PROJECTS.filter((p) => p.isFeatured);
+
+/** AAA titles: Spider-Man 2, Fortnite, New World, Until Dawn, Wolverine */
+export const AAA_PROJECT_SLUGS = [
+  "spider-man-2",
+  "fortnite-remix",
+  "new-world",
+  "until-dawn",
+  "wolverine",
+];
+
+/** Sort key by end date (higher = more recent). "Present" = first. */
+function projectEndSortKey(p: Project): number {
+  const d = p.duration ?? p.year;
+  if (/Present/i.test(d)) return 999912;
+  const match = d.match(/\s*[–-]\s*(\d{1,2})\/(\d{4})/);
+  if (match) return parseInt(match[2], 10) * 100 + parseInt(match[1], 10);
+  const y = parseInt(p.year, 10);
+  return Number.isNaN(y) ? 0 : y * 100 + 12;
+}
+
+export const AAA_PROJECTS = PROJECTS.filter((p) =>
+  AAA_PROJECT_SLUGS.includes(p.slug)
+).sort((a, b) => projectEndSortKey(b) - projectEndSortKey(a));
+
+/** Others: Black Knight, Havoc — most recent first */
+export const OTHER_PROJECTS = PROJECTS.filter(
+  (p) => !AAA_PROJECT_SLUGS.includes(p.slug)
+).sort((a, b) => projectEndSortKey(b) - projectEndSortKey(a));
+
+export interface RndProject {
+  title: string;
+  category: string;
+  tools: string[];
+  image: string;
+  link: string;
+  /** Optional: "View on ArtStation" etc. Default "View on Behance" */
+  linkLabel?: string;
+}
+
+export const RND_PROJECTS: RndProject[] = [
+  {
+    title: "Level Up - Crypto.com",
+    category: "Motion Graphics",
+    tools: ["Blender", "After Effects"],
+    image: "/images/LevelUp.png",
+    link: "https://www.behance.net/gallery/234998189/Case-Study-Level-Up-Cryptocom",
+  },
+  {
+    title: "Ethereum Motion Art",
+    category: "Real-time Motion Art",
+    tools: ["Unreal Engine", "Niagara"],
+    image: "/images/ETH.png",
+    link: "https://www.behance.net/gallery/232255967/ETHEREUM-MOTION-ART",
+  },
+  {
+    title: "iPhone 11 Pro Max TVC",
+    category: "3D Product Commercial",
+    tools: ["Cinema 4D", "Octane", "After Effects"],
+    image: "/images/Iphone%2011.png",
+    link: "https://www.behance.net/gallery/136697475/iPhone-11-Pro-Max-TVC",
+  },
+  {
+    title: "Food Court Bitexco TVC",
+    category: "Commercial Production",
+    tools: ["Premiere Pro", "After Effects", "Filming"],
+    image: "/images/FoodCourt.png",
+    link: "https://www.behance.net/gallery/132077353/DT-NHANH-LY-TRUC-FOOD-COURT-BITEXCO",
+  },
+  {
+    title: "Smart Menu TVC",
+    category: "App Promo",
+    tools: ["Premiere Pro", "After Effects"],
+    image: "/images/SmartMenu.png",
+    link: "https://www.behance.net/gallery/115266933/TVC-Smart-Menu-Dt-Nhanh-Ly-Truc",
+  },
+  {
+    title: "Divecore — Diving Watch Strap",
+    category: "3D Product",
+    tools: ["Blender"],
+    image: "/images/WatchHPBlender/Screenshot.png",
+    link: "https://www.artstation.com/artwork/qJL4AN",
+    linkLabel: "View on ArtStation",
+  },
+];
 
 export const EDUCATION = [
   {
@@ -261,4 +422,37 @@ export const EDUCATION = [
     year: "2020",
     gpa: "3.2/4",
   },
+];
+
+/** Certificates / chứng chỉ (hiển thị trên trang About) */
+export interface Certificate {
+  name: string;
+  issuer: string;
+  year: string;
+  /** Link xác minh (optional) */
+  url?: string;
+  /** Ảnh certificate (optional), đặt trong public/images/certificates/ */
+  image?: string;
+}
+
+export const CERTIFICATES: Certificate[] = [
+  {
+    name: "Google UX Design Professional Certificate",
+    issuer: "Google (Coursera)",
+    year: "2025",
+    url: "https://coursera.org/verify/professional-cert/VKX385M7YJYL",
+    image: "/images/certificates/Coursera%20VKX385M7YJYL.png",
+  },
+];
+
+/** Ảnh có credit tên bạn (credits, achievements) — đặt trong public/images/achivements/ */
+export interface AchievementCredit {
+  image: string;
+  title?: string;
+  subtitle?: string;
+}
+
+export const ACHIEVEMENT_CREDITS: AchievementCredit[] = [
+  { image: "/images/achivements/SpiderMan2.png", title: "Marvel's Spider-Man 2", subtitle: "VFX Artist" },
+  { image: "/images/achivements/BlackKnightNetflix.png", title: "Black Knight (Netflix)", subtitle: "VFX Artist" },
 ];

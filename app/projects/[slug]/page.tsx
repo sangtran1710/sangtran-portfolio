@@ -59,9 +59,9 @@ export default function ProjectDetailPage({ params }: Props) {
         All Work
       </Link>
 
-      {/* Header */}
+      {/* Header: Title + period @ client */}
       <div className="mb-8">
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-2 mb-3">
           {project.categories.map((cat) => (
             <Badge key={cat} variant="secondary">
               {CATEGORY_LABELS[cat] ?? cat}
@@ -72,7 +72,13 @@ export default function ProjectDetailPage({ params }: Props) {
           {project.title}
         </h1>
         <p className="text-muted-foreground">
-          {project.role} &middot; {project.year}
+          {project.duration ?? project.year}
+          {project.client && (
+            <>
+              {" @ "}
+              <span className="text-primary font-medium">{project.client}</span>
+            </>
+          )}
         </p>
       </div>
 
@@ -100,14 +106,28 @@ export default function ProjectDetailPage({ params }: Props) {
         </div>
       ) : null}
 
-      {/* Additional images */}
+      {/* Additional images — compact grid */}
       {project.images && project.images.length > 0 && (
-        <div className="grid gap-4 sm:grid-cols-2 mb-10">
-          {project.images.map((img, i) => (
-            <div key={i} className="relative h-48 overflow-hidden rounded-lg bg-muted">
-              <Image src={img} alt={`${project.title} screenshot ${i + 1}`} fill className="object-cover" />
-            </div>
-          ))}
+        <div className="mb-10">
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-3">
+            Gallery
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+            {project.images.map((img, i) => (
+              <div
+                key={i}
+                className="relative aspect-video overflow-hidden rounded-lg bg-muted"
+              >
+                <Image
+                  src={img}
+                  alt={`${project.title} ${i + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 50vw, 33vw"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
@@ -120,6 +140,18 @@ export default function ProjectDetailPage({ params }: Props) {
               {project.description}
             </p>
           </div>
+
+          {project.workSummary && (
+            <>
+              <Separator />
+              <div>
+                <h2 className="text-lg font-semibold mb-3">My role</h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  {project.workSummary}
+                </p>
+              </div>
+            </>
+          )}
 
           <Separator />
 
@@ -136,7 +168,7 @@ export default function ProjectDetailPage({ params }: Props) {
           </div>
         </div>
 
-        {/* Sidebar */}
+        {/* Sidebar: Role, Platform, Engine, Category */}
         <div className="space-y-6">
           <div className="rounded-xl border border-border bg-muted/30 p-5">
             <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
@@ -151,15 +183,39 @@ export default function ProjectDetailPage({ params }: Props) {
             </div>
           </div>
 
-          <div className="rounded-xl border border-border bg-muted/30 p-5 space-y-3">
+          <div className="rounded-xl border border-border bg-muted/30 p-5 space-y-4">
             <div>
               <p className="text-xs text-muted-foreground">Role</p>
               <p className="text-sm font-medium mt-0.5">{project.role}</p>
             </div>
+            {project.platform && (
+              <div>
+                <p className="text-xs text-muted-foreground">Platform</p>
+                <p className="text-sm font-medium mt-0.5">{project.platform}</p>
+              </div>
+            )}
             <div>
-              <p className="text-xs text-muted-foreground">Year</p>
-              <p className="text-sm font-medium mt-0.5">{project.year}</p>
+              <p className="text-xs text-muted-foreground">Period</p>
+              <p className="text-sm font-medium mt-0.5">
+                {project.duration ?? project.year}
+              </p>
             </div>
+            {project.client && (
+              <div>
+                <p className="text-xs text-muted-foreground">Client</p>
+                <p className="text-sm font-medium mt-0.5 text-primary">
+                  {project.client}
+                </p>
+              </div>
+            )}
+            {project.style && (
+              <div>
+                <p className="text-xs text-muted-foreground">Style</p>
+                <p className="text-sm font-medium mt-0.5 capitalize">
+                  {project.style}
+                </p>
+              </div>
+            )}
             <div>
               <p className="text-xs text-muted-foreground">Category</p>
               <div className="flex flex-wrap gap-1.5 mt-1.5">
