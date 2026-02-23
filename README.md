@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sang Tran — Portfolio
+
+Personal portfolio showcasing **VFX & Technical Art** work for AAA games and cinematic productions.
+
+**Live:** [sangtran-portfolio.vercel.app](https://sangtran-portfolio.vercel.app)
+
+---
+
+## About
+
+I'm **Sang Tran**, a Senior VFX Artist based in Ho Chi Minh City, Vietnam. This site highlights real-time visual effects work for studios such as **Sony** (Marvel's Spider-Man 2), **Epic** (Fortnite), **Amazon** (New World: Aeternum), and **Netflix** (Black Knight), plus Web3 and indie projects.
+
+- **Focus:** Real-time VFX, Niagara, HLSL, Houdini, pipeline automation
+- **Stack (work):** Unreal Engine 5, Houdini, Blender, Python
+
+---
+
+## Tech Stack (site)
+
+- **Next.js 14** (App Router)
+- **TypeScript**
+- **Tailwind CSS**
+- **Framer Motion** (animations, scroll effects)
+- **Radix UI** (components)
+
+---
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install
+npm install
+
+# Dev
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Build
+npm run build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Production
+npm start
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Project structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Path | Purpose |
+|------|--------|
+| `app/` | Pages (home, about, projects, showreel, rnd, etc.) |
+| `components/` | UI, layout, home sections, animations |
+| `data/portfolio.ts` | Copy, projects, skills, experience (edit here to update content) |
+| `public/` | Images, video, static assets |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The project is set up for **Vercel**. Push to `master` (or connect your fork) and Vercel will build and deploy. See [DEPLOY.md](./DEPLOY.md) for details.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Contact
+
+- **Email:** sangminhtran1710@gmail.com  
+- **LinkedIn:** [Sang Tran](https://www.linkedin.com/in/sang-tran-94686b160/)  
+- **GitHub:** [sangtran1710](https://github.com/sangtran1710)
+
+---
+
+*Showcase all my VFX/3D works.*
