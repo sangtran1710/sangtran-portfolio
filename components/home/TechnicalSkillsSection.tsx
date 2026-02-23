@@ -39,7 +39,7 @@ export default function TechnicalSkillsSection() {
       id="technical-skills"
       className="relative border-t border-border/60 bg-muted/20"
     >
-      <div className="mx-auto max-w-5xl px-6 py-16 lg:py-20">
+      <div className="mx-auto max-w-5xl px-6 sm:px-8 py-20 lg:py-28">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
           <div>
             <motion.div
@@ -47,17 +47,17 @@ export default function TechnicalSkillsSection() {
               initial={{ opacity: 0, x: -12 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.35 }}
             >
-              <Box className="h-4 w-4 text-primary" aria-hidden />
-              <p className="text-xs font-semibold uppercase tracking-widest text-primary">
+              <Box className="h-4 w-4 text-primary" strokeWidth={1.5} aria-hidden />
+              <p className="section-label">
                 Toolkit
               </p>
             </motion.div>
             <TextReveal
               text="Skills"
               as="h2"
-              className="text-2xl sm:text-3xl font-bold tracking-tight mb-8"
+              className="section-title mb-8"
               offset={["start 0.85", "start 0.55"]}
             />
             <div className="space-y-6">
@@ -73,8 +73,8 @@ export default function TechnicalSkillsSection() {
                       <div className="flex items-center gap-2 mb-3">
                         <motion.div
                           className={`rounded-lg bg-muted p-1.5 ${color}`}
-                          whileHover={{ scale: 1.1, rotate: 5 }}
-                          transition={{ type: "spring", stiffness: 400 }}
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ duration: 0.2 }}
                         >
                           <Icon className="h-4 w-4" />
                         </motion.div>

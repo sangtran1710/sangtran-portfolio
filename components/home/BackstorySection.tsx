@@ -14,11 +14,11 @@ import { ChevronRight } from "lucide-react";
 import TextReveal from "@/components/animations/TextReveal";
 
 const itemVariants = {
-  hidden: { opacity: 0, x: -24 },
+  hidden: { opacity: 0, x: -16 },
   visible: (i: number) => ({
     opacity: 1,
     x: 0,
-    transition: { delay: i * 0.12, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const },
+    transition: { delay: i * 0.06, duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] as const },
   }),
 };
 
@@ -55,7 +55,7 @@ export default function BackstorySection() {
     <section
       ref={sectionRef}
       id="backstory"
-      className="relative min-h-[80vh] py-24 overflow-hidden bg-zinc-950"
+      className="relative min-h-[80vh] py-28 lg:py-32 overflow-hidden bg-zinc-950"
     >
       {hasVideo && (
         <motion.video
@@ -74,11 +74,11 @@ export default function BackstorySection() {
       <div className="absolute inset-0 bg-zinc-950/70" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-950/50 to-zinc-950/80" />
 
-      <div className="relative mx-auto max-w-4xl px-6">
+      <div className="relative mx-auto max-w-4xl px-6 sm:px-8">
         <TextReveal
           text="My **Backstory**"
           as="h2"
-          className="text-center text-2xl sm:text-3xl font-bold tracking-tight text-white mb-16 [&_strong]:text-teal-400"
+          className="section-title text-center text-white mb-16 [&_strong]:text-teal-400"
           offset={["start 0.85", "start 0.55"]}
         />
 

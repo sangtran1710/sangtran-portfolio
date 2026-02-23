@@ -26,10 +26,10 @@ const variantConfig: Record<
     opacity: [number, number];
   }
 > = {
-  fadeUp: { y: [40, 0], opacity: [0, 1] },
-  slideLeft: { x: [-60, 0], opacity: [0, 1] },
-  slideRight: { x: [60, 0], opacity: [0, 1] },
-  scaleUp: { scale: [0.92, 1], opacity: [0, 1] },
+  fadeUp: { y: [24, 0], opacity: [0, 1] },
+  slideLeft: { x: [-32, 0], opacity: [0, 1] },
+  slideRight: { x: [32, 0], opacity: [0, 1] },
+  scaleUp: { scale: [0.97, 1], opacity: [0, 1] },
 };
 
 export default function ScrollReveal({

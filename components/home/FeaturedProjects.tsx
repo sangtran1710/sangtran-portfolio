@@ -214,19 +214,19 @@ export default function FeaturedProjects() {
       <div className="absolute inset-0 bg-zinc-950/75" />
       <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/50 via-transparent to-zinc-950/80" />
 
-      <div className="relative mx-auto max-w-5xl px-6 py-20">
+      <div className="relative mx-auto max-w-5xl px-6 sm:px-8 py-24 lg:py-32">
         <motion.div
           className="flex items-end justify-between mb-10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
         >
             <div>
             <TextReveal
               text="Work"
               as="h2"
-              className="text-3xl font-bold tracking-tight text-white"
+              className="section-title text-white"
               offset={["start 0.95", "start 0.65"]}
             />
           </div>

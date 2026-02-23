@@ -18,16 +18,16 @@ const stagger = {
   hidden: { opacity: 0 },
   visible: (i: number = 0) => ({
     opacity: 1,
-    transition: { delay: (Number(i) ?? 0) * 0.08 + 0.1, duration: 0.5, ease: "easeOut" as const },
+    transition: { delay: (Number(i) ?? 0) * 0.05 + 0.05, duration: 0.4, ease: "easeOut" as const },
   }),
 };
 
 const slideUp = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 16 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.08 + 0.1, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const },
+    transition: { delay: i * 0.05 + 0.05, duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] as const },
   }),
 };
 
@@ -65,7 +65,7 @@ export default function ProfileSection() {
           animation: "profile-gradient 10s ease-in-out infinite",
         }}
       />
-      <div className="relative mx-auto max-w-5xl px-6 py-16 lg:py-20">
+      <div className="relative mx-auto max-w-5xl px-6 sm:px-8 py-20 lg:py-28">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20 items-center">
           {/* Left: Framer Motion stagger + hover */}
           <div className="order-2 lg:order-1 flex flex-col gap-10">
@@ -76,17 +76,17 @@ export default function ProfileSection() {
               custom={0}
               className="space-y-4"
             >
-              <p className="text-xs font-semibold uppercase tracking-widest text-primary">
+              <p className="section-label">
                 {PROFILE.headline}
               </p>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground leading-tight">
+              <h2 className="section-title mt-1">
                 {PROFILE.title}
               </h2>
               <motion.span
                 className="inline-block h-0.5 w-16 rounded-full bg-primary origin-left"
                 initial={{ scaleX: 0 }}
                 animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-                transition={{ delay: 0.35, duration: 0.4, ease: "easeOut" }}
+                transition={{ delay: 0.2, duration: 0.35, ease: "easeOut" }}
               />
             </motion.div>
 
@@ -94,7 +94,7 @@ export default function ProfileSection() {
             <TextReveal
               text={PROFILE.paragraph}
               as="p"
-              className="text-muted-foreground text-[15px] leading-relaxed max-w-lg"
+              className="section-body max-w-lg"
               offset={["start 0.85", "start 0.45"]}
             />
 
@@ -153,10 +153,10 @@ export default function ProfileSection() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="gap-2 border-teal-600 text-teal-600 hover:bg-teal-50 transition-all hover:scale-[1.02] hover:shadow-md hover:shadow-teal-500/10"
+                className="gap-2.5 border-teal-600 text-teal-600 hover:bg-teal-50 hover:border-teal-500 hover:shadow-md hover:shadow-teal-500/10"
               >
                 <a href={SOCIALS.linkedin} target="_blank" rel="noopener noreferrer">
-                  <Linkedin className="h-4 w-4" />
+                  <Linkedin className="h-5 w-5" strokeWidth={1.5} />
                   {PROFILE.ctaText}
                 </a>
               </Button>

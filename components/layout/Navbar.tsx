@@ -71,7 +71,7 @@ export default function Navbar() {
           >
             Resume
           </a>
-          <Button asChild size="sm" className="ml-3 bg-teal-600 hover:bg-teal-500 text-white border-0">
+          <Button asChild variant="pill" size="sm" className="ml-3 bg-teal-600 hover:bg-teal-500 text-white border-0">
             <Link href="/projects">Work</Link>
           </Button>
         </nav>
@@ -80,9 +80,9 @@ export default function Navbar() {
           <SheetTrigger asChild className="md:hidden">
             <Button
               variant="ghost"
-              size="icon"
+              size="icon-sm"
               aria-label="Open menu"
-              className={isLanding ? "text-white" : "text-zinc-900"}
+              className={cn("rounded-full", isLanding ? "text-white hover:bg-white/10" : "text-zinc-900 hover:bg-zinc-100")}
             >
               <Menu className="h-5 w-5" />
             </Button>
@@ -108,7 +108,7 @@ export default function Navbar() {
               >
                 Resume
               </a>
-              <Button asChild size="sm" className="mt-4 mx-4 bg-teal-600 hover:bg-teal-500">
+              <Button asChild variant="pill" size="sm" className="mt-4 mx-4 bg-teal-600 hover:bg-teal-500">
                 <Link href="/projects" onClick={() => setOpen(false)}>Work</Link>
               </Button>
             </div>

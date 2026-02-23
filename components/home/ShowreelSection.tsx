@@ -105,16 +105,16 @@ export default function ShowreelSection() {
           <Button
             asChild
             size="lg"
-            className="gap-2 bg-red-600 hover:bg-red-500"
+            className="gap-2.5 bg-red-600 hover:bg-red-500"
           >
             <a
               href={HERO.showreelYoutube}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Youtube className="h-4 w-4" />
+              <Youtube className="h-5 w-5" strokeWidth={1.5} />
               Watch on YouTube
-              <ExternalLink className="h-3.5 w-3.5" />
+              <ExternalLink className="h-4 w-4" strokeWidth={1.5} />
             </a>
           </Button>
         </div>

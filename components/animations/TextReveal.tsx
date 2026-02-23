@@ -29,7 +29,7 @@ function WordReveal({
   opacityRange: [number, number];
 }) {
   const opacity = useTransform(progress, range, opacityRange);
-  const y = useTransform(progress, range, [12, 0]);
+  const y = useTransform(progress, range, [8, 0]);
 
   return (
     <motion.span

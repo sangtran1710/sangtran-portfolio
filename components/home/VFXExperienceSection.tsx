@@ -43,7 +43,7 @@ export default function VFXExperienceSection() {
       id="vfx-experience"
       className="relative border-t border-border/60 bg-background"
     >
-      <div className="mx-auto max-w-5xl px-6 py-16 lg:py-20">
+      <div className="mx-auto max-w-5xl px-6 sm:px-8 py-20 lg:py-28">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
           {/* Image with parallax */}
           <motion.div
@@ -52,14 +52,14 @@ export default function VFXExperienceSection() {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.4 }}
+            whileHover={{ scale: 1.01 }}
           >
             <Image
               src={VFX_EXPERIENCE_IMAGE}
               alt=""
               fill
-              className="object-cover transition-transform duration-500 hover:scale-110"
+              className="object-cover transition-transform duration-300 hover:scale-[1.03]"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </motion.div>
@@ -76,15 +76,15 @@ export default function VFXExperienceSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.4 }}
             >
-              <Film className="h-4 w-4 text-primary" aria-hidden />
-              <p className="text-xs font-semibold uppercase tracking-widest text-primary">
+              <Film className="h-4 w-4 text-primary" strokeWidth={1.5} aria-hidden />
+              <p className="section-label">
                 Experience
               </p>
             </motion.div>
             <TextReveal
               text="Visual Effect and Animation"
               as="h2"
-              className="text-2xl sm:text-3xl font-bold tracking-tight mb-6"
+              className="section-title mb-6"
               offset={["start 0.85", "start 0.55"]}
             />
             <ul className="space-y-3">

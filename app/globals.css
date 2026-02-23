@@ -43,6 +43,17 @@
   }
 }
 
+/* Section typography — rõ, nhất quán (Framer-style) */
+.section-label {
+  @apply text-xs font-semibold uppercase tracking-widest text-primary;
+}
+.section-title {
+  @apply text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground leading-tight;
+}
+.section-body {
+  @apply text-base text-muted-foreground leading-relaxed;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -69,15 +80,15 @@ html {
   }
 }
 
-/* Motion chuyển qua chuyển lại cho title My Work / My Backstory */
+/* Title motion — rất nhẹ (vừa phải) */
 @keyframes title-slide {
   0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(0.25em); }
+  50% { transform: translateX(0.15em); }
 }
 
 .title-motion {
   display: inline-block;
-  animation: title-slide 3s ease-in-out infinite;
+  animation: title-slide 4s ease-in-out infinite;
 }
 
 /* Hero: subtle ambient glow shift */
@@ -97,10 +108,10 @@ html {
   }
 }
 
-/* Profile section: float nhẹ + gradient nền */
+/* Profile section: float rất nhẹ */
 @keyframes profile-float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  50% { transform: translateY(-4px); }
 }
 
 @keyframes profile-gradient {

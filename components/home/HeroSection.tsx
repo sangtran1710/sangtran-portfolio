@@ -80,11 +80,11 @@ export default function HeroSection() {
       {/* Interactive particle network */}
       <ParticleCanvas
         className="z-[1]"
-        particleCount={70}
+        particleCount={50}
         color="20, 184, 166"
         maxDistance={140}
         mouseRadius={180}
-        speed={0.3}
+        speed={0.2}
       />
 
       {/* Main content */}
@@ -101,7 +101,7 @@ export default function HeroSection() {
           className="inline-flex items-center gap-2 rounded-full border border-teal-400/20 bg-teal-400/5 px-4 py-1.5 mb-6"
           initial={{ opacity: 0, y: 20, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
@@ -117,7 +117,7 @@ export default function HeroSection() {
           className="text-5xl sm:text-6xl lg:text-8xl font-bold tracking-tight text-white leading-[1.02] mb-4"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 0.5, delay: 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           {HERO.name}
         </motion.h1>
@@ -127,7 +127,7 @@ export default function HeroSection() {
           className="text-xl sm:text-2xl lg:text-3xl font-light text-white/70 tracking-wide mb-5"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
+          transition={{ delay: 0.15, duration: 0.45, ease: "easeOut" }}
         >
           {HERO.tagline}
         </motion.p>
@@ -137,20 +137,20 @@ export default function HeroSection() {
           className="flex items-center justify-center gap-3 mb-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
+          transition={{ delay: 0.25, duration: 0.4 }}
         >
           <motion.div
             className="h-px w-12 bg-gradient-to-r from-transparent to-teal-400/60"
             initial={{ scaleX: 0, originX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
+            transition={{ delay: 0.35, duration: 0.4, ease: "easeOut" }}
           />
           <div className="h-1.5 w-1.5 rounded-full bg-teal-400" />
           <motion.div
             className="h-px w-12 bg-gradient-to-l from-transparent to-teal-400/60"
             initial={{ scaleX: 0, originX: 1 }}
             animate={{ scaleX: 1 }}
-            transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
+            transition={{ delay: 0.35, duration: 0.4, ease: "easeOut" }}
           />
         </motion.div>
 
@@ -159,7 +159,7 @@ export default function HeroSection() {
           className="text-sm text-white/50 max-w-md mx-auto mb-8"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
+          transition={{ delay: 0.3, duration: 0.45, ease: "easeOut" }}
         >
           {HERO.description}
         </motion.p>
@@ -169,21 +169,21 @@ export default function HeroSection() {
           className="flex flex-col sm:flex-row items-center justify-center gap-3"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.65, duration: 0.5, ease: "easeOut" }}
+          transition={{ delay: 0.4, duration: 0.4, ease: "easeOut" }}
         >
           <MagneticButton
             href="/showreel"
-            className="group inline-flex items-center gap-2.5 rounded-lg bg-teal-500 px-6 py-3 text-sm font-semibold text-zinc-950 transition-colors duration-300 hover:bg-teal-400 hover:shadow-lg hover:shadow-teal-500/20"
+            className="group inline-flex items-center gap-2.5 rounded-xl bg-teal-500 px-6 py-3.5 text-sm font-semibold text-zinc-950 transition-all duration-200 ease-out hover:bg-teal-400 hover:shadow-lg hover:shadow-teal-500/25 hover:scale-[1.02] active:scale-[0.98]"
           >
-            <Play className="h-4 w-4 transition-transform group-hover:scale-110" />
+            <Play className="h-5 w-5 transition-transform duration-200 group-hover:scale-110" strokeWidth={1.5} />
             Watch Showreel
           </MagneticButton>
           <MagneticButton
             href="/projects"
-            className="group inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-white/90 transition-colors duration-300 hover:bg-white/10 hover:border-white/25 backdrop-blur-sm"
+            className="group inline-flex items-center gap-2.5 rounded-xl border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-medium text-white/95 transition-all duration-200 ease-out hover:bg-white/10 hover:border-white/30 hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm"
           >
             View Projects
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5" strokeWidth={1.5} />
           </MagneticButton>
         </motion.div>
       </motion.div>

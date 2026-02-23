@@ -25,7 +25,7 @@ export default function ContactSection() {
           backgroundSize: "24px 24px",
         }}
       />
-      <div className="relative mx-auto max-w-5xl px-6 py-20">
+      <div className="relative mx-auto max-w-5xl px-6 sm:px-8 py-24 lg:py-32">
         <ScrollReveal variant="scaleUp">
           <div className="flex flex-col items-center text-center">
             <motion.div
@@ -33,16 +33,16 @@ export default function ContactSection() {
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ type: "spring", stiffness: 200 }}
+              transition={{ duration: 0.35 }}
             >
               <MessageCircle className="h-6 w-6" />
             </motion.div>
             <motion.p
-              className="text-xs font-semibold uppercase tracking-widest text-primary mb-2"
+              className="section-label mb-2"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1, duration: 0.4 }}
+              transition={{ delay: 0.05, duration: 0.35 }}
             >
               Get in Touch
             </motion.p>
@@ -50,7 +50,7 @@ export default function ContactSection() {
             <TextReveal
               text="Open to new opportunities"
               as="h2"
-              className="text-3xl sm:text-4xl font-bold tracking-tight mb-4"
+              className="section-title mb-4"
               offset={["start 0.9", "start 0.55"]}
             />
 
@@ -59,7 +59,7 @@ export default function ContactSection() {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.4 }}
+              transition={{ delay: 0.1, duration: 0.35 }}
             >
               Full-time & freelance.
             </motion.p>
@@ -69,7 +69,7 @@ export default function ContactSection() {
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.4 }}
+              transition={{ delay: 0.15, duration: 0.35 }}
             >
               {[
                 {
@@ -103,11 +103,11 @@ export default function ContactSection() {
                 >
                   <Button asChild size="lg" variant={i === 0 ? "default" : "outline"} className={className}>
                     <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined}>
-                      <span className={`flex h-9 w-9 items-center justify-center rounded-full ${iconWrap}`}>
-                        <Icon className={i === 0 ? "h-4 w-4" : "h-5 w-5"} />
+                      <span className={`flex h-10 w-10 items-center justify-center rounded-full ${iconWrap}`}>
+                        <Icon className="h-5 w-5" strokeWidth={1.5} />
                       </span>
                       {label}
-                      {href.startsWith("http") && <ExternalLink className="h-3.5 w-3.5 ml-0.5 opacity-70" />}
+                      {href.startsWith("http") && <ExternalLink className="h-4 w-4 ml-0.5 opacity-70" strokeWidth={1.5} />}
                     </a>
                   </Button>
                 </motion.div>

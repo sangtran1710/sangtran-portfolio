@@ -186,7 +186,8 @@ export default function AboutPageClient() {
               >
                 <Button
                   asChild
-                  className="gap-2 bg-teal-600 hover:bg-teal-500 text-white"
+                  size="lg"
+                  className="gap-2.5 bg-teal-600 hover:bg-teal-500 text-white"
                 >
                   <a
                     href={SOCIALS.resume}
@@ -194,10 +195,10 @@ export default function AboutPageClient() {
                     rel="noopener noreferrer"
                   >
                     Download Resume
-                    <ExternalLink className="h-3.5 w-3.5" />
+                    <ExternalLink className="h-4 w-4" strokeWidth={1.5} />
                   </a>
                 </Button>
-                <Button asChild variant="outline" className="gap-2 border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white">
+                <Button asChild variant="outline" size="lg" className="gap-2.5 border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white hover:border-zinc-600">
                   <Link href="/projects">View Projects</Link>
                 </Button>
               </motion.div>
