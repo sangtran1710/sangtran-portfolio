@@ -8,8 +8,6 @@ import {
   useScroll,
   useTransform,
   useReducedMotion,
-  useMotionValue,
-  useSpring,
 } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { HERO, AAA_PROJECTS, OTHER_PROJECTS } from "@/data/portfolio";
@@ -23,10 +21,6 @@ const CATEGORY_LABELS: Record<string, string> = {
   cinematic: "Cinematic",
   igaming: "iGaming",
 };
-
-const TILT_MAX = 8;
-const IMAGE_PARALLAX = 12;
-const TILT_SPRING = { stiffness: 300, damping: 25 };
 
 function ProjectCard({
   slug,
@@ -51,119 +45,52 @@ function ProjectCard({
   categories: string[];
   prefersReducedMotion: boolean | null;
 }) {
-  const cardRef = useRef<HTMLDivElement>(null);
   const setOverProjectCard = useViewProjectCursor()?.setOverProjectCard ?? (() => {});
-  const rotateX = useMotionValue(0);
-  const rotateY = useMotionValue(0);
-  const imgX = useMotionValue(0);
-  const imgY = useMotionValue(0);
-  const springRotateX = useSpring(rotateX, TILT_SPRING);
-  const springRotateY = useSpring(rotateY, TILT_SPRING);
-  const springImgX = useSpring(imgX, TILT_SPRING);
-  const springImgY = useSpring(imgY, TILT_SPRING);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (prefersReducedMotion || !cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const relX = (e.clientX - rect.left) / rect.width;
-    const relY = (e.clientY - rect.top) / rect.height;
-    const rotY = (relX - 0.5) * 2 * TILT_MAX;
-    const rotX = (0.5 - relY) * 2 * TILT_MAX;
-    rotateX.set(rotX);
-    rotateY.set(rotY);
-    imgX.set((relX - 0.5) * -IMAGE_PARALLAX);
-    imgY.set((relY - 0.5) * IMAGE_PARALLAX);
-  };
-
-  const handleMouseLeave = () => {
-    setOverProjectCard(false);
-    rotateX.set(0);
-    rotateY.set(0);
-    imgX.set(0);
-    imgY.set(0);
-  };
-
-  const handleMouseEnter = () => {
-    if (!noMotion) setOverProjectCard(true);
-  };
-
-  const noMotion = prefersReducedMotion;
 
   return (
     <div
-      className={noMotion ? "" : "cursor-none"}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setOverProjectCard(true)}
+      onMouseLeave={() => setOverProjectCard(false)}
     >
       <Link
         href={`/projects/${slug}`}
-        className="group block relative overflow-hidden rounded-xl border-2 border-border/60 bg-card transition-all duration-300 hover:border-teal-400/70 hover:shadow-[0_0_0_1px_rgba(20,184,166,0.15),0_8px_30px_-8px_rgba(20,184,166,0.2)]"
+        className="group block relative overflow-hidden rounded-xl border border-white/15 bg-zinc-900/50 transition-all duration-300 hover:border-teal-400 hover:shadow-[0_0_0_2px_rgba(20,184,166,0.4),0_0_24px_rgba(20,184,166,0.15)]"
       >
-        <div
-          ref={cardRef}
-          className={noMotion ? undefined : ""}
-          style={noMotion ? undefined : { perspective: 800 }}
-        >
-          <motion.div
-            className="flex flex-col sm:flex-row"
-            style={
-              noMotion
-                ? undefined
-                : {
-                    rotateX: springRotateX,
-                    rotateY: springRotateY,
-                    transformStyle: "preserve-3d",
-                  }
-            }
-          >
-          <div className="relative w-full sm:w-40 aspect-video sm:aspect-square flex-shrink-0 overflow-hidden bg-muted">
-            <motion.div
-              className="absolute inset-0"
-              style={
-                noMotion
-                  ? undefined
-                  : {
-                    x: springImgX,
-                    y: springImgY,
-                  }
-              }
-            >
-              <Image
-                src={thumbnail}
-                alt={title}
-                fill
-                className="object-contain transition-transform duration-500 group-hover:scale-[1.02]"
-                sizes="(max-width: 640px) 100vw, 160px"
-              />
-            </motion.div>
+        <div className="flex flex-col">
+          <div className="relative w-full aspect-[16/10] flex-shrink-0 overflow-hidden rounded-t-xl bg-zinc-800/80">
+            <Image
+              src={thumbnail}
+              alt={title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+            />
             <div className="absolute top-2 right-2 flex flex-wrap gap-1 justify-end pointer-events-none">
               {categories.slice(0, 2).map((cat) => (
                 <span
                   key={cat}
-                  className="rounded-full bg-black/60 backdrop-blur-sm px-2 py-0.5 text-[10px] font-medium text-white/90"
+                  className="rounded-md bg-black/70 backdrop-blur-sm px-2 py-0.5 text-[10px] font-medium text-white"
                 >
                   {CATEGORY_LABELS[cat] ?? cat}
                 </span>
               ))}
             </div>
           </div>
-          <div className="flex flex-1 flex-col justify-between p-4 sm:p-5">
-            <h3 className="font-semibold text-foreground leading-tight group-hover:text-primary transition-colors">
+          <div className="flex flex-col p-4 sm:p-5 bg-white/5 border-x-2 border-b-2 border-white/10 rounded-b-xl">
+            <h3 className="font-semibold text-white leading-tight group-hover:text-teal-400 transition-colors">
               {title}
             </h3>
-            <p className="text-sm text-muted-foreground mt-1">
+            <p className="text-sm text-white/70 mt-1">
               {role} · {duration ?? year}
             </p>
             {(platform || style) && (
-              <p className="text-xs text-muted-foreground mt-1">
+              <p className="text-xs text-white/50 mt-1">
                 {[platform, style && style.charAt(0).toUpperCase() + style.slice(1)]
                   .filter(Boolean)
                   .join(" · ")}
               </p>
             )}
           </div>
-          </motion.div>
         </div>
       </Link>
     </div>
@@ -250,7 +177,7 @@ export default function FeaturedProjects() {
           >
             AAA
           </motion.h3>
-          <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {AAA_PROJECTS.map((project, i) => (
               <ScrollReveal
                 key={project.slug}
@@ -285,7 +212,7 @@ export default function FeaturedProjects() {
           >
             Others
           </motion.h3>
-          <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {OTHER_PROJECTS.map((project, i) => (
               <ScrollReveal
                 key={project.slug}

@@ -100,6 +100,16 @@ export const VFX_EXPERIENCE_IMAGE = "/images/Fortnite-Live-Event-Time.jpg";
 
 export const EXPERIENCES: Experience[] = [
   {
+    company: "Upwork",
+    role: "Technical VFX Artist",
+    duration: "2024 – Present",
+    responsibilities: [
+      "Deliver real-time VFX and technical art for indie and mid-size game studios via Upwork",
+      "Niagara, shaders, and optimization for Unreal Engine projects",
+    ],
+    technologies: "Unreal Engine 5, Niagara, HLSL, Houdini",
+  },
+  {
     company: "Sparx*",
     role: "Senior VFX Artist",
     duration: "Apr 2022 – Present",
@@ -362,6 +372,22 @@ export interface RndProject {
   /** Optional: "View on ArtStation" etc. Default "View on Behance" */
   linkLabel?: string;
 }
+
+/** iGaming / Live Casino / ARRISE-style artwork for dedicated /igaming page */
+export interface IgamingArtwork {
+  title: string;
+  category: string;
+  description?: string;
+  image: string;
+  videoUrl?: string;
+  link?: string;
+  linkLabel?: string;
+  tools?: string[];
+}
+
+export const IGAMING_ARTWORKS: IgamingArtwork[] = [
+  // Add items when ready — e.g. Mega Wheel overlay, broadcast samples
+];
 
 export const RND_PROJECTS: RndProject[] = [
   {

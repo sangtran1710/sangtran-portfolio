@@ -9,12 +9,15 @@ import {
   ExternalLink,
   Youtube,
 } from "lucide-react";
+import { useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { HERO } from "@/data/portfolio";
+import TypewriterTitle from "@/components/animations/TypewriterTitle";
 
 export default function ShowreelSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const thumbRef = useRef<HTMLVideoElement>(null);
+  const prefersReducedMotion = useReducedMotion();
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
   const [hasError, setHasError] = useState(false);
@@ -76,7 +79,14 @@ export default function ShowreelSection() {
             Showreel
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-            VFX Reel 2025
+            <TypewriterTitle
+              prefix=""
+              words={["VFX Reel 2025"]}
+              run={true}
+              reducedMotion={prefersReducedMotion}
+              wordClassName="text-white"
+              cursorClassName="text-teal-400"
+            />
           </h2>
         </div>
         <div className="hidden sm:flex items-center gap-4">

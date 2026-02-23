@@ -12,6 +12,7 @@ const FOOTER_LINKS = [
   { href: "/", label: "Home" },
   { href: "/showreel", label: "Showreel" },
   { href: "/rnd", label: "RND" },
+  { href: "/igaming", label: "iGaming" },
   { href: "/share", label: "Share" },
   { href: "/blog", label: "Blog" },
   { href: "/projects", label: "Portfolio" },
@@ -29,41 +30,38 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border/60 bg-muted/30">
-      <div className="mx-auto max-w-5xl px-6 py-8">
-        {/* Contact row: email + location */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-10 text-sm text-muted-foreground mb-6">
+    <footer className="border-t border-zinc-200 bg-zinc-50/80 dark:border-zinc-800 dark:bg-zinc-900/50">
+      <div className="mx-auto max-w-5xl px-6 sm:px-8 py-10">
+        {/* One row: email + location */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-sm text-zinc-600 dark:text-zinc-400 mb-8">
           <a
             href={`mailto:${SITE.email}`}
-            className="flex items-center gap-2 rounded-lg py-1.5 hover:text-foreground transition-colors"
+            className="flex items-center gap-2 rounded-lg py-1.5 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
           >
-            <Mail className="h-4 w-4 text-primary" />
+            <Mail className="h-4 w-4 text-teal-600 dark:text-teal-400" />
             {SITE.email}
           </a>
+          <span className="hidden sm:inline text-zinc-300 dark:text-zinc-600">·</span>
           <span className="flex items-center gap-2 py-1.5">
-            <MapPin className="h-4 w-4 text-primary" />
+            <MapPin className="h-4 w-4 text-teal-600 dark:text-teal-400" />
             {ABOUT.location}
           </span>
         </div>
 
-        <p className="text-center text-xs text-muted-foreground mb-6">
-          Senior VFX Artist · {ABOUT.location}
-        </p>
-
-        {/* Nav + socials: one row, no duplicate icons */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-border/50">
+        {/* Nav + socials */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-zinc-200 dark:border-zinc-800">
           <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-sm">
             {FOOTER_LINKS.map(({ href, label }) => (
               <Link
                 key={label}
                 href={href}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
               >
                 {label}
               </Link>
             ))}
           </nav>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2">
             {SOCIAL_LINKS.map(({ href, label, Icon, className = "" }) => (
               <a
                 key={label}
@@ -71,15 +69,15 @@ export default function Footer() {
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                 aria-label={label}
-                className={`flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground hover:text-foreground transition-colors hover:bg-muted ${className}`}
+                className={`flex h-9 w-9 items-center justify-center rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/80 dark:hover:bg-zinc-700/80 transition-colors ${className}`}
               >
-                <Icon />
+                <Icon className="h-4 w-4" />
               </a>
             ))}
           </div>
         </div>
 
-        <p className="text-center text-xs text-muted-foreground pt-4 border-t border-border/40 mt-4">
+        <p className="text-center text-xs text-zinc-500 dark:text-zinc-500 pt-6 mt-6 border-t border-zinc-200 dark:border-zinc-800">
           © {year} {SITE.title.split("—")[0].trim()}. Built with Next.js & Tailwind.
         </p>
       </div>

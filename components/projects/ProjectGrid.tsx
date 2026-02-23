@@ -10,6 +10,7 @@ const FILTERS: { value: "all" | ProjectCategory; label: string }[] = [
   { value: "aaa", label: "AAA" },
   { value: "realtime", label: "Real-time" },
   { value: "cinematic", label: "Cinematic" },
+  { value: "igaming", label: "iGaming" },
 ];
 
 export default function ProjectGrid() {

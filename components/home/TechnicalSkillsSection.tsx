@@ -13,7 +13,8 @@ import {
 import { ArrowRight, Sparkles, Code, Box } from "lucide-react";
 import { SKILL_GROUPS, SKILLS_SECTION_IMAGE } from "@/data/portfolio";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import TextReveal from "@/components/animations/TextReveal";
+import TypewriterTitle from "@/components/animations/TypewriterTitle";
+import { useInView } from "framer-motion";
 
 const DISPLAY_GROUPS = SKILL_GROUPS.slice(0, 3);
 const GROUP_ICONS = [
@@ -24,6 +25,7 @@ const GROUP_ICONS = [
 
 export default function TechnicalSkillsSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const titleInView = useInView(sectionRef, { amount: 0.2, once: true });
   const prefersReducedMotion = useReducedMotion();
 
   const { scrollYProgress } = useScroll({
@@ -54,12 +56,16 @@ export default function TechnicalSkillsSection() {
                 Toolkit
               </p>
             </motion.div>
-            <TextReveal
-              text="Skills"
-              as="h2"
-              className="section-title mb-8"
-              offset={["start 0.85", "start 0.55"]}
-            />
+            <h2 className="section-title mb-8">
+              <TypewriterTitle
+                prefix=""
+                words={["Skills"]}
+                oneShot
+                run={titleInView}
+                reducedMotion={prefersReducedMotion}
+                className="inline"
+              />
+            </h2>
             <div className="space-y-6">
               {DISPLAY_GROUPS.map((group, i) => {
                 const { Icon, color } = GROUP_ICONS[i] ?? { Icon: Box, color: "text-primary" };

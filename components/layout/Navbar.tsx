@@ -13,6 +13,7 @@ const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/showreel", label: "Reel" },
   { href: "/rnd", label: "Lab" },
+  { href: "/igaming", label: "iGaming" },
   { href: "/about", label: "About" },
 ];
 
@@ -20,12 +21,13 @@ export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const isLanding = pathname === "/";
+  const isDarkNav = isLanding || pathname === "/igaming" || pathname === "/rnd";
 
   return (
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 w-full border-b transition-colors",
-        isLanding
+        isDarkNav
           ? "border-white/10 bg-black/30 backdrop-blur-md supports-[backdrop-filter]:bg-black/20"
           : "border-zinc-200 bg-white/95 backdrop-blur-md supports-[backdrop-filter]:bg-white/90"
       )}
@@ -35,7 +37,7 @@ export default function Navbar() {
           href="/"
           className={cn(
             "text-sm font-semibold tracking-tight transition-colors",
-            isLanding ? "text-white hover:text-teal-400" : "text-zinc-900 hover:text-teal-600"
+            isDarkNav ? "text-white hover:text-teal-400" : "text-zinc-900 hover:text-teal-600"
           )}
         >
           {SITE.title.split("—")[0].trim()}
@@ -49,10 +51,10 @@ export default function Navbar() {
               className={cn(
                 "px-3 py-2 text-sm rounded-md transition-colors",
                 pathname === href
-                  ? isLanding
+                  ? isDarkNav
                     ? "text-teal-400 font-medium"
                     : "text-teal-600 font-medium"
-                  : isLanding
+                  : isDarkNav
                     ? "text-white/80 hover:text-white hover:bg-white/5"
                     : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100"
               )}
@@ -66,7 +68,7 @@ export default function Navbar() {
             rel="noopener noreferrer"
             className={cn(
               "px-3 py-2 text-sm transition-colors",
-              isLanding ? "text-white/80 hover:text-white" : "text-zinc-600 hover:text-zinc-900"
+              isDarkNav ? "text-white/80 hover:text-white" : "text-zinc-600 hover:text-zinc-900"
             )}
           >
             Resume
@@ -82,7 +84,7 @@ export default function Navbar() {
               variant="ghost"
               size="icon-sm"
               aria-label="Open menu"
-              className={cn("rounded-full", isLanding ? "text-white hover:bg-white/10" : "text-zinc-900 hover:bg-zinc-100")}
+              className={cn("rounded-full", isDarkNav ? "text-white hover:bg-white/10" : "text-zinc-900 hover:bg-zinc-100")}
             >
               <Menu className="h-5 w-5" />
             </Button>

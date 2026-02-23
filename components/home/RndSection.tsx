@@ -1,9 +1,11 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 import { ArrowUpRight, FlaskConical, Play, Sparkles } from "lucide-react";
 import Image from "next/image";
 import { RND_PROJECTS } from "@/data/portfolio";
+import TypewriterTitle from "@/components/animations/TypewriterTitle";
 
 const RND_VIDEO = "/video/RND.mp4";
 const LAB_YOUTUBE_ID = "FcIUXgQ4c3s";
@@ -14,6 +16,7 @@ export default function RndSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const ytIframeRef = useRef<HTMLIFrameElement>(null);
+  const prefersReducedMotion = useReducedMotion();
   const [inView, setInView] = useState(false);
   const [videoReady, setVideoReady] = useState(true);
   const [ytPlaying, setYtPlaying] = useState(false);
@@ -75,7 +78,14 @@ export default function RndSection() {
             </span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-            R&D / Commercial Works
+            <TypewriterTitle
+              prefix=""
+              words={["R&D", "Commercial Works", "Personal Projects"]}
+              run={true}
+              reducedMotion={prefersReducedMotion}
+              wordClassName="text-white"
+              cursorClassName="text-teal-400"
+            />
           </h1>
           <p className="text-white/70 mt-1.5 text-sm max-w-2xl leading-snug">
             Personal experiments and commercial works — where I research new software, tools, and techniques.

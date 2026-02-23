@@ -8,10 +8,11 @@ import {
   useTransform,
   useSpring,
   useReducedMotion,
+  useInView,
 } from "framer-motion";
 import { HERO, EXPERIENCES } from "@/data/portfolio";
 import { ChevronRight } from "lucide-react";
-import TextReveal from "@/components/animations/TextReveal";
+import TypewriterTitle from "@/components/animations/TypewriterTitle";
 
 const itemVariants = {
   hidden: { opacity: 0, x: -16 },
@@ -24,10 +25,12 @@ const itemVariants = {
 
 export default function BackstorySection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasVideo, setHasVideo] = useState(true);
   const prefersReducedMotion = useReducedMotion();
+  const titleInView = useInView(titleRef, { amount: 0.5, once: false });
 
   useEffect(() => {
     const video = videoRef.current;
@@ -75,12 +78,20 @@ export default function BackstorySection() {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-950/50 to-zinc-950/80" />
 
       <div className="relative mx-auto max-w-4xl px-6 sm:px-8">
-        <TextReveal
-          text="My **Backstory**"
-          as="h2"
-          className="section-title text-center text-white mb-16 [&_strong]:text-teal-400"
-          offset={["start 0.85", "start 0.55"]}
-        />
+        <h2
+          ref={titleRef}
+          className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-center text-white mb-16"
+        >
+          <TypewriterTitle
+            prefix="My "
+            words={["Backstory", "Road"]}
+            prefixClassName="text-white"
+            wordClassName="text-teal-400"
+            cursorClassName="text-teal-400"
+            reducedMotion={prefersReducedMotion}
+            run={titleInView}
+          />
+        </h2>
 
         <div ref={timelineRef} className="relative">
           {/* Scroll-driven timeline line */}
@@ -126,6 +137,16 @@ export default function BackstorySection() {
             })}
           </ul>
         </div>
+
+        <motion.p
+          className="mt-12 max-w-2xl mx-auto text-center text-white/70 text-sm sm:text-base leading-relaxed"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.4 }}
+        >
+          Focus on real-time VFX for games and cinematics — from Niagara and shaders to Houdini pipelines and cross-studio collaboration. Always open to new challenges and remote opportunities.
+        </motion.p>
 
         <motion.div
           className="mt-14 text-center"

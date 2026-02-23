@@ -11,6 +11,7 @@ import {
 import { HERO } from "@/data/portfolio";
 import { ChevronDown, Play, ArrowRight } from "lucide-react";
 import ParticleCanvas from "@/components/animations/ParticleCanvas";
+import TypewriterTitle from "@/components/animations/TypewriterTitle";
 import MagneticButton from "@/components/ui/MagneticButton";
 
 export default function HeroSection() {
@@ -129,7 +130,14 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 0.45, ease: "easeOut" }}
         >
-          {HERO.tagline}
+          <TypewriterTitle
+            prefix=""
+            words={["Senior VFX Real-time Artist", "Technical Artist", "iGaming/AAA/Casual"]}
+            run={true}
+            reducedMotion={prefersReducedMotion}
+            wordClassName="text-white/70"
+            cursorClassName="text-teal-400"
+          />
         </motion.p>
 
         {/* Animated divider */}

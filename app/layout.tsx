@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SocialStrip from "@/components/layout/SocialStrip";
+import ScrollToTop from "@/components/layout/ScrollToTop";
 import PageLoader from "@/components/PageLoader";
 import PageTransitionWrapper from "@/components/layout/PageTransitionWrapper";
 import { SITE } from "@/data/portfolio";
@@ -81,6 +82,7 @@ export default function RootLayout({
         </main>
         <SocialStrip />
         <Footer />
+        <ScrollToTop />
       </body>
     </html>
   );
