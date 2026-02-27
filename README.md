@@ -2,7 +2,7 @@
 
 Personal portfolio showcasing **VFX & Technical Art** work for AAA games and cinematic productions.
 
-**Live:** [sangtran-portfolio.vercel.app](https://sangtran-portfolio.vercel.app)
+**Live:** [henry-vfx.com](https://www.henry-vfx.com/)
 
 ---
 
