@@ -27,7 +27,7 @@ export default function TypewriterTitle({
   cursorClassName?: string;
   reducedMotion?: boolean | null;
   run?: boolean;
-  /** Gõ xong một từ rồi dừng, không xóa không đổi từ */
+  /** Stops after typing one word, without deleting or changing it */
   oneShot?: boolean;
 }) {
   const [wordIndex, setWordIndex] = useState(0);

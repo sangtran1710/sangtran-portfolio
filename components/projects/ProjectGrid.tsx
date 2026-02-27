@@ -30,10 +30,10 @@ export default function ProjectGrid() {
             key={value}
             onClick={() => setActive(value)}
             className={cn(
-              "px-4 py-2 rounded-lg text-sm font-medium transition-colors border",
+              "px-5 py-2 rounded-full text-sm font-medium transition-colors border",
               active === value
-                ? "bg-primary text-primary-foreground border-primary"
-                : "bg-background border-border text-muted-foreground hover:text-foreground hover:border-primary/40"
+                ? "bg-teal-500 text-white border-teal-500 shadow-sm"
+                : "bg-white border-slate-200 text-slate-600 hover:text-slate-900 hover:border-teal-300 hover:bg-teal-50"
             )}
           >
             {label}

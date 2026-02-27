@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 
-/** Số particle hiển thị (ít = nhẹ máy, vẫn đủ “sống”) */
+/** Number of particles displayed (fewer = better performance, while remaining "alive") */
 const PARTICLE_COUNT = 24;
 
 const particlePositions = Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
@@ -30,7 +30,7 @@ export default function AboutHeroBackground() {
 
   return (
     <>
-      {/* Gradient orbs — chuyển động rõ hơn, opacity tăng để thấy "live" */}
+      {/* Gradient orbs — clearer movement, increased opacity for a "live" feel */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           className="absolute w-[min(85vw,480px)] h-[min(85vw,480px)] rounded-full blur-[90px] opacity-[0.2]"
@@ -88,7 +88,7 @@ export default function AboutHeroBackground() {
         />
       </div>
 
-      {/* Floating particles — rõ hơn, chuyển động nhanh hơn */}
+      {/* Floating particles — clearer, faster movement */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         {particlePositions.map((p, i) => (
           <div
@@ -106,7 +106,7 @@ export default function AboutHeroBackground() {
         ))}
       </div>
 
-      {/* Giữ glow tĩnh nhẹ phía trên (layer dưới orbs/particles) */}
+      {/* Keep a soft static glow at the top (layer beneath orbs/particles) */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{

@@ -15,9 +15,9 @@ export default function PageLoader() {
       return;
     }
 
-    // Progress bar animation: fill over 1.2s
+    // Progress bar animation: fill over 0.8s
     const start = performance.now();
-    const duration = 1200;
+    const duration = 800;
 
     const tick = (now: number) => {
       const elapsed = now - start;
@@ -29,14 +29,19 @@ export default function PageLoader() {
     };
     requestAnimationFrame(tick);
 
-    // Hide after 1.8s total
+    // Hide after 1.2s total
     const timer = setTimeout(() => {
       sessionStorage.setItem("loader-shown", "1");
       setVisible(false);
-    }, 1800);
+    }, 1200);
 
     return () => clearTimeout(timer);
   }, []);
+
+  const handleSkip = () => {
+    sessionStorage.setItem("loader-shown", "1");
+    setVisible(false);
+  };
 
   return (
     <AnimatePresence>
@@ -118,6 +123,17 @@ export default function PageLoader() {
               {Math.round(progress)}%
             </p>
           </motion.div>
+
+          {/* Skip button */}
+          <motion.button
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.3 }}
+            onClick={handleSkip}
+            className="absolute bottom-8 right-8 lg:bottom-12 lg:right-12 text-[10px] lg:text-xs text-white/30 hover:text-white/80 transition-colors uppercase tracking-[0.2em] z-50 p-2"
+          >
+            Skip
+          </motion.button>
         </motion.div>
       )}
     </AnimatePresence>

@@ -20,10 +20,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="group relative overflow-hidden rounded-xl bg-zinc-900 block"
+      className="group relative overflow-hidden rounded-2xl bg-white shadow-sm border border-slate-200/70 hover:shadow-md hover:border-teal-300/50 hover:shadow-slate-200/80 transition-all duration-300 block flex flex-col"
     >
-      {/* Thumbnail — chiếm toàn bộ card */}
-      <div className="relative aspect-[4/3] overflow-hidden">
+      {/* Thumbnail */}
+      <div className="relative aspect-[4/3] overflow-hidden bg-slate-100 border-b border-slate-200/70">
         <Image
           src={project.thumbnail}
           alt={project.title}
@@ -32,42 +32,38 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
 
-        {/* Overlay gradient — luôn hiện nhẹ ở bottom, đậm hơn khi hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300" />
-        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-        {/* Category badges — top right */}
+        {/* Category badges */}
         <div className="absolute top-3 right-3 flex flex-wrap gap-1 justify-end">
           {project.categories.map((cat) => (
             <span
               key={cat}
-              className="rounded-full bg-black/50 backdrop-blur-sm px-2 py-0.5 text-[10px] font-medium text-white/80"
+              className="rounded-full bg-white/95 backdrop-blur-sm shadow-sm border border-slate-200/50 px-2 py-0.5 text-[10px] font-medium text-slate-800"
             >
               {CATEGORY_LABELS[cat] ?? cat}
             </span>
           ))}
         </div>
+      </div>
 
-        {/* Info — bottom, luôn hiện */}
-        <div className="absolute bottom-0 left-0 right-0 p-4">
-          <h3 className="font-semibold text-white text-sm leading-tight">
-            {project.title}
-          </h3>
-          <p className="text-white/60 text-xs mt-0.5">
-            {project.role} · {project.year}
-          </p>
+      {/* Info */}
+      <div className="p-4 flex-1 flex flex-col px-5 pb-5">
+        <h3 className="font-semibold text-slate-900 text-[15px] sm:text-base leading-tight group-hover:text-teal-600 transition-colors">
+          {project.title}
+        </h3>
+        <p className="text-slate-500 text-[13px] sm:text-sm mt-1.5">
+          {project.role} · {project.year}
+        </p>
 
-          {/* Tech stack — chỉ hiện khi hover */}
-          <div className="flex flex-wrap gap-1 mt-2 max-h-0 overflow-hidden group-hover:max-h-12 transition-all duration-300">
-            {project.techStack.slice(0, 4).map((tech) => (
-              <span
-                key={tech}
-                className="rounded bg-white/10 px-1.5 py-0.5 text-[10px] text-white/70"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
+        {/* Tech stack */}
+        <div className="flex flex-wrap gap-1.5 mt-auto pt-4 relative">
+          {project.techStack.slice(0, 4).map((tech) => (
+            <span
+              key={tech}
+              className="rounded-md bg-teal-50 border border-teal-100 px-2 py-0.5 text-[10px] text-teal-700"
+            >
+              {tech}
+            </span>
+          ))}
         </div>
       </div>
     </Link>

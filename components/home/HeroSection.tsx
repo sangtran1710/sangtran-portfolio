@@ -12,7 +12,6 @@ import { HERO } from "@/data/portfolio";
 import { ChevronDown, Play, ArrowRight } from "lucide-react";
 import ParticleCanvas from "@/components/animations/ParticleCanvas";
 import TypewriterTitle from "@/components/animations/TypewriterTitle";
-import MagneticButton from "@/components/ui/MagneticButton";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -34,17 +33,16 @@ export default function HeroSection() {
   });
 
   const videoBgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.45], [1, 0]);
-  const titleY = useTransform(scrollYProgress, [0, 0.5], [0, -60]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.45], [1, 0]);
+  const contentY = useTransform(scrollYProgress, [0, 0.5], [0, -60]);
   const chevronOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-zinc-950 pt-14"
+      className="relative min-h-screen w-full flex items-center overflow-hidden bg-zinc-950 pt-24"
     >
-      {/* Background layers */}
-      <div className="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900/50 to-zinc-950" />
+      {/* Background Video */}
       {hasVideo && (
         <motion.video
           ref={videoRef}
@@ -53,195 +51,200 @@ export default function HeroSection() {
           muted
           loop
           playsInline
-          preload="auto"
-          className="absolute inset-0 w-full h-full object-cover opacity-40 will-change-transform"
+          preload="metadata"
+          poster="/images/reel_poster.jpg"
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.35] will-change-transform"
           style={!prefersReducedMotion ? { y: videoBgY } : undefined}
         />
       )}
-      {/* Dark overlay for contrast */}
-      <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/60 via-zinc-950/30 to-zinc-950/80" />
-      {/* Radial glow */}
+
+      {/* Cinematic Overlays */}
+      {/* Heavy gradient from the left to Ensure Text Readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/60 to-transparent" />
+      {/* Top and Bottom soft fade */}
+      <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/50 via-transparent to-zinc-950" />
+
+      {/* Subtle Grid */}
       <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 50% at 50% 45%, rgba(20,184,166,0.08) 0%, transparent 70%)",
-        }}
-      />
-      {/* Subtle grid */}
-      <div
-        className="absolute inset-0 opacity-[0.025]"
+        className="absolute inset-0 opacity-[0.015]"
         style={{
           backgroundImage:
             "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
+          backgroundSize: "64px 64px",
         }}
       />
 
       {/* Interactive particle network */}
       <ParticleCanvas
         className="z-[1]"
-        particleCount={50}
+        particleCount={40}
         color="20, 184, 166"
-        maxDistance={140}
-        mouseRadius={180}
-        speed={0.2}
+        maxDistance={150}
+        mouseRadius={200}
+        speed={0.15}
       />
 
-      {/* Main content */}
-      <motion.div
-        className="relative z-[2] text-center px-6 max-w-4xl mx-auto"
-        style={
-          !prefersReducedMotion
-            ? { opacity: titleOpacity, y: titleY }
-            : undefined
-        }
-      >
-        {/* Badge */}
-        <motion.div
-          className="inline-flex items-center gap-2 rounded-full border border-teal-400/20 bg-teal-400/5 px-4 py-1.5 mb-6"
-          initial={{ opacity: 0, y: 20, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-400" />
-          </span>
-          <span className="text-xs font-medium tracking-wider text-teal-300 uppercase">
-            Available for Work
-          </span>
-        </motion.div>
+      {/* Main Asymmetrical Content */}
+      <div className="relative z-[2] w-full max-w-[90rem] mx-auto px-6 lg:px-12 flex flex-col justify-center">
+        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
 
-        {/* Name */}
-        <motion.h1
-          className="text-5xl sm:text-6xl lg:text-8xl font-bold tracking-tight text-white leading-[1.02] mb-4"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
-        >
-          {HERO.name}
-        </motion.h1>
-
-        {/* Tagline */}
-        <motion.p
-          className="text-xl sm:text-2xl lg:text-3xl font-light text-white/70 tracking-wide mb-5"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, duration: 0.45, ease: "easeOut" }}
-        >
-          <TypewriterTitle
-            prefix=""
-            words={["Senior VFX Real-time Artist", "Technical Artist", "iGaming/AAA/Casual"]}
-            run={true}
-            reducedMotion={prefersReducedMotion}
-            wordClassName="text-white/70"
-            cursorClassName="text-teal-400"
-          />
-        </motion.p>
-
-        {/* Animated divider */}
-        <motion.div
-          className="flex items-center justify-center gap-3 mb-6"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.25, duration: 0.4 }}
-        >
+          {/* Left Column: Massive Typography */}
           <motion.div
-            className="h-px w-12 bg-gradient-to-r from-transparent to-teal-400/60"
-            initial={{ scaleX: 0, originX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ delay: 0.35, duration: 0.4, ease: "easeOut" }}
-          />
-          <div className="h-1.5 w-1.5 rounded-full bg-teal-400" />
+            style={!prefersReducedMotion ? { opacity: contentOpacity, y: contentY } : undefined}
+            className="flex flex-col items-start"
+          >
+            {/* Status Badge */}
+            <motion.div
+              className="inline-flex items-center gap-2 mb-8"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-teal-400" />
+              </span>
+              <span className="text-[10px] font-bold tracking-[0.2em] text-teal-400 uppercase">
+                Available for Roles
+              </span>
+            </motion.div>
+
+            {/* Massive Name */}
+            <motion.h1
+              className="text-[4.5rem] sm:text-[6rem] lg:text-[8rem] xl:text-[9rem] font-black tracking-tighter leading-[0.85] text-white flex flex-col"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
+              <span>{HERO.name.split(" ")[0].toUpperCase()}</span>
+              <span className="text-zinc-500">{HERO.name.split(" ")[1]?.toUpperCase() ?? ""}</span>
+            </motion.h1>
+
+            {/* Dynamic Tagline */}
+            <motion.div
+              className="mt-8 flex items-center gap-4"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
+            >
+              <div className="h-px w-8 bg-teal-500" />
+              <div className="text-lg sm:text-xl lg:text-2xl font-light tracking-wide text-zinc-300">
+                <TypewriterTitle
+                  prefix=""
+                  words={["Real-time VFX Artist", "Technical Artist", "AAA & iGaming"]}
+                  run={true}
+                  reducedMotion={prefersReducedMotion}
+                  wordClassName="text-white"
+                  cursorClassName="text-teal-500"
+                />
+              </div>
+            </motion.div>
+
+            {/* Description */}
+            <motion.p
+              className="mt-6 text-sm sm:text-base text-zinc-400 max-w-md leading-relaxed"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+            >
+              {HERO.description}
+            </motion.p>
+
+            {/* CTA Buttons - High End Style */}
+            <motion.div
+              className="mt-10 flex flex-wrap items-center gap-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
+            >
+              <Link
+                href="/showreel"
+                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-none border border-teal-500/30 bg-teal-500/10 px-8 py-4 text-xs font-bold tracking-[0.15em] uppercase text-white transition-all hover:bg-teal-500 hover:text-zinc-950"
+              >
+                <div className="absolute inset-0 -z-10 bg-teal-500 translate-y-[100%] transition-transform duration-300 group-hover:translate-y-0" />
+                <Play className="h-3 w-3 fill-current" />
+                Play Showreel
+              </Link>
+
+              <Link
+                href="/projects"
+                className="group inline-flex items-center gap-2 text-xs font-bold tracking-[0.15em] uppercase text-zinc-400 hover:text-white transition-colors"
+              >
+                <span className="relative">
+                  View Projects
+                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full" />
+                </span>
+                <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2} />
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Column: Grid Stats */}
           <motion.div
-            className="h-px w-12 bg-gradient-to-l from-transparent to-teal-400/60"
-            initial={{ scaleX: 0, originX: 1 }}
-            animate={{ scaleX: 1 }}
-            transition={{ delay: 0.35, duration: 0.4, ease: "easeOut" }}
-          />
-        </motion.div>
-
-        {/* Một dòng; video + CTA là chính */}
-        <motion.p
-          className="text-sm text-white/50 max-w-md mx-auto mb-8"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.45, ease: "easeOut" }}
-        >
-          {HERO.description}
-        </motion.p>
-
-        {/* CTA Buttons */}
-        <motion.div
-          className="flex flex-col sm:flex-row items-center justify-center gap-3"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.4, ease: "easeOut" }}
-        >
-          <MagneticButton
-            href="/showreel"
-            className="group inline-flex items-center gap-2.5 rounded-xl bg-teal-500 px-6 py-3.5 text-sm font-semibold text-zinc-950 transition-all duration-200 ease-out hover:bg-teal-400 hover:shadow-lg hover:shadow-teal-500/25 hover:scale-[1.02] active:scale-[0.98]"
+            className="hidden lg:flex flex-col items-end gap-16 justify-center"
+            style={!prefersReducedMotion ? { opacity: contentOpacity, y: contentY } : undefined}
           >
-            <Play className="h-5 w-5 transition-transform duration-200 group-hover:scale-110" strokeWidth={1.5} />
-            Watch Showreel
-          </MagneticButton>
-          <MagneticButton
-            href="/projects"
-            className="group inline-flex items-center gap-2.5 rounded-xl border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-medium text-white/95 transition-all duration-200 ease-out hover:bg-white/10 hover:border-white/30 hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm"
-          >
-            View Projects
-            <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5" strokeWidth={1.5} />
-          </MagneticButton>
-        </motion.div>
-      </motion.div>
+            {[
+              { value: "7+", label: "Years Experience" },
+              { value: "15+", label: "Shipped Projects" },
+              { value: "AAA", label: "Studio Standard" },
+            ].map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                className="text-right border-r-2 border-teal-500/30 pr-6"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 + i * 0.1, duration: 0.5 }}
+              >
+                <span className="block text-4xl xl:text-5xl font-bold text-white mb-2">
+                  {stat.value}
+                </span>
+                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                  {stat.label}
+                </span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
 
-      {/* Bottom stats strip */}
+      {/* Mobile Stats (Only visible on small screens) */}
       <motion.div
-        className="absolute bottom-20 left-1/2 -translate-x-1/2 z-[2] flex items-center gap-8 sm:gap-12"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.6 }}
+        className="absolute bottom-24 left-6 right-6 flex lg:hidden items-center justify-between border-t border-white/10 pt-6 z-[2]"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8, duration: 0.5 }}
         style={!prefersReducedMotion ? { opacity: chevronOpacity } : undefined}
       >
         {[
           { value: "7+", label: "Years" },
           { value: "15+", label: "Projects" },
-          { value: "AAA", label: "Titles" },
-        ].map((stat, i) => (
-          <motion.div
-            key={stat.label}
-            className="text-center"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.1 + i * 0.1, duration: 0.4 }}
-          >
-            <span className="block text-lg sm:text-xl font-bold text-teal-400">
-              {stat.value}
-            </span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-white/40">
-              {stat.label}
-            </span>
-          </motion.div>
+          { value: "AAA", label: "Standard" },
+        ].map((stat) => (
+          <div key={stat.label} className="text-left">
+            <span className="block text-xl font-bold text-white mb-1">{stat.value}</span>
+            <span className="text-[8px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{stat.label}</span>
+          </div>
         ))}
       </motion.div>
 
       {/* Scroll indicator */}
       <motion.a
         href="#profile"
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-white/40 hover:text-white/70 transition-colors z-[2]"
+        className="absolute bottom-8 left-6 lg:left-12 flex items-center gap-3 text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 hover:text-white transition-colors z-[2]"
         aria-label="Scroll to profile"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.3, duration: 0.5 }}
+        transition={{ delay: 1, duration: 0.5 }}
         style={!prefersReducedMotion ? { opacity: chevronOpacity } : undefined}
       >
         <motion.span
-          animate={{ y: [0, 5, 0] }}
+          animate={{ y: [0, 4, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
-          <ChevronDown className="h-5 w-5" />
+          <ChevronDown className="h-3 w-3" />
         </motion.span>
+        Scroll Down
       </motion.a>
     </section>
   );

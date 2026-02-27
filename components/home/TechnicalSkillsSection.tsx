@@ -10,133 +10,132 @@ import {
   useSpring,
   useReducedMotion,
 } from "framer-motion";
-import { ArrowRight, Sparkles, Code, Box } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { SKILL_GROUPS, SKILLS_SECTION_IMAGE } from "@/data/portfolio";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import TypewriterTitle from "@/components/animations/TypewriterTitle";
-import { useInView } from "framer-motion";
+import TextReveal from "@/components/animations/TextReveal";
 
 const DISPLAY_GROUPS = SKILL_GROUPS.slice(0, 3);
-const GROUP_ICONS = [
-  { Icon: Sparkles, label: "VFX & Simulation", color: "text-amber-500" },
-  { Icon: Code, label: "Shaders & Materials", color: "text-violet-500" },
-  { Icon: Box, label: "3D Software", color: "text-teal-500" },
-];
 
 export default function TechnicalSkillsSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const titleInView = useInView(sectionRef, { amount: 0.2, once: true });
   const prefersReducedMotion = useReducedMotion();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
+
+  // Opposing parallax for a more dynamic editorial feel
   const imageRaw = useTransform(scrollYProgress, [0, 1], [30, -30]);
+  const contentRaw = useTransform(scrollYProgress, [0, 1], [-15, 15]);
   const imageY = useSpring(imageRaw, { stiffness: 100, damping: 30 });
+  const contentY = useSpring(contentRaw, { stiffness: 100, damping: 30 });
 
   return (
     <section
       ref={sectionRef}
       id="technical-skills"
-      className="relative border-t border-border/60 bg-muted/20"
+      className="relative bg-background py-24 lg:py-32 overflow-hidden"
     >
-      <div className="mx-auto max-w-5xl px-6 sm:px-8 py-20 lg:py-28">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-          <div>
+      {/* Editorial Top Border */}
+      <div className="absolute top-0 left-6 right-6 lg:left-12 lg:right-12 h-px bg-border/40" />
+
+      <div className="mx-auto max-w-[90rem] px-6 lg:px-12">
+        <div className="grid gap-16 lg:grid-cols-[1fr_1.1fr] xl:gap-24 items-center">
+
+          {/* Content side */}
+          <motion.div
+            className="order-2 lg:order-1"
+            style={!prefersReducedMotion ? { y: contentY } : undefined}
+          >
             <motion.div
-              className="flex items-center gap-2 mb-2"
-              initial={{ opacity: 0, x: -12 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.35 }}
+              transition={{ duration: 0.5 }}
+              className="mb-12"
             >
-              <Box className="h-4 w-4 text-primary" strokeWidth={1.5} aria-hidden />
-              <p className="section-label">
-                Toolkit
+              <p className="text-xs font-semibold tracking-[0.2em] text-muted-foreground uppercase mb-4">
+                03 // Toolkit
               </p>
-            </motion.div>
-            <h2 className="section-title mb-8">
-              <TypewriterTitle
-                prefix=""
-                words={["Skills"]}
-                oneShot
-                run={titleInView}
-                reducedMotion={prefersReducedMotion}
-                className="inline"
+              <TextReveal
+                text="Technical"
+                as="h2"
+                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tighter text-foreground leading-[0.9]"
+                offset={["start 0.9", "start 0.6"]}
               />
-            </h2>
-            <div className="space-y-6">
-              {DISPLAY_GROUPS.map((group, i) => {
-                const { Icon, color } = GROUP_ICONS[i] ?? { Icon: Box, color: "text-primary" };
-                return (
-                  <ScrollReveal
-                    key={group.name}
-                    variant={i % 2 === 0 ? "slideRight" : "slideLeft"}
-                    offset={["start 0.95", "start 0.65"]}
-                  >
-                    <div className="group rounded-xl border border-border/60 bg-background/80 p-4 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:-translate-y-0.5">
-                      <div className="flex items-center gap-2 mb-3">
-                        <motion.div
-                          className={`rounded-lg bg-muted p-1.5 ${color}`}
-                          whileHover={{ scale: 1.05 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <Icon className="h-4 w-4" />
-                        </motion.div>
-                        <h3 className="text-sm font-semibold uppercase tracking-widest text-foreground">
-                          {group.name}
-                        </h3>
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {group.skills.slice(0, 5).map((skill) => (
-                          <span
-                            key={skill}
-                            className="inline-flex items-center rounded-md bg-muted/80 px-2.5 py-1 text-xs font-medium text-foreground/90 transition-colors group-hover:bg-primary/10"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </ScrollReveal>
-                );
-              })}
+              <TextReveal
+                text="Skills."
+                as="h2"
+                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tighter text-muted-foreground leading-[0.9] mt-1"
+                offset={["start 0.85", "start 0.55"]}
+              />
+            </motion.div>
+
+            {/* Editorial Spec List */}
+            <div className="flex flex-col border-t border-border/40">
+              {DISPLAY_GROUPS.map((group, i) => (
+                <ScrollReveal
+                  key={group.name}
+                  variant="fadeUp"
+                  offset={["start 0.95", "start 0.75"]}
+                >
+                  <div className="group flex flex-col sm:flex-row sm:items-baseline py-5 border-b border-border/40 transition-colors hover:bg-muted/20">
+                    <span className="w-40 flex-shrink-0 text-[10px] sm:text-xs font-semibold tracking-[0.15em] text-muted-foreground uppercase mb-1 sm:mb-0">
+                      {group.name}
+                    </span>
+                    <span className="text-base sm:text-lg font-medium text-foreground/90 leading-snug">
+                      {group.skills.slice(0, 5).join(", ")}
+                    </span>
+                  </div>
+                </ScrollReveal>
+              ))}
             </div>
+
+            {/* Premium CTA */}
             <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="mt-12"
             >
               <Link
                 href="/about"
-                className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline group/link"
+                className="group inline-flex items-center gap-2 text-sm font-bold tracking-widest uppercase text-foreground hover:text-primary transition-colors"
               >
-                Full profile
-                <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" />
+                <span className="relative">
+                  Full Profile
+                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
+                </span>
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
               </Link>
             </motion.div>
-          </div>
+          </motion.div>
 
-          {/* Image with parallax */}
+          {/* Image side - Sharp, Cinematic, Edge-to-edge feel */}
           <motion.div
-            className="relative aspect-video lg:aspect-[4/3] rounded-xl overflow-hidden bg-muted shadow-lg ring-1 ring-black/5 will-change-transform"
+            className="order-1 lg:order-2 relative w-full aspect-[4/3] sm:aspect-video lg:aspect-[4/5] object-cover bg-muted will-change-transform"
             style={!prefersReducedMotion ? { y: imageY } : undefined}
-            initial={{ opacity: 0, scale: 0.98 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <Image
               src={SKILLS_SECTION_IMAGE}
-              alt=""
+              alt="Technical Skills"
               fill
-              className="object-cover transition-transform duration-500 hover:scale-110"
+              className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
+              priority
             />
+            {/* Subtle inner shadow for cinematic depth */}
+            <div className="absolute inset-0 ring-1 ring-inset ring-black/10" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-transparent opacity-50" />
           </motion.div>
+
         </div>
       </div>
     </section>

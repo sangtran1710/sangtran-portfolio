@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function ShowreelPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 pt-14">
+    <div className="min-h-screen bg-zinc-950 pt-24">
       <div className="mx-auto max-w-5xl px-6 py-8">
         <Link
           href="/"

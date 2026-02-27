@@ -78,10 +78,10 @@ export default function ShowreelSection() {
           <p className="text-xs font-semibold uppercase tracking-widest text-teal-400 mb-2">
             Showreel
           </p>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-[0.1em] text-white mt-2">
             <TypewriterTitle
               prefix=""
-              words={["VFX Reel 2025"]}
+              words={["VFX REEL 2025"]}
               run={true}
               reducedMotion={prefersReducedMotion}
               wordClassName="text-white"
@@ -154,16 +154,14 @@ export default function ShowreelSection() {
                 muted
                 playsInline
                 preload="metadata"
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-                  thumbReady ? "opacity-70" : "opacity-0"
-                }`}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${thumbReady ? "opacity-70" : "opacity-0"
+                  }`}
                 aria-hidden
               />
               {/* Fallback gradient when thumbnail not ready */}
               <div
-                className={`absolute inset-0 transition-opacity duration-700 ${
-                  thumbReady ? "opacity-0" : "opacity-100"
-                }`}
+                className={`absolute inset-0 transition-opacity duration-700 ${thumbReady ? "opacity-0" : "opacity-100"
+                  }`}
                 style={{
                   background:
                     "linear-gradient(135deg, #09090b 0%, #1a1a2e 40%, #16213e 70%, #0f3460 100%)",
@@ -230,8 +228,8 @@ export default function ShowreelSection() {
         {hasError
           ? "Video hosted on YouTube"
           : started
-          ? "Hover for controls · Loops automatically"
-          : "Click to play"}
+            ? "Hover for controls · Loops automatically"
+            : "Click to play"}
       </p>
     </section>
   );

@@ -8,6 +8,7 @@ import {
   useTransform,
   useSpring,
   useReducedMotion,
+  AnimatePresence,
 } from "framer-motion";
 import {
   Github,
@@ -16,6 +17,8 @@ import {
   MapPin,
   ExternalLink,
   ArrowLeft,
+  Search,
+  X,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -32,7 +35,7 @@ import {
   CERTIFICATES,
   ACHIEVEMENT_CREDITS,
 } from "@/data/portfolio";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const BehanceIcon = () => (
   <svg
@@ -55,6 +58,7 @@ const socialLinks = [
 export default function AboutPageClient() {
   const heroRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
+  const [selectedCert, setSelectedCert] = useState<string | null>(null);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -67,15 +71,15 @@ export default function AboutPageClient() {
   );
 
   return (
-    <div className="min-h-screen pt-14">
+    <div className="min-h-screen pt-24 bg-slate-50">
       {/* Hero header with avatar */}
-      <div ref={heroRef} className="relative overflow-hidden bg-zinc-950 pb-16">
+      <div ref={heroRef} className="relative overflow-hidden bg-slate-50 pb-16">
         <AboutHeroBackground />
 
         <div className="mx-auto max-w-5xl px-6 pt-8 relative z-10">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-sm text-zinc-400 hover:text-white transition-colors mb-10"
+            className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-900 transition-colors mb-10"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Home
@@ -90,21 +94,21 @@ export default function AboutPageClient() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-2xl group">
+              <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-2xl overflow-hidden ring-1 ring-slate-200/70 shadow-xl shadow-slate-200 group">
                 <Image
-                  src="/images/Portrait/z7204678720274_fcfc9ac584c7157ea146ab46d116cf1a.jpg"
+                  src="/images/Portrait/avatar.png"
                   alt="Sang Tran"
                   fill
-                  className="object-cover object-[center_38%] scale-110 transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover object-[center_38%] scale-110 transition-all duration-700 group-hover:scale-105"
                   sizes="(max-width: 640px) 256px, (max-width: 1024px) 288px, 320px"
                   priority
                 />
                 {/* Teal overlay on hover */}
-                <div className="absolute inset-0 bg-teal-500/0 group-hover:bg-teal-500/10 transition-colors duration-500" />
+                <div className="absolute inset-0 bg-teal-500/0 group-hover:bg-teal-500/10 transition-colors duration-500 blend-overlay" />
               </div>
               {/* Decorative dot */}
               <motion.div
-                className="absolute -bottom-2 -right-2 w-5 h-5 rounded-full bg-teal-500 ring-4 ring-zinc-950"
+                className="absolute -bottom-2 -right-2 w-5 h-5 rounded-full bg-teal-500 ring-4 ring-slate-50"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
@@ -114,7 +118,7 @@ export default function AboutPageClient() {
             {/* Header info */}
             <div>
               <motion.p
-                className="text-xs font-semibold uppercase tracking-widest text-teal-400 mb-3"
+                className="text-xs font-semibold uppercase tracking-widest text-teal-600 mb-3"
                 initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4 }}
@@ -122,7 +126,7 @@ export default function AboutPageClient() {
                 About
               </motion.p>
               <motion.h1
-                className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-2"
+                className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 mb-2"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
@@ -130,7 +134,7 @@ export default function AboutPageClient() {
                 Sang Tran
               </motion.h1>
               <motion.p
-                className="text-lg text-zinc-400 mb-6"
+                className="text-lg text-slate-600 mb-6"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -145,11 +149,11 @@ export default function AboutPageClient() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                <span className="inline-flex items-center gap-1.5 text-sm text-zinc-500">
+                <span className="inline-flex items-center gap-1.5 text-sm text-slate-500">
                   <MapPin className="h-3.5 w-3.5 text-teal-400" />
                   {ABOUT.location}
                 </span>
-                <span className="h-4 w-px bg-zinc-700" />
+                <span className="h-4 w-px bg-slate-300" />
                 <div className="flex items-center gap-3">
                   {socialLinks.map(({ href, icon: Icon, label, custom }) => (
                     <a
@@ -157,7 +161,7 @@ export default function AboutPageClient() {
                       href={href}
                       target={href.startsWith("mailto") ? undefined : "_blank"}
                       rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-                      className="text-zinc-500 hover:text-teal-400 transition-colors"
+                      className="text-slate-500 hover:text-teal-600 transition-colors"
                       aria-label={label}
                       title={label}
                     >
@@ -169,7 +173,7 @@ export default function AboutPageClient() {
 
               {/* Bio preview */}
               <motion.p
-                className="text-zinc-400 leading-relaxed max-w-2xl"
+                className="text-slate-600 text-[15px] sm:text-base leading-relaxed max-w-2xl"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.35, duration: 0.5 }}
@@ -187,7 +191,7 @@ export default function AboutPageClient() {
                 <Button
                   asChild
                   size="lg"
-                  className="gap-2.5 bg-teal-600 hover:bg-teal-500 text-white"
+                  className="gap-2.5 rounded-full bg-teal-500 hover:bg-teal-600 text-white border-0"
                 >
                   <a
                     href={SOCIALS.resume}
@@ -198,7 +202,7 @@ export default function AboutPageClient() {
                     <ExternalLink className="h-4 w-4" strokeWidth={1.5} />
                   </a>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="gap-2.5 border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white hover:border-zinc-600">
+                <Button asChild variant="outline" size="lg" className="gap-2.5 rounded-full border-teal-400 text-teal-600 bg-teal-50 hover:bg-teal-100">
                   <Link href="/projects">View Projects</Link>
                 </Button>
               </motion.div>
@@ -208,21 +212,21 @@ export default function AboutPageClient() {
       </div>
 
       {/* Main content */}
-      <div className="mx-auto max-w-5xl px-6 py-16">
+      <div className="mx-auto max-w-5xl px-6 py-16 text-slate-600">
         {/* Bio section */}
         <ScrollReveal variant="fadeUp">
           <section className="mb-16">
             <TextReveal
               text={ABOUT.title}
               as="h2"
-              className="text-2xl font-semibold mb-6"
+              className="text-2xl font-semibold mb-6 text-slate-900"
               offset={["start 0.9", "start 0.6"]}
             />
             <div className="space-y-4 max-w-3xl">
               {ABOUT.bio.slice(1).map((paragraph, i) => (
                 <motion.p
                   key={i}
-                  className="text-muted-foreground leading-relaxed"
+                  className="text-[15px] sm:text-base leading-relaxed text-slate-600"
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
@@ -235,27 +239,27 @@ export default function AboutPageClient() {
           </section>
         </ScrollReveal>
 
-        <div className="h-px bg-border/60 mb-16" />
+        <div className="h-px bg-slate-200 mb-16" />
 
         {/* Experience section */}
         <section className="mb-16">
           <TextReveal
             text="Experience"
             as="h2"
-            className="text-2xl font-semibold mb-8"
+            className="text-2xl font-semibold mb-8 text-slate-900"
             offset={["start 0.9", "start 0.65"]}
           />
           <ExperienceTimeline />
         </section>
 
-        <div className="h-px bg-border/60 mb-16" />
+        <div className="h-px bg-slate-200 mb-16" />
 
         {/* Skills section */}
         <section className="mb-16">
           <TextReveal
             text="Skills & Tools"
             as="h2"
-            className="text-2xl font-semibold mb-8"
+            className="text-2xl font-semibold mb-8 text-slate-900"
             offset={["start 0.9", "start 0.65"]}
           />
           <div className="grid gap-8 sm:grid-cols-2">
@@ -265,8 +269,8 @@ export default function AboutPageClient() {
                 variant={i % 2 === 0 ? "slideRight" : "slideLeft"}
                 offset={["start 0.95", "start 0.7"]}
               >
-                <div className="rounded-xl border border-border/60 bg-background/80 p-5 transition-all duration-300 hover:border-primary/30 hover:shadow-lg">
-                  <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
+                <div className="rounded-2xl border border-slate-200/70 bg-white shadow-sm p-5 transition-all duration-300 hover:border-teal-300/50 hover:shadow-md hover:shadow-slate-200/80">
+                  <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">
                     {group.name}
                   </h3>
                   <div className="flex flex-wrap gap-1.5">
@@ -274,7 +278,7 @@ export default function AboutPageClient() {
                       <Badge
                         key={skill}
                         variant="outline"
-                        className="text-xs font-normal hover:bg-primary/10 transition-colors"
+                        className="text-xs font-normal rounded-full bg-teal-50 text-teal-700 border border-teal-100 hover:bg-teal-100 transition-colors"
                       >
                         {skill}
                       </Badge>
@@ -286,14 +290,14 @@ export default function AboutPageClient() {
           </div>
         </section>
 
-        <div className="h-px bg-border/60 mb-16" />
+        <div className="h-px bg-slate-200 mb-16" />
 
         {/* Education section */}
         <section className="mb-16">
           <TextReveal
             text="Education"
             as="h2"
-            className="text-2xl font-semibold mb-8"
+            className="text-2xl font-semibold mb-8 text-slate-900"
             offset={["start 0.9", "start 0.65"]}
           />
           <div className="grid gap-6 sm:grid-cols-2">
@@ -303,12 +307,12 @@ export default function AboutPageClient() {
                 variant="fadeUp"
                 offset={["start 0.95", "start 0.75"]}
               >
-                <div className="rounded-xl border border-border/60 bg-background/80 p-5 transition-all duration-300 hover:border-primary/30 hover:shadow-md">
-                  <p className="font-medium text-sm">{edu.school}</p>
-                  <p className="text-xs text-muted-foreground mt-1">
+                <div className="rounded-2xl border border-slate-200/70 bg-white shadow-sm p-5 transition-all duration-300 hover:border-teal-300/50 hover:shadow-md hover:shadow-slate-200/80">
+                  <p className="font-medium text-sm text-slate-900">{edu.school}</p>
+                  <p className="text-xs text-slate-600 mt-1">
                     {edu.degree}
                   </p>
-                  <p className="text-xs text-muted-foreground/70 mt-0.5">
+                  <p className="text-xs text-slate-500 mt-0.5">
                     {edu.year}
                   </p>
                 </div>
@@ -319,12 +323,12 @@ export default function AboutPageClient() {
 
         {CERTIFICATES.length > 0 && (
           <>
-            <div className="h-px bg-border/60 mb-16" />
+            <div className="h-px bg-slate-200 mb-16" />
             <section>
               <TextReveal
                 text="Certificates"
                 as="h2"
-                className="text-2xl font-semibold mb-8"
+                className="text-2xl font-semibold mb-8 text-slate-900"
                 offset={["start 0.9", "start 0.65"]}
               />
               <div className="grid gap-6 sm:grid-cols-2">
@@ -339,25 +343,45 @@ export default function AboutPageClient() {
                         href={cert.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block rounded-xl border border-border/60 bg-background/80 p-5 transition-all duration-300 hover:border-primary/30 hover:shadow-md"
+                        className="block rounded-2xl border border-slate-200/70 bg-white shadow-sm p-5 transition-all duration-300 hover:border-teal-300/50 hover:shadow-md hover:shadow-slate-200/80"
                       >
-                        <p className="font-medium text-sm">{cert.name}</p>
-                        <p className="text-xs text-muted-foreground mt-1">{cert.issuer}</p>
-                        <p className="text-xs text-muted-foreground/70 mt-0.5">{cert.year}</p>
+                        <p className="font-medium text-sm text-slate-900">{cert.name}</p>
+                        <p className="text-xs text-slate-600 mt-1">{cert.issuer}</p>
+                        <p className="text-xs text-slate-500 mt-0.5">{cert.year}</p>
                         {cert.image && (
-                          <div className="mt-3 aspect-video rounded-lg overflow-hidden bg-muted/50 relative">
-                            <Image src={cert.image} alt={cert.name} fill className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" />
+                          <div
+                            className="mt-3 aspect-video rounded-lg overflow-hidden bg-slate-100 relative border border-slate-200 group/cert cursor-zoom-in"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              setSelectedCert(cert.image!);
+                            }}
+                          >
+                            <Image src={cert.image} alt={cert.name} fill className="object-cover transition-transform duration-500 group-hover/cert:scale-105" sizes="(max-width: 640px) 100vw, 50vw" />
+                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/cert:opacity-100 transition-opacity flex items-center justify-center">
+                              <Search className="h-6 w-6 text-white drop-shadow-md" />
+                            </div>
                           </div>
                         )}
                       </a>
                     ) : (
-                      <div className="rounded-xl border border-border/60 bg-background/80 p-5 transition-all duration-300 hover:border-primary/30 hover:shadow-md">
-                        <p className="font-medium text-sm">{cert.name}</p>
-                        <p className="text-xs text-muted-foreground mt-1">{cert.issuer}</p>
-                        <p className="text-xs text-muted-foreground/70 mt-0.5">{cert.year}</p>
+                      <div className="rounded-2xl border border-slate-200/70 bg-white shadow-sm p-5 transition-all duration-300 hover:border-teal-300/50 hover:shadow-md hover:shadow-slate-200/80">
+                        <p className="font-medium text-sm text-slate-900">{cert.name}</p>
+                        <p className="text-xs text-slate-600 mt-1">{cert.issuer}</p>
+                        <p className="text-xs text-slate-500 mt-0.5">{cert.year}</p>
                         {cert.image && (
-                          <div className="mt-3 aspect-video rounded-lg overflow-hidden bg-muted/50 relative">
-                            <Image src={cert.image} alt={cert.name} fill className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" />
+                          <div
+                            className="mt-3 aspect-video rounded-lg overflow-hidden bg-slate-100 relative border border-slate-200 group/cert cursor-zoom-in"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              setSelectedCert(cert.image!);
+                            }}
+                          >
+                            <Image src={cert.image} alt={cert.name} fill className="object-cover transition-transform duration-500 group-hover/cert:scale-105" sizes="(max-width: 640px) 100vw, 50vw" />
+                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/cert:opacity-100 transition-opacity flex items-center justify-center">
+                              <Search className="h-6 w-6 text-white drop-shadow-md" />
+                            </div>
                           </div>
                         )}
                       </div>
@@ -369,17 +393,55 @@ export default function AboutPageClient() {
           </>
         )}
 
+        {/* Certificate Zoom Modal */}
+        <AnimatePresence>
+          {selectedCert && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedCert(null)}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 sm:p-8 cursor-zoom-out"
+            >
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="relative max-w-5xl w-full aspect-[4/3] sm:aspect-[16/9] rounded-xl overflow-hidden shadow-2xl border border-transparent bg-black"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Image
+                  src={selectedCert}
+                  alt="Certificate Full View"
+                  fill
+                  className="object-contain"
+                  sizes="100vw"
+                  priority
+                />
+                <button
+                  onClick={() => setSelectedCert(null)}
+                  className="absolute top-4 right-4 p-2.5 flex items-center justify-center rounded-full bg-black/50 text-white/70 hover:text-white hover:bg-black/80 backdrop-blur-md transition-all z-10 hover:scale-105"
+                  aria-label="Close modal"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {ACHIEVEMENT_CREDITS.length > 0 && (
           <>
-            <div className="h-px bg-border/60 mb-16" />
+            <div className="h-px bg-slate-200 mb-16" />
             <section>
               <TextReveal
-                text="Featured credits"
+                text="Featured Credits"
                 as="h2"
-                className="text-2xl font-semibold mb-2"
+                className="text-2xl font-semibold mb-2 text-slate-900"
                 offset={["start 0.9", "start 0.65"]}
               />
-              <p className="text-sm text-muted-foreground mb-8">
+              <p className="text-sm text-slate-500 mb-8">
                 Projects where I’m credited
               </p>
               <div className="grid gap-6 sm:grid-cols-2">
@@ -389,8 +451,8 @@ export default function AboutPageClient() {
                     variant="fadeUp"
                     offset={["start 0.95", "start 0.75"]}
                   >
-                    <div className="rounded-xl border border-border/60 bg-background/80 overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-md">
-                      <div className="aspect-[3/4] relative bg-muted">
+                    <div className="rounded-2xl border border-slate-200/70 bg-white overflow-hidden shadow-sm transition-all duration-300 hover:border-teal-300/50 hover:shadow-md hover:shadow-slate-200/80">
+                      <div className="aspect-[3/4] relative bg-slate-50 border-b border-slate-200/70">
                         <Image
                           src={item.image}
                           alt={item.title ?? "Credit"}
@@ -402,10 +464,10 @@ export default function AboutPageClient() {
                       {(item.title || item.subtitle) && (
                         <div className="p-4">
                           {item.title && (
-                            <p className="font-medium text-sm">{item.title}</p>
+                            <p className="font-medium text-sm text-slate-900">{item.title}</p>
                           )}
                           {item.subtitle && (
-                            <p className="text-xs text-muted-foreground mt-0.5">
+                            <p className="text-xs text-slate-600 mt-0.5">
                               {item.subtitle}
                             </p>
                           )}

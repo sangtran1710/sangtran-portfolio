@@ -56,8 +56,8 @@ export const SOCIALS = {
 
 export const HERO = {
   name: "Sang Tran",
-  tagline: "Senior VFX Real-time Artist",
-  /** Một dòng ngắn; phần còn lại để video + hình nói. */
+  tagline: "Crafting visual effects that make games and cinematics feel alive.",
+  /** A short line; the rest is conveyed by video & images. */
   description: "Real-time VFX for AAA games & cinematics.",
   showreelUrl: "/video/reel_final.mp4",
   showreelYoutube: "https://www.youtube.com/watch?v=qK8jtTMHCRU",
@@ -66,21 +66,22 @@ export const HERO = {
 export const ABOUT = {
   title: "Building effects that feel alive.",
   bio: [
-    "I'm Sang Tran, a Senior VFX Artist based in Ho Chi Minh City, Vietnam, with 7+ years of experience delivering real-time visual effects for AAA game studios and cinematic productions.",
-    "My work spans Unreal Engine particle systems and Niagara, Houdini simulations, HLSL shader authoring, and Python pipeline automation. I've contributed to shipped titles including Marvel's Spider-Man 2, Fortnite Remix Finale, New World: Aeternum, and Until Dawn (PS5 remake).",
-    "I thrive at the intersection of art and engineering — building both visually compelling effects and the technical pipelines that make them production-ready at scale.",
+    "I’m Sang Tran, a visual effects artist based in Ho Chi Minh City, Vietnam, with over 7 years of experience in game and cinematic production.",
+    "I entered this industry through a gradual career change—learning by doing, building confidence through small wins, and steadily moving from minor tasks to owning major visual effects sequences. It has been incredibly rewarding to grow step-by-step. Along the way, I’ve had the chance to contribute to several shipped AAA titles, including work that was prominently featured in early marketing visuals for Marvel’s Spider-Man 2.",
+    "What keeps me in this craft is simple: I love creating moments that feel alive and memorable for the audience. I enjoy the entire process of refining my work through clear feedback and fast iteration. Teams know they can rely on me to deliver high-quality results, especially when production deadlines get tight.",
+    "I’m currently open to full-time remote roles where I can take continuous ownership, collaborate internationally, and keep growing alongside a talented team. For a detailed breakdown of my technical skills, please see my resume and the experience section below.",
   ],
   location: "Ho Chi Minh City, Vietnam",
 };
 
-/** For home Profile section. portraitImage = mặt trước, portraitImageSecondary = mặt sau (flip khi hover). */
+/** For home Profile section. portraitImage = front, portraitImageSecondary = back (flips on hover). */
 export const PROFILE = {
   headline: "Senior VFX Real-time Artist",
   title: "Tran Minh Sang.",
-  /** Một dòng; chi tiết để trang About. */
+  /** Single line; detailed info reserved for the About page. */
   paragraph: "**Sony** · **Epic** · **Amazon** · **Netflix**. Based in **HCMC** — open to work.",
   portraitImage: "/images/Portrait/avatar.png",
-  /** Ảnh flip khi hover (avatar còn lại trong folder Portrait) */
+  /** Image flipped on hover (secondary avatar in the Portrait folder) */
   portraitImageSecondary: "/images/Portrait/z7554087716035_e6282b2e1378f725e4bcb1b51032c015.jpg",
   ctaText: "Contact me",
   stats: [
@@ -166,7 +167,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
   },
   {
     name: "AI & Emerging Tools",
-    skills: ["Midjourney", "Stable Diffusion", "AI Texture Generation"],
+    skills: ["Sora", "Veo-2", "ChatGPT", "Midjourney", "Stable Diffusion", "Prompt Engineering"],
   },
 ];
 
@@ -371,6 +372,8 @@ export interface RndProject {
   link: string;
   /** Optional: "View on ArtStation" etc. Default "View on Behance" */
   linkLabel?: string;
+  slug?: string;
+  year?: string;
 }
 
 /** iGaming / Live Casino / ARRISE-style artwork for dedicated /igaming page */
@@ -391,11 +394,24 @@ export const IGAMING_ARTWORKS: IgamingArtwork[] = [
 
 export const RND_PROJECTS: RndProject[] = [
   {
+    title: "HistoryBlends - AI Filmmaking",
+    category: "AI Content Creation",
+    tools: ["Sora", "Veo-2", "ChatGPT", "Midjourney", "Prompt Engineering"],
+    image: "/images/Gemini_Generated_Image_ynlyiiynlyiiynly.png",
+    link: "/rnd/historyblends",
+    linkLabel: "View Project details",
+    slug: "historyblends",
+    year: "2025",
+  },
+  {
     title: "Level Up - Crypto.com",
-    category: "Motion Graphics",
+    category: "3D Environment",
     tools: ["Blender", "After Effects"],
     image: "/images/LevelUp.png",
-    link: "https://www.behance.net/gallery/234998189/Case-Study-Level-Up-Cryptocom",
+    link: "/rnd/levelup",
+    linkLabel: "View Project details",
+    slug: "levelup",
+    year: "2025",
   },
   {
     title: "Ethereum Motion Art",
@@ -403,27 +419,7 @@ export const RND_PROJECTS: RndProject[] = [
     tools: ["Unreal Engine", "Niagara"],
     image: "/images/ETH.png",
     link: "https://www.behance.net/gallery/232255967/ETHEREUM-MOTION-ART",
-  },
-  {
-    title: "iPhone 11 Pro Max TVC",
-    category: "3D Product Commercial",
-    tools: ["Cinema 4D", "Octane", "After Effects"],
-    image: "/images/Iphone%2011.png",
-    link: "https://www.behance.net/gallery/136697475/iPhone-11-Pro-Max-TVC",
-  },
-  {
-    title: "Food Court Bitexco TVC",
-    category: "Commercial Production",
-    tools: ["Premiere Pro", "After Effects", "Filming"],
-    image: "/images/FoodCourt.png",
-    link: "https://www.behance.net/gallery/132077353/DT-NHANH-LY-TRUC-FOOD-COURT-BITEXCO",
-  },
-  {
-    title: "Smart Menu TVC",
-    category: "App Promo",
-    tools: ["Premiere Pro", "After Effects"],
-    image: "/images/SmartMenu.png",
-    link: "https://www.behance.net/gallery/115266933/TVC-Smart-Menu-Dt-Nhanh-Ly-Truc",
+    year: "2025",
   },
   {
     title: "Divecore — Diving Watch Strap",
@@ -432,6 +428,65 @@ export const RND_PROJECTS: RndProject[] = [
     image: "/images/WatchHPBlender/Screenshot.png",
     link: "https://www.artstation.com/artwork/qJL4AN",
     linkLabel: "View on ArtStation",
+    year: "2024",
+  },
+  {
+    title: "Art VFX Showcase",
+    category: "Real-time Visual Effects",
+    tools: ["Unreal Engine", "Houdini"],
+    image: "https://img.youtube.com/vi/FcIUXgQ4c3s/maxresdefault.jpg",
+    link: "/rnd/art-vfx",
+    linkLabel: "View Project details",
+    slug: "art-vfx",
+    year: "2024",
+  },
+  {
+    title: "Project My - MAAC Final",
+    category: "3D Animation",
+    tools: ["Houdini", "Maya", "Redshift"],
+    image: "/video/project-my.mp4",
+    link: "/rnd/project-my",
+    linkLabel: "View Project details",
+    slug: "project-my",
+    year: "2022",
+  },
+  {
+    title: "iPhone 11 Pro Max TVC",
+    category: "3D Product Commercial",
+    tools: ["Cinema 4D", "Octane", "After Effects"],
+    image: "/images/Iphone%2011.png",
+    link: "https://www.behance.net/gallery/136697475/iPhone-11-Pro-Max-TVC",
+    year: "2021",
+  },
+  {
+    title: "Food Court Bitexco TVC",
+    category: "Commercial Production",
+    tools: ["Premiere Pro", "After Effects", "Filming"],
+    image: "/images/FoodCourt.png",
+    link: "/rnd/utop-bitexco",
+    linkLabel: "View Project details",
+    slug: "utop-bitexco",
+    year: "2020",
+  },
+  {
+    title: "Smart Menu TVC",
+    category: "App Promo",
+    tools: ["Premiere Pro", "After Effects"],
+    image: "/images/SmartMenu.png",
+    link: "/rnd/smart-menu",
+    linkLabel: "View Project details",
+    slug: "smart-menu",
+    year: "2020",
+  },
+  {
+    title: "Utop Event TVCs",
+    category: "Commercial Production",
+    tools: ["Filming", "Premiere Pro", "After Effects"],
+    image: "/images/utop.png",
+    link: "/rnd/utop-events",
+    linkLabel: "View Project details",
+    slug: "utop-events",
+    year: "2020",
   },
 ];
 
@@ -450,18 +505,24 @@ export const EDUCATION = [
   },
 ];
 
-/** Certificates / chứng chỉ (hiển thị trên trang About) */
+/** Certificates (displayed on the About page) */
 export interface Certificate {
   name: string;
   issuer: string;
   year: string;
-  /** Link xác minh (optional) */
+  /** Verification link (optional) */
   url?: string;
-  /** Ảnh certificate (optional), đặt trong public/images/certificates/ */
+  /** Certificate image (optional), placed in public/images/certificates/ */
   image?: string;
 }
 
 export const CERTIFICATES: Certificate[] = [
+  {
+    name: "3D Animation & VFX Advanced Program",
+    issuer: "MAAC Vietnam",
+    year: "2020 - 2022",
+    image: "/images/certificates/Certificate_AVFX.png",
+  },
   {
     name: "Google UX Design Professional Certificate",
     issuer: "Google (Coursera)",
@@ -471,7 +532,7 @@ export const CERTIFICATES: Certificate[] = [
   },
 ];
 
-/** Ảnh có credit tên bạn (credits, achievements) — đặt trong public/images/achivements/ */
+/** Images crediting your name (credits, achievements) — placed in public/images/achivements/ */
 export interface AchievementCredit {
   image: string;
   title?: string;

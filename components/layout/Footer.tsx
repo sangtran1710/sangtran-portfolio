@@ -11,8 +11,7 @@ const BehanceIcon = () => (
 const FOOTER_LINKS = [
   { href: "/", label: "Home" },
   { href: "/showreel", label: "Showreel" },
-  { href: "/rnd", label: "RND" },
-  { href: "/igaming", label: "iGaming" },
+  { href: "/rnd", label: "Case Studies" },
   { href: "/share", label: "Share" },
   { href: "/blog", label: "Blog" },
   { href: "/projects", label: "Portfolio" },
@@ -30,38 +29,44 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-zinc-200 bg-zinc-50/80 dark:border-zinc-800 dark:bg-zinc-900/50">
-      <div className="mx-auto max-w-5xl px-6 sm:px-8 py-10">
-        {/* One row: email + location */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-sm text-zinc-600 dark:text-zinc-400 mb-8">
+    <footer className="relative bg-slate-950 border-t border-white/5 overflow-hidden">
+      {/* Subtle radial gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-slate-950 pointer-events-none" />
+
+      <div className="relative mx-auto max-w-5xl px-6 sm:px-8 pt-32 pb-12 z-10">
+        <div className="flex flex-col items-center text-center">
+          <p className="text-teal-500 font-semibold tracking-[0.2em] text-xs sm:text-sm uppercase mb-6">
+            Let's create something together
+          </p>
+
+          <h2 className="text-[10vw] sm:text-[6rem] md:text-[8rem] font-black uppercase tracking-tight leading-none text-slate-100 hover:text-white hover:scale-105 transition-all duration-700 cursor-default select-none mb-12 drop-shadow-2xl">
+            OPEN FOR<br />ROLES.
+          </h2>
+
           <a
             href={`mailto:${SITE.email}`}
-            className="flex items-center gap-2 rounded-lg py-1.5 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+            className="group flex flex-col items-center gap-2 text-slate-400 hover:text-teal-400 transition-colors mb-20"
           >
-            <Mail className="h-4 w-4 text-teal-600 dark:text-teal-400" />
-            {SITE.email}
+            <span className="flex items-center gap-2 text-lg sm:text-xl font-medium tracking-wide">
+              {SITE.email}
+              <svg className="h-5 w-5 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+            <span className="h-px w-0 bg-teal-500 group-hover:w-full transition-all duration-500"></span>
           </a>
-          <span className="hidden sm:inline text-zinc-300 dark:text-zinc-600">·</span>
-          <span className="flex items-center gap-2 py-1.5">
-            <MapPin className="h-4 w-4 text-teal-600 dark:text-teal-400" />
-            {ABOUT.location}
-          </span>
         </div>
 
-        {/* Nav + socials */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-zinc-200 dark:border-zinc-800">
-          <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-sm">
-            {FOOTER_LINKS.map(({ href, label }) => (
-              <Link
-                key={label}
-                href={href}
-                className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-          <div className="flex items-center gap-2">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-10 border-t border-white/10">
+          <div className="flex items-center gap-4">
+            <span className="flex items-center gap-1.5 text-sm font-medium tracking-wide text-slate-400">
+              <MapPin className="h-4 w-4" />
+              {ABOUT.location}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-3">
             {SOCIAL_LINKS.map(({ href, label, Icon, className = "" }) => (
               <a
                 key={label}
@@ -69,7 +74,7 @@ export default function Footer() {
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                 aria-label={label}
-                className={`flex h-9 w-9 items-center justify-center rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/80 dark:hover:bg-zinc-700/80 transition-colors ${className}`}
+                className={`flex h-11 w-11 items-center justify-center rounded-full bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:border-teal-500/50 hover:bg-teal-500/10 hover:shadow-[0_0_15px_rgba(20,184,166,0.3)] transition-all duration-300 ${className}`}
               >
                 <Icon className="h-4 w-4" />
               </a>
@@ -77,7 +82,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="text-center text-xs text-zinc-500 dark:text-zinc-500 pt-6 mt-6 border-t border-zinc-200 dark:border-zinc-800">
+        <p className="text-center text-xs font-medium tracking-wider text-slate-500 pt-8 mt-8 border-t border-white/5 uppercase">
           © {year} {SITE.title.split("—")[0].trim()}. Built with Next.js & Tailwind.
         </p>
       </div>

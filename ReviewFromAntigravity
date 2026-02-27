@@ -1,0 +1,37 @@
+Portfolio Review: sangtran-portfolio-v2
+I have completed my review of your portfolio website. Overall, it is an extremely professional and high-impact showcase of your VFX work. The tech stack (Next.js 14, Tailwind, Framer Motion) is perfectly suited for a modern, fluid experience.
+
+🚀 Key Strengths
+Incredible Work: Your experience with AAA studios (Sony, Epic, Amazon) is the highlight of the site. The featured projects are easy to find and well-documented.
+Tech Stack: Use of Next.js App Router and Framer Motion provides a very smooth, "app-like" feel.
+Responsive Layout: The site scales well across different screen sizes.
+SEO Ready: Metadata and OpenGraph configurations are already in place, which is great for sharing on LinkedIn/Twitter.
+🛠️ Areas for Improvement
+1. Performance & "First Impression"
+Page Loader Delay: Currently, 
+PageLoader.tsx
+ has a hardcoded 1.8s delay. While the animation is beautiful, it might feel long for returning visitors.
+Suggestion: Consider shortening the duration to ~1.2s or adding a "Skip" button.
+Background Video: The Hero video is a great "wow" factor, but ensure it's heavily compressed for web delivery to prevent a "black screen" while it's buffering.
+2. UI/UX Polishing
+Theme Consistency: The jump from the dark Home page to the light iGaming page (bg-stone-50) is quite sharp.
+Suggestion: You might want to experiment with a "Dark Mode" for the iGaming page to keep it consistent with your primary "Reel" and "Lab" aesthetic.
+Navigation Logic:
+Issue: The Navbar highlight uses pathname === href. This fails if you are on a sub-page (e.g., a specific project page).
+Suggestion: Update the check to pathname.startsWith(href) (with a special case for "/") so "Work" stays highlighted when viewing a project.
+3. Content Placeholders
+iGaming Page: Currently shows "Artwork coming soon".
+Suggestion: Even if the final renders aren't ready, adding a few "Work-in-Progress" screenshots or a "Coming Soon" teaser video would be more engaging than generic icons.
+🔍 Technical Observations
+Navbar Theme Logic: In 
+Navbar.tsx
+, you have hardcoded isDarkNav = isLanding || pathname === "/rnd". This means if you add more dark pages in the future, you'll have to manually update this list. Consider adding a theme property to your page metadata or a shared layout config.
+Next.js Image: You are using the Next.js Image component correctly for optimization, which is excellent for performance.
+Proof of Review
+I performed a live inspection of the site on your local dev server (localhost:3001).
+Portfolio Home Screen
+Review
+Portfolio Home Screen
+Recording of the visual and functional inspection.
+
+Your portfolio is already in a state that many would envy! A few small tweaks to the UX logic and theme consistency will make it truly flawless.

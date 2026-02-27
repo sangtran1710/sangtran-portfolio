@@ -8,9 +8,9 @@ export default function ExperienceTimeline() {
         <div key={i} className="relative flex gap-6">
           {/* Timeline line */}
           <div className="flex flex-col items-center">
-            <div className="h-3 w-3 rounded-full bg-primary mt-1 flex-shrink-0 ring-4 ring-primary/10" />
+            <div className="h-3 w-3 rounded-full bg-teal-500 mt-1 flex-shrink-0 ring-4 ring-teal-500/10" />
             {i < EXPERIENCES.length - 1 && (
-              <div className="w-px flex-1 bg-border mt-2 mb-0" />
+              <div className="w-px flex-1 bg-slate-200 mt-2 mb-0" />
             )}
           </div>
 
@@ -18,24 +18,24 @@ export default function ExperienceTimeline() {
           <div className={`pb-10 flex-1 ${i === EXPERIENCES.length - 1 ? "pb-0" : ""}`}>
             <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
               <div>
-                <h3 className="font-semibold text-base">{exp.role}</h3>
-                <p className="text-sm text-primary font-medium">{exp.company}</p>
+                <h3 className="font-semibold text-base text-slate-900">{exp.role}</h3>
+                <p className="text-sm text-teal-600 font-medium">{exp.company}</p>
               </div>
-              <Badge variant="outline" className="text-xs font-normal flex-shrink-0">
+              <Badge variant="outline" className="text-xs font-normal flex-shrink-0 border-slate-200 text-slate-600 bg-white">
                 {exp.duration}
               </Badge>
             </div>
 
             <ul className="mt-3 space-y-2">
               {exp.responsibilities.map((item, j) => (
-                <li key={j} className="flex gap-2.5 text-sm text-muted-foreground leading-relaxed">
-                  <span className="mt-2 h-1 w-1 rounded-full bg-muted-foreground flex-shrink-0" />
+                <li key={j} className="flex gap-2.5 text-sm text-slate-600 leading-relaxed">
+                  <span className="mt-2 h-1 w-1 rounded-full bg-slate-300 flex-shrink-0" />
                   {item}
                 </li>
               ))}
             </ul>
 
-            <p className="mt-3 text-xs text-muted-foreground/70">
+            <p className="mt-3 text-xs text-slate-500">
               {exp.technologies}
             </p>
           </div>
