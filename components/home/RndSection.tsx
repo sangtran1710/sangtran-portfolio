@@ -72,12 +72,12 @@ export default function RndSection() {
           loop
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
+          className="absolute inset-0 w-full h-full object-cover opacity-60 invert mix-blend-multiply"
           aria-hidden
         />
       )}
-      <div className="absolute inset-0 bg-slate-50/85" />
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-50/60 via-transparent to-slate-50/90" />
+      {/* Lighten the aggressive overly to let the multiplied/inverted video show through clearer */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-50/30 via-transparent to-slate-50/70" />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 py-8 pb-16">
         {/* Compact header — fits first viewport alongside 1 row of projects */}
