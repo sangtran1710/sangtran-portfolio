@@ -20,7 +20,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const isLanding = pathname === "/";
-  const isDarkNav = isLanding || pathname === "/showreel";
+  const isDarkNav = isLanding || pathname === "/showreel" || pathname === "/rnd";
 
   return (
     <header

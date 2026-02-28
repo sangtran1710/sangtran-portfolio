@@ -72,36 +72,36 @@ export default function RndSection() {
           loop
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover opacity-60 invert mix-blend-multiply"
+          className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-screen"
           aria-hidden
         />
       )}
-      {/* Lighten the aggressive overly to let the multiplied/inverted video show through clearer */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-50/30 via-transparent to-slate-50/70" />
+      <div className="absolute inset-0 bg-slate-950/70" />
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-transparent to-slate-950/90" />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 py-8 pb-16">
         {/* Compact header — fits first viewport alongside 1 row of projects */}
         <header className="mb-8">
           <div className="flex flex-wrap items-center gap-2 mb-2">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-teal-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-teal-700">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-teal-500/10 px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-teal-400">
               <FlaskConical className="h-3.5 w-3.5" />
               Case Studies
             </span>
-            <span className="text-xs font-semibold uppercase tracking-widest text-teal-600">
+            <span className="text-xs font-semibold uppercase tracking-widest text-teal-500">
               Selected Experiments
             </span>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-[0.1em] text-slate-900 mb-2">
+          <h1 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-[0.1em] text-white mb-2">
             <TypewriterTitle
               prefix=""
               words={["CASE STUDIES", "COMMERCIAL WORKS", "PERSONAL PROJECTS"]}
               run={true}
               reducedMotion={prefersReducedMotion}
-              wordClassName="text-slate-900"
-              cursorClassName="text-teal-600"
+              wordClassName="text-white"
+              cursorClassName="text-teal-500"
             />
           </h1>
-          <p className="text-slate-600 mt-1.5 text-[15px] sm:text-base max-w-2xl leading-relaxed">
+          <p className="text-slate-400 mt-1.5 text-[15px] sm:text-base max-w-2xl leading-relaxed">
             Personal experiments and commercial works — where I research new software, tools, and techniques.
           </p>
         </header>
@@ -111,8 +111,8 @@ export default function RndSection() {
             <div key={year} className="space-y-6">
               {/* Year Header Divider */}
               <div className="flex items-center gap-4">
-                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 uppercase tracking-widest">{year}</h2>
-                <div className="h-px flex-1 bg-slate-200" />
+                <h2 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-widest">{year}</h2>
+                <div className="h-px flex-1 bg-white/10" />
               </div>
 
               {/* Projects Grid for this Year */}
@@ -127,7 +127,7 @@ export default function RndSection() {
                       }`}
                     style={{ transitionDelay: inView ? `${yearIndex * 0.1 + i * 0.05}s` : "0s" }}
                   >
-                    <div className="relative aspect-video overflow-hidden rounded-2xl bg-slate-100 border border-slate-200/70 group-hover:border-teal-300/50 group-hover:shadow-md group-hover:shadow-slate-200/80 transition-all duration-300">
+                    <div className="relative aspect-video overflow-hidden rounded-2xl bg-slate-900 border border-white/10 group-hover:border-teal-500/50 group-hover:shadow-lg group-hover:shadow-teal-500/20 transition-all duration-300">
                       {project.image.endsWith('.mp4') || project.image.endsWith('.webm') ? (
                         <video
                           src={project.image}
@@ -146,28 +146,28 @@ export default function RndSection() {
                           sizes="(max-width: 768px) 50vw, 33vw"
                         />
                       )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-slate-900 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110 shadow-sm">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110 shadow-sm">
                         <ArrowUpRight className="h-4 w-4" />
                       </div>
-                      <div className="absolute bottom-3 left-3 flex items-center gap-1.5 rounded-md bg-white/90 backdrop-blur-sm px-2 py-1 text-[10px] font-medium text-slate-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-sm border border-slate-200/50">
-                        <Sparkles className="h-3 w-3 text-teal-600" />
+                      <div className="absolute bottom-3 left-3 flex items-center gap-1.5 rounded-md bg-black/60 backdrop-blur-md px-2 py-1 text-[10px] font-medium text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-white/10">
+                        <Sparkles className="h-3 w-3 text-teal-400" />
                         {project.linkLabel ?? "View on Behance"}
                       </div>
                     </div>
 
                     <div className="mt-4 flex-1 flex flex-col px-1">
-                      <h3 className="font-semibold text-[15px] sm:text-base text-slate-900 group-hover:text-teal-600 transition-colors line-clamp-1">
+                      <h3 className="font-semibold text-[15px] sm:text-base text-white group-hover:text-teal-400 transition-colors line-clamp-1">
                         {project.title}
                       </h3>
-                      <p className="text-sm text-slate-500 mt-1 mb-3">
+                      <p className="text-sm text-slate-400 mt-1 mb-3">
                         {project.category}
                       </p>
                       <div className="flex flex-wrap gap-1.5 mt-auto">
                         {project.tools.map((tool) => (
                           <span
                             key={tool}
-                            className="text-[10px] text-teal-700 bg-teal-50 border border-teal-100 rounded-md px-2 py-0.5 group-hover:bg-teal-100 transition-colors"
+                            className="text-[10px] text-teal-300 bg-teal-500/10 border border-teal-500/20 rounded-md px-2 py-0.5 group-hover:bg-teal-500/20 transition-colors"
                           >
                             {tool}
                           </span>
