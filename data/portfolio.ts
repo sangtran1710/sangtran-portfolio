@@ -394,6 +394,15 @@ export const IGAMING_ARTWORKS: IgamingArtwork[] = [
 
 export const RND_PROJECTS: RndProject[] = [
   {
+    title: "TradingPower Tool v9.2",
+    category: "Motion Graphics · AE Plugin Workflow",
+    tools: ["After Effects", "TradingPower Tool", "Motion Design"],
+    image: "/images/Thumbnail.png",
+    link: "/rnd/tradingpower-tool",
+    linkLabel: "View Case Study",
+    year: "2026",
+  },
+  {
     title: "HistoryBlends - AI Filmmaking",
     category: "AI Content Creation",
     tools: ["Sora", "Veo-2", "ChatGPT", "Midjourney", "Prompt Engineering"],
@@ -441,8 +450,8 @@ export const RND_PROJECTS: RndProject[] = [
     year: "2024",
   },
   {
-    title: "Project My - MAAC Final",
-    category: "3D Animation",
+    title: "Project My — Graduation Short Film Trailer",
+    category: "3D Animation · Graduation Project",
     tools: ["Houdini", "Maya", "Redshift"],
     image: "/video/project-my.mp4",
     link: "/rnd/project-my",
