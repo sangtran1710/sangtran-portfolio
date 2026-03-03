@@ -128,7 +128,15 @@ export default function RndSection() {
                     style={{ transitionDelay: inView ? `${yearIndex * 0.1 + i * 0.05}s` : "0s" }}
                   >
                     <div className="relative aspect-video overflow-hidden rounded-2xl bg-slate-900 border border-white/10 group-hover:border-teal-500/50 group-hover:shadow-lg group-hover:shadow-teal-500/20 transition-all duration-300">
-                      {project.image.endsWith('.mp4') || project.image.endsWith('.webm') ? (
+                      {project.embedUrl ? (
+                        <iframe
+                          src={project.embedUrl}
+                          className="absolute inset-0 h-full w-full"
+                          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                          loading="lazy"
+                          title={project.title}
+                        />
+                      ) : project.image.endsWith('.mp4') || project.image.endsWith('.webm') ? (
                         <video
                           src={project.image}
                           className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"

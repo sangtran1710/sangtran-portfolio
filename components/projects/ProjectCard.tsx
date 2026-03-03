@@ -18,17 +18,18 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <Link
-      href={`/projects/${project.slug}`}
-      className="group relative overflow-hidden rounded-2xl bg-white shadow-sm border border-slate-200/70 hover:shadow-md hover:border-teal-300/50 hover:shadow-slate-200/80 transition-all duration-300 block flex flex-col"
-    >
-      {/* Thumbnail */}
-      <div className="relative aspect-[4/3] overflow-hidden bg-slate-100 border-b border-slate-200/70">
+    <div className="group/card relative rounded-2xl">
+      <Link
+        href={`/projects/${project.slug}`}
+        className="relative flex flex-col rounded-2xl bg-white shadow-sm border-2 border-slate-200/70 min-h-full transition-all duration-200 group-hover/card:border-teal-400 group-hover/card:shadow-[0_0_0_3px_rgba(20,184,166,0.25),0_0_20px_rgba(20,184,166,0.12)]"
+      >
+        {/* Thumbnail */}
+        <div className="relative aspect-[4/3] overflow-hidden bg-slate-100 border-b border-slate-200/70 rounded-t-2xl">
         <Image
           src={project.thumbnail}
           alt={project.title}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover transition-transform duration-500 group-hover/card:scale-105"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
 
@@ -47,7 +48,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
       {/* Info */}
       <div className="p-4 flex-1 flex flex-col px-5 pb-5">
-        <h3 className="font-semibold text-slate-900 text-[15px] sm:text-base leading-tight group-hover:text-teal-600 transition-colors">
+        <h3 className="font-semibold text-slate-900 text-[15px] sm:text-base leading-tight group-hover/card:text-teal-600 transition-colors">
           {project.title}
         </h3>
         <p className="text-slate-500 text-[13px] sm:text-sm mt-1.5">
@@ -66,6 +67,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           ))}
         </div>
       </div>
-    </Link>
+      </Link>
+    </div>
   );
 }

@@ -12,6 +12,8 @@ export interface Project {
   techStack: string[];
   videoUrl?: string;
   images?: string[];
+  /** Breakdown: URL + VFX name + optional caption (Behance-style: video → text → video → image) */
+  breakdownClips?: { url: string; title: string; caption?: string }[];
   isFeatured?: boolean;
   /** Display period e.g. "12/2022 – 9/2023" */
   duration?: string;
@@ -222,13 +224,23 @@ export const PROJECTS: Project[] = [
     images: [
       "/images/Fornite/hq720.jpg",
       "/images/Fornite/hq720 (1).jpg",
-      "/images/Fornite/hq720 (2).jpg",
-      "/images/Fornite/images (6).jpeg",
-      "/images/Fornite/Screenshot 2025-08-16 003230.png",
       "/images/Fornite/Screenshot 2025-08-16 005424.png",
       "/images/Fornite/Screenshot 2025-08-16 005538.png",
       "/images/Fornite/Screenshot 2025-08-16 005614.png",
       "/images/Fornite/Screenshot 2025-08-16 005729.png",
+    ],
+    breakdownClips: [
+      { url: "https://www.youtube.com/watch?v=4NifXy2W_Uk", title: "Weapon Skin VFX", caption: "Weapon skin effects for the event." },
+      { url: "https://www.youtube.com/watch?v=u-e9ByS_e80", title: "Live Event Effects", caption: "Real-time effects for the live finale." },
+      { url: "https://youtu.be/zwNhOnKD32Y", title: "Environment & Atmosphere", caption: "Environment and atmosphere VFX." },
+      { url: "https://youtu.be/6X8aDzsubDs", title: "Impact & Hit FX", caption: "Impact and hit feedback effects." },
+      { url: "https://youtu.be/JcexkztUoC8", title: "Ability / Magic VFX", caption: "Ability and magic spell effects." },
+      { url: "https://youtu.be/rT3SvdKiz6o", title: "UI & Feedback FX", caption: "UI and player feedback effects." },
+      { url: "https://youtu.be/WoRsXjZ4nfA", title: "Destruction & Debris", caption: "Destruction and debris systems." },
+      { url: "https://www.youtube.com/watch?v=gavwRrNk_bw", title: "Trail & Projectile", caption: "Trail and projectile VFX." },
+      { url: "https://youtu.be/g4cY2vwfroM", title: "Screen & Post FX", caption: "Screen space and post-process effects." },
+      { url: "https://youtu.be/G0elrE1kde4", title: "Niagara Systems Breakdown", caption: "Niagara system breakdown and setup." },
+      { url: "https://youtu.be/oHyDLyVmhF8", title: "Full Reel / Compilation", caption: "Full breakdown reel." },
     ],
     isFeatured: true,
   },
@@ -368,8 +380,12 @@ export interface RndProject {
   title: string;
   category: string;
   tools: string[];
+  /** Thumbnail image or local video path for preview */
   image: string;
+  /** Destination when clicking the card */
   link: string;
+  /** Optional: embedded video URL for looping preview (e.g. Vimeo player) */
+  embedUrl?: string;
   /** Optional: "View on ArtStation" etc. Default "View on Behance" */
   linkLabel?: string;
   slug?: string;
@@ -427,6 +443,9 @@ export const RND_PROJECTS: RndProject[] = [
     category: "Real-time Motion Art",
     tools: ["Unreal Engine", "Niagara"],
     image: "/images/ETH.png",
+    /** Vimeo loop preview */
+    embedUrl:
+      "https://player.vimeo.com/video/1108882585?background=1&autopause=0&muted=1&loop=1&playsinline=1&badge=0&title=0&byline=0",
     link: "https://www.behance.net/gallery/232255967/ETHEREUM-MOTION-ART",
     year: "2025",
   },
@@ -450,13 +469,36 @@ export const RND_PROJECTS: RndProject[] = [
     year: "2024",
   },
   {
-    title: "Project My — Graduation Short Film Trailer",
-    category: "3D Animation · Graduation Project",
-    tools: ["Houdini", "Maya", "Redshift"],
+    title: "RND Houdini (Redshift) & Unreal Engine",
+    category: "Graduation Project",
+    tools: ["Houdini", "Redshift", "Unreal Engine"],
     image: "/video/project-my.mp4",
     link: "/rnd/project-my",
     linkLabel: "View Project details",
     slug: "project-my",
+    year: "2022",
+  },
+  {
+    title: "Intro / Profile Reel",
+    category: "Reel",
+    tools: ["Houdini", "Unreal Engine", "Maya"],
+    image: "https://vumbnail.com/760471508.jpg",
+    /** Vimeo loop preview for card */
+    embedUrl:
+      "https://player.vimeo.com/video/760471508?background=1&autopause=0&muted=1&loop=1&playsinline=1&badge=0&title=0&byline=0&app_id=58479",
+    link: "https://vimeo.com/760471508",
+    linkLabel: "Watch on Vimeo",
+    year: "2022",
+  },
+  {
+    title: "Circle and Vellum",
+    category: "Reel · Houdini Karma",
+    tools: ["Houdini", "Karma", "Vimeo", "Reel"],
+    image: "https://vumbnail.com/708569913.jpg",
+    embedUrl:
+      "https://player.vimeo.com/video/708569913?background=1&autopause=0&muted=1&loop=1&playsinline=1&badge=0&title=0&byline=0&app_id=58479",
+    link: "https://vimeo.com/708569913",
+    linkLabel: "Watch on Vimeo",
     year: "2022",
   },
   {

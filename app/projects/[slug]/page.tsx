@@ -42,6 +42,16 @@ function getYoutubeEmbedUrl(url: string): string {
   return url;
 }
 
+function getYoutubeVideoId(url: string): string | null {
+  const match = url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  return match ? match[1] : null;
+}
+
+function getYoutubeWatchUrl(url: string): string {
+  const id = getYoutubeVideoId(url);
+  return id ? `https://www.youtube.com/watch?v=${id}` : url;
+}
+
 export default function ProjectDetailPage({ params }: Props) {
   const project = PROJECTS.find((p) => p.slug === params.slug);
   if (!project) notFound();
@@ -130,6 +140,87 @@ export default function ProjectDetailPage({ params }: Props) {
           </div>
         </div>
       )}
+
+      {/* Breakdown — Behance-style: video → text → video → image → video */}
+      {project.breakdownClips && project.breakdownClips.length > 0 && (() => {
+        const clips = project.breakdownClips;
+        const gallery = project.images ?? [];
+        type Block = { type: "video"; clip: (typeof clips)[0]; index: number } | { type: "image"; src: string; index: number };
+        const blocks: Block[] = [];
+        let imgIndex = 0;
+        clips.forEach((clip, i) => {
+          blocks.push({ type: "video", clip, index: i });
+          // Sau mỗi 3 video chèn 1 hình từ gallery (nếu còn)
+          if ((i + 1) % 3 === 0 && imgIndex < gallery.length) {
+            blocks.push({ type: "image", src: gallery[imgIndex], index: imgIndex });
+            imgIndex += 1;
+          }
+        });
+        return (
+          <div className="mb-12">
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-2">
+              Breakdown Clips
+            </h2>
+            <p className="text-sm text-muted-foreground mb-8">
+              Click any clip to watch on YouTube.
+            </p>
+            <div className="space-y-10 sm:space-y-14">
+              {blocks.map((block) => {
+                if (block.type === "video") {
+                  const { clip } = block;
+                  const id = getYoutubeVideoId(clip.url);
+                  const watchUrl = getYoutubeWatchUrl(clip.url);
+                  if (!id) return null;
+                  return (
+                    <section key={id} className="space-y-3">
+                      <a
+                        href={watchUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group block relative w-full aspect-video overflow-hidden rounded-2xl bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+                      >
+                        <Image
+                          src={`https://img.youtube.com/vi/${id}/sddefault.jpg`}
+                          alt={clip.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          sizes="(max-width: 1024px) 100vw, 896px"
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/25 transition-colors">
+                          <div className="rounded-full bg-red-600 p-4 text-white shadow-xl group-hover:scale-110 transition-transform duration-200">
+                            <svg className="h-8 w-8 ml-0.5" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M8 5v14l11-7z" />
+                            </svg>
+                          </div>
+                        </div>
+                      </a>
+                      <h3 className="text-lg sm:text-xl font-semibold text-foreground">
+                        {clip.title}
+                      </h3>
+                      {clip.caption && (
+                        <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-2xl">
+                          {clip.caption}
+                        </p>
+                      )}
+                    </section>
+                  );
+                }
+                return (
+                  <div key={`img-${block.index}`} className="relative w-full aspect-video overflow-hidden rounded-2xl bg-muted">
+                    <Image
+                      src={block.src}
+                      alt={`${project.title} breakdown ${block.index + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 896px"
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })()}
 
       <div className="grid gap-10 lg:grid-cols-3">
         {/* Main content */}

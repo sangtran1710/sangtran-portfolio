@@ -10,6 +10,14 @@ const nextConfig = {
         protocol: "https",
         hostname: "i.ytimg.com",
       },
+      {
+        protocol: "https",
+        hostname: "i.vimeocdn.com",
+      },
+      {
+        protocol: "https",
+        hostname: "vumbnail.com",
+      },
     ],
   },
 };

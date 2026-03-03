@@ -51,10 +51,11 @@ function ProjectCard({
     <div
       onMouseEnter={() => setOverProjectCard(true)}
       onMouseLeave={() => setOverProjectCard(false)}
+      className="group/card relative rounded-2xl"
     >
       <Link
         href={`/projects/${slug}`}
-        className="group block relative overflow-hidden rounded-2xl bg-white shadow-sm border border-slate-200/70 hover:shadow-md hover:border-teal-300/50 hover:shadow-slate-200/80 transition-all duration-300"
+        className="relative block rounded-2xl bg-white shadow-sm border-2 border-slate-200/70 transition-all duration-200 group-hover/card:border-teal-400 group-hover/card:shadow-[0_0_0_3px_rgba(20,184,166,0.25),0_0_20px_rgba(20,184,166,0.12)]"
       >
         <div className="flex flex-col">
           <div className="relative w-full aspect-[16/10] flex-shrink-0 overflow-hidden rounded-t-2xl border-b border-slate-200/70 bg-slate-100">
@@ -62,7 +63,7 @@ function ProjectCard({
               src={thumbnail}
               alt={title}
               fill
-              className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              className="object-cover transition-transform duration-500 group-hover/card:scale-[1.03]"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
             />
             <div className="absolute top-3 right-3 flex flex-wrap gap-1 justify-end pointer-events-none">
@@ -77,7 +78,7 @@ function ProjectCard({
             </div>
           </div>
           <div className="flex flex-col p-4 sm:p-5 flex-1">
-            <h3 className="font-semibold text-[15px] sm:text-base text-slate-900 leading-tight group-hover:text-teal-600 transition-colors">
+            <h3 className="font-semibold text-[15px] sm:text-base text-slate-900 leading-tight group-hover/card:text-teal-600 transition-colors">
               {title}
             </h3>
             <p className="text-sm text-slate-500 mt-1.5">

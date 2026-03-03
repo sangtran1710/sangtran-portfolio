@@ -98,30 +98,19 @@ export default function Navbar() {
           <Link
             href="/projects"
             className={cn(
-              "group relative inline-flex items-center justify-center overflow-hidden px-8 py-3.5 text-sm font-extrabold uppercase tracking-[0.12em] transition-colors duration-300 rounded-full",
+              "group relative inline-flex items-center justify-center overflow-hidden px-6 py-3.5 text-sm font-extrabold uppercase tracking-[0.14em] transition-all duration-300 rounded-full",
               pathname.startsWith("/projects")
                 ? isDarkNav
-                  ? "border border-teal-500 bg-teal-500/10 text-teal-400"
-                  : "border border-teal-600 bg-teal-600/10 text-teal-600"
+                  ? "border-2 border-teal-400 bg-teal-500/20 text-teal-300 shadow-[0_0_20px_rgba(20,184,166,0.25)]"
+                  : "border-2 border-teal-500 bg-teal-50 text-teal-700"
                 : isDarkNav
-                  ? "border border-white/20 text-white"
-                  : "border border-slate-200 text-slate-900 bg-white"
+                  ? "border-2 border-teal-400 bg-teal-500 text-white shadow-[0_0_24px_rgba(20,184,166,0.4),0_0_0_1px_rgba(255,255,255,0.1)_inset] hover:shadow-[0_0_32px_rgba(20,184,166,0.5),0_0_0_1px_rgba(255,255,255,0.15)_inset] hover:scale-[1.02] hover:border-teal-300"
+                  : "border-2 border-teal-500 bg-teal-500 text-white shadow-md hover:bg-teal-600 hover:border-teal-600 hover:shadow-lg hover:scale-[1.02]"
             )}
           >
-            <span className={cn(
-              "relative z-10 transition-colors duration-300",
-              !pathname.startsWith("/projects") && isDarkNav ? "group-hover:text-zinc-950" : "",
-              !pathname.startsWith("/projects") && !isDarkNav ? "group-hover:text-white" : ""
-            )}>
+            <span className="relative z-10">
               Work
             </span>
-            {/* Hover fill effect */}
-            {!pathname.startsWith("/projects") && (
-              <div className={cn(
-                "absolute inset-0 -z-0 translate-y-full transition-transform duration-300 group-hover:translate-y-0",
-                isDarkNav ? "bg-white" : "bg-teal-500"
-              )} />
-            )}
           </Link>
         </nav>
 
