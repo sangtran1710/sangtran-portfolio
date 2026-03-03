@@ -241,6 +241,7 @@ export const PROJECTS: Project[] = [
       { url: "https://youtu.be/g4cY2vwfroM", title: "Screen & Post FX", caption: "Screen space and post-process effects." },
       { url: "https://youtu.be/G0elrE1kde4", title: "Niagara Systems Breakdown", caption: "Niagara system breakdown and setup." },
       { url: "https://youtu.be/oHyDLyVmhF8", title: "Full Reel / Compilation", caption: "Full breakdown reel." },
+      { url: "https://www.youtube.com/watch?v=L8tW8BJh3oU", title: "VFX Breakdown", caption: "Additional breakdown clip." },
     ],
     isFeatured: true,
   },
@@ -384,12 +385,14 @@ export interface RndProject {
   image: string;
   /** Destination when clicking the card */
   link: string;
-  /** Optional: embedded video URL for looping preview (e.g. Vimeo player) */
+  /** Optional: embedded video URL for looping preview (e.g. Vimeo/YouTube) */
   embedUrl?: string;
   /** Optional: "View on ArtStation" etc. Default "View on Behance" */
   linkLabel?: string;
   slug?: string;
   year?: string;
+  /** Optional: show in dedicated "VFX" group for HR / recruiters */
+  group?: "vfx";
 }
 
 /** iGaming / Live Casino / ARRISE-style artwork for dedicated /igaming page */
@@ -412,8 +415,10 @@ export const RND_PROJECTS: RndProject[] = [
   {
     title: "TradingPower Tool v9.2",
     category: "Motion Graphics · AE Plugin Workflow",
-    tools: ["After Effects", "TradingPower Tool", "Motion Design"],
+    tools: ["After Effects", "ExtendScript", "TradingPower Tool", "Motion Design"],
     image: "/images/Thumbnail.png",
+    embedUrl:
+      "https://www.youtube.com/embed/5AH8Ys5XTQI?muted=1&mute=1&autoplay=1&loop=1&playlist=5AH8Ys5XTQI",
     link: "/rnd/tradingpower-tool",
     linkLabel: "View Case Study",
     year: "2026",
@@ -439,15 +444,53 @@ export const RND_PROJECTS: RndProject[] = [
     year: "2025",
   },
   {
-    title: "Ethereum Motion Art",
-    category: "Real-time Motion Art",
-    tools: ["Unreal Engine", "Niagara"],
-    image: "/images/ETH.png",
-    /** Vimeo loop preview */
+    title: "Stylized",
+    category: "VFX",
+    tools: ["VFX", "Reel"],
+    image: "https://img.youtube.com/vi/9IapY_HYr6Q/sddefault.jpg",
     embedUrl:
-      "https://player.vimeo.com/video/1108882585?background=1&autopause=0&muted=1&loop=1&playsinline=1&badge=0&title=0&byline=0",
-    link: "https://www.behance.net/gallery/232255967/ETHEREUM-MOTION-ART",
+      "https://www.youtube.com/embed/9IapY_HYr6Q?muted=1&mute=1&start=30&autoplay=1&loop=1&playlist=9IapY_HYr6Q",
+    link: "https://youtu.be/9IapY_HYr6Q",
+    linkLabel: "Watch on YouTube",
     year: "2025",
+    group: "vfx",
+  },
+  {
+    title: "Semi-Realistic",
+    category: "VFX",
+    tools: ["VFX", "Reel"],
+    image: "https://img.youtube.com/vi/_g9fzTlKCVQ/sddefault.jpg",
+    embedUrl:
+      "https://www.youtube.com/embed/_g9fzTlKCVQ?muted=1&mute=1&start=235&autoplay=1&loop=1&playlist=_g9fzTlKCVQ",
+    link: "https://www.youtube.com/watch?v=_g9fzTlKCVQ",
+    linkLabel: "Watch on YouTube",
+    year: "2026",
+    group: "vfx",
+  },
+  {
+    title: "HLSL Material R&D",
+    category: "Unreal Engine · Custom Shaders",
+    tools: ["Unreal Engine", "HLSL", "Material"],
+    image: "https://img.youtube.com/vi/VTB2IAmcQO8/sddefault.jpg",
+    embedUrl:
+      "https://www.youtube.com/embed/VTB2IAmcQO8?muted=1&mute=1&autoplay=1&loop=1&playlist=VTB2IAmcQO8",
+    link: "/rnd/hlsl-material",
+    linkLabel: "View Project details",
+    slug: "hlsl-material",
+    year: "2025",
+    group: "vfx",
+  },
+  {
+    title: "Fortnite Full Reel",
+    category: "Fortnite · VFX",
+    tools: ["Unreal Engine", "Niagara", "VFX"],
+    image: "https://img.youtube.com/vi/oHyDLyVmhF8/sddefault.jpg",
+    embedUrl:
+      "https://www.youtube.com/embed/oHyDLyVmhF8?muted=1&mute=1&autoplay=1&loop=1&playlist=oHyDLyVmhF8",
+    link: "/projects/fortnite-remix",
+    linkLabel: "View Fortnite Work",
+    year: "2025",
+    group: "vfx",
   },
   {
     title: "Divecore — Diving Watch Strap",
@@ -459,14 +502,28 @@ export const RND_PROJECTS: RndProject[] = [
     year: "2024",
   },
   {
-    title: "Art VFX Showcase",
+    title: "Shatter Earth Impact VFX",
     category: "Real-time Visual Effects",
-    tools: ["Unreal Engine", "Houdini"],
+    tools: ["Unreal Engine", "Blender", "Substance Designer"],
     image: "https://img.youtube.com/vi/FcIUXgQ4c3s/maxresdefault.jpg",
+    embedUrl:
+      "https://www.youtube.com/embed/FcIUXgQ4c3s?muted=1&mute=1&autoplay=1&loop=1&playlist=FcIUXgQ4c3s",
     link: "/rnd/art-vfx",
     linkLabel: "View Project details",
     slug: "art-vfx",
     year: "2024",
+    group: "vfx",
+  },
+  {
+    title: "Ethereum Bloom",
+    category: "Flowers growing into Ethereum logo",
+    tools: ["Unreal Engine", "Niagara"],
+    image: "/images/ETH.png",
+    embedUrl:
+      "https://player.vimeo.com/video/1108882585?background=1&autopause=0&muted=1&loop=1&playsinline=1&badge=0&title=0&byline=0",
+    link: "https://www.behance.net/gallery/232255967/ETHEREUM-MOTION-ART",
+    year: "2025",
+    group: "vfx",
   },
   {
     title: "RND Houdini (Redshift) & Unreal Engine",

@@ -11,7 +11,7 @@ const BehanceIcon = () => (
 const FOOTER_LINKS = [
   { href: "/", label: "Home" },
   { href: "/showreel", label: "Showreel" },
-  { href: "/rnd", label: "Case Studies" },
+  { href: "/rnd", label: "Labs" },
   { href: "/share", label: "Share" },
   { href: "/blog", label: "Blog" },
   { href: "/projects", label: "Portfolio" },

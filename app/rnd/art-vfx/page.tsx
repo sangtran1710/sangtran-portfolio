@@ -64,9 +64,9 @@ export default function ArtVfxPage() {
                 <div className="prose prose-invert max-w-none pt-8 border-t border-white/10">
                     <h2 className="text-2xl font-bold text-white uppercase tracking-widest mb-6">About the Project</h2>
                     <p className="text-white/70 leading-relaxed mb-6">
-                        A comprehensive showcase of real-time Visual Effects created dynamically within Unreal Engine 5.
-                        This reel demonstrates complex particle systems, procedural destruction, and fluid simulations
-                        driven by Houdini and deeply integrated into Unreal's Niagara system.
+                        Real-time VFX made in Unreal Engine, with assets from Substance Designer and Blender. The 3D
+                        model was modeled and animated in Blender, then brought into Unreal; the rest of the effect—materials,
+                        lighting, and VFX presentation—was done in UE.
                     </p>
 
                     <div className="grid sm:grid-cols-2 gap-8 mt-12 bg-zinc-900/50 p-6 sm:p-8 rounded-xl border border-white/5">
@@ -74,14 +74,15 @@ export default function ArtVfxPage() {
                             <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-3">Role</h3>
                             <ul className="space-y-2 text-sm text-white/70">
                                 <li>VFX Artist</li>
-                                <li>Technical Animation</li>
+                                <li>3D model & anim (Blender)</li>
                             </ul>
                         </div>
                         <div>
                             <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-3">Core Tech Stack</h3>
                             <ul className="space-y-2 text-sm text-white/70">
-                                <li><strong className="text-white">Unreal Engine 5:</strong> Niagara, Real-time Rendering</li>
-                                <li><strong className="text-white">SideFX Houdini:</strong> Vellum, Flip Simulations, RBD</li>
+                                <li><strong className="text-white">Unreal Engine:</strong> Materials, VFX, real-time rendering</li>
+                                <li><strong className="text-white">Blender:</strong> 3D model, animation</li>
+                                <li><strong className="text-white">Substance Designer:</strong> Textures / procedural assets</li>
                             </ul>
                         </div>
                     </div>

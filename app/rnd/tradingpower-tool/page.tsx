@@ -49,7 +49,7 @@ export default function TradingPowerToolPage() {
           style={{ paddingTop: "56.25%" }}
         >
           <iframe
-            src="https://www.youtube.com/embed/5AH8Ys5XTQI?start=53"
+            src="https://www.youtube.com/embed/5AH8Ys5XTQI?si=baN_i0LOqXwobX9d"
             title="TradingPower Tool v9.2 — Quick Tutorial"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
@@ -73,6 +73,22 @@ export default function TradingPowerToolPage() {
                 The panel ships with a gold-accented visual identity (Bebas Neue type system, branded highlight styles)
                 and a set of motion helpers that map directly to typical trading content: chart highlights, zoom-ins on
                 key areas, meme-style fullscreen frames, and audit utilities to keep everything on-brand.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-bold uppercase tracking-wider text-white mb-4">Technique & Implementation</h2>
+              <p className="text-zinc-400 leading-relaxed text-base">
+                The plugin is written in <strong className="text-zinc-200">Extended JavaScript (ExtendScript)</strong>, the scripting
+                engine used by Adobe After Effects. ScriptUI is used to build the panel UI (buttons, dropdowns, inputs);
+                ExtendScript then drives the After Effects API to create compositions, apply animation presets (.ffx),
+                and run consistency checks. This keeps the tool lightweight, install-free, and fully integrated with the
+                host application.
+              </p>
+              <p className="text-zinc-400 leading-relaxed text-base mt-4">
+                Key techniques: programmatic composition and layer creation, batch application of .ffx motion presets,
+                layer naming and style audits, and coordinate math for the Super Zoom tool (selection bounds → keyframed
+                scale and position).
               </p>
             </section>
 
@@ -112,7 +128,7 @@ export default function TradingPowerToolPage() {
                 Tech Stack & Role
               </h3>
               <div className="flex flex-wrap gap-2">
-                {["After Effects ScriptUI", "JavaScript (ExtendScript)", "Animation Presets (.ffx)"].map((tech) => (
+                {["After Effects ScriptUI", "Extended JavaScript (ExtendScript)", "Animation Presets (.ffx)"].map((tech) => (
                   <Badge key={tech} variant="outline" className="border-zinc-700 bg-zinc-950 text-zinc-300">
                     {tech}
                   </Badge>
