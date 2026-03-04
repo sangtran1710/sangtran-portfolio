@@ -63,7 +63,7 @@ function ProjectCard({
               src={thumbnail}
               alt={title}
               fill
-              className="object-cover transition-transform duration-500 group-hover/card:scale-[1.03]"
+              className="object-cover transition-transform duration-500 scale-[0.96] group-hover/card:scale-100"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
             />
             <div className="absolute top-3 right-3 flex flex-wrap gap-1 justify-end pointer-events-none">

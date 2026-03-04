@@ -626,12 +626,6 @@ export interface Certificate {
 
 export const CERTIFICATES: Certificate[] = [
   {
-    name: "3D Animation & VFX Advanced Program",
-    issuer: "MAAC Vietnam",
-    year: "2020 - 2022",
-    image: "/images/certificates/Certificate_AVFX.png",
-  },
-  {
     name: "Google UX Design Professional Certificate",
     issuer: "Google (Coursera)",
     year: "2025",

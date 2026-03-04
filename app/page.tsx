@@ -1,4 +1,5 @@
 import HeroSection from "@/components/home/HeroSection";
+import FeaturedCreditsSection from "@/components/home/FeaturedCreditsSection";
 import ProfileSection from "@/components/home/ProfileSection";
 import BackstorySection from "@/components/home/BackstorySection";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
@@ -10,6 +11,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <FeaturedCreditsSection />
       <FeaturedProjects />
       <ProfileSection />
       <BackstorySection />
