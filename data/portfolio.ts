@@ -391,8 +391,8 @@ export interface RndProject {
   linkLabel?: string;
   slug?: string;
   year?: string;
-  /** Optional: show in dedicated "VFX" group for HR / recruiters */
-  group?: "vfx";
+  /** Optional: show in dedicated group for HR / recruiters */
+  group?: "vfx" | "igaming";
 }
 
 /** iGaming / Live Casino / ARRISE-style artwork for dedicated /igaming page */
@@ -412,6 +412,17 @@ export const IGAMING_ARTWORKS: IgamingArtwork[] = [
 ];
 
 export const RND_PROJECTS: RndProject[] = [
+  {
+    title: "Dragon Fortune — HTML5 Slot Demo",
+    category: "iGaming · HTML5 · Slot Game",
+    tools: ["PixiJS", "GSAP", "Web Audio API", "WebGL", "Blender"],
+    image: "/slotgame/bg_main.png",
+    link: "/rnd/dragon-fortune",
+    linkLabel: "Play Demo",
+    slug: "dragon-fortune",
+    year: "2026",
+    group: "igaming",
+  },
   {
     title: "TradingPower Tool v9.2",
     category: "Motion Graphics · AE Plugin Workflow",
@@ -536,22 +547,10 @@ export const RND_PROJECTS: RndProject[] = [
     year: "2022",
   },
   {
-    title: "Intro / Profile Reel",
-    category: "Reel",
-    tools: ["Houdini", "Unreal Engine", "Maya"],
-    image: "https://vumbnail.com/760471508.jpg",
-    /** Vimeo loop preview for card */
-    embedUrl:
-      "https://player.vimeo.com/video/760471508?background=1&autopause=0&muted=1&loop=1&playsinline=1&badge=0&title=0&byline=0&app_id=58479",
-    link: "https://vimeo.com/760471508",
-    linkLabel: "Watch on Vimeo",
-    year: "2022",
-  },
-  {
     title: "Circle and Vellum",
     category: "Reel · Houdini Karma",
     tools: ["Houdini", "Karma", "Vimeo", "Reel"],
-    image: "https://vumbnail.com/708569913.jpg",
+    image: "/images/vimeo_708569913.jpg",
     embedUrl:
       "https://player.vimeo.com/video/708569913?background=1&autopause=0&muted=1&loop=1&playsinline=1&badge=0&title=0&byline=0&app_id=58479",
     link: "https://vimeo.com/708569913",
