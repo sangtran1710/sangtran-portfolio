@@ -1,0 +1,110 @@
+---
+title: "How I Built an After Effects ScriptUI Panel for a Trading Education Channel"
+description: "Client needed 20 videos a week with consistent branding — rebuilding the same layouts by hand just doesn't scale. Here's the ExtendScript panel I wrote to fix that, and what I learned building it."
+date: "2026-01-15"
+tags: ["After Effects", "ExtendScript", "Automation", "ScriptUI", "Motion Graphics"]
+thumbnail: "/images/Thumbnail.png"
+readTime: "8 min"
+---
+
+About a year ago I was doing motion graphics work for a trading education channel. The format was fairly locked in: screen recording of charts, talking head cutaways, callout graphics over key price zones, zooms into important candles, branded titles. Clean, functional, nothing fancy.
+
+For the first handful of videos it was fine. You build your templates, set up your text styles, done. But by the time you're on video thirty-something, you're copying compositions you made three weeks ago, manually renaming layers, realigning callouts that somehow drifted, hunting for the right preset file. And if another editor joins the project, you spend half a day explaining the system before they even open Premiere.
+
+There had to be a better way. That's when I started digging into After Effects scripting.
+
+---
+
+## A quick note on what ScriptUI actually is
+
+After Effects has had scripting support for a long time through ExtendScript — a JavaScript dialect that Adobe shipped across the Creative Suite years ago. ScriptUI is the UI layer on top of it. It lets you build actual panels with buttons, sliders, dropdowns, and text inputs that dock inside the AE interface like any other panel.
+
+It's not pretty by modern standards — ScriptUI predates current UI frameworks by well over a decade — but it works, and the AE API it exposes is genuinely powerful. You can create compositions, build layers, apply presets, manipulate keyframes, even run audits on existing timelines.
+
+I had used simple one-file scripts before (a batch rename tool, a quick precomp helper), but this was the first time I built something with a real UI, persistent settings, and features that other people would actually use.
+
+---
+
+## What the tool ended up being
+
+TradingPower Tool is a dockable ScriptUI panel with five main areas. Here's what each one does and why it exists.
+
+### Standardized titles and text
+
+The channel's brand uses Bebas Neue for headings and a specific gold accent color. Before the tool, everyone on the team had a slightly different idea of what that meant. One editor would use 90% opacity, another would forget to set the tracking, a third would accidentally use the condensed weight. The end result was consistent enough for casual viewers, but noticeable if you looked at multiple videos side by side.
+
+The panel generates title compositions with pre-locked text styles. You type the lesson name, pick the template type (intro title, section header, lower third), and the script builds the composition with the correct font, size, tracking, color, and animation baked in. No one has to remember the spec sheet.
+
+### Chart callouts and Circle FX
+
+These ship as `.ffx` animation presets bundled with the tool. The panel applies them to whatever layer you have selected. The circle highlight preset is probably the single most-used feature — trading content constantly needs to draw attention to specific candles or price zones, and doing it consistently across fifty videos a week without a panel would be tedious.
+
+Running it from the panel takes one click. The alternative is File → Apply Animation Preset → navigate the folder → find the right file → apply. Not a huge deal per instance, but it adds up.
+
+### Super Zoom
+
+This took the most scripting work by far. The concept: draw a rectangle over the area of the chart you want to zoom into, select it along with your video layer, run Super Zoom. The script reads the bounds of your selection, calculates the correct scale percentage and anchor point offset, and builds a keyframed zoom move with proper easing handles.
+
+Doing this by hand means figuring out the right scale value (which depends on how small the selected area is relative to the full frame), setting the anchor point so the zoom stays centered on that area, timing the ease-in and ease-out. Takes a few minutes per shot when you're doing it carefully. With the script it's a few seconds and the math is always right.
+
+### Fullscreen meme and overlay frames
+
+Trading content runs on memes. The tool generates branded fullscreen overlays — correct dimensions, background treatment, text positioning. Nothing technically interesting, but the friction reduction matters when you're doing it constantly.
+
+### Audit
+
+This sounds like the boring one, but it has probably saved the most total time. The audit scans the active composition and flags anything that's off: wrong font family, incorrect color, missing required layers, layer naming that doesn't match the channel's convention.
+
+Before delivery, one click. If it passes, it's ready. If it flags something, you can fix it before the client sees it instead of after. On a high-volume workflow that kind of gate is surprisingly valuable.
+
+---
+
+## The technical parts that were actually interesting
+
+### ExtendScript is stuck in ES3
+
+This is the first thing that hits you. No arrow functions. No destructuring. No template literals. No `const` or `let` — well, technically `const` exists but behaves like `var`. You're writing JavaScript like it's 2004, which is a bit disorienting if you're used to modern tooling.
+
+You adapt. Mostly it just means being more verbose. But if you're coming from React or Node work it's worth knowing going in.
+
+### The coordinate system will confuse you
+
+After Effects compositions have their origin at the top-left corner. Layer anchor points are relative to the layer's own bounds, not the composition. Mixing these up — which I did, more than once — gives you zoom moves that drift completely off-frame in ways that make no obvious sense until you work through the math.
+
+The fix for Super Zoom was to always convert everything to composition space before doing the calculation, then convert back. Once that clicked the rest was straightforward.
+
+### Persistent settings
+
+ScriptUI panels lose all their state when After Effects restarts. For a tool with configuration options (timing preferences, output folder paths, brand color overrides), that's annoying.
+
+I ended up serializing settings to a JSON file in the scripts folder using `File` objects and `Folder` objects from ExtendScript. The panel reads the file on launch and writes it on any change. Works fine, though it means there's a config file floating around that editors occasionally move by accident.
+
+### `.ffx` presets are not transparent
+
+One limitation I ran into: `.ffx` animation presets are compiled binary files. You can apply them with `layer.applyPreset(new File(path))`, but you can't programmatically inspect or modify what's inside them. So the Circle FX and other callout presets are fixed — if the client wants a variation, I need to build a new preset in AE manually, not through the script.
+
+For the use case this was fine. But it's worth knowing if you're planning something more dynamic.
+
+---
+
+## Did it actually help?
+
+Before the tool, an editor would spend roughly 15–25 minutes per video on layout work — text setup, callouts, zoom moves, consistency checks. After, most of that collapses to 3–5 minutes. For a channel doing 20 videos a week, that's a real difference in capacity.
+
+The consistency improvement was probably more noticeable than the time savings. Brand audits that used to flag something on 30–40% of videos now rarely flag anything. The client noticed without being told — they stopped asking for revision rounds on typography stuff almost immediately.
+
+---
+
+## What I'd do differently
+
+If I were rebuilding it today I'd look at CEP (Common Extensibility Platform) instead of ScriptUI. CEP lets you build the panel UI in HTML, CSS, and JavaScript — a proper web stack — while still calling into the AE API for the actual effects work. The result is a much more flexible UI surface. ScriptUI's layout system is genuinely painful for anything more complex than a column of buttons.
+
+I'd also build better error handling from the start. When you're the only person using a script, you know what inputs to avoid. When other editors use it, they find every edge case immediately — wrong layer type selected, composition with no layers, that kind of thing. I added defensive checks reactively, which meant a round of bug reports that could have been avoided.
+
+---
+
+## The code
+
+Full source, `.ffx` preset files, and installation instructions are on [GitHub](https://github.com/sangtran1710/TradingPower-Tool). It's built around TradingPower's specific brand system — Bebas Neue, their gold accent, their naming conventions — so you'd need to adapt those pieces for a different project. But the Super Zoom logic, the audit structure, and the panel architecture should be reusable pretty much as-is.
+
+If you're building something similar or have questions about ExtendScript or ScriptUI, feel free to reach out.
