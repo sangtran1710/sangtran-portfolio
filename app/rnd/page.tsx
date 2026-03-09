@@ -1,26 +1,5 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import RndSection from "@/components/home/RndSection";
-
-export const metadata: Metadata = {
-  title: "R&D / Commercial Works",
-  description: "Personal experiments, motion graphics, and commercial productions.",
-};
+import { permanentRedirect } from "next/navigation";
 
 export default function RndPage() {
-  return (
-    <div className="min-h-screen pt-24 bg-slate-950">
-      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 py-4">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back to Home
-        </Link>
-      </div>
-      <RndSection />
-    </div>
-  );
+  permanentRedirect("/portfolio");
 }

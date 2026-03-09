@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
 import type { Project } from "@/data/portfolio";
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -18,56 +17,53 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <div className="group/card relative rounded-2xl">
-      <Link
-        href={`/projects/${project.slug}`}
-        className="relative flex flex-col rounded-2xl bg-white shadow-sm border-2 border-slate-200/70 min-h-full transition-all duration-200 group-hover/card:border-teal-400 group-hover/card:shadow-[0_0_0_3px_rgba(20,184,166,0.25),0_0_20px_rgba(20,184,166,0.12)]"
-      >
-        {/* Thumbnail */}
-        <div className="relative aspect-[4/3] overflow-hidden bg-slate-100 border-b border-slate-200/70 rounded-t-2xl">
+    <Link
+      href={project.link || `/projects/${project.slug}`}
+      className="group/card relative block overflow-hidden"
+    >
+      {/* Image wrapper */}
+      <div className="relative aspect-[16/10] overflow-hidden bg-zinc-800 rounded-xl md:rounded-2xl">
         <Image
           src={project.thumbnail}
           alt={project.title}
           fill
-          className="object-cover transition-transform duration-500 scale-[0.97] group-hover/card:scale-100"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover transition-transform duration-500 ease-out scale-100 group-hover/card:scale-105"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         />
 
-        {/* Category badges */}
-        <div className="absolute top-3 right-3 flex flex-wrap gap-1 justify-end">
+        {/* Category badges — always visible, top-right */}
+        <div className="absolute top-3 right-3 flex flex-wrap gap-1 justify-end z-10">
           {project.categories.map((cat) => (
             <span
               key={cat}
-              className="rounded-full bg-white/95 backdrop-blur-sm shadow-sm border border-slate-200/50 px-2 py-0.5 text-[10px] font-medium text-slate-800"
+              className="rounded-full bg-black/60 backdrop-blur-sm border border-white/10 px-2 py-0.5 text-[10px] font-medium text-white/90"
             >
               {CATEGORY_LABELS[cat] ?? cat}
             </span>
           ))}
         </div>
-      </div>
 
-      {/* Info */}
-      <div className="p-4 flex-1 flex flex-col px-5 pb-5">
-        <h3 className="font-semibold text-slate-900 text-[15px] sm:text-base leading-tight group-hover/card:text-teal-600 transition-colors">
-          {project.title}
-        </h3>
-        <p className="text-slate-500 text-[13px] sm:text-sm mt-1.5">
-          {project.role} · {project.year}
-        </p>
+        {/* Hover gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 ease-out" />
 
-        {/* Tech stack */}
-        <div className="flex flex-wrap gap-1.5 mt-auto pt-4 relative">
-          {project.techStack.slice(0, 4).map((tech) => (
-            <span
-              key={tech}
-              className="rounded-md bg-teal-50 border border-teal-100 px-2 py-0.5 text-[10px] text-teal-700"
-            >
-              {tech}
-            </span>
-          ))}
+        {/* Shine/Glare effect */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none mix-blend-overlay">
+          <div className="absolute top-0 w-3/4 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg] -left-[125%] group-hover/card:left-[125%] transition-all duration-[800ms] ease-out opacity-0 group-hover/card:opacity-100" />
+        </div>
+
+        {/* Hover content — slides up from bottom */}
+        <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-3 opacity-0 group-hover/card:translate-y-0 group-hover/card:opacity-100 transition-all duration-300 ease-out z-10">
+          <p className="text-[10px] font-semibold uppercase tracking-widest text-teal-400 mb-1">
+            {project.role}&nbsp;·&nbsp;{project.year}
+          </p>
+          <h3 className="font-bold text-white text-sm sm:text-[15px] leading-snug mb-1.5">
+            {project.title}
+          </h3>
+          <p className="text-white/65 text-[11px] sm:text-xs leading-relaxed line-clamp-2">
+            {project.description}
+          </p>
         </div>
       </div>
-      </Link>
-    </div>
+    </Link>
   );
 }

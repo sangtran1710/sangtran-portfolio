@@ -10,7 +10,7 @@ const FILTERS: { value: "all" | ProjectCategory; label: string }[] = [
   { value: "aaa", label: "AAA" },
   { value: "realtime", label: "Real-time" },
   { value: "cinematic", label: "Cinematic" },
-  { value: "igaming", label: "iGaming" },
+  { value: "igaming", label: "Slot Game" },
 ];
 
 export default function ProjectGrid() {
@@ -23,17 +23,17 @@ export default function ProjectGrid() {
 
   return (
     <div>
-      {/* Filter tabs */}
-      <div className="flex gap-2 flex-wrap mb-10">
+      {/* Filter tabs — pill style */}
+      <div className="flex gap-3 flex-wrap mb-10 pb-6 border-b border-zinc-700/60">
         {FILTERS.map(({ value, label }) => (
           <button
             key={value}
             onClick={() => setActive(value)}
             className={cn(
-              "px-5 py-2 rounded-full text-sm font-medium transition-colors border",
+              "px-4 py-2 text-sm font-medium rounded-full transition-all duration-300",
               active === value
-                ? "bg-teal-500 text-white border-teal-500 shadow-sm"
-                : "bg-white border-slate-200 text-slate-600 hover:text-slate-900 hover:border-teal-300 hover:bg-teal-50"
+                ? "bg-white text-zinc-900 shadow-sm"
+                : "bg-zinc-800/50 text-zinc-400 hover:bg-zinc-700 hover:text-zinc-200"
             )}
           >
             {label}
@@ -41,17 +41,19 @@ export default function ProjectGrid() {
         ))}
       </div>
 
-      {/* Grid */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
-        ))}
-      </div>
-
-      {filtered.length === 0 && (
-        <p className="text-center text-muted-foreground py-16">
-          No projects in this category yet.
-        </p>
+      {/* Grid — gap and cols */}
+      {filtered.length > 0 ? (
+        <div className="grid gap-4 md:gap-6 lg:gap-8 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {filtered.map((project) => (
+            <ProjectCard key={project.slug} project={project} />
+          ))}
+        </div>
+      ) : (
+        <div className="w-full py-12 flex flex-col items-center justify-center border border-dashed border-zinc-800/80 rounded-2xl bg-zinc-900/20">
+          <p className="text-zinc-500 text-sm">
+            No projects in this category yet.
+          </p>
+        </div>
       )}
     </div>
   );

@@ -1,6 +1,5 @@
 "use client";
 
-import { AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import PageTransition from "@/components/animations/PageTransition";
 import { ViewProjectCursorProvider } from "@/components/cursor/ViewProjectCursorContext";
@@ -14,9 +13,7 @@ export default function PageTransitionWrapper({
 
   return (
     <ViewProjectCursorProvider>
-      <AnimatePresence mode="wait">
-        <PageTransition key={pathname}>{children}</PageTransition>
-      </AnimatePresence>
+      <PageTransition key={pathname}>{children}</PageTransition>
     </ViewProjectCursorProvider>
   );
 }

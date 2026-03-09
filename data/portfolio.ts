@@ -25,6 +25,8 @@ export interface Project {
   workSummary?: string;
   /** Visual style: "stylized" | "realistic" */
   style?: "stylized" | "realistic";
+  /** Optional custom URL if this doesn't use the standard /projects/[slug] route */
+  link?: string;
 }
 
 export interface Experience {
@@ -345,6 +347,24 @@ export const PROJECTS: Project[] = [
     techStack: ["Unreal Engine", "Houdini", "Perforce"],
     videoUrl: "https://www.youtube.com/watch?v=s3pDMUWlA6I",
   },
+  {
+    slug: "dragon-fortune",
+    thumbnail: "/slotgame/bg_main.png",
+    title: "Dragon Fortune — HTML5 Slot Demo",
+    role: "Technical Artist / Web Developer",
+    year: "2026",
+    duration: "2025 – Present",
+    description:
+      "A playable HTML5 slot game demo showcasing iGaming VFX: particle coin rain, win animations, free spins — built with React & Canvas.",
+    categories: ["igaming"],
+    contributions: [
+      "Built a 5-reel slot game engine with 10 paylines",
+      "Developed high-performance particle systems in WebGL/Canvas",
+      "Implemented seamless GSAP 3 timeline animations for game states",
+    ],
+    techStack: ["PixiJS", "GSAP", "Web Audio API", "WebGL", "Blender", "React"],
+    link: "/rnd/dragon-fortune",
+  },
 ];
 
 export const FEATURED_PROJECTS = PROJECTS.filter((p) => p.isFeatured);
@@ -412,17 +432,6 @@ export const IGAMING_ARTWORKS: IgamingArtwork[] = [
 ];
 
 export const RND_PROJECTS: RndProject[] = [
-  {
-    title: "Dragon Fortune — HTML5 Slot Demo",
-    category: "iGaming · HTML5 · Slot Game",
-    tools: ["PixiJS", "GSAP", "Web Audio API", "WebGL", "Blender"],
-    image: "/slotgame/bg_main.png",
-    link: "/rnd/dragon-fortune",
-    linkLabel: "Play Demo",
-    slug: "dragon-fortune",
-    year: "2026",
-    group: "igaming",
-  },
   {
     title: "TradingPower Tool v9.2",
     category: "Motion Graphics · AE Plugin Workflow",

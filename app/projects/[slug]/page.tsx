@@ -62,7 +62,7 @@ export default function ProjectDetailPage({ params }: Props) {
     <div className="mx-auto max-w-4xl px-6 py-12">
       {/* Back link */}
       <Link
-        href="/projects"
+        href="/portfolio"
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
       >
         <ArrowLeft className="h-4 w-4" />

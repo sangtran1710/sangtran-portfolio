@@ -4,15 +4,32 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu } from "lucide-react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { SOCIALS } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] } },
+};
+
 const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/showreel", label: "Reel" },
-  { href: "/rnd", label: "Labs" },
+  { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
 ];
 
@@ -20,7 +37,11 @@ export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const isLanding = pathname === "/";
-  const isDarkNav = isLanding || pathname === "/showreel" || pathname.startsWith("/rnd");
+  const isDarkNav =
+    isLanding ||
+    pathname === "/showreel" ||
+    pathname.startsWith("/blog") ||
+    pathname.startsWith("/portfolio");
 
   return (
     <header
@@ -32,11 +53,8 @@ export default function Navbar() {
       )}
     >
       <div className="mx-auto flex h-24 max-w-[90rem] items-center justify-between px-6 lg:px-12">
-        {/* Typographic Logo — balanced, same size */}
-        <Link
-          href="/"
-          className="group flex flex-row items-baseline gap-2 leading-none"
-        >
+        {/* Logo */}
+        <Link href="/" className="group flex flex-row items-baseline gap-2 leading-none">
           <span className={cn(
             "text-2xl sm:text-3xl font-black tracking-[0.12em] uppercase transition-colors",
             isDarkNav ? "text-white group-hover:text-teal-400" : "text-zinc-900 group-hover:text-teal-600"
@@ -51,7 +69,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop Navigation — bigger, more prominent */}
+        {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-1 lg:gap-2">
           {NAV_LINKS.map(({ href, label }) => {
             const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -83,23 +101,12 @@ export default function Navbar() {
 
           <div className="h-5 w-px bg-white/25 mx-1 lg:mx-2 hidden lg:block" />
 
-          {/* <a
-            href={SOCIALS.resume}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn(
-              "text-[10px] font-bold uppercase tracking-[0.2em] transition-all hidden lg:block",
-              isDarkNav ? "text-white/50 hover:text-white" : "text-zinc-500 hover:text-zinc-900"
-            )}
-          >
-            Resume
-          </a> */}
-
+          {/* Portfolio CTA button */}
           <Link
-            href="/projects"
+            href="/portfolio"
             className={cn(
               "group relative inline-flex items-center justify-center overflow-hidden px-6 py-3.5 text-sm font-extrabold uppercase tracking-[0.14em] transition-all duration-300 rounded-full",
-              pathname.startsWith("/projects")
+              pathname.startsWith("/portfolio")
                 ? isDarkNav
                   ? "border-2 border-teal-400 bg-teal-500/20 text-teal-300 shadow-[0_0_20px_rgba(20,184,166,0.25)]"
                   : "border-2 border-teal-500 bg-teal-50 text-teal-700"
@@ -108,13 +115,11 @@ export default function Navbar() {
                   : "border-2 border-teal-500 bg-teal-500 text-white shadow-md hover:bg-teal-600 hover:border-teal-600 hover:shadow-lg hover:scale-[1.02]"
             )}
           >
-            <span className="relative z-10">
-              Work
-            </span>
+            <span className="relative z-10">Portfolio</span>
           </Link>
         </nav>
 
-        {/* Mobile Navigation Toggle */}
+        {/* Mobile */}
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild className="md:hidden">
             <Button
@@ -127,42 +132,49 @@ export default function Navbar() {
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-72 bg-zinc-950 border-zinc-800 p-0">
-            <div className="flex flex-col pt-20 px-6 gap-5">
+            <motion.div
+              className="flex flex-col pt-20 px-6 gap-5"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
               {NAV_LINKS.map(({ href, label }) => {
                 const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
                 return (
-                  <Link
-                    key={label}
-                    href={href}
-                    onClick={() => setOpen(false)}
-                    className={cn(
-                      "text-sm font-extrabold uppercase tracking-[0.18em] transition-colors py-2",
-                      isActive
-                        ? "text-teal-400"
-                        : "text-zinc-400 hover:text-white"
-                    )}
-                  >
-                    {label}
-                  </Link>
+                  <motion.div key={label} variants={itemVariants}>
+                    <Link
+                      href={href}
+                      onClick={() => setOpen(false)}
+                      className={cn(
+                        "block text-sm font-extrabold uppercase tracking-[0.18em] transition-colors py-2",
+                        isActive ? "text-teal-400" : "text-zinc-400 hover:text-white"
+                      )}
+                    >
+                      {label}
+                    </Link>
+                  </motion.div>
                 );
               })}
-              <a
+              <motion.a
+                variants={itemVariants}
                 href={SOCIALS.resume}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="text-sm font-extrabold uppercase tracking-[0.18em] text-zinc-400 hover:text-white transition-colors py-2"
+                className="block text-sm font-extrabold uppercase tracking-[0.18em] text-zinc-400 hover:text-white transition-colors py-2"
               >
                 Resume
-              </a>
-              <Link
-                href="/projects"
-                onClick={() => setOpen(false)}
-                className="mt-4 border-2 border-teal-500/40 bg-teal-500/10 px-6 py-4 text-center text-sm font-extrabold uppercase tracking-[0.18em] text-teal-400 transition-colors hover:bg-teal-500 hover:text-zinc-950"
-              >
-                Work
-              </Link>
-            </div>
+              </motion.a>
+              <motion.div variants={itemVariants}>
+                <Link
+                  href="/portfolio"
+                  onClick={() => setOpen(false)}
+                  className="block mt-4 border-2 border-teal-500/40 bg-teal-500/10 px-6 py-4 text-center text-sm font-extrabold uppercase tracking-[0.18em] text-teal-400 transition-colors hover:bg-teal-500 hover:text-zinc-950"
+                >
+                  Portfolio
+                </Link>
+              </motion.div>
+            </motion.div>
           </SheetContent>
         </Sheet>
       </div>

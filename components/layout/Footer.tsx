@@ -11,10 +11,9 @@ const BehanceIcon = () => (
 const FOOTER_LINKS = [
   { href: "/", label: "Home" },
   { href: "/showreel", label: "Showreel" },
-  { href: "/rnd", label: "Labs" },
-  { href: "/share", label: "Share" },
+  { href: "/portfolio", label: "Portfolio" },
   { href: "/blog", label: "Blog" },
-  { href: "/projects", label: "Portfolio" },
+  { href: "/about", label: "About" },
   { href: "/#contact", label: "Contact" },
 ];
 
@@ -40,7 +39,7 @@ export default function Footer() {
           </p>
 
           <h2 className="text-[10vw] sm:text-[6rem] md:text-[8rem] font-black uppercase tracking-tight leading-none text-slate-100 hover:text-white hover:scale-105 transition-all duration-700 cursor-default select-none mb-12 drop-shadow-2xl">
-            OPEN FOR<br />ROLES.
+            LET'S WORK<br />TOGETHER.
           </h2>
 
           <a

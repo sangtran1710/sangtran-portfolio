@@ -37,9 +37,29 @@
   * {
     @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-zinc-950 text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Custom text selection */
+  ::selection {
+    @apply bg-teal-500/30 text-teal-50;
+  }
+
+  /* Custom sleek scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-zinc-950 border-l border-white/5;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-zinc-800 rounded-full border-2 border-solid border-zinc-950 hover:bg-zinc-700 transition-colors;
   }
 }
 
@@ -47,9 +67,11 @@
 .section-label {
   @apply text-xs font-semibold uppercase tracking-widest text-primary;
 }
+
 .section-title {
   @apply text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground leading-tight;
 }
+
 .section-body {
   @apply text-base text-muted-foreground leading-relaxed;
 }
@@ -59,8 +81,13 @@ html {
 }
 
 @keyframes scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(calc(-50% - 0.5rem)); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
 }
 
 .marquee-inner {
@@ -82,8 +109,15 @@ html {
 
 /* Title motion — rất nhẹ (vừa phải) */
 @keyframes title-slide {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(0.15em); }
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(0.15em);
+  }
 }
 
 .title-motion {
@@ -93,8 +127,15 @@ html {
 
 /* Hero: subtle ambient glow shift */
 @keyframes hero-ambient {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 0.85; }
+
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 0.85;
+  }
 }
 
 .hero-ambient-glow {
@@ -102,6 +143,7 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .title-motion,
   .hero-ambient-glow {
     animation: none;
@@ -110,18 +152,39 @@ html {
 
 /* Profile section: float rất nhẹ */
 @keyframes profile-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
 }
 
 @keyframes profile-gradient {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .profile-float {
@@ -140,29 +203,53 @@ html {
   transform: translateY(20px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
+
 .profile-inview .profile-reveal {
   opacity: 1;
   transform: translateY(0);
 }
-.profile-reveal-delay-1 { transition-delay: 0.08s; }
-.profile-reveal-delay-2 { transition-delay: 0.16s; }
-.profile-reveal-delay-3 { transition-delay: 0.24s; }
-.profile-reveal-delay-4 { transition-delay: 0.32s; }
-.profile-reveal-delay-5 { transition-delay: 0.4s; }
-.profile-reveal-delay-6 { transition-delay: 0.48s; }
-.profile-reveal-delay-7 { transition-delay: 0.56s; }
+
+.profile-reveal-delay-1 {
+  transition-delay: 0.08s;
+}
+
+.profile-reveal-delay-2 {
+  transition-delay: 0.16s;
+}
+
+.profile-reveal-delay-3 {
+  transition-delay: 0.24s;
+}
+
+.profile-reveal-delay-4 {
+  transition-delay: 0.32s;
+}
+
+.profile-reveal-delay-5 {
+  transition-delay: 0.4s;
+}
+
+.profile-reveal-delay-6 {
+  transition-delay: 0.48s;
+}
+
+.profile-reveal-delay-7 {
+  transition-delay: 0.56s;
+}
 
 .profile-avatar-reveal {
   opacity: 0;
   transform: scale(0.96) translateY(10px);
   transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
+
 .profile-inview .profile-avatar-reveal {
   opacity: 1;
   transform: scale(1) translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .profile-reveal,
   .profile-avatar-reveal {
     opacity: 1;
@@ -172,18 +259,23 @@ html {
 
 /* About hero: floating particles (loop motion) — biên độ rõ hơn */
 @keyframes about-particle-float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
     opacity: 0.5;
   }
+
   25% {
     transform: translate(14px, -18px) scale(1.25);
     opacity: 0.85;
   }
+
   50% {
     transform: translate(-12px, -8px) scale(0.9);
     opacity: 0.6;
   }
+
   75% {
     transform: translate(-16px, 12px) scale(1.15);
     opacity: 0.75;
