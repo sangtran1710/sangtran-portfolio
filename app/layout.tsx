@@ -8,6 +8,7 @@ import ScrollToTop from "@/components/layout/ScrollToTop";
 import PageLoader from "@/components/PageLoader";
 import PageTransitionWrapper from "@/components/layout/PageTransitionWrapper";
 import { SITE } from "@/data/portfolio";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -83,6 +84,7 @@ export default function RootLayout({
         <SocialStrip />
         <Footer />
         <ScrollToTop />
+        <Analytics />
       </body>
     </html>
   );
