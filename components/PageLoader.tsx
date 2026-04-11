@@ -4,30 +4,32 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function PageLoader() {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     // Only show on first visit per session
     const seen = sessionStorage.getItem("loader-shown");
     if (seen) {
-      setVisible(false);
       return;
     }
+
+    const showFrame = requestAnimationFrame(() => setVisible(true));
 
     // Progress bar animation: fill over 0.8s
     const start = performance.now();
     const duration = 800;
+    let progressFrame = 0;
 
     const tick = (now: number) => {
       const elapsed = now - start;
       const pct = Math.min((elapsed / duration) * 100, 100);
       setProgress(pct);
       if (elapsed < duration) {
-        requestAnimationFrame(tick);
+        progressFrame = requestAnimationFrame(tick);
       }
     };
-    requestAnimationFrame(tick);
+    progressFrame = requestAnimationFrame(tick);
 
     // Hide after 1.2s total
     const timer = setTimeout(() => {
@@ -35,7 +37,11 @@ export default function PageLoader() {
       setVisible(false);
     }, 1200);
 
-    return () => clearTimeout(timer);
+    return () => {
+      cancelAnimationFrame(showFrame);
+      cancelAnimationFrame(progressFrame);
+      clearTimeout(timer);
+    };
   }, []);
 
   const handleSkip = () => {

@@ -127,7 +127,10 @@ export default function DragonFortuneGame() {
   const reelsRef   = useRef<PixiReel[]>([]);
   const spinRef    = useRef(false);
   const autoRef    = useRef(false);
-  autoRef.current  = autoSpin;
+
+  useEffect(() => {
+    autoRef.current = autoSpin;
+  }, [autoSpin]);
 
   // ── PixiJS Bootstrap ──────────────────────────────────────────────────
   useEffect(() => {

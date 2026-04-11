@@ -67,7 +67,7 @@ export default function UtopEventsPage() {
                         <section>
                             <h2 className="text-xl font-bold uppercase tracking-wider text-white mb-4">Project Overview</h2>
                             <p className="text-zinc-400 leading-relaxed text-base">
-                                These videos represent some of my foundational work as a Video Producer at Utop, around 5 years ago. My responsibilities covered the complete pipeline of on-location shooting, directing talent, and post-production (editing and motion graphics). The featured video highlights the vibrant atmosphere of the Utop Thang Long event, capturing the energy and engagement of the app's ecosystem.
+                                These videos represent some of my foundational work as a Video Producer at Utop, around 5 years ago. My responsibilities covered the complete pipeline of on-location shooting, directing talent, and post-production (editing and motion graphics). The featured video highlights the vibrant atmosphere of the Utop Thang Long event, capturing the energy and engagement of the app&apos;s ecosystem.
                             </p>
                         </section>
 

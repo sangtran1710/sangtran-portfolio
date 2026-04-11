@@ -51,11 +51,10 @@ export default function TypewriterTitle({
       if (charIndex < word.length) {
         timeoutRef.current = setTimeout(() => setCharIndex((c) => c + 1), TYPE_MS);
       } else {
-        if (oneShot) {
-          setPhase("done");
-        } else {
-          timeoutRef.current = setTimeout(() => setPhase("pause"), TYPE_MS);
-        }
+        timeoutRef.current = setTimeout(
+          () => setPhase(oneShot ? "done" : "pause"),
+          TYPE_MS
+        );
       }
       return clear;
     }
@@ -69,8 +68,10 @@ export default function TypewriterTitle({
       if (charIndex > 0) {
         timeoutRef.current = setTimeout(() => setCharIndex((c) => c - 1), ERASE_MS);
       } else {
-        setWordIndex((i) => (i + 1) % words.length);
-        setPhase("pauseErase");
+        timeoutRef.current = setTimeout(() => {
+          setWordIndex((i) => (i + 1) % words.length);
+          setPhase("pauseErase");
+        }, ERASE_MS);
       }
       return clear;
     }

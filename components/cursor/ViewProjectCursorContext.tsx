@@ -76,16 +76,12 @@ function ViewProjectCursor({
   y: number;
   visible: boolean;
 }) {
-  const [mounted, setMounted] = useState(false);
   const springConfig = { stiffness: 300, damping: 25 };
   const scaleSpring = useSpring(0, springConfig);
 
-  useEffect(() => setMounted(true), []);
   useEffect(() => {
     scaleSpring.set(visible ? 1 : 0);
   }, [visible, scaleSpring]);
-
-  if (!mounted) return null;
 
   return (
     <motion.div

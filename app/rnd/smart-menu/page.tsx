@@ -61,7 +61,7 @@ export default function SmartMenuPage() {
                         <section>
                             <h2 className="text-xl font-bold uppercase tracking-wider text-white mb-4">Project Overview</h2>
                             <p className="text-zinc-400 leading-relaxed text-base">
-                                Following the success of previous campaigns, I continued my collaboration with Utop to produce a promotional TVC specifically targeting their "Smart Menu" feature. The goal was to communicate the speed, ease of use, and convenience of ordering ahead to skip the line.
+                                Following the success of previous campaigns, I continued my collaboration with Utop to produce a promotional TVC specifically targeting their &quot;Smart Menu&quot; feature. The goal was to communicate the speed, ease of use, and convenience of ordering ahead to skip the line.
                             </p>
                         </section>
 

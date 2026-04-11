@@ -35,11 +35,11 @@ export default function Footer() {
       <div className="relative mx-auto max-w-5xl px-6 sm:px-8 pt-32 pb-12 z-10">
         <div className="flex flex-col items-center text-center">
           <p className="text-teal-500 font-semibold tracking-[0.2em] text-xs sm:text-sm uppercase mb-6">
-            Let's create something together
+            Let&apos;s create something together
           </p>
 
           <h2 className="text-[10vw] sm:text-[6rem] md:text-[8rem] font-black uppercase tracking-tight leading-none text-slate-100 hover:text-white hover:scale-105 transition-all duration-700 cursor-default select-none mb-12 drop-shadow-2xl">
-            LET'S WORK<br />TOGETHER.
+            LET&apos;S WORK<br />TOGETHER.
           </h2>
 
           <a

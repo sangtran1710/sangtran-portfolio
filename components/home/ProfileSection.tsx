@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useRef } from "react";
 import {
   motion,
@@ -55,7 +56,7 @@ export default function ProfileSection() {
     <section
       ref={sectionRef}
       id="profile"
-      className="relative border-t border-border/60 bg-background overflow-hidden"
+      className="relative scroll-mt-24 border-t border-border/60 bg-background overflow-hidden"
     >
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.04]"
@@ -175,10 +176,12 @@ export default function ProfileSection() {
               <div className="relative h-full w-full transition-transform duration-500 [transform-style:preserve-3d] group-hover/card:[transform:rotateY(180deg)]">
                 <div className="absolute inset-0 [backface-visibility:hidden] rounded-xl overflow-hidden bg-zinc-200 shadow-lg ring-1 ring-black/5">
                   {!avatarError ? (
-                    <img
+                    <Image
                       src={PROFILE.portraitImage}
                       alt="Tran Minh Sang"
-                      className="h-full w-full object-cover object-center"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 480px"
+                      className="object-cover object-center"
                       onError={() => setAvatarError(true)}
                     />
                   ) : (
@@ -190,10 +193,12 @@ export default function ProfileSection() {
                 {hasSecondary && (
                   <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl overflow-hidden bg-zinc-200 shadow-lg ring-1 ring-black/5">
                     {!backError ? (
-                      <img
+                      <Image
                         src={PROFILE.portraitImageSecondary}
                         alt="Tran Minh Sang"
-                        className="h-full w-full object-cover object-center"
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 480px"
+                        className="object-cover object-center"
                         onError={() => setBackError(true)}
                       />
                     ) : (

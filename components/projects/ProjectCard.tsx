@@ -48,7 +48,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
         {/* Shine/Glare effect */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none mix-blend-overlay">
-          <div className="absolute top-0 w-3/4 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg] -left-[125%] group-hover/card:left-[125%] transition-all duration-[800ms] ease-out opacity-0 group-hover/card:opacity-100" />
+          <div
+            className="absolute top-0 w-3/4 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg] -left-[125%] group-hover/card:left-[125%] transition-all ease-out opacity-0 group-hover/card:opacity-100"
+            style={{ transitionDuration: "800ms" }}
+          />
         </div>
 
         {/* Hover content — slides up from bottom */}

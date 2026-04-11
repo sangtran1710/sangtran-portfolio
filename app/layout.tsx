@@ -47,10 +47,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "/images/NWA.jpg",
         width: 1200,
         height: 630,
-        alt: "Sang Tran — Senior VFX Artist Portfolio",
+        alt: "Sang Tran VFX artist portfolio preview",
       },
     ],
   },
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE.title,
     description: SITE.description,
-    images: ["/images/og-image.jpg"],
+    images: ["/images/NWA.jpg"],
   },
 };
 

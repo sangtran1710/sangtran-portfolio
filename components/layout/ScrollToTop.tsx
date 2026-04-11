@@ -14,9 +14,12 @@ export default function ScrollToTop() {
   }, []);
 
   useEffect(() => {
-    onScroll();
+    const frame = requestAnimationFrame(onScroll);
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, [onScroll]);
 
   const scrollToTop = () => {

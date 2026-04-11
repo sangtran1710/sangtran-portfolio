@@ -61,7 +61,7 @@ export default function LevelUpPage() {
                         <section>
                             <h2 className="text-xl font-bold uppercase tracking-wider text-white mb-4">Project Overview</h2>
                             <p className="text-zinc-400 leading-relaxed text-base">
-                                "Level Up" is a personal research and development project focused on pushing the boundaries of 3D environment creation using Blender. This project serves as a technical playground to refine my skills in world-building, texturing, lighting, and creating grand cinematic compositions.
+                                &quot;Level Up&quot; is a personal research and development project focused on pushing the boundaries of 3D environment creation using Blender. This project serves as a technical playground to refine my skills in world-building, texturing, lighting, and creating grand cinematic compositions.
                             </p>
                         </section>
 
@@ -77,7 +77,7 @@ export default function LevelUpPage() {
                                         Inspired by Crypto.com
                                     </h3>
                                     <p className="text-zinc-400 text-sm leading-relaxed">
-                                        The core aesthetic and thematic inspiration comes from Crypto.com's brand identity. Specifically, the project is built around their 2025 slogan: <strong>"Level Up"</strong>. By taking this concept, I aimed to visualize what "Leveling Up" looks like translated into an epic, large-scale 3D cinematic environment.
+                                        The core aesthetic and thematic inspiration comes from Crypto.com&apos;s brand identity. Specifically, the project is built around their 2025 slogan: <strong>&quot;Level Up&quot;</strong>. By taking this concept, I aimed to visualize what &quot;Leveling Up&quot; looks like translated into an epic, large-scale 3D cinematic environment.
                                     </p>
                                 </div>
                             </div>

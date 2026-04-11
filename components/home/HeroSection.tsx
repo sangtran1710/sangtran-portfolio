@@ -18,6 +18,11 @@ export default function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasVideo, setHasVideo] = useState(true);
   const prefersReducedMotion = useReducedMotion();
+  const shouldReduceMotion = prefersReducedMotion === true;
+  const showFallbackPoster = shouldReduceMotion || !hasVideo;
+
+  const motionIfAllowed = <T extends object>(props: T): T | { initial: false } =>
+    shouldReduceMotion ? { initial: false } : props;
 
   useEffect(() => {
     const video = videoRef.current;
@@ -42,8 +47,15 @@ export default function HeroSection() {
       ref={sectionRef}
       className="relative min-h-screen w-full flex items-center overflow-hidden bg-zinc-950 pt-24"
     >
-      {/* Background Video */}
-      {hasVideo && (
+      {/* Background media */}
+      {showFallbackPoster && (
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-[0.35]"
+          style={{ backgroundImage: "url('/images/reel_poster.jpg')" }}
+          aria-hidden
+        />
+      )}
+      {hasVideo && !shouldReduceMotion && (
         <motion.video
           ref={videoRef}
           src={HERO.showreelUrl}
@@ -54,7 +66,7 @@ export default function HeroSection() {
           preload="metadata"
           poster="/images/reel_poster.jpg"
           className="absolute inset-0 w-full h-full object-cover opacity-[0.35] will-change-transform"
-          style={!prefersReducedMotion ? { y: videoBgY } : undefined}
+          style={{ y: videoBgY }}
         />
       )}
 
@@ -90,18 +102,22 @@ export default function HeroSection() {
 
           {/* Left Column: Massive Typography */}
           <motion.div
-            style={!prefersReducedMotion ? { opacity: contentOpacity, y: contentY } : undefined}
+            style={!shouldReduceMotion ? { opacity: contentOpacity, y: contentY } : undefined}
             className="flex flex-col items-start"
           >
             {/* Status Badge */}
             <motion.div
               className="inline-flex items-center gap-2 mb-8"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
+              {...motionIfAllowed({
+                initial: { opacity: 0, x: -20 },
+                animate: { opacity: 1, x: 0 },
+                transition: { duration: 0.5, ease: "easeOut" },
+              })}
             >
               <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
+                <span
+                  className={`${shouldReduceMotion ? "" : "animate-ping "}absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75`}
+                />
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-teal-400" />
               </span>
               <span className="text-[10px] font-bold tracking-[0.2em] text-teal-400 uppercase">
@@ -112,9 +128,11 @@ export default function HeroSection() {
             {/* Massive Name */}
             <motion.h1
               className="text-[4.5rem] sm:text-[6rem] lg:text-[8rem] xl:text-[9rem] font-black tracking-tighter leading-[0.85] text-white flex flex-col"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+              {...motionIfAllowed({
+                initial: { opacity: 0, y: 30 },
+                animate: { opacity: 1, y: 0 },
+                transition: { duration: 0.6, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] },
+              })}
             >
               <span>{HERO.name.split(" ")[0].toUpperCase()}</span>
               <span className="text-zinc-500">{HERO.name.split(" ")[1]?.toUpperCase() ?? ""}</span>
@@ -123,17 +141,19 @@ export default function HeroSection() {
             {/* Dynamic Tagline */}
             <motion.div
               className="mt-8 flex items-center gap-4"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
+              {...motionIfAllowed({
+                initial: { opacity: 0, x: -20 },
+                animate: { opacity: 1, x: 0 },
+                transition: { delay: 0.2, duration: 0.5, ease: "easeOut" },
+              })}
             >
               <div className="h-px w-8 bg-teal-500" />
               <div className="text-lg sm:text-xl lg:text-2xl font-light tracking-wide text-zinc-300">
                 <TypewriterTitle
                   prefix=""
                   words={["Real-time VFX Artist", "Technical Artist", "AAA & iGaming"]}
-                  run={true}
-                  reducedMotion={prefersReducedMotion}
+                  run={!shouldReduceMotion}
+                  reducedMotion={shouldReduceMotion}
                   wordClassName="text-white"
                   cursorClassName="text-teal-500"
                 />
@@ -143,9 +163,11 @@ export default function HeroSection() {
             {/* Description */}
             <motion.p
               className="mt-6 text-sm sm:text-base text-zinc-400 max-w-md leading-relaxed"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
+              {...motionIfAllowed({
+                initial: { opacity: 0 },
+                animate: { opacity: 1 },
+                transition: { delay: 0.3, duration: 0.5 },
+              })}
             >
               {HERO.description}
             </motion.p>
@@ -153,9 +175,11 @@ export default function HeroSection() {
             {/* CTA Buttons - High End Style */}
             <motion.div
               className="mt-10 flex flex-wrap items-center gap-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
+              {...motionIfAllowed({
+                initial: { opacity: 0, y: 20 },
+                animate: { opacity: 1, y: 0 },
+                transition: { delay: 0.4, duration: 0.5, ease: "easeOut" },
+              })}
             >
               <Link
                 href="/showreel"
@@ -182,7 +206,7 @@ export default function HeroSection() {
           {/* Right Column: Grid Stats */}
           <motion.div
             className="hidden lg:flex flex-col items-end gap-16 justify-center"
-            style={!prefersReducedMotion ? { opacity: contentOpacity, y: contentY } : undefined}
+            style={!shouldReduceMotion ? { opacity: contentOpacity, y: contentY } : undefined}
           >
             {[
               { value: "7+", label: "Years Experience" },
@@ -192,9 +216,11 @@ export default function HeroSection() {
               <motion.div
                 key={stat.label}
                 className="text-right border-r-2 border-teal-500/30 pr-6"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5 + i * 0.1, duration: 0.5 }}
+                {...motionIfAllowed({
+                  initial: { opacity: 0, x: 20 },
+                  animate: { opacity: 1, x: 0 },
+                  transition: { delay: 0.5 + i * 0.1, duration: 0.5 },
+                })}
               >
                 <span className="block text-4xl xl:text-5xl font-bold text-white mb-2">
                   {stat.value}
@@ -211,10 +237,12 @@ export default function HeroSection() {
       {/* Mobile Stats (Only visible on small screens) */}
       <motion.div
         className="absolute bottom-24 left-6 right-6 flex lg:hidden items-center justify-between border-t border-white/10 pt-6 z-[2]"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8, duration: 0.5 }}
-        style={!prefersReducedMotion ? { opacity: chevronOpacity } : undefined}
+        {...motionIfAllowed({
+          initial: { opacity: 0, y: 20 },
+          animate: { opacity: 1, y: 0 },
+          transition: { delay: 0.8, duration: 0.5 },
+        })}
+        style={!shouldReduceMotion ? { opacity: chevronOpacity } : undefined}
       >
         {[
           { value: "7+", label: "Years" },
@@ -233,14 +261,16 @@ export default function HeroSection() {
         href="#profile"
         className="absolute bottom-8 left-6 lg:left-12 flex items-center gap-3 text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 hover:text-white transition-colors z-[2]"
         aria-label="Scroll to profile"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.5 }}
-        style={!prefersReducedMotion ? { opacity: chevronOpacity } : undefined}
+        {...motionIfAllowed({
+          initial: { opacity: 0 },
+          animate: { opacity: 1 },
+          transition: { delay: 1, duration: 0.5 },
+        })}
+        style={!shouldReduceMotion ? { opacity: chevronOpacity } : undefined}
       >
         <motion.span
-          animate={{ y: [0, 4, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          animate={!shouldReduceMotion ? { y: [0, 4, 0] } : undefined}
+          transition={!shouldReduceMotion ? { duration: 2, repeat: Infinity, ease: "easeInOut" } : undefined}
         >
           <ChevronDown className="h-3 w-3" />
         </motion.span>

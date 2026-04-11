@@ -101,7 +101,7 @@ export default function HistoryBlendsPage() {
                                         Generative Motion (Sora & Veo-2)
                                     </h3>
                                     <p className="text-zinc-400 text-sm leading-relaxed">
-                                        Translating still concepts into cinematic motion. This step involves highly specific prompt engineering to control camera angles (e.g., "tracking shot", "rack focus"), lighting, and character actions, minimizing hallucinatory glitches while retaining historical authenticity.
+                                        Translating still concepts into cinematic motion. This step involves highly specific prompt engineering to control camera angles (e.g., &quot;tracking shot&quot;, &quot;rack focus&quot;), lighting, and character actions, minimizing hallucinatory glitches while retaining historical authenticity.
                                     </p>
                                 </div>
 
