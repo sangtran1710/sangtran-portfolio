@@ -1,7 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Linkedin, Github, ExternalLink, MessageCircle, MapPin } from "lucide-react";
+import {
+  Mail,
+  Linkedin,
+  Github,
+  ExternalLink,
+  MessageCircle,
+  MapPin,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE, SOCIALS, ABOUT } from "@/data/portfolio";
 import TextReveal from "@/components/animations/TextReveal";
@@ -11,25 +18,26 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative border-t border-border/60 overflow-hidden"
+      className="relative overflow-hidden border-t border-white/10"
       style={{
         background:
-          "linear-gradient(160deg, hsl(var(--muted)) 0%, hsl(var(--background)) 50%, hsl(var(--muted)/0.5) 100%)",
+          "linear-gradient(180deg, rgba(248,244,236,1) 0%, rgba(250,247,240,1) 100%)",
       }}
     >
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.04]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)",
-          backgroundSize: "24px 24px",
+            "linear-gradient(rgba(15,23,42,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,0.08) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
         }}
       />
-      <div className="relative mx-auto max-w-5xl px-6 sm:px-8 py-20 lg:py-28">
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-teal-500/8 to-transparent" />
+      <div className="relative mx-auto max-w-6xl px-6 py-20 sm:px-8 lg:py-28">
         <ScrollReveal variant="scaleUp">
-          <div className="flex flex-col items-center text-center max-w-2xl mx-auto">
+          <div className="glass-panel mx-auto flex max-w-4xl flex-col items-center rounded-[2rem] px-8 py-12 text-center sm:px-12 sm:py-16">
             <motion.div
-              className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary"
+              className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-primary/12 text-primary shadow-[0_10px_25px_rgba(20,184,166,0.12)]"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -48,20 +56,22 @@ export default function ContactSection() {
             </motion.p>
 
             <TextReveal
-              text="Open to new opportunities"
+              text="Open to thoughtful collaborations"
               as="h2"
-              className="section-title mb-3"
+              className="section-title mb-4 max-w-2xl text-slate-950"
               offset={["start 0.9", "start 0.55"]}
             />
 
             <motion.p
-              className="text-muted-foreground text-sm mb-8"
+              className="mb-10 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.35 }}
             >
-              Full-time & freelance.
+              Available for full-time roles, freelance work, and conversations
+              with teams who care about craft, clarity, and memorable moments on
+              screen.
             </motion.p>
 
             <motion.div
@@ -76,22 +86,25 @@ export default function ContactSection() {
                   href: `mailto:${SITE.email}`,
                   label: SITE.email,
                   Icon: Mail,
-                  className: "gap-3 pl-3 pr-4 py-2.5 h-auto bg-primary text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-300",
-                  iconWrap: "bg-white/20 shrink-0",
+                  className:
+                    "h-auto gap-3 rounded-full border border-teal-500/10 bg-gradient-to-r from-teal-500 to-cyan-500 px-4 py-3 text-primary-foreground shadow-[0_18px_36px_rgba(20,184,166,0.18)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_22px_42px_rgba(20,184,166,0.22)]",
+                  iconWrap: "shrink-0 bg-white/20",
                 },
                 {
                   href: SOCIALS.linkedin,
                   label: "LinkedIn",
                   Icon: Linkedin,
-                  className: "gap-3 pl-3 pr-4 py-2.5 h-auto border-2 hover:bg-muted hover:scale-[1.02] transition-all duration-300",
-                  iconWrap: "bg-[#0A66C2]/10 text-[#0A66C2] shrink-0",
+                  className:
+                    "h-auto gap-3 rounded-full border border-stone-200 bg-white px-4 py-3 text-slate-800 transition-all duration-300 hover:scale-[1.02] hover:border-teal-200 hover:bg-stone-50",
+                  iconWrap: "shrink-0 bg-[#0A66C2]/10 text-[#0A66C2]",
                 },
                 {
                   href: SOCIALS.github,
                   label: "GitHub",
                   Icon: Github,
-                  className: "gap-3 pl-3 pr-4 py-2.5 h-auto border-2 hover:bg-muted hover:scale-[1.02] transition-all duration-300",
-                  iconWrap: "bg-zinc-800 text-white shrink-0",
+                  className:
+                    "h-auto gap-3 rounded-full border border-stone-200 bg-white px-4 py-3 text-slate-800 transition-all duration-300 hover:scale-[1.02] hover:border-teal-200 hover:bg-stone-50",
+                  iconWrap: "shrink-0 bg-zinc-900 text-white",
                 },
               ].map(({ href, label, Icon, className, iconWrap }, i) => (
                 <motion.div
@@ -101,13 +114,33 @@ export default function ContactSection() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.35 + i * 0.08, duration: 0.4 }}
                 >
-                  <Button asChild variant={i === 0 ? "default" : "outline"} className={className}>
-                    <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} className="inline-flex items-center">
-                      <span className={`flex h-8 w-8 items-center justify-center rounded-full ${iconWrap}`}>
+                  <Button
+                    asChild
+                    variant={i === 0 ? "default" : "outline"}
+                    className={className}
+                  >
+                    <a
+                      href={href}
+                      target={href.startsWith("http") ? "_blank" : undefined}
+                      rel={
+                        href.startsWith("http")
+                          ? "noopener noreferrer"
+                          : undefined
+                      }
+                      className="inline-flex items-center"
+                    >
+                      <span
+                        className={`flex h-8 w-8 items-center justify-center rounded-full ${iconWrap}`}
+                      >
                         <Icon className="h-4 w-4" strokeWidth={1.5} />
                       </span>
                       <span className="text-sm font-medium">{label}</span>
-                      {href.startsWith("http") && <ExternalLink className="h-3.5 w-3.5 ml-0.5 opacity-60" strokeWidth={1.5} />}
+                      {href.startsWith("http") && (
+                        <ExternalLink
+                          className="ml-0.5 h-3.5 w-3.5 opacity-60"
+                          strokeWidth={1.5}
+                        />
+                      )}
                     </a>
                   </Button>
                 </motion.div>
@@ -123,12 +156,12 @@ export default function ContactSection() {
             >
               <a
                 href={`mailto:${SITE.email}`}
-                className="inline-flex items-center gap-2 hover:text-foreground transition-colors"
+                className="inline-flex items-center gap-2 transition-colors hover:text-foreground"
               >
                 <Mail className="h-4 w-4 text-primary/70" />
                 {SITE.email}
               </a>
-              <span className="hidden sm:inline text-border">·</span>
+              <span className="hidden sm:inline text-border">/</span>
               <span className="inline-flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-primary/70" />
                 {ABOUT.location}

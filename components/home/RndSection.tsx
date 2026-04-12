@@ -233,7 +233,7 @@ export default function RndSection() {
             <section className="space-y-5">
               <div className="flex items-center gap-3">
                 <h2 className="text-lg sm:text-xl font-bold text-white uppercase tracking-widest">Recent</h2>
-                <span className="text-[10px] text-white/25 uppercase tracking-widest font-medium">2025 — 2026</span>
+                <span className="text-[10px] font-medium uppercase tracking-widest text-white/25">2025 - 2026</span>
                 <div className="h-px flex-1 bg-white/8" />
               </div>
               <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -267,7 +267,7 @@ export default function RndSection() {
             <section className="space-y-4">
               <div className="flex items-center gap-3">
                 <h2 className="text-sm font-semibold text-white/40 uppercase tracking-widest">Archive</h2>
-                <span className="text-[10px] text-white/20 uppercase tracking-widest">2020 — 2024</span>
+                <span className="text-[10px] uppercase tracking-widest text-white/20">2020 - 2024</span>
                 <div className="h-px flex-1 bg-white/5" />
               </div>
               <div className="grid gap-4 md:gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">

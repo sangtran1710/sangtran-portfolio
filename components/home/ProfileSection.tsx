@@ -56,31 +56,31 @@ export default function ProfileSection() {
     <section
       ref={sectionRef}
       id="profile"
-      className="relative scroll-mt-24 border-t border-border/60 bg-background overflow-hidden"
+      className="relative scroll-mt-24 overflow-hidden border-t border-white/10 bg-transparent"
     >
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.04]"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          background: "linear-gradient(120deg, hsl(var(--primary)) 0%, transparent 40%, transparent 60%, hsl(var(--primary)) 100%)",
-          backgroundSize: "200% 200%",
-          animation: "profile-gradient 10s ease-in-out infinite",
+          background:
+            "linear-gradient(180deg, rgba(7,10,18,0.98) 0%, rgba(9,12,20,0.96) 18%, rgba(248,244,236,1) 18%, rgba(248,244,236,1) 100%)",
         }}
       />
-      <div className="relative mx-auto max-w-5xl px-6 sm:px-8 py-20 lg:py-28">
+      <div className="absolute inset-x-0 top-[18%] h-px bg-gradient-to-r from-transparent via-teal-500/20 to-transparent" />
+      <div className="relative mx-auto max-w-6xl px-6 sm:px-8 py-20 lg:py-28">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20 items-center">
           {/* Left: Framer Motion stagger + hover */}
-          <div className="order-2 lg:order-1 flex flex-col gap-10">
+          <div className="order-2 lg:order-1 flex flex-col gap-10 rounded-[2rem] border border-stone-200/80 bg-white/88 p-8 shadow-[0_26px_60px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:p-10">
             <motion.div
               variants={slideUp}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               custom={0}
-              className="space-y-4"
+              className="space-y-5"
             >
               <p className="section-label">
                 {PROFILE.headline}
               </p>
-              <h2 className="section-title mt-1">
+              <h2 className="section-title mt-1 max-w-md text-slate-950">
                 {PROFILE.title}
               </h2>
               <motion.span
@@ -106,7 +106,7 @@ export default function ProfileSection() {
               animate={isInView ? "visible" : "hidden"}
               className="flex flex-col gap-6"
             >
-              <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm">
+              <div className="flex flex-wrap gap-3 text-sm">
                 {numberStats.map(({ label, value }, i) => (
                   <motion.div
                     key={label}
@@ -115,15 +115,15 @@ export default function ProfileSection() {
                     initial="hidden"
                     animate={isInView ? "visible" : "hidden"}
                     whileHover={{ scale: 1.03, x: 2 }}
-                    className="rounded-lg px-3 py-2 -mx-3 -my-2 transition-colors hover:bg-primary/5"
+                    className="rounded-full border border-stone-200 bg-stone-50 px-4 py-2.5 transition-colors hover:border-teal-200 hover:bg-teal-50/70"
                   >
-                    <span className="font-semibold text-foreground">{value}</span>
-                    <span className="text-muted-foreground ml-1.5">{label}</span>
+                    <span className="font-semibold text-slate-950">{value}</span>
+                    <span className="ml-1.5 text-slate-500">{label}</span>
                   </motion.div>
                 ))}
               </div>
               {toolsAndSoftware.length > 0 && (
-                <div className="flex flex-col gap-3 pt-2 border-t border-border/60">
+                <div className="grid gap-3 pt-4 border-t border-stone-200/80">
                   {toolsAndSoftware.map(({ label, value }, i) => (
                     <motion.div
                       key={label}
@@ -132,12 +132,12 @@ export default function ProfileSection() {
                       initial="hidden"
                       animate={isInView ? "visible" : "hidden"}
                       whileHover={{ x: 4 }}
-                      className="text-sm rounded-lg py-2 pl-2 -ml-2 transition-colors hover:bg-primary/5"
+                      className="rounded-2xl border border-stone-200/80 bg-stone-50/80 px-4 py-4 text-sm transition-colors hover:border-teal-200 hover:bg-white"
                     >
-                      <span className="text-muted-foreground block text-xs font-medium uppercase tracking-wider mb-1">
+                      <span className="mb-1.5 block text-xs font-medium uppercase tracking-[0.2em] text-slate-500">
                         {label}
                       </span>
-                      <span className="text-foreground/90">{value}</span>
+                      <span className="text-slate-800">{value}</span>
                     </motion.div>
                   ))}
                 </div>
@@ -154,7 +154,7 @@ export default function ProfileSection() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="gap-2.5 border-teal-600 text-teal-600 hover:bg-teal-50 hover:border-teal-500 hover:shadow-md hover:shadow-teal-500/10"
+                className="gap-2.5 rounded-full border-teal-600/30 bg-teal-500 text-white hover:bg-teal-600 hover:border-teal-500 hover:shadow-[0_18px_36px_rgba(20,184,166,0.2)]"
               >
                 <a href={SOCIALS.linkedin} target="_blank" rel="noopener noreferrer">
                   <Linkedin className="h-5 w-5" strokeWidth={1.5} />
@@ -170,11 +170,12 @@ export default function ProfileSection() {
             animate={isInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.96, y: 16 }}
             transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={!prefersReducedMotion ? { y: avatarY } : undefined}
-            className="order-1 lg:order-2 relative aspect-[4/5] max-h-[480px] w-full will-change-transform"
+            className="order-1 lg:order-2 relative aspect-[4/5] max-h-[560px] w-full will-change-transform"
           >
-            <div className="group/card h-full w-full cursor-pointer [perspective:1000px]">
-              <div className="relative h-full w-full transition-transform duration-500 [transform-style:preserve-3d] group-hover/card:[transform:rotateY(180deg)]">
-                <div className="absolute inset-0 [backface-visibility:hidden] rounded-xl overflow-hidden bg-zinc-200 shadow-lg ring-1 ring-black/5">
+            <div className="absolute -inset-6 rounded-[2.5rem] bg-[radial-gradient(circle_at_top,rgba(45,212,191,0.26),transparent_55%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.12),transparent_45%)] blur-2xl" />
+            <div className="dark-glass-panel group/card relative h-full w-full cursor-pointer rounded-[2rem] p-4 [perspective:1000px]">
+              <div className="relative h-full w-full overflow-hidden rounded-[1.5rem] transition-transform duration-500 [transform-style:preserve-3d] group-hover/card:[transform:rotateY(180deg)]">
+                <div className="absolute inset-0 [backface-visibility:hidden] overflow-hidden rounded-[1.5rem] bg-zinc-200 shadow-lg ring-1 ring-white/10">
                   {!avatarError ? (
                     <Image
                       src={PROFILE.portraitImage}
@@ -191,7 +192,7 @@ export default function ProfileSection() {
                   )}
                 </div>
                 {hasSecondary && (
-                  <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl overflow-hidden bg-zinc-200 shadow-lg ring-1 ring-black/5">
+                  <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-hidden rounded-[1.5rem] bg-zinc-200 shadow-lg ring-1 ring-white/10">
                     {!backError ? (
                       <Image
                         src={PROFILE.portraitImageSecondary}
@@ -208,6 +209,9 @@ export default function ProfileSection() {
                     )}
                   </div>
                 )}
+              </div>
+              <div className="pointer-events-none absolute inset-x-8 bottom-8 rounded-full border border-white/10 bg-black/30 px-4 py-3 text-center text-[11px] uppercase tracking-[0.28em] text-white/75 backdrop-blur-md">
+                Real-time VFX / Technical Art
               </div>
             </div>
           </motion.div>

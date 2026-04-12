@@ -7,7 +7,8 @@
     "build": "next build",
     "verify": "powershell -ExecutionPolicy Bypass -File scripts/verify-clean.ps1",
     "start": "next start",
-    "lint": "eslint . --max-warnings=0"
+    "lint": "eslint . --max-warnings=0",
+    "qa:screenshots": "playwright test tests/e2e/screenshot-qa.spec.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
@@ -31,6 +32,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

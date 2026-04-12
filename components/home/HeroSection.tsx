@@ -1,17 +1,22 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
   motion,
+  useReducedMotion,
   useScroll,
   useTransform,
-  useReducedMotion,
 } from "framer-motion";
-import { HERO } from "@/data/portfolio";
-import { ChevronDown, Play, ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown, Play } from "lucide-react";
 import ParticleCanvas from "@/components/animations/ParticleCanvas";
-import TypewriterTitle from "@/components/animations/TypewriterTitle";
+import { HERO } from "@/data/portfolio";
+
+const HERO_STATS = [
+  { value: "7+", label: "Years" },
+  { value: "15+", label: "Projects" },
+  { value: "AAA", label: "Standard" },
+];
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -37,20 +42,19 @@ export default function HeroSection() {
     offset: ["start start", "end start"],
   });
 
-  const videoBgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.45], [1, 0]);
-  const contentY = useTransform(scrollYProgress, [0, 0.5], [0, -60]);
+  const videoBgY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
+  const contentY = useTransform(scrollYProgress, [0, 0.5], [0, -40]);
   const chevronOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen w-full flex items-center overflow-hidden bg-zinc-950 pt-24"
+      className="relative flex min-h-screen w-full items-center overflow-hidden bg-zinc-950 pt-24"
     >
-      {/* Background media */}
       {showFallbackPoster && (
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-[0.35]"
+          className="absolute inset-0 bg-cover bg-center opacity-[0.28]"
           style={{ backgroundImage: "url('/images/reel_poster.jpg')" }}
           aria-hidden
         />
@@ -65,216 +69,193 @@ export default function HeroSection() {
           playsInline
           preload="metadata"
           poster="/images/reel_poster.jpg"
-          className="absolute inset-0 w-full h-full object-cover opacity-[0.35] will-change-transform"
+          className="absolute inset-0 h-full w-full object-cover opacity-[0.22] will-change-transform"
           style={{ y: videoBgY }}
         />
       )}
 
-      {/* Cinematic Overlays */}
-      {/* Heavy gradient from the left to Ensure Text Readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/60 to-transparent" />
-      {/* Top and Bottom soft fade */}
-      <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/50 via-transparent to-zinc-950" />
-
-      {/* Subtle Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,9,15,0.98)_0%,rgba(6,9,15,0.93)_44%,rgba(6,9,15,0.82)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_36%,rgba(45,212,191,0.08),transparent_28%)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/45 via-transparent to-zinc-950" />
       <div
-        className="absolute inset-0 opacity-[0.015]"
+        className="absolute inset-0 opacity-[0.014]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+            "linear-gradient(rgba(255,255,255,0.45) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.45) 1px, transparent 1px)",
           backgroundSize: "64px 64px",
         }}
       />
 
-      {/* Interactive particle network */}
       <ParticleCanvas
         className="z-[1]"
-        particleCount={40}
+        particleCount={28}
         color="20, 184, 166"
-        maxDistance={150}
-        mouseRadius={200}
-        speed={0.15}
+        maxDistance={140}
+        mouseRadius={180}
+        speed={0.12}
       />
 
-      {/* Main Asymmetrical Content */}
-      <div className="relative z-[2] w-full max-w-[90rem] mx-auto px-6 lg:px-12 flex flex-col justify-center">
-        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
-
-          {/* Left Column: Massive Typography */}
+      <div className="relative z-[2] mx-auto flex w-full max-w-[86rem] flex-col justify-center px-6 lg:px-12">
+        <div className="grid items-center gap-10 xl:grid-cols-[1.1fr_0.75fr]">
           <motion.div
             style={!shouldReduceMotion ? { opacity: contentOpacity, y: contentY } : undefined}
-            className="flex flex-col items-start"
+            className="max-w-3xl"
           >
-            {/* Status Badge */}
             <motion.div
-              className="inline-flex items-center gap-2 mb-8"
+              className="mb-7 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 backdrop-blur-md"
               {...motionIfAllowed({
                 initial: { opacity: 0, x: -20 },
                 animate: { opacity: 1, x: 0 },
-                transition: { duration: 0.5, ease: "easeOut" },
+                transition: { duration: 0.45, ease: "easeOut" },
               })}
             >
-              <span className="relative flex h-1.5 w-1.5">
-                <span
-                  className={`${shouldReduceMotion ? "" : "animate-ping "}absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75`}
-                />
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-teal-400" />
-              </span>
-              <span className="text-[10px] font-bold tracking-[0.2em] text-teal-400 uppercase">
-                Available for Roles
+              <span className="h-2 w-2 rounded-full bg-teal-300" />
+              <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-teal-200">
+                Available for roles
               </span>
             </motion.div>
 
-            {/* Massive Name */}
             <motion.h1
-              className="text-[4.5rem] sm:text-[6rem] lg:text-[8rem] xl:text-[9rem] font-black tracking-tighter leading-[0.85] text-white flex flex-col"
+              className="max-w-2xl text-[4.3rem] font-black leading-[0.84] tracking-[-0.06em] text-white sm:text-[5.2rem] lg:text-[6.4rem] xl:text-[7.2rem]"
               {...motionIfAllowed({
-                initial: { opacity: 0, y: 30 },
+                initial: { opacity: 0, y: 28 },
                 animate: { opacity: 1, y: 0 },
-                transition: { duration: 0.6, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] },
+                transition: {
+                  duration: 0.58,
+                  delay: 0.08,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                },
               })}
             >
-              <span>{HERO.name.split(" ")[0].toUpperCase()}</span>
-              <span className="text-zinc-500">{HERO.name.split(" ")[1]?.toUpperCase() ?? ""}</span>
+              SANG
+              <br />
+              <span className="text-white/76">TRAN</span>
             </motion.h1>
 
-            {/* Dynamic Tagline */}
-            <motion.div
-              className="mt-8 flex items-center gap-4"
+            <motion.p
+              className="mt-6 max-w-2xl text-xl leading-8 text-zinc-100 sm:text-[1.95rem] sm:leading-[1.45]"
               {...motionIfAllowed({
-                initial: { opacity: 0, x: -20 },
-                animate: { opacity: 1, x: 0 },
-                transition: { delay: 0.2, duration: 0.5, ease: "easeOut" },
+                initial: { opacity: 0, y: 18 },
+                animate: { opacity: 1, y: 0 },
+                transition: { delay: 0.18, duration: 0.48, ease: "easeOut" },
               })}
             >
-              <div className="h-px w-8 bg-teal-500" />
-              <div className="text-lg sm:text-xl lg:text-2xl font-light tracking-wide text-zinc-300">
-                <TypewriterTitle
-                  prefix=""
-                  words={["Real-time VFX Artist", "Technical Artist", "AAA & iGaming"]}
-                  run={!shouldReduceMotion}
-                  reducedMotion={shouldReduceMotion}
-                  wordClassName="text-white"
-                  cursorClassName="text-teal-500"
-                />
-              </div>
-            </motion.div>
+              {HERO.tagline}
+            </motion.p>
 
-            {/* Description */}
             <motion.p
-              className="mt-6 text-sm sm:text-base text-zinc-400 max-w-md leading-relaxed"
+              className="mt-5 max-w-xl text-base leading-8 text-zinc-300"
               {...motionIfAllowed({
                 initial: { opacity: 0 },
                 animate: { opacity: 1 },
-                transition: { delay: 0.3, duration: 0.5 },
+                transition: { delay: 0.28, duration: 0.45 },
               })}
             >
               {HERO.description}
             </motion.p>
 
-            {/* CTA Buttons - High End Style */}
             <motion.div
-              className="mt-10 flex flex-wrap items-center gap-6"
+              className="mt-10 flex flex-wrap items-center gap-4"
               {...motionIfAllowed({
                 initial: { opacity: 0, y: 20 },
                 animate: { opacity: 1, y: 0 },
-                transition: { delay: 0.4, duration: 0.5, ease: "easeOut" },
+                transition: { delay: 0.36, duration: 0.45, ease: "easeOut" },
               })}
             >
               <Link
                 href="/showreel"
-                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-none border border-teal-500/30 bg-teal-500/10 px-8 py-4 text-xs font-bold tracking-[0.15em] uppercase text-white transition-all hover:bg-teal-500 hover:text-zinc-950"
+                className="inline-flex items-center gap-3 rounded-full border border-teal-300/35 bg-gradient-to-r from-teal-400 to-cyan-400 px-6 py-3.5 text-xs font-bold uppercase tracking-[0.16em] text-slate-950 shadow-[0_18px_40px_rgba(20,184,166,0.24)] transition-all hover:scale-[1.01] hover:shadow-[0_22px_48px_rgba(20,184,166,0.32)]"
               >
-                <div className="absolute inset-0 -z-10 bg-teal-500 translate-y-[100%] transition-transform duration-300 group-hover:translate-y-0" />
-                <Play className="h-3 w-3 fill-current" />
-                Play Showreel
+                <Play className="h-3.5 w-3.5 fill-current" />
+                Play showreel
               </Link>
 
               <Link
-                href="/projects"
-                className="group inline-flex items-center gap-2 text-xs font-bold tracking-[0.15em] uppercase text-zinc-400 hover:text-white transition-colors"
+                href="/portfolio"
+                className="group inline-flex items-center gap-2 rounded-full border border-white/16 bg-transparent px-5 py-3.5 text-xs font-bold uppercase tracking-[0.16em] text-white transition-all hover:border-white/28 hover:bg-white/[0.03]"
               >
-                <span className="relative">
-                  View Projects
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full" />
-                </span>
-                <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2} />
+                View portfolio
+                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </motion.div>
           </motion.div>
 
-          {/* Right Column: Grid Stats */}
           <motion.div
-            className="hidden lg:flex flex-col items-end gap-16 justify-center"
+            className="hidden xl:block"
             style={!shouldReduceMotion ? { opacity: contentOpacity, y: contentY } : undefined}
+            {...motionIfAllowed({
+              initial: { opacity: 0, x: 20 },
+              animate: { opacity: 1, x: 0 },
+              transition: { delay: 0.28, duration: 0.5, ease: "easeOut" },
+            })}
           >
-            {[
-              { value: "7+", label: "Years Experience" },
-              { value: "15+", label: "Shipped Projects" },
-              { value: "AAA", label: "Studio Standard" },
-            ].map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                className="text-right border-r-2 border-teal-500/30 pr-6"
-                {...motionIfAllowed({
-                  initial: { opacity: 0, x: 20 },
-                  animate: { opacity: 1, x: 0 },
-                  transition: { delay: 0.5 + i * 0.1, duration: 0.5 },
-                })}
-              >
-                <span className="block text-4xl xl:text-5xl font-bold text-white mb-2">
-                  {stat.value}
-                </span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
-                  {stat.label}
-                </span>
-              </motion.div>
-            ))}
+            <div className="ml-auto max-w-[24rem] rounded-[1.75rem] border border-white/10 bg-black/26 p-5 backdrop-blur-xl">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-teal-200">
+                Snapshot
+              </p>
+              <div className="mt-4 grid gap-3">
+                {HERO_STATS.map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="rounded-[1.25rem] border border-white/12 bg-white/[0.03] px-5 py-4"
+                  >
+                    <span className="block text-3xl font-bold text-white">
+                      {stat.value}
+                    </span>
+                    <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-400">
+                      {stat.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
+
+        <motion.div
+          className="mt-10 grid max-w-xl grid-cols-3 gap-3 xl:hidden"
+          {...motionIfAllowed({
+            initial: { opacity: 0, y: 18 },
+            animate: { opacity: 1, y: 0 },
+            transition: { delay: 0.46, duration: 0.45, ease: "easeOut" },
+          })}
+        >
+          {HERO_STATS.map((stat) => (
+            <div
+              key={stat.label}
+              className="rounded-[1.15rem] border border-white/10 bg-black/24 px-4 py-4 backdrop-blur-md"
+            >
+              <span className="block text-2xl font-bold text-white">{stat.value}</span>
+              <span className="mt-1 block text-[9px] font-semibold uppercase tracking-[0.18em] text-zinc-400">
+                {stat.label}
+              </span>
+            </div>
+          ))}
+        </motion.div>
       </div>
 
-      {/* Mobile Stats (Only visible on small screens) */}
-      <motion.div
-        className="absolute bottom-24 left-6 right-6 flex lg:hidden items-center justify-between border-t border-white/10 pt-6 z-[2]"
-        {...motionIfAllowed({
-          initial: { opacity: 0, y: 20 },
-          animate: { opacity: 1, y: 0 },
-          transition: { delay: 0.8, duration: 0.5 },
-        })}
-        style={!shouldReduceMotion ? { opacity: chevronOpacity } : undefined}
-      >
-        {[
-          { value: "7+", label: "Years" },
-          { value: "15+", label: "Projects" },
-          { value: "AAA", label: "Standard" },
-        ].map((stat) => (
-          <div key={stat.label} className="text-left">
-            <span className="block text-xl font-bold text-white mb-1">{stat.value}</span>
-            <span className="text-[8px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{stat.label}</span>
-          </div>
-        ))}
-      </motion.div>
-
-      {/* Scroll indicator */}
       <motion.a
-        href="#profile"
-        className="absolute bottom-8 left-6 lg:left-12 flex items-center gap-3 text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 hover:text-white transition-colors z-[2]"
-        aria-label="Scroll to profile"
+        href="#work"
+        className="absolute bottom-8 left-6 z-[2] hidden items-center gap-3 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 transition-colors hover:text-white lg:left-12 lg:flex"
+        aria-label="Scroll to work"
         {...motionIfAllowed({
           initial: { opacity: 0 },
           animate: { opacity: 1 },
-          transition: { delay: 1, duration: 0.5 },
+          transition: { delay: 0.85, duration: 0.45 },
         })}
         style={!shouldReduceMotion ? { opacity: chevronOpacity } : undefined}
       >
         <motion.span
-          animate={!shouldReduceMotion ? { y: [0, 4, 0] } : undefined}
-          transition={!shouldReduceMotion ? { duration: 2, repeat: Infinity, ease: "easeInOut" } : undefined}
+          animate={!shouldReduceMotion ? { y: [0, 3, 0] } : undefined}
+          transition={
+            !shouldReduceMotion
+              ? { duration: 2.4, repeat: Infinity, ease: "easeInOut" }
+              : undefined
+          }
         >
           <ChevronDown className="h-3 w-3" />
         </motion.span>
-        Scroll Down
+        Scroll down
       </motion.a>
     </section>
   );

@@ -24,16 +24,16 @@ export default function ProjectGrid() {
   return (
     <div>
       {/* Filter tabs — pill style */}
-      <div className="flex gap-3 flex-wrap mb-10 pb-6 border-b border-zinc-700/60">
+      <div className="mb-10 flex flex-wrap gap-3 border-b border-white/10 pb-6">
         {FILTERS.map(({ value, label }) => (
           <button
             key={value}
             onClick={() => setActive(value)}
             className={cn(
-              "px-4 py-2 text-sm font-medium rounded-full transition-all duration-300",
+              "rounded-full px-4 py-2.5 text-sm font-medium transition-all duration-300",
               active === value
-                ? "bg-white text-zinc-900 shadow-sm"
-                : "bg-zinc-800/50 text-zinc-400 hover:bg-zinc-700 hover:text-zinc-200"
+                ? "bg-white text-zinc-950 shadow-[0_16px_34px_rgba(255,255,255,0.08)]"
+                : "border border-white/8 bg-white/[0.03] text-zinc-400 hover:border-white/14 hover:bg-white/[0.06] hover:text-zinc-200"
             )}
           >
             {label}
@@ -43,14 +43,14 @@ export default function ProjectGrid() {
 
       {/* Grid — gap and cols */}
       {filtered.length > 0 ? (
-        <div className="grid gap-4 md:gap-6 lg:gap-8 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-8 xl:grid-cols-4">
           {filtered.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}
         </div>
       ) : (
-        <div className="w-full py-12 flex flex-col items-center justify-center border border-dashed border-zinc-800/80 rounded-2xl bg-zinc-900/20">
-          <p className="text-zinc-500 text-sm">
+        <div className="flex w-full flex-col items-center justify-center rounded-[1.5rem] border border-dashed border-zinc-800/80 bg-zinc-900/20 py-12">
+          <p className="text-sm text-zinc-500">
             No projects in this category yet.
           </p>
         </div>

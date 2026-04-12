@@ -10,26 +10,26 @@
 
 @layer base {
   :root {
-    --background: 0 0% 99%;
-    --foreground: 240 10% 8%;
+    --background: 42 33% 97%;
+    --foreground: 222 28% 12%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 8%;
+    --card-foreground: 222 28% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 8%;
-    --primary: 173 80% 36%;
+    --popover-foreground: 222 28% 12%;
+    --primary: 173 61% 38%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 10% 8%;
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 46%;
-    --accent: 173 80% 36%;
+    --secondary: 42 18% 93%;
+    --secondary-foreground: 222 28% 12%;
+    --muted: 42 22% 94%;
+    --muted-foreground: 220 10% 38%;
+    --accent: 173 61% 38%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5% 90%;
-    --input: 240 5% 90%;
-    --ring: 173 80% 36%;
-    --radius: 0.75rem;
+    --border: 40 17% 85%;
+    --input: 40 17% 85%;
+    --ring: 173 61% 38%;
+    --radius: 1rem;
   }
 }
 
@@ -39,8 +39,13 @@
   }
 
   body {
-    @apply bg-zinc-950 text-foreground;
+    @apply text-foreground;
+    background:
+      radial-gradient(circle at top left, rgba(45, 212, 191, 0.14), transparent 24%),
+      radial-gradient(circle at top right, rgba(244, 114, 182, 0.08), transparent 22%),
+      linear-gradient(180deg, #08090f 0%, #0a0c13 22%, #f8f4ec 22%, #f8f4ec 100%);
     font-feature-settings: "rlig" 1, "calt" 1;
+    color-scheme: dark;
   }
 
   /* Custom text selection */
@@ -65,15 +70,33 @@
 
 /* Section typography — rõ, nhất quán (Framer-style) */
 .section-label {
-  @apply text-xs font-semibold uppercase tracking-widest text-primary;
+  @apply text-[11px] font-semibold uppercase tracking-[0.28em] text-primary;
 }
 
 .section-title {
-  @apply text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground leading-tight;
+  @apply text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground leading-[1.05];
 }
 
 .section-body {
-  @apply text-base text-muted-foreground leading-relaxed;
+  @apply text-base text-muted-foreground leading-8;
+}
+
+.glass-panel {
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.82));
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  box-shadow:
+    0 24px 60px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255,255,255,0.7);
+  backdrop-filter: blur(20px);
+}
+
+.dark-glass-panel {
+  background: linear-gradient(180deg, rgba(14,18,29,0.86), rgba(11,15,24,0.72));
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow:
+    0 24px 60px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+  backdrop-filter: blur(18px);
 }
 
 html {

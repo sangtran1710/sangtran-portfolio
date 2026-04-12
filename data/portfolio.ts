@@ -12,10 +12,10 @@ export interface Project {
   techStack: string[];
   videoUrl?: string;
   images?: string[];
-  /** Breakdown: URL + VFX name + optional caption (Behance-style: video → text → video → image) */
+  /** Breakdown: URL + VFX name + optional caption (Behance-style: video -> text -> video -> image) */
   breakdownClips?: { url: string; title: string; caption?: string }[];
   isFeatured?: boolean;
-  /** Display period e.g. "12/2022 – 9/2023" */
+  /** Display period e.g. "12/2022 - 9/2023" */
   duration?: string;
   /** e.g. "Console, PC" */
   platform?: string;
@@ -43,7 +43,7 @@ export interface SkillGroup {
 }
 
 export const SITE = {
-  title: "Sang Tran — VFX Artist",
+  title: "Sang Tran - VFX Artist",
   description:
     "Senior VFX Artist specializing in real-time effects, shader development, and technical art for AAA games and live-service content.",
   email: "sangminhtran1710@gmail.com",
@@ -60,9 +60,11 @@ export const SOCIALS = {
 
 export const HERO = {
   name: "Sang Tran",
-  tagline: "Crafting visual effects that make games and cinematics feel alive.",
+  tagline:
+    "Senior real-time VFX artist for AAA games, cinematics, and premium interactive launches.",
   /** A short line; the rest is conveyed by video & images. */
-  description: "Real-time VFX for AAA games & cinematics.",
+  description:
+    "I build effects that stay readable, feel expensive, and hold up under production pressure.",
   showreelUrl: "/video/reel_final.mp4",
   showreelYoutube: "https://www.youtube.com/watch?v=qK8jtTMHCRU",
 };
@@ -70,10 +72,10 @@ export const HERO = {
 export const ABOUT = {
   title: "Building effects that feel alive.",
   bio: [
-    "I’m Sang Tran, a visual effects artist based in Ho Chi Minh City, Vietnam, with over 7 years of experience in game and cinematic production.",
-    "I entered this industry through a gradual career change—learning by doing, building confidence through small wins, and steadily moving from minor tasks to owning major visual effects sequences. It has been incredibly rewarding to grow step-by-step. Along the way, I’ve had the chance to contribute to several shipped AAA titles, including work that was prominently featured in early marketing visuals for Marvel’s Spider-Man 2.",
-    "What keeps me in this craft is simple: I love creating moments that feel alive and memorable for the audience. I enjoy the entire process of refining my work through clear feedback and fast iteration. Teams know they can rely on me to deliver high-quality results, especially when production deadlines get tight.",
-    "I’m currently open to full-time remote roles where I can take continuous ownership, collaborate internationally, and keep growing alongside a talented team. For a detailed breakdown of my technical skills, please see my resume and the experience section below.",
+    "I'm Sang Tran, a visual effects artist based in Ho Chi Minh City, Vietnam, with more than 7 years of experience across game development, cinematics, and launch content.",
+    "I came into the industry through a gradual career shift, learning by doing and building confidence one milestone at a time. That path took me from support tasks to owning major effect sequences, including work featured in early marketing for Marvel's Spider-Man 2.",
+    "What keeps me here is simple: I love building moments that feel alive on screen. I enjoy clear feedback, fast iteration, and the kind of collaboration where craft and problem-solving move together.",
+    "I'm open to full-time remote roles and thoughtful collaborations where I can take ownership, work closely with ambitious teams, and keep raising the quality bar.",
   ],
   location: "Ho Chi Minh City, Vietnam",
 };
@@ -83,7 +85,8 @@ export const PROFILE = {
   headline: "Senior VFX Real-time Artist",
   title: "Tran Minh Sang.",
   /** Single line; detailed info reserved for the About page. */
-  paragraph: "**Sony** · **Epic** · **Amazon** · **Netflix**. Based in **HCMC** — open to work.",
+  paragraph:
+    "**Sony** / **Epic** / **Amazon** / **Netflix**. Based in **HCMC** - open to thoughtful teams and ambitious visual storytelling.",
   portraitImage: "/images/Portrait/avatar.png",
   /** Image flipped on hover (secondary avatar in the Portrait folder) */
   portraitImageSecondary: "/images/Portrait/z7554087716035_e6282b2e1378f725e4bcb1b51032c015.jpg",
@@ -107,7 +110,7 @@ export const EXPERIENCES: Experience[] = [
   {
     company: "Upwork",
     role: "Technical VFX Artist",
-    duration: "2024 – Present",
+    duration: "2024 - Present",
     responsibilities: [
       "Deliver real-time VFX and technical art for indie and mid-size game studios via Upwork",
       "Niagara, shaders, and optimization for Unreal Engine projects",
@@ -117,7 +120,7 @@ export const EXPERIENCES: Experience[] = [
   {
     company: "Sparx*",
     role: "Senior VFX Artist",
-    duration: "Apr 2022 – Present",
+    duration: "Apr 2022 - Present",
     responsibilities: [
       "Developed and optimized real-time VFX for AAA projects including Marvel's Spider-Man 2, Fortnite Remix Finale, New World: Aeternum, and Until Dawn (PS5)",
       "Authored HLSL shaders and Unreal Engine 5 Niagara systems for high-fidelity particle effects",
@@ -129,7 +132,7 @@ export const EXPERIENCES: Experience[] = [
   {
     company: "BadClay Studio",
     role: "VFX Artist",
-    duration: "Jan 2022 – Apr 2022",
+    duration: "Jan 2022 - Apr 2022",
     responsibilities: [
       "Created dynamic visual effects for game cinematics and promotional content",
       "Collaborated with art directors to achieve desired visual aesthetics and hit performance budgets",
@@ -139,7 +142,7 @@ export const EXPERIENCES: Experience[] = [
   {
     company: "FPT Software",
     role: "Video Producer",
-    duration: "Jul 2019 – Oct 2020",
+    duration: "Jul 2019 - Oct 2020",
     responsibilities: [
       "Produced and edited corporate videos and internal training materials",
       "Managed end-to-end video production workflows and asset delivery",
@@ -182,7 +185,7 @@ export const PROJECTS: Project[] = [
     title: "Marvel's Spider-Man 2",
     role: "FX Artist",
     year: "2023",
-    duration: "12/2022 – 9/2023",
+    duration: "12/2022 - 9/2023",
     platform: "Console, PC",
     style: "realistic",
     client: "Insomniac Games",
@@ -204,10 +207,10 @@ export const PROJECTS: Project[] = [
   {
     slug: "fortnite-remix",
     thumbnail: "/images/Fortnite-Live-Event-Time.jpg",
-    title: "Fortnite – Remix The Finale",
+    title: "Fortnite - Remix The Finale",
     role: "FX Artist",
     year: "2024",
-    duration: "6/2023 – 10/2023",
+    duration: "6/2023 - 10/2023",
     platform: "PC, Console, Mobile",
     style: "stylized",
     client: "Epic Games",
@@ -253,7 +256,7 @@ export const PROJECTS: Project[] = [
     title: "New World: Aeternum",
     role: "FX Artist",
     year: "2024",
-    duration: "12/2023 – 5/2024",
+    duration: "12/2023 - 5/2024",
     platform: "PS5, PC",
     style: "realistic",
     client: "Amazon Games",
@@ -277,7 +280,7 @@ export const PROJECTS: Project[] = [
     title: "Until Dawn",
     role: "Lighting Artist",
     year: "2024",
-    duration: "9/2023 – 12/2023",
+    duration: "9/2023 - 12/2023",
     platform: "PS5",
     style: "realistic",
     client: "Ballistic Moon",
@@ -314,7 +317,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "havoc",
     thumbnail: "/images/havoc-logo.png",
-    title: "Havoc – Game",
+    title: "Havoc - Game",
     role: "VFX Artist (Freelance)",
     year: "2024",
     description:
@@ -334,7 +337,7 @@ export const PROJECTS: Project[] = [
     title: "Marvel's Wolverine",
     role: "VFX Artist",
     year: "2025",
-    duration: "10/2024 – Present",
+    duration: "10/2024 - Present",
     platform: "PS5",
     style: "realistic",
     client: "Insomniac Games",
@@ -350,12 +353,12 @@ export const PROJECTS: Project[] = [
   {
     slug: "dragon-fortune",
     thumbnail: "/slotgame/bg_main.png",
-    title: "Dragon Fortune — HTML5 Slot Demo",
+    title: "Dragon Fortune - HTML5 Slot Demo",
     role: "Technical Artist / Web Developer",
     year: "2026",
-    duration: "2025 – Present",
+    duration: "2025 - Present",
     description:
-      "A playable HTML5 slot game demo showcasing iGaming VFX: particle coin rain, win animations, free spins — built with React & Canvas.",
+      "A playable HTML5 slot game demo showcasing iGaming VFX: particle coin rain, win animations, and free spins built with React and Canvas.",
     categories: ["igaming"],
     contributions: [
       "Built a 5-reel slot game engine with 10 paylines",
@@ -382,7 +385,7 @@ export const AAA_PROJECT_SLUGS = [
 function projectEndSortKey(p: Project): number {
   const d = p.duration ?? p.year;
   if (/Present/i.test(d)) return 999912;
-  const match = d.match(/\s*[–-]\s*(\d{1,2})\/(\d{4})/);
+  const match = d.match(/\s*-\s*(\d{1,2})\/(\d{4})/);
   if (match) return parseInt(match[2], 10) * 100 + parseInt(match[1], 10);
   const y = parseInt(p.year, 10);
   return Number.isNaN(y) ? 0 : y * 100 + 12;
@@ -392,7 +395,7 @@ export const AAA_PROJECTS = PROJECTS.filter((p) =>
   AAA_PROJECT_SLUGS.includes(p.slug)
 ).sort((a, b) => projectEndSortKey(b) - projectEndSortKey(a));
 
-/** Others: Black Knight, Havoc — most recent first */
+/** Others: Black Knight, Havoc - most recent first */
 export const OTHER_PROJECTS = PROJECTS.filter(
   (p) => !AAA_PROJECT_SLUGS.includes(p.slug)
 ).sort((a, b) => projectEndSortKey(b) - projectEndSortKey(a));
@@ -428,13 +431,13 @@ export interface IgamingArtwork {
 }
 
 export const IGAMING_ARTWORKS: IgamingArtwork[] = [
-  // Add items when ready — e.g. Mega Wheel overlay, broadcast samples
+  // Add items when ready - e.g. Mega Wheel overlay, broadcast samples
 ];
 
 export const RND_PROJECTS: RndProject[] = [
   {
     title: "TradingPower Tool v9.2",
-    category: "Motion Graphics · AE Plugin Workflow",
+    category: "Motion Graphics / AE Plugin Workflow",
     tools: ["After Effects", "ExtendScript", "TradingPower Tool", "Motion Design"],
     image: "/images/Thumbnail.png",
     embedUrl:
@@ -489,7 +492,7 @@ export const RND_PROJECTS: RndProject[] = [
   },
   {
     title: "HLSL Material R&D",
-    category: "Unreal Engine · Custom Shaders",
+    category: "Unreal Engine / Custom Shaders",
     tools: ["Unreal Engine", "HLSL", "Material"],
     image: "https://img.youtube.com/vi/VTB2IAmcQO8/sddefault.jpg",
     embedUrl:
@@ -502,7 +505,7 @@ export const RND_PROJECTS: RndProject[] = [
   },
   {
     title: "Fortnite Full Reel",
-    category: "Fortnite · VFX",
+    category: "Fortnite / VFX",
     tools: ["Unreal Engine", "Niagara", "VFX"],
     image: "https://img.youtube.com/vi/oHyDLyVmhF8/sddefault.jpg",
     embedUrl:
@@ -513,7 +516,7 @@ export const RND_PROJECTS: RndProject[] = [
     group: "vfx",
   },
   {
-    title: "Divecore — Diving Watch Strap",
+    title: "Divecore - Diving Watch Strap",
     category: "3D Product",
     tools: ["Blender"],
     image: "/images/WatchHPBlender/Screenshot.png",
@@ -557,7 +560,7 @@ export const RND_PROJECTS: RndProject[] = [
   },
   {
     title: "Circle and Vellum",
-    category: "Reel · Houdini Karma",
+    category: "Reel / Houdini Karma",
     tools: ["Houdini", "Karma", "Vimeo", "Reel"],
     image: "/images/vimeo_708569913.jpg",
     embedUrl:
@@ -642,7 +645,7 @@ export const CERTIFICATES: Certificate[] = [
   },
 ];
 
-/** Images crediting your name (credits, achievements) — placed in public/images/achivements/ */
+/** Images crediting your name (credits, achievements) - placed in public/images/achivements/ */
 export interface AchievementCredit {
   image: string;
   title?: string;

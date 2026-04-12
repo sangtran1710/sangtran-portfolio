@@ -1,12 +1,16 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { HERO, FEATURED_PROJECTS } from "@/data/portfolio";
+import { FEATURED_PROJECTS, HERO } from "@/data/portfolio";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import TextReveal from "@/components/animations/TextReveal";
 import ProjectCard from "@/components/projects/ProjectCard";
 
 export default function FeaturedProjects() {
@@ -23,20 +27,14 @@ export default function FeaturedProjects() {
     return () => video.removeEventListener("error", onError);
   }, []);
 
-  // Parallax on background video
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  const videoBgY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+  const videoBgY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
 
   return (
-    <section
-      ref={sectionRef}
-      id="work"
-      className="relative min-h-[50vh] overflow-hidden bg-zinc-950"
-    >
-      {/* Subtle video background */}
+    <section ref={sectionRef} id="work" className="relative overflow-hidden bg-[#0b1118]">
       {hasVideo && (
         <motion.video
           ref={videoRef}
@@ -45,44 +43,46 @@ export default function FeaturedProjects() {
           muted
           loop
           playsInline
-          preload="auto"
-          className="absolute inset-0 w-full h-full object-cover opacity-[0.04] will-change-transform"
+          preload="metadata"
+          className="absolute inset-0 h-full w-full object-cover opacity-[0.02] will-change-transform"
           style={!prefersReducedMotion ? { y: videoBgY } : undefined}
           aria-hidden
         />
       )}
-      <div className="absolute inset-0 bg-zinc-950/70" />
-      <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-transparent to-zinc-950" />
+      <div className="absolute inset-0 bg-[#0b1118]/94" />
+      <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-transparent to-[#0b1118]" />
 
-      <div className="relative mx-auto max-w-6xl px-6 sm:px-8 py-24 lg:py-32">
-
-        {/* Header */}
+      <div className="relative mx-auto max-w-7xl px-6 py-24 sm:px-8 lg:py-28">
         <motion.div
-          className="flex items-end justify-between mb-10"
+          className="mb-12 flex flex-wrap items-end justify-between gap-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.4 }}
         >
           <div>
-            <TextReveal
-              text="Work"
-              as="h2"
-              className="section-title text-white"
-              offset={["start 0.95", "start 0.65"]}
-            />
+            <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-teal-300">
+              Showcase
+            </p>
+            <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              Selected work
+            </h2>
           </div>
           <Link
             href="/portfolio"
-            className="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 hover:text-white transition-colors group/link"
+            className="hidden items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors hover:text-white sm:inline-flex"
           >
             View all
-            <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" />
+            <ArrowRight className="h-4 w-4" />
           </Link>
         </motion.div>
 
-        {/* Featured grid — 3 cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+        <p className="mb-10 max-w-2xl text-sm leading-7 text-slate-400 sm:text-base">
+          A quick read on the strongest shipped projects before the deeper
+          profile and process sections.
+        </p>
+
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6 xl:grid-cols-3">
           {FEATURED_PROJECTS.map((project, i) => (
             <ScrollReveal
               key={project.slug}
@@ -94,17 +94,15 @@ export default function FeaturedProjects() {
           ))}
         </div>
 
-        {/* Mobile — view all link */}
-        <div className="mt-8 sm:hidden text-center">
+        <div className="mt-8 text-center sm:hidden">
           <Link
             href="/portfolio"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-teal-400 hover:text-teal-300 transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-teal-400 transition-colors hover:text-teal-300"
           >
             View all projects
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
-
       </div>
     </section>
   );

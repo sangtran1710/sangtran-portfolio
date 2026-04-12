@@ -71,21 +71,22 @@ export default function AboutPageClient() {
   );
 
   return (
-    <div className="min-h-screen pt-24 bg-slate-50">
+    <div className="min-h-screen bg-[linear-gradient(180deg,#090d15_0%,#0c1018_16%,#f7f1e7_16%,#fbf8f3_100%)] pt-24">
       {/* Hero header with avatar */}
-      <div ref={heroRef} className="relative overflow-hidden bg-slate-50 pb-16">
+      <div ref={heroRef} className="relative overflow-hidden pb-20">
         <AboutHeroBackground />
 
-        <div className="mx-auto max-w-5xl px-6 pt-8 relative z-10">
+        <div className="relative z-10 mx-auto max-w-6xl px-6 pt-8">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-900 transition-colors mb-10"
+            className="mb-8 inline-flex items-center gap-1.5 text-sm text-slate-500 transition-colors hover:text-slate-900"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Home
           </Link>
 
-          <div className="grid gap-10 lg:grid-cols-[280px_1fr] lg:gap-16 items-start">
+          <div className="glass-panel rounded-[2rem] border border-white/60 px-6 py-6 shadow-[0_28px_70px_rgba(15,23,42,0.08)] sm:px-8 sm:py-8 lg:px-10 lg:py-10">
+            <div className="grid items-start gap-10 lg:grid-cols-[300px_1fr] lg:gap-16">
             {/* Avatar */}
             <motion.div
               className="relative mx-auto lg:mx-0 will-change-transform"
@@ -94,7 +95,7 @@ export default function AboutPageClient() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-2xl overflow-hidden ring-1 ring-slate-200/70 shadow-xl shadow-slate-200 group">
+              <div className="group relative h-64 w-64 overflow-hidden rounded-[1.75rem] ring-1 ring-white/70 shadow-[0_24px_60px_rgba(15,23,42,0.12)] sm:h-72 sm:w-72 lg:h-80 lg:w-80">
                 <Image
                   src="/images/Portrait/avatar.png"
                   alt="Sang Tran"
@@ -104,7 +105,7 @@ export default function AboutPageClient() {
                   priority
                 />
                 {/* Teal overlay on hover */}
-                <div className="absolute inset-0 bg-teal-500/0 group-hover:bg-teal-500/10 transition-colors duration-500 blend-overlay" />
+                <div className="blend-overlay absolute inset-0 bg-teal-500/0 transition-colors duration-500 group-hover:bg-teal-500/10" />
               </div>
               {/* Decorative dot */}
               <motion.div
@@ -118,7 +119,7 @@ export default function AboutPageClient() {
             {/* Header info */}
             <div>
               <motion.p
-                className="text-xs font-semibold uppercase tracking-widest text-teal-600 mb-3"
+                className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-teal-600"
                 initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4 }}
@@ -126,7 +127,7 @@ export default function AboutPageClient() {
                 About
               </motion.p>
               <motion.h1
-                className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 mb-2"
+                className="mb-3 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
@@ -134,17 +135,17 @@ export default function AboutPageClient() {
                 Sang Tran
               </motion.h1>
               <motion.p
-                className="text-lg text-slate-600 mb-6"
+                className="mb-6 max-w-xl text-lg leading-8 text-slate-600"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                Senior VFX Artist
+                Senior VFX Artist crafting launch-ready real-time effects, cinematic polish, and technical art systems.
               </motion.p>
 
               {/* Location + socials row */}
               <motion.div
-                className="flex flex-wrap items-center gap-4 mb-6"
+                className="mb-6 flex flex-wrap items-center gap-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
@@ -173,12 +174,21 @@ export default function AboutPageClient() {
 
               {/* Bio preview */}
               <motion.p
-                className="text-slate-600 text-[15px] sm:text-base leading-relaxed max-w-2xl"
+                className="max-w-2xl text-base leading-8 text-slate-600 sm:text-lg"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.35, duration: 0.5 }}
               >
                 {ABOUT.bio[0]}
+              </motion.p>
+
+              <motion.p
+                className="mt-4 max-w-xl text-sm uppercase tracking-[0.18em] text-slate-400"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.45 }}
+              >
+                Open to senior remote roles, thoughtful collaborations, and ambitious visual storytelling.
               </motion.p>
 
               {/* CTA */}
@@ -202,31 +212,32 @@ export default function AboutPageClient() {
                     <ExternalLink className="h-4 w-4" strokeWidth={1.5} />
                   </a>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="gap-2.5 rounded-full border-teal-400 text-teal-600 bg-teal-50 hover:bg-teal-100">
-                  <Link href="/projects">View Projects</Link>
+                <Button asChild variant="outline" size="lg" className="gap-2.5 rounded-full border-teal-400 bg-teal-50 text-teal-600 hover:bg-teal-100">
+                  <Link href="/portfolio">View Portfolio</Link>
                 </Button>
               </motion.div>
             </div>
+          </div>
           </div>
         </div>
       </div>
 
       {/* Main content */}
-      <div className="mx-auto max-w-5xl px-6 py-16 text-slate-600">
+      <div className="mx-auto max-w-6xl px-6 py-20 text-slate-600">
         {/* Bio section */}
         <ScrollReveal variant="fadeUp">
-          <section className="mb-16">
+          <section className="mb-20">
             <TextReveal
               text={ABOUT.title}
               as="h2"
-              className="text-2xl font-semibold mb-6 text-slate-900"
+              className="mb-8 max-w-2xl text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl"
               offset={["start 0.9", "start 0.6"]}
             />
-            <div className="space-y-4 max-w-3xl">
+            <div className="max-w-3xl space-y-5">
               {ABOUT.bio.slice(1).map((paragraph, i) => (
                 <motion.p
                   key={i}
-                  className="text-[15px] sm:text-base leading-relaxed text-slate-600"
+                  className="text-base leading-8 text-slate-600 sm:text-[17px]"
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
@@ -239,27 +250,27 @@ export default function AboutPageClient() {
           </section>
         </ScrollReveal>
 
-        <div className="h-px bg-slate-200 mb-16" />
+        <div className="mb-20 h-px bg-slate-200/80" />
 
         {/* Experience section */}
-        <section className="mb-16">
+        <section className="mb-20">
           <TextReveal
             text="Experience"
             as="h2"
-            className="text-2xl font-semibold mb-8 text-slate-900"
+            className="mb-10 text-3xl font-semibold tracking-tight text-slate-900"
             offset={["start 0.9", "start 0.65"]}
           />
           <ExperienceTimeline />
         </section>
 
-        <div className="h-px bg-slate-200 mb-16" />
+        <div className="mb-20 h-px bg-slate-200/80" />
 
         {/* Skills section */}
-        <section className="mb-16">
+        <section className="mb-20">
           <TextReveal
             text="Skills & Tools"
             as="h2"
-            className="text-2xl font-semibold mb-8 text-slate-900"
+            className="mb-10 text-3xl font-semibold tracking-tight text-slate-900"
             offset={["start 0.9", "start 0.65"]}
           />
           <div className="grid gap-8 sm:grid-cols-2">
@@ -269,7 +280,7 @@ export default function AboutPageClient() {
                 variant={i % 2 === 0 ? "slideRight" : "slideLeft"}
                 offset={["start 0.95", "start 0.7"]}
               >
-                <div className="rounded-2xl border border-slate-200/70 bg-white shadow-sm p-5 transition-all duration-300 hover:border-teal-300/50 hover:shadow-md hover:shadow-slate-200/80">
+                <div className="rounded-[1.75rem] border border-white/70 bg-white/88 p-6 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all duration-300 hover:border-teal-300/50 hover:shadow-[0_24px_55px_rgba(15,23,42,0.08)]">
                   <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">
                     {group.name}
                   </h3>
@@ -290,14 +301,14 @@ export default function AboutPageClient() {
           </div>
         </section>
 
-        <div className="h-px bg-slate-200 mb-16" />
+        <div className="mb-20 h-px bg-slate-200/80" />
 
         {/* Education section */}
-        <section className="mb-16">
+        <section className="mb-20">
           <TextReveal
             text="Education"
             as="h2"
-            className="text-2xl font-semibold mb-8 text-slate-900"
+            className="mb-10 text-3xl font-semibold tracking-tight text-slate-900"
             offset={["start 0.9", "start 0.65"]}
           />
           <div className="grid gap-6 sm:grid-cols-2">
@@ -307,7 +318,7 @@ export default function AboutPageClient() {
                 variant="fadeUp"
                 offset={["start 0.95", "start 0.75"]}
               >
-                <div className="rounded-2xl border border-slate-200/70 bg-white shadow-sm p-5 transition-all duration-300 hover:border-teal-300/50 hover:shadow-md hover:shadow-slate-200/80">
+                <div className="rounded-[1.75rem] border border-white/70 bg-white/88 p-6 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all duration-300 hover:border-teal-300/50 hover:shadow-[0_24px_55px_rgba(15,23,42,0.08)]">
                   <p className="font-medium text-sm text-slate-900">{edu.school}</p>
                   <p className="text-xs text-slate-600 mt-1">
                     {edu.degree}
@@ -323,12 +334,12 @@ export default function AboutPageClient() {
 
         {CERTIFICATES.length > 0 && (
           <>
-            <div className="h-px bg-slate-200 mb-16" />
+            <div className="mb-20 h-px bg-slate-200/80" />
             <section>
               <TextReveal
                 text="Certificates"
                 as="h2"
-                className="text-2xl font-semibold mb-8 text-slate-900"
+                className="mb-10 text-3xl font-semibold tracking-tight text-slate-900"
                 offset={["start 0.9", "start 0.65"]}
               />
               <div className="grid gap-6 sm:grid-cols-2">
@@ -343,7 +354,7 @@ export default function AboutPageClient() {
                         href={cert.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block rounded-2xl border border-slate-200/70 bg-white shadow-sm p-5 transition-all duration-300 hover:border-teal-300/50 hover:shadow-md hover:shadow-slate-200/80"
+                        className="block rounded-[1.75rem] border border-white/70 bg-white/88 p-6 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all duration-300 hover:border-teal-300/50 hover:shadow-[0_24px_55px_rgba(15,23,42,0.08)]"
                       >
                         <p className="font-medium text-sm text-slate-900">{cert.name}</p>
                         <p className="text-xs text-slate-600 mt-1">{cert.issuer}</p>
@@ -365,7 +376,7 @@ export default function AboutPageClient() {
                         )}
                       </a>
                     ) : (
-                      <div className="rounded-2xl border border-slate-200/70 bg-white shadow-sm p-5 transition-all duration-300 hover:border-teal-300/50 hover:shadow-md hover:shadow-slate-200/80">
+                      <div className="rounded-[1.75rem] border border-white/70 bg-white/88 p-6 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all duration-300 hover:border-teal-300/50 hover:shadow-[0_24px_55px_rgba(15,23,42,0.08)]">
                         <p className="font-medium text-sm text-slate-900">{cert.name}</p>
                         <p className="text-xs text-slate-600 mt-1">{cert.issuer}</p>
                         <p className="text-xs text-slate-500 mt-0.5">{cert.year}</p>
@@ -433,16 +444,16 @@ export default function AboutPageClient() {
 
         {ACHIEVEMENT_CREDITS.length > 0 && (
           <>
-            <div className="h-px bg-slate-200 mb-16" />
+            <div className="mb-20 h-px bg-slate-200/80" />
             <section>
               <TextReveal
                 text="Featured Credits"
                 as="h2"
-                className="text-2xl font-semibold mb-2 text-slate-900"
+                className="mb-2 text-3xl font-semibold tracking-tight text-slate-900"
                 offset={["start 0.9", "start 0.65"]}
               />
               <p className="text-sm text-slate-500 mb-8">
-                Projects where I’m credited
+                Projects where I&apos;m credited
               </p>
               <div className="grid gap-6 sm:grid-cols-2">
                 {ACHIEVEMENT_CREDITS.map((item, i) => (
@@ -451,7 +462,7 @@ export default function AboutPageClient() {
                     variant="fadeUp"
                     offset={["start 0.95", "start 0.75"]}
                   >
-                    <div className="rounded-2xl border border-slate-200/70 bg-white overflow-hidden shadow-sm transition-all duration-300 hover:border-teal-300/50 hover:shadow-md hover:shadow-slate-200/80">
+                    <div className="overflow-hidden rounded-[1.75rem] border border-white/70 bg-white/88 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all duration-300 hover:border-teal-300/50 hover:shadow-[0_24px_55px_rgba(15,23,42,0.08)]">
                       <div className="aspect-[3/4] relative bg-slate-50 border-b border-slate-200/70">
                         <Image
                           src={item.image}
