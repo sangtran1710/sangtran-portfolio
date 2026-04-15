@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   motion,
@@ -11,7 +12,7 @@ import {
 import { ArrowRight, Play } from "lucide-react";
 import ParticleCanvas from "@/components/animations/ParticleCanvas";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { getLocalizedHero } from "@/lib/portfolio-content";
+import { getLocalizedFeaturedProjects, getLocalizedHero } from "@/lib/portfolio-content";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -19,6 +20,7 @@ export default function HeroSection() {
   const [hasVideo, setHasVideo] = useState(true);
   const { locale } = useLanguage();
   const hero = getLocalizedHero(locale);
+  const heroVisuals = getLocalizedFeaturedProjects(locale).slice(0, 3);
   const prefersReducedMotion = useReducedMotion();
   const shouldReduceMotion = prefersReducedMotion === true;
   const showFallbackPoster = shouldReduceMotion || !hasVideo;
@@ -70,9 +72,8 @@ export default function HeroSection() {
         />
       )}
 
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,16,22,0.92)_0%,rgba(16,21,28,0.82)_54%,rgba(246,242,235,0.12)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,16,22,0.92)_0%,rgba(16,21,28,0.86)_56%,rgba(16,21,28,0.92)_100%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_32%,rgba(92,157,152,0.12),transparent_28%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-transparent to-[#f6f2eb]" />
       <div
         className="absolute inset-0 opacity-[0.014]"
         style={{
@@ -92,10 +93,10 @@ export default function HeroSection() {
       />
 
       <div className="relative z-[2] mx-auto flex w-full max-w-7xl flex-col justify-center px-6 lg:px-12">
-        <div className="grid items-center gap-8">
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.02fr)_minmax(360px,0.98fr)] lg:gap-12">
           <motion.div
             style={!shouldReduceMotion ? { opacity: contentOpacity, y: contentY } : undefined}
-            className="max-w-[44rem] lg:pl-2"
+            className="max-w-[34rem] lg:pl-2"
           >
             <motion.h1
               className="max-w-xl text-[4rem] font-black leading-[0.84] tracking-[-0.06em] text-white sm:text-[4.8rem] lg:text-[5.6rem]"
@@ -149,6 +150,52 @@ export default function HeroSection() {
                 <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </motion.div>
+          </motion.div>
+
+          <motion.div
+            className="relative hidden h-[29rem] w-full max-w-[34rem] justify-self-end lg:block"
+            {...motionIfAllowed({
+              initial: { opacity: 0, x: 26 },
+              animate: { opacity: 1, x: 0 },
+              transition: { delay: 0.22, duration: 0.58, ease: "easeOut" },
+            })}
+          >
+            <div className="absolute inset-0 rounded-[2.4rem] bg-[radial-gradient(circle_at_62%_42%,rgba(92,157,152,0.14),transparent_40%)]" />
+            <div className="absolute left-0 top-16 z-20 h-[15.5rem] w-[25rem] overflow-hidden rounded-[2rem] border border-white/10 bg-[#171d24] shadow-[0_26px_60px_rgba(8,12,18,0.3)]">
+              <Image
+                src={heroVisuals[0]?.thumbnail || "/images/reel_poster.jpg"}
+                alt=""
+                fill
+                className="object-cover object-center"
+                sizes="(min-width: 1024px) 400px, 0px"
+                aria-hidden
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,10,15,0.02),rgba(7,10,15,0.18))]" />
+            </div>
+
+            <div className="absolute right-0 top-4 z-30 h-[12rem] w-[14.5rem] overflow-hidden rounded-[1.6rem] border border-white/10 bg-[#171d24] shadow-[0_20px_44px_rgba(8,12,18,0.24)]">
+              <Image
+                src={heroVisuals[1]?.thumbnail || "/images/Fortnite-Live-Event-Time.jpg"}
+                alt=""
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 232px, 0px"
+                aria-hidden
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,10,15,0.06),rgba(7,10,15,0.22))]" />
+            </div>
+
+            <div className="absolute bottom-10 right-0 z-10 h-[10.5rem] w-[15rem] overflow-hidden rounded-[1.6rem] border border-white/10 bg-[#171d24] shadow-[0_18px_40px_rgba(8,12,18,0.22)]">
+              <Image
+                src={heroVisuals[2]?.slug === "new-world" ? "/images/WNW-proof-02.png" : heroVisuals[2]?.thumbnail || "/images/WNW-proof-01.png"}
+                alt=""
+                fill
+                className="object-cover object-[64%_center]"
+                sizes="(min-width: 1024px) 240px, 0px"
+                aria-hidden
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,10,15,0.06),rgba(7,10,15,0.2))]" />
+            </div>
           </motion.div>
         </div>
       </div>

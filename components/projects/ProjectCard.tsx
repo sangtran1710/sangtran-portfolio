@@ -31,21 +31,9 @@ export default function ProjectCard({ project, compact = false }: ProjectCardPro
             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
-          {!compact && (
-            <div className="absolute right-3 top-3 z-10 flex flex-wrap justify-end gap-1">
-              {project.categories.map((cat) => (
-                <span
-                  key={cat}
-                  className="rounded-full border border-stone-200/90 bg-white/92 px-2.5 py-1 text-[10px] font-medium text-slate-600 backdrop-blur-sm"
-                >
-                  {categoryLabels[cat] ?? cat}
-                </span>
-              ))}
-            </div>
-          )}
         </div>
 
-        <div className={compact ? "space-y-2 px-5 py-4" : "space-y-3 px-5 py-5.5"}>
+        <div className={compact ? "space-y-2 px-5 py-4" : "space-y-2 px-5 py-5"}>
           <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-[#4f8e89]">
             {project.role} / {project.year}
           </p>
@@ -53,9 +41,14 @@ export default function ProjectCard({ project, compact = false }: ProjectCardPro
             {project.title}
           </h3>
           {!compact && (
-            <p className="line-clamp-2 text-sm leading-[1.85] text-slate-600">
-              {project.description}
-            </p>
+            <>
+              <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-slate-400">
+                {project.categories.map((cat) => categoryLabels[cat] ?? cat).join(" / ")}
+              </p>
+              <p className="line-clamp-2 text-[13.5px] leading-[1.75] text-slate-600">
+                {project.description}
+              </p>
+            </>
           )}
         </div>
       </article>

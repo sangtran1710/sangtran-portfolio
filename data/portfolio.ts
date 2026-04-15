@@ -86,7 +86,7 @@ export const PROFILE = {
   /** Single line; detailed info reserved for the About page. */
   paragraph:
     "**Sony** / **Epic** / **Amazon** / **Netflix**. Based in **HCMC** and open to full-time roles or freelance work.",
-  portraitImage: "/images/Portrait/avatar.png",
+  portraitImage: "/images/Portrait/z7554087716035_e6282b2e1378f725e4bcb1b51032c015.jpg",
   /** Image flipped on hover (secondary avatar in the Portrait folder) */
   portraitImageSecondary: "/images/Portrait/z7554087716035_e6282b2e1378f725e4bcb1b51032c015.jpg",
   ctaText: "Contact me",

@@ -6,7 +6,6 @@ import Footer from "@/components/layout/Footer";
 import SocialStrip from "@/components/layout/SocialStrip";
 import ScrollToTop from "@/components/layout/ScrollToTop";
 import SkipToContentLink from "@/components/layout/SkipToContentLink";
-import PageLoader from "@/components/PageLoader";
 import PageTransitionWrapper from "@/components/layout/PageTransitionWrapper";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import { SITE } from "@/data/portfolio";
@@ -73,7 +72,6 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <body className="min-h-screen font-sans antialiased">
         <LanguageProvider>
-          <PageLoader />
           <SkipToContentLink />
           <Navbar />
           <main id="main" className="relative">

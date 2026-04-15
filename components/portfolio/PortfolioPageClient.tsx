@@ -11,11 +11,16 @@ export default function PortfolioPageClient() {
     <div className="min-h-screen bg-[#f6f2eb]">
       <section className="bg-[linear-gradient(180deg,#11171e_0%,#161c23_100%)]">
         <div className="mx-auto max-w-7xl px-6 pb-14 pt-24">
-          <div className="max-w-3xl pt-3">
-            <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-white sm:text-[3.4rem] sm:leading-[1.02]">
-              {copy.portfolio.title}
-            </h1>
-            <p className="mt-4 max-w-2xl text-[1.02rem] leading-8 text-white/72">
+          <div className="grid gap-8 border-b border-white/8 pb-10 pt-3 lg:grid-cols-[minmax(0,1.15fr)_minmax(18rem,0.85fr)] lg:items-end">
+            <div className="max-w-3xl">
+              <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.16em] text-[#7db5b0]">
+                Portfolio
+              </p>
+              <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-white sm:text-[3.4rem] sm:leading-[1.02]">
+                {copy.portfolio.title}
+              </h1>
+            </div>
+            <p className="max-w-md text-[0.98rem] leading-7 text-white/70 lg:justify-self-end">
               {copy.portfolio.body}
             </p>
           </div>

@@ -91,7 +91,7 @@ export default function AboutPageClient() {
             {copy.common.backToHome}
           </Link>
 
-          <div className="rounded-[2rem] border border-stone-200 bg-[rgba(255,251,245,0.94)] px-6 py-6 shadow-[0_18px_44px_rgba(15,23,42,0.06)] sm:px-8 sm:py-8 lg:px-10 lg:py-10">
+          <div className="rounded-[2rem] border border-stone-200/90 bg-[#fbf8f2] px-6 py-6 shadow-[0_18px_44px_rgba(15,23,42,0.06)] sm:px-8 sm:py-8 lg:px-10 lg:py-10">
             <div className="grid items-start gap-8 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-12">
               <motion.div
                 className="relative mx-auto lg:mx-0 will-change-transform"
@@ -206,7 +206,7 @@ export default function AboutPageClient() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-6xl px-6 py-16 text-slate-600">
+      <div className="mx-auto max-w-6xl px-6 py-16 text-slate-700">
         <ScrollReveal variant="fadeUp">
           <section className="mb-20">
             <TextReveal
@@ -219,7 +219,7 @@ export default function AboutPageClient() {
               {about.bio.slice(1).map((paragraph, index) => (
                 <motion.p
                   key={index}
-                  className="text-base leading-8 text-slate-600 sm:text-[17px]"
+                  className="text-base leading-8 text-slate-700 sm:text-[17px]"
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
@@ -232,7 +232,7 @@ export default function AboutPageClient() {
           </section>
         </ScrollReveal>
 
-        <div className="mb-20 h-px bg-slate-200/80" />
+        <div className="mb-20 h-px bg-stone-300/70" />
 
         <section className="mb-20">
           <TextReveal
@@ -244,11 +244,11 @@ export default function AboutPageClient() {
           <ExperienceTimeline />
         </section>
 
-        <div className="mb-20 h-px bg-slate-200/80" />
+        <div className="mb-20 h-px bg-stone-300/70" />
 
         <FeaturedCreditsSection />
 
-        <div className="mb-20 h-px bg-slate-200/80" />
+        <div className="mb-20 h-px bg-stone-300/70" />
 
         <section className="mb-20">
           <TextReveal
@@ -285,7 +285,7 @@ export default function AboutPageClient() {
           </div>
         </section>
 
-        <div className="mb-20 h-px bg-slate-200/80" />
+        <div className="mb-20 h-px bg-stone-300/70" />
 
         <section className="mb-20">
           <TextReveal
@@ -313,7 +313,7 @@ export default function AboutPageClient() {
 
         {certificates.length > 0 && (
           <>
-            <div className="mb-20 h-px bg-slate-200/80" />
+            <div className="mb-20 h-px bg-stone-300/70" />
             <section>
               <TextReveal
                 text={copy.about.certificates}

@@ -9,7 +9,7 @@ export default function SocialStrip() {
 
   return (
     <div
-      className="fixed bottom-4 right-4 z-40 hidden md:flex flex-col gap-1.5 rounded-full border border-stone-200/90 bg-[rgba(255,251,245,0.9)] p-1 shadow-[0_10px_22px_rgba(15,23,42,0.07)] backdrop-blur-md"
+      className="fixed bottom-5 right-5 z-40 hidden flex-col gap-2 rounded-full border border-stone-200 bg-[#fdf9f3] p-1.5 shadow-[0_12px_24px_rgba(15,23,42,0.08)] md:flex"
       aria-label={copy.common.socialLinks}
     >
       <a

@@ -385,3 +385,56 @@ This project uses the PlayStation reference as inspiration, not as a clone. Keep
 - Capture at least one mobile screenshot for Home after hero/layout changes.
 - If text overlays image content, contrast is too low, or cards feel crowded, simplify instead of adding more effects.
 - Run `npm run lint` and `npm run verify`; both must pass with zero warnings before handoff.
+
+## 11. Visual Review Checklist
+
+Use this checklist after screenshots are captured. The goal is not just to catch broken CSS, but to catch design that technically works and still feels wrong.
+
+### Layout & Composition
+- Does the section have one obvious focal point, or are multiple elements competing at once?
+- Does the visual weight feel balanced left-to-right and top-to-bottom?
+- Is there any large empty area that feels accidental rather than intentional?
+- Is any element colliding with, overlapping, or visually crowding another element?
+- Does the section still read clearly if you squint at it from a distance?
+
+### Hierarchy & Copy Density
+- Is the headline clearly the first thing the eye lands on?
+- Is supporting text short enough to scan comfortably?
+- Is there any sentence that exists only to fill space rather than add meaning?
+- Are there too many labels, pills, badges, or helper lines competing with the real content?
+- If a section feels noisy, can at least one text layer be removed instead of restyled?
+
+### Spacing & Rhythm
+- Are gaps between heading, body, CTA, and cards consistent and intentional?
+- Does the transition between dark and light sections feel clean, or does content look like it is falling across surfaces?
+- Are repeated components aligned to a stable rhythm, or do they feel staggered by accident?
+- Do cards have enough padding to breathe without feeling oversized?
+- On mobile, do stacked elements still have enough room to breathe?
+
+### Buttons, Pills, and Small UI
+- Is every button wide enough for its label without the text feeling cramped?
+- Do pill buttons feel optically centered, not just mathematically centered?
+- Are border, icon, and text weights visually balanced inside each control?
+- Are any filters, tags, or chips present only because they look like “UI”, not because they help the user?
+- If two CTA buttons sit together, is their visual priority obvious?
+
+### Cards & Media
+- Does the image carry the visual impact while text stays readable and secondary?
+- Is any text sitting on top of media when it would read better below the image?
+- Are card titles and descriptions short enough for fast scanning?
+- Do cards feel consistent in height and density within the same row?
+- Are badges or category pills helping orientation, or just adding clutter?
+
+### Color & Contrast
+- Is text readable instantly on every background, especially dark surfaces?
+- Is the accent color guiding attention, or stealing too much of it?
+- Are there too many similar low-contrast tones making the UI feel muddy?
+- Do dark sections feel calm and intentional, not heavy or oppressive?
+- Do light sections feel clean and warm, not washed out or unfinished?
+
+### Polish Pass / Final Gate
+- Would a designer call this intentional, or just “not broken”?
+- Is there any element that looks AI-generated, placeholder-like, or over-explained?
+- If one component still feels off, can the fix be simplification rather than decoration?
+- Does the page feel comfortable to scroll, not just impressive on first glance?
+- If the answer to any of the questions above is “maybe”, do another pass before handoff.

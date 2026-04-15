@@ -15,9 +15,10 @@ export default function FeaturedProjects() {
   return (
     <section
       id="work"
-      className="relative scroll-mt-24 overflow-hidden border-t border-stone-200/80 bg-[#f6f2eb]"
+      className="relative z-10 -mt-10 scroll-mt-24 overflow-hidden"
     >
-      <div className="relative mx-auto max-w-7xl px-6 py-14 sm:px-8 lg:py-[4.5rem]">
+      <div className="mx-auto max-w-[92rem] rounded-t-[2.5rem] border border-stone-200/80 bg-[#f6f2eb] shadow-[0_-18px_44px_rgba(15,23,42,0.07)]">
+        <div className="relative mx-auto max-w-7xl px-6 py-14 sm:px-8 lg:py-[4.5rem]">
         <motion.div
           className="mb-10 flex flex-wrap items-end justify-between gap-4"
           initial={{ opacity: 0, y: 20 }}
@@ -62,6 +63,7 @@ export default function FeaturedProjects() {
             {copy.common.viewAllProjects}
             <ArrowRight className="h-4 w-4" />
           </Link>
+        </div>
         </div>
       </div>
     </section>
