@@ -11,15 +11,17 @@ import {
   useReducedMotion,
 } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { SKILL_GROUPS, SKILLS_SECTION_IMAGE } from "@/data/portfolio";
+import { SKILLS_SECTION_IMAGE } from "@/data/portfolio";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import TextReveal from "@/components/animations/TextReveal";
-
-const DISPLAY_GROUPS = SKILL_GROUPS.slice(0, 3);
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { getLocalizedSkillGroups } from "@/lib/portfolio-content";
 
 export default function TechnicalSkillsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const prefersReducedMotion = useReducedMotion();
+  const { locale, copy } = useLanguage();
+  const displayGroups = getLocalizedSkillGroups(locale).slice(0, 3);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -57,16 +59,16 @@ export default function TechnicalSkillsSection() {
               className="mb-12"
             >
               <p className="text-xs font-semibold tracking-[0.2em] text-muted-foreground uppercase mb-4">
-                03 // Toolkit
+                {copy.home.toolkitKicker}
               </p>
               <TextReveal
-                text="Technical"
+                text={copy.home.technicalLineOne}
                 as="h2"
                 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tighter text-foreground leading-[0.9]"
                 offset={["start 0.9", "start 0.6"]}
               />
               <TextReveal
-                text="Skills."
+                text={copy.home.technicalLineTwo}
                 as="h2"
                 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tighter text-muted-foreground leading-[0.9] mt-1"
                 offset={["start 0.85", "start 0.55"]}
@@ -75,7 +77,7 @@ export default function TechnicalSkillsSection() {
 
             {/* Editorial Spec List */}
             <div className="flex flex-col border-t border-border/40">
-              {DISPLAY_GROUPS.map((group, i) => (
+              {displayGroups.map((group, i) => (
                 <ScrollReveal
                   key={group.name}
                   variant="fadeUp"
@@ -106,7 +108,7 @@ export default function TechnicalSkillsSection() {
                 className="group inline-flex items-center gap-2 text-sm font-bold tracking-widest uppercase text-foreground hover:text-primary transition-colors"
               >
                 <span className="relative">
-                  Full Profile
+                  {copy.home.fullProfile}
                   <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
                 </span>
                 <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />

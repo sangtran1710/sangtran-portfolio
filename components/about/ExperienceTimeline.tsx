@@ -1,21 +1,27 @@
-import { EXPERIENCES } from "@/data/portfolio";
+"use client";
+
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { getLocalizedExperiences } from "@/lib/portfolio-content";
 import { Badge } from "@/components/ui/badge";
 
 export default function ExperienceTimeline() {
+  const { locale } = useLanguage();
+  const experiences = getLocalizedExperiences(locale);
+
   return (
     <div className="space-y-0">
-      {EXPERIENCES.map((exp, i) => (
+      {experiences.map((exp, i) => (
         <div key={i} className="relative flex gap-6">
           {/* Timeline line */}
           <div className="flex flex-col items-center">
             <div className="h-3 w-3 rounded-full bg-teal-500 mt-1 flex-shrink-0 ring-4 ring-teal-500/10" />
-            {i < EXPERIENCES.length - 1 && (
+            {i < experiences.length - 1 && (
               <div className="w-px flex-1 bg-slate-200 mt-2 mb-0" />
             )}
           </div>
 
           {/* Content */}
-          <div className={`pb-10 flex-1 ${i === EXPERIENCES.length - 1 ? "pb-0" : ""}`}>
+          <div className={`pb-10 flex-1 ${i === experiences.length - 1 ? "pb-0" : ""}`}>
             <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
               <div>
                 <h3 className="font-semibold text-base text-slate-900">{exp.role}</h3>

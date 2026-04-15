@@ -1,0 +1,152 @@
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+@import "highlight.js/styles/github-dark.css";
+
+:root {
+  --background: #040913;
+  --foreground: #f4f7fb;
+  --muted: #96a3b8;
+  --surface: rgba(15, 23, 42, 0.72);
+  --surface-strong: rgba(15, 23, 42, 0.9);
+  --border: rgba(148, 163, 184, 0.16);
+  --brand: #5eead4;
+  --brand-warm: #fbbf24;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-ibm-plex-mono);
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(45, 212, 191, 0.16), transparent 32%),
+    radial-gradient(circle at 82% 14%, rgba(251, 191, 36, 0.12), transparent 18%),
+    linear-gradient(180deg, #07101f 0%, #03060d 100%);
+  color: var(--foreground);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  border-color: var(--border);
+}
+
+::selection {
+  background: rgba(94, 234, 212, 0.28);
+}
+
+.panel {
+  @apply rounded-[1.75rem] border border-white/10 bg-white/[0.04] backdrop-blur-xl shadow-[0_20px_80px_rgba(0,0,0,0.35)];
+}
+
+.eyebrow {
+  @apply text-[0.72rem] font-medium uppercase tracking-[0.34em] text-teal-100/70;
+}
+
+.section-title {
+  @apply text-3xl font-semibold tracking-tight text-white sm:text-4xl;
+}
+
+.section-copy {
+  @apply max-w-2xl text-base leading-8 text-slate-300;
+}
+
+.topic-pill {
+  @apply inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.22em] text-slate-300;
+}
+
+.micro-label {
+  @apply text-[0.68rem] font-medium uppercase tracking-[0.28em] text-slate-500;
+}
+
+.metric {
+  @apply text-3xl font-semibold text-white;
+}
+
+.disclosure {
+  @apply rounded-[1.35rem] border border-white/10 bg-white/[0.03];
+}
+
+.disclosure > summary {
+  @apply cursor-pointer list-none px-4 py-4 text-sm font-medium text-white;
+}
+
+.disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+
+.disclosure-content {
+  @apply border-t border-white/10 px-4 py-4 text-sm leading-7 text-slate-300;
+}
+
+.markdown-body {
+  @apply text-[1.02rem] leading-8 text-slate-200;
+}
+
+.markdown-body h2 {
+  @apply mt-12 text-2xl font-semibold tracking-tight text-white;
+}
+
+.markdown-body h3 {
+  @apply mt-8 text-xl font-semibold text-white;
+}
+
+.markdown-body p {
+  @apply mt-5 text-slate-200;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  @apply mt-5 space-y-2 pl-6 text-slate-200;
+}
+
+.markdown-body li {
+  @apply pl-1;
+}
+
+.markdown-body a {
+  @apply text-teal-200 underline decoration-teal-400/30 underline-offset-4 transition hover:text-white;
+}
+
+.markdown-body blockquote {
+  @apply mt-6 rounded-2xl border border-teal-400/15 bg-teal-400/6 px-5 py-4 text-teal-50;
+}
+
+.markdown-body code {
+  font-family: var(--font-ibm-plex-mono), monospace;
+}
+
+.markdown-body :not(pre) > code {
+  @apply rounded-md bg-white/8 px-1.5 py-0.5 text-[0.92rem] text-teal-100;
+}
+
+.markdown-body pre {
+  @apply mt-6 overflow-x-auto rounded-2xl border border-white/10 bg-slate-950/80 p-5 text-[0.92rem] leading-7;
+}
+
+.markdown-body pre code {
+  @apply bg-transparent p-0 text-slate-100;
+}
+
+.markdown-body hr {
+  @apply my-10 border-white/10;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+  background-size: 36px 36px;
+}

@@ -1,0 +1,283 @@
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+⨯ ./app/practice/[topic]/page.tsx:4:1
+Module not found: Can't resolve '@/components/practice/quiz-session'
+  [90m2 |[0m [36mimport[0m { notFound } [36mfrom[0m [32m"next/navigation"[0m;
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m { [33mQuizSession[0m } [36mfrom[0m [32m"@/components/practice/quiz-session"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m { getPublicQuizBank, getTopic, getTopics } [36mfrom[0m [32m"@/lib/content"[0m;
+  [90m6 |[0m
+  [90m7 |[0m [36mtype[0m [33mPracticeTopicPageProps[0m = {
+
+Import map: aliased to relative './components/practice/quiz-session' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/practice/[topic]/page.tsx:4:1
+Module not found: Can't resolve '@/components/practice/quiz-session'
+  [90m2 |[0m [36mimport[0m { notFound } [36mfrom[0m [32m"next/navigation"[0m;
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m { [33mQuizSession[0m } [36mfrom[0m [32m"@/components/practice/quiz-session"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m { getPublicQuizBank, getTopic, getTopics } [36mfrom[0m [32m"@/lib/content"[0m;
+  [90m6 |[0m
+  [90m7 |[0m [36mtype[0m [33mPracticeTopicPageProps[0m = {
+
+Import map: aliased to relative './components/practice/quiz-session' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/practice/[topic]/page.tsx:4:1
+Module not found: Can't resolve '@/components/practice/quiz-session'
+  [90m2 |[0m [36mimport[0m { notFound } [36mfrom[0m [32m"next/navigation"[0m;
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m { [33mQuizSession[0m } [36mfrom[0m [32m"@/components/practice/quiz-session"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m { getPublicQuizBank, getTopic, getTopics } [36mfrom[0m [32m"@/lib/content"[0m;
+  [90m6 |[0m
+  [90m7 |[0m [36mtype[0m [33mPracticeTopicPageProps[0m = {
+
+Import map: aliased to relative './components/practice/quiz-session' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/practice/[topic]/page.tsx:4:1
+Module not found: Can't resolve '@/components/practice/quiz-session'
+  [90m2 |[0m [36mimport[0m { notFound } [36mfrom[0m [32m"next/navigation"[0m;
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m { [33mQuizSession[0m } [36mfrom[0m [32m"@/components/practice/quiz-session"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m { getPublicQuizBank, getTopic, getTopics } [36mfrom[0m [32m"@/lib/content"[0m;
+  [90m6 |[0m
+  [90m7 |[0m [36mtype[0m [33mPracticeTopicPageProps[0m = {
+
+Import map: aliased to relative './components/practice/quiz-session' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/practice/[topic]/page.tsx:4:1
+Module not found: Can't resolve '@/components/practice/quiz-session'
+  [90m2 |[0m [36mimport[0m { notFound } [36mfrom[0m [32m"next/navigation"[0m;
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m { [33mQuizSession[0m } [36mfrom[0m [32m"@/components/practice/quiz-session"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m { getPublicQuizBank, getTopic, getTopics } [36mfrom[0m [32m"@/lib/content"[0m;
+  [90m6 |[0m
+  [90m7 |[0m [36mtype[0m [33mPracticeTopicPageProps[0m = {
+
+Import map: aliased to relative './components/practice/quiz-session' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/practice/[topic]/page.tsx:4:1
+Module not found: Can't resolve '@/components/practice/quiz-session'
+  [90m2 |[0m [36mimport[0m { notFound } [36mfrom[0m [32m"next/navigation"[0m;
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m { [33mQuizSession[0m } [36mfrom[0m [32m"@/components/practice/quiz-session"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m { getPublicQuizBank, getTopic, getTopics } [36mfrom[0m [32m"@/lib/content"[0m;
+  [90m6 |[0m
+  [90m7 |[0m [36mtype[0m [33mPracticeTopicPageProps[0m = {
+
+Import map: aliased to relative './components/practice/quiz-session' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[browser] Uncaught Error: ./app/practice/[topic]/page.tsx:4:1
+Module not found: Can't resolve '@/components/practice/quiz-session'
+  2 | import { notFound } from "next/navigation";
+  3 |
+> 4 | import { QuizSession } from "@/components/practice/quiz-session";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { getPublicQuizBank, getTopic, getTopics } from "@/lib/content";
+  6 |
+  7 | type PracticeTopicPageProps = {
+
+Import map: aliased to relative './components/practice/quiz-session' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./app/practice/[topic]/page.tsx:4:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (Error: (./app/practice/[topic]/page.tsx:4:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+[browser] Uncaught Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/practice/..." tree={[...]} params={{topic:"nav..."}} cacheNode={{rsc:{...}, ...}} ...>
+          <SegmentViewNode type="page" pagePath="practice/[...">
+            <SegmentTrieNode>
+            <PracticeTopicPage>
+              <div className="mx-auto ma...">
+                <QuizSession bank={{topic:"nav...", ...}} topic={{slug:"nave...", ...}}>
+                  <div className="grid gap-8...">
+                    <section className="panel over...">
+                      <div>
+                      <div className="px-6 py-7 ...">
+                        <div>
+                        <div className="space-y-6">
+                          <article className="rounded-[1...">
+                            <div className="flex flex-...">
+                              <div className="flex flex-...">
+                                <span>
+                                <span className="topic-pill">
++                                 Technical Follow-ups
+-                                 Weak Points
+                              ...
+                            ...
+                          ...
+                        ...
+                    ...
+          ...
+        ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at span (<anonymous>)
+    at <unknown> (components/practice/quiz-session.tsx:275:39)
+    at Array.map (<anonymous>)
+    at QuizSession (components/practice/quiz-session.tsx:256:26)
+    at PracticeTopicPage (app\practice\[topic]\page.tsx:42:7)
+  273 |                       <div className="flex flex-wrap gap-2">
+  274 |                         <span className="topic-pill">Question {index + 1}</span>
+> 275 |                         {bucketMeta ? <span className="topic-pill">{bucketMeta.label}</sp...
+      |                                       ^
+  276 |                       </div>
+  277 |                       <div className="flex flex-wrap gap-2">
+  278 |                         {question.skills.map((skill) => (
+[browser] Uncaught Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/practice/..." tree={[...]} params={{topic:"nav..."}} cacheNode={{rsc:{...}, ...}} ...>
+          <SegmentViewNode type="page" pagePath="practice/[...">
+            <SegmentTrieNode>
+            <PracticeTopicPage>
+              <div className="mx-auto ma...">
+                <QuizSession bank={{topic:"nav...", ...}} topic={{slug:"nave...", ...}}>
+                  <div className="grid gap-8...">
+                    <section className="panel over...">
+                      <div>
+                      <div className="px-6 py-7 ...">
+                        <div>
+                        <div className="space-y-6">
+                          <article className="rounded-[1...">
+                            <div className="flex flex-...">
+                              <div className="flex flex-...">
+                                <span>
+                                <span className="topic-pill">
++                                 Weak Points
+-                                 Communication
+                              ...
+                            ...
+                          ...
+                        ...
+                    ...
+          ...
+        ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at span (<anonymous>)
+    at <unknown> (components/practice/quiz-session.tsx:275:39)
+    at Array.map (<anonymous>)
+    at QuizSession (components/practice/quiz-session.tsx:256:26)
+    at PracticeTopicPage (app\practice\[topic]\page.tsx:42:7)
+  273 |                       <div className="flex flex-wrap gap-2">
+  274 |                         <span className="topic-pill">Question {index + 1}</span>
+> 275 |                         {bucketMeta ? <span className="topic-pill">{bucketMeta.label}</sp...
+      |                                       ^
+  276 |                       </div>
+  277 |                       <div className="flex flex-wrap gap-2">
+  278 |                         {question.skills.map((skill) => (
+[browser] Uncaught Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/practice/..." tree={[...]} params={{topic:"nav..."}} cacheNode={{rsc:{...}, ...}} ...>
+          <SegmentViewNode type="page" pagePath="practice/[...">
+            <SegmentTrieNode>
+            <PracticeTopicPage>
+              <div className="mx-auto ma...">
+                <QuizSession bank={{topic:"nav...", ...}} topic={{slug:"nave...", ...}}>
+                  <div className="grid gap-8...">
+                    <section className="panel over...">
+                      <div>
+                      <div className="px-6 py-7 ...">
+                        <div>
+                        <div className="space-y-6">
+                          <article className="rounded-[1...">
+                            <div className="flex flex-...">
+                              <div className="flex flex-...">
+                                <span>
+                                <span className="topic-pill">
++                                 Technical Follow-ups
+-                                 Weak Points
+                              ...
+                            ...
+                          ...
+                        ...
+                    ...
+          ...
+        ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at span (<anonymous>)
+    at <unknown> (components/practice/quiz-session.tsx:275:39)
+    at Array.map (<anonymous>)
+    at QuizSession (components/practice/quiz-session.tsx:256:26)
+    at PracticeTopicPage (app\practice\[topic]\page.tsx:42:7)
+  273 |                       <div className="flex flex-wrap gap-2">
+  274 |                         <span className="topic-pill">Question {index + 1}</span>
+> 275 |                         {bucketMeta ? <span className="topic-pill">{bucketMeta.label}</sp...
+      |                                       ^
+  276 |                       </div>
+  277 |                       <div className="flex flex-wrap gap-2">
+  278 |                         {question.skills.map((skill) => (
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior

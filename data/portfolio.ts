@@ -60,8 +60,7 @@ export const SOCIALS = {
 
 export const HERO = {
   name: "Sang Tran",
-  tagline:
-    "Senior real-time VFX artist for AAA games, cinematics, and premium interactive launches.",
+  tagline: "Senior real-time VFX artist.",
   /** A short line; the rest is conveyed by video & images. */
   description:
     "I build effects that stay readable, feel expensive, and hold up under production pressure.",
@@ -75,7 +74,7 @@ export const ABOUT = {
     "I'm Sang Tran, a visual effects artist based in Ho Chi Minh City, Vietnam, with more than 7 years of experience across game development, cinematics, and launch content.",
     "I came into the industry through a gradual career shift, learning by doing and building confidence one milestone at a time. That path took me from support tasks to owning major effect sequences, including work featured in early marketing for Marvel's Spider-Man 2.",
     "What keeps me here is simple: I love building moments that feel alive on screen. I enjoy clear feedback, fast iteration, and the kind of collaboration where craft and problem-solving move together.",
-    "I'm open to full-time remote roles and thoughtful collaborations where I can take ownership, work closely with ambitious teams, and keep raising the quality bar.",
+    "I'm open to full-time remote roles where I can take ownership, work closely with strong teams, and keep raising the quality bar.",
   ],
   location: "Ho Chi Minh City, Vietnam",
 };
@@ -86,7 +85,7 @@ export const PROFILE = {
   title: "Tran Minh Sang.",
   /** Single line; detailed info reserved for the About page. */
   paragraph:
-    "**Sony** / **Epic** / **Amazon** / **Netflix**. Based in **HCMC** - open to thoughtful teams and ambitious visual storytelling.",
+    "**Sony** / **Epic** / **Amazon** / **Netflix**. Based in **HCMC** and open to full-time roles or freelance work.",
   portraitImage: "/images/Portrait/avatar.png",
   /** Image flipped on hover (secondary avatar in the Portrait folder) */
   portraitImageSecondary: "/images/Portrait/z7554087716035_e6282b2e1378f725e4bcb1b51032c015.jpg",

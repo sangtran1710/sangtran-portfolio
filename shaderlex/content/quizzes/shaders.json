@@ -1,0 +1,114 @@
+{
+  "topic": "shaders",
+  "title": "Shader Systems Practice Set",
+  "description": "Backend-scored recall on vector math, lighting intuition, profiling, and practical optimization decisions.",
+  "estimatedTime": "10-14 min",
+  "sessionSize": 5,
+  "questions": [
+    {
+      "id": "sh-mcq-01",
+      "type": "mcq",
+      "prompt": "If two normalized vectors are perpendicular, what does their dot product evaluate to?",
+      "skills": ["Vector math", "Lighting"],
+      "difficulty": "foundation",
+      "answer": "b",
+      "explanation": "For normalized vectors, the dot product becomes cos(theta). At 90 degrees, the result is 0.",
+      "options": [
+        { "id": "a", "label": "1.0" },
+        { "id": "b", "label": "0.0" },
+        { "id": "c", "label": "-1.0" },
+        { "id": "d", "label": "It depends on UV scale" }
+      ]
+    },
+    {
+      "id": "sh-mcq-02",
+      "type": "mcq",
+      "prompt": "Which action is usually the best first step before optimizing a complex material?",
+      "skills": ["Optimization", "Profiling"],
+      "difficulty": "foundation",
+      "answer": "c",
+      "explanation": "Profiling first prevents you from optimizing the wrong system or guessing at the dominant cost.",
+      "options": [
+        { "id": "a", "label": "Delete branches immediately" },
+        { "id": "b", "label": "Reduce all texture sizes by half" },
+        { "id": "c", "label": "Profile the scene and identify the dominant cost" },
+        { "id": "d", "label": "Replace every function with custom HLSL" }
+      ]
+    },
+    {
+      "id": "sh-mcq-03",
+      "type": "mcq",
+      "prompt": "A fresnel-style rim mask is commonly built from the relationship between which two vectors?",
+      "skills": ["Shading", "View-dependent effects"],
+      "difficulty": "intermediate",
+      "answer": "a",
+      "explanation": "A rim mask usually compares the surface normal against the view direction to measure how edge-on the surface is to camera.",
+      "options": [
+        { "id": "a", "label": "Surface normal and view direction" },
+        { "id": "b", "label": "UV direction and tangent" },
+        { "id": "c", "label": "Bitangent and light color" },
+        { "id": "d", "label": "World position and roughness" }
+      ]
+    },
+    {
+      "id": "sh-mcq-04",
+      "type": "mcq",
+      "prompt": "Which issue is often the dominant cost for layered translucent VFX in combat-heavy scenes?",
+      "skills": ["Optimization", "VFX"],
+      "difficulty": "intermediate",
+      "answer": "d",
+      "explanation": "For translucent VFX, overdraw and fill rate are often more expensive than a few extra math instructions.",
+      "options": [
+        { "id": "a", "label": "Normal map compression" },
+        { "id": "b", "label": "Vertex color import settings" },
+        { "id": "c", "label": "World position offset precision" },
+        { "id": "d", "label": "Overdraw from repeated transparent layers" }
+      ]
+    },
+    {
+      "id": "sh-mcq-05",
+      "type": "mcq",
+      "prompt": "Why do you usually normalize vectors before using them in a lighting dot product?",
+      "skills": ["Vector math", "Lighting"],
+      "difficulty": "foundation",
+      "answer": "b",
+      "explanation": "Normalization removes magnitude, so the dot product becomes a clean read of directional alignment instead of mixing in vector length.",
+      "options": [
+        { "id": "a", "label": "To make the shader compile faster" },
+        { "id": "b", "label": "To compare direction instead of direction plus length" },
+        { "id": "c", "label": "To convert tangent space into UV space" },
+        { "id": "d", "label": "To reduce texture bandwidth" }
+      ]
+    },
+    {
+      "id": "sh-mcq-06",
+      "type": "mcq",
+      "prompt": "What is the strongest production reason to add a cheaper fallback version of a shader?",
+      "skills": ["Optimization", "Production"],
+      "difficulty": "advanced",
+      "answer": "c",
+      "explanation": "A fallback helps preserve the creative goal while giving you a scalable version for weaker hardware or non-hero usage.",
+      "options": [
+        { "id": "a", "label": "It always improves texture quality" },
+        { "id": "b", "label": "It removes the need to profile" },
+        { "id": "c", "label": "It gives you a scalable option without deleting the effect entirely" },
+        { "id": "d", "label": "It guarantees identical visual quality on every platform" }
+      ]
+    },
+    {
+      "id": "sh-mcq-07",
+      "type": "mcq",
+      "prompt": "In shader language, what is the most practical way to describe the dot product?",
+      "skills": ["Math", "Technical explanation"],
+      "difficulty": "intermediate",
+      "answer": "a",
+      "explanation": "The dot product is often best explained as a cheap alignment test between two directions.",
+      "options": [
+        { "id": "a", "label": "A cheap measure of how aligned two directions are" },
+        { "id": "b", "label": "A conversion from world space to tangent space" },
+        { "id": "c", "label": "A replacement for texture sampling" },
+        { "id": "d", "label": "A way to increase vertex density" }
+      ]
+    }
+  ]
+}

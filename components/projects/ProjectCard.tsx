@@ -2,24 +2,27 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import type { Project } from "@/data/portfolio";
-
-const CATEGORY_LABELS: Record<string, string> = {
-  aaa: "AAA",
-  realtime: "Real-time",
-  cinematic: "Cinematic",
-  igaming: "iGaming",
-};
 
 interface ProjectCardProps {
   project: Project;
+  compact?: boolean;
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function ProjectCard({ project, compact = false }: ProjectCardProps) {
+  const { copy } = useLanguage();
+  const categoryLabels: Record<string, string> = {
+    aaa: copy.categories.aaa,
+    realtime: copy.categories.realtime,
+    cinematic: copy.categories.cinematic,
+    igaming: copy.categories.igaming,
+  };
+
   return (
     <Link href={project.link || `/projects/${project.slug}`} className="group/card block">
-      <article className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0f1520] shadow-[0_18px_45px_rgba(0,0,0,0.16)] transition-all duration-300 group-hover/card:-translate-y-1 group-hover/card:border-white/16 group-hover/card:shadow-[0_24px_60px_rgba(0,0,0,0.22)]">
-        <div className="relative aspect-[16/10] overflow-hidden bg-zinc-900">
+      <article className="overflow-hidden rounded-[1.6rem] border border-stone-200/90 bg-white shadow-[0_10px_26px_rgba(15,23,42,0.045)] transition-all duration-300 group-hover/card:-translate-y-1 group-hover/card:border-stone-300 group-hover/card:shadow-[0_18px_38px_rgba(15,23,42,0.075)]">
+        <div className="relative aspect-[16/10] overflow-hidden bg-stone-100">
           <Image
             src={project.thumbnail}
             alt={project.title}
@@ -27,29 +30,33 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             className="object-cover transition-transform duration-500 ease-out group-hover/card:scale-[1.03]"
             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/28 via-transparent to-transparent" />
-          <div className="absolute right-3 top-3 z-10 flex flex-wrap justify-end gap-1">
-            {project.categories.map((cat) => (
-              <span
-                key={cat}
-                className="rounded-full border border-white/10 bg-black/62 px-2.5 py-1 text-[10px] font-semibold text-white/88 backdrop-blur-sm"
-              >
-                {CATEGORY_LABELS[cat] ?? cat}
-              </span>
-            ))}
-          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+          {!compact && (
+            <div className="absolute right-3 top-3 z-10 flex flex-wrap justify-end gap-1">
+              {project.categories.map((cat) => (
+                <span
+                  key={cat}
+                  className="rounded-full border border-stone-200/90 bg-white/92 px-2.5 py-1 text-[10px] font-medium text-slate-600 backdrop-blur-sm"
+                >
+                  {categoryLabels[cat] ?? cat}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
 
-        <div className="space-y-3 px-5 py-5">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-teal-300">
+        <div className={compact ? "space-y-2 px-5 py-4" : "space-y-3 px-5 py-5.5"}>
+          <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-[#4f8e89]">
             {project.role} / {project.year}
           </p>
-          <h3 className="text-xl font-semibold leading-tight text-white">
+          <h3 className="text-[1.25rem] font-semibold leading-[1.18] tracking-[-0.02em] text-slate-900">
             {project.title}
           </h3>
-          <p className="line-clamp-3 text-sm leading-7 text-slate-300">
-            {project.description}
-          </p>
+          {!compact && (
+            <p className="line-clamp-2 text-sm leading-[1.85] text-slate-600">
+              {project.description}
+            </p>
+          )}
         </div>
       </article>
     </Link>

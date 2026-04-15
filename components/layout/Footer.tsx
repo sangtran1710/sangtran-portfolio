@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { Github, Linkedin, Mail, MapPin } from "lucide-react";
-import { SOCIALS, SITE, ABOUT } from "@/data/portfolio";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { SOCIALS } from "@/data/portfolio";
+import { getLocalizedAbout, getLocalizedSite } from "@/lib/portfolio-content";
 
 const BehanceIcon = () => (
   <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true">
@@ -8,57 +12,55 @@ const BehanceIcon = () => (
   </svg>
 );
 
-const FOOTER_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/showreel", label: "Showreel" },
-  { href: "/portfolio", label: "Portfolio" },
-  { href: "/blog", label: "Blog" },
-  { href: "/about", label: "About" },
-  { href: "/#contact", label: "Contact" },
-];
-
-const SOCIAL_LINKS = [
-  { href: SOCIALS.linkedin, label: "LinkedIn", Icon: Linkedin, className: "hover:text-[#0A66C2]" },
-  { href: SOCIALS.github, label: "GitHub", Icon: Github },
-  { href: SOCIALS.behance, label: "Behance", Icon: BehanceIcon },
-  { href: `mailto:${SITE.email}`, label: "Email", Icon: Mail },
-];
-
 export default function Footer() {
+  const { locale, copy } = useLanguage();
   const year = new Date().getFullYear();
-  const brandName = "Sang Tran";
+  const about = getLocalizedAbout(locale);
+  const site = getLocalizedSite(locale);
+  const footerLinks = [
+    { href: "/", label: copy.nav.home },
+    { href: "/showreel", label: "Showreel" },
+    { href: "/portfolio", label: copy.nav.portfolio },
+    { href: "/blog", label: copy.nav.blog },
+    { href: "/about", label: copy.nav.about },
+    { href: "/#contact", label: copy.home.contactTitle },
+  ];
+  const socialLinks = [
+    { href: SOCIALS.linkedin, label: "LinkedIn", Icon: Linkedin, className: "hover:text-[#0A66C2]" },
+    { href: SOCIALS.github, label: "GitHub", Icon: Github },
+    { href: SOCIALS.behance, label: "Behance", Icon: BehanceIcon },
+    { href: `mailto:${site.email}`, label: "Email", Icon: Mail },
+  ];
 
   return (
-    <footer className="relative overflow-hidden border-t border-white/8 bg-slate-950">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(45,212,191,0.12),transparent_28%),linear-gradient(180deg,#06080f_0%,#0b1018_100%)]" />
+    <footer className="relative overflow-hidden border-t border-white/8 bg-[#10161d]">
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#10161d_0%,#0e141b_100%)]" />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6 pb-12 pt-28 sm:px-8">
-        <div className="flex flex-col items-center text-center">
-          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-teal-300/90 sm:text-sm">
-            Warm, clear, crafted
+      <div className="relative z-10 mx-auto max-w-6xl px-6 pb-12 pt-24 sm:px-8">
+        <div className="mb-12 flex flex-col items-center text-center">
+          <p className="mb-3 text-sm font-medium tracking-[0.12em] text-slate-400 sm:text-base">
+            {about.location}
           </p>
-
-          <h2 className="mb-6 max-w-4xl text-[12vw] font-black uppercase leading-none tracking-[-0.04em] text-white sm:text-[5rem] md:text-[6.5rem]">
-            Clean.<br />Bold.<br />Human.
-          </h2>
-
-          <p className="mb-12 max-w-2xl text-sm leading-7 text-slate-300/75 sm:text-base">
-            Built for studios, collaborators, and recruiters who want to understand
-            both the quality of the work and the person behind it.
-          </p>
-
           <a
-            href={`mailto:${SITE.email}`}
-            className="group mb-16 flex flex-col items-center gap-2 text-slate-300 transition-colors hover:text-teal-200"
+            href={`mailto:${site.email}`}
+            className="group flex flex-col items-center gap-2 text-slate-300 transition-colors hover:text-white"
           >
-            <span className="flex items-center gap-2 text-lg font-medium tracking-wide sm:text-xl">
-              {SITE.email}
-              <svg className="h-5 w-5 -ml-5 opacity-0 transition-all duration-300 group-hover:ml-0 group-hover:opacity-100" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <span className="flex items-center gap-2 text-2xl font-semibold tracking-tight text-white sm:text-[2rem]">
+              {site.email}
+              <svg
+                className="h-5 w-5 -ml-5 opacity-0 transition-all duration-300 group-hover:ml-0 group-hover:opacity-100"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </span>
-            <span className="h-px w-0 bg-teal-500 transition-all duration-500 group-hover:w-full"></span>
+            <span className="h-px w-0 bg-white/60 transition-all duration-500 group-hover:w-full"></span>
           </a>
         </div>
 
@@ -66,10 +68,10 @@ export default function Footer() {
           <div className="flex flex-col items-center gap-3 text-center sm:items-start sm:text-left">
             <span className="flex items-center gap-1.5 text-sm font-medium tracking-wide text-slate-400">
               <MapPin className="h-4 w-4" />
-              {ABOUT.location}
+              {about.location}
             </span>
-            <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs uppercase tracking-[0.18em] text-slate-500 sm:justify-start">
-              {FOOTER_LINKS.map(({ href, label }) => (
+            <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-slate-500 sm:justify-start">
+              {footerLinks.map(({ href, label }) => (
                 <Link key={label} href={href} className="transition-colors hover:text-white">
                   {label}
                 </Link>
@@ -77,15 +79,15 @@ export default function Footer() {
             </nav>
           </div>
 
-          <div className="flex items-center justify-center gap-3">
-            {SOCIAL_LINKS.map(({ href, label, Icon, className = "" }) => (
+        <div className="flex items-center justify-center gap-3">
+            {socialLinks.map(({ href, label, Icon, className = "" }) => (
               <a
                 key={label}
                 href={href}
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                 aria-label={label}
-                className={`flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-400 transition-all duration-300 hover:border-teal-400/40 hover:bg-teal-500/10 hover:text-white hover:shadow-[0_0_18px_rgba(20,184,166,0.24)] ${className}`}
+                className={`flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-400 transition-all duration-300 hover:border-white/18 hover:bg-white/10 hover:text-white ${className}`}
               >
                 <Icon className="h-4 w-4" />
               </a>
@@ -93,8 +95,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="mt-8 border-t border-white/5 pt-8 text-center text-xs font-medium uppercase tracking-[0.22em] text-slate-500">
-          © {year} {brandName}. Built with Next.js & Tailwind.
+        <p className="mt-8 border-t border-white/5 pt-8 text-center text-xs font-medium text-slate-500">
+          &copy; {year} Sang Tran. {copy.common.builtWith}
         </p>
       </div>
     </footer>

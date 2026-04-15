@@ -14,17 +14,26 @@ import { ArrowUpRight } from "lucide-react";
 import { VFX_EXPERIENCE_IMAGE } from "@/data/portfolio";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import TextReveal from "@/components/animations/TextReveal";
-
-const SPECS = [
-  { label: "SHIPPED AAA", value: "Spider-Man 2, Fortnite, New World, Until Dawn" },
-  { label: "TECH STACK", value: "Niagara, HLSL, Houdini, Unreal Engine 5" },
-  { label: "PIPELINE", value: "Python Tools, Perforce Integration" },
-  { label: "EXPERTISE", value: "Cinematic & Real-time In-game VFX" },
-];
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function VFXExperienceSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const prefersReducedMotion = useReducedMotion();
+  const { locale, copy } = useLanguage();
+  const specs =
+    locale === "vi"
+      ? [
+          { label: "AAA ĐÃ SHIP", value: "Spider-Man 2, Fortnite, New World, Until Dawn" },
+          { label: "TECH STACK", value: "Niagara, HLSL, Houdini, Unreal Engine 5" },
+          { label: "PIPELINE", value: "Python tools, tích hợp Perforce" },
+          { label: "CHUYÊN MÔN", value: "Cinematic VFX và real-time in-game VFX" },
+        ]
+      : [
+          { label: "SHIPPED AAA", value: "Spider-Man 2, Fortnite, New World, Until Dawn" },
+          { label: "TECH STACK", value: "Niagara, HLSL, Houdini, Unreal Engine 5" },
+          { label: "PIPELINE", value: "Python Tools, Perforce Integration" },
+          { label: "EXPERTISE", value: "Cinematic & Real-time In-game VFX" },
+        ];
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -62,16 +71,16 @@ export default function VFXExperienceSection() {
               className="mb-12"
             >
               <p className="text-xs font-semibold tracking-[0.2em] text-muted-foreground uppercase mb-4">
-                02 // Experience
+                {copy.home.experienceKicker}
               </p>
               <TextReveal
-                text="Visual Effect"
+                text={copy.home.experienceLineOne}
                 as="h2"
                 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tighter text-foreground leading-[0.9]"
                 offset={["start 0.9", "start 0.6"]}
               />
               <TextReveal
-                text="& Animation."
+                text={copy.home.experienceLineTwo}
                 as="h2"
                 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tighter text-muted-foreground leading-[0.9] mt-1"
                 offset={["start 0.85", "start 0.55"]}
@@ -80,7 +89,7 @@ export default function VFXExperienceSection() {
 
             {/* Editorial Spec List */}
             <div className="flex flex-col border-t border-border/40">
-              {SPECS.map(({ label, value }, i) => (
+              {specs.map(({ label, value }, i) => (
                 <ScrollReveal
                   key={label}
                   variant="fadeUp"
@@ -111,7 +120,7 @@ export default function VFXExperienceSection() {
                 className="group inline-flex items-center gap-2 text-sm font-bold tracking-widest uppercase text-foreground hover:text-primary transition-colors"
               >
                 <span className="relative">
-                  Discover More
+                  {copy.home.discoverMore}
                   <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
                 </span>
                 <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />

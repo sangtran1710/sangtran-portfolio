@@ -10,10 +10,11 @@ import {
   useReducedMotion,
   useInView,
 } from "framer-motion";
-import { HERO, EXPERIENCES } from "@/data/portfolio";
 import { ArrowRight } from "lucide-react";
 import TypewriterTitle from "@/components/animations/TypewriterTitle";
 import MagneticButton from "@/components/ui/MagneticButton";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { getLocalizedExperiences, getLocalizedHero } from "@/lib/portfolio-content";
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -32,6 +33,9 @@ export default function BackstorySection() {
   const [hasVideo, setHasVideo] = useState(true);
   const prefersReducedMotion = useReducedMotion();
   const titleInView = useInView(titleRef, { amount: 0.5, once: false });
+  const { locale, copy } = useLanguage();
+  const hero = getLocalizedHero(locale);
+  const experiences = getLocalizedExperiences(locale);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -64,7 +68,7 @@ export default function BackstorySection() {
       {hasVideo && (
         <motion.video
           ref={videoRef}
-          src={HERO.showreelUrl}
+          src={hero.showreelUrl}
           autoPlay
           muted
           loop
@@ -85,8 +89,8 @@ export default function BackstorySection() {
           className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-center text-slate-900 mb-16 sm:mb-20"
         >
           <TypewriterTitle
-            prefix="My "
-            words={["Backstory", "Journey"]}
+            prefix={copy.home.backstoryPrefix}
+            words={[...copy.home.backstoryWords]}
             prefixClassName="text-slate-900"
             wordClassName="text-teal-600"
             cursorClassName="text-teal-600"
@@ -108,7 +112,7 @@ export default function BackstorySection() {
           />
 
           <ul className="space-y-10 sm:space-y-12">
-            {EXPERIENCES.map((exp, i) => {
+            {experiences.map((exp, i) => {
               const techList = exp.technologies ? exp.technologies.split(",").map(t => t.trim()) : [];
               return (
                 <motion.li
@@ -188,7 +192,7 @@ export default function BackstorySection() {
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.4 }}
         >
-          Always open to new challenges, from Niagara setups and shaders to comprehensive Houdini pipelines and cross-studio environments.
+          {copy.home.backstoryOutro}
         </motion.p>
 
         <motion.div
@@ -202,7 +206,7 @@ export default function BackstorySection() {
             href="/about"
             className="group inline-flex items-center gap-2.5 rounded-full border border-slate-200/70 bg-white px-8 py-3.5 text-sm font-semibold text-slate-700 hover:text-teal-700 transition-all duration-300 ease-out hover:bg-slate-50 hover:border-teal-300 hover:shadow-sm hover:scale-[1.02] active:scale-[0.98]"
           >
-            Read Full Resume
+            {copy.home.backstoryCta}
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2} />
           </MagneticButton>
         </motion.div>

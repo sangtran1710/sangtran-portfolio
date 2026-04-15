@@ -5,8 +5,10 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SocialStrip from "@/components/layout/SocialStrip";
 import ScrollToTop from "@/components/layout/ScrollToTop";
+import SkipToContentLink from "@/components/layout/SkipToContentLink";
 import PageLoader from "@/components/PageLoader";
 import PageTransitionWrapper from "@/components/layout/PageTransitionWrapper";
+import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import { SITE } from "@/data/portfolio";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -70,21 +72,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="min-h-screen font-sans antialiased">
-        <PageLoader />
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:text-sm focus:font-medium"
-        >
-          Skip to main content
-        </a>
-        <Navbar />
-        <main id="main" className="relative">
-          <PageTransitionWrapper>{children}</PageTransitionWrapper>
-        </main>
-        <SocialStrip />
-        <Footer />
-        <ScrollToTop />
-        <Analytics />
+        <LanguageProvider>
+          <PageLoader />
+          <SkipToContentLink />
+          <Navbar />
+          <main id="main" className="relative">
+            <PageTransitionWrapper>{children}</PageTransitionWrapper>
+          </main>
+          <SocialStrip />
+          <Footer />
+          <ScrollToTop />
+          <Analytics />
+        </LanguageProvider>
       </body>
     </html>
   );

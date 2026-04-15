@@ -1,0 +1,114 @@
+{
+  "topic": "english",
+  "title": "Technical English Practice Set",
+  "description": "Backend-scored recall for behavioral answers, tradeoff language, and production-facing English.",
+  "estimatedTime": "9-12 min",
+  "sessionSize": 5,
+  "questions": [
+    {
+      "id": "en-mcq-01",
+      "type": "mcq",
+      "prompt": "Which phrase sounds the most professional when describing a technical issue in review?",
+      "skills": ["Professional English", "Feedback"],
+      "difficulty": "foundation",
+      "answer": "d",
+      "explanation": "The strongest option identifies the risk, explains it calmly, and avoids vague or emotional phrasing.",
+      "options": [
+        { "id": "a", "label": "This shader is bad and should be redone." },
+        { "id": "b", "label": "I do not like this setup at all." },
+        { "id": "c", "label": "Maybe it is kind of inefficient or something." },
+        { "id": "d", "label": "The current setup reads well, but I think the cost is risky for repeated use." }
+      ]
+    },
+    {
+      "id": "en-mcq-02",
+      "type": "mcq",
+      "prompt": "What is the most useful structure for a behavioral answer?",
+      "skills": ["Interview", "Storytelling"],
+      "difficulty": "foundation",
+      "answer": "b",
+      "explanation": "A compact context -> constraint -> action -> result structure keeps answers clear and relevant.",
+      "options": [
+        { "id": "a", "label": "Opinion -> opinion -> conclusion" },
+        { "id": "b", "label": "Context -> constraint -> action -> result" },
+        { "id": "c", "label": "Introduction -> joke -> technical deep dive" },
+        { "id": "d", "label": "Random highlights from the project" }
+      ]
+    },
+    {
+      "id": "en-mcq-03",
+      "type": "mcq",
+      "prompt": "Which word is most appropriate when describing a lower-cost alternative version of a shader?",
+      "skills": ["Terminology"],
+      "difficulty": "foundation",
+      "answer": "c",
+      "explanation": "Fallback is a common production term for a cheaper or safer alternative path.",
+      "options": [
+        { "id": "a", "label": "Decoration" },
+        { "id": "b", "label": "Emotion" },
+        { "id": "c", "label": "Fallback" },
+        { "id": "d", "label": "Improvisation" }
+      ]
+    },
+    {
+      "id": "en-mcq-04",
+      "type": "mcq",
+      "prompt": "Which sentence best communicates a tradeoff without sounding defensive?",
+      "skills": ["Tradeoff communication", "Professional English"],
+      "difficulty": "intermediate",
+      "answer": "a",
+      "explanation": "This phrasing respects the visual goal, states the risk, and offers a practical next move.",
+      "options": [
+        { "id": "a", "label": "The effect reads well, but I think the current cost is risky for repeated use." },
+        { "id": "b", "label": "We cannot do this because it is too annoying to optimize." },
+        { "id": "c", "label": "The art team should lower their expectations." },
+        { "id": "d", "label": "I guess it is maybe too expensive or something." }
+      ]
+    },
+    {
+      "id": "en-mcq-05",
+      "type": "mcq",
+      "prompt": "Which phrase sounds strongest in an interview when explaining your contribution?",
+      "skills": ["Interview", "Ownership"],
+      "difficulty": "intermediate",
+      "answer": "b",
+      "explanation": "This version shows context, action, and impact without sounding like you are claiming the entire project alone.",
+      "options": [
+        { "id": "a", "label": "I basically saved the whole project by myself." },
+        { "id": "b", "label": "I built a small tool that reduced iteration time for the artists." },
+        { "id": "c", "label": "I did a lot of things and everyone liked it." },
+        { "id": "d", "label": "I am good at many software packages." }
+      ]
+    },
+    {
+      "id": "en-mcq-06",
+      "type": "mcq",
+      "prompt": "When speaking to an international team, which term is most useful for describing a slow content pipeline?",
+      "skills": ["Terminology", "Pipeline communication"],
+      "difficulty": "foundation",
+      "answer": "d",
+      "explanation": "Iteration time is a precise and common production phrase for how long it takes to test and revise work.",
+      "options": [
+        { "id": "a", "label": "Decoration speed" },
+        { "id": "b", "label": "Emotional pacing" },
+        { "id": "c", "label": "Visual excitement" },
+        { "id": "d", "label": "Iteration time" }
+      ]
+    },
+    {
+      "id": "en-mcq-07",
+      "type": "mcq",
+      "prompt": "Which sentence sounds most senior when proposing a compromise for low-end hardware?",
+      "skills": ["Tradeoff communication", "Professional English"],
+      "difficulty": "advanced",
+      "answer": "c",
+      "explanation": "This answer keeps the visual goal, acknowledges hardware limits, and proposes a scalable solution.",
+      "options": [
+        { "id": "a", "label": "We should just remove the whole effect." },
+        { "id": "b", "label": "The effect is cool but probably impossible." },
+        { "id": "c", "label": "We can keep the hero version and add a cheaper fallback for broader use." },
+        { "id": "d", "label": "The hardware is bad, so there is nothing to do." }
+      ]
+    }
+  ]
+}

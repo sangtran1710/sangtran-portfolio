@@ -10,25 +10,25 @@
 
 @layer base {
   :root {
-    --background: 42 33% 97%;
-    --foreground: 222 28% 12%;
+    --background: 35 28% 95%;
+    --foreground: 220 19% 14%;
     --card: 0 0% 100%;
-    --card-foreground: 222 28% 12%;
+    --card-foreground: 220 19% 14%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 28% 12%;
-    --primary: 173 61% 38%;
+    --popover-foreground: 220 19% 14%;
+    --primary: 176 42% 39%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 42 18% 93%;
-    --secondary-foreground: 222 28% 12%;
-    --muted: 42 22% 94%;
-    --muted-foreground: 220 10% 38%;
-    --accent: 173 61% 38%;
+    --secondary: 36 24% 91%;
+    --secondary-foreground: 220 19% 14%;
+    --muted: 34 24% 92%;
+    --muted-foreground: 220 10% 42%;
+    --accent: 176 42% 39%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 40 17% 85%;
-    --input: 40 17% 85%;
-    --ring: 173 61% 38%;
+    --border: 33 18% 84%;
+    --input: 33 18% 84%;
+    --ring: 176 42% 39%;
     --radius: 1rem;
   }
 }
@@ -41,16 +41,16 @@
   body {
     @apply text-foreground;
     background:
-      radial-gradient(circle at top left, rgba(45, 212, 191, 0.14), transparent 24%),
-      radial-gradient(circle at top right, rgba(244, 114, 182, 0.08), transparent 22%),
-      linear-gradient(180deg, #08090f 0%, #0a0c13 22%, #f8f4ec 22%, #f8f4ec 100%);
+      radial-gradient(circle at top left, rgba(70, 148, 143, 0.12), transparent 24%),
+      radial-gradient(circle at top right, rgba(255, 255, 255, 0.18), transparent 18%),
+      linear-gradient(180deg, #10161c 0%, #161c23 12%, #f6f2eb 12%, #f6f2eb 100%);
     font-feature-settings: "rlig" 1, "calt" 1;
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   /* Custom text selection */
   ::selection {
-    @apply bg-teal-500/30 text-teal-50;
+    @apply bg-teal-500/20 text-slate-950;
   }
 
   /* Custom sleek scrollbar */
@@ -60,11 +60,11 @@
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-zinc-950 border-l border-white/5;
+    @apply bg-stone-100 border-l border-stone-200;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-zinc-800 rounded-full border-2 border-solid border-zinc-950 hover:bg-zinc-700 transition-colors;
+    @apply bg-stone-300 rounded-full border-2 border-solid border-stone-100 hover:bg-stone-400 transition-colors;
   }
 }
 
@@ -82,21 +82,21 @@
 }
 
 .glass-panel {
-  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.82));
-  border: 1px solid rgba(148, 163, 184, 0.15);
+  background: linear-gradient(180deg, rgba(255, 251, 245, 0.96), rgba(255, 251, 245, 0.88));
+  border: 1px solid rgba(214, 206, 192, 0.8);
   box-shadow:
-    0 24px 60px rgba(15, 23, 42, 0.08),
-    inset 0 1px 0 rgba(255,255,255,0.7);
-  backdrop-filter: blur(20px);
+    0 16px 40px rgba(15, 23, 42, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
 }
 
 .dark-glass-panel {
-  background: linear-gradient(180deg, rgba(14,18,29,0.86), rgba(11,15,24,0.72));
-  border: 1px solid rgba(255,255,255,0.08);
+  background: linear-gradient(180deg, rgba(27, 34, 42, 0.92), rgba(21, 28, 36, 0.88));
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow:
-    0 24px 60px rgba(0,0,0,0.35),
-    inset 0 1px 0 rgba(255,255,255,0.06);
-  backdrop-filter: blur(18px);
+    0 16px 40px rgba(15, 23, 42, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
 }
 
 html {

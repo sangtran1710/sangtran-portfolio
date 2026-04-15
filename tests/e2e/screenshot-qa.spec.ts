@@ -32,6 +32,7 @@ test.describe("UI screenshot QA", () => {
       { route: "/portfolio", selector: "main section:first-of-type", name: "portfolio-intro-desktop" },
       { route: "/portfolio", selector: "article:first-of-type", name: "portfolio-card-desktop" },
       { route: "/about", selector: "main > div", name: "about-desktop" },
+      { route: "/about", selector: "#featured-credits", name: "about-credits-desktop" },
     ];
 
     for (const shot of shots) {
