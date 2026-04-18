@@ -21,7 +21,7 @@ export default function Footer() {
     { href: "/", label: copy.nav.home },
     { href: "/showreel", label: "Showreel" },
     { href: "/portfolio", label: copy.nav.portfolio },
-    { href: "/blog", label: copy.nav.blog },
+    { href: "/articles", label: copy.nav.blog },
     { href: "/about", label: copy.nav.about },
     { href: "/#contact", label: copy.home.contactTitle },
   ];

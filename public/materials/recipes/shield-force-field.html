@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shield / Force Field for UE5</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="material-body">
+  <header class="material-header">
+    <div>
+      <p class="eyebrow">UE5 / Recipe / Reactive Shield</p>
+      <h1>Shield / Force Field for UE5</h1>
+      <p>
+        A practical shield material built from Fresnel, surface pattern, hit masks, pulse rings,
+        depth fade, and optional distortion. The best version is not always bright. It is readable when something hits it.
+      </p>
+    </div>
+
+    <section class="engine-board engine-board-compact" aria-label="Document status">
+      <article class="engine-card engine-card-active">
+        <span class="engine-badge">Recipe baseline</span>
+        <h2>Read this first</h2>
+        <p>
+          A shield is more about response than constant glow. Keep the idle state subtle, then spend your brightness budget
+          on the rim, intersection line, and hit reaction.
+        </p>
+      </article>
+    </section>
+
+    <nav class="material-top-links" aria-label="Page links"><a href="/materials/index.html">Portal</a><a href="/materials/ue5.html">UE5 Library</a><a href="#target">Target</a><a href="#use-cases">Use Cases</a><a href="#model">Mental Model</a><a href="#graph">Graph Steps</a><a href="#controls">Controls</a><a href="#hlsl">HLSL</a><a href="#senior-notes">Senior Notes</a></nav>
+  </header>
+
+  <main class="material-layout">
+    <aside class="material-sidebar"><p class="mini-label">Recipe map</p><a href="#target">01. Visual Target</a><a href="#use-cases">02. Use Cases</a><a href="#model">03. Mental Model</a><a href="#graph">04. Graph Steps</a><a href="#controls">05. Artist Controls</a><a href="#hlsl">06. HLSL Sketch</a><a href="#senior-notes">07. Senior Notes</a><a href="#troubleshooting">08. Troubleshooting</a><a href="#related">09. Related Pages</a></aside>
+
+    <section class="material-content">
+      <section id="target" class="material-section">
+        <p class="section-kicker">01</p>
+        <h2>Visual Target</h2>
+        <div class="section-meta">
+          <span class="section-chip">Fresnel</span>
+          <span class="section-chip">Hit Reactive</span>
+          <span class="section-chip">Transparent VFX</span>
+        </div>
+        <div class="material-callout">
+          <strong>What we are building:</strong> a transparent force field with a strong rim, readable impact area,
+          subtle surface pattern, and enough opacity control to avoid covering the character or enemy behind it.
+        </div>
+        <section class="material-visual-hero" aria-label="Visual anchor">
+          <div class="material-hero-frame">
+            <img src="/assets/materials/recipes/shield-force-field-pilot-01.png" alt="Shield Force Field visual anchor.">
+            <p class="material-hero-caption">
+              The shield should be quiet until it needs attention. Rim, pattern, and hit pulse should feel like three layers, not one bright blob.
+            </p>
+          </div>
+        </section>
+      </section>
+
+      <section id="use-cases" class="material-section">
+        <p class="section-kicker">02</p>
+        <h2>Use Cases</h2>
+        <div class="recipe-grid">
+          <article>
+            <span>Character</span>
+            <strong>Personal shield</strong>
+            <small>A sphere or capsule around a player, boss, drone, or objective that needs a readable defensive state.</small>
+          </article>
+          <article>
+            <span>Gameplay</span>
+            <strong>Hit reaction</strong>
+            <small>Use a hit position and pulse value to show where the shield was struck without flashing the whole surface.</small>
+          </article>
+          <article>
+            <span>World</span>
+            <strong>Barrier wall</strong>
+            <small>A larger plane or curved mesh for arena boundaries, doors, sci-fi gates, or temporary blockers.</small>
+          </article>
+        </div>
+        <div class="quote-box">
+          <strong>Do not use this as-is</strong> for huge screen-filling translucent walls without overdraw testing.
+          Transparent shields can become expensive long before the graph looks complicated.
+        </div>
+      </section>
+
+      <section id="model" class="material-section">
+        <p class="section-kicker">03</p>
+        <h2>Mental Model</h2>
+        <div class="material-grid">
+          <article>
+            <h3>Build it as four signals</h3>
+            <ul>
+              <li><strong>Shell:</strong> base opacity and subtle color across the shield surface.</li>
+              <li><strong>Edge:</strong> Fresnel rim that defines the silhouette.</li>
+              <li><strong>Response:</strong> hit mask and pulse ring that tell the player what happened.</li>
+              <li><strong>Contact:</strong> intersection or depth fade line where the shield meets geometry.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Idle should not compete with combat</h3>
+            <p>
+              A beginner shield often glows everywhere all the time. That feels strong in a preview window,
+              but in gameplay it hides characters, weapons, and silhouettes. Let the hit state carry the drama.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="graph" class="material-section">
+        <p class="section-kicker">04</p>
+        <h2>Graph Steps</h2>
+        <div class="pipeline-diagram" aria-label="Shield graph flow">
+          <span>Fresnel rim</span>
+          <span>Pattern mask</span>
+          <span>Hit position</span>
+          <span>Pulse ring</span>
+          <span>Depth fade</span>
+          <span>Emission + alpha</span>
+        </div>
+        <div class="material-topic-stack">
+          <article>
+            <h3>1. Start with a Fresnel shell</h3>
+            <p>
+              Fresnel gives the shield a strong rim at glancing angles and a softer center when viewed head-on.
+              This is the cheapest way to make a transparent bubble feel volumetric.
+            </p>
+            <p><strong>Beginner check:</strong> preview only the Fresnel. If the silhouette is not readable here, the final shield will not be readable either.</p>
+          </article>
+          <article>
+            <h3>2. Add a surface pattern</h3>
+            <p>
+              Use hex, grid, Voronoi, or controlled noise. Keep it subtle in idle. Pattern should imply technology or magic;
+              it should not cover the whole shield like wallpaper.
+            </p>
+          </article>
+          <article>
+            <h3>3. Feed in hit position</h3>
+            <p>
+              For a sphere shield, pass a world-space hit position through a Dynamic Material Instance,
+              Material Parameter Collection, Niagara parameter, or Blueprint event. Convert that into a local distance mask.
+            </p>
+          </article>
+          <article>
+            <h3>4. Turn the hit into a pulse ring</h3>
+            <p>
+              A single bright spot looks like a decal. A ring that expands and fades feels like energy spreading through the shield.
+              Drive radius over time and keep width as a separate control.
+            </p>
+          </article>
+          <article>
+            <h3>5. Use depth fade for contact</h3>
+            <p>
+              DepthFade can create a clean line where the shield intersects geometry. This helps sell that the shield is in the world,
+              not just painted over the camera.
+            </p>
+          </article>
+          <article>
+            <h3>6. Separate opacity from emission</h3>
+            <p>
+              The hit pulse can be very bright while the base shell stays transparent. Separate outputs make the shield easier to tune
+              for gameplay visibility.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="controls" class="material-section">
+        <p class="section-kicker">05</p>
+        <h2>Artist Controls</h2>
+        <div class="material-link-grid">
+          <article>
+            <span>Edge</span>
+            <strong>Rim Power</strong>
+            <small>Higher values make a thinner rim. Lower values spread the glow across the shell.</small>
+          </article>
+          <article>
+            <span>Alpha</span>
+            <strong>Shell Opacity</strong>
+            <small>Base transparency. Keep this conservative if gameplay silhouettes matter.</small>
+          </article>
+          <article>
+            <span>Pattern</span>
+            <strong>Pattern Scale</strong>
+            <small>Large patterns feel magical or readable. Tiny patterns often shimmer in motion.</small>
+          </article>
+          <article>
+            <span>Hit</span>
+            <strong>Hit Radius / Width</strong>
+            <small>Controls the size and thickness of the reaction ring.</small>
+          </article>
+          <article>
+            <span>Timing</span>
+            <strong>Pulse Age</strong>
+            <small>Usually driven by Blueprint or Niagara. It decides where the expanding ring currently is.</small>
+          </article>
+          <article>
+            <span>Cost</span>
+            <strong>Distortion Strength</strong>
+            <small>Make it optional. Many shields only need distortion during impact.</small>
+          </article>
+        </div>
+      </section>
+
+      <section id="hlsl" class="material-section">
+        <p class="section-kicker">06</p>
+        <h2>HLSL Sketch</h2>
+        <pre class="code-block"><code>float fresnel = pow(1.0 - saturate(dot(WorldNormal, ViewDir)), RimPower);
+
+float pattern = PatternTexture.Sample(Sampler, WorldPos.xz * PatternScale + Time * PatternSpeed).r;
+pattern = smoothstep(PatternThreshold, PatternThreshold + PatternSoftness, pattern);
+
+float hitDistance = distance(WorldPos, HitPosition);
+float hitRing = 1.0 - abs(hitDistance - PulseAge) / PulseWidth;
+hitRing = saturate(hitRing) * saturate(1.0 - PulseAge * PulseFade);
+
+float contact = DepthFade(ContactDistance);
+
+float shell = ShellOpacity + fresnel * RimOpacity + pattern * PatternOpacity;
+float3 color = ShieldColor * shell + HitColor * hitRing + RimColor * fresnel;
+float emission = BaseEmission + fresnel * RimEmission + hitRing * HitEmission + contact * ContactEmission;
+
+return float4(color * emission, saturate(shell + hitRing + contact));</code></pre>
+      </section>
+
+      <section id="senior-notes" class="material-section">
+        <p class="section-kicker">07</p>
+        <h2>Senior Notes</h2>
+        <div class="material-grid">
+          <article>
+            <h3>Overdraw is the real enemy</h3>
+            <p>
+              A transparent sphere around a character can cover a lot of pixels. Test with shader complexity view,
+              especially if multiple shields overlap or the camera gets close.
+            </p>
+          </article>
+          <article>
+            <h3>Choose the right data path for hit response</h3>
+            <p>
+              Dynamic Material Instances are simple for one actor. Material Parameter Collections are convenient but global.
+              Niagara user parameters are often cleaner for particle-driven shield impacts.
+            </p>
+          </article>
+          <article>
+            <h3>Depth fade can be art-directed</h3>
+            <p>
+              Use it as a contact highlight, not only as a transparency fix. A subtle intersection line can make the shield feel anchored.
+            </p>
+          </article>
+          <article>
+            <h3>Make a cheap fallback</h3>
+            <p>
+              Background shields may only need Fresnel and a slow pattern. Save hit pulses, distortion, and extra texture samples for hero moments.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="troubleshooting" class="material-section">
+        <p class="section-kicker">08</p>
+        <h2>Troubleshooting</h2>
+        <div class="material-grid">
+          <article>
+            <h3>The shield is always too bright</h3>
+            <p>Lower shell opacity first, not rim emission. The idle state should leave room for impact brightness.</p>
+          </article>
+          <article>
+            <h3>The hit is hard to see</h3>
+            <p>Increase ring width or contrast, and make sure the hit color is separated from the base shield color.</p>
+          </article>
+          <article>
+            <h3>The pattern swims on the mesh</h3>
+            <p>Use stable world-space or object-space mapping. Screen-space motion can look detached from the shield surface.</p>
+          </article>
+          <article>
+            <h3>The shield sorts incorrectly</h3>
+            <p>Transparent sorting can fail with overlapping geometry. Simplify overlap, split meshes, or review translucency sort priority.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="related" class="material-section">
+        <p class="section-kicker">09</p>
+        <h2>Related Pages</h2>
+        <div class="material-link-grid">
+          <a href="/materials/core-packs/edge-response-pack.html"><span>Core Pack</span><strong>Edge Response Pack</strong><small>Fresnel, depth fade, intersection highlights, and rim shaping for the shield silhouette.</small></a>
+          <a href="/materials/core-packs/distortion-pack.html"><span>Core Pack</span><strong>Distortion Pack</strong><small>Add this only for moments that need temporary refraction or shockwave warping.</small></a>
+          <a href="/materials/recipes/magic-energy.html"><span>Recipe</span><strong>Magic Energy</strong><small>Useful for shared color, emission, and charge-up language.</small></a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/materials/material-doc.js"></script>
+</body>
+</html>

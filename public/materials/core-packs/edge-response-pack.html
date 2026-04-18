@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Edge Response Pack for UE5</title><link rel="stylesheet" href="/styles.css"></head>
+<body class="material-body">
+  <header class="material-header">
+    <div><p class="eyebrow">UE5 / Core Pack</p><h1>Edge Response Pack for UE5</h1><p>View and contact response logic for Fresnel, rim light, depth fade, intersection highlights, and edge shaping.</p></div>
+    <section class="engine-board engine-board-compact" aria-label="Document status"><article class="engine-card engine-card-active"><span class="engine-badge">UE5 first</span><h2>Core Pack</h2><p>UE5 is the source of truth here. Keep the graph readable first, then branch into project-specific versions only when the base is proven.</p></article></section>
+    <nav class="material-top-links" aria-label="Page links"><a href="/materials/index.html">Portal</a><a href="/materials/ue5.html">UE5 Library</a><a href="#goal">Goal</a><a href="#use-cases">Use Cases</a><a href="#blocks">Blocks</a><a href="#graph">Graph</a><a href="#hlsl">HLSL</a><a href="#production">Production</a><a href="#related">Related</a></nav>
+  </header>
+  <main class="material-layout"><aside class="material-sidebar"><p class="mini-label">Doc map</p><a href="#goal">01. Goal</a><a href="#use-cases">02. Use Cases</a><a href="#blocks">03. Core Blocks</a><a href="#graph">04. Node Graph</a><a href="#hlsl">05. HLSL Equivalent</a><a href="#parameters">06. Artist Controls</a><a href="#production">07. Production Notes</a><a href="#related">08. Related Pages</a></aside>
+    <section class="material-content">
+      <section id="goal" class="material-section"><p class="section-kicker">01</p><h2>Goal</h2><div class="section-meta"><span class="section-chip">UE5</span><span class="section-chip">Core Pack</span><span class="section-chip">Reusable</span></div><div class="material-callout"><strong>Target:</strong> View and contact response logic for Fresnel, rim light, depth fade, intersection highlights, and edge shaping.</div></section>
+      <section id="use-cases" class="material-section"><p class="section-kicker">02</p><h2>Use Cases</h2><div class="recipe-grid">
+          <article><span>Core Pack</span><strong>Force fields and shields</strong><small>Good for view-angle rims, contact lines, and hit highlights that define a transparent surface.</small></article>
+          <article><span>Core Pack</span><strong>Holograms</strong><small>Adds edge readability so transparent blue surfaces do not vanish in bright scenes.</small></article>
+          <article><span>Core Pack</span><strong>Magic silhouettes and contact highlights</strong><small>Use when the effect needs a controlled outline or ground contact cue without adding geometry.</small></article>
+        </div></section>
+      <section id="blocks" class="material-section"><p class="section-kicker">03</p><h2>Core Blocks</h2><div class="material-topic-stack">
+            <article><h3>1. Fresnel response</h3><p>Use this to protect the silhouette first. Edge response should help the form read before it becomes decoration.</p><p><strong>Why:</strong> rims and contact lines are usually the cheapest readability fix in a busy scene.</p></article>
+            <article><h3>2. Rim masks</h3><p>Use this to protect the silhouette first. Edge response should help the form read before it becomes decoration.</p><p><strong>Why:</strong> rims and contact lines are usually the cheapest readability fix in a busy scene.</p></article>
+            <article><h3>3. Depth fade</h3><p>Use this to protect the silhouette first. Edge response should help the form read before it becomes decoration.</p><p><strong>Why:</strong> rims and contact lines are usually the cheapest readability fix in a busy scene.</p></article>
+            <article><h3>4. Intersection glow</h3><p>Use this to protect the silhouette first. Edge response should help the form read before it becomes decoration.</p><p><strong>Why:</strong> rims and contact lines are usually the cheapest readability fix in a busy scene.</p></article>
+            <article><h3>5. Edge color and intensity</h3><p>Use this to protect the silhouette first. Edge response should help the form read before it becomes decoration.</p><p><strong>Why:</strong> rims and contact lines are usually the cheapest readability fix in a busy scene.</p></article>
+        </div></section>
+      <section id="graph" class="material-section"><p class="section-kicker">04</p><h2>Node Graph Flow</h2><div class="pipeline-diagram" aria-label="Material graph flow"><span>Input data</span><span>Shape signal</span><span>Animate</span><span>Remap color</span><span>Control alpha</span><span>Output</span></div><div class="material-grid"><article><h3>Start from the signal</h3><p>Get a clean black-and-white read first; color, glow, and distortion should only support that read.</p></article><article><h3>Expose decisions</h3><p>Every exposed value should answer a real art question: how fast, how wide, how bright, how soft.</p></article></div></section>
+      <section id="hlsl" class="material-section"><p class="section-kicker">05</p><h2>HLSL Equivalent</h2><pre class="code-block"><code>float shaped = smoothstep(threshold - softness, threshold + softness, inputMask);
+float edge = shaped * (1.0 - smoothstep(edgeWidth, edgeWidth + softness, abs(inputMask - threshold)));
+return float2(shaped, edge);</code></pre></section>
+      <section id="parameters" class="material-section"><p class="section-kicker">06</p><h2>Artist Controls</h2><div class="material-link-grid"><article><span>Color</span><strong>Primary and edge color</strong><small>Keep hue separate from brightness so the palette can change without blowing out the material.</small></article><article><span>Shape</span><strong>Threshold and softness</strong><small>Controls where the effect appears and whether the edge feels graphic, soft, or broken.</small></article><article><span>Motion</span><strong>Speed and phase</strong><small>Phase offsets keep repeated instances from moving in lockstep.</small></article></div></section>
+      <section id="production" class="material-section"><p class="section-kicker">07</p><h2>Production Notes</h2><div class="quote-box"><strong>Production check:</strong> keep the read clean, then measure cost in the scene where it actually ships.</div><ul><li>Preview masks by themselves before judging the finished color.</li><li>Name parameters the way an artist would search for them in a Material Instance.</li><li>Keep a cheaper instance for background, crowd, or repeated usage.</li><li>Write down the gotchas while they are still fresh.</li></ul></section>
+      <section id="related" class="material-section"><p class="section-kicker">08</p><h2>Related Pages</h2><div class="material-link-grid">
+          <a href="/materials/core-packs/uv-motion-pack.html"><span>Core Pack</span><strong>UV Motion Pack</strong><small>Reusable UV animation logic for panners, rotation, polar flow, directional streaks, and time-based pulses.</small></a>
+          <a href="/materials/core-packs/mask-shaping-pack.html"><span>Core Pack</span><strong>Mask Shaping Pack</strong><small>Reusable shaping logic for thresholds, smoothstep masks, radial masks, sphere masks, and controllable edge bands.</small></a>
+          <a href="/materials/core-packs/distortion-pack.html"><span>Core Pack</span><strong>Distortion Pack</strong><small>Reusable distortion logic for heat wobble, radial pull, screen-space offsets, layered refraction, and masked distortion.</small></a>
+        </div></section>
+    </section>
+  </main><script src="/materials/material-doc.js"></script>
+</body></html>
+

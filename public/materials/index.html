@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ShaderLex Material Library</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="material-body" data-page="shaderlex-landing" data-shaderlex-lang="en">
+  <header class="material-header material-header-library shaderlex-header">
+    <div>
+      <p class="eyebrow" data-i18n="eyebrow">ShaderLex / Material Library</p>
+      <h1>ShaderLex</h1>
+      <p data-i18n="intro">
+        A practical study hub for stylized, anime, semi-realistic, and realistic materials. Pick a lane, inspect the recipe family, then open the supporting logic only when you need it.
+      </p>
+    </div>
+
+    <div class="shaderlex-header-controls">
+      <div class="shaderlex-language-toggle" role="group" aria-label="Language switch">
+        <button type="button" class="is-active" data-lang-toggle="en">English</button>
+        <button type="button" data-lang-toggle="vi">Vietnamese</button>
+      </div>
+
+      <nav class="shaderlex-header-actions" aria-label="Top actions">
+        <a href="/materials/ue5.html" data-i18n-compact="top.ue5">UE5 Hub</a>
+        <a href="/materials/style/style-roadmap.html" data-i18n-compact="top.roadmap">Style Roadmap</a>
+        <a href="/materials/recipes/magic-energy.html" data-i18n-compact="top.recipe">Magic Energy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="material-layout material-layout-portal shaderlex-landing">
+    <section class="shaderlex-visual-hero" aria-labelledby="visual-hero-title">
+      <a class="shaderlex-visual-card" href="/assets/materials/generated/shaderlex-hero-learning-map-v3.png" aria-label="Open ShaderLex visual board">
+        <img
+          class="shaderlex-hero-image"
+          src="/assets/materials/generated/shaderlex-hero-learning-map-v3.png"
+          alt="ShaderLex visual board showing stylized material lanes, graph logic, and HLSL study flow"
+        >
+      </a>
+
+      <aside class="shaderlex-hero-panel">
+        <p class="section-kicker" data-i18n="hero.kicker">Image-led start</p>
+        <h2 id="visual-hero-title" data-i18n="hero.title">Use the visual board first. Open the text only when you need the build steps.</h2>
+        <p data-i18n="hero.body">
+          ShaderLex works best as a visual index: pick a style lane, jump into a recipe, then read the core logic behind it. The image slot is the anchor for style direction and future generated diagrams.
+        </p>
+
+        <div class="shaderlex-hero-actions">
+          <a href="/materials/style/style-roadmap.html" data-i18n-compact="hero.action.style">Choose a style lane</a>
+          <a href="/materials/recipes/magic-energy.html" data-i18n-compact="hero.action.recipe">Open a recipe</a>
+          <a href="/materials/core-packs/uv-motion-pack.html" data-i18n-compact="hero.action.core">Read core logic</a>
+        </div>
+      </aside>
+    </section>
+
+    <section class="shaderlex-section shaderlex-study-section" aria-labelledby="study-mode-title">
+      <div class="shaderlex-section-head shaderlex-section-head-row">
+        <div>
+          <p class="section-kicker" data-i18n="study.kicker">Study mode</p>
+          <h2 id="study-mode-title" data-i18n="study.title">Read the library the way technical artists actually learn</h2>
+        </div>
+      </div>
+
+      <div class="shaderlex-study-grid">
+        <article class="shaderlex-study-card">
+          <span class="shaderlex-study-card-kicker" data-i18n="study.mode.kicker">Language workflow</span>
+          <strong data-i18n="study.mode.title">English is the source, Vietnamese is the support layer</strong>
+          <p data-i18n="study.mode.body">
+            Use English when you want production-standard terminology. Switch to Vietnamese when you need a faster mental model without losing the original technical terms.
+          </p>
+        </article>
+
+        <article class="shaderlex-study-card">
+          <span class="shaderlex-study-card-kicker" data-i18n="study.rules.kicker">Single source of truth</span>
+          <strong data-i18n="study.rules.title">Node names and HLSL stay in English</strong>
+          <p data-i18n="study.rules.body">
+            Shader code, node names, and engine terms should remain stable. Only the explanation layer changes language, so the page teaches without splitting the technical source.
+          </p>
+        </article>
+      </div>
+
+      <div class="shaderlex-glossary-head">
+        <p class="section-kicker" data-i18n="terms.kicker">Hybrid terminology</p>
+        <p class="shaderlex-glossary-note" data-i18n="terms.note">
+          Hover a term to see how ShaderLex bridges technical English and Vietnamese explanation.
+        </p>
+      </div>
+
+      <div class="shaderlex-glossary-grid" role="list" aria-label="Terminology bridge">
+        <button class="shaderlex-term-chip" type="button" data-term-key="draw-calls">
+          <span class="shaderlex-term-name">Draw Calls</span>
+          <span class="shaderlex-term-tooltip" aria-hidden="true"></span>
+        </button>
+        <button class="shaderlex-term-chip" type="button" data-term-key="vertex-normal">
+          <span class="shaderlex-term-name">Vertex Normal</span>
+          <span class="shaderlex-term-tooltip" aria-hidden="true"></span>
+        </button>
+        <button class="shaderlex-term-chip" type="button" data-term-key="material-instance">
+          <span class="shaderlex-term-name">Material Instance</span>
+          <span class="shaderlex-term-tooltip" aria-hidden="true"></span>
+        </button>
+        <button class="shaderlex-term-chip" type="button" data-term-key="cheap-contrast">
+          <span class="shaderlex-term-name">Cheap Contrast</span>
+          <span class="shaderlex-term-tooltip" aria-hidden="true"></span>
+        </button>
+        <button class="shaderlex-term-chip" type="button" data-term-key="world-aligned-texture">
+          <span class="shaderlex-term-name">World Aligned Texture</span>
+          <span class="shaderlex-term-tooltip" aria-hidden="true"></span>
+        </button>
+        <button class="shaderlex-term-chip" type="button" data-term-key="instruction-count">
+          <span class="shaderlex-term-name">Instruction Count</span>
+          <span class="shaderlex-term-tooltip" aria-hidden="true"></span>
+        </button>
+      </div>
+    </section>
+
+    <section class="shaderlex-section" aria-labelledby="start-task-title">
+      <div class="shaderlex-section-head">
+        <p class="section-kicker" data-i18n="start.kicker">Start by task</p>
+        <h2 id="start-task-title" data-i18n="start.title">Open the right kind of page first</h2>
+      </div>
+
+      <div class="shaderlex-start-grid">
+        <a class="shaderlex-start-card" href="/materials/recipes/magic-energy.html">
+          <span class="shaderlex-start-icon shaderlex-start-icon-warm">R</span>
+          <strong data-i18n="start.recipe.title">Build an effect now</strong>
+          <p data-i18n="start.recipe.body">Open a recipe when you already know the effect you want to build and need graph order, controls, and HLSL quickly.</p>
+          <small data-i18n-compact="start.recipe.meta">Magic Energy, Water, Shield, Portal</small>
+        </a>
+
+        <a class="shaderlex-start-card" href="/materials/core-packs/uv-motion-pack.html">
+          <span class="shaderlex-start-icon shaderlex-start-icon-blue">C</span>
+          <strong data-i18n="start.core.title">Reuse graph logic</strong>
+          <p data-i18n="start.core.body">Open a Core Pack when the problem is really UV motion, masking, edge response, distortion, or runtime control.</p>
+          <small data-i18n-compact="start.core.meta">UV Motion, Mask Shaping, Edge Response</small>
+        </a>
+
+        <a class="shaderlex-start-card" href="/materials/style/style-roadmap.html">
+          <span class="shaderlex-start-icon shaderlex-start-icon-ink">S</span>
+          <strong data-i18n="start.style.title">Choose the visual lane</strong>
+          <p data-i18n="start.style.body">Open the style pages first when the look is still undecided and you need to compare stylized, anime, semi-realistic, and realistic directions.</p>
+          <small data-i18n-compact="start.style.meta">Stylized, Anime, Semi-Realistic, Realistic</small>
+        </a>
+
+        <a class="shaderlex-start-card" href="/materials/production-notes/anime-face-shadow-map.html">
+          <span class="shaderlex-start-icon shaderlex-start-icon-olive">P</span>
+          <strong data-i18n="start.production.title">Solve a production issue</strong>
+          <p data-i18n="start.production.body">Open Production Notes when the recipe is fine in theory but the shot breaks because of face lighting, rim control, or camera-specific artifacts.</p>
+          <small data-i18n-compact="start.production.meta">Face Shadow Map, Outline / Rim Control</small>
+        </a>
+      </div>
+    </section>
+
+    <section class="shaderlex-section shaderlex-lanes-section" aria-labelledby="style-lanes-title">
+      <div class="shaderlex-section-head shaderlex-section-head-row">
+        <div>
+          <p class="section-kicker" data-i18n="lanes.kicker">Style lanes</p>
+          <h2 id="style-lanes-title" data-i18n="lanes.title">Pick the visual lane first</h2>
+        </div>
+        <a class="portal-small-link" href="/materials/style/style-roadmap.html" data-i18n-compact="lanes.cta">Open full style roadmap</a>
+      </div>
+
+      <div class="shaderlex-lane-grid">
+        <a class="shaderlex-lane-card shaderlex-lane-card-stylized" href="/materials/style/stylized.html">
+          <span class="shaderlex-lane-kicker" data-i18n="lane.stylized.kicker">Style lane</span>
+          <strong data-i18n-compact="lane.stylized.title">Stylized</strong>
+          <p data-i18n="lane.stylized.body">Readable shapes, authored masks, grouped values, and strong art direction.</p>
+          <small data-i18n="lane.stylized.meta">Water, lava, runes, readable VFX surfaces</small>
+        </a>
+
+        <a class="shaderlex-lane-card shaderlex-lane-card-anime" href="/materials/style/anime-cel-shader.html">
+          <span class="shaderlex-lane-kicker" data-i18n="lane.anime.kicker">Current focus</span>
+          <strong data-i18n-compact="lane.anime.title">Anime / Cel Shader</strong>
+          <p data-i18n="lane.anime.body">Controlled shadow bands, face-friendly lighting, outline support, and strict value grouping.</p>
+          <small data-i18n="lane.anime.meta">Skin, hair, eyes, face planes, cel base</small>
+        </a>
+
+        <a class="shaderlex-lane-card shaderlex-lane-card-semi" href="/materials/style/semi-realistic.html">
+          <span class="shaderlex-lane-kicker" data-i18n="lane.semi.kicker">Bridge lane</span>
+          <strong data-i18n-compact="lane.semi.title">Semi-Realistic</strong>
+          <p data-i18n="lane.semi.body">Keep stylized readability while moving toward believable material response.</p>
+          <small data-i18n="lane.semi.meta">Skin, cloth, grounded characters, hybrid lookdev</small>
+        </a>
+
+        <a class="shaderlex-lane-card shaderlex-lane-card-realistic" href="/materials/style/realistic.html">
+          <span class="shaderlex-lane-kicker" data-i18n="lane.realistic.kicker">Grounded lane</span>
+          <strong data-i18n-compact="lane.realistic.title">Realistic</strong>
+          <p data-i18n="lane.realistic.body">PBR discipline, correct scale, packed maps, and predictable lighting behavior.</p>
+          <small data-i18n="lane.realistic.meta">PBR surfaces, terrain, wetness, production-safe baselines</small>
+        </a>
+      </div>
+    </section>
+
+    <section class="shaderlex-section" aria-labelledby="recipe-families-title">
+      <div class="shaderlex-section-head shaderlex-section-head-row">
+        <div>
+          <p class="section-kicker" data-i18n="families.kicker">Recipe families</p>
+          <h2 id="recipe-families-title" data-i18n="families.title">Open a material family directly</h2>
+        </div>
+        <a class="portal-small-link" href="/materials/ue5.html#recipes" data-i18n-compact="families.cta">Open full recipe index</a>
+      </div>
+
+      <div class="shaderlex-family-grid">
+        <article class="shaderlex-family-card">
+          <div class="shaderlex-family-head">
+            <div>
+              <strong data-i18n-compact="family.vfx.title">Stylized VFX</strong>
+              <small data-i18n="family.vfx.body">Spells, energy, shields, holograms, portals, and animated masks.</small>
+            </div>
+            <em data-i18n-compact="family.vfx.count">7 recipes</em>
+          </div>
+          <div class="shaderlex-family-links">
+            <a href="/materials/recipes/magic-energy.html" data-i18n-compact="family.vfx.link1">Magic Energy</a>
+            <a href="/materials/recipes/portal-vortex.html" data-i18n-compact="family.vfx.link2">Portal / Vortex</a>
+            <a href="/materials/recipes/shield-force-field.html" data-i18n-compact="family.vfx.link3">Shield / Force Field</a>
+          </div>
+        </article>
+
+        <article class="shaderlex-family-card">
+          <div class="shaderlex-family-head">
+            <div>
+              <strong data-i18n-compact="family.surface.title">Stylized Surfaces</strong>
+              <small data-i18n="family.surface.body">Water, fire, frost, lava, glass, and authored surface looks.</small>
+            </div>
+            <em data-i18n-compact="family.surface.count">5 recipes</em>
+          </div>
+          <div class="shaderlex-family-links">
+            <a href="/materials/recipes/stylized-water-foam.html" data-i18n-compact="family.surface.link1">Stylized Water</a>
+            <a href="/materials/recipes/ice-frost-crystal.html" data-i18n-compact="family.surface.link2">Ice / Frost</a>
+            <a href="/materials/recipes/lava-magma.html" data-i18n-compact="family.surface.link3">Lava / Magma</a>
+          </div>
+        </article>
+
+        <article class="shaderlex-family-card">
+          <div class="shaderlex-family-head">
+            <div>
+              <strong data-i18n-compact="family.real.title">Environment + Realistic</strong>
+              <small data-i18n="family.real.body">Terrain blend, wetness, weather response, and realistic surface baselines.</small>
+            </div>
+            <em data-i18n-compact="family.real.count">3 recipes</em>
+          </div>
+          <div class="shaderlex-family-links">
+            <a href="/materials/recipes/wet-surface-rain.html" data-i18n-compact="family.real.link1">Wet Surface / Rain</a>
+            <a href="/materials/recipes/terrain-layer-blend.html" data-i18n-compact="family.real.link2">Terrain Layer Blend</a>
+            <a href="/materials/recipes/realistic-pbr-surface.html" data-i18n-compact="family.real.link3">Realistic PBR Surface</a>
+          </div>
+        </article>
+
+        <article class="shaderlex-family-card">
+          <div class="shaderlex-family-head">
+            <div>
+              <strong data-i18n-compact="family.character.title">Character Lookdev</strong>
+              <small data-i18n="family.character.body">Character materials where face readability and shading control matter most.</small>
+            </div>
+            <em data-i18n-compact="family.character.count">3 entries</em>
+          </div>
+          <div class="shaderlex-family-links">
+            <a href="/materials/style/anime-cel-shader.html" data-i18n-compact="family.character.link1">Anime / Cel Base</a>
+            <a href="/materials/recipes/semi-realistic-skin.html" data-i18n-compact="family.character.link2">Semi-Realistic Skin</a>
+            <a href="/materials/style/semi-realistic.html" data-i18n-compact="family.character.link3">Semi-Realistic Lane</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="shaderlex-section" aria-labelledby="utility-title">
+      <div class="shaderlex-section-head">
+        <p class="section-kicker" data-i18n="utility.kicker">Utility docs</p>
+        <h2 id="utility-title" data-i18n="utility.title">Open the supporting documents quickly</h2>
+      </div>
+
+      <div class="shaderlex-path-grid">
+        <a class="shaderlex-path-card" href="/materials/core-packs/uv-motion-pack.html">
+          <span class="shaderlex-path-icon shaderlex-path-icon-blue">C</span>
+          <strong data-i18n-compact="utility.core.title">Core Packs</strong>
+          <p data-i18n="utility.core.body">Reusable graph logic before it turns into a full recipe.</p>
+          <small data-i18n="utility.core.meta">UV Motion, Mask Shaping, Edge Response, Runtime Control</small>
+        </a>
+
+        <a class="shaderlex-path-card" href="/materials/production-notes/anime-face-shadow-map.html">
+          <span class="shaderlex-path-icon shaderlex-path-icon-olive">P</span>
+          <strong data-i18n-compact="utility.production.title">Production Notes</strong>
+          <p data-i18n="utility.production.body">Shot-level fixes and support cases that do not fit a clean recipe page.</p>
+          <small data-i18n="utility.production.meta">Face Shadow Map, Outline / Rim Control</small>
+        </a>
+
+        <a class="shaderlex-path-card" href="/materials/ue5.html">
+          <span class="shaderlex-path-icon shaderlex-path-icon-ink">U</span>
+          <strong data-i18n-compact="utility.ue5.title">UE5 Library Map</strong>
+          <p data-i18n="utility.ue5.body">The full branch structure if you need the entire taxonomy and reading order.</p>
+          <small data-i18n="utility.ue5.meta">Architecture, full recipe index, build rules</small>
+        </a>
+
+        <a class="shaderlex-path-card" href="/materials/style/style-roadmap.html">
+          <span class="shaderlex-path-icon shaderlex-path-icon-warm">S</span>
+          <strong data-i18n-compact="utility.roadmap.title">Style Roadmap</strong>
+          <p data-i18n="utility.roadmap.body">The overview page when you need to compare stylized, anime, semi-realistic, and realistic lanes.</p>
+          <small data-i18n="utility.roadmap.meta">Lane grouping, use cases, direction planning</small>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script src="/materials/material-doc.js"></script>
+</body>
+</html>

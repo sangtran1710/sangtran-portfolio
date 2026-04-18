@@ -1,0 +1,179 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ground Rune / Magic Circle for UE5</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="material-body">
+  <header class="material-header">
+    <div>
+      <p class="eyebrow">UE5 / Recipe / Stylized VFX</p>
+      <h1>Ground Rune / Magic Circle for UE5</h1>
+      <p>
+        A readable floor-magic material for spell circles, telegraphs, teleport pads, and arena warnings.
+        The recipe is about hierarchy: outer ring, inner symbol, pulse timing, and emission should each have a job.
+      </p>
+    </div>
+
+    <section class="engine-board engine-board-compact" aria-label="Document status">
+      <article class="engine-card engine-card-active">
+        <span class="engine-badge">Recipe baseline</span>
+        <h2>Design the read order</h2>
+        <p>
+          A magic circle should not be one glowing texture. Decide what the player sees first, second, and third.
+          Usually that means a strong outer ring, a slower inner symbol, then small decorative lines.
+        </p>
+      </article>
+    </section>
+
+    <nav class="material-top-links" aria-label="Page links"><a href="/materials/index.html">Portal</a><a href="/materials/ue5.html">UE5 Library</a><a href="#target">Target</a><a href="#use-cases">Use Cases</a><a href="#model">Mental Model</a><a href="#graph">Graph Steps</a><a href="#controls">Controls</a><a href="#hlsl">HLSL</a><a href="#senior-notes">Senior Notes</a></nav>
+  </header>
+
+  <main class="material-layout">
+    <aside class="material-sidebar"><p class="mini-label">Recipe map</p><a href="#target">01. Visual Target</a><a href="#use-cases">02. Use Cases</a><a href="#model">03. Mental Model</a><a href="#graph">04. Graph Steps</a><a href="#controls">05. Artist Controls</a><a href="#hlsl">06. HLSL Sketch</a><a href="#senior-notes">07. Senior Notes</a><a href="#mistakes">08. Common Mistakes</a><a href="#related">09. Related Pages</a></aside>
+
+    <section class="material-content">
+      <section id="target" class="material-section">
+        <p class="section-kicker">01</p>
+        <h2>Visual Target</h2>
+        <div class="section-meta">
+          <span class="section-chip">Stylized VFX</span>
+          <span class="section-chip">Radial Masks</span>
+          <span class="section-chip">Gameplay Read</span>
+        </div>
+        <div class="material-callout">
+          <strong>What we are building:</strong> a ground circle with crisp rings, authored rune shapes,
+          timed pulse bands, and clean emission that still reads when viewed from an angled camera.
+        </div>
+        <section class="material-visual-hero" aria-label="Visual anchor">
+          <div class="material-hero-frame">
+            <img src="/assets/materials/recipes/ground-rune-magic-circle-pilot-01.png" alt="Ground rune magic circle visual anchor.">
+            <p class="material-hero-caption">The useful read is the ring hierarchy: outer boundary first, inner symbol second, pulse motion last.</p>
+          </div>
+        </section>
+      </section>
+
+      <section id="use-cases" class="material-section">
+        <p class="section-kicker">02</p>
+        <h2>Use Cases</h2>
+        <div class="recipe-grid">
+          <article><span>Combat</span><strong>Telegraph marker</strong><small>Show where a spell will land before damage happens. Shape clarity matters more than decoration.</small></article>
+          <article><span>Magic</span><strong>Casting circle</strong><small>Use for charge-up moments where the ring grows, pulses, or changes color as the spell becomes ready.</small></article>
+          <article><span>Traversal</span><strong>Teleport pad</strong><small>A stable circle can communicate activation state, ownership, cooldown, or destination type.</small></article>
+          <article><span>Environment</span><strong>Ritual floor prop</strong><small>Works as a world material when emission and pulse speed are restrained.</small></article>
+        </div>
+      </section>
+
+      <section id="model" class="material-section">
+        <p class="section-kicker">03</p>
+        <h2>Mental Model</h2>
+        <div class="material-grid">
+          <article>
+            <h3>One circle, several signals</h3>
+            <p>
+              Treat the rune as layers: boundary, symbols, radial pulse, and optional noise. Each layer should be previewable alone.
+              If a layer does not improve readability or mood, remove it.
+            </p>
+          </article>
+          <article>
+            <h3>Distance changes everything</h3>
+            <p>
+              Thin glyphs look great close-up and disappear from a combat camera. Build a bold version first, then add delicate line art only if it survives the intended distance.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="graph" class="material-section">
+        <p class="section-kicker">04</p>
+        <h2>Graph Steps</h2>
+        <div class="pipeline-diagram" aria-label="Ground rune graph flow">
+          <span>Radial UV</span>
+          <span>Outer ring</span>
+          <span>Rune mask</span>
+          <span>Pulse wave</span>
+          <span>Emission mix</span>
+          <span>Depth fade</span>
+        </div>
+        <div class="material-topic-stack">
+          <article><h3>1. Build the outer ring procedurally</h3><p>Use distance from UV center to make a controllable ring. This keeps radius and thickness adjustable without repainting the texture.</p></article>
+          <article><h3>2. Add authored symbols as a mask</h3><p>Use a texture or atlas for the actual glyph shapes. Keep this separate from the procedural ring so symbols can be swapped per spell family.</p></article>
+          <article><h3>3. Add pulse timing</h3><p>A radial pulse can expand outward, contract inward, or rotate. Use phase offsets so the ring, symbol, and pulse do not all blink at the same time.</p></article>
+          <article><h3>4. Mix emission by hierarchy</h3><p>Outer ring usually gets the strongest readability value. Inner symbols get medium emission. Decorative noise stays low.</p></article>
+          <article><h3>5. Use depth fade at ground contact</h3><p>If the circle intersects uneven ground, depth fade can soften harsh clipping. Keep it subtle so the ring boundary remains clear.</p></article>
+        </div>
+      </section>
+
+      <section id="controls" class="material-section">
+        <p class="section-kicker">05</p>
+        <h2>Artist Controls</h2>
+        <div class="material-link-grid">
+          <article><span>Shape</span><strong>Radius / Ring Width</strong><small>Core controls for gameplay size and boundary readability.</small></article>
+          <article><span>Symbol</span><strong>Rune Mask Index</strong><small>Swap glyph variants without rebuilding the material graph.</small></article>
+          <article><span>Motion</span><strong>Pulse Speed</strong><small>Controls activation rhythm. Slow for ritual, faster for danger or charge-up.</small></article>
+          <article><span>Timing</span><strong>Pulse Phase</strong><small>Offsets repeated circles so they do not animate in perfect sync.</small></article>
+          <article><span>Color</span><strong>Ring / Symbol Color</strong><small>Separate colors help communicate spell school, team, or state.</small></article>
+          <article><span>Ground</span><strong>Depth Fade</strong><small>Softens contact with uneven floors while preserving the main silhouette.</small></article>
+        </div>
+      </section>
+
+      <section id="hlsl" class="material-section">
+        <p class="section-kicker">06</p>
+        <h2>HLSL Sketch</h2>
+        <pre class="code-block"><code>float2 centeredUV = uv * 2.0 - 1.0;
+float radius = length(centeredUV);
+float angle = atan2(centeredUV.y, centeredUV.x);
+
+float ringDelta = abs(radius - ringCenter);
+float outerRing = 1.0 - smoothstep(ringRadius, ringRadius + ringSoftness, ringDelta);
+float runeMask = Texture2DSample(runeTex, runeTexSampler, uv).r;
+
+float pulse = frac(radius * pulseDensity - time * pulseSpeed + pulsePhase);
+float pulseBand = 1.0 - smoothstep(0.0, pulseSoftness, pulse);
+
+float mask = saturate(outerRing * ringWeight + runeMask * runeWeight + pulseBand * pulseWeight);
+float3 color = ringColor * outerRing + runeColor * runeMask + pulseColor * pulseBand;
+
+return float4(color * mask * emissionStrength, mask);</code></pre>
+      </section>
+
+      <section id="senior-notes" class="material-section">
+        <p class="section-kicker">07</p>
+        <h2>Senior Notes</h2>
+        <div class="material-topic-stack">
+          <article><h3>Gameplay readability beats texture detail</h3><p>For combat telegraphs, the player needs to know the boundary instantly. If the rune art competes with the ring edge, reduce it.</p></article>
+          <article><h3>Decals and translucent planes have different problems</h3><p>Decals sit nicely on level geometry but may have sorting or projection constraints. Planes are simple and controllable but can float or intersect badly.</p></article>
+          <article><h3>Expose state, not just color</h3><p>Consider Ready, Charging, Warning, and Expired values. A circle often communicates timing, not only style.</p></article>
+        </div>
+      </section>
+
+      <section id="mistakes" class="material-section">
+        <p class="section-kicker">08</p>
+        <h2>Common Mistakes</h2>
+        <ul>
+          <li>Making all rings and symbols the same brightness, which removes visual hierarchy.</li>
+          <li>Using tiny glyph details that disappear at the intended camera distance.</li>
+          <li>Animating every layer at once, which makes the circle feel nervous instead of magical.</li>
+          <li>Forgetting team color, danger state, or gameplay ownership requirements.</li>
+        </ul>
+      </section>
+
+      <section id="related" class="material-section">
+        <p class="section-kicker">09</p>
+        <h2>Related Pages</h2>
+        <div class="material-link-grid">
+          <a href="/materials/core-packs/mask-shaping-pack.html"><span>Core Pack</span><strong>Mask Shaping Pack</strong><small>Radial masks, smoothstep bands, and controllable thresholds.</small></a>
+          <a href="/materials/core-packs/color-emission-pack.html"><span>Core Pack</span><strong>Color + Emission Pack</strong><small>Palette-safe glow and layered emission hierarchy.</small></a>
+          <a href="/materials/recipes/portal-vortex.html"><span>Recipe</span><strong>Portal / Vortex</strong><small>Shares radial masks and circular composition logic.</small></a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/materials/material-doc.js"></script>
+</body>
+</html>
+
+

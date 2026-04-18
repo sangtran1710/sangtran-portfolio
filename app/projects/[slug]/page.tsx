@@ -6,6 +6,7 @@ import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { PROJECTS } from "@/data/portfolio";
+import { absoluteUrl } from "@/lib/seo";
 
 interface Props {
   params: { slug: string };
@@ -18,9 +19,34 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = PROJECTS.find((p) => p.slug === params.slug);
   if (!project) return {};
+  const url = `/projects/${project.slug}`;
+  const image = project.thumbnail || "/images/NWA.jpg";
   return {
-    title: project.title,
+    title: `${project.title} - VFX Project`,
     description: project.description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: `${project.title} - Sang Tran`,
+      description: project.description,
+      url,
+      type: "article",
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: `${project.title} VFX project preview`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} - Sang Tran`,
+      description: project.description,
+      images: [absoluteUrl(image)],
+    },
   };
 }
 

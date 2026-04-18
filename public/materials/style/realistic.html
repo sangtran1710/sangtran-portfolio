@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Realistic Material Lane for UE5</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="material-body">
+  <header class="material-header">
+    <div>
+      <p class="eyebrow">UE5 / Style Lane / Realistic</p>
+      <h1>Realistic Material Lane</h1>
+      <p>
+        Realistic material work in this library is about discipline: plausible values, correct scale,
+        clean packed maps, predictable lighting response, and production-safe instance controls.
+      </p>
+    </div>
+    <section class="engine-board engine-board-compact" aria-label="Lane status">
+      <article class="engine-card engine-card-active">
+        <span class="engine-badge">Style lane</span>
+        <h2>Grounded, not uncontrolled</h2>
+        <p>
+          Realistic does not mean the artist loses control. It means controls preserve believable ranges
+          and help the material survive different lighting setups.
+        </p>
+      </article>
+    </section>
+    <nav class="material-top-links" aria-label="Page links">
+      <a href="/materials/index.html">Portal</a>
+      <a href="/materials/ue5.html">UE5 Library</a>
+      <a href="/materials/style/style-roadmap.html">Style Roadmap</a>
+      <a href="#principles">Principles</a>
+      <a href="#recipes">Recipes</a>
+      <a href="#rules">Rules</a>
+    </nav>
+  </header>
+
+  <main class="material-layout">
+    <aside class="material-sidebar"><p class="mini-label">Realistic lane</p></aside>
+    <section class="material-content">
+      <section id="principles" class="material-section">
+        <p class="section-kicker">01</p>
+        <h2>Principles</h2>
+        <div class="recipe-grid">
+          <article><span>Values</span><strong>Respect PBR ranges</strong><small>Albedo, roughness, and metalness should respond predictably under lighting changes.</small></article>
+          <article><span>Scale</span><strong>Check real-world size</strong><small>Texture scale and detail frequency are part of realism, not a final polish pass.</small></article>
+          <article><span>Maps</span><strong>Pack with intent</strong><small>ORM and mask channels should be documented and consistent across the project.</small></article>
+          <article><span>Review</span><strong>Test multiple lighting cases</strong><small>A realistic material is not approved until it survives warm, cool, bright, and low-light scenes.</small></article>
+        </div>
+      </section>
+
+      <section id="recipes" class="material-section">
+        <p class="section-kicker">02</p>
+        <h2>Primary Recipes</h2>
+        <div class="material-link-grid">
+          <a href="/materials/recipes/realistic-pbr-surface.html"><span>Baseline</span><strong>Realistic PBR Surface</strong><small>Albedo, roughness, normals, metalness, packed masks, and safe instances.</small></a>
+          <a href="/materials/recipes/wet-surface-rain.html"><span>Weather</span><strong>Wet Surface / Rain</strong><small>Realistic wetness response with roughness shift and puddle masks.</small></a>
+          <a href="/materials/recipes/terrain-layer-blend.html"><span>Environment</span><strong>Terrain Layer Blend</strong><small>Grounded terrain layers with height masks and macro variation.</small></a>
+          <a href="/materials/core-packs/runtime-control-pack.html"><span>Control</span><strong>Runtime Control Pack</strong><small>Material instances and global overrides for production tuning.</small></a>
+        </div>
+      </section>
+
+      <section id="rules" class="material-section">
+        <p class="section-kicker">03</p>
+        <h2>Authoring Rules</h2>
+        <div class="material-topic-stack">
+          <article><h3>1. Remove baked lighting from albedo</h3><p>The scene lighting should light the material. Hidden shadows in base color break consistency.</p></article>
+          <article><h3>2. Treat roughness as material identity</h3><p>Roughness is not a beauty contrast slider. It defines how the surface behaves.</p></article>
+          <article><h3>3. Make debug views easy</h3><p>Realistic material reviews move faster when albedo, roughness, normal, and masks can be inspected quickly.</p></article>
+        </div>
+      </section>
+    </section>
+  </main>
+  <script src="/materials/material-doc.js"></script>
+</body>
+</html>

@@ -8,7 +8,8 @@
     "verify": "powershell -ExecutionPolicy Bypass -File scripts/verify-clean.ps1",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
-    "qa:screenshots": "playwright test tests/e2e/screenshot-qa.spec.ts"
+    "qa:screenshots": "playwright test tests/e2e/screenshot-qa.spec.ts",
+    "visual:generate": "node scripts/generate-openrouter-visual.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",

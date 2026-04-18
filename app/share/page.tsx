@@ -4,7 +4,11 @@ import { ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Share",
-  description: "Share — Coming soon",
+  description: "Share - Coming soon",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function SharePage() {

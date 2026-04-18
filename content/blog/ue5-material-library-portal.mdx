@@ -1,0 +1,62 @@
+---
+title: "ShaderLex: My UE5 Material Library for Technical Art"
+description: "ShaderLex is my living UE5 material library for stylized, anime, cel shader, semi-realistic, and realistic material workflows."
+date: "2026-04-17"
+tags: ["Unreal Engine", "Technical Art", "Materials", "Shaders", "VFX"]
+thumbnail: "/assets/materials/style/anime-cel-shader-pilot-02.png"
+readTime: "4 min"
+---
+
+ShaderLex is the UE5 material library I built as a practical reference for my own technical art work. It is not meant to be a polished tutorial series where every page is final and perfect. It is closer to a production notebook: organized, searchable, visual enough to navigate quickly, and detailed enough that I can come back later and rebuild an effect without starting from zero.
+
+[Open ShaderLex](/materials/index.html)
+
+The library is focused on stylized material work, but not only stylized work. I want it to cover the full range I use in production and R&D: stylized VFX, anime and cel shading, semi-realistic character surfaces, realistic PBR baselines, terrain materials, water, lava, glass, wetness, shields, portals, and reusable core material functions.
+
+## Why I made it
+
+When I study materials, random notes are easy to write and hard to reuse. A shader graph can make sense on the day I build it, then become vague a month later if I only saved a screenshot or a few node names.
+
+ShaderLex is my attempt to make the knowledge easier to retrieve. Each recipe tries to answer a few practical questions:
+
+- What is the visual target?
+- When should I use this material approach?
+- What is the mental model behind the graph?
+- Which parameters should be exposed to artists?
+- What can go wrong in production?
+- What should I profile or simplify first?
+
+That structure matters because material work is rarely just about making one pretty preview. The same effect has to survive gameplay camera distance, lighting changes, performance limits, art direction feedback, and handoff to other artists or engineers.
+
+## What is inside
+
+The portal is grouped into a few lanes:
+
+- Core Packs: reusable material logic like UV motion, mask shaping, edge response, distortion, color and emission, and runtime controls.
+- Style Lanes: stylized, anime, cel shader, semi-realistic, and realistic direction pages.
+- Recipes: buildable effects such as magic energy, portal vortex, force field, water, lava, ice, terrain blend, wet surface, and realistic PBR surface.
+- Production Notes: practical pages for issues like anime face shadow maps and outline/rim control.
+
+The recipe pages are written for two audiences at the same time. A beginner should be able to understand the main graph flow and what each mask is doing. A senior artist or technical artist should still find production constraints, tradeoffs, and failure cases worth checking.
+
+## How I use it
+
+I use the portal as a starting point before opening Unreal. If I need a shield material, I can open the shield recipe, check the mental model, review the parameters, and decide what is actually necessary for the shot. If I need water, I can quickly remind myself to separate large color depth, foam shape, and small ripple detail instead of throwing noise at the material until it looks busy.
+
+The goal is not to memorize every node. The goal is to keep a clean reasoning path:
+
+1. Start with the visual read.
+2. Build the grayscale masks.
+3. Add motion or lighting response.
+4. Expose only useful controls.
+5. Check cost and production failure cases.
+
+That is the part I care about most: making the material logic reusable, not just attractive in a single screenshot.
+
+## Current status
+
+The portal is still a living document. Some pages already have visual anchors, while other recipes use placeholders so I can add generated or rendered images later. The next useful step is a visual pass: hero images, mask breakdowns, before/after comparisons, and node graph diagrams for the recipes that are still text-heavy.
+
+For now, it is already useful as a personal technical art reference and as a public SEO surface for Unreal Engine material work.
+
+[Browse ShaderLex](/materials/index.html)

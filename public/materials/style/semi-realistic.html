@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Semi-Realistic Material Lane for UE5</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="material-body">
+  <header class="material-header">
+    <div>
+      <p class="eyebrow">UE5 / Style Lane / Semi-Realistic</p>
+      <h1>Semi-Realistic Material Lane</h1>
+      <p>
+        Semi-realistic materials borrow believable lighting and texture cues, but still protect art direction,
+        facial readability, clean values, and stylized control.
+      </p>
+    </div>
+    <section class="engine-board engine-board-compact" aria-label="Lane status">
+      <article class="engine-card engine-card-active">
+        <span class="engine-badge">Style lane</span>
+        <h2>The bridge lane</h2>
+        <p>
+          Use this lane when the project wants richer surface response than pure stylization,
+          but not full scan realism. Character skin and weathered surfaces often live here.
+        </p>
+      </article>
+    </section>
+    <nav class="material-top-links" aria-label="Page links">
+      <a href="/materials/index.html">Portal</a>
+      <a href="/materials/ue5.html">UE5 Library</a>
+      <a href="/materials/style/style-roadmap.html">Style Roadmap</a>
+      <a href="#principles">Principles</a>
+      <a href="#recipes">Recipes</a>
+      <a href="#rules">Rules</a>
+    </nav>
+  </header>
+
+  <main class="material-layout">
+    <aside class="material-sidebar"><p class="mini-label">Semi-realistic lane</p></aside>
+    <section class="material-content">
+      <section id="principles" class="material-section">
+        <p class="section-kicker">01</p>
+        <h2>Principles</h2>
+        <div class="recipe-grid">
+          <article><span>Value</span><strong>Keep broad forms readable</strong><small>Do not let pore detail, dirt, or roughness noise overpower the main form.</small></article>
+          <article><span>Surface</span><strong>Use realism selectively</strong><small>Borrow roughness, normal, and color variation where they support the design.</small></article>
+          <article><span>Character</span><strong>Protect expression</strong><small>Highlights and micro detail should never fight face planes or emotion.</small></article>
+          <article><span>Pipeline</span><strong>Constrain the knobs</strong><small>Expose useful ranges so artists can tune without drifting into plastic or scan realism.</small></article>
+        </div>
+      </section>
+
+      <section id="recipes" class="material-section">
+        <p class="section-kicker">02</p>
+        <h2>Primary Recipes</h2>
+        <div class="material-link-grid">
+          <a href="/materials/recipes/semi-realistic-skin.html"><span>Character</span><strong>Semi-Realistic Skin</strong><small>Soft color zones, roughness control, pore detail, blush masks, and restrained specular.</small></a>
+          <a href="/materials/recipes/wet-surface-rain.html"><span>Environment</span><strong>Wet Surface / Rain</strong><small>Weather response with wet masks, puddles, and roughness shift.</small></a>
+          <a href="/materials/recipes/glass-crystal.html"><span>Surface</span><strong>Glass / Crystal</strong><small>Transparent surfaces with readable edges and controlled refraction.</small></a>
+          <a href="/materials/recipes/realistic-pbr-surface.html"><span>Baseline</span><strong>Realistic PBR Surface</strong><small>Use as the grounded reference when semi-realistic work needs calibration.</small></a>
+        </div>
+      </section>
+
+      <section id="rules" class="material-section">
+        <p class="section-kicker">03</p>
+        <h2>Authoring Rules</h2>
+        <div class="material-topic-stack">
+          <article><h3>1. Decide what stays stylized</h3><p>Name the surfaces or forms that should stay simplified before adding realistic detail.</p></article>
+          <article><h3>2. Review at camera distance</h3><p>Semi-realistic materials often look good close-up and too noisy in actual gameplay framing.</p></article>
+          <article><h3>3. Keep texture detail subordinate</h3><p>Micro detail should support material identity, not become the main read.</p></article>
+        </div>
+      </section>
+    </section>
+  </main>
+  <script src="/materials/material-doc.js"></script>
+</body>
+</html>

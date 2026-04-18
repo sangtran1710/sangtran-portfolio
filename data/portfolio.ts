@@ -45,7 +45,7 @@ export interface SkillGroup {
 export const SITE = {
   title: "Sang Tran - VFX Artist",
   description:
-    "Senior VFX Artist specializing in real-time effects, shader development, and technical art for AAA games and live-service content.",
+    "Senior VFX Artist specializing in real-time effects, shaders, and technical art for AAA games, cinematics, and launch content.",
   email: "sangminhtran1710@gmail.com",
   logo: "/images/logo.png",
 };
@@ -63,47 +63,47 @@ export const HERO = {
   tagline: "Senior real-time VFX artist.",
   /** A short line; the rest is conveyed by video & images. */
   description:
-    "I build effects that stay readable, feel expensive, and hold up under production pressure.",
+    "I build clear, production-ready effects for gameplay, cinematics, and launch campaigns.",
   showreelUrl: "/video/reel_final.mp4",
   showreelYoutube: "https://www.youtube.com/watch?v=qK8jtTMHCRU",
 };
 
 export const ABOUT = {
-  title: "Building effects that feel alive.",
+  title: "Real-time effects for shipped games and cinematic work.",
   bio: [
-    "I'm Sang Tran, a visual effects artist based in Ho Chi Minh City, Vietnam, with more than 7 years of experience across game development, cinematics, and launch content.",
-    "I came into the industry through a gradual career shift, learning by doing and building confidence one milestone at a time. That path took me from support tasks to owning major effect sequences, including work featured in early marketing for Marvel's Spider-Man 2.",
-    "What keeps me here is simple: I love building moments that feel alive on screen. I enjoy clear feedback, fast iteration, and the kind of collaboration where craft and problem-solving move together.",
-    "I'm open to full-time remote roles where I can take ownership, work closely with strong teams, and keep raising the quality bar.",
+    "I'm Sang Tran, a VFX artist based in Ho Chi Minh City, Vietnam, with more than 7 years of experience across games, cinematics, and launch content.",
+    "My path into VFX was built through practice: learning the tools, taking on real production work, and improving through delivery. That path led from support tasks to owning key effect sequences, including work featured in early marketing for Marvel's Spider-Man 2.",
+    "I focus on effects that read clearly in motion, support the art direction, and hold up under production constraints. I work best with clear feedback, fast iteration, and teams that value both craft and execution.",
+    "I'm open to senior remote roles and freelance work where I can take ownership of real-time VFX, collaborate closely with art and tech teams, and deliver production-ready work.",
   ],
   location: "Ho Chi Minh City, Vietnam",
 };
 
 /** For home Profile section. portraitImage = front, portraitImageSecondary = back (flips on hover). */
 export const PROFILE = {
-  headline: "Senior VFX Real-time Artist",
-  title: "Tran Minh Sang.",
+  headline: "Senior Real-time VFX Artist",
+  title: "Sang Tran.",
   /** Single line; detailed info reserved for the About page. */
   paragraph:
-    "**Sony** / **Epic** / **Amazon** / **Netflix**. Based in **HCMC** and open to full-time roles or freelance work.",
+    "Credits include **Sony**, **Epic**, **Amazon**, and **Netflix**. Based in **HCMC**. Available for senior remote roles and freelance VFX work.",
   portraitImage: "/images/Portrait/z7554087716035_e6282b2e1378f725e4bcb1b51032c015.jpg",
   /** Image flipped on hover (secondary avatar in the Portrait folder) */
   portraitImageSecondary: "/images/Portrait/z7554087716035_e6282b2e1378f725e4bcb1b51032c015.jpg",
   ctaText: "Contact me",
   stats: [
-    { label: "Game Shipped", value: "8+" },
+    { label: "Shipped Games", value: "8+" },
     { label: "Commercial Projects", value: "20+" },
-    { label: "Years", value: "7+" },
+    { label: "Years Experience", value: "7+" },
     { label: "Tools", value: "Unreal Engine, Unity, Premiere Pro, After Effects, JangaFX" },
     { label: "3D Software", value: "Blender, Houdini, Maya, 3Ds Max, Cinema 4D" },
   ] as const,
 };
 
 /** Image beside Technical Skills section (use project thumbnail or custom image). */
-export const SKILLS_SECTION_IMAGE = "/images/NWA.jpg";
+export const SKILLS_SECTION_IMAGE = "/images/optimized/new-world-aeternum.jpg";
 
 /** Image beside Visual Effect and Animation / experience section. */
-export const VFX_EXPERIENCE_IMAGE = "/images/Fortnite-Live-Event-Time.jpg";
+export const VFX_EXPERIENCE_IMAGE = "/images/optimized/fortnite-live-event.jpg";
 
 export const EXPERIENCES: Experience[] = [
   {
@@ -111,8 +111,8 @@ export const EXPERIENCES: Experience[] = [
     role: "Technical VFX Artist",
     duration: "2024 - Present",
     responsibilities: [
-      "Deliver real-time VFX and technical art for indie and mid-size game studios via Upwork",
-      "Niagara, shaders, and optimization for Unreal Engine projects",
+      "Deliver real-time VFX and technical art for indie and mid-size game studios",
+      "Build Niagara systems, shaders, and optimized Unreal Engine effects",
     ],
     technologies: "Unreal Engine 5, Niagara, HLSL, Houdini",
   },
@@ -122,9 +122,9 @@ export const EXPERIENCES: Experience[] = [
     duration: "Apr 2022 - Present",
     responsibilities: [
       "Developed and optimized real-time VFX for AAA projects including Marvel's Spider-Man 2, Fortnite Remix Finale, New World: Aeternum, and Until Dawn (PS5)",
-      "Authored HLSL shaders and Unreal Engine 5 Niagara systems for high-fidelity particle effects",
-      "Built Python automation tools and Houdini pipelines to streamline team workflows and asset production",
-      "Collaborated cross-functionally with art directors and tech leads at Insomniac Games, Epic Games, and Amazon Games",
+      "Authored HLSL shaders and Unreal Engine 5 Niagara systems for production-quality effects",
+      "Built Python tools and Houdini workflows to speed up asset production",
+      "Worked with art directors, tech leads, and partner teams at Insomniac Games, Epic Games, and Amazon Games",
     ],
     technologies: "Unreal Engine 5, Houdini, Python, HLSL, Perforce, Blender",
   },
@@ -134,7 +134,7 @@ export const EXPERIENCES: Experience[] = [
     duration: "Jan 2022 - Apr 2022",
     responsibilities: [
       "Created dynamic visual effects for game cinematics and promotional content",
-      "Collaborated with art directors to achieve desired visual aesthetics and hit performance budgets",
+      "Worked with art direction to hit the target look while staying within performance budgets",
     ],
     technologies: "Houdini, Maya, After Effects",
   },
@@ -144,7 +144,7 @@ export const EXPERIENCES: Experience[] = [
     duration: "Jul 2019 - Oct 2020",
     responsibilities: [
       "Produced and edited corporate videos and internal training materials",
-      "Managed end-to-end video production workflows and asset delivery",
+      "Managed video production, editing, and final asset delivery",
     ],
     technologies: "Adobe Creative Suite, Cinema 4D",
   },
@@ -189,9 +189,9 @@ export const PROJECTS: Project[] = [
     style: "realistic",
     client: "Insomniac Games",
     workSummary:
-      "Created cinematic VFX, gameplay VFX, and in-game UI effects for Insomniac Games' PS5 blockbuster.",
+      "Created cinematic, gameplay, and UI VFX for Insomniac Games' PS5 title.",
     description:
-      "Developed particle systems and environmental VFX for Insomniac Games' PS5 blockbuster, contributing to combat effects, web mechanics, and open-world atmosphere.",
+      "Developed particle systems and environmental VFX for combat, web mechanics, and open-world atmosphere.",
     categories: ["aaa", "realtime"],
     contributions: [
       "Authored Houdini simulations for destruction and debris effects",
@@ -205,7 +205,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "fortnite-remix",
-    thumbnail: "/images/Fortnite-Live-Event-Time.jpg",
+    thumbnail: "/images/optimized/fortnite-live-event.jpg",
     title: "Fortnite - Remix The Finale",
     role: "FX Artist",
     year: "2024",
@@ -214,14 +214,14 @@ export const PROJECTS: Project[] = [
     style: "stylized",
     client: "Epic Games",
     workSummary:
-      "Created the cinematic trailer for the October 2023 event \"Remix The Finale\", to promote and advertise the new in-game event.",
+      "Created VFX for the cinematic trailer supporting Fortnite's Remix Finale event.",
     description:
-      "Created weapon effects and event VFX for Epic Games' Fortnite Remix Finale live event, delivering high-impact real-time effects for millions of concurrent players.",
+      "Created weapon and event VFX for Fortnite Remix Finale, with real-time effects tuned for large-scale live-event playback.",
     categories: ["aaa", "realtime"],
     contributions: [
       "Designed and implemented weapon-skin VFX using Unreal Engine Niagara",
       "Built live-event effects tuned for performance across PC, console, and mobile",
-      "Collaborated directly with Epic's FX team on style guides and technical constraints",
+      "Worked directly with Epic's FX team on style, performance, and technical constraints",
     ],
     techStack: ["Unreal Engine", "Houdini", "Blender", "Python", "HLSL", "Perforce"],
     videoUrl: "https://www.youtube.com/embed/c-rtUmJPLQM?start=272",
@@ -251,7 +251,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "new-world",
-    thumbnail: "/images/NWA.jpg",
+    thumbnail: "/images/optimized/new-world-aeternum.jpg",
     title: "New World: Aeternum",
     role: "FX Artist",
     year: "2024",
@@ -260,9 +260,9 @@ export const PROJECTS: Project[] = [
     style: "realistic",
     client: "Amazon Games",
     workSummary:
-      "FX Artist on the cinematic trailer for the game, to promote the New World PS5 launch. Project from Amazon Games.",
+      "FX Artist on the cinematic trailer supporting the New World: Aeternum PS5 launch.",
     description:
-      "Contributed to cinematic trailer production and in-game VFX for Amazon Games' New World PS5 launch, focusing on environmental and combat effects.",
+      "Contributed cinematic and in-game VFX for Amazon Games' PS5 launch campaign, with a focus on environmental and combat effects.",
     categories: ["aaa", "cinematic"],
     contributions: [
       "Created environmental VFX including weather, magic, and destruction systems",
@@ -284,9 +284,9 @@ export const PROJECTS: Project[] = [
     style: "realistic",
     client: "Ballistic Moon",
     workSummary:
-      "Lighting Artist for cinematic content on the PS5 remake. The project had a large volume of cinematics with a tense, horror-inspired art direction. Outsourced from Ballistic Moon.",
+      "Lighting Artist on cinematic content for the PS5 remake, supporting a tense horror-driven art direction.",
     description:
-      "Contributed cinematic lighting for key sequences in the PS5 remake, helping achieve the horror atmosphere and cinematic quality Ballistic Moon aimed for.",
+      "Contributed cinematic lighting for key sequences, helping establish the remake's horror atmosphere and presentation quality.",
     categories: ["aaa", "cinematic"],
     contributions: [
       "Lit cinematic sequences using Unreal Engine 5's Lumen global illumination",
@@ -303,7 +303,7 @@ export const PROJECTS: Project[] = [
     role: "FX Houdini Artist",
     year: "2023",
     description:
-      "Created dynamic effects and environmental VFX for this Netflix original series, working within a cinematic VFX pipeline targeting broadcast-quality output.",
+      "Created dynamic and environmental VFX for the Netflix original series within a broadcast-focused cinematic pipeline.",
     categories: ["cinematic"],
     contributions: [
       "Simulated dust, smoke, and debris using Houdini solvers (FLIP, pyro, grain)",
@@ -320,7 +320,7 @@ export const PROJECTS: Project[] = [
     role: "VFX Artist (Freelance)",
     year: "2024",
     description:
-      "Contributed as a freelance VFX artist, developing real-time visual effects for gameplay systems and cinematics using Unreal Engine.",
+      "Contributed freelance real-time VFX for gameplay systems and cinematics in Unreal Engine.",
     categories: ["realtime"],
     contributions: [
       "Designed Niagara particle systems for combat abilities and environmental effects",
@@ -341,9 +341,9 @@ export const PROJECTS: Project[] = [
     style: "realistic",
     client: "Insomniac Games",
     workSummary:
-      "VFX Artist on cinematics, gameplay VFX, and UI for Insomniac Games' next title after Spider-Man 2. Project coming soon (late 2026).",
+      "VFX Artist on cinematics, gameplay effects, and UI for Insomniac Games' upcoming Wolverine title.",
     description:
-      "Contributing VFX work to Insomniac Games' upcoming Wolverine title for PS5. Details under NDA.",
+      "Contributing VFX work to Insomniac Games' upcoming Wolverine title for PS5. Details remain under NDA.",
     categories: ["aaa", "realtime"],
     contributions: ["Details under NDA"],
     techStack: ["Unreal Engine", "Houdini", "Perforce"],
@@ -357,7 +357,7 @@ export const PROJECTS: Project[] = [
     year: "2026",
     duration: "2025 - Present",
     description:
-      "A playable HTML5 slot game demo showcasing iGaming VFX: particle coin rain, win animations, and free spins built with React and Canvas.",
+      "A playable HTML5 slot demo featuring iGaming VFX, coin rain, win animations, and free spins built with React and Canvas.",
     categories: ["igaming"],
     contributions: [
       "Built a 5-reel slot game engine with 10 paylines",
@@ -451,7 +451,7 @@ export const RND_PROJECTS: RndProject[] = [
     tools: ["Sora", "Veo-2", "ChatGPT", "Midjourney", "Prompt Engineering"],
     image: "/images/Gemini_Generated_Image_ynlyiiynlyiiynly.png",
     link: "/rnd/historyblends",
-    linkLabel: "View Project details",
+    linkLabel: "View project details",
     slug: "historyblends",
     year: "2025",
   },
@@ -461,7 +461,7 @@ export const RND_PROJECTS: RndProject[] = [
     tools: ["Blender", "After Effects"],
     image: "/images/LevelUp.png",
     link: "/rnd/levelup",
-    linkLabel: "View Project details",
+    linkLabel: "View project details",
     slug: "levelup",
     year: "2025",
   },
@@ -497,7 +497,7 @@ export const RND_PROJECTS: RndProject[] = [
     embedUrl:
       "https://www.youtube.com/embed/VTB2IAmcQO8?muted=1&mute=1&autoplay=1&loop=1&playlist=VTB2IAmcQO8",
     link: "/rnd/hlsl-material",
-    linkLabel: "View Project details",
+    linkLabel: "View project details",
     slug: "hlsl-material",
     year: "2025",
     group: "vfx",
@@ -531,7 +531,7 @@ export const RND_PROJECTS: RndProject[] = [
     embedUrl:
       "https://www.youtube.com/embed/FcIUXgQ4c3s?muted=1&mute=1&autoplay=1&loop=1&playlist=FcIUXgQ4c3s",
     link: "/rnd/art-vfx",
-    linkLabel: "View Project details",
+    linkLabel: "View project details",
     slug: "art-vfx",
     year: "2024",
     group: "vfx",
@@ -548,12 +548,12 @@ export const RND_PROJECTS: RndProject[] = [
     group: "vfx",
   },
   {
-    title: "RND Houdini (Redshift) & Unreal Engine",
+    title: "Houdini / Redshift / Unreal Engine R&D",
     category: "Graduation Project",
     tools: ["Houdini", "Redshift", "Unreal Engine"],
     image: "/video/project-my.mp4",
     link: "/rnd/project-my",
-    linkLabel: "View Project details",
+    linkLabel: "View project details",
     slug: "project-my",
     year: "2022",
   },
@@ -582,7 +582,7 @@ export const RND_PROJECTS: RndProject[] = [
     tools: ["Premiere Pro", "After Effects", "Filming"],
     image: "/images/FoodCourt.png",
     link: "/rnd/utop-bitexco",
-    linkLabel: "View Project details",
+    linkLabel: "View project details",
     slug: "utop-bitexco",
     year: "2020",
   },
@@ -592,7 +592,7 @@ export const RND_PROJECTS: RndProject[] = [
     tools: ["Premiere Pro", "After Effects"],
     image: "/images/SmartMenu.png",
     link: "/rnd/smart-menu",
-    linkLabel: "View Project details",
+    linkLabel: "View project details",
     slug: "smart-menu",
     year: "2020",
   },
@@ -602,7 +602,7 @@ export const RND_PROJECTS: RndProject[] = [
     tools: ["Filming", "Premiere Pro", "After Effects"],
     image: "/images/utop.png",
     link: "/rnd/utop-events",
-    linkLabel: "View Project details",
+    linkLabel: "View project details",
     slug: "utop-events",
     year: "2020",
   },

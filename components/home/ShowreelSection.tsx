@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import Image from "next/image";
+import { useRef, useState } from "react";
 import {
   Play,
   Pause,
@@ -17,33 +18,13 @@ import { getLocalizedHero } from "@/lib/portfolio-content";
 
 export default function ShowreelSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const thumbRef = useRef<HTMLVideoElement>(null);
   const prefersReducedMotion = useReducedMotion();
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [started, setStarted] = useState(false);
-  const [thumbReady, setThumbReady] = useState(false);
   const { locale, copy } = useLanguage();
   const hero = getLocalizedHero(locale);
-
-  useEffect(() => {
-    const thumb = thumbRef.current;
-    if (!thumb) return;
-    const onLoaded = () => {
-      thumb.currentTime = 2;
-    };
-    const onSeeked = () => setThumbReady(true);
-    const onError = () => setThumbReady(false);
-    thumb.addEventListener("loadeddata", onLoaded);
-    thumb.addEventListener("seeked", onSeeked);
-    thumb.addEventListener("error", onError);
-    return () => {
-      thumb.removeEventListener("loadeddata", onLoaded);
-      thumb.removeEventListener("seeked", onSeeked);
-      thumb.removeEventListener("error", onError);
-    };
-  }, []);
 
   const handlePlay = () => {
     const video = videoRef.current;
@@ -146,27 +127,17 @@ export default function ShowreelSection() {
               aria-label={copy.common.playShowreelVideo}
               className="group/play absolute inset-0 flex cursor-pointer items-center justify-center"
             >
-              <video
-                ref={thumbRef}
-                src={hero.showreelUrl}
-                muted
-                playsInline
-                preload="metadata"
-                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-                  thumbReady ? "opacity-70" : "opacity-0"
-                }`}
+              <Image
+                src="/images/optimized/showreel-fortnite-poster.jpg"
+                alt=""
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 1024px"
+                className="absolute inset-0 object-cover object-center opacity-95 transition-transform duration-700 group-hover/play:scale-[1.02]"
                 aria-hidden
               />
-              <div
-                className={`absolute inset-0 transition-opacity duration-700 ${
-                  thumbReady ? "opacity-0" : "opacity-100"
-                }`}
-                style={{
-                  background:
-                    "linear-gradient(135deg, #09090b 0%, #1a1a2e 40%, #16213e 70%, #0f3460 100%)",
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/70 via-transparent to-zinc-950/40" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,transparent_0%,rgba(4,7,12,0.08)_48%,rgba(4,7,12,0.42)_100%)]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/50 via-zinc-950/0 to-zinc-950/10" />
               <div className="relative z-10 flex flex-col items-center gap-4">
                 <div className="flex h-20 w-20 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white shadow-2xl backdrop-blur-md transition-all duration-300 group-hover/play:scale-110 group-hover/play:border-teal-400/50 group-hover/play:bg-teal-500/90 group-hover/play:shadow-teal-500/25">
                   <Play className="ml-1 h-8 w-8 fill-white" />

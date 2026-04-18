@@ -1,0 +1,214 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UE5 Material Library</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="material-body">
+  <header class="material-header material-header-library">
+    <div>
+      <p class="eyebrow">UE5 / Material Library / Section Landing</p>
+      <h1>UE5 Material Library</h1>
+      <p>
+        This is the main map for the UE5 branch. It separates reusable logic, style direction,
+        buildable recipes, and production notes so you can open the right document without hunting.
+        The library leans stylized first, but it is meant to cover stylized, anime, cel shader,
+        semi-realistic, and realistic material work.
+      </p>
+    </div>
+
+    <nav class="material-top-links" aria-label="UE5 section links">
+      <a href="/materials/index.html">Portal</a>
+      <a href="#path">Recommended Path</a>
+      <a href="#core-packs">Core Packs</a>
+      <a href="#style-direction">Style Direction</a>
+      <a href="/materials/style/style-roadmap.html">Style Roadmap</a>
+      <a href="#recipes">Recipes</a>
+      <a href="#production-notes">Production Notes</a>
+    </nav>
+  </header>
+
+  <main class="material-layout material-layout-library">
+    <aside class="material-sidebar">
+      <p class="mini-label">UE5 Navigation</p>
+      <a href="#path">01. Recommended Path</a>
+      <a href="#architecture">02. Library Architecture</a>
+      <a href="#core-packs">03. Core Packs</a>
+      <a href="#style-direction">04. Style Direction</a>
+      <a href="#recipes">05. Recipes</a>
+      <a href="#production-notes">06. Production Notes</a>
+      <a href="#rules">07. Build Rules</a>
+    </aside>
+
+    <section class="material-content">
+      <section id="path" class="material-section">
+        <p class="section-kicker">01</p>
+        <h2>Recommended Path</h2>
+        <div class="pipeline-diagram" aria-label="Recommended reading path">
+          <span>Pick a visual target</span>
+          <span>Open a recipe</span>
+          <span>Identify reused blocks</span>
+          <span>Read core pack</span>
+          <span>Check production note</span>
+          <span>Build clean instance</span>
+        </div>
+        <div class="material-grid">
+          <article>
+            <h3>If you want to build something now</h3>
+            <p>Start with a recipe such as Magic Energy or Portal / Vortex. Recipes show the final material behavior and the minimum blocks needed to reproduce it.</p>
+          </article>
+          <article>
+            <h3>If you want to make the library scalable</h3>
+            <p>Start with Core Packs. They define the reusable material functions that keep repeated effects from turning into isolated prototype graphs.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="architecture" class="material-section">
+        <p class="section-kicker">02</p>
+        <h2>Library Architecture</h2>
+        <div class="material-link-grid">
+          <article>
+            <span>Foundation</span>
+            <strong>Core Packs</strong>
+            <small>Reusable building blocks: UV motion, masks, edge response, distortion, color, emission, and runtime control.</small>
+          </article>
+          <article>
+            <span>Lookdev</span>
+            <strong>Style Direction</strong>
+            <small>Visual language pages across stylized, anime, cel shader, semi-realistic, and realistic material families.</small>
+          </article>
+          <article>
+            <span>Execution</span>
+            <strong>Recipes</strong>
+            <small>Buildable effects with graph order, HLSL equivalent, artist controls, and production caveats.</small>
+          </article>
+          <article>
+            <span>Support</span>
+            <strong>Production Notes</strong>
+            <small>Problem-driven pages for issues that are too specific to live inside a single visual recipe.</small>
+          </article>
+        </div>
+      </section>
+
+      <section id="core-packs" class="material-section">
+        <p class="section-kicker">03</p>
+        <h2>Core Packs</h2>
+        <div class="material-link-grid">
+          <a href="/materials/core-packs/uv-motion-pack.html"><span>Core Pack</span><strong>UV Motion Pack</strong><small>Reusable UV animation logic for panners, rotation, polar flow, directional streaks, and time-based pulses.</small></a>
+          <a href="/materials/core-packs/mask-shaping-pack.html"><span>Core Pack</span><strong>Mask Shaping Pack</strong><small>Reusable shaping logic for thresholds, smoothstep masks, radial masks, sphere masks, and controllable edge bands.</small></a>
+          <a href="/materials/core-packs/edge-response-pack.html"><span>Core Pack</span><strong>Edge Response Pack</strong><small>View and contact response logic for Fresnel, rim light, depth fade, intersection highlights, and edge shaping.</small></a>
+          <a href="/materials/core-packs/distortion-pack.html"><span>Core Pack</span><strong>Distortion Pack</strong><small>Reusable distortion logic for heat wobble, radial pull, screen-space offsets, layered refraction, and masked distortion.</small></a>
+          <a href="/materials/core-packs/color-emission-pack.html"><span>Core Pack</span><strong>Color + Emission Pack</strong><small>Reusable color and emission logic for gradient remaps, edge color, emissive boost, and controlled glow hierarchy.</small></a>
+          <a href="/materials/core-packs/runtime-control-pack.html"><span>Core Pack</span><strong>Runtime Control Pack</strong><small>Runtime authoring patterns for Dynamic Material Instances, Material Parameter Collections, Niagara parameters, and variation control.</small></a>
+        </div>
+      </section>
+
+      <section id="style-direction" class="material-section">
+        <p class="section-kicker">04</p>
+        <h2>Style Direction</h2>
+        <div class="material-callout">
+          <strong>Scope:</strong> this lane is not only for anime or cel shading. Current pages start with anime/cel because that look needs strict control,
+          but the same structure should expand into stylized, semi-realistic, and realistic material families.
+        </div>
+        <div class="material-link-grid">
+          <a href="/materials/style/style-roadmap.html"><span>Style Roadmap</span><strong>Stylized-first, multi-style</strong><small>Planned style families: stylized, anime, cel shader, semi-realistic, and realistic. Use one taxonomy so the library does not split into unrelated notebooks.</small></a>
+          <a href="/materials/style/stylized.html"><span>Style Lane</span><strong>Stylized</strong><small>The default production bias: readable shapes, authored masks, grouped values, and strong art direction.</small></a>
+          <a href="/materials/style/semi-realistic.html"><span>Style Lane</span><strong>Semi-Realistic</strong><small>The bridge between stylized readability and believable surface response.</small></a>
+          <a href="/materials/style/realistic.html"><span>Style Lane</span><strong>Realistic</strong><small>PBR discipline, correct scale, packed maps, and predictable lighting response.</small></a>
+          <a href="/materials/style/anime-cel-shader.html"><span>Current Style</span><strong>Anime / Cel Shader Base</strong><small>The current style sample for clean cel bands, controlled shadow color, readable silhouettes, and scalable character shading.</small></a>
+          <a href="/materials/style/anime-skin-shader.html"><span>Style Direction</span><strong>Anime Skin Shader</strong><small>Skin shading notes for soft anime skin, clean shadow hue, restrained specular, and readable face lighting.</small></a>
+          <a href="/materials/style/anime-hair-shader.html"><span>Style Direction</span><strong>Anime Hair Shader</strong><small>Hair shading notes for flow-based highlights, shadow bands, rim separation, and readable hair silhouette.</small></a>
+          <a href="/materials/style/anime-eye-highlight.html"><span>Style Direction</span><strong>Anime Eye Highlight</strong><small>Eye material notes for iris gradients, upper shadow, catch light, highlight hierarchy, and clean stylized readability.</small></a>
+        </div>
+      </section>
+
+      <section id="recipes" class="material-section">
+        <p class="section-kicker">05</p>
+        <h2>Recipes</h2>
+        <div class="portal-recipe-category-grid">
+          <article class="portal-recipe-category">
+            <div class="portal-category-head">
+              <div><strong>Stylized VFX</strong><small>Effects that need readable motion, strong masks, and clear emission hierarchy.</small></div>
+              <em>7 recipes</em>
+            </div>
+            <div class="portal-recipe-grid portal-recipe-grid-grouped">
+              <a href="/materials/recipes/magic-energy.html"><strong>Magic Energy</strong><small>UV motion, noise, color remap, alpha shaping, emission.</small></a>
+              <a href="/materials/recipes/erosion-dissolve.html"><strong>Erosion / Dissolve</strong><small>Threshold, edge band, alpha clip, soft fade, burn edge.</small></a>
+              <a href="/materials/recipes/shield-force-field.html"><strong>Shield / Force Field</strong><small>Fresnel shell, hit masks, radial falloff, distortion, glow.</small></a>
+              <a href="/materials/recipes/portal-vortex.html"><strong>Portal / Vortex</strong><small>Radial mask, polar UVs, swirl motion, rim glow.</small></a>
+              <a href="/materials/recipes/hologram-material.html"><strong>Hologram</strong><small>Scanlines, view response, breakup, electronic color.</small></a>
+              <a href="/materials/recipes/ground-rune-magic-circle.html"><strong>Ground Rune</strong><small>Circular masks, pulse rings, symbols, emission timing.</small></a>
+              <a href="/materials/recipes/energy-beam.html"><strong>Energy Beam</strong><small>Stretched UVs, core masks, edge falloff, traveling noise.</small></a>
+            </div>
+          </article>
+          <article class="portal-recipe-category">
+            <div class="portal-category-head">
+              <div><strong>Stylized Surfaces</strong><small>Readable material looks where shape language matters more than strict realism.</small></div>
+              <em>5 recipes</em>
+            </div>
+            <div class="portal-recipe-grid portal-recipe-grid-grouped">
+              <a href="/materials/recipes/fire-heat-distortion.html"><strong>Fire / Heat</strong><small>Vertical flow, flame masks, emissive color, heat wobble.</small></a>
+              <a href="/materials/recipes/stylized-water-foam.html"><strong>Stylized Water</strong><small>Depth color, ripple motion, shore foam, sparkle control.</small></a>
+              <a href="/materials/recipes/ice-frost-crystal.html"><strong>Ice / Frost</strong><small>Cold gradients, cracks, edge whitening, internal breakup.</small></a>
+              <a href="/materials/recipes/lava-magma.html"><strong>Lava / Magma</strong><small>Crust masks, hot crack ramps, slow flow, emissive depth.</small></a>
+              <a href="/materials/recipes/glass-crystal.html"><strong>Glass / Crystal</strong><small>Silhouette fresnel, tint, roughness variation, refraction.</small></a>
+            </div>
+          </article>
+          <article class="portal-recipe-category">
+            <div class="portal-category-head">
+              <div><strong>Environment + Realistic</strong><small>Grounded materials for terrain, weather response, and PBR-safe surfaces.</small></div>
+              <em>3 recipes</em>
+            </div>
+            <div class="portal-recipe-grid portal-recipe-grid-grouped">
+              <a href="/materials/recipes/wet-surface-rain.html"><strong>Wet Surface / Rain</strong><small>Surface darkening, roughness shift, puddles, rain ripples.</small></a>
+              <a href="/materials/recipes/terrain-layer-blend.html"><strong>Terrain Layer Blend</strong><small>Height masks, slope rules, macro variation, layer order.</small></a>
+              <a href="/materials/recipes/realistic-pbr-surface.html"><strong>Realistic PBR</strong><small>Albedo, roughness, normal, metalness, packed masks.</small></a>
+            </div>
+          </article>
+          <article class="portal-recipe-category">
+            <div class="portal-category-head">
+              <div><strong>Character Lookdev</strong><small>Character-facing materials and style rules that affect faces, skin, and silhouettes.</small></div>
+              <em>3 entries</em>
+            </div>
+            <div class="portal-recipe-grid portal-recipe-grid-grouped">
+              <a href="/materials/recipes/semi-realistic-skin.html"><strong>Semi-Realistic Skin</strong><small>Color zones, roughness variation, pore detail, restrained specular.</small></a>
+              <a href="/materials/style/anime-cel-shader.html"><strong>Anime / Cel Base</strong><small>Cel bands, shadow color, silhouettes, character shading.</small></a>
+              <a href="/materials/style/semi-realistic.html"><strong>Semi-Realistic Lane</strong><small>Bridge stylized form with grounded surface response.</small></a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="production-notes" class="material-section">
+        <p class="section-kicker">06</p>
+        <h2>Production Notes</h2>
+        <div class="material-link-grid">
+          <a href="/materials/production-notes/anime-face-shadow-map.html"><span>Production Note</span><strong>Anime Face Shadow Map</strong><small>Stabilize anime face shadows with authored masks instead of relying only on raw normals and light direction.</small></a>
+          <a href="/materials/production-notes/anime-outline-rim-control.html"><span>Production Note</span><strong>Anime Outline / Rim Control</strong><small>Keep silhouette, rim light, and outline width controlled across characters, camera distance, and shot lighting.</small></a>
+        </div>
+      </section>
+
+      <section id="rules" class="material-section">
+        <p class="section-kicker">07</p>
+        <h2>Build Rules</h2>
+        <div class="material-grid">
+          <article>
+            <h3>Document the decision, not just the node</h3>
+            <p>Each page should explain why the graph is built that way, what tradeoff it accepts, and when the approach breaks down.</p>
+          </article>
+          <article>
+            <h3>Separate artist controls from internal logic</h3>
+            <p>Material Instances should expose decisions artists actually make. Internal math should remain readable but not noisy.</p>
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/materials/material-doc.js"></script>
+</body>
+</html>
+

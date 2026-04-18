@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { Menu } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { ChevronDown, Menu } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -29,20 +29,48 @@ const itemVariants = {
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const { copy } = useLanguage();
   const isLanding = pathname === "/";
   const isDarkNav =
     isLanding ||
     pathname === "/showreel" ||
+    pathname.startsWith("/articles") ||
     pathname.startsWith("/blog") ||
     pathname.startsWith("/portfolio");
   const navLinks = [
     { href: "/", label: copy.nav.home },
     { href: "/showreel", label: copy.nav.reel },
-    { href: "/blog", label: copy.nav.blog },
+    {
+      href: "/articles",
+      label: copy.nav.blog,
+      children: [
+        { href: "/articles#blog", label: "Blog" },
+        { href: "/materials/index.html", label: "ShaderLex" },
+      ],
+    },
     { href: "/about", label: copy.nav.about },
   ];
+  const prefetchRoute = (href: string) => {
+    if (href.endsWith(".html")) return;
+    router.prefetch(href.split("#")[0]);
+  };
+
+  useEffect(() => {
+    const warmNavigation = () => {
+      const warmRoutes = ["/", "/portfolio", "/about", "/showreel", "/articles"];
+      warmRoutes.forEach((href) => router.prefetch(href));
+    };
+
+    if ("requestIdleCallback" in window) {
+      const idleId = window.requestIdleCallback(warmNavigation, { timeout: 1200 });
+      return () => window.cancelIdleCallback(idleId);
+    }
+
+    const timeoutId = setTimeout(warmNavigation, 350);
+    return () => clearTimeout(timeoutId);
+  }, [router]);
 
   return (
     <header
@@ -72,25 +100,62 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-1 lg:gap-2">
-          {navLinks.map(({ href, label }) => {
-            const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
+          {navLinks.map(({ href, label, children }) => {
+            const isActive =
+              href === "/"
+                ? pathname === "/"
+                : href === "/articles"
+                  ? pathname.startsWith("/articles") || pathname.startsWith("/blog")
+                  : pathname.startsWith(href);
+            const hasChildren = Boolean(children?.length);
             return (
-              <Link
-                key={label}
-                href={href}
-                className={cn(
-                  "relative rounded-full px-4 py-2.5 text-sm font-medium transition-all duration-300",
-                  isActive
-                    ? isDarkNav
-                      ? "bg-white/8 text-white shadow-[0_0_0_1px_rgba(255,255,255,0.06)_inset]"
-                      : "bg-white text-slate-900 shadow-[0_10px_24px_rgba(15,23,42,0.05)]"
-                    : isDarkNav
-                      ? "text-white/70 hover:bg-white/5 hover:text-white"
-                      : "text-slate-600 hover:bg-white/70 hover:text-slate-900"
+              <div key={label} className="group/navitem relative">
+                <Link
+                  href={href}
+                  onMouseEnter={() => prefetchRoute(href)}
+                  onFocus={() => prefetchRoute(href)}
+                  className={cn(
+                    "relative inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-medium transition-all duration-300",
+                    isActive
+                      ? isDarkNav
+                        ? "bg-white/8 text-white shadow-[0_0_0_1px_rgba(255,255,255,0.06)_inset]"
+                        : "bg-white text-slate-900 shadow-[0_10px_24px_rgba(15,23,42,0.05)]"
+                      : isDarkNav
+                        ? "text-white/70 hover:bg-white/5 hover:text-white"
+                        : "text-slate-600 hover:bg-white/70 hover:text-slate-900"
+                  )}
+                >
+                  {label}
+                  {hasChildren && <ChevronDown className="h-3.5 w-3.5 opacity-70" />}
+                </Link>
+                {hasChildren && (
+                  <div
+                    className={cn(
+                      "invisible absolute left-1/2 top-full z-50 mt-3 w-52 -translate-x-1/2 rounded-2xl border p-2 opacity-0 shadow-2xl transition-all duration-200 group-hover/navitem:visible group-hover/navitem:translate-y-0 group-hover/navitem:opacity-100 group-focus-within/navitem:visible group-focus-within/navitem:opacity-100",
+                      isDarkNav
+                        ? "border-white/10 bg-[#151922] text-white"
+                        : "border-stone-200 bg-white text-slate-900"
+                    )}
+                  >
+                    {children!.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        onMouseEnter={() => prefetchRoute(child.href)}
+                        onFocus={() => prefetchRoute(child.href)}
+                        className={cn(
+                          "block rounded-xl px-4 py-3 text-sm font-semibold transition-colors",
+                          isDarkNav
+                            ? "text-white/75 hover:bg-white/8 hover:text-white"
+                            : "text-slate-600 hover:bg-slate-100 hover:text-slate-950"
+                        )}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
                 )}
-              >
-                {label}
-              </Link>
+              </div>
             );
           })}
 
@@ -99,6 +164,8 @@ export default function Navbar() {
           {/* Portfolio CTA button */}
           <Link
             href="/portfolio"
+            onMouseEnter={() => prefetchRoute("/portfolio")}
+            onFocus={() => prefetchRoute("/portfolio")}
             className={cn(
               "group relative inline-flex items-center justify-center overflow-hidden rounded-full px-5 py-[0.7rem] text-sm font-semibold transition-all duration-300",
               pathname.startsWith("/portfolio")
@@ -133,12 +200,19 @@ export default function Navbar() {
               initial="hidden"
               animate="visible"
             >
-              {navLinks.map(({ href, label }) => {
-                const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
+              {navLinks.map(({ href, label, children }) => {
+                const isActive =
+                  href === "/"
+                    ? pathname === "/"
+                    : href === "/articles"
+                      ? pathname.startsWith("/articles") || pathname.startsWith("/blog")
+                      : pathname.startsWith(href);
                 return (
                   <motion.div key={label} variants={itemVariants}>
                     <Link
                       href={href}
+                      onTouchStart={() => prefetchRoute(href)}
+                      onFocus={() => prefetchRoute(href)}
                       onClick={() => setOpen(false)}
                       className={cn(
                         "block py-2 text-base font-medium transition-colors",
@@ -147,6 +221,22 @@ export default function Navbar() {
                     >
                       {label}
                     </Link>
+                    {children?.length ? (
+                      <div className="ml-4 mt-2 flex flex-col gap-2 border-l border-slate-200 pl-4">
+                        {children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            onTouchStart={() => prefetchRoute(child.href)}
+                            onFocus={() => prefetchRoute(child.href)}
+                            onClick={() => setOpen(false)}
+                            className="py-1 text-sm font-medium text-slate-500 transition-colors hover:text-slate-900"
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    ) : null}
                   </motion.div>
                 );
               })}
@@ -163,6 +253,8 @@ export default function Navbar() {
               <motion.div variants={itemVariants}>
                 <Link
                   href="/portfolio"
+                  onTouchStart={() => prefetchRoute("/portfolio")}
+                  onFocus={() => prefetchRoute("/portfolio")}
                   onClick={() => setOpen(false)}
                   className="mt-4 block rounded-full bg-[#5c9d98] px-6 py-3.5 text-center text-sm font-semibold text-white transition-colors hover:bg-[#538f8a]"
                 >

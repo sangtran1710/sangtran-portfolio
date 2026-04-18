@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stylized Material Lane for UE5</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="material-body">
+  <header class="material-header">
+    <div>
+      <p class="eyebrow">UE5 / Style Lane / Stylized</p>
+      <h1>Stylized Material Lane</h1>
+      <p>
+        Stylized material work is not just brighter color. It is a decision system:
+        readable shapes, controlled masks, authored lighting response, and strong value grouping.
+      </p>
+    </div>
+    <section class="engine-board engine-board-compact" aria-label="Lane status">
+      <article class="engine-card engine-card-active">
+        <span class="engine-badge">Style lane</span>
+        <h2>Default bias of this library</h2>
+        <p>
+          Use this lane when readability and art direction matter more than strict physical response.
+          Most VFX, magic, water, terrain, and gameplay surfaces start here.
+        </p>
+      </article>
+    </section>
+    <nav class="material-top-links" aria-label="Page links">
+      <a href="/materials/index.html">Portal</a>
+      <a href="/materials/ue5.html">UE5 Library</a>
+      <a href="/materials/style/style-roadmap.html">Style Roadmap</a>
+      <a href="#principles">Principles</a>
+      <a href="#recipes">Recipes</a>
+      <a href="#rules">Rules</a>
+    </nav>
+  </header>
+
+  <main class="material-layout">
+    <aside class="material-sidebar"><p class="mini-label">Stylized lane</p></aside>
+    <section class="material-content">
+      <section id="principles" class="material-section">
+        <p class="section-kicker">01</p>
+        <h2>Principles</h2>
+        <div class="recipe-grid">
+          <article><span>Read</span><strong>Shape first</strong><small>The silhouette, edge, ring, foam, or crack pattern should read before small texture detail.</small></article>
+          <article><span>Color</span><strong>Grouped values</strong><small>Use deliberate value families instead of noisy gradients everywhere.</small></article>
+          <article><span>Motion</span><strong>Few strong rhythms</strong><small>Layer motion by purpose: body, detail, pulse, or impact. Do not animate everything equally.</small></article>
+          <article><span>Control</span><strong>Artist-facing parameters</strong><small>Expose decisions like width, softness, speed, tint, and intensity, not internal math clutter.</small></article>
+        </div>
+      </section>
+
+      <section id="recipes" class="material-section">
+        <p class="section-kicker">02</p>
+        <h2>Primary Recipes</h2>
+        <div class="material-link-grid">
+          <a href="/materials/recipes/magic-energy.html"><span>VFX</span><strong>Magic Energy</strong><small>Emissive masks, layered noise, color remap, and energy body control.</small></a>
+          <a href="/materials/recipes/stylized-water-foam.html"><span>Surface</span><strong>Stylized Water / Foam</strong><small>Readable depth color, ripple motion, and shore foam.</small></a>
+          <a href="/materials/recipes/lava-magma.html"><span>Surface</span><strong>Lava / Magma</strong><small>Dark crust, hot cracks, slow flow, and controlled bloom.</small></a>
+          <a href="/materials/recipes/ground-rune-magic-circle.html"><span>VFX</span><strong>Ground Rune</strong><small>Radial masks, pulse timing, and gameplay-readable rings.</small></a>
+        </div>
+      </section>
+
+      <section id="rules" class="material-section">
+        <p class="section-kicker">03</p>
+        <h2>Authoring Rules</h2>
+        <div class="material-topic-stack">
+          <article><h3>1. Preview the mask before color</h3><p>If the grayscale signal is weak, stronger color only hides the problem temporarily.</p></article>
+          <article><h3>2. Keep a cheap instance</h3><p>Stylized effects are often repeated. Every hero material needs a background-safe version.</p></article>
+          <article><h3>3. Use realism as reference, not a cage</h3><p>Borrow from real behavior when it helps the read, then simplify aggressively for the art direction.</p></article>
+        </div>
+      </section>
+    </section>
+  </main>
+  <script src="/materials/material-doc.js"></script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portal / Vortex for UE5</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="material-body">
+  <header class="material-header">
+    <div>
+      <p class="eyebrow">UE5 / Recipe / Portal VFX</p>
+      <h1>Portal / Vortex for UE5</h1>
+      <p>
+        A practical portal material built from radial masks, polar UV motion, rim emission,
+        center depth, and optional distortion. The goal is not a physics simulation. The goal is a portal
+        that reads instantly in a game shot.
+      </p>
+    </div>
+
+    <section class="engine-board engine-board-compact" aria-label="Document status">
+      <article class="engine-card engine-card-active">
+        <span class="engine-badge">Recipe baseline</span>
+        <h2>Read this first</h2>
+        <p>
+          A good portal has three readable zones: a bright rim, a moving interior, and a darker center.
+          If every part spins at the same speed, it stops feeling deep and starts looking like a flat loading icon.
+        </p>
+      </article>
+    </section>
+
+    <nav class="material-top-links" aria-label="Page links"><a href="/materials/index.html">Portal</a><a href="/materials/ue5.html">UE5 Library</a><a href="#target">Target</a><a href="#use-cases">Use Cases</a><a href="#model">Mental Model</a><a href="#graph">Graph Steps</a><a href="#controls">Controls</a><a href="#hlsl">HLSL</a><a href="#senior-notes">Senior Notes</a></nav>
+  </header>
+
+  <main class="material-layout">
+    <aside class="material-sidebar"><p class="mini-label">Recipe map</p><a href="#target">01. Visual Target</a><a href="#use-cases">02. Use Cases</a><a href="#model">03. Mental Model</a><a href="#graph">04. Graph Steps</a><a href="#controls">05. Artist Controls</a><a href="#hlsl">06. HLSL Sketch</a><a href="#senior-notes">07. Senior Notes</a><a href="#troubleshooting">08. Troubleshooting</a><a href="#related">09. Related Pages</a></aside>
+
+    <section class="material-content">
+      <section id="target" class="material-section">
+        <p class="section-kicker">01</p>
+        <h2>Visual Target</h2>
+        <div class="section-meta">
+          <span class="section-chip">Polar UV</span>
+          <span class="section-chip">Rim Emission</span>
+          <span class="section-chip">Distortion Ready</span>
+        </div>
+        <div class="material-callout">
+          <strong>What we are building:</strong> a blue portal with a crisp outer rim, visible swirl motion,
+          darker center pull, and enough value separation that the player can read it from a gameplay camera.
+        </div>
+        <section class="material-visual-hero" aria-label="Visual anchor">
+          <div class="material-hero-frame">
+            <img src="/assets/materials/recipes/portal-vortex-pilot-01.png" alt="Portal Vortex visual anchor.">
+            <p class="material-hero-caption">
+              The rim is the silhouette. The swirl is the motion. The center is the depth cue. Do not let all three fight for attention.
+            </p>
+          </div>
+        </section>
+      </section>
+
+      <section id="use-cases" class="material-section">
+        <p class="section-kicker">02</p>
+        <h2>Use Cases</h2>
+        <div class="recipe-grid">
+          <article>
+            <span>Hero</span>
+            <strong>Teleport gate</strong>
+            <small>A large readable opening for a level transition, spawn point, or cinematic beat.</small>
+          </article>
+          <article>
+            <span>Gameplay</span>
+            <strong>Spawn / despawn hole</strong>
+            <small>Drive radius, rim width, and emission from Blueprint or Niagara when enemies or spells appear.</small>
+          </article>
+          <article>
+            <span>Targeting</span>
+            <strong>Magic reticle</strong>
+            <small>A flattened version can work as a ground indicator if the rim stays clean and the interior stays subtle.</small>
+          </article>
+        </div>
+        <div class="quote-box">
+          <strong>Do not use this as-is</strong> for a physically accurate black hole, realistic lensing, or heavy screen distortion.
+          This is a stylized material language for readable game VFX.
+        </div>
+      </section>
+
+      <section id="model" class="material-section">
+        <p class="section-kicker">03</p>
+        <h2>Mental Model</h2>
+        <div class="material-grid">
+          <article>
+            <h3>Think in rings, not noise</h3>
+            <p>
+              The portal should be designed from the outside inward. First establish the outer rim, then the inner swirl,
+              then the center. Noise is only there to break up the surface; it should not define the whole shape.
+            </p>
+          </article>
+          <article>
+            <h3>Polar UVs give the portal its language</h3>
+            <p>
+              Convert regular UVs into radius and angle. Radius gives you rings. Angle gives you rotation.
+              Once those are separate, the material becomes much easier to art-direct.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="graph" class="material-section">
+        <p class="section-kicker">04</p>
+        <h2>Graph Steps</h2>
+        <div class="pipeline-diagram" aria-label="Portal graph flow">
+          <span>Center UV</span>
+          <span>Radius + angle</span>
+          <span>Ring mask</span>
+          <span>Swirl motion</span>
+          <span>Center pull</span>
+          <span>Emission + distortion</span>
+        </div>
+        <div class="material-topic-stack">
+          <article>
+            <h3>1. Center the UVs</h3>
+            <p>
+              Subtract 0.5 from the UV so the portal center becomes zero. From there, `length(centeredUV)` gives you distance
+              from the center and `atan2` gives you the angle around the circle.
+            </p>
+            <p><strong>Beginner check:</strong> preview radius as grayscale. It should look like a clean circular gradient.</p>
+          </article>
+          <article>
+            <h3>2. Build the outer rim first</h3>
+            <p>
+              Use two SmoothStep operations or a radial band function to create the rim. This rim is the portal silhouette,
+              so keep it cleaner than the interior.
+            </p>
+            <p><strong>Senior note:</strong> rim thickness should usually be stable in screen readability, not just pretty in the material preview.</p>
+          </article>
+          <article>
+            <h3>3. Make the swirl from polar UVs</h3>
+            <p>
+              Use angle plus time for rotation, then mix in radius so the inner area can move differently from the outer area.
+              This is where the portal starts feeling like it has direction.
+            </p>
+          </article>
+          <article>
+            <h3>4. Darken the center</h3>
+            <p>
+              Add a center mask that reduces brightness near the middle. This small value drop is what stops the portal from
+              looking like a glowing coin.
+            </p>
+          </article>
+          <article>
+            <h3>5. Add interior noise carefully</h3>
+            <p>
+              Layer noise over the swirl, but keep the noise contrast lower than the rim. The player should see motion,
+              not a noisy texture sample.
+            </p>
+          </article>
+          <article>
+            <h3>6. Mask distortion</h3>
+            <p>
+              If you add scene distortion, keep it strongest near the rim or center pull. Full-surface distortion looks expensive,
+              busy, and often makes the portal harder to read.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="controls" class="material-section">
+        <p class="section-kicker">05</p>
+        <h2>Artist Controls</h2>
+        <div class="material-link-grid">
+          <article>
+            <span>Shape</span>
+            <strong>Outer Radius</strong>
+            <small>Defines the usable portal size. Useful for open and close animations.</small>
+          </article>
+          <article>
+            <span>Shape</span>
+            <strong>Rim Width</strong>
+            <small>Controls silhouette strength. Too thin disappears; too thick feels like a tire.</small>
+          </article>
+          <article>
+            <span>Motion</span>
+            <strong>Swirl Speed</strong>
+            <small>Main rotation speed. Keep this readable from the actual gameplay camera.</small>
+          </article>
+          <article>
+            <span>Motion</span>
+            <strong>Swirl Strength</strong>
+            <small>How strongly the interior bends around the center. High values feel unstable.</small>
+          </article>
+          <article>
+            <span>Depth</span>
+            <strong>Center Hole Size</strong>
+            <small>Controls how dark or open the middle feels. A little darkness sells depth.</small>
+          </article>
+          <article>
+            <span>Cost</span>
+            <strong>Distortion Strength</strong>
+            <small>Keep this separate so background portals can use a cheaper instance.</small>
+          </article>
+        </div>
+      </section>
+
+      <section id="hlsl" class="material-section">
+        <p class="section-kicker">06</p>
+        <h2>HLSL Sketch</h2>
+        <pre class="code-block"><code>float2 p = UV - 0.5;
+float radius = length(p) * 2.0;
+float angle = atan2(p.y, p.x) / 6.28318;
+
+float rimOuter = 1.0 - smoothstep(OuterRadius, OuterRadius + RimSoftness, radius);
+float rimInner = smoothstep(OuterRadius - RimWidth, OuterRadius - RimWidth + RimSoftness, radius);
+float rim = saturate(rimOuter * rimInner);
+
+float swirlAngle = angle + Time * SwirlSpeed + radius * SwirlStrength;
+float2 polarUV = float2(swirlAngle, radius * InteriorScale);
+float interiorNoise = NoiseTexture.Sample(Sampler, polarUV).r;
+
+float centerHole = 1.0 - smoothstep(CenterSize, CenterSize + CenterSoftness, radius);
+float interior = saturate(interiorNoise * (1.0 - centerHole));
+
+float3 color = lerp(InteriorColor, RimColor, rim);
+float emission = interior * InteriorEmission + rim * RimEmission;
+
+return float4(color * emission, saturate(interior + rim));</code></pre>
+      </section>
+
+      <section id="senior-notes" class="material-section">
+        <p class="section-kicker">07</p>
+        <h2>Senior Notes</h2>
+        <div class="material-grid">
+          <article>
+            <h3>Watch the polar seam</h3>
+            <p>
+              Polar UVs have a seam where the angle wraps. Hide it with circular noise, blurrier interior detail,
+              or place the seam where it is least visible in the effect.
+            </p>
+          </article>
+          <article>
+            <h3>Do not over-detail the center</h3>
+            <p>
+              The center can stretch or alias quickly because many UV directions collapse into a small area.
+              Darkening it is often cheaper and cleaner than trying to keep tiny detail there.
+            </p>
+          </article>
+          <article>
+            <h3>Distortion is a taste and cost decision</h3>
+            <p>
+              It can look great in a hero shot, but it can also fight readability in combat. Make it optional per instance.
+            </p>
+          </article>
+          <article>
+            <h3>Separate portal states</h3>
+            <p>
+              Idle, opening, active, and closing usually need different parameters. One material can support all four
+              if the controls are designed around state changes instead of a single pretty screenshot.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="troubleshooting" class="material-section">
+        <p class="section-kicker">08</p>
+        <h2>Troubleshooting</h2>
+        <div class="material-grid">
+          <article>
+            <h3>It looks like a flat spinner</h3>
+            <p>Break the timing. Let the rim pulse slowly, the interior swirl steadily, and the center stay darker or calmer.</p>
+          </article>
+          <article>
+            <h3>The seam is visible</h3>
+            <p>Reduce high-frequency detail near the angle wrap, rotate the seam away from camera focus, or use noise that hides the join.</p>
+          </article>
+          <article>
+            <h3>The rim feels too heavy</h3>
+            <p>Lower rim width before lowering emission. Shape usually fixes the read better than brightness.</p>
+          </article>
+          <article>
+            <h3>The background gets smeared</h3>
+            <p>Distortion is too broad. Mask it tighter to the rim or center and keep a no-distortion instance for dense scenes.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="related" class="material-section">
+        <p class="section-kicker">09</p>
+        <h2>Related Pages</h2>
+        <div class="material-link-grid">
+          <a href="/materials/recipes/magic-energy.html"><span>Recipe</span><strong>Magic Energy</strong><small>Use this as the simpler energy base before adding portal-specific polar motion.</small></a>
+          <a href="/materials/core-packs/uv-motion-pack.html"><span>Core Pack</span><strong>UV Motion Pack</strong><small>Reusable logic for panners, rotation, polar flow, and time-based pulses.</small></a>
+          <a href="/materials/core-packs/distortion-pack.html"><span>Core Pack</span><strong>Distortion Pack</strong><small>Useful when the portal needs heat-haze, refraction, or masked screen warping.</small></a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/materials/material-doc.js"></script>
+</body>
+</html>

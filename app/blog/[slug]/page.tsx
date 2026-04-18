@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, Clock, Tag } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
+import { absoluteUrl } from "@/lib/seo";
 
 interface Props {
   params: { slug: string };
@@ -16,15 +17,34 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(params.slug);
   if (!post) return {};
+  const url = `/blog/${post.slug}`;
+  const image = post.thumbnail || "/images/NWA.jpg";
   return {
-    title: `${post.title} — Sang Tran`,
+    title: post.title,
     description: post.description,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title: post.title,
       description: post.description,
+      url,
       type: "article",
       publishedTime: post.date,
-      ...(post.thumbnail && { images: [post.thumbnail] }),
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: `${post.title} article preview`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      images: [absoluteUrl(image)],
     },
   };
 }
@@ -39,11 +59,11 @@ export default function BlogPostPage({ params }: Props) {
 
         {/* Back */}
         <Link
-          href="/blog"
+          href="/articles"
           className="inline-flex items-center gap-1.5 text-sm text-zinc-500 hover:text-white transition-colors mb-10"
         >
           <ArrowLeft className="h-4 w-4" />
-          All posts
+          All articles
         </Link>
 
         {/* Header */}
@@ -82,7 +102,7 @@ export default function BlogPostPage({ params }: Props) {
             </time>
             {post.readTime && (
               <>
-                <span>·</span>
+                <span>/</span>
                 <span className="flex items-center gap-1">
                   <Clock className="h-3 w-3" />
                   {post.readTime} read
@@ -113,17 +133,17 @@ export default function BlogPostPage({ params }: Props) {
         {/* Footer */}
         <div className="mt-16 pt-8 border-t border-zinc-800 flex items-center justify-between">
           <Link
-            href="/blog"
+            href="/articles"
             className="inline-flex items-center gap-1.5 text-sm text-zinc-500 hover:text-white transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to all posts
+            Back to all articles
           </Link>
           <Link
-            href="/projects"
+            href="/portfolio"
             className="text-sm text-zinc-500 hover:text-teal-400 transition-colors"
           >
-            View my work →
+            View my work &rarr;
           </Link>
         </div>
 

@@ -46,8 +46,13 @@ export default function ProjectGrid() {
 
       {filtered.length > 0 ? (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-9">
-          {filtered.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
+          {filtered.map((project, index) => (
+            <div
+              key={project.slug}
+              className={cn(active === "all" && index === 0 && "lg:col-span-2")}
+            >
+              <ProjectCard project={project} featured={active === "all" && index === 0} />
+            </div>
           ))}
         </div>
       ) : (

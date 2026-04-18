@@ -1,0 +1,72 @@
+---
+title: "Destructible Separate Mesh Tool for Blender"
+description: "A Blender tool I wrote to extract fracture surfaces, build lightweight emitter meshes, and prep FX UVs from destructible geometry."
+date: "2026-04-17"
+tags: ["Blender", "Python", "Technical Art", "VFX", "Pipeline Tools"]
+thumbnail: "/assets/blog/destructible-separate-mesh-tool/separated-crack-mesh.png"
+readTime: "3 min"
+---
+
+I wrote this tool because destructible cleanup is annoying to do by hand.
+
+When a mesh comes in dense and full of materials, I usually do the same few things: find the fracture material, isolate it, clean the result, build a simple emitter mesh, then test a UV layout for FX. None of that is hard, but doing it over and over is slow.
+
+So this tool turns that into one short workflow inside Blender.
+
+## How it works
+
+First, it scans the selected meshes and builds a material list. That makes it easy to preview the crack or inside surfaces before separating anything.
+
+![Fracture material preview in Blender](/assets/blog/destructible-separate-mesh-tool/destructible-material-selected.png)
+
+*Previewing the fracture material before separation.*
+
+Then the tool separates the chosen material from the rest of the destructible mesh. If an object has multiple materials, it splits by material first, keeps the target part, and deletes the rest.
+
+![Separated crack mesh ready for cleanup](/assets/blog/destructible-separate-mesh-tool/separated-crack-mesh.png)
+
+*The extracted fracture mesh after separation.*
+
+After that, it can generate a lightweight emitter mesh. The logic is simple: split the mesh into loose islands, find a center point for each island, filter points that are too close to each other, then build a tiny triangle at each remaining point.
+
+![Generated VFX emitter from separated cracks](/assets/blog/destructible-separate-mesh-tool/vfx-emitter-generated.png)
+
+*A simple emitter mesh generated from the separated fracture pieces.*
+
+The last part is FX UV prep. For emitter meshes it can pack faces into a clean grid. For rounder shapes it uses a flow-and-caps layout. For simpler meshes it falls back to a straight strip. That makes it quick to test panners, noise flow, and directional motion before export.
+
+![Noise flow preview for FX UV validation](/assets/blog/destructible-separate-mesh-tool/noise-flow-preview.png)
+
+*Quick noise-flow preview to check whether the UV direction reads correctly.*
+
+## A small part of the code
+
+One piece I like is the auto mode for FX UVs. Instead of forcing one layout on every mesh, the tool picks a layout based on what the mesh looks like.
+
+```python
+if current_mode == 'AUTO':
+    is_emitter = obj.name.lower().startswith("emitter") or all(
+        len(poly.vertices) == 3 for poly in obj.data.polygons
+    )
+    if is_emitter:
+        current_mode = 'FACE_GRID'
+    elif _i38_is_flow_cap_candidate(obj):
+        current_mode = 'FLOW_CAPS'
+    else:
+        current_mode = 'STRAIGHT_STRIP'
+```
+
+It is a small thing, but it removes a lot of clicking. Most of the time I can just run the tool and get a usable result on the first pass.
+
+## Why it helps
+
+The main benefit is not that the tool does something impossible. It just removes a repetitive technical-art pass that usually sits between import and actual VFX work.
+
+That means:
+
+- less manual mesh cleanup
+- faster emitter setup
+- quicker UV validation
+- a cleaner handoff into shader or engine work
+
+This is my favorite kind of tool work: small, practical, and focused on taking friction out of the pipeline.

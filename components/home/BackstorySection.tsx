@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import Link from "next/link";
+import { useRef } from "react";
+import Image from "next/image";
 import {
   motion,
   useScroll,
@@ -14,7 +14,7 @@ import { ArrowRight } from "lucide-react";
 import TypewriterTitle from "@/components/animations/TypewriterTitle";
 import MagneticButton from "@/components/ui/MagneticButton";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { getLocalizedExperiences, getLocalizedHero } from "@/lib/portfolio-content";
+import { getLocalizedExperiences } from "@/lib/portfolio-content";
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -29,28 +29,17 @@ export default function BackstorySection() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [hasVideo, setHasVideo] = useState(true);
   const prefersReducedMotion = useReducedMotion();
   const titleInView = useInView(titleRef, { amount: 0.5, once: false });
   const { locale, copy } = useLanguage();
-  const hero = getLocalizedHero(locale);
   const experiences = getLocalizedExperiences(locale);
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    const onError = () => setHasVideo(false);
-    video.addEventListener("error", onError);
-    return () => video.removeEventListener("error", onError);
-  }, []);
-
-  // Section-level scroll for video parallax
+  // Section-level scroll for a lightweight poster parallax.
   const { scrollYProgress: sectionProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  const videoBgY = useTransform(sectionProgress, [0, 1], ["0%", "20%"]);
+  const visualBgY = useTransform(sectionProgress, [0, 1], ["0%", "12%"]);
 
   // Timeline scroll-driven line draw
   const { scrollYProgress: timelineProgress } = useScroll({
@@ -65,21 +54,20 @@ export default function BackstorySection() {
       id="backstory"
       className="relative min-h-[80vh] py-24 lg:py-32 overflow-hidden bg-slate-50"
     >
-      {hasVideo && (
-        <motion.video
-          ref={videoRef}
-          src={hero.showreelUrl}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="none"
-          poster="/images/reel_poster.jpg"
-          className="absolute inset-0 w-full h-full object-cover opacity-5 will-change-transform"
-          style={!prefersReducedMotion ? { y: videoBgY } : undefined}
+      <motion.div
+        className="absolute inset-0 opacity-[0.045] will-change-transform"
+        style={!prefersReducedMotion ? { y: visualBgY } : undefined}
+        aria-hidden
+      >
+        <Image
+          src="/images/optimized/showreel-fortnite-poster.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
           aria-hidden
         />
-      )}
+      </motion.div>
       <div className="absolute inset-0 bg-slate-50/80" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-50/50 to-slate-50" />
 

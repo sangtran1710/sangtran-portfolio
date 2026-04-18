@@ -143,7 +143,6 @@ export default function VFXExperienceSection() {
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
-              priority
             />
             {/* Subtle inner shadow for cinematic depth */}
             <div className="absolute inset-0 ring-1 ring-inset ring-black/10" />

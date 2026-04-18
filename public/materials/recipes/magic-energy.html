@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Magic Energy for UE5</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="material-body">
+  <header class="material-header">
+    <div>
+      <p class="eyebrow">UE5 / Recipe / Emissive Energy</p>
+      <h1>Magic Energy for UE5</h1>
+      <p>
+        A practical recipe for a glowing spell core: moving noise gives it life, masks give it shape,
+        color remap gives it art direction, and emission sells the energy.
+      </p>
+    </div>
+
+    <section class="engine-board engine-board-compact" aria-label="Document status">
+      <article class="engine-card engine-card-active">
+        <span class="engine-badge">Recipe baseline</span>
+        <h2>Read this first</h2>
+        <p>
+          Do not start with bloom. Start with a good grayscale mask. If the mask already reads like energy,
+          color and emission will be easy. If the mask is muddy, stronger glow will only make the material messy.
+        </p>
+      </article>
+    </section>
+
+    <nav class="material-top-links" aria-label="Page links"><a href="/materials/index.html">Portal</a><a href="/materials/ue5.html">UE5 Library</a><a href="#target">Target</a><a href="#use-cases">Use Cases</a><a href="#model">Mental Model</a><a href="#graph">Graph Steps</a><a href="#controls">Controls</a><a href="#hlsl">HLSL</a><a href="#senior-notes">Senior Notes</a></nav>
+  </header>
+
+  <main class="material-layout">
+    <aside class="material-sidebar"><p class="mini-label">Recipe map</p><a href="#target">01. Visual Target</a><a href="#use-cases">02. Use Cases</a><a href="#model">03. Mental Model</a><a href="#graph">04. Graph Steps</a><a href="#controls">05. Artist Controls</a><a href="#hlsl">06. HLSL Sketch</a><a href="#senior-notes">07. Senior Notes</a><a href="#troubleshooting">08. Troubleshooting</a><a href="#related">09. Related Pages</a></aside>
+
+    <section class="material-content">
+      <section id="target" class="material-section">
+        <p class="section-kicker">01</p>
+        <h2>Visual Target</h2>
+        <div class="section-meta">
+          <span class="section-chip">Emissive</span>
+          <span class="section-chip">Noise Driven</span>
+          <span class="section-chip">Beginner Friendly</span>
+        </div>
+        <div class="material-callout">
+          <strong>What we are building:</strong> a blue magical energy mass with a bright core, soft outer falloff,
+          moving internal noise, and a controllable edge so it can work as an orb, aura card, charge effect, or spell center.
+        </div>
+        <section class="material-visual-hero" aria-label="Visual anchor">
+          <div class="material-hero-frame">
+            <img src="/assets/materials/recipes/magic-energy-pilot-01.png" alt="Magic Energy visual anchor.">
+            <p class="material-hero-caption">
+              The important read is not just "blue glow". Look for a bright center, darker outer mass, subtle internal motion, and a clean circular falloff.
+            </p>
+          </div>
+        </section>
+      </section>
+
+      <section id="use-cases" class="material-section">
+        <p class="section-kicker">02</p>
+        <h2>Use Cases</h2>
+        <div class="recipe-grid">
+          <article>
+            <span>Hero</span>
+            <strong>Spell core</strong>
+            <small>A focused glowing center for charge-up, cast start, projectile spawn, or magic UI preview.</small>
+          </article>
+          <article>
+            <span>Looping</span>
+            <strong>Aura card</strong>
+            <small>A plane or mesh card around a character, weapon, portal edge, or pickup item.</small>
+          </article>
+          <article>
+            <span>Gameplay</span>
+            <strong>Charge state</strong>
+            <small>Drive intensity, radius, and noise speed from Niagara, Blueprint, or a Dynamic Material Instance.</small>
+          </article>
+        </div>
+        <div class="quote-box">
+          <strong>Do not use this as-is</strong> for realistic fire, plasma simulation, or physically correct light. This is an art-directed energy material.
+        </div>
+      </section>
+
+      <section id="model" class="material-section">
+        <p class="section-kicker">03</p>
+        <h2>Mental Model</h2>
+        <div class="material-grid">
+          <article>
+            <h3>Think in three layers</h3>
+            <ul>
+              <li><strong>Body:</strong> the main round mass, usually a radial mask or soft sphere mask.</li>
+              <li><strong>Detail:</strong> moving noise inside the body so the surface does not feel flat.</li>
+              <li><strong>Core / edge:</strong> extra brightness where the viewer should focus.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Keep the grayscale readable</h3>
+            <p>
+              Before adding color, preview the mask in black and white. A beginner mistake is to fix a weak mask with stronger emission.
+              It may look bright in isolation, but it will fail in a busy scene.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="graph" class="material-section">
+        <p class="section-kicker">04</p>
+        <h2>Graph Steps</h2>
+        <div class="pipeline-diagram" aria-label="Magic energy graph flow">
+          <span>Radial mask</span>
+          <span>Two noise layers</span>
+          <span>Scroll UVs</span>
+          <span>Shape contrast</span>
+          <span>Color remap</span>
+          <span>Emission + alpha</span>
+        </div>
+        <div class="material-topic-stack">
+          <article>
+            <h3>1. Create the body mask</h3>
+            <p>
+              Use a radial mask from UV center or a SphereMask if this sits on geometry. This mask decides where the energy exists.
+              Start soft, then sharpen later with a Power or SmoothStep.
+            </p>
+            <p><strong>Beginner check:</strong> plug this directly into Emissive as grayscale. You should see a clear soft blob before adding noise.</p>
+          </article>
+          <article>
+            <h3>2. Add two noise layers, not one</h3>
+            <p>
+              Use one broad, slow noise for large cloudy motion and one smaller, faster noise for sparkle or turbulence.
+              Multiply or add them carefully. Too much noise makes the effect read as static dirt.
+            </p>
+            <p><strong>Senior note:</strong> if this effect appears many times, consider one packed noise texture instead of multiple samples.</p>
+          </article>
+          <article>
+            <h3>3. Animate with UV motion</h3>
+            <p>
+              Pan the two noise layers in different directions or rotate one layer around the center. The motion should be slow enough to feel alive,
+              not so fast that it becomes screen noise.
+            </p>
+          </article>
+          <article>
+            <h3>4. Shape the final mask</h3>
+            <p>
+              Multiply the animated noise by the body mask, then use contrast controls to decide how dense the energy feels.
+              A Power node is simple; SmoothStep is easier to art-direct.
+            </p>
+          </article>
+          <article>
+            <h3>5. Remap to color and emission</h3>
+            <p>
+              Use a cool outer color and a hotter inner color. The center can receive an emission multiplier, but keep a separate global intensity
+              so the effect can be balanced per level.
+            </p>
+          </article>
+          <article>
+            <h3>6. Output alpha separately</h3>
+            <p>
+              Do not blindly use the same value for color and opacity. You may want a soft transparent edge with a strong emissive center.
+              Separate alpha makes the material easier to tune.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="controls" class="material-section">
+        <p class="section-kicker">05</p>
+        <h2>Artist Controls</h2>
+        <div class="material-link-grid">
+          <article>
+            <span>Shape</span>
+            <strong>Radius / Edge Softness</strong>
+            <small>Controls how large the energy mass is and whether the edge is misty or graphic.</small>
+          </article>
+          <article>
+            <span>Motion</span>
+            <strong>Noise Speed A / B</strong>
+            <small>Two speeds let the material feel layered without changing the texture setup.</small>
+          </article>
+          <article>
+            <span>Density</span>
+            <strong>Noise Contrast</strong>
+            <small>Low contrast feels cloudy; high contrast feels electric or unstable.</small>
+          </article>
+          <article>
+            <span>Color</span>
+            <strong>Outer / Core Color</strong>
+            <small>Keep color separate from emission so the palette can change without blowing out the value range.</small>
+          </article>
+          <article>
+            <span>Emission</span>
+            <strong>Core Intensity</strong>
+            <small>Main brightness control. Clamp or expose carefully if bloom is enabled.</small>
+          </article>
+          <article>
+            <span>Gameplay</span>
+            <strong>Charge Amount</strong>
+            <small>One scalar can drive radius, intensity, and speed together for charge-up states.</small>
+          </article>
+        </div>
+      </section>
+
+      <section id="hlsl" class="material-section">
+        <p class="section-kicker">06</p>
+        <h2>HLSL Sketch</h2>
+        <pre class="code-block"><code>float2 centeredUV = UV - 0.5;
+float radius = length(centeredUV) * 2.0;
+float body = 1.0 - smoothstep(Radius, Radius + EdgeSoftness, radius);
+
+float noiseA = NoiseTexture.Sample(Sampler, UV + Time * SpeedA).r;
+float noiseB = NoiseTexture.Sample(Sampler, UV * DetailScale - Time * SpeedB).r;
+
+float energy = saturate(body * lerp(noiseA, noiseA * noiseB, DetailBlend));
+energy = smoothstep(Threshold, Threshold + Softness, energy);
+
+float core = 1.0 - smoothstep(0.0, CoreSize, radius);
+float3 color = lerp(OuterColor, CoreColor, saturate(energy + core));
+float3 emissive = color * (energy * Emission + core * CoreEmission);
+
+return float4(emissive, energy * Alpha);</code></pre>
+      </section>
+
+      <section id="senior-notes" class="material-section">
+        <p class="section-kicker">07</p>
+        <h2>Senior Notes</h2>
+        <div class="material-grid">
+          <article>
+            <h3>Texture samples are the first cost lever</h3>
+            <p>
+              Two noise samples are usually fine for a hero effect. For repeated background effects, pack multiple noise channels into one texture,
+              lower resolution, or share the same sample at different UV transforms.
+            </p>
+          </article>
+          <article>
+            <h3>Translucency can be more expensive than the math</h3>
+            <p>
+              If this is a large screen-space card, overdraw may dominate. Test it over bright and dark backgrounds, and avoid stacking too many soft planes.
+            </p>
+          </article>
+          <article>
+            <h3>Bloom is a presentation layer</h3>
+            <p>
+              Tune the material so it reads without bloom first. Bloom should enhance the core, not hide a weak mask or poor value grouping.
+            </p>
+          </article>
+          <article>
+            <h3>Niagara handoff</h3>
+            <p>
+              Expose `ChargeAmount`, `CoreIntensity`, and `Radius` as user parameters if this material is driven by spell timing or gameplay state.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="troubleshooting" class="material-section">
+        <p class="section-kicker">08</p>
+        <h2>Troubleshooting</h2>
+        <div class="material-grid">
+          <article>
+            <h3>It looks like a flat blue circle</h3>
+            <p>Add value variation before adding more glow. Check the broad noise layer and make sure the center is not the only bright area.</p>
+          </article>
+          <article>
+            <h3>It looks dirty instead of magical</h3>
+            <p>Your detail noise is too high frequency or too contrasty. Reduce detail strength and let the body mask stay readable.</p>
+          </article>
+          <article>
+            <h3>The edge is hard and gamey</h3>
+            <p>Increase edge softness or separate alpha falloff from emissive falloff. Energy can glow strongly while fading softly.</p>
+          </article>
+          <article>
+            <h3>It disappears in bright scenes</h3>
+            <p>Push value contrast first, then emission. A slightly darker outer color can make the core feel brighter without extreme HDR values.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="related" class="material-section">
+        <p class="section-kicker">09</p>
+        <h2>Related Pages</h2>
+        <div class="material-link-grid">
+          <a href="/materials/core-packs/uv-motion-pack.html"><span>Core Pack</span><strong>UV Motion Pack</strong><small>Good next stop if the energy feels static and needs cleaner scrolling, rotation, or flow direction.</small></a>
+          <a href="/materials/core-packs/mask-shaping-pack.html"><span>Core Pack</span><strong>Mask Shaping Pack</strong><small>Use this to refine radius, edge bands, threshold, and soft falloff.</small></a>
+          <a href="/materials/recipes/portal-vortex.html"><span>Recipe</span><strong>Portal / Vortex</strong><small>Builds on the same energy language but adds radial pull and stronger center depth.</small></a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/materials/material-doc.js"></script>
+</body>
+</html>

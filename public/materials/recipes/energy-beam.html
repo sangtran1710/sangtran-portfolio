@@ -1,0 +1,182 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Energy Beam for UE5</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="material-body">
+  <header class="material-header">
+    <div>
+      <p class="eyebrow">UE5 / Recipe / Stylized VFX</p>
+      <h1>Energy Beam for UE5</h1>
+      <p>
+        A stylized beam material for lasers, magic channels, charged attacks, and projectile trails.
+        The recipe focuses on a clean core, readable falloff, directional flow, and controlled HDR emission.
+      </p>
+    </div>
+
+    <section class="engine-board engine-board-compact" aria-label="Document status">
+      <article class="engine-card engine-card-active">
+        <span class="engine-badge">Recipe baseline</span>
+        <h2>Core first, noise second</h2>
+        <p>
+          A beam needs a strong center line before it needs detail. If the core is weak,
+          extra noise and bloom only make the shot harder to read.
+        </p>
+      </article>
+    </section>
+
+    <nav class="material-top-links" aria-label="Page links"><a href="/materials/index.html">Portal</a><a href="/materials/ue5.html">UE5 Library</a><a href="#target">Target</a><a href="#use-cases">Use Cases</a><a href="#model">Mental Model</a><a href="#graph">Graph Steps</a><a href="#controls">Controls</a><a href="#hlsl">HLSL</a><a href="#senior-notes">Senior Notes</a></nav>
+  </header>
+
+  <main class="material-layout">
+    <aside class="material-sidebar"><p class="mini-label">Recipe map</p><a href="#target">01. Visual Target</a><a href="#use-cases">02. Use Cases</a><a href="#model">03. Mental Model</a><a href="#graph">04. Graph Steps</a><a href="#controls">05. Artist Controls</a><a href="#hlsl">06. HLSL Sketch</a><a href="#senior-notes">07. Senior Notes</a><a href="#mistakes">08. Common Mistakes</a><a href="#related">09. Related Pages</a></aside>
+
+    <section class="material-content">
+      <section id="target" class="material-section">
+        <p class="section-kicker">01</p>
+        <h2>Visual Target</h2>
+        <div class="section-meta">
+          <span class="section-chip">Stylized VFX</span>
+          <span class="section-chip">Directional Flow</span>
+          <span class="section-chip">HDR Emission</span>
+        </div>
+        <div class="material-callout">
+          <strong>What we are building:</strong> a beam with a hot center, softer outer glow,
+          traveling internal motion, optional impact flare, and enough controls to scale from thin laser to wide magic channel.
+        </div>
+        <div class="material-image-placeholder">
+          <div>
+            <strong>Image placeholder: energy beam hero</strong>
+            <span>Future image should show a horizontal stylized beam with bright core, soft outer falloff, directional streaks, and a small impact glow at one end.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="use-cases" class="material-section">
+        <p class="section-kicker">02</p>
+        <h2>Use Cases</h2>
+        <div class="recipe-grid">
+          <article><span>Combat</span><strong>Laser beam</strong><small>A straight readable line where width, core brightness, and edge falloff need separate tuning.</small></article>
+          <article><span>Magic</span><strong>Channel spell</strong><small>Internal flow and color variation sell energy transfer between caster and target.</small></article>
+          <article><span>Weapon</span><strong>Charge trail</strong><small>Use on weapons, projectiles, or held attacks where the beam grows over time.</small></article>
+          <article><span>Environment</span><strong>Power conduit</strong><small>Works as an animated material on cables, tubes, or sci-fi machinery.</small></article>
+        </div>
+      </section>
+
+      <section id="model" class="material-section">
+        <p class="section-kicker">03</p>
+        <h2>Mental Model</h2>
+        <div class="material-grid">
+          <article>
+            <h3>A beam is a shaped strip</h3>
+            <p>
+              Think of it as a long rectangle with a center mask across width and a flow mask along length.
+              Width controls readability. Length motion controls energy direction.
+            </p>
+          </article>
+          <article>
+            <h3>Do not let bloom replace structure</h3>
+            <p>
+              The beam should still have a core and falloff in grayscale. Bloom can make it feel powerful, but it should not be the only reason the beam is visible.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="graph" class="material-section">
+        <p class="section-kicker">04</p>
+        <h2>Graph Steps</h2>
+        <div class="pipeline-diagram" aria-label="Energy beam graph flow">
+          <span>Beam UVs</span>
+          <span>Width mask</span>
+          <span>Flow noise</span>
+          <span>Core + edge</span>
+          <span>Color ramp</span>
+          <span>Impact glow</span>
+        </div>
+        <div class="material-topic-stack">
+          <article><h3>1. Normalize beam UVs</h3><p>Use one axis for beam length and one for width. Keep this convention consistent across beam materials so artists can reuse textures and masks.</p></article>
+          <article><h3>2. Build the width mask</h3><p>Start with a simple centerline falloff. The center should be strong, the edge should fade gently, and the width should be adjustable.</p></article>
+          <article><h3>3. Add traveling flow</h3><p>Pan streak noise along the beam length. This is what tells the viewer which direction the energy is moving.</p></article>
+          <article><h3>4. Split core and outer glow</h3><p>The core can be sharp and bright. The outer glow should be softer and wider. Treat them as two layers, even if they share the same UVs.</p></article>
+          <article><h3>5. Add impact or endpoint masks only when needed</h3><p>Endpoint glow is useful for lasers and channel spells, but not every beam needs it. Keep it optional so the same material can support loops and one-shots.</p></article>
+        </div>
+      </section>
+
+      <section id="controls" class="material-section">
+        <p class="section-kicker">05</p>
+        <h2>Artist Controls</h2>
+        <div class="material-link-grid">
+          <article><span>Shape</span><strong>Beam Width</strong><small>Main readability control. It should be easy to tune per camera distance.</small></article>
+          <article><span>Core</span><strong>Core Sharpness</strong><small>Controls whether the center feels like a laser, plasma, or soft magic stream.</small></article>
+          <article><span>Motion</span><strong>Flow Speed</strong><small>Controls directional energy travel along the beam length.</small></article>
+          <article><span>Noise</span><strong>Streak Contrast</strong><small>Low values feel clean; high values feel unstable or electric.</small></article>
+          <article><span>Color</span><strong>Core / Edge Color</strong><small>Separate color controls keep the beam readable across teams, elements, or weapon types.</small></article>
+          <article><span>Impact</span><strong>Endpoint Intensity</strong><small>Optional flare at beam start or hit point. Useful when the beam needs a clear target read.</small></article>
+        </div>
+      </section>
+
+      <section id="hlsl" class="material-section">
+        <p class="section-kicker">06</p>
+        <h2>HLSL Sketch</h2>
+        <pre class="code-block"><code>float widthCoord = abs(uv.y * 2.0 - 1.0);
+float coreMax = coreWidth + coreSoftness;
+float core = 1.0 - smoothstep(coreWidth, coreMax, widthCoord);
+float outerMax = outerWidth + outerSoftness;
+float outer = 1.0 - smoothstep(outerWidth, outerMax, widthCoord);
+
+float2 flowUV = float2(uv.x * flowTiling - time * flowSpeed, uv.y);
+float streaks = Texture2DSample(flowTex, flowTexSampler, flowUV).r;
+streaks = saturate((streaks - streakBias) * streakContrast + 0.5);
+
+float impact = 1.0 - smoothstep(0.0, impactFalloff, uv.x);
+float mask = core + outer * outerStrength;
+mask += streaks * flowStrength + impact * impactStrength;
+mask = saturate(mask);
+
+float3 color = coreColor * core + edgeColor * outer + impactColor * impact;
+float3 emissive = color * mask * emissionStrength;
+return float4(emissive, mask);</code></pre>
+      </section>
+
+      <section id="senior-notes" class="material-section">
+        <p class="section-kicker">07</p>
+        <h2>Senior Notes</h2>
+        <div class="material-topic-stack">
+          <article><h3>Beam mesh setup matters</h3><p>The material is only half the recipe. You need predictable UVs, stable width, and clean endpoints. Bad mesh UVs make even a good beam graph feel broken.</p></article>
+          <article><h3>Niagara can drive the useful parameters</h3><p>Width, length, flow speed, color, and endpoint intensity are good Niagara user parameters. Avoid exposing tiny internal math values to VFX artists.</p></article>
+          <article><h3>Depth and intersection need art direction</h3><p>If the beam passes through geometry, decide whether it should clip, fade, spark, or create an impact mask. Do not leave intersections accidental.</p></article>
+        </div>
+      </section>
+
+      <section id="mistakes" class="material-section">
+        <p class="section-kicker">08</p>
+        <h2>Common Mistakes</h2>
+        <ul>
+          <li>Making the beam a uniformly glowing rectangle with no centerline hierarchy.</li>
+          <li>Scrolling noise sideways instead of along the beam direction.</li>
+          <li>Using excessive bloom that hides the beam width and endpoint.</li>
+          <li>Forgetting cheap background variants for repeated beams or power cables.</li>
+        </ul>
+      </section>
+
+      <section id="related" class="material-section">
+        <p class="section-kicker">09</p>
+        <h2>Related Pages</h2>
+        <div class="material-link-grid">
+          <a href="/materials/core-packs/uv-motion-pack.html"><span>Core Pack</span><strong>UV Motion Pack</strong><small>Directional streaks, panners, phase offsets, and beam flow.</small></a>
+          <a href="/materials/core-packs/mask-shaping-pack.html"><span>Core Pack</span><strong>Mask Shaping Pack</strong><small>Width masks, smoothstep shaping, and controlled falloff.</small></a>
+          <a href="/materials/recipes/shield-force-field.html"><span>Recipe</span><strong>Shield / Force Field</strong><small>Shares emission hierarchy and impact response thinking.</small></a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/materials/material-doc.js"></script>
+</body>
+</html>
+
+

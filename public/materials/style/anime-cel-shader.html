@@ -1,0 +1,241 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anime Style / Cel Shader for UE5</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="material-body">
+  <header class="material-header">
+    <div>
+      <p class="eyebrow">UE5 / Style Direction / Character Shading</p>
+      <h1>Anime Style / Cel Shader for UE5</h1>
+      <p>
+        A production-oriented style guide for clean cel bands, stable shadow color,
+        readable silhouettes, and scalable anime character materials.
+      </p>
+    </div>
+
+    <section class="engine-board engine-board-compact" aria-label="Document status">
+      <article class="engine-card engine-card-active">
+        <span class="engine-badge">Style anchor</span>
+        <h2>What this page decides</h2>
+        <p>
+          This page defines the common anime shading language. Skin, hair, eyes, outline,
+          and face-shadow pages should branch from this baseline instead of inventing separate looks.
+        </p>
+      </article>
+    </section>
+
+    <nav class="material-top-links" aria-label="Page links">
+      <a href="/materials/index.html">Portal</a>
+      <a href="/materials/ue5.html">UE5 Library</a>
+      <a href="#target">Target</a>
+      <a href="#approach">Approach</a>
+      <a href="#graph">Graph Order</a>
+      <a href="#controls">Controls</a>
+      <a href="#failure-cases">Failure Cases</a>
+      <a href="#related">Related</a>
+    </nav>
+  </header>
+
+  <main class="material-layout">
+    <aside class="material-sidebar">
+      <p class="mini-label">Style Direction</p>
+      <a href="#target">01. Visual Target</a>
+      <a href="#approach">02. Approach Choice</a>
+      <a href="#graph">03. Graph Order</a>
+      <a href="#controls">04. Artist Controls</a>
+      <a href="#hlsl">05. HLSL Sketch</a>
+      <a href="#failure-cases">06. Failure Cases</a>
+      <a href="#handoff">07. Handoff Notes</a>
+      <a href="#related">08. Related Pages</a>
+    </aside>
+
+    <section class="material-content">
+      <section id="target" class="material-section">
+        <p class="section-kicker">01</p>
+        <h2>Visual Target</h2>
+        <div class="section-meta">
+          <span class="section-chip">Anime</span>
+          <span class="section-chip">Cel Bands</span>
+          <span class="section-chip">Character First</span>
+        </div>
+        <div class="material-callout">
+          <strong>Goal:</strong> create a clean anime shading baseline where the character reads clearly from the camera,
+          with stable light/shadow bands, controlled highlight color, and a silhouette that does not depend on realistic PBR behavior.
+        </div>
+        <section class="material-visual-hero" aria-label="Visual anchor">
+          <div class="material-hero-frame">
+            <img src="/assets/materials/style/anime-cel-shader-pilot-02.png" alt="Anime cel shader visual anchor.">
+            <p class="material-hero-caption">
+              This image is the style anchor: simple banding, readable face planes, restrained specular, and a dark silhouette that still separates from the background.
+            </p>
+          </div>
+        </section>
+      </section>
+
+      <section id="approach" class="material-section">
+        <p class="section-kicker">02</p>
+        <h2>Approach Choice</h2>
+        <div class="material-grid">
+          <article>
+            <h3>Material-based cel shader</h3>
+            <p>Best when the character needs per-asset control: skin can use a face shadow map, hair can use flow highlights, and eyes can keep their own highlight hierarchy.</p>
+            <ul>
+              <li>More control per material.</li>
+              <li>Better for hero characters.</li>
+              <li>Requires consistent authoring across assets.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Post-process cel shader</h3>
+            <p>Best when the whole scene needs a quick stylized pass. It is fast to apply, but fog, specular, reflections, sky, and GI can create artifacts.</p>
+            <ul>
+              <li>Fast global lookdev.</li>
+              <li>Good for prototypes and environment-wide style.</li>
+              <li>Less precise for faces and character-specific rules.</li>
+            </ul>
+          </article>
+        </div>
+        <div class="quote-box">
+          <strong>Production choice:</strong> use material-based logic for hero characters, then use post-process only as a scene-level support layer if needed.
+        </div>
+      </section>
+
+      <section id="graph" class="material-section">
+        <p class="section-kicker">03</p>
+        <h2>Graph Order</h2>
+        <div class="pipeline-diagram" aria-label="Cel shader graph order">
+          <span>Normal or authored mask</span>
+          <span>Main light direction</span>
+          <span>Dot product</span>
+          <span>Band threshold</span>
+          <span>Color remap</span>
+          <span>Spec / rim / outline</span>
+        </div>
+        <div class="material-topic-stack">
+          <article>
+            <h3>1. Build the lighting signal</h3>
+            <p>Start with a dot product between the surface normal and the main light direction, or use authored masks for areas that need more stable anime control.</p>
+          </article>
+          <article>
+            <h3>2. Cut the signal into readable bands</h3>
+            <p>Use threshold and softness controls to split the signal into lit, mid, and shadow zones. The band should be easy to preview in grayscale.</p>
+          </article>
+          <article>
+            <h3>3. Remap bands to art-directed color</h3>
+            <p>Do not rely on physically correct darkening only. Anime shadows often need hue control, especially on skin and face planes.</p>
+          </article>
+          <article>
+            <h3>4. Add specular, rim, and outline as separate layers</h3>
+            <p>Keep these layers optional. They should support silhouette and focal point, not fight the primary light/shadow read.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="controls" class="material-section">
+        <p class="section-kicker">04</p>
+        <h2>Artist Controls</h2>
+        <div class="material-link-grid">
+          <article>
+            <span>Band</span>
+            <strong>Shadow Threshold / Softness</strong>
+            <small>Controls where the shadow begins and whether the transition feels graphic or soft.</small>
+          </article>
+          <article>
+            <span>Color</span>
+            <strong>Lit, Mid, Shadow Tint</strong>
+            <small>Lets the look stay art-directed instead of only becoming physically darker.</small>
+          </article>
+          <article>
+            <span>Spec</span>
+            <strong>Spec Size / Strength</strong>
+            <small>Keeps highlights intentional and avoids accidental PBR shine on stylized skin.</small>
+          </article>
+          <article>
+            <span>Silhouette</span>
+            <strong>Rim / Outline Width</strong>
+            <small>Separates the character from busy backgrounds without changing the base shading.</small>
+          </article>
+          <article>
+            <span>Face</span>
+            <strong>Face Shadow Override</strong>
+            <small>Protects expression and nose/cheek planes when normal-based lighting breaks down.</small>
+          </article>
+          <article>
+            <span>Debug</span>
+            <strong>Band Preview Mode</strong>
+            <small>Outputs grayscale bands so the shader can be tuned before judging final color.</small>
+          </article>
+        </div>
+      </section>
+
+      <section id="hlsl" class="material-section">
+        <p class="section-kicker">05</p>
+        <h2>HLSL Sketch</h2>
+        <pre class="code-block"><code>float ndl = saturate(dot(normalize(WorldNormal), normalize(MainLightDir)));
+float band = smoothstep(ShadowThreshold, HighlightThreshold, ndl);
+
+float3 baseBand = lerp(ShadowColor, LitColor, band);
+
+float viewFacing = saturate(dot(normalize(ViewDir), normalize(WorldNormal)));
+float rim = pow(1.0 - viewFacing, RimPower) * RimIntensity;
+
+float3 finalColor = baseBand + rim * RimColor;
+return finalColor;</code></pre>
+      </section>
+
+      <section id="failure-cases" class="material-section">
+        <p class="section-kicker">06</p>
+        <h2>Failure Cases</h2>
+        <div class="material-grid">
+          <article>
+            <h3>Shadow bands look noisy</h3>
+            <p>The lighting signal is unstable. Check normals, face masks, indirect light, specular contribution, and whether the band threshold is too sharp.</p>
+          </article>
+          <article>
+            <h3>Face lighting breaks expression</h3>
+            <p>Use an authored face shadow map or face-specific mask. Raw normal lighting often fails on anime faces because the planes are intentionally simplified.</p>
+          </article>
+          <article>
+            <h3>Specular looks too realistic</h3>
+            <p>Reduce or replace PBR-style specular with a stylized highlight mask. The highlight should support the drawing, not reveal surface realism.</p>
+          </article>
+          <article>
+            <h3>Outline or rim becomes heavy</h3>
+            <p>Scale outline/rim by distance, character importance, and background complexity. The silhouette layer should not flatten the entire character.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="handoff" class="material-section">
+        <p class="section-kicker">07</p>
+        <h2>Handoff Notes</h2>
+        <div class="quote-box">
+          <strong>Interview angle:</strong> this shader is not only about making an anime look. The production value is separating reusable style language from asset-specific controls.
+        </div>
+        <ul>
+          <li>Keep skin, hair, and eyes as child pages so each asset type can add its own controls without changing the base style.</li>
+          <li>Expose artist-facing parameters in Material Instances, but keep debug previews available in the master graph.</li>
+          <li>Profile before optimizing, but disable unnecessary realistic lighting behavior if it fights the stylized target.</li>
+        </ul>
+      </section>
+
+      <section id="related" class="material-section">
+        <p class="section-kicker">08</p>
+        <h2>Related Pages</h2>
+        <div class="material-link-grid">
+          <a href="/materials/style/anime-skin-shader.html"><span>Style Direction</span><strong>Anime Skin Shader</strong><small>Extends this base look into skin-specific shadow hue, soft face planes, and restrained specular.</small></a>
+          <a href="/materials/production-notes/anime-face-shadow-map.html"><span>Production Note</span><strong>Anime Face Shadow Map</strong><small>Solves unstable face shadows with authored masks and shot-safe controls.</small></a>
+          <a href="/materials/production-notes/anime-outline-rim-control.html"><span>Production Note</span><strong>Anime Outline / Rim Control</strong><small>Defines silhouette and rim behavior for distance, background complexity, and character importance.</small></a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/materials/material-doc.js"></script>
+</body>
+</html>
+

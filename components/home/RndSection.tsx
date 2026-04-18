@@ -100,7 +100,7 @@ function CardLink({
 /* ================================================================== */
 export default function RndSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [inView, setInView] = useState(false);
+  const [inView, setInView] = useState(true);
 
   const igamingProjects = useMemo(
     () => RND_PROJECTS.filter((p) => p.group === "igaming"),

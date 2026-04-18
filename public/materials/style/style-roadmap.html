@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Style Roadmap for UE5 Materials</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="material-body">
+  <header class="material-header">
+    <div>
+      <p class="eyebrow">UE5 / Style Direction / Roadmap</p>
+      <h1>Style Roadmap for UE5 Materials</h1>
+      <p>
+        A shared map for the material library's visual lanes: stylized, anime, cel shader,
+        semi-realistic, and realistic. The goal is to keep one production structure while letting
+        each style make different lighting, texture, and control decisions.
+      </p>
+    </div>
+    <section class="engine-board engine-board-compact" aria-label="Document status">
+      <article class="engine-card engine-card-active">
+        <span class="engine-badge">Library compass</span>
+        <h2>Use before writing a new page</h2>
+        <p>
+          Pick the style lane first, then decide whether the work belongs as a recipe, core pack,
+          production note, or asset-specific style page. That keeps the library from becoming a pile of unrelated shader notes.
+        </p>
+      </article>
+    </section>
+    <nav class="material-top-links" aria-label="Page links">
+      <a href="/materials/index.html">Portal</a>
+      <a href="/materials/ue5.html">UE5 Library</a>
+      <a href="#lanes">Style Lanes</a>
+      <a href="#matrix">Decision Matrix</a>
+      <a href="#rules">Authoring Rules</a>
+      <a href="#next-pages">Next Pages</a>
+    </nav>
+  </header>
+
+  <main class="material-layout">
+    <aside class="material-sidebar">
+      <p class="mini-label">Roadmap</p>
+      <a href="#lanes">01. Style Lanes</a>
+      <a href="#matrix">02. Decision Matrix</a>
+      <a href="#rules">03. Authoring Rules</a>
+      <a href="#next-pages">04. Next Pages</a>
+    </aside>
+
+    <section class="material-content">
+      <section id="lanes" class="material-section">
+        <p class="section-kicker">01</p>
+        <h2>Style Lanes</h2>
+        <div class="material-callout">
+          <strong>Positioning:</strong> this library is stylized-first, not stylized-only. Stylized thinking means readable shapes,
+          authored controls, and deliberate tradeoffs. Realistic pages still belong here when they follow the same production discipline.
+        </div>
+        <div class="material-link-grid">
+          <a href="/materials/style/stylized.html">
+            <span>Lane 01</span>
+            <strong>Stylized</strong>
+            <small>Prioritize shape language, color grouping, readable masks, and art-directed lighting. Use this for magic, water, terrain, props, and VFX that should read clearly before they read physically.</small>
+          </a>
+          <article>
+            <span>Lane 02</span>
+            <strong>Anime</strong>
+            <small>Prioritize clean face planes, controlled shadow color, simplified specular, authored masks, and silhouette readability. Asset-specific controls matter more than physical response.</small>
+          </article>
+          <article>
+            <span>Lane 03</span>
+            <strong>Cel Shader</strong>
+            <small>Prioritize thresholded lighting bands, stable shadow boundaries, rim/outline support, and predictable behavior under camera and lighting changes.</small>
+          </article>
+          <a href="/materials/style/semi-realistic.html">
+            <span>Lane 04</span>
+            <strong>Semi-Realistic</strong>
+            <small>Borrow realistic lighting and texture cues, but keep art-directed roughness, color zones, readable values, and restrained detail. Useful for stylized realism and hero characters.</small>
+          </a>
+          <a href="/materials/style/realistic.html">
+            <span>Lane 05</span>
+            <strong>Realistic</strong>
+            <small>Prioritize plausible PBR values, correct scale, clean packed maps, calibrated roughness, and predictable response across lighting setups.</small>
+          </a>
+        </div>
+      </section>
+
+      <section id="matrix" class="material-section">
+        <p class="section-kicker">02</p>
+        <h2>Decision Matrix</h2>
+        <div class="recipe-grid">
+          <article>
+            <span>Question</span>
+            <strong>Does the page teach a reusable signal?</strong>
+            <small>Make it a Core Pack. Examples: UV motion, mask shaping, edge response, runtime control.</small>
+          </article>
+          <article>
+            <span>Question</span>
+            <strong>Does the page define a look?</strong>
+            <small>Make it a Style Direction page. Examples: anime/cel base, semi-realistic skin, realistic PBR rules.</small>
+          </article>
+          <article>
+            <span>Question</span>
+            <strong>Does the page build an effect?</strong>
+            <small>Make it a Recipe. Examples: portal, water, shield, terrain blend, wet surface.</small>
+          </article>
+          <article>
+            <span>Question</span>
+            <strong>Does the page solve a production problem?</strong>
+            <small>Make it a Production Note. Examples: face shadow maps, outline stability, sorting issues, perf limits.</small>
+          </article>
+        </div>
+      </section>
+
+      <section id="rules" class="material-section">
+        <p class="section-kicker">03</p>
+        <h2>Authoring Rules</h2>
+        <div class="material-topic-stack">
+          <article>
+            <h3>1. Name the style lane in the first screen</h3>
+            <p>Readers should know whether a page is stylized, anime, cel, semi-realistic, or realistic before reading graph details.</p>
+            <p><strong>Why:</strong> the same node graph can be correct for one style and wrong for another.</p>
+          </article>
+          <article>
+            <h3>2. Separate visual target from graph implementation</h3>
+            <p>Start with what the material should read as, then explain the signal path. Do not let node order become the story.</p>
+            <p><strong>Why:</strong> artists and engineers both need to understand the decision, not just the construction.</p>
+          </article>
+          <article>
+            <h3>3. Keep controls tied to decisions</h3>
+            <p>Expose controls like width, softness, intensity, speed, roughness bias, tint, and mask contrast. Avoid exposing internal math just because it exists.</p>
+            <p><strong>Why:</strong> a Material Instance should feel like a small art tool, not a debug panel.</p>
+          </article>
+          <article>
+            <h3>4. Leave image placeholders until the content is stable</h3>
+            <p>Use a placeholder slot when the visual direction is known but the final image is not generated yet.</p>
+            <p><strong>Why:</strong> image generation is easier once the page already says what the visual must prove.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="next-pages" class="material-section">
+        <p class="section-kicker">04</p>
+        <h2>Next Pages</h2>
+        <div class="material-link-grid">
+          <a href="/materials/style/stylized.html"><span>Style Lane</span><strong>Stylized</strong><small>The main lane for readable VFX, water, terrain, and art-directed surfaces.</small></a>
+          <a href="/materials/style/semi-realistic.html"><span>Style Lane</span><strong>Semi-Realistic</strong><small>The bridge lane for character skin and grounded stylized surfaces.</small></a>
+          <a href="/materials/style/realistic.html"><span>Style Lane</span><strong>Realistic</strong><small>PBR discipline, scale checks, packed maps, and lighting-safe instances.</small></a>
+          <a href="/materials/style/anime-cel-shader.html"><span>Current Style</span><strong>Anime / Cel Shader Base</strong><small>The first complete style direction page in the library.</small></a>
+          <a href="/materials/recipes/semi-realistic-skin.html"><span>Recipe</span><strong>Semi-Realistic Skin</strong><small>Character material bridge between stylized and realistic.</small></a>
+          <a href="/materials/recipes/realistic-pbr-surface.html"><span>Recipe</span><strong>Realistic PBR Surface</strong><small>Baseline rules for realistic material authoring.</small></a>
+          <a href="/materials/ue5.html#recipes"><span>UE5 Hub</span><strong>All Recipes</strong><small>Open the full recipe list after choosing a style lane.</small></a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/materials/material-doc.js"></script>
+</body>
+</html>
