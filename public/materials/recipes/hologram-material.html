@@ -1,0 +1,170 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hologram Material for UE5</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="material-body">
+  <header class="material-header">
+    <div>
+      <p class="eyebrow">UE5 / Recipe / Stylized Sci-Fi</p>
+      <h1>Hologram Material for UE5</h1>
+      <p>
+        A practical hologram material built from scanlines, view-angle glow, opacity breakup, and controlled color.
+        The goal is a readable projection, not a noisy blue ghost.
+      </p>
+    </div>
+
+    <section class="engine-board engine-board-compact" aria-label="Document status">
+      <article class="engine-card engine-card-active">
+        <span class="engine-badge">Recipe baseline</span>
+        <h2>Keep it legible</h2>
+        <p>
+          Holograms are tempting to over-layer. Start with the silhouette and opacity first.
+          Scanlines and glitch should support the object, not hide it.
+        </p>
+      </article>
+    </section>
+
+    <nav class="material-top-links" aria-label="Page links"><a href="/materials/index.html">Portal</a><a href="/materials/ue5.html">UE5 Library</a><a href="#target">Target</a><a href="#use-cases">Use Cases</a><a href="#model">Mental Model</a><a href="#graph">Graph Steps</a><a href="#controls">Controls</a><a href="#hlsl">HLSL</a><a href="#senior-notes">Senior Notes</a></nav>
+  </header>
+
+  <main class="material-layout">
+    <aside class="material-sidebar"><p class="mini-label">Recipe map</p><a href="#target">01. Visual Target</a><a href="#use-cases">02. Use Cases</a><a href="#model">03. Mental Model</a><a href="#graph">04. Graph Steps</a><a href="#controls">05. Artist Controls</a><a href="#hlsl">06. HLSL Sketch</a><a href="#senior-notes">07. Senior Notes</a><a href="#mistakes">08. Common Mistakes</a><a href="#related">09. Related Pages</a></aside>
+
+    <section class="material-content">
+      <section id="target" class="material-section">
+        <p class="section-kicker">01</p>
+        <h2>Visual Target</h2>
+        <div class="section-meta">
+          <span class="section-chip">Stylized Sci-Fi</span>
+          <span class="section-chip">Translucent</span>
+          <span class="section-chip">View Response</span>
+        </div>
+        <div class="material-callout">
+          <strong>What we are building:</strong> a projected material with a readable object silhouette,
+          subtle horizontal scanlines, a brighter rim, and enough breakup to feel digital without becoming visual noise.
+        </div>
+        <section class="material-visual-hero" aria-label="Visual anchor">
+          <div class="material-hero-frame">
+            <img src="/assets/materials/recipes/hologram-material-hero.png" alt="Hologram material visual anchor.">
+            <p class="material-hero-caption">
+              The target is a readable projection first: stable silhouette, cyan rim, fine scanlines, and gentle opacity falloff.
+            </p>
+          </div>
+        </section>
+      </section>
+
+      <section id="use-cases" class="material-section">
+        <p class="section-kicker">02</p>
+        <h2>Use Cases</h2>
+        <div class="recipe-grid">
+          <article><span>Character</span><strong>Hologram NPC</strong><small>Good for mission briefings, remote characters, or projection-only avatars.</small></article>
+          <article><span>Prop</span><strong>Projected item preview</strong><small>Use on weapons, pickups, or interactable objects when the real mesh should feel virtual.</small></article>
+          <article><span>Environment</span><strong>Sci-fi signage</strong><small>Works for diegetic displays, map projections, and world-space UI panels.</small></article>
+          <article><span>Gameplay</span><strong>Target preview</strong><small>Use when players need to read a placement ghost or build preview before confirming an action.</small></article>
+        </div>
+      </section>
+
+      <section id="model" class="material-section">
+        <p class="section-kicker">03</p>
+        <h2>Mental Model</h2>
+        <div class="material-grid">
+          <article>
+            <h3>Projection is mostly opacity design</h3>
+            <p>The color can be simple. The expensive part, visually, is how opacity changes across the object: rim stronger, face softer, scanlines thin, breakup occasional.</p>
+          </article>
+          <article>
+            <h3>Use noise as damage, not fabric</h3>
+            <p>Breakup should look like signal loss. If the entire surface is equally noisy, the material reads as dirty glass instead of a hologram.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="graph" class="material-section">
+        <p class="section-kicker">04</p>
+        <h2>Graph Steps</h2>
+        <div class="pipeline-diagram" aria-label="Hologram graph flow">
+          <span>Base opacity</span>
+          <span>Fresnel rim</span>
+          <span>Scanlines</span>
+          <span>Breakup mask</span>
+          <span>Color + glow</span>
+          <span>Optional glitch</span>
+        </div>
+        <div class="material-topic-stack">
+          <article><h3>1. Establish base opacity</h3><p>Start with a low but visible opacity. The object should be recognizable even before scanlines or glitch are added.</p></article>
+          <article><h3>2. Add a view-angle rim</h3><p>Use Fresnel or a dot product between view direction and normal. This protects the silhouette and gives the projection its readable shell.</p></article>
+          <article><h3>3. Build scanlines in world or object space</h3><p>Horizontal lines can come from world position, object position, or UVs. World-space lines feel like a projector passing through the object. UV lines stick to the mesh. Pick intentionally.</p></article>
+          <article><h3>4. Add breakup sparingly</h3><p>Use a noise mask to remove small pieces from the projection. Keep the amount low by default and expose it as Signal Breakup.</p></article>
+          <article><h3>5. Optional glitch offset</h3><p>For hero moments, offset a thin band of screen position or UVs for a frame-like glitch. Keep this optional because it can be distracting in gameplay.</p></article>
+        </div>
+      </section>
+
+      <section id="controls" class="material-section">
+        <p class="section-kicker">05</p>
+        <h2>Artist Controls</h2>
+        <div class="material-link-grid">
+          <article><span>Opacity</span><strong>Base Opacity</strong><small>Sets how present the hologram feels before rim and scanline details are added.</small></article>
+          <article><span>Rim</span><strong>Rim Width / Rim Intensity</strong><small>Controls silhouette readability. Usually the most important control for gameplay cameras.</small></article>
+          <article><span>Lines</span><strong>Scanline Density</strong><small>More lines feel technical; fewer lines feel like a clean projection.</small></article>
+          <article><span>Motion</span><strong>Scanline Speed</strong><small>Slow drift feels stable. Fast motion reads as interference.</small></article>
+          <article><span>Damage</span><strong>Signal Breakup</strong><small>Controls how much of the projection drops out.</small></article>
+          <article><span>Color</span><strong>Projection Color / Emission</strong><small>Keep hue and brightness separate so level lighting can be balanced safely.</small></article>
+        </div>
+      </section>
+
+      <section id="hlsl" class="material-section">
+        <p class="section-kicker">06</p>
+        <h2>HLSL Sketch</h2>
+        <pre class="code-block"><code>float fresnel = pow(1.0 - saturate(dot(normalWS, viewDirWS)), rimPower);
+
+float lineCoord = worldPos.z * scanlineDensity + time * scanlineSpeed;
+float scanline = smoothstep(0.48, 0.52, frac(lineCoord));
+
+float breakup = step(breakupAmount, noiseMask);
+float opacity = saturate(baseOpacity + fresnel * rimIntensity + scanline * lineOpacity);
+opacity *= breakup;
+
+float3 color = projectionColor * (emissionBase + fresnel * rimEmission);
+return float4(color, opacity);</code></pre>
+      </section>
+
+      <section id="senior-notes" class="material-section">
+        <p class="section-kicker">07</p>
+        <h2>Senior Notes</h2>
+        <div class="material-topic-stack">
+          <article><h3>Translucency sorting can become the real problem</h3><p>A hologram may look perfect alone and break when placed inside glass, particles, or other translucent effects. Test it in the scene stack where it will actually ship.</p></article>
+          <article><h3>World-space scanlines are useful but not universal</h3><p>World-space lines unify multiple mesh parts, but can slide across animated characters. For skeletal meshes, compare object, world, and UV-based approaches before locking the recipe.</p></article>
+          <article><h3>Do not let bloom do all the work</h3><p>The hologram should read with bloom disabled. Bloom can polish the look, but if it is required for readability, the opacity and rim structure are probably weak.</p></article>
+        </div>
+      </section>
+
+      <section id="mistakes" class="material-section">
+        <p class="section-kicker">08</p>
+        <h2>Common Mistakes</h2>
+        <ul>
+          <li>Making scanlines too thick, which turns the object into a striped texture instead of a projection.</li>
+          <li>Using full-strength noise everywhere instead of small signal dropouts.</li>
+          <li>Forgetting to test over bright backgrounds where cyan glow can disappear.</li>
+          <li>Using one material for both large world holograms and tiny UI projections without scale controls.</li>
+        </ul>
+      </section>
+
+      <section id="related" class="material-section">
+        <p class="section-kicker">09</p>
+        <h2>Related Pages</h2>
+        <div class="material-link-grid">
+          <a href="/materials/core-packs/edge-response-pack.html"><span>Core Pack</span><strong>Edge Response Pack</strong><small>Fresnel, rim light, depth fade, and silhouette support.</small></a>
+          <a href="/materials/core-packs/uv-motion-pack.html"><span>Core Pack</span><strong>UV Motion Pack</strong><small>Reusable animation logic for scanlines, drift, and phase offsets.</small></a>
+          <a href="/materials/core-packs/color-emission-pack.html"><span>Core Pack</span><strong>Color + Emission Pack</strong><small>Controlled glow, emission hierarchy, and palette-safe color remaps.</small></a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/materials/material-doc.js"></script>
+</body>
+</html>

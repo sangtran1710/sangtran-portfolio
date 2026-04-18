@@ -1,0 +1,198 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Erosion / Dissolve for UE5</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="material-body">
+  <header class="material-header">
+    <div>
+      <p class="eyebrow">UE5 / Recipe / Stylized VFX</p>
+      <h1>Erosion / Dissolve for UE5</h1>
+      <p>
+        A production-friendly dissolve material for reveal, despawn, damage, and magic burn-away effects.
+        The important part is not the noise itself. The important part is how cleanly the edge reads while the surface disappears.
+      </p>
+    </div>
+
+    <section class="engine-board engine-board-compact" aria-label="Document status">
+      <article class="engine-card engine-card-active">
+        <span class="engine-badge">Recipe baseline</span>
+        <h2>Read the edge first</h2>
+        <p>
+          A dissolve fails when the edge becomes random static. Build the alpha mask first, then add the edge band,
+          then color the edge. Glow is the final pass, not the foundation.
+        </p>
+      </article>
+    </section>
+
+    <nav class="material-top-links" aria-label="Page links"><a href="/materials/index.html">Portal</a><a href="/materials/ue5.html">UE5 Library</a><a href="#target">Target</a><a href="#use-cases">Use Cases</a><a href="#model">Mental Model</a><a href="#graph">Graph Steps</a><a href="#controls">Controls</a><a href="#hlsl">HLSL</a><a href="#senior-notes">Senior Notes</a></nav>
+  </header>
+
+  <main class="material-layout">
+    <aside class="material-sidebar"><p class="mini-label">Recipe map</p><a href="#target">01. Visual Target</a><a href="#use-cases">02. Use Cases</a><a href="#model">03. Mental Model</a><a href="#graph">04. Graph Steps</a><a href="#controls">05. Artist Controls</a><a href="#hlsl">06. HLSL Sketch</a><a href="#senior-notes">07. Senior Notes</a><a href="#mistakes">08. Common Mistakes</a><a href="#related">09. Related Pages</a></aside>
+
+    <section class="material-content">
+      <section id="target" class="material-section">
+        <p class="section-kicker">01</p>
+        <h2>Visual Target</h2>
+        <div class="section-meta">
+          <span class="section-chip">Stylized VFX</span>
+          <span class="section-chip">Alpha Mask</span>
+          <span class="section-chip">Edge Band</span>
+        </div>
+        <div class="material-callout">
+          <strong>What we are building:</strong> a material that can erase a mesh from one side, from a center point,
+          or through an authored mask, with a bright readable edge that makes the transition feel intentional.
+        </div>
+        <section class="material-visual-hero" aria-label="Visual anchor">
+          <div class="material-hero-frame">
+            <img src="/assets/materials/recipes/erosion-dissolve-hero.png" alt="Erosion dissolve material visual anchor.">
+            <p class="material-hero-caption">
+              The useful read is the transition edge: solid form on one side, clean glowing threshold, then controlled breakup fragments.
+            </p>
+          </div>
+        </section>
+      </section>
+
+      <section id="use-cases" class="material-section">
+        <p class="section-kicker">02</p>
+        <h2>Use Cases</h2>
+        <div class="recipe-grid">
+          <article><span>Gameplay</span><strong>Spawn and despawn</strong><small>Use when enemies, props, shields, or pickups need to appear without a hard pop.</small></article>
+          <article><span>Damage</span><strong>Burn-away surface</strong><small>Works well for corruption, fire, magic deletion, and sci-fi disintegration.</small></article>
+          <article><span>Lookdev</span><strong>State transition</strong><small>Drive the dissolve amount from Blueprint, Sequencer, Niagara, or animation notifies.</small></article>
+          <article><span>UI / VFX</span><strong>Card reveal</strong><small>The same mask logic can reveal flat cards, decals, projected warnings, or magic symbols.</small></article>
+        </div>
+      </section>
+
+      <section id="model" class="material-section">
+        <p class="section-kicker">03</p>
+        <h2>Mental Model</h2>
+        <div class="material-grid">
+          <article>
+            <h3>Dissolve is a comparison</h3>
+            <p>
+              You compare a mask value against a dissolve amount. Pixels above the amount stay visible.
+              Pixels below it disappear. The edge band is the narrow range between those two states.
+            </p>
+          </article>
+          <article>
+            <h3>The mask decides the personality</h3>
+            <p>
+              Vertical gradient feels like a wipe. Sphere mask feels like a magical pulse. Voronoi feels brittle.
+              Soft noise feels organic. The math is simple; the art direction is in the mask choice.
+            </p>
+          </article>
+        </div>
+        <div class="quote-box">
+          <strong>Beginner check:</strong> preview only the dissolve mask. If the black-white image does not already explain how the object disappears, color will not fix it.
+        </div>
+      </section>
+
+      <section id="graph" class="material-section">
+        <p class="section-kicker">04</p>
+        <h2>Graph Steps</h2>
+        <div class="pipeline-diagram" aria-label="Dissolve graph flow">
+          <span>Choose mask</span>
+          <span>Remap contrast</span>
+          <span>Compare amount</span>
+          <span>Extract edge</span>
+          <span>Color edge</span>
+          <span>Clip or fade</span>
+        </div>
+        <div class="material-topic-stack">
+          <article>
+            <h3>1. Start with a stable base mask</h3>
+            <p>Use a noise texture, vertex color, gradient, world-position mask, or sphere mask. Keep it stable in object space when the effect is attached to a moving mesh.</p>
+            <p><strong>Senior note:</strong> for characters, avoid screen-space masks unless the camera-driven look is intentional. Screen-space dissolve can swim badly during animation.</p>
+          </article>
+          <article>
+            <h3>2. Give the mask art-directable contrast</h3>
+            <p>Add controls for contrast and bias before thresholding. This lets an artist make the dissolve chunky, cloudy, or razor thin without replacing the texture.</p>
+          </article>
+          <article>
+            <h3>3. Use one value for the reveal amount</h3>
+            <p>Expose a scalar from 0 to 1 called something plain like DissolveAmount. It should be the value gameplay, animation, or Sequencer drives.</p>
+          </article>
+          <article>
+            <h3>4. Build the edge band from the same mask</h3>
+            <p>The edge should sit exactly at the transition. Use two thresholds: one for visibility, one slightly offset for the edge width.</p>
+          </article>
+          <article>
+            <h3>5. Separate alpha, color, and emission</h3>
+            <p>Alpha decides if the pixel exists. Color decides the surface look. Emission decides how hot the edge feels. Keeping them separate prevents one tweak from breaking everything.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="controls" class="material-section">
+        <p class="section-kicker">05</p>
+        <h2>Artist Controls</h2>
+        <div class="material-link-grid">
+          <article><span>Reveal</span><strong>Dissolve Amount</strong><small>The main 0 to 1 control. Name it clearly because it is the value most often driven at runtime.</small></article>
+          <article><span>Shape</span><strong>Mask Contrast</strong><small>Low contrast gives a smoky fade. High contrast gives broken chunks and sharper silhouettes.</small></article>
+          <article><span>Edge</span><strong>Edge Width</strong><small>Controls how thick the burn line is. Keep the default readable from the gameplay camera.</small></article>
+          <article><span>Color</span><strong>Edge Color</strong><small>Choose the hue of the transition without changing the hidden/visible logic.</small></article>
+          <article><span>Energy</span><strong>Edge Emission</strong><small>Brightness multiplier for the band. This should be tuned in scene with bloom enabled.</small></article>
+          <article><span>Fallback</span><strong>Soft Fade Amount</strong><small>Optional opacity fade for translucent use cases where hard clipping looks too crunchy.</small></article>
+        </div>
+      </section>
+
+      <section id="hlsl" class="material-section">
+        <p class="section-kicker">06</p>
+        <h2>HLSL Sketch</h2>
+        <pre class="code-block"><code>float maskValue = (baseMask - maskBias) * maskContrast;
+float shapedMask = saturate(maskValue + 0.5);
+float visible = step(dissolveAmount, shapedMask);
+
+float edgeOuter = step(dissolveAmount, shapedMask);
+float edgeInner = step(dissolveAmount + edgeWidth, shapedMask);
+float edgeBand = saturate(edgeOuter - edgeInner);
+
+float3 surface = baseColor * visible;
+float3 edgeGlow = edgeBand * edgeColor * edgeEmission;
+float softAlpha = smoothstep(dissolveAmount, dissolveAmount + edgeWidth, shapedMask);
+float alpha = useSoftFade ? softAlpha : visible;
+
+return float4(surface + edgeGlow, alpha);</code></pre>
+      </section>
+
+      <section id="senior-notes" class="material-section">
+        <p class="section-kicker">07</p>
+        <h2>Senior Notes</h2>
+        <div class="material-topic-stack">
+          <article><h3>Masked versus translucent</h3><p>Masked materials sort better and are cheaper in many gameplay cases, but the edge can alias. Translucent fades are prettier, but sorting, overdraw, and lighting behavior need more care. Pick the blend mode based on where the effect ships.</p></article>
+          <article><h3>Character dissolve needs deformation checks</h3><p>If the mask is based on local position, test the animation extremes. Knees, elbows, cloth, and facial meshes can reveal seams if different material slots use different coordinate assumptions.</p></article>
+          <article><h3>Instance variation matters</h3><p>Give repeated objects a phase or seed. Ten enemies dissolving with the same noise phase looks cheaper than a simpler material with better variation.</p></article>
+        </div>
+      </section>
+
+      <section id="mistakes" class="material-section">
+        <p class="section-kicker">08</p>
+        <h2>Common Mistakes</h2>
+        <ul>
+          <li>Using a noise texture with too much high-frequency detail, which creates crawling static instead of a designed edge.</li>
+          <li>Letting edge emission control visibility. The edge should decorate the transition, not define the alpha logic.</li>
+          <li>Forgetting to test the effect at the actual gameplay distance.</li>
+          <li>Driving multiple unrelated parameters from Blueprint instead of driving one clean DissolveAmount.</li>
+        </ul>
+      </section>
+
+      <section id="related" class="material-section">
+        <p class="section-kicker">09</p>
+        <h2>Related Pages</h2>
+        <div class="material-link-grid">
+          <a href="/materials/core-packs/mask-shaping-pack.html"><span>Core Pack</span><strong>Mask Shaping Pack</strong><small>Thresholds, smoothstep masks, radial masks, and controllable edge bands.</small></a>
+          <a href="/materials/core-packs/color-emission-pack.html"><span>Core Pack</span><strong>Color + Emission Pack</strong><small>Gradient remaps, edge color, emissive boost, and glow hierarchy.</small></a>
+          <a href="/materials/recipes/magic-energy.html"><span>Recipe</span><strong>Magic Energy</strong><small>Pair dissolve edges with magic cores, spawn effects, or charge states.</small></a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+<script src="/materials/material-doc.js"></script>
+</body>
+</html>

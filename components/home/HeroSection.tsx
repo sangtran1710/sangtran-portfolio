@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -16,32 +16,21 @@ import { getLocalizedFeaturedProjects, getLocalizedHero } from "@/lib/portfolio-
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [hasVideo, setHasVideo] = useState(true);
   const { locale } = useLanguage();
   const hero = getLocalizedHero(locale);
   const heroVisuals = getLocalizedFeaturedProjects(locale).slice(0, 3);
   const prefersReducedMotion = useReducedMotion();
   const shouldReduceMotion = prefersReducedMotion === true;
-  const showFallbackPoster = shouldReduceMotion || !hasVideo;
 
   const motionIfAllowed = <T extends object>(props: T): T | { initial: false } =>
     shouldReduceMotion ? { initial: false } : props;
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    const onError = () => setHasVideo(false);
-    video.addEventListener("error", onError);
-    return () => video.removeEventListener("error", onError);
-  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
   });
 
-  const videoBgY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
+  const visualBgY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
   const contentY = useTransform(scrollYProgress, [0, 0.5], [0, -40]);
 
@@ -50,30 +39,24 @@ export default function HeroSection() {
       ref={sectionRef}
       className="relative flex min-h-[68svh] w-full items-center overflow-hidden bg-[#131920] pt-20 lg:min-h-[72svh]"
     >
-      {showFallbackPoster && (
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-[0.16]"
-          style={{ backgroundImage: "url('/images/reel_poster.jpg')" }}
+      <motion.div
+        className="absolute inset-0 opacity-90 will-change-transform"
+        style={!shouldReduceMotion ? { y: visualBgY } : undefined}
+        aria-hidden
+      >
+        <Image
+          src="/images/hero-tech-art.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[58%_center]"
           aria-hidden
         />
-      )}
-      {hasVideo && !shouldReduceMotion && (
-        <motion.video
-          ref={videoRef}
-          src={hero.showreelUrl}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster="/images/reel_poster.jpg"
-          className="absolute inset-0 h-full w-full object-cover opacity-[0.14] will-change-transform"
-          style={{ y: videoBgY }}
-        />
-      )}
+      </motion.div>
 
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,16,22,0.92)_0%,rgba(16,21,28,0.86)_56%,rgba(16,21,28,0.92)_100%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_32%,rgba(92,157,152,0.12),transparent_28%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,12,18,0.96)_0%,rgba(8,12,18,0.84)_34%,rgba(8,12,18,0.24)_68%,rgba(8,12,18,0.36)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,16,22,0.52)_0%,rgba(16,21,28,0.12)_48%,rgba(16,21,28,0.68)_100%)]" />
       <div
         className="absolute inset-0 opacity-[0.014]"
         style={{
@@ -187,7 +170,7 @@ export default function HeroSection() {
 
             <div className="absolute bottom-10 right-0 z-10 h-[10.5rem] w-[15rem] overflow-hidden rounded-[1.6rem] border border-white/10 bg-[#171d24] shadow-[0_18px_40px_rgba(8,12,18,0.22)]">
               <Image
-                src={heroVisuals[2]?.slug === "new-world" ? "/images/WNW-proof-02.png" : heroVisuals[2]?.thumbnail || "/images/WNW-proof-01.png"}
+                src={heroVisuals[2]?.slug === "new-world" ? "/images/optimized/wnw-proof-02.jpg" : heroVisuals[2]?.thumbnail || "/images/WNW-proof-01.png"}
                 alt=""
                 fill
                 className="object-cover object-[64%_center]"
