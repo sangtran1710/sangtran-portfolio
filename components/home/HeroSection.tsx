@@ -12,13 +12,12 @@ import {
 import { ArrowRight, Play } from "lucide-react";
 import ParticleCanvas from "@/components/animations/ParticleCanvas";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { getLocalizedFeaturedProjects, getLocalizedHero } from "@/lib/portfolio-content";
+import { getLocalizedHero } from "@/lib/portfolio-content";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const { locale } = useLanguage();
   const hero = getLocalizedHero(locale);
-  const heroVisuals = getLocalizedFeaturedProjects(locale).slice(0, 3);
   const prefersReducedMotion = useReducedMotion();
   const shouldReduceMotion = prefersReducedMotion === true;
 
@@ -30,45 +29,28 @@ export default function HeroSection() {
     offset: ["start start", "end start"],
   });
 
-  const visualBgY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
   const contentY = useTransform(scrollYProgress, [0, 0.5], [0, -40]);
 
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-[68svh] w-full items-center overflow-hidden bg-[#131920] pt-20 lg:min-h-[72svh]"
+      className="relative flex min-h-[74svh] w-full items-center overflow-hidden bg-[#06090d] pt-20 lg:min-h-[78svh]"
     >
-      <motion.div
-        className="absolute inset-0 opacity-90 will-change-transform"
-        style={!shouldReduceMotion ? { y: visualBgY } : undefined}
-        aria-hidden
-      >
-        <Image
-          src="/images/hero-tech-art.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[58%_center]"
-          aria-hidden
-        />
-      </motion.div>
-
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,12,18,0.96)_0%,rgba(8,12,18,0.84)_34%,rgba(8,12,18,0.24)_68%,rgba(8,12,18,0.36)_100%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,16,22,0.52)_0%,rgba(16,21,28,0.12)_48%,rgba(16,21,28,0.68)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,5,8,1)_0%,rgba(6,9,13,0.98)_42%,rgba(12,18,24,0.92)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(9,13,18,0.82)_0%,rgba(9,13,18,0.18)_42%,rgba(9,13,18,0.95)_100%)]" />
       <div
-        className="absolute inset-0 opacity-[0.014]"
+        className="absolute inset-0 opacity-[0.012]"
         style={{
           backgroundImage:
             "linear-gradient(rgba(255,255,255,0.45) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.45) 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
+          backgroundSize: "72px 72px",
         }}
       />
 
       <ParticleCanvas
-        className="z-[1]"
-        particleCount={16}
+        className="z-[1] opacity-45"
+        particleCount={10}
         color="92, 157, 152"
         maxDistance={120}
         mouseRadius={140}
@@ -76,7 +58,7 @@ export default function HeroSection() {
       />
 
       <div className="relative z-[2] mx-auto flex w-full max-w-7xl flex-col justify-center px-6 lg:px-12">
-        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.02fr)_minmax(360px,0.98fr)] lg:gap-12">
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.82fr)_minmax(520px,1.18fr)] lg:gap-14">
           <motion.div
             style={!shouldReduceMotion ? { opacity: contentOpacity, y: contentY } : undefined}
             className="max-w-[34rem] lg:pl-2"
@@ -136,48 +118,38 @@ export default function HeroSection() {
           </motion.div>
 
           <motion.div
-            className="relative hidden h-[29rem] w-full max-w-[34rem] justify-self-end lg:block"
+            className="relative hidden w-full justify-self-end lg:block"
             {...motionIfAllowed({
               initial: { opacity: 0, x: 26 },
               animate: { opacity: 1, x: 0 },
               transition: { delay: 0.22, duration: 0.58, ease: "easeOut" },
             })}
           >
-            <div className="absolute inset-0 rounded-[2.4rem] bg-[radial-gradient(circle_at_62%_42%,rgba(92,157,152,0.14),transparent_40%)]" />
-            <div className="absolute left-0 top-16 z-20 h-[15.5rem] w-[25rem] overflow-hidden rounded-[2rem] border border-white/10 bg-[#171d24] shadow-[0_26px_60px_rgba(8,12,18,0.3)]">
-              <Image
-                src={heroVisuals[0]?.thumbnail || "/images/reel_poster.jpg"}
-                alt=""
-                fill
-                className="object-cover object-center"
-                sizes="(min-width: 1024px) 400px, 0px"
-                aria-hidden
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,10,15,0.02),rgba(7,10,15,0.18))]" />
-            </div>
-
-            <div className="absolute right-0 top-4 z-30 h-[12rem] w-[14.5rem] overflow-hidden rounded-[1.6rem] border border-white/10 bg-[#171d24] shadow-[0_20px_44px_rgba(8,12,18,0.24)]">
-              <Image
-                src={heroVisuals[1]?.thumbnail || "/images/Fortnite-Live-Event-Time.jpg"}
-                alt=""
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 232px, 0px"
-                aria-hidden
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,10,15,0.06),rgba(7,10,15,0.22))]" />
-            </div>
-
-            <div className="absolute bottom-10 right-0 z-10 h-[10.5rem] w-[15rem] overflow-hidden rounded-[1.6rem] border border-white/10 bg-[#171d24] shadow-[0_18px_40px_rgba(8,12,18,0.22)]">
-              <Image
-                src={heroVisuals[2]?.slug === "new-world" ? "/images/optimized/wnw-proof-02.jpg" : heroVisuals[2]?.thumbnail || "/images/WNW-proof-01.png"}
-                alt=""
-                fill
-                className="object-cover object-[64%_center]"
-                sizes="(min-width: 1024px) 240px, 0px"
-                aria-hidden
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,10,15,0.06),rgba(7,10,15,0.2))]" />
+            <div className="relative aspect-[16/9] overflow-hidden rounded-[2rem] border border-white/12 bg-[#111820] shadow-[0_34px_90px_rgba(0,0,0,0.48)]">
+              {shouldReduceMotion ? (
+                <Image
+                  src="/images/reel_poster.jpg"
+                  alt=""
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 700px, 0px"
+                  className="object-cover object-center"
+                  aria-hidden
+                />
+              ) : (
+                <video
+                  className="h-full w-full object-cover object-center"
+                  src={hero.showreelUrl}
+                  poster="/images/reel_poster.jpg"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-label="Sang Tran technical art showreel preview"
+                />
+              )}
+              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,8,12,0.24)_0%,rgba(5,8,12,0)_42%),linear-gradient(180deg,rgba(5,8,12,0.02)_48%,rgba(5,8,12,0.52)_100%)]" />
             </div>
           </motion.div>
         </div>

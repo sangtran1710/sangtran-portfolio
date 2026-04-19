@@ -54,7 +54,7 @@ const VI_PROFILE = {
 
 const VI_EXPERIENCES = [
   {
-    role: "Technical VFX Artist",
+    role: "Freelance Technical VFX Artist",
     responsibilities: [
       "Phụ trách real-time VFX và technical art cho các studio indie và mid-size qua Upwork",
       "Triển khai Niagara, shader và tối ưu cho các dự án Unreal Engine",

@@ -45,7 +45,7 @@ export interface SkillGroup {
 export const SITE = {
   title: "Sang Tran - VFX Artist",
   description:
-    "Senior VFX Artist specializing in real-time effects, shaders, and technical art for AAA games, cinematics, and launch content.",
+    "Senior real-time VFX artist specializing in production-ready effects, shaders, and technical art for games, cinematics, and launch content.",
   email: "sangminhtran1710@gmail.com",
   logo: "/images/logo.png",
 };
@@ -69,7 +69,7 @@ export const HERO = {
 };
 
 export const ABOUT = {
-  title: "Real-time effects for shipped games and cinematic work.",
+  title: "Production-ready real-time effects for shipped games and cinematic work.",
   bio: [
     "I'm Sang Tran, a VFX artist based in Ho Chi Minh City, Vietnam, with more than 7 years of experience across games, cinematics, and launch content.",
     "My path into VFX was built through practice: learning the tools, taking on real production work, and improving through delivery. That path led from support tasks to owning key effect sequences, including work featured in early marketing for Marvel's Spider-Man 2.",
@@ -85,7 +85,7 @@ export const PROFILE = {
   title: "Sang Tran.",
   /** Single line; detailed info reserved for the About page. */
   paragraph:
-    "Credits include **Sony**, **Epic**, **Amazon**, and **Netflix**. Based in **HCMC**. Available for senior remote roles and freelance VFX work.",
+    "Credits include **Sony**, **Epic**, **Amazon**, and **Netflix**. Based in **HCMC**, available for senior remote roles and freelance technical VFX work.",
   portraitImage: "/images/Portrait/z7554087716035_e6282b2e1378f725e4bcb1b51032c015.jpg",
   /** Image flipped on hover (secondary avatar in the Portrait folder) */
   portraitImageSecondary: "/images/Portrait/z7554087716035_e6282b2e1378f725e4bcb1b51032c015.jpg",
@@ -108,7 +108,7 @@ export const VFX_EXPERIENCE_IMAGE = "/images/optimized/fortnite-live-event.jpg";
 export const EXPERIENCES: Experience[] = [
   {
     company: "Upwork",
-    role: "Technical VFX Artist",
+    role: "Freelance Technical VFX Artist",
     duration: "2024 - Present",
     responsibilities: [
       "Deliver real-time VFX and technical art for indie and mid-size game studios",
@@ -189,9 +189,9 @@ export const PROJECTS: Project[] = [
     style: "realistic",
     client: "Insomniac Games",
     workSummary:
-      "Created cinematic, gameplay, and UI VFX for Insomniac Games' PS5 title.",
+      "Created cinematic, gameplay, and UI VFX for Insomniac Games' PS5 release.",
     description:
-      "Developed particle systems and environmental VFX for combat, web mechanics, and open-world atmosphere.",
+      "Developed particle systems and environmental VFX for combat, traversal, and open-world atmosphere.",
     categories: ["aaa", "realtime"],
     contributions: [
       "Authored Houdini simulations for destruction and debris effects",
@@ -214,9 +214,9 @@ export const PROJECTS: Project[] = [
     style: "stylized",
     client: "Epic Games",
     workSummary:
-      "Created VFX for the cinematic trailer supporting Fortnite's Remix Finale event.",
+      "Created real-time VFX for the cinematic trailer supporting Fortnite's Remix Finale event.",
     description:
-      "Created weapon and event VFX for Fortnite Remix Finale, with real-time effects tuned for large-scale live-event playback.",
+      "Built weapon and event VFX for Fortnite Remix Finale, with effects tuned for large-scale real-time playback.",
     categories: ["aaa", "realtime"],
     contributions: [
       "Designed and implemented weapon-skin VFX using Unreal Engine Niagara",
@@ -262,7 +262,7 @@ export const PROJECTS: Project[] = [
     workSummary:
       "FX Artist on the cinematic trailer supporting the New World: Aeternum PS5 launch.",
     description:
-      "Contributed cinematic and in-game VFX for Amazon Games' PS5 launch campaign, with a focus on environmental and combat effects.",
+      "Contributed cinematic and in-game VFX for Amazon Games' PS5 launch campaign, focused on environment, combat, and atmosphere.",
     categories: ["aaa", "cinematic"],
     contributions: [
       "Created environmental VFX including weather, magic, and destruction systems",

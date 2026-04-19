@@ -15,12 +15,11 @@ export default function FeaturedProjects() {
   return (
     <section
       id="work"
-      className="relative z-10 -mt-10 scroll-mt-24 overflow-hidden"
+      className="relative z-10 -mt-10 scroll-mt-24 overflow-hidden rounded-t-[2.25rem] border-t border-stone-200/80 bg-[#f6f2eb] shadow-[0_-16px_36px_rgba(15,23,42,0.06)]"
     >
-      <div className="mx-auto max-w-[92rem] rounded-t-[2.5rem] border border-stone-200/80 bg-[#f6f2eb] shadow-[0_-18px_44px_rgba(15,23,42,0.07)]">
-        <div className="relative mx-auto max-w-7xl px-6 py-14 sm:px-8 lg:py-[4.5rem]">
+      <div className="relative mx-auto max-w-7xl px-6 py-14 sm:px-8 lg:py-[4.75rem]">
         <motion.div
-          className="mb-10 flex flex-wrap items-end justify-between gap-4"
+          className="mb-9 flex flex-wrap items-end justify-between gap-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -36,7 +35,7 @@ export default function FeaturedProjects() {
           </div>
           <Link
             href="/portfolio"
-            className="hidden items-center gap-1.5 text-sm font-medium text-slate-500 transition-colors hover:text-slate-900 sm:inline-flex"
+            className="hidden items-center gap-2 rounded-full border border-stone-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-[0_5px_9px_rgba(0,0,0,0.04)] transition-all hover:-translate-y-0.5 hover:border-stone-300 hover:text-slate-950 hover:shadow-[0_8px_18px_rgba(15,23,42,0.08)] sm:inline-flex"
           >
             {copy.common.viewAll}
             <ArrowRight className="h-4 w-4" />
@@ -58,12 +57,11 @@ export default function FeaturedProjects() {
         <div className="mt-6 text-center sm:hidden">
           <Link
             href="/portfolio"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-[#4f8e89] transition-colors hover:text-slate-900"
+            className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-white px-4 py-2 text-sm font-semibold text-[#4f8e89] shadow-[0_5px_9px_rgba(0,0,0,0.04)] transition-colors hover:text-slate-900"
           >
             {copy.common.viewAllProjects}
             <ArrowRight className="h-4 w-4" />
           </Link>
-        </div>
         </div>
       </div>
     </section>

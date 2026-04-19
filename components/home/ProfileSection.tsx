@@ -60,9 +60,9 @@ export default function ProfileSection() {
       id="profile"
       className="relative scroll-mt-24 overflow-hidden border-t border-stone-200 bg-[#f6f2eb]"
     >
-      <div className="relative mx-auto max-w-6xl px-6 sm:px-8 py-20 lg:py-28">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-20 items-center">
-          <div className="order-2 lg:order-1 flex flex-col gap-10 rounded-[1.75rem] border border-stone-200 bg-white p-8 shadow-[0_16px_40px_rgba(15,23,42,0.05)] sm:p-10">
+      <div className="relative mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:py-28">
+        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(420px,1fr)] lg:gap-20">
+          <div className="order-2 flex flex-col gap-9 rounded-[1.75rem] border border-stone-200/90 bg-[#fbfaf7] p-7 shadow-[0_5px_9px_rgba(0,0,0,0.06)] sm:p-9 lg:order-1">
             <motion.div
               variants={slideUp}
               initial="hidden"
@@ -70,9 +70,11 @@ export default function ProfileSection() {
               custom={0}
               className="space-y-5"
             >
-              <p className="section-label">
-                {profile.headline}
-              </p>
+              <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#5c9d98]/18 bg-[#eef6f4] px-3.5 py-2 text-xs font-semibold text-[#3d7470]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#5c9d98]" />
+                Freelance technical VFX
+              </div>
+              <p className="section-label">{profile.headline}</p>
               <h2 className="section-title mt-1 max-w-md text-slate-950">
                 {profile.title}
               </h2>
@@ -99,7 +101,7 @@ export default function ProfileSection() {
               animate={isInView ? "visible" : "hidden"}
               className="flex flex-col gap-6"
             >
-              <div className="flex flex-wrap gap-3 text-sm">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                 {numberStats.map(({ label, value }, i) => (
                   <motion.div
                     key={label}
@@ -107,30 +109,43 @@ export default function ProfileSection() {
                     variants={slideUp}
                     initial="hidden"
                     animate={isInView ? "visible" : "hidden"}
-                    whileHover={{ scale: 1.02, x: 2 }}
-                    className="rounded-full border border-stone-200 bg-stone-50 px-4 py-2.5 transition-colors hover:border-stone-300 hover:bg-stone-100"
+                    whileHover={{ y: -2 }}
+                    className="rounded-2xl border border-stone-200 bg-white px-4 py-4 transition-colors hover:border-stone-300"
                   >
-                    <span className="font-semibold text-slate-950">{value}</span>
-                    <span className="ml-1.5 text-slate-500">{label}</span>
+                    <span className="block text-2xl font-bold leading-none tracking-[-0.04em] text-slate-950">
+                      {value}
+                    </span>
+                    <span className="mt-2 block text-xs font-medium leading-5 text-slate-500">
+                      {label}
+                    </span>
                   </motion.div>
                 ))}
               </div>
               {toolsAndSoftware.length > 0 && (
-                <div className="grid gap-3 pt-4 border-t border-stone-200/80">
+                <div className="grid gap-3 border-t border-stone-200/80 pt-4 sm:grid-cols-2">
                   {toolsAndSoftware.map(({ label, value }, i) => (
                     <motion.div
                       key={label}
                       custom={5 + i}
-                    variants={slideUp}
-                    initial="hidden"
-                    animate={isInView ? "visible" : "hidden"}
-                    whileHover={{ x: 4 }}
-                    className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-4 text-sm transition-colors hover:border-stone-300 hover:bg-white"
-                  >
-                      <span className="mb-1.5 block text-xs font-medium uppercase tracking-[0.2em] text-slate-500">
+                      variants={slideUp}
+                      initial="hidden"
+                      animate={isInView ? "visible" : "hidden"}
+                      whileHover={{ y: -2 }}
+                      className="rounded-2xl border border-stone-200 bg-white px-4 py-4 text-sm transition-colors hover:border-stone-300"
+                    >
+                      <span className="mb-3 block text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
                         {label}
                       </span>
-                      <span className="text-slate-800">{value}</span>
+                      <span className="flex flex-wrap gap-2">
+                        {value.split(/,\s*/).map((item) => (
+                          <span
+                            key={item}
+                            className="rounded-full border border-stone-200 bg-stone-50 px-2.5 py-1 text-xs font-medium text-slate-600"
+                          >
+                            {item}
+                          </span>
+                        ))}
+                      </span>
                     </motion.div>
                   ))}
                 </div>
@@ -164,7 +179,7 @@ export default function ProfileSection() {
             style={!prefersReducedMotion ? { y: avatarY } : undefined}
             className="order-1 lg:order-2 relative aspect-[4/5] max-h-[560px] w-full will-change-transform"
           >
-            <div className="relative h-full w-full overflow-hidden rounded-[2rem] border border-stone-200 bg-[#e9e1d5] shadow-[0_18px_40px_rgba(15,23,42,0.06)]">
+            <div className="relative h-full w-full overflow-hidden rounded-[1.75rem] border border-stone-200 bg-[#e9e1d5] shadow-[0_5px_9px_rgba(0,0,0,0.08)]">
               {!avatarError ? (
                 <Image
                   src={profile.portraitImage}
@@ -179,7 +194,8 @@ export default function ProfileSection() {
                   Photo
                 </div>
               )}
-              <div className="pointer-events-none absolute inset-x-6 bottom-6 rounded-full border border-white/60 bg-[rgba(255,251,245,0.84)] px-4 py-3 text-center text-[11px] uppercase tracking-[0.22em] text-slate-600 backdrop-blur-sm">
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(5,8,12,0.02)_42%,rgba(5,8,12,0.24)_100%)]" />
+              <div className="pointer-events-none absolute bottom-5 left-5 rounded-full border border-white/30 bg-black/36 px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/90 backdrop-blur-md">
                 {copy.home.profilePhotoCaption}
               </div>
             </div>

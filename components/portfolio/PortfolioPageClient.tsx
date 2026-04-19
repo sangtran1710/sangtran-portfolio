@@ -70,14 +70,14 @@ export default function PortfolioPageClient() {
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.16em] text-[#4f8e89]">
-                Shipped first
+                Released work
               </p>
               <h2 className="text-3xl font-semibold tracking-tight text-slate-900">
                 {copy.portfolio.selectedProjects}
               </h2>
             </div>
             <p className="max-w-md text-sm leading-6 text-slate-500">
-              AAA releases and launch work get the largest visual weight. R&D and experiments are separated below.
+              AAA releases and launch content are prioritized here. R&D, prototypes, and tool experiments are grouped separately below.
             </p>
           </div>
           <ProjectGrid />
@@ -96,7 +96,7 @@ export default function PortfolioPageClient() {
               </h2>
             </div>
             <p className="max-w-md text-sm leading-6 text-white/55 lg:justify-self-end">
-              Tooling, prototypes, and older commercial work stay available without competing with the shipped game portfolio.
+              Tooling, prototypes, and exploratory studies stay available without competing with the shipped production portfolio.
             </p>
           </div>
         </div>

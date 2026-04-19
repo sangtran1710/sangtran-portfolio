@@ -68,7 +68,7 @@ export const UI_COPY = {
       playShowreel: "Play showreel",
       viewPortfolio: "View portfolio",
       selectedWork: "Selected work",
-      selectedWorkBody: "Selected shipped work across games, cinematics, and launch content.",
+      selectedWorkBody: "A concise selection of shipped game, cinematic, and launch-content work.",
       backstoryPrefix: "My ",
       backstoryWords: ["Backstory", "Journey"],
       backstoryOutro:
@@ -88,15 +88,15 @@ export const UI_COPY = {
       profilePhotoCaption: "Real-time VFX / Technical Art",
     },
     portfolio: {
-      title: "Selected shipped work.",
+      title: "Selected production work.",
       body:
-        "A focused selection of real-time VFX, cinematic work, and technical art. Released projects come first; R&D follows below.",
-      selectedProjects: "Selected projects",
+        "A curated selection of real-time VFX, cinematic work, and technical art. Released projects are prioritized; R&D and tool experiments are grouped separately below.",
+      selectedProjects: "Released projects",
     },
     about: {
       kicker: "About",
       shortBio:
-        "Senior VFX Artist focused on real-time effects, cinematic work, and production-ready technical art.",
+        "Senior VFX Artist focused on production-ready real-time effects, cinematic work, and technical art systems.",
       downloadResume: "Download Resume",
       viewPortfolio: "View Portfolio",
       experience: "Experience",
