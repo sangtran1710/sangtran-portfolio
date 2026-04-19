@@ -35,6 +35,7 @@ export default function Navbar() {
   const isLanding = pathname === "/";
   const isDarkNav =
     isLanding ||
+    pathname === "/about" ||
     pathname === "/showreel" ||
     pathname.startsWith("/articles") ||
     pathname.startsWith("/blog") ||

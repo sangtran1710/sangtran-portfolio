@@ -10,9 +10,10 @@ interface ProjectCardProps {
   project: Project;
   compact?: boolean;
   featured?: boolean;
+  priority?: boolean;
 }
 
-export default function ProjectCard({ project, compact = false, featured = false }: ProjectCardProps) {
+export default function ProjectCard({ project, compact = false, featured = false, priority = false }: ProjectCardProps) {
   const { copy } = useLanguage();
   const categoryLabels: Record<string, string> = {
     aaa: copy.categories.aaa,
@@ -31,6 +32,7 @@ export default function ProjectCard({ project, compact = false, featured = false
             src={project.thumbnail}
             alt={project.title}
             fill
+            priority={priority}
             className="object-cover transition-transform duration-500 ease-out group-hover/card:scale-[1.03]"
             sizes={
               featured

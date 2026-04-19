@@ -1,49 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
+import RndSection from "@/components/home/RndSection";
 import ProjectGrid from "@/components/projects/ProjectGrid";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
-const RndSection = dynamic(() => import("@/components/home/RndSection"), {
-  ssr: false,
-  loading: () => <RndSectionSkeleton />,
-});
-
-function RndSectionSkeleton() {
-  return (
-    <div className="mx-auto max-w-7xl px-6 py-10 pb-20" aria-hidden>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {[0, 1, 2].map((item) => (
-          <div key={item} className="aspect-video rounded-2xl bg-white/[0.05]" />
-        ))}
-      </div>
-    </div>
-  );
-}
-
 export default function PortfolioPageClient() {
   const { copy } = useLanguage();
-  const rndRef = useRef<HTMLDivElement>(null);
-  const [showRnd, setShowRnd] = useState(false);
-
-  useEffect(() => {
-    const el = rndRef.current;
-    if (!el || showRnd) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShowRnd(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "720px 0px" }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [showRnd]);
 
   return (
     <div className="min-h-screen bg-[#f6f2eb]">
@@ -100,9 +62,7 @@ export default function PortfolioPageClient() {
             </p>
           </div>
         </div>
-        <div ref={rndRef}>
-          {showRnd ? <RndSection /> : <RndSectionSkeleton />}
-        </div>
+        <RndSection />
       </div>
     </div>
   );

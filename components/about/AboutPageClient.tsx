@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -20,6 +19,7 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import AboutDetails from "@/components/about/AboutDetails";
 import AboutHeroBackground from "@/components/about/AboutHeroBackground";
 import { SOCIALS } from "@/data/portfolio";
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -27,11 +27,6 @@ import {
   getLocalizedAbout,
   getLocalizedSite,
 } from "@/lib/portfolio-content";
-
-const AboutDetails = dynamic(() => import("@/components/about/AboutDetails"), {
-  ssr: false,
-  loading: () => <AboutDetailsSkeleton />,
-});
 
 const BehanceIcon = () => (
   <svg
@@ -44,22 +39,9 @@ const BehanceIcon = () => (
   </svg>
 );
 
-function AboutDetailsSkeleton() {
-  return (
-    <div className="mx-auto max-w-6xl px-6 py-16 text-slate-700" aria-hidden>
-      <div className="max-w-3xl space-y-5">
-        <div className="h-8 w-64 rounded-full bg-stone-200/70" />
-        <div className="h-4 w-full max-w-2xl rounded-full bg-stone-200/60" />
-        <div className="h-4 w-5/6 rounded-full bg-stone-200/50" />
-      </div>
-    </div>
-  );
-}
-
 export default function AboutPageClient() {
   const heroRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
-  const [showDetails, setShowDetails] = useState(false);
   const { locale, copy } = useLanguage();
   const about = getLocalizedAbout(locale);
   const site = getLocalizedSite(locale);
@@ -80,18 +62,6 @@ export default function AboutPageClient() {
     useTransform(scrollYProgress, [0, 1], [0, -40]),
     { stiffness: 100, damping: 30 }
   );
-
-  useEffect(() => {
-    const show = () => setShowDetails(true);
-
-    if ("requestIdleCallback" in window) {
-      const idleId = window.requestIdleCallback(show, { timeout: 900 });
-      return () => window.cancelIdleCallback(idleId);
-    }
-
-    const timeoutId = setTimeout(show, 250);
-    return () => clearTimeout(timeoutId);
-  }, []);
 
   return (
     <div className="min-h-screen bg-[linear-gradient(180deg,#11171e_0%,#171d24_10%,#f6f2eb_10%,#f6f2eb_100%)] pt-20">
@@ -222,7 +192,7 @@ export default function AboutPageClient() {
         </div>
       </div>
 
-      {showDetails ? <AboutDetails /> : <AboutDetailsSkeleton />}
+      <AboutDetails />
     </div>
   );
 }

@@ -51,7 +51,11 @@ export default function ProjectGrid() {
               key={project.slug}
               className={cn(active === "all" && index === 0 && "lg:col-span-2")}
             >
-              <ProjectCard project={project} featured={active === "all" && index === 0} />
+              <ProjectCard
+                project={project}
+                featured={active === "all" && index === 0}
+                priority={index < 3}
+              />
             </div>
           ))}
         </div>

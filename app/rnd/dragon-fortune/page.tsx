@@ -4,9 +4,9 @@ import { ArrowLeft } from "lucide-react";
 import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
-  title: "Dragon Fortune — HTML5 Slot Demo",
+  title: "Dragon Fortune - Personal Slot Prototype",
   description:
-    "A playable HTML5 slot game demo showcasing iGaming VFX: particle coin rain, win animations, free spins — built with React & Canvas.",
+    "A self-directed HTML5 slot prototype for testing iGaming UI, particle FX, win-state timing, and free-spin flow in browser.",
 };
 
 // Disable SSR for the game (uses Canvas + browser APIs)
@@ -32,7 +32,7 @@ export default function DragonFortunePage() {
       <main className="pt-24 pb-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
 
-          {/* ── Game Frame ── */}
+          {/* Game frame */}
           <div
             className="w-full rounded-xl overflow-hidden border border-yellow-900/25"
             style={{ boxShadow: "0 0 80px rgba(120,80,0,0.18), 0 25px 60px rgba(0,0,0,0.7)" }}
@@ -40,7 +40,7 @@ export default function DragonFortunePage() {
             <DragonFortuneGame />
           </div>
 
-          {/* ── Sub-bar: Back | Badge ── */}
+          {/* Back link and project classification */}
           <div className="flex items-center justify-between py-3 px-1 border-b border-white/5 mt-0.5">
             <Link
               href="/rnd"
@@ -50,11 +50,11 @@ export default function DragonFortunePage() {
               Back to Labs
             </Link>
             <span className="text-[10px] text-white/20 uppercase tracking-[0.22em]">
-              HTML5 · Slot Demo
+              Personal Test Project
             </span>
           </div>
 
-          {/* ── Title + Dev badge ── */}
+          {/* Title and credit */}
           <div className="mt-6 flex items-start justify-between gap-6">
             <div>
               <h1 className="text-xl sm:text-2xl font-black text-white tracking-tight">
@@ -71,12 +71,12 @@ export default function DragonFortunePage() {
                   5-Reel Slot
                 </span>
                 <span className="text-xs bg-teal-500/10 text-teal-400 border border-teal-500/20 px-2.5 py-0.5 rounded-md">
-                  Playable Demo
+                  Playable Prototype
                 </span>
               </div>
             </div>
 
-            {/* Dev badge — like Fat Panda on PP */}
+            {/* Credit badge */}
             <div className="shrink-0 text-right">
               <p className="text-[9px] text-white/25 uppercase tracking-[0.25em] mb-1">Created by</p>
               <p
@@ -91,15 +91,15 @@ export default function DragonFortunePage() {
             </div>
           </div>
 
-          {/* ── Description ── */}
+          {/* Description */}
           <p className="mt-5 text-[15px] text-slate-400 leading-relaxed max-w-3xl">
-            A portfolio demo showcasing iGaming development and VFX techniques. Features
-            5-reel gameplay with 10 paylines, weighted symbol pools, Wild substitution,
-            Scatter → Free Spins trigger, Canvas-based particle coin rain, and
-            Framer Motion win animations — all playable in-browser without any plugin.
+            A personal test project for exploring iGaming UI, interaction timing,
+            and real-time VFX in browser. It includes a 5-reel flow with 10 paylines,
+            weighted symbol pools, Wild substitution, a Scatter to Free Spins trigger,
+            Canvas-based coin rain, and timeline-driven win feedback.
           </p>
 
-          {/* ── Tech stack tags ── */}
+          {/* Tech stack tags */}
           <div className="flex flex-wrap gap-2 mt-5">
             {TECH_TAGS.map((tag) => (
               <span
