@@ -16,7 +16,6 @@ export default function ProjectGrid() {
     { value: "aaa", label: copy.categories.aaa },
     { value: "realtime", label: copy.categories.realtime },
     { value: "cinematic", label: copy.categories.cinematic },
-    { value: "igaming", label: copy.categories.slotGame },
   ];
 
   const filtered =

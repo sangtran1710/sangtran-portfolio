@@ -10,7 +10,7 @@ export default function PortfolioPageClient() {
   return (
     <div className="min-h-screen bg-[#f6f2eb]">
       <section className="bg-[linear-gradient(180deg,#11171e_0%,#161c23_100%)]">
-        <div className="mx-auto max-w-7xl px-6 pb-14 pt-24">
+        <div className="mx-auto max-w-7xl px-6 pb-14 pt-16 sm:pt-24">
           <div className="grid gap-8 border-b border-white/8 pb-10 pt-3 lg:grid-cols-[minmax(0,1.15fr)_minmax(18rem,0.85fr)] lg:items-end">
             <div className="max-w-3xl">
               <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.16em] text-[#7db5b0]">

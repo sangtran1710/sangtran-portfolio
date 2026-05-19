@@ -218,8 +218,8 @@ export default function RndSection() {
                         <ArrowUpRight className="h-3.5 w-3.5" />
                       </div>
                       <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
-                        <p className="text-[9px] font-medium uppercase tracking-widest text-teal-400/80 mb-0.5">{project.category}</p>
-                        <h3 className="text-sm font-semibold text-white leading-tight group-hover:text-teal-300 transition-colors line-clamp-1">{project.title}</h3>
+                        <p className="text-[9px] font-semibold uppercase tracking-widest text-teal-300 mb-0.5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">{project.category}</p>
+                        <h3 className="text-sm font-semibold text-white leading-tight group-hover:text-teal-300 transition-colors line-clamp-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]">{project.title}</h3>
                       </div>
                     </div>
                   </CardLink>
@@ -252,8 +252,8 @@ export default function RndSection() {
                         <ArrowUpRight className="h-3.5 w-3.5" />
                       </div>
                       <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
-                        <p className="text-[9px] font-medium uppercase tracking-widest text-slate-400 mb-0.5">{project.category}</p>
-                        <h3 className="text-sm font-semibold text-white leading-tight group-hover:text-teal-300 transition-colors line-clamp-1">{project.title}</h3>
+                        <p className="text-[9px] font-semibold uppercase tracking-widest text-white/65 mb-0.5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">{project.category}</p>
+                        <h3 className="text-sm font-semibold text-white leading-tight group-hover:text-teal-300 transition-colors line-clamp-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]">{project.title}</h3>
                       </div>
                     </div>
                   </CardLink>
@@ -281,10 +281,10 @@ export default function RndSection() {
                   >
                     <div className="relative aspect-video bg-zinc-900 overflow-hidden rounded-lg md:rounded-xl">
                       <Thumbnail project={project} sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/15" />
                       <div className="absolute bottom-0 left-0 right-0 p-2.5">
-                        <p className="text-[8px] font-medium uppercase tracking-widest text-white/30 mb-0.5">{project.year}</p>
-                        <h3 className="text-[11px] sm:text-xs font-medium text-white/70 leading-tight group-hover:text-white transition-colors line-clamp-1">{project.title}</h3>
+                        <p className="text-[8px] font-semibold uppercase tracking-widest text-white/60 mb-0.5">{project.year}</p>
+                        <h3 className="text-[11px] sm:text-xs font-semibold text-white leading-tight transition-colors line-clamp-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]">{project.title}</h3>
                       </div>
                     </div>
                   </CardLink>

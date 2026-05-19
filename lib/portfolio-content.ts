@@ -172,17 +172,6 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
       "Một phần VFX contribution có xuất hiện trong trailer đã phát hành. Các chi tiết khác vẫn thuộc NDA.",
     contributions: ["VFX contribution trong trailer công khai; các chi tiết khác thuộc NDA"],
   },
-  "dragon-fortune": {
-    title: "Dragon Fortune - Prototype Slot cá nhân",
-    role: "Personal Technical Art Test",
-    description:
-      "Một prototype HTML5 tự làm để test UI iGaming, particle FX, timing cho win-state và flow free-spin trên trình duyệt.",
-    contributions: [
-      "Prototype interaction slot 5 cuộn với 10 payline",
-      "Test particle FX bằng WebGL/Canvas cho coin rain và win feedback",
-      "Dựng GSAP timeline cho spin, reveal, win và free-spin states",
-    ],
-  },
 };
 
 const VI_EDUCATION = [

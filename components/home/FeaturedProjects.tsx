@@ -42,14 +42,20 @@ export default function FeaturedProjects() {
           </Link>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-2">
           {projects.map((project, i) => (
             <ScrollReveal
               key={project.slug}
               variant={i % 2 === 0 ? "slideLeft" : "slideRight"}
               offset={["start 0.95", "start 0.7"]}
+              className={i === 0 ? "lg:col-span-2" : ""}
             >
-              <ProjectCard project={project} compact />
+              <ProjectCard
+                project={project}
+                compact={i !== 0}
+                featured={i === 0}
+                priority
+              />
             </ScrollReveal>
           ))}
         </div>

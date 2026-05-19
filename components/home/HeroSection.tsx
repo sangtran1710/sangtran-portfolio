@@ -111,7 +111,7 @@ export default function HeroSection() {
                 href="/portfolio"
                 className="group inline-flex min-w-[8.6rem] shrink-0 items-center justify-center gap-2.5 whitespace-nowrap rounded-full border border-white/16 bg-white/[0.04] px-6 py-3 text-sm font-medium leading-none text-white transition-all hover:border-white/24 hover:bg-white/[0.07]"
               >
-                Portfolio
+                View Work
                 <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </motion.div>

@@ -8,10 +8,8 @@ import {
   useTransform,
   useSpring,
   useReducedMotion,
-  useInView,
 } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import TypewriterTitle from "@/components/animations/TypewriterTitle";
 import MagneticButton from "@/components/ui/MagneticButton";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { getLocalizedExperiences } from "@/lib/portfolio-content";
@@ -27,10 +25,9 @@ const itemVariants = {
 
 export default function BackstorySection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
-  const titleInView = useInView(titleRef, { amount: 0.5, once: false });
   const { locale, copy } = useLanguage();
   const experiences = getLocalizedExperiences(locale);
 
@@ -76,15 +73,7 @@ export default function BackstorySection() {
           ref={titleRef}
           className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-center text-slate-900 mb-16 sm:mb-20"
         >
-          <TypewriterTitle
-            prefix={copy.home.backstoryPrefix}
-            words={[...copy.home.backstoryWords]}
-            prefixClassName="text-slate-900"
-            wordClassName="text-teal-600"
-            cursorClassName="text-teal-600"
-            reducedMotion={prefersReducedMotion}
-            run={titleInView}
-          />
+          {locale === "vi" ? "Kinh nghiệm" : "Experience"}
         </h2>
 
         <div ref={timelineRef} className="relative max-w-3xl mx-auto pb-8">
@@ -127,29 +116,17 @@ export default function BackstorySection() {
 
                   {/* Single Column Card Content */}
                   <div className="flex-1 pl-16 md:pl-20 pr-0 sm:pr-4">
-                    <div className="p-6 md:p-8 rounded-2xl bg-white border border-slate-200/70 shadow-sm transition-all duration-300 group-hover:shadow-md group-hover:border-teal-300/50 group-hover:-translate-y-1">
+                    <div className="p-5 md:p-6 rounded-2xl bg-white border border-slate-200/70 shadow-sm transition-all duration-300 group-hover:shadow-md group-hover:border-teal-300/50 group-hover:-translate-y-1">
                       <h3 className="font-bold text-slate-900 text-lg md:text-xl tracking-wide">{exp.role}</h3>
-                      <p className="font-medium text-sm mt-1 mb-4 flex flex-wrap items-center gap-2">
+                      <p className="font-medium text-sm mt-1 flex flex-wrap items-center gap-2">
                         <span className="text-teal-700 font-semibold">{exp.company}</span>
                         <span className="text-slate-300 text-xs">|</span>
                         <span className="text-slate-500">{exp.duration}</span>
                       </p>
 
-                      {/* Responsibilities - Truncated to 2 for compactness */}
-                      {exp.responsibilities && exp.responsibilities.length > 0 && (
-                        <ul className="mt-4 space-y-2.5 text-sm md:text-base text-slate-600 mb-6">
-                          {exp.responsibilities.slice(0, 2).map((task, idx) => (
-                            <li key={idx} className="leading-relaxed relative pl-4 opacity-90 group-hover:opacity-100 transition-opacity">
-                              <span className="absolute left-0 top-2.5 w-1 h-1 rounded-full bg-teal-400" />
-                              <span>{task}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-
                       {/* Tech Stack Tags - Max 4 to prevent clutter */}
                       {techList.length > 0 && (
-                        <div className="flex flex-wrap gap-2 mt-5">
+                        <div className="flex flex-wrap gap-2 mt-4">
                           {techList.slice(0, 4).map((tech, idx) => (
                             <span
                               key={idx}

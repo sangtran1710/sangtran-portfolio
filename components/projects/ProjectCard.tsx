@@ -36,13 +36,13 @@ export default function ProjectCard({ project, compact = false, featured = false
             className="object-cover transition-transform duration-500 ease-out group-hover/card:scale-[1.03]"
             sizes={
               featured
-                ? "(max-width: 768px) 100vw, (max-width: 1280px) 66vw, 56rem"
-                : "(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
+                ? "(max-width: 1024px) 100vw, 80rem"
+                : "(max-width: 768px) 100vw, 50vw"
             }
           />
           <div className={compact ? "absolute inset-0 bg-[linear-gradient(180deg,rgba(5,8,12,0.08),rgba(5,8,12,0.02)_48%,rgba(5,8,12,0.22))]" : "absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent"} />
           {compact && (
-            <div className="absolute left-4 top-4 rounded-full border border-white/18 bg-black/42 px-3 py-1.5 text-[10px] font-semibold leading-none tracking-[0.08em] text-white/92 backdrop-blur-md">
+            <div className="absolute left-4 top-4 rounded-full border border-white/25 bg-black/70 px-3 py-1.5 text-[10px] font-semibold leading-none tracking-[0.08em] text-white shadow-[0_2px_8px_rgba(0,0,0,0.35)] backdrop-blur-md">
               {primaryCategory} / {project.year}
             </div>
           )}

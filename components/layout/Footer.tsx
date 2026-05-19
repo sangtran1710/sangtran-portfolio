@@ -45,7 +45,7 @@ export default function Footer() {
             href={`mailto:${site.email}`}
             className="group flex flex-col items-center gap-2 text-slate-300 transition-colors hover:text-white"
           >
-            <span className="flex items-center gap-2 text-2xl font-semibold tracking-tight text-white sm:text-[2rem]">
+            <span className="flex items-center gap-2 text-base font-semibold tracking-tight text-white sm:text-2xl md:text-[2rem] break-all sm:break-normal">
               {site.email}
               <svg
                 className="h-5 w-5 -ml-5 opacity-0 transition-all duration-300 group-hover:ml-0 group-hover:opacity-100"

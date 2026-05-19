@@ -349,24 +349,6 @@ export const PROJECTS: Project[] = [
     techStack: ["Unreal Engine", "Houdini", "Perforce"],
     videoUrl: "https://www.youtube.com/watch?v=s3pDMUWlA6I",
   },
-  {
-    slug: "dragon-fortune",
-    thumbnail: "/slotgame/bg_main.png",
-    title: "Dragon Fortune - Personal Slot Prototype",
-    role: "Personal Technical Art Test",
-    year: "2026",
-    duration: "2026",
-    description:
-      "A self-directed HTML5 slot prototype created to test iGaming UI, particle FX, win-state timing, and free-spin flow in browser.",
-    categories: ["igaming"],
-    contributions: [
-      "Prototyped a 5-reel slot interaction model with 10 paylines",
-      "Tested WebGL/Canvas particle FX for coin rain and win feedback",
-      "Built GSAP timelines for spin, reveal, win, and free-spin states",
-    ],
-    techStack: ["PixiJS", "GSAP", "Web Audio API", "WebGL", "Blender", "React"],
-    link: "/rnd/dragon-fortune",
-  },
 ];
 
 export const FEATURED_PROJECTS = PROJECTS.filter((p) => p.isFeatured);
@@ -466,18 +448,6 @@ export const RND_PROJECTS: RndProject[] = [
     year: "2025",
   },
   {
-    title: "Stylized",
-    category: "VFX",
-    tools: ["VFX", "Reel"],
-    image: "https://img.youtube.com/vi/9IapY_HYr6Q/sddefault.jpg",
-    embedUrl:
-      "https://www.youtube.com/embed/9IapY_HYr6Q?muted=1&mute=1&start=30&autoplay=1&loop=1&playlist=9IapY_HYr6Q",
-    link: "https://youtu.be/9IapY_HYr6Q",
-    linkLabel: "Watch on YouTube",
-    year: "2025",
-    group: "vfx",
-  },
-  {
     title: "Semi-Realistic",
     category: "VFX",
     tools: ["VFX", "Reel"],
@@ -487,19 +457,6 @@ export const RND_PROJECTS: RndProject[] = [
     link: "https://www.youtube.com/watch?v=_g9fzTlKCVQ",
     linkLabel: "Watch on YouTube",
     year: "2026",
-    group: "vfx",
-  },
-  {
-    title: "HLSL Material R&D",
-    category: "Unreal Engine / Custom Shaders",
-    tools: ["Unreal Engine", "HLSL", "Material"],
-    image: "https://img.youtube.com/vi/VTB2IAmcQO8/sddefault.jpg",
-    embedUrl:
-      "https://www.youtube.com/embed/VTB2IAmcQO8?muted=1&mute=1&autoplay=1&loop=1&playlist=VTB2IAmcQO8",
-    link: "/rnd/hlsl-material",
-    linkLabel: "View project details",
-    slug: "hlsl-material",
-    year: "2025",
     group: "vfx",
   },
   {

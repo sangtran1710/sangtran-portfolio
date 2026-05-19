@@ -10,15 +10,12 @@ import {
   ExternalLink,
   Youtube,
 } from "lucide-react";
-import { useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import TypewriterTitle from "@/components/animations/TypewriterTitle";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { getLocalizedHero } from "@/lib/portfolio-content";
 
 export default function ShowreelSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const prefersReducedMotion = useReducedMotion();
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
   const [hasError, setHasError] = useState(false);
@@ -61,14 +58,7 @@ export default function ShowreelSection() {
             Showreel
           </p>
           <h2 className="mt-2 text-3xl font-extrabold uppercase tracking-[0.1em] text-white sm:text-4xl lg:text-5xl">
-            <TypewriterTitle
-              prefix=""
-              words={[copy.showreel.title]}
-              run={true}
-              reducedMotion={prefersReducedMotion}
-              wordClassName="text-white"
-              cursorClassName="text-teal-400"
-            />
+            {copy.showreel.title}
           </h2>
         </div>
         <div className="hidden items-center gap-4 sm:flex">
