@@ -77,6 +77,20 @@ export default function ProfileSection() {
               offset={["start 0.85", "start 0.45"]}
             />
 
+            {/* Modern, minimalist stats row */}
+            <div className="grid grid-cols-3 gap-6 border-t border-stone-200/80 pt-6 mt-2 max-w-lg">
+              {profile.stats.slice(0, 3).map(({ label, value }) => (
+                <div key={label} className="space-y-1">
+                  <span className="block text-3xl font-light tracking-tight text-slate-900 leading-none">
+                    {value}
+                  </span>
+                  <span className="block text-[10px] font-semibold uppercase tracking-wider text-slate-500 leading-tight">
+                    {label}
+                  </span>
+                </div>
+              ))}
+            </div>
+
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}

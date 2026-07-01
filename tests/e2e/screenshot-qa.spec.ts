@@ -33,6 +33,8 @@ test.describe("UI screenshot QA", () => {
       { route: "/portfolio", selector: "article:first-of-type", name: "portfolio-card-desktop" },
       { route: "/about", selector: "main > div", name: "about-desktop" },
       { route: "/about", selector: "#featured-credits", name: "about-credits-desktop" },
+      { route: "/articles", selector: "main", name: "articles-desktop" },
+      { route: "/materials/index.html", selector: "main", name: "materials-index-desktop" },
     ];
 
     for (const shot of shots) {

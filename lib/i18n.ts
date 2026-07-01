@@ -60,7 +60,6 @@ export const UI_COPY = {
       realtime: "Real-time",
       cinematic: "Cinematic",
       igaming: "iGaming",
-      slotGame: "Slot Game",
     },
     home: {
       playShowreel: "Play showreel",
@@ -168,7 +167,6 @@ export const UI_COPY = {
       realtime: "Thời gian thực",
       cinematic: "Điện ảnh",
       igaming: "iGaming",
-      slotGame: "Slot Game",
     },
     home: {
       playShowreel: "Xem showreel",

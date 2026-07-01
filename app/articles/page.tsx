@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ArticlesDirectory } from "@/components/articles/ArticlesDirectory";
+import { getAllPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
   title: "Articles",
@@ -19,5 +20,6 @@ export const metadata: Metadata = {
 };
 
 export default function ArticlesPage() {
-  return <ArticlesDirectory />;
+  const posts = getAllPosts();
+  return <ArticlesDirectory posts={posts} />;
 }
