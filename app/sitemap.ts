@@ -64,31 +64,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  const materialRoutes: MetadataRoute.Sitemap = [
-    "/materials/index.html",
-    "/materials/ue5.html",
-    "/materials/style/style-roadmap.html",
-    "/materials/style/stylized.html",
-    "/materials/style/semi-realistic.html",
-    "/materials/style/realistic.html",
-    "/materials/recipes/magic-energy.html",
-    "/materials/recipes/portal-vortex.html",
-    "/materials/recipes/shield-force-field.html",
-    "/materials/recipes/stylized-water-foam.html",
-    "/materials/recipes/terrain-layer-blend.html",
-    "/materials/recipes/realistic-pbr-surface.html",
-  ].map((route) => ({
-    url: absoluteUrl(route),
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: route === "/materials/index.html" ? 0.65 : 0.45,
-  }));
-
   return [
     ...staticRoutes,
     ...projectRoutes,
     ...rndRoutes,
     ...blogRoutes,
-    ...materialRoutes,
   ];
 }

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1E293B" stroke-width="1.5"/>
+    </pattern>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  
+  <style>
+    text { font-family: 'Kanit', sans-serif; font-weight: 700; }
+    .title { font-size: 32px; fill: #F8FAFC; letter-spacing: 2px; }
+    .label { font-size: 28px; fill: #94A3B8; }
+    .accent { font-size: 40px; }
+  </style>
+
+  
+  <rect width="800" height="450" fill="#0F172A"/>
+  <rect width="800" height="450" fill="url(#grid)"/>
+
+  
+  <!-- Consistent Top Left Label -->
+  <rect x="40" y="40" width="12" height="40" fill="#69F0AE" />
+  <text x="65" y="68" class="title">DISTANCE MASK</text>
+
+  
+  <g transform="translate(400, 250) scale(1.2)">
+    <!-- Rings -->
+    <circle cx="0" cy="0" r="160" fill="#69F0AE" fill-opacity="0.1" stroke="#69F0AE" stroke-width="6" filter="url(#glow)"/>
+    <circle cx="0" cy="0" r="80" fill="#69F0AE" fill-opacity="0.2"/>
+    <circle cx="0" cy="0" r="16" fill="#FFFFFF"/>
+    
+    <!-- Radius Line -->
+    
+    <line x1="0" y1="0" x2="160" y2="-80" stroke="#F8FAFC" stroke-width="8"/>
+    <polygon points="160,-80 145,-90 145,-70" fill="#F8FAFC" transform="rotate(-26.56505117707799, 160, -80)" />
+  
+    
+    <!-- Labels -->
+    <text x="170" y="-90" class="label" fill="#FFFFFF">Radius</text>
+  </g>
+</svg>

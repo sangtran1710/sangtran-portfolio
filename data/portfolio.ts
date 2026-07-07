@@ -43,9 +43,9 @@ export interface SkillGroup {
 }
 
 export const SITE = {
-  title: "Henry Tran - Principal VFX & Technical Artist",
+  title: "Henry Tran - Senior VFX & Technical Artist",
   description:
-    "Principal real-time VFX and Technical Artist specializing in production-ready effects, shaders, and pipelines for AAA games, cinematics, and launch content.",
+    "Senior real-time VFX and Technical Artist specializing in production-ready effects, shaders, and pipelines for AAA games, cinematics, and launch content.",
   email: "sangminhtran1710@gmail.com",
   logo: "/images/logo.png",
 };
@@ -331,6 +331,7 @@ export const PROJECTS: Project[] = [
     techStack: ["Unreal Engine", "Houdini", "Blender", "HLSL"],
     images: ["/images/havoc-landing-page.png"],
   },
+  /*
   {
     slug: "wolverine",
     thumbnail: "/images/Wolverine.png",
@@ -350,6 +351,7 @@ export const PROJECTS: Project[] = [
     techStack: ["Unreal Engine", "Houdini", "Perforce"],
     videoUrl: "https://www.youtube.com/watch?v=s3pDMUWlA6I",
   },
+  */
 ];
 
 export const FEATURED_PROJECTS = PROJECTS.filter((p) => p.isFeatured);
@@ -360,7 +362,6 @@ export const AAA_PROJECT_SLUGS = [
   "fortnite-remix",
   "new-world",
   "until-dawn",
-  "wolverine",
 ];
 
 /** Sort key by end date (higher = more recent). "Present" = first. */

@@ -1,0 +1,78 @@
+---
+title: "The Cross Product: Generating Perpendicular Vectors"
+description: "Practical notes on the Cross Product: Explore procedural mesh generation, stylized wind trails, and low-level ALU swizzle optimizations for high-performance shaders."
+date: "2026-07-08"
+tags: ["Math", "Shaders", "VFX", "Unreal Engine", "Optimization"]
+thumbnail: "/images/shaderlex/math_cross_product.svg"
+readTime: "11 min"
+---
+![Cross Product Math](/images/shaderlex/math_cross_product.svg)
+
+If the Dot Product is the go-to tool for comparing two directions, the **Cross Product** is the tool for *creating* a brand new direction.
+
+While the Cross Product might not be used as frequently as Lerp or Dot Product in everyday shader creation, it becomes highly useful the moment one steps into procedural mesh generation, custom lighting models, and advanced vector manipulation.
+
+Here are notes on how the Cross Product is leveraged in production.
+
+---
+
+## 1. What is the Cross Product?
+
+Unlike the Dot Product (which returns a single scalar number), the **Cross Product** takes two 3D vectors and returns a **brand new 3D vector**.
+
+### What it solves
+It solves the problem of finding a third axis. The new vector it generates has one special property: **It is perfectly perpendicular (orthogonal) to both of the original vectors.**
+
+**Vector A x Vector B = Vector C (Perpendicular to A and B)**
+
+Imagine Vector A pointing Forward, and Vector B pointing Right. If you cross A and B, the resulting Vector C will point perfectly **Up**.
+
+### The Right-Hand Rule
+You can predict the direction using the "Right-Hand Rule":
+1. Point your index finger in the direction of Vector A.
+2. Point your middle finger in the direction of Vector B.
+3. Your thumb will naturally point in the direction of the new Cross Product Vector.
+
+<CrossProductVisual />
+
+---
+
+## 2. Production Use Cases
+
+### Procedural Ribbon Orientation
+When generating procedurally drawn ribbons or lightning bolts, there is often a Forward vector (the direction the lightning is traveling) and the ribbon needs to always face the camera so it doesn't look paper-thin. By crossing the Forward vector with the Camera View vector, it instantly generates the perfect "Right" vector to expand the ribbon vertices outwards.
+
+```hlsl
+// Find the direction to push the left/right vertices of a particle ribbon
+float3 ribbonRight = cross(RibbonForward, CameraDirection);
+```
+
+### Stylized Wind Trails
+For stylized wind trail effects common in competitive shooters, I often use the Cross Product of the **Character's Movement Vector** and the **Mesh Surface Normal**. This generates a continuous tangent field flowing *around* the character. By using this generated vector field to warp the UV coordinates of a scrolling noise texture, I can create a swirling vortex of wind that contours the character mesh in real-time.
+
+---
+
+## 3. GPU Hardware & Optimization
+
+At the hardware level, a standard Cross Product requires **6 Multiplications and 3 Subtractions**, executing on the ALU. While ALU instructions are generally fast, there is a specific optimization I use when dealing with world-space axes.
+
+### Common Mistake: The "Multiply by Zero" Trap
+Very often in procedural generation, I need to find the "Right" vector by crossing my "Forward" vector with the global "Up" axis `float3(0, 0, 1)`.
+
+If you drop a standard `Cross` node into Unreal or Unity for this:
+`cross(Forward, float3(0, 0, 1))`
+
+A naive graph can express the full 9-operation mathematical sequence. While modern shader compilers are often smart enough to optimize away the constants (multiplying by 0), relying purely on the compiler's black box can sometimes lead to missed optimizations depending on the target platform. 
+
+### When not to use the standard node (The Swizzle Optimization)
+If one of your vectors is a static axis like `(0,0,1)`, I strongly recommend skipping the standard node and explicitly writing out the simplified math in a Custom HLSL block:
+
+```hlsl
+// Manually simplifying the cross product when crossing with (0,0,1)
+float3 RightVector = float3(Forward.y, -Forward.x, 0.0);
+```
+
+By doing this, you make the intent explicit and give the compiler less work to infer. On GPUs, swizzling (rearranging color channels) and negating (flipping the sign) occur at the register level and execute extremely fast, often being compiled out entirely.
+
+> [!WARNING]
+> **Check Your Handedness:** The simplified swizzle depends heavily on cross-product order and coordinate convention. Check the sign and order depending on whether you use `cross(Forward, Up)` or `cross(Up, Forward)`, and verify it against the specific engine's coordinate conventions (Left-Handed vs Right-Handed).

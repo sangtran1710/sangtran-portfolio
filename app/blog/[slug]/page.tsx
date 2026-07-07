@@ -5,6 +5,11 @@ import { ArrowLeft, Clock, Tag } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { absoluteUrl } from "@/lib/seo";
+import { 
+  DotProductVisual, SineWaveVisual, CrossProductVisual, StepVsSmoothstepVisual, MathGridBackground,
+  UvCartesianVisual, UvPanningVisual, UvDistortionVisual, 
+  SphericalMaskVisual, WorldPositionOffsetVisual, DepthFadeVisual
+} from "@/components/blog/MathVisuals";
 
 interface Props {
   params: { slug: string };
@@ -54,8 +59,9 @@ export default function BlogPostPage({ params }: Props) {
   if (!post) notFound();
 
   return (
-    <div className="min-h-screen bg-zinc-950 pt-28 pb-24">
-      <div className="mx-auto max-w-2xl px-6">
+    <div className="min-h-screen bg-zinc-950 pt-28 pb-24 relative overflow-hidden">
+      <MathGridBackground />
+      <div className="mx-auto max-w-2xl px-6 relative z-10">
 
         {/* Back */}
         <Link
@@ -127,7 +133,11 @@ export default function BlogPostPage({ params }: Props) {
           prose-li:text-zinc-400 prose-li:leading-relaxed
           prose-ul:my-4 prose-ol:my-4
         ">
-          <MDXRemote source={post.content} />
+          <MDXRemote source={post.content} components={{ 
+            DotProductVisual, SineWaveVisual, CrossProductVisual, StepVsSmoothstepVisual,
+            UvCartesianVisual, UvPanningVisual, UvDistortionVisual,
+            SphericalMaskVisual, WorldPositionOffsetVisual, DepthFadeVisual
+          }} />
         </div>
 
         {/* Footer */}

@@ -34,11 +34,12 @@ test.describe("UI screenshot QA", () => {
       { route: "/about", selector: "main > div", name: "about-desktop" },
       { route: "/about", selector: "#featured-credits", name: "about-credits-desktop" },
       { route: "/articles", selector: "main", name: "articles-desktop" },
-      { route: "/materials/index.html", selector: "main", name: "materials-index-desktop" },
+      { route: "/articles?tab=shaderlex", selector: "main", name: "shaderlex-index-desktop" },
     ];
 
     for (const shot of shots) {
-      await page.goto(shot.route, { waitUntil: "networkidle" });
+      const response = await page.goto(shot.route, { waitUntil: "networkidle" });
+      expect(response?.status(), `${shot.route} should not render an error page`).toBeLessThan(400);
       const locator = page.locator(shot.selector).first();
       await locator.scrollIntoViewIfNeeded();
       await page.waitForTimeout(700);

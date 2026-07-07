@@ -47,19 +47,11 @@ export default function HeroSection() {
       {/* Background Video */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {shouldReduceMotion ? (
-          <Image
-            src="/images/reel_poster.jpg"
-            alt=""
-            fill
-            priority
-            className="object-cover object-center"
-            aria-hidden
-          />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#06090d] to-[#0a1018]" />
         ) : (
           <video
             className="h-full w-full object-cover object-center pointer-events-none"
             src={hero.showreelUrl}
-            poster="/images/reel_poster.jpg"
             autoPlay
             muted
             loop

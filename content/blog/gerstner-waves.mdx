@@ -3,9 +3,10 @@ title: "Gerstner Waves Water Displacement: Math & Setup in Unreal Engine"
 description: "A detailed guide explaining Gerstner Waves math, vertex displacement (WPO), and wave rendering for beginners."
 date: "2026-05-02"
 tags: ["Vertex Shader", "Vertex Animation", "HLSL", "Unreal Engine", "Water Shader"]
-thumbnail: "/images/shaderlex/gerstner_waves_ref.png"
 readTime: "9 min"
 ---
+![Gerstner Waves Math](/images/shaderlex/gerstner_wave.svg)
+
 
 Scrolling normal maps on a flat plane to simulate water is a classic beginner mistake. While it looks okay from high angles, it falls apart completely when the camera moves close to the horizon because the water profile remains perfectly flat and fake.
 
@@ -15,13 +16,14 @@ To make water look real, you need actual height movement on the vertices. Simple
 
 ## What is a Gerstner Wave?
 
-![Sine Wave vs Gerstner Trochoidal Wave Vertex Shifting](/images/shaderlex/gerstner_waves_diagram.png)
 
 A Gerstner wave (or trochoidal wave) is a physical approximation of deep-water waves.
 - **Sine Wave:** Moves vertices strictly up and down (Z-axis). This results in rounded crests and rounded troughs.
 - **Gerstner Wave:** Shifts vertices horizontally (X and Y-axes) toward the crests while pushing them vertically (Z-axis). This pulls the vertices together, pinching the crests into sharp points while flattening the troughs, which matches real-world ocean physics.
 
 ---
+![Gerstner Waves Math](/images/shaderlex/gerstner_wave.svg)
+
 
 ## To calculate a Gerstner wave, we offset a vertex position `P = (x, y, z)` by a displacement vector `D = (dx, dy, dz)` calculated as:
 
@@ -63,6 +65,8 @@ float3 GerstnerWave(float2 uv, float waveLength, float amplitude, float speed, f
 ```
 
 ---
+![Gerstner Waves Math](/images/shaderlex/gerstner_wave.svg)
+
 
 ## Step-by-Step Implementation in UE5
 
@@ -91,3 +95,11 @@ Connect this sum directly to the **World Position Offset** input on your materia
 ### 2. Mesh Tearing & Bounds Scale
 **Why it happens:** When waves get high, the mesh coordinates move beyond the original bounding box of the actor. The engine thinks the water is off-screen and aggressively culls (disappearing) it.
 **How to fix it:** Select the water mesh actor in your level and increase the **Bounds Scale** parameter (e.g. from `1.0` to `2.5`) to prevent culling.
+
+
+---
+![Gerstner Waves Math](/images/shaderlex/gerstner_wave.svg)
+
+
+## Visual Reference (Unreal Engine Setup)
+

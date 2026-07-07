@@ -51,6 +51,7 @@ export default function Navbar() {
       children: [
         { href: "/articles#blog", label: "Articles" },
         { href: "/articles?tab=shaderlex", label: "ShaderLex" },
+        { href: "/articles?tab=math", label: "Math for VFX" },
       ],
     },
     { href: "/about", label: "About Me" },
@@ -120,13 +121,16 @@ export default function Navbar() {
             const isUnderlined = hoveredPath ? hoveredPath === href : activeHref === href;
 
             return (
-              <div key={label} className="group/navitem relative">
+              <div 
+                key={label} 
+                className="group/navitem relative"
+                onMouseEnter={() => {
+                  prefetchRoute(href);
+                  setHoveredPath(href);
+                }}
+              >
                 <Link
                   href={href}
-                  onMouseEnter={() => {
-                    prefetchRoute(href);
-                    setHoveredPath(href);
-                  }}
                   onFocus={() => {
                     prefetchRoute(href);
                     setHoveredPath(href);
@@ -149,7 +153,8 @@ export default function Navbar() {
                 {hasChildren && (
                   <div
                     className={cn(
-                      "invisible absolute left-1/2 top-full z-50 mt-3 w-52 -translate-x-1/2 rounded-2xl border p-2 opacity-0 shadow-2xl transition-all duration-200 group-hover/navitem:visible group-hover/navitem:translate-y-0 group-hover/navitem:opacity-100 group-focus-within/navitem:visible group-focus-within/navitem:opacity-100",
+                      "invisible absolute left-1/2 top-full z-50 mt-2 w-52 -translate-x-1/2 rounded-2xl border p-2 opacity-0 shadow-2xl transition-all duration-200 group-hover/navitem:visible group-hover/navitem:translate-y-0 group-hover/navitem:opacity-100 group-focus-within/navitem:visible group-focus-within/navitem:opacity-100",
+                      "before:absolute before:-top-2 before:left-0 before:h-2 before:w-full",
                       isDarkNav
                         ? "border-white/10 bg-[#151922] text-white"
                         : "border-stone-200 bg-white text-slate-900"

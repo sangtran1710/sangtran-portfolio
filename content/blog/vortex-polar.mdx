@@ -3,9 +3,10 @@ title: "Polar UV Vortex Shaders: Creating Portal and Swirl Effects"
 description: "Learn how to use Polar Coordinates to build circular scrolling vortexes, portals, and suction effects for game VFX."
 date: "2026-05-03"
 tags: ["Math", "UV Distortion", "VFX Shaders", "Unreal Engine", "HLSL"]
-thumbnail: "/images/shaderlex/polar_vortex_ref.png"
 readTime: "7 min"
 ---
+![Polar Coordinate Transformation](/images/shaderlex/vortex_polar.svg)
+
 
 Most texture panning shaders move coordinates in straight directions along the horizontal (U) and vertical (V) Cartesian axes. But if you want to create a black hole, a portal, a swirling vortex, or a magical circle, scrolling straight textures will never look right.
 
@@ -15,7 +16,6 @@ To scroll textures circularly, we must convert our coordinates from **Cartesian 
 
 ## The Concept: Cartesian vs. Polar
 
-![Cartesian vs Polar Coordinates Grid Mapping](/images/shaderlex/polar_vortex_diagram.png)
 
 - **Cartesian UVs:** Every point is defined by a horizontal distance `u` and vertical distance `v`. Scrolling UVs moves textures in straight lines.
 - **Polar UVs:** Every point is defined by:
@@ -25,6 +25,8 @@ To scroll textures circularly, we must convert our coordinates from **Cartesian 
 If we map a flat texture to Polar coordinates, scrolling the horizontal coordinate (u = Radius) will cause the texture to flow **inward/outward** from the center. Scrolling the vertical coordinate (v = Angle) will cause the texture to **rotate** around the center.
 
 ---
+![Polar Coordinate Transformation](/images/shaderlex/vortex_polar.svg)
+
 
 ## Mathematical Conversion
 
@@ -56,6 +58,8 @@ float2 polarUv = float2(u, v);
 ```
 
 ---
+![Polar Coordinate Transformation](/images/shaderlex/vortex_polar.svg)
+
 
 ## Step-by-Step Shader Setup
 
@@ -81,3 +85,11 @@ To fix this:
 ### 2. Mesh Layout & Circular Planes
 **Why it happens:** Applying a polar shader on a square plane wastes a lot of pixel cost on transparent corners where opacity is 0.
 **How to fix it:** Ditch square planes. Use a circular disc mesh with 12-16 sides. This saves fill-rate performance on the GPU by clipping off transparent waste zones.
+
+
+---
+![Polar Coordinate Transformation](/images/shaderlex/vortex_polar.svg)
+
+
+## Visual Reference (Unreal Engine Setup)
+

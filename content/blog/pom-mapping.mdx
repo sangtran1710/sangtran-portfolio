@@ -3,9 +3,10 @@ title: "Parallax Occlusion Mapping (POM): Simulated Depth in Pixel Shaders"
 description: "A deep dive into Parallax Occlusion Mapping, heightmap ray-marching, and performance tradeoffs for technical artists."
 date: "2026-05-05"
 tags: ["Advanced Materials", "Raymarching", "HLSL", "Unreal Engine", "Optimization"]
-thumbnail: "/images/shaderlex/pom_mapping_ref.png"
 readTime: "10 min"
 ---
+![Parallax Occlusion Mapping Raymarching](/images/shaderlex/pom_mapping.svg)
+
 
 Normal maps are the standard way to fake surface detail in games, but they suffer from one fatal flaw: **they are an illusion of lighting, not shape**. When you view a normal-mapped brick wall from a steep grazing angle, the surface looks completely flat, revealing that it's just a flat sheet of polygons.
 
@@ -21,10 +22,11 @@ Instead of physically moving vertices (like displacement mapping), POM traces a 
 By finding where the camera view vector intersects the heightmap data, the shader offsets the texture coordinates (UVs) to render the correct hidden surfaces, creating the illusion of occluded shapes, deep crevices, and self-shadowing.
 
 ---
+![Parallax Occlusion Mapping Raymarching](/images/shaderlex/pom_mapping.svg)
+
 
 ## Under the Hood: The Ray-Marching Loop
 
-![Parallax Occlusion Mapping Heightmap Ray-Marching Steps](/images/shaderlex/pom_mapping_diagram.png)
 
 POM works by dividing the height of the surface (from `1.0` at the top to `0.0` at the bottom) into multiple horizontal slices or steps.
 
@@ -65,6 +67,8 @@ float2 finalUvs = uv + uvOffset;
 ```
 
 ---
+![Parallax Occlusion Mapping Raymarching](/images/shaderlex/pom_mapping.svg)
+
 
 ## Step-by-Step UE5 Material Setup
 
@@ -91,3 +95,11 @@ To save performance, do not run the maximum number of steps at all times.
 
 ### 2. Distance-Based LOD Fading
 POM is completely wasted on objects far away from the player. Use the **Distance** node in the material graph to fade out the parallax scale to `0.0` and decrease step counts to `1` beyond a certain range (e.g. `2000` units). This turns POM off dynamically in the distance, saving performance.
+
+
+---
+![Parallax Occlusion Mapping Raymarching](/images/shaderlex/pom_mapping.svg)
+
+
+## Visual Reference (Unreal Engine Setup)
+

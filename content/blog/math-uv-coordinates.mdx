@@ -1,0 +1,92 @@
+---
+title: "UV Mathematics & Texture Distortion"
+description: "Practical notes on the 2D Cartesian coordinate system that drives shaders, texture panning, and complex flow map distortions."
+date: "2026-07-08"
+tags: ["Math", "Shaders", "VFX", "Unreal Engine", "Coordinates"]
+thumbnail: "/images/shaderlex/math_uv_coords.svg"
+readTime: "12 min"
+---
+![UV Coordinates Grid](/images/shaderlex/math_uv_coords.svg)
+
+Understanding UV math is foundational for real-time VFX. By manipulating the UV grid before sampling a texture, static images can be transformed into dynamic effects like flowing water, heat distortion, or scrolling UI.
+
+Here is a breakdown of how UV coordinates work and how they are commonly distorted in production pipelines.
+
+---
+
+## 1. The UV Coordinate Space (Cartesian Grid)
+
+In shader programming, `UV` (or `TexCoord`) is simply a 2D vector `[X, Y]` (or `[U, V]`) that tells the renderer how to map a flat 2D texture onto a 3D polygon. 
+
+### What it solves
+UV math allows us to shift, scale, and rotate *where* the pixels of a texture are being read from the source image.
+
+The most important thing to remember: **UV space goes from 0.0 to 1.0**. 
+- `[0, 0]` is the top-left corner (in DirectX/Unreal) or bottom-left (in OpenGL/Unity).
+- `[1, 1]` is the opposite corner.
+
+<UvCartesianVisual />
+
+By mathematically altering this `[0..1]` grid before plugging it into a Texture Sample, the resulting image can be natively warped on the GPU.
+
+---
+
+## 2. UV Panning (Addition & Time)
+
+The simplest and most commonly used form of texture animation is **Panning**. 
+
+### What it solves
+Panning shifts the texture over time, creating the illusion of endless forward movement without requiring moving geometry.
+
+### Production Use Case: Scrolling Energy Beams
+If UV coordinates control where the texture is sampled, adding a constantly increasing number to them will shift the sampling position. By taking the global `Time` variable and adding it to the `U` or `V` channel, I can make textures shift infinitely. 
+
+While Unreal Engine provides a built-in `Panner` node, doing it manually via `Add` allows me to inject non-linear time, like sine waves. In production, I use this to create "wobbly" or "breathing" panning effects for sci-fi lasers or waterfalls.
+
+```hlsl
+// Basic linear panning
+float2 pannedUv = BaseUV + (Time * float2(0.5, 0.0));
+
+// Wobbly panning using Sine
+float wobble = sin(Time * 3.0) * 0.1;
+float2 wobblyUv = BaseUV + float2(Time + wobble, 0.0);
+```
+
+<UvPanningVisual />
+
+### Common Mistake
+A common error is forgetting to set the texture's Sampler State to "Wrap" (or Tile) in the engine. If the texture is set to "Clamp", panning the UVs beyond 1.0 will just stretch the edge pixel infinitely instead of looping the image.
+
+### When not to use it
+Avoid using UV Panning to simulate physical movement of rigid objects (like a conveyor belt moving crates). UV panning only slides the paint on the surface, it doesn't move the physical bounds of the mesh, which can break collisions and lighting.
+
+---
+
+## 3. UV Distortion (Noise & Refraction)
+
+If adding a constant number pans the texture evenly, adding *random* numbers to different parts of the UV grid warps the coordinate space itself. 
+
+### What it solves
+Distortion breaks up the rigid grid structure, simulating natural organic flow or optical refraction.
+
+### Production Use Case: Refraction and Heat Haze
+When building heat haze or water shaders, a grayscale Noise texture (or a Flow Map) is typically added to the base UVs. When the main texture (or the Scene Color buffer) is sampled using this warped grid, the image appears distorted, melted, or refracted like hot air.
+
+```hlsl
+// Sample a noise texture to get random values between 0.0 and 1.0
+float distortionMap = tex2D(NoiseSampler, UV).r;
+
+// Remap noise from [0, 1] to [-1, 1] so it pushes equally in all directions
+float centeredNoise = (distortionMap * 2.0) - 1.0;
+
+// Add scaled noise to the base UVs
+float2 distortedUv = BaseUV + (centeredNoise * DistortionStrength);
+```
+
+<UvDistortionVisual />
+
+### Common Mistake: The "Pinch" Artifact
+Standard noise textures range from `0.0` to `1.0`. If you add this directly to your UVs without remapping it (as shown in the code above), the texture will only distort in a positive diagonal direction, causing it to slide off-center. I always multiply the noise by `2.0` and subtract `1.0` to ensure the distortion pushes and pulls equally in all directions.
+
+### When not to use it
+Avoid extreme UV distortion on textures containing highly recognizable features, like text or detailed faces. High distortion will pull the UV coordinates so far apart that the texture will severely pixelate and tear, breaking the illusion.

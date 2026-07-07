@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1E293B" stroke-width="1.5"/>
+    </pattern>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  
+  <style>
+    text { font-family: 'Kanit', sans-serif; font-weight: 700; }
+    .title { font-size: 32px; fill: #F8FAFC; letter-spacing: 2px; }
+    .label { font-size: 28px; fill: #94A3B8; }
+    .accent { font-size: 40px; }
+  </style>
+
+  
+  <rect width="800" height="450" fill="#0F172A"/>
+  <rect width="800" height="450" fill="url(#grid)"/>
+
+  
+  <!-- Consistent Top Left Label -->
+  <rect x="40" y="40" width="12" height="40" fill="#FFEB3B" />
+  <text x="65" y="68" class="title">UV CARTESIAN</text>
+
+  
+  <g transform="translate(220, 100) scale(1.1)">
+    <!-- Main Grid Box -->
+    <rect x="0" y="0" width="300" height="300" fill="#FFEB3B" fill-opacity="0.05" stroke="#475569" stroke-width="4"/>
+    
+    <!-- Coordinate arrows -->
+    
+    <line x1="0" y1="0" x2="350" y2="0" stroke="#FFEB3B" stroke-width="8"/>
+    <polygon points="350,0 335,-10 335,10" fill="#FFEB3B" transform="rotate(0, 350, 0)" />
+  
+    
+    <line x1="0" y1="0" x2="0" y2="350" stroke="#FFEB3B" stroke-width="8"/>
+    <polygon points="0,350 -15,340 -15,360" fill="#FFEB3B" transform="rotate(90, 0, 350)" />
+  
+    
+    <!-- Points -->
+    <circle cx="0" cy="0" r="12" fill="#FFFFFF"/>
+    <circle cx="300" cy="300" r="12" fill="#FFFFFF"/>
+    
+    <text x="320" y="-20" class="accent" fill="#FFEB3B">U</text>
+    <text x="-40" y="340" class="accent" fill="#FFEB3B">V</text>
+  </g>
+</svg>

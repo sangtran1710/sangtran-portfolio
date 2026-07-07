@@ -3,11 +3,12 @@ title: "Anime Cel Shading & Rim Outlines: From Scratch to Production"
 description: "A practical guide to toon shading, shadow bands, and outline rendering in Unreal Engine for junior VFX artists."
 date: "2026-05-01"
 tags: ["Stylized Rendering", "Shaders", "HLSL", "Unreal Engine", "Toon Shader"]
-thumbnail: "/images/shaderlex/cel_shading_ref.png"
 readTime: "8 min"
 ---
+![Cel Shading Step Diagram](/images/shaderlex/cel_shade.svg)
 
-Transitioning from standard photorealistic PBR to anime styles is always tricky. If you just plug in basic lighting, your toon characters will look muddy and lose that clean, hand-drawn aesthetic. Cel shading is the backbone of stylized rendering—we take those smooth gradients and snap them into clean, graphic bands of color.
+
+Transitioning from standard photorealistic PBR to anime styles is always tricky. If you just plug in basic lighting, your toon characters will look muddy and lose that clean, hand-drawn aesthetic. Cel shading is the backbone of stylized rendering-we take those smooth gradients and snap them into clean, graphic bands of color.
 
 Here is a breakdown of how cel-shading works, how to build it in Unreal Engine, and how to avoid the classic traps that usually pop up when you put it into production.
 
@@ -15,7 +16,6 @@ Here is a breakdown of how cel-shading works, how to build it in Unreal Engine, 
 
 ## The Concept: Lighting Vectors vs. Toon Bands
 
-![Cel Shading Vectors and Shadow Threshold](/images/shaderlex/cel_shade_diagram.png)
 
 In realistic shading, light bounces off surfaces smoothly. The math measures the angle between the surface Normal vector (N) and the Light Direction (L), giving us `NdotL`.
 - If the surface faces the light, `NdotL = 1` (fully lit).
@@ -25,6 +25,8 @@ In realistic shading, light bounces off surfaces smoothly. The math measures the
 Instead of rendering a smooth gradient from black to white, we intercept this value and snap it into a solid boundary: **Light vs. Shadow**.
 
 ---
+![Cel Shading Step Diagram](/images/shaderlex/cel_shade.svg)
+
 
 ## Step-by-Step Shader Logic
 
@@ -82,6 +84,8 @@ float3 finalColor = cellColor + (rimMask * rimColor);
 ```
 
 ---
+![Cel Shading Step Diagram](/images/shaderlex/cel_shade.svg)
+
 
 ## Common Production Traps & Solutions
 
@@ -92,3 +96,9 @@ float3 finalColor = cellColor + (rimMask * rimColor);
 ### 2. Normal Mapping Interference
 **Why it happens:** Putting a detailed normal map on a toon shader creates chaotic, messy dark spots instead of clean toon lines.
 **How to fix it:** Use normal maps with low intensity, or blend the normal map out in shadowed areas. You only want normal detail to break the highlight, not the shadow boundary.
+
+
+---
+
+## Visual Reference (Unreal Engine Setup)
+

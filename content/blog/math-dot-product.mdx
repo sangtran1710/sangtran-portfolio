@@ -1,0 +1,75 @@
+---
+title: "The Dot Product: Vector Math in VFX Shaders"
+description: "Practical notes on the Dot Product: from intuitive flashlight analogies and stylized cel-shading to GPU hardware optimization (FMA vs SFU)."
+date: "2026-07-07"
+tags: ["Math", "Shaders", "VFX", "Unreal Engine", "Optimization"]
+thumbnail: "/images/shaderlex/math_dot_product.svg"
+readTime: "12 min"
+---
+
+The `Dot Product` is one of the most heavily utilized mathematical operations in the real-time computer graphics toolkit. Whether building a custom lighting model, masking snow on a mountain, or outlining a character, the Dot Product is usually doing the heavy lifting under the hood.
+
+Here are my notes on what the Dot Product does visually, and how it's commonly used in production pipelines.
+
+---
+
+## 1. The Core Concept: The "Alignment Sensor"
+
+Mathematically, the Dot Product projects one vector onto another. 
+
+### What it solves
+It measures the directional alignment between two vectors. If both vectors are normalized (length of 1), the result `dot(A, B)` returns the **cosine of the angle between them**, yielding a value between `-1.0` and `1.0`.
+
+**The Flashlight Analogy:**
+Imagine you are holding a flashlight pointing at a flat wall in a dark room.
+1. If you shine the light **perpendicularly (90 degrees)** straight at the wall, you get a perfect, highly concentrated circle of light. The alignment is perfect. **Result = 1.0**.
+2. If you slowly tilt the flashlight, the circle stretches and dims. The value smoothly transitions downwards.
+3. If you shine the light **parallel** to the wall (glancing right past it), no light hits the wall. **Result = 0.0**.
+4. If you point the flashlight **away** from the wall, the wall remains pitch black. **Result = -1.0**.
+
+<DotProductVisual />
+
+> **Memory Tip:** "Same direction is 1, perpendicular is 0, opposite is -1. Dot is an excellent measure of alignment!"
+
+---
+
+## 2. Production Use Cases
+
+### Procedural Snow and Dust Masking (Slope Mask)
+In production, the Dot Product is often used to procedurally texture environments. If the `WorldNormal` of a rock mesh is 'dotted' against the global Up vector `(0, 0, 1)`, any polygon pointing up towards the sky returns `1.0`, while polygons pointing sideways return `0.0`. This exact mask is frequently used to dynamically blend a snow texture onto the top of every rock in a scene.
+
+```hlsl
+// Creates a 0 to 1 gradient based on how much the surface faces up
+float snowMask = saturate(dot(WorldNormal, float3(0, 0, 1)));
+```
+
+### Fresnel Rim Lighting & Facing Masks
+By dotting the Pixel's Normal against the Camera's View Direction, I can determine which pixels are facing the camera and which are on the silhouette edges. Inverting this mask creates a Rim Light effect.
+
+```hlsl
+// NdotV returns 1.0 when facing the camera, 0.0 at grazing angles.
+// Inverting it (1 - NdotV) highlights the outer silhouette edges!
+float rimLight = saturate(1.0 - dot(Normal, ViewDirection));
+```
+
+### Stylized Anime Cel-Shading
+In realistic rendering, Lambertian diffuse lighting is calculated as `dot(Normal, LightDirection)`, creating a soft gradient from light to shadow.
+
+When building stylized shaders, the `NdotL` value is often used as the **U-coordinate to sample a 1D Gradient Ramp Texture (LUT)**. This allows the renderer to draw perfectly hard-edged, custom-colored shadow bands that snap precisely when the light angle shifts.
+
+---
+
+## 3. GPU Hardware Optimization
+
+The mathematical formula for a 3D Dot Product is:
+`dot(A, B) = A.x*B.x + A.y*B.y + A.z*B.z`
+
+Modern GPUs are explicitly designed to execute this sequence via a hardware instruction called **FMA (Fused Multiply-Add)**. Because of this, a Dot Product is executed purely on the ALU (Arithmetic Logic Unit) and is often very cheap, executing in just a few clock cycles depending on the target hardware.
+
+### Common Mistake: The `Normalize` Bottleneck Trap
+A very common mistake I see in peer reviews is aggressively calling `normalize()` on vectors before feeding them into a Dot Product. 
+
+The `normalize()` function requires calculating the inverse square root (`rsqrt`) of the vector's length. This is a **Transcendental Function**, which is usually routed to the GPU's **SFU (Special Function Unit)**. Calling normalize excessively in a Pixel Shader can sometimes introduce instruction latency.
+
+### When not to use it (or when to skip normalization)
+If I only need to check the *sign* of the Dot Product (e.g., to determine if a polygon is facing toward or away from the camera for a custom culling mask), **I do not normalize the vectors!** The sign (positive/negative) of a Dot Product is completely unaffected by the length of the input vectors. Skipping the normalize node is a common optimization I use to keep frame times low.

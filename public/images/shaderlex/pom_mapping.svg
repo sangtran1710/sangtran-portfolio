@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <rect width="800" height="450" fill="#070b11" />
+  
+  <g transform="translate(100, 300)">
+    <!-- Base Plane -->
+    <line x1="0" y1="0" x2="600" y2="0" stroke="#ffffff" stroke-width="2" opacity="0.3"/>
+    
+    <!-- Heightmap profile -->
+    <path d="M 0 0 L 100 0 L 150 -80 L 250 -100 L 350 -40 L 450 -120 L 550 -120 L 600 0" fill="none" stroke="#4dff4d" stroke-width="3" />
+    
+    <!-- Camera Ray -->
+    <line x1="0" y1="-250" x2="400" y2="-50" stroke="#ff4d4d" stroke-width="2" stroke-dasharray="8,4" />
+    <circle cx="0" cy="-250" r="8" fill="#ff4d4d" />
+    <text x="15" y="-245" fill="#ff4d4d" font-family="monospace" font-size="14">View Ray</text>
+    
+    <!-- Raymarch Steps -->
+    <line x1="100" y1="-200" x2="100" y2="0" stroke="#4da6ff" stroke-width="2" stroke-dasharray="2,2" opacity="0.5"/>
+    <circle cx="100" cy="-200" r="4" fill="#4da6ff" />
+    
+    <line x1="200" y1="-150" x2="200" y2="0" stroke="#4da6ff" stroke-width="2" stroke-dasharray="2,2" opacity="0.5"/>
+    <circle cx="200" cy="-150" r="4" fill="#4da6ff" />
+    
+    <line x1="300" y1="-100" x2="300" y2="0" stroke="#4da6ff" stroke-width="2" stroke-dasharray="2,2" opacity="0.5"/>
+    <circle cx="300" cy="-100" r="4" fill="#4da6ff" />
+    
+    <!-- Intersection Point -->
+    <circle cx="375" cy="-62" r="6" fill="#ffff00" />
+    <text x="390" y="-70" fill="#ffff00" font-family="monospace" font-size="14" font-weight="bold">Intersection</text>
+    
+    <text x="460" y="-130" fill="#4dff4d" font-family="monospace" font-size="16">Heightmap</text>
+  </g>
+</svg>

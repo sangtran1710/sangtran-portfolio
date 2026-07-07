@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1E293B" stroke-width="1.5"/>
+    </pattern>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  
+  <style>
+    text { font-family: 'Kanit', sans-serif; font-weight: 700; }
+    .title { font-size: 32px; fill: #F8FAFC; letter-spacing: 2px; }
+    .label { font-size: 28px; fill: #94A3B8; }
+    .accent { font-size: 40px; }
+  </style>
+
+  
+  <rect width="800" height="450" fill="#0F172A"/>
+  <rect width="800" height="450" fill="url(#grid)"/>
+
+  
+  <!-- Consistent Top Left Label -->
+  <rect x="40" y="40" width="12" height="40" fill="#00E5FF" />
+  <text x="65" y="68" class="title">SMOOTHSTEP</text>
+
+  
+  <g transform="translate(100, 150) scale(1.2)">
+    <!-- Axes -->
+    
+    <line x1="0" y1="180" x2="500" y2="180" stroke="#475569" stroke-width="8"/>
+    <polygon points="500,180 485,170 485,190" fill="#475569" transform="rotate(0, 500, 180)" />
+  
+    
+    <line x1="0" y1="180" x2="0" y2="0" stroke="#475569" stroke-width="8"/>
+    <polygon points="0,0 -15,-10 -15,10" fill="#475569" transform="rotate(-90, 0, 0)" />
+  
+    
+    <!-- Smoothstep Curve -->
+    <path d="M 0 180 L 150 180 C 250 180, 250 20, 350 20 L 500 20" fill="none" stroke="#00E5FF" stroke-width="12" filter="url(#glow)" />
+    
+    <!-- Indicators -->
+    <circle cx="150" cy="180" r="12" fill="#FFFFFF"/>
+    <circle cx="350" cy="20" r="12" fill="#FFFFFF"/>
+    <text x="130" y="220" class="label">Min</text>
+    <text x="330" y="-10" class="label">Max</text>
+  </g>
+</svg>

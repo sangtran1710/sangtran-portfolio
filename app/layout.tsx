@@ -13,13 +13,13 @@ import { getSiteUrl } from "@/lib/seo";
 import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin", "vietnamese"],
   variable: "--font-inter",
   display: "swap",
 });
 
 const kanit = Kanit({
-  subsets: ["latin"],
+  subsets: ["latin", "vietnamese"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-kanit",
   display: "swap",

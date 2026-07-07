@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1E293B" stroke-width="1.5"/>
+    </pattern>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  
+  <style>
+    text { font-family: 'Kanit', sans-serif; font-weight: 700; }
+    .title { font-size: 32px; fill: #F8FAFC; letter-spacing: 2px; }
+    .label { font-size: 28px; fill: #94A3B8; }
+    .accent { font-size: 40px; }
+  </style>
+
+  
+  <rect width="800" height="450" fill="#0F172A"/>
+  <rect width="800" height="450" fill="url(#grid)"/>
+
+  
+  <!-- Consistent Top Left Label -->
+  <rect x="40" y="40" width="12" height="40" fill="#E040FB" />
+  <text x="65" y="68" class="title">CROSS PRODUCT</text>
+
+  
+  <g transform="translate(350, 280) scale(1.2)">
+    <!-- Vector A -->
+    
+    <line x1="0" y1="0" x2="-180" y2="100" stroke="#F8FAFC" stroke-width="8"/>
+    <polygon points="-180,100 -195,90 -195,110" fill="#F8FAFC" transform="rotate(150.94539590092285, -180, 100)" />
+  
+    <text x="-210" y="140" class="label">A</text>
+    
+    <!-- Vector B -->
+    
+    <line x1="0" y1="0" x2="220" y2="80" stroke="#F8FAFC" stroke-width="8"/>
+    <polygon points="220,80 205,70 205,90" fill="#F8FAFC" transform="rotate(19.98310652189998, 220, 80)" />
+  
+    <text x="240" y="110" class="label">B</text>
+    
+    <!-- Cross Product Vector C -->
+    
+    <line x1="0" y1="0" x2="0" y2="-200" stroke="#E040FB" stroke-width="8"/>
+    <polygon points="0,-200 -15,-210 -15,-190" fill="#E040FB" transform="rotate(-90, 0, -200)" />
+  
+    <text x="20" y="-180" class="accent" fill="#E040FB">A × B</text>
+    
+    <!-- Perpendicular Angle markers -->
+    <path d="M 0 -40 L -25 -25 L -25 15" fill="none" stroke="#475569" stroke-width="4"/>
+    <path d="M 0 -40 L 30 -30 L 30 10" fill="none" stroke="#475569" stroke-width="4"/>
+  </g>
+</svg>

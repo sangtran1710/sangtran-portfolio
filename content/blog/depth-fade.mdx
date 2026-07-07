@@ -3,9 +3,10 @@ title: "Depth Fade: Soft Particles and Intersection Blending in Unreal Engine"
 description: "A comprehensive guide on Depth Fade, scene depth blending, and how to eliminate harsh mesh clipping lines in VFX."
 date: "2026-05-04"
 tags: ["Translucency", "VFX Shaders", "Depth Buffer", "Unreal Engine", "HLSL"]
-thumbnail: "/images/shaderlex/depth_fade_ref.png"
 readTime: "6 min"
 ---
+![Depth Fade Intersection](/images/shaderlex/depth_fade.svg)
+
 
 If you ask any VFX lead what node they check first when optimizing a game, they'll probably tell you: **Depth Fade**.
 
@@ -21,10 +22,11 @@ Where the two surfaces intersect, there is a hard, pixelated edge. This instantl
 To solve this, we want the translucent material to become **completely transparent** right at the intersection line, and fade to full opacity as it moves away from the wall.
 
 ---
+![Depth Fade Intersection](/images/shaderlex/depth_fade.svg)
+
 
 ## How Depth Fade works under the hood
 
-![Scene Depth vs Pixel Depth and Fade Distance Intersection Diagram](/images/shaderlex/depth_fade_diagram.png)
 
 The shader compares two depth values for every pixel rendered on the screen:
 
@@ -59,6 +61,8 @@ float4 finalColor = float4(baseColor, opacity * fadeAlpha);
 ```
 
 ---
+![Depth Fade Intersection](/images/shaderlex/depth_fade.svg)
+
 
 ## Unreal Engine Setup Guide
 
@@ -83,3 +87,11 @@ Translucent materials normally do not write to the depth buffer. However, using 
 
 ### 2. Mobile Platform Compatibility
 On mobile devices (ES3.1 / Metal), depth texture fetches can be slow or unsupported if not configured correctly. Always verify that "Create Mobile Depth Stencil" is enabled in your Unreal Engine project settings.
+
+
+---
+![Depth Fade Intersection](/images/shaderlex/depth_fade.svg)
+
+
+## Visual Reference (Unreal Engine Setup)
+

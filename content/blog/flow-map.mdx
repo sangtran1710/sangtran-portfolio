@@ -3,9 +3,10 @@ title: "Flow Map UV Distortion: Animating Lava, Water, and Fluids"
 description: "Learn how to use 2D vector Flow Maps to create realistic flowing liquid, lava, and fire effects without complex physics simulation."
 date: "2026-05-06"
 tags: ["Math", "UV Distortion", "VFX Shaders", "Unreal Engine", "HLSL"]
-thumbnail: "/images/shaderlex/flow_map_ref.png"
 readTime: "8 min"
 ---
+![Flow Map Vector Field](/images/shaderlex/flow_map.svg)
+
 
 Simulating flowing fluids (like lava, rushing rivers, or swirling clouds) in real-time is too expensive for game engines if you use full physics grid solvers. Instead, technical artists use **Flow Maps**.
 
@@ -15,7 +16,6 @@ A flow map is a 2D texture where the Red and Green channels store 2D direction v
 
 ## The Concept of Phase Swapping
 
-![Flow Map 2D Vector Fields and 2-Phase Panning Blending](/images/shaderlex/flow_map_diagram.png)
 
 If you just offset UV coordinates along the flow direction continuously, the texture will stretch and warp until it turns into ugly, dragged-out pixels.
 
@@ -26,6 +26,8 @@ To make the flow infinite without stretching forever, we use a technique called 
 4. We blend between the two phases using a sine wave, hiding the warp reset point.
 
 ---
+![Flow Map Vector Field](/images/shaderlex/flow_map.svg)
+
 
 ## Flow Map Math
 
@@ -67,6 +69,8 @@ float4 finalFlowColor = lerp(tex0, tex1, blendWeight);
 ```
 
 ---
+![Flow Map Vector Field](/images/shaderlex/flow_map.svg)
+
 
 ## Unreal Engine Setup Guide
 
@@ -91,3 +95,11 @@ Unreal Engine has a built-in **FlowMap** node, but it is easy to build from scra
 ### 2. High Flow-Rate Warping
 **Why it happens:** If you set the flow speed or strength too high, the textures warp aggressively and the phase-swap transition becomes visible as a pulsing overlay.
 **How to fix it:** Keep the flow strength small, or use high-frequency noise textures where warp details are harder for the human eye to track.
+
+
+---
+![Flow Map Vector Field](/images/shaderlex/flow_map.svg)
+
+
+## Visual Reference (Unreal Engine Setup)
+

@@ -31,6 +31,13 @@
   .animate-flow-fast {
     animation: flowDot 2s linear infinite;
   }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @layer base {
@@ -74,18 +81,13 @@
     @apply bg-teal-500/20 text-slate-950;
   }
 
-  /* Custom sleek scrollbar */
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+  /* Thin custom scrollbar for code blocks */
+  pre {
+    scrollbar-width: none;
   }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-stone-100 border-l border-stone-200;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-stone-300 rounded-full border-2 border-solid border-stone-100 hover:bg-stone-400 transition-colors;
+  
+  pre::-webkit-scrollbar {
+    display: none;
   }
 }
 

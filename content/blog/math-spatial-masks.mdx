@@ -1,0 +1,102 @@
+---
+title: "Spatial Masks & World Position Math"
+description: "Practical notes on 3D world space mathematics, spherical falloffs, depth fade calculations, and World Position Offset displacement."
+date: "2026-07-08"
+tags: ["Math", "Shaders", "VFX", "Unreal Engine", "3D Math"]
+thumbnail: "/images/shaderlex/math_spatial.svg"
+readTime: "15 min"
+---
+![Spatial Distance Falloff](/images/shaderlex/math_spatial.svg)
+
+While UV math operates in the 2D pixel space, real-time VFX often requires shaders that interact with the physical 3D world. By tapping into absolute world positions, camera depths, and vertex normals, materials can be created that react to the environment in real-time.
+
+Here is a breakdown of how spatial mathematics are used in production VFX pipelines.
+
+---
+
+## 1. The Spherical Mask (Distance Falloff)
+
+One of the most common requirements in VFX is creating a localized effect - like a forcefield, a local effect volume, or an explosion shockwave - that radiates from a specific point in the world and softly fades out.
+
+### What it solves
+It generates a mathematically perfect 3D spherical gradient around a target location, regardless of the mesh's actual geometry or UV layout.
+
+### Production Use Case: Shockwaves and Reveals
+I achieve this using a **Spherical Mask**. The core math relies on the `distance()` function, which calculates the exact distance between the current pixel's World Position and a defined Center Point. By dividing this distance by a `Radius` and clamping the result, I get a perfect spherical gradient. I use this to reveal hidden objects as the player walks near them, or to drive a shockwave expansion over time.
+
+```hlsl
+// Calculate distance from the effect center to the current pixel
+float dist = distance(WorldPosition, EffectCenter);
+
+// Create a 0 to 1 gradient based on the max radius
+float sphereGradient = saturate(dist / MaxRadius);
+
+// Invert it so the center is white (1) and edges are black (0)
+float sphereMask = 1.0 - sphereGradient;
+```
+
+<SphericalMaskVisual />
+
+### Common Mistake
+A common error is using local `ObjectPosition` instead of `WorldPosition` when attempting to mask an effect across multiple different meshes. If you want a global shockwave to wash over rocks, trees, and the floor simultaneously, you must use absolute `WorldPosition`.
+
+### When not to use it
+I avoid using pure Spherical Masks if the effect needs to conform to complex terrain (like a puddle that should only exist in physical dips on the ground). In those cases, a Z-height mask or a depth-based decal is much more appropriate.
+
+---
+
+## 2. World Position Offset (WPO)
+
+Shaders are not just for colors; they can physically warp geometry on the GPU before it is rendered on screen. This is done via **World Position Offset (WPO)**.
+
+### What it solves
+WPO allows vertex manipulation natively on the GPU, avoiding expensive CPU skeletal animations or morph targets for simple environmental movement.
+
+### Production Use Case
+WPO is used constantly to make foliage sway in the wind, or to make abstract magical geometry pulsate. WPO allows the addition of a 3D vector to the absolute world position of a vertex. If a sine wave is multiplied by the vertex's Normal vector, the geometry will breathe, inflating and deflating smoothly.
+
+```hlsl
+// Inflates and deflates a mesh along its normals over time
+float3 WPO = VertexNormal * sin(Time * Speed) * Amplitude;
+```
+
+<WorldPositionOffsetVisual />
+
+### Common Mistake: Bounding Box Culling
+Because WPO changes the physical shape of the mesh strictly on the GPU, the CPU doesn't know the mesh has expanded. This can cause the mesh to pop out of existence (cull) prematurely if the camera looks away from the object's original, un-inflated bounds. I always extend the `Bounds Scale` in the engine on meshes using heavy WPO!
+
+### When not to use it
+I never use WPO if the geometry needs accurate physical collision. The physics engine runs on the CPU and has no idea that the GPU pushed the vertices 5 meters to the left. If a player needs to stand on it, WPO is the wrong tool.
+
+---
+
+## 3. Depth Fade (Soft Intersections)
+
+When rendering transparent VFX cards (like smoke, fire, or energy rings), a major artifact occurs when the 2D card clips through 3D geometry like a floor or a wall. It creates a harsh, unnatural straight line.
+
+### What it solves
+Depth Fade eliminates harsh clipping artifacts by calculating the distance between the translucent surface and the opaque surface behind it.
+
+### Production Use Case: Soft Particles
+I fix clipping using **Depth Fade**. This math compares two distinct buffers: the `PixelDepth` (distance to the particle) and the `SceneDepth` (distance to the solid wall behind it). 
+
+By subtracting the `PixelDepth` from the `SceneDepth`, I get the exact distance between the particle and the wall. As the particle gets closer to intersecting the wall, this difference approaches zero, which I use to multiply the particle's Opacity, fading it out softly before it clips.
+
+```hlsl
+// Get distance between the opaque wall behind the pixel, and the pixel itself
+float depthDifference = SceneDepth - PixelDepth;
+
+// Create a soft gradient that reaches 0 as it hits the wall
+float depthFadeMask = saturate(depthDifference / FadeDistance);
+
+// Apply to final opacity
+float finalOpacity = BaseOpacity * depthFadeMask;
+```
+
+<DepthFadeVisual />
+
+### Common Mistake
+Applying Depth Fade with a massive fade distance (like 500 units) on a dense smoke particle. This will cause the entire smoke puff to vanish prematurely when a player walks near it. I try to keep the fade distance as small as possible-just enough to hide the sharp edge.
+
+### When not to use it
+I explicitly avoid Depth Fade for UI elements or stylized hard-edged anime effects where intersection clipping is an intentional artistic choice.

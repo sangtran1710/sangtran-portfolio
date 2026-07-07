@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <rect width="800" height="450" fill="#070b11" />
+  
+  <defs>
+    <linearGradient id="fade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4da6ff" stop-opacity="0" />
+      <stop offset="100%" stop-color="#4da6ff" stop-opacity="1" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(400, 225)">
+    <!-- Opaque Plane -->
+    <path d="M -300 50 L 300 50 L 200 150 L -400 150 Z" fill="#1a2333" stroke="#253147" stroke-width="2" />
+    
+    <!-- Transparent Sphere (Top half) -->
+    <path d="M -100 50 A 100 100 0 0 1 100 50 Z" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.4" />
+    
+    <!-- Depth Fade Intersection Gradient -->
+    <path d="M -100 50 A 100 100 0 0 0 100 50 Z" fill="url(#fade)" />
+    
+    <!-- Dotted sphere bottom -->
+    <path d="M -100 50 A 100 100 0 0 0 100 50 Z" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="4,4" opacity="0.2" />
+    
+    <text x="140" y="30" fill="#ffffff" font-family="monospace" font-size="14" opacity="0.6">Opaque Surface</text>
+    <line x1="120" y1="50" x2="135" y2="30" stroke="#ffffff" stroke-width="1" opacity="0.6" />
+    
+    <text x="-250" y="-30" fill="#4da6ff" font-family="monospace" font-size="16" font-weight="bold">Depth Fade (Soft Edge)</text>
+    <line x1="-10" y1="60" x2="-80" y2="-20" stroke="#4da6ff" stroke-width="2" />
+  </g>
+</svg>

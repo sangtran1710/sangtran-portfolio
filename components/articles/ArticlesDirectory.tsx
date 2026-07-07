@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Clock, Tag, Code, Sparkles } from "lucide-react";
+import { ArrowRight, Clock, Tag, Code, Sparkles, Calculator } from "lucide-react";
 import type { BlogPostMeta } from "@/lib/blog";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { formatDateByLocale } from "@/lib/i18n";
@@ -12,38 +12,40 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
   const { locale, copy } = useLanguage();
   const isVi = locale === "vi";
 
-  // State to switch tabs
-  const [activeTab, setActiveTab] = useState<"articles" | "shaderlex">("articles");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const tabQuery = searchParams?.get("tab");
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      if (params.get("tab") === "shaderlex") {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setActiveTab("shaderlex");
-      }
-    }
-  }, []);
+  // Derive activeTab directly from URL, no useEffect cascading renders
+  const activeTab = tabQuery === "shaderlex" || tabQuery === "math" ? tabQuery : "articles";
 
-  const handleTabChange = (tab: "articles" | "shaderlex") => {
-    setActiveTab(tab);
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      if (tab === "shaderlex") {
-        params.set("tab", "shaderlex");
-      } else {
-        params.delete("tab");
-      }
-      const query = params.toString();
-      const newUrl = `${window.location.pathname}${query ? `?${query}` : ""}`;
-      window.history.replaceState(null, "", newUrl);
+  const handleTabChange = (tab: "articles" | "shaderlex" | "math") => {
+    const params = new URLSearchParams(searchParams?.toString() || "");
+    if (tab === "shaderlex" || tab === "math") {
+      params.set("tab", tab);
+    } else {
+      params.delete("tab");
     }
+    
+    const query = params.toString();
+    const newUrl = `${window.location.pathname}${query ? `?${query}` : ""}`;
+    router.replace(newUrl, { scroll: false });
   };
 
   const shaderLexSlugs = ["cel-shade", "gerstner-waves", "vortex-polar", "depth-fade", "pom-mapping", "flow-map"];
+  const mathSlugs = [
+    "math-essential-functions", 
+    "math-uv-coordinates", 
+    "math-dot-product", 
+    "math-spatial-masks",
+    "math-cross-product"
+  ];
+  
   const blogPosts = posts.filter(
-    (post) => !shaderLexSlugs.includes(post.slug) && post.slug !== "ue5-material-library-portal"
+    (post) => !shaderLexSlugs.includes(post.slug) && !mathSlugs.includes(post.slug) && post.slug !== "ue5-material-library-portal"
   );
+  const mathPosts = posts.filter((post) => mathSlugs.includes(post.slug))
+    .sort((a, b) => mathSlugs.indexOf(a.slug) - mathSlugs.indexOf(b.slug));
 
   const headingText = isVi ? "Kho Tài Liệu & Ghi Chú" : "Learning Hub";
   const recentWritingHeading = isVi ? "Bài viết gần đây" : "Recent writing";
@@ -54,51 +56,51 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
       id: "cel-shade",
       category: "Stylized Rendering",
       name: "Anime Cel Shading & Rim",
-      image: "/images/shaderlex/cel_shading_ref.png",
+      image: "/images/shaderlex/cel_shade.svg",
       shortDesc: "Clean anime toon shading with NdotL step math, custom specular, and silhouette Fresnel rim outlines.",
     },
     {
       id: "gerstner-waves",
       category: "Vertex Animation",
       name: "Gerstner Waves displacement",
-      image: "/images/shaderlex/gerstner_waves_ref.png",
+      image: "/images/shaderlex/gerstner_wave.svg",
       shortDesc: "Trochoidal wave calculations in World Position Offset to create physical wave peaks and fluid ocean displacement.",
     },
     {
       id: "vortex-polar",
       category: "Math & UV Distortion",
       name: "Polar Coordinate Vortex",
-      image: "/images/shaderlex/polar_vortex_ref.png",
+      image: "/images/shaderlex/vortex_polar.svg",
       shortDesc: "Converts Cartesian UV space into Polar coords to animate spiral swirl portal vortexes without centering pinch artifacts.",
     },
     {
       id: "depth-fade",
       category: "Translucency & VFX",
       name: "Depth Fade Soft Particle",
-      image: "/images/shaderlex/depth_fade_ref.png",
+      image: "/images/shaderlex/depth_fade.svg",
       shortDesc: "Uses Scene Depth buffer comparison to dynamically blend transparent VFX cards with solid geometry, removing hard edges.",
     },
     {
       id: "pom-mapping",
       category: "Advanced Materials",
       name: "Parallax Occlusion Mapping",
-      image: "/images/shaderlex/pom_mapping_ref.png",
+      image: "/images/shaderlex/pom_mapping.svg",
       shortDesc: "Simulates actual 3D relief depth and self-occlusion on flat polygons via pixel shader heightmap ray-marching.",
     },
     {
       id: "flow-map",
       category: "Math & UV Distortion",
       name: "Flow Map UV Distortion",
-      image: "/images/shaderlex/flow_map_ref.png",
+      image: "/images/shaderlex/flow_map.svg",
       shortDesc: "Animate liquid, fire, or lava flows using a 2D vector flow map texture with phase-swapped panning.",
     },
   ];
 
   return (
-    <div className="min-h-screen pt-28 pb-20 text-foreground bg-background">
-      <main className="mx-auto max-w-[72rem] px-6 lg:px-8">
-        <header className="mb-10 max-w-2xl">
-          <div className="mb-4 flex items-center gap-2 text-sm text-muted-foreground font-mono">
+    <div className="min-h-screen pt-24 sm:pt-28 pb-20 text-foreground bg-background">
+      <main className="mx-auto max-w-[72rem] px-4 sm:px-6 lg:px-8">
+        <header className="mb-8 max-w-2xl">
+          <div className="mb-3 flex items-center gap-2 text-sm text-muted-foreground font-mono">
             <Link href="/" className="transition hover:text-primary">
               {copy.nav.home}
             </Link>
@@ -118,34 +120,53 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
           </p>
         </header>
 
-        {/* Tab Selection */}
-        <div className="mb-10 flex border-b border-white/10">
+        <div className="mb-8 grid grid-cols-3 border-b border-white/10">
           <button
             onClick={() => handleTabChange("articles")}
-            className={`px-6 py-3.5 text-sm font-semibold tracking-wider transition-all border-b-2 uppercase ${
+            className={`flex items-center justify-center px-1 sm:px-4 py-3 sm:py-3.5 text-center text-[10px] sm:text-[12px] font-semibold uppercase leading-tight tracking-wider transition-all border-b-2 ${
               activeTab === "articles"
                 ? "border-primary text-white bg-white/[0.02]"
                 : "border-transparent text-stone-500 hover:text-stone-300"
             }`}
           >
-            {isVi ? "Ghi Chép & Bài Viết" : "Articles & Notes"}
+            {isVi ? "Bài Viết" : "Articles"}
           </button>
           <button
             onClick={() => handleTabChange("shaderlex")}
-            className={`px-6 py-3.5 text-sm font-semibold tracking-wider transition-all border-b-2 uppercase flex items-center gap-2 ${
+            className={`flex items-center justify-center gap-1.5 sm:gap-2 px-1 sm:px-4 py-3 sm:py-3.5 text-center text-[10px] sm:text-[12px] font-semibold uppercase leading-tight tracking-wider transition-all border-b-2 ${
               activeTab === "shaderlex"
                 ? "border-primary text-white bg-white/[0.02]"
                 : "border-transparent text-stone-500 hover:text-stone-300"
             }`}
           >
             <Code className="h-4 w-4 text-primary" />
-            ShaderLex Recipes
+            <span className="hidden sm:inline">ShaderLex Recipes</span>
+            <span className="sm:hidden">ShaderLex</span>
+          </button>
+          <button
+            onClick={() => handleTabChange("math")}
+            className={`flex items-center justify-center gap-1.5 sm:gap-2 px-1 sm:px-4 py-3 sm:py-3.5 text-center text-[10px] sm:text-[12px] font-semibold uppercase leading-tight tracking-wider transition-all border-b-2 ${
+              activeTab === "math"
+                ? "border-primary text-white bg-white/[0.02]"
+                : "border-transparent text-stone-500 hover:text-stone-300"
+            }`}
+          >
+            <Calculator className="h-4 w-4 text-primary" />
+            <span className="hidden sm:inline">Math for VFX</span>
+            <span className="sm:hidden">Math</span>
           </button>
         </div>
 
         {/* Tab Contents */}
-        {activeTab === "articles" ? (
-          <section className="space-y-10">
+        {activeTab === "articles" && (
+          <section className="space-y-8">
+            <div className="rounded-xl border border-primary/20 bg-primary/5 p-5 text-sm text-stone-300 flex items-start gap-3">
+              <Sparkles className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+              <p>
+                Production notes, deep-dive articles, and optimization techniques for real-time rendering pipelines.
+              </p>
+            </div>
+            
             <div className="flex items-center gap-2 mb-6">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" />
               <h2 className="text-xs font-mono uppercase tracking-[0.25em] text-stone-400">
@@ -166,7 +187,7 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
                         src={post.thumbnail}
                         alt={post.title}
                         fill
-                        className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                        className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500"
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
                     </div>
@@ -211,7 +232,9 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
               ))}
             </div>
           </section>
-        ) : (
+        )}
+
+        {activeTab === "shaderlex" && (
           <section className="space-y-8">
             <div className="rounded-xl border border-primary/20 bg-primary/5 p-5 text-sm text-stone-300 flex items-start gap-3">
               <Sparkles className="h-5 w-5 text-primary shrink-0 mt-0.5" />
@@ -234,7 +257,7 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
                           src={recipe.image}
                           alt={recipe.name}
                           fill
-                          className="object-contain p-2 opacity-95 group-hover:scale-102 transition-all duration-300"
+                          className="object-contain p-2 opacity-95 group-hover:scale-[1.02] transition-all duration-300"
                           sizes="(max-width: 768px) 100vw, 33vw"
                         />
                       </div>
@@ -261,6 +284,69 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
                   <div className="px-5 pb-5">
                     <div className="inline-flex items-center gap-1 text-[11px] font-mono uppercase tracking-wider text-primary group-hover:text-[#6baea7] transition-colors">
                       Deep Dive
+                      <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {activeTab === "math" && (
+          <section className="space-y-8">
+            <div className="rounded-xl border border-primary/20 bg-primary/5 p-5 text-sm text-stone-300 flex items-start gap-3">
+              <Sparkles className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+              <p>
+                Practical notes on the shader math I use for production VFX. Understanding these concepts helps with creating custom masking, calculating lighting direction, building UV distortion, controlling particle falloffs, and procedural vertex motion. Read these in order if you want to build masks, motion, distortion, and spatial effects without relying only on premade nodes.
+              </p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              {mathPosts.map((post) => (
+                <article
+                  key={post.slug}
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition hover:border-white/20 hover:bg-white/[0.04] duration-300"
+                >
+                  {post.thumbnail && (
+                    <div className="relative h-48 w-full overflow-hidden border-b border-white/10 bg-[#070b11]">
+                      <Image
+                        src={post.thumbnail}
+                        alt={post.title}
+                        fill
+                        className="object-contain p-2 opacity-95 group-hover:scale-[1.02] transition-all duration-500"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </div>
+                  )}
+
+                  <div className="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center gap-4 text-[11px] font-mono uppercase tracking-widest text-primary">
+                        <span className="flex items-center gap-1">
+                          <Clock className="h-3.5 w-3.5" />
+                          {post.readTime}
+                        </span>
+                        <span>•</span>
+                        <span>MATH</span>
+                      </div>
+
+                      <h3 className="mt-4 text-xl font-bold tracking-tight text-white group-hover:text-primary transition-colors font-kanit">
+                        <Link href={`/blog/${post.slug}`}>
+                          <span className="absolute inset-0" />
+                          {post.title}
+                        </Link>
+                      </h3>
+
+                      <p className="mt-3 text-sm leading-relaxed text-stone-400">
+                        {post.description}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="px-6 pb-6">
+                    <div className="inline-flex items-center gap-1 text-[11px] font-mono uppercase tracking-wider text-primary group-hover:text-[#6baea7] transition-colors">
+                      Read Full Article
                       <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
                     </div>
                   </div>

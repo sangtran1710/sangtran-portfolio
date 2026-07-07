@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <rect width="800" height="450" fill="#070b11" />
+  
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4da6ff" />
+    </marker>
+  </defs>
+
+  <g transform="translate(100, 50)">
+    <!-- Swirling vector field -->
+    <path d="M 100 100 Q 150 50 200 100 T 300 100" fill="none" stroke="#4da6ff" stroke-width="3" marker-end="url(#arrow)" />
+    <path d="M 100 150 Q 150 100 200 150 T 300 150" fill="none" stroke="#4da6ff" stroke-width="3" marker-end="url(#arrow)" />
+    <path d="M 100 200 Q 150 150 200 200 T 300 200" fill="none" stroke="#4da6ff" stroke-width="3" marker-end="url(#arrow)" />
+    
+    <path d="M 300 100 Q 350 150 400 100 T 500 100" fill="none" stroke="#ff4d4d" stroke-width="3" marker-end="url(#arrow)" />
+    <path d="M 300 150 Q 350 200 400 150 T 500 150" fill="none" stroke="#ff4d4d" stroke-width="3" marker-end="url(#arrow)" />
+    <path d="M 300 200 Q 350 250 400 200 T 500 200" fill="none" stroke="#ff4d4d" stroke-width="3" marker-end="url(#arrow)" />
+
+    <path d="M 500 100 Q 550 50 600 100 T 700 100" fill="none" stroke="#ffff00" stroke-width="3" marker-end="url(#arrow)" />
+    <path d="M 500 150 Q 550 100 600 150 T 700 150" fill="none" stroke="#ffff00" stroke-width="3" marker-end="url(#arrow)" />
+    <path d="M 500 200 Q 550 150 600 200 T 700 200" fill="none" stroke="#ffff00" stroke-width="3" marker-end="url(#arrow)" />
+
+    <!-- Overlay Grid -->
+    <path d="M 100 50 L 100 300 M 300 50 L 300 300 M 500 50 L 500 300 M 700 50 L 700 300" fill="none" stroke="#ffffff" stroke-width="1" stroke-dasharray="4,4" opacity="0.3" />
+    <path d="M 50 100 L 750 100 M 50 150 L 750 150 M 50 200 L 750 200" fill="none" stroke="#ffffff" stroke-width="1" stroke-dasharray="4,4" opacity="0.3" />
+  </g>
+  
+  <text x="310" y="380" fill="#ffffff" font-family="monospace" font-size="20" font-weight="bold">2D Vector Flow Map</text>
+</svg>

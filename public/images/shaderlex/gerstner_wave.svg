@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <rect width="800" height="450" fill="#070b11" />
+  
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a2333" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#grid)" />
+
+  <g transform="translate(100, 225)">
+    <!-- Base level -->
+    <line x1="0" y1="0" x2="600" y2="0" stroke="#ffffff" stroke-width="2" stroke-dasharray="4,4" opacity="0.3"/>
+
+    <!-- Standard Sine Wave -->
+    <path d="M 0 0 Q 75 -100 150 0 T 300 0 T 450 0 T 600 0" fill="none" stroke="#4dff4d" stroke-width="2" opacity="0.5"/>
+
+    <!-- Gerstner Wave (Peaked) -->
+    <path d="M 0 0 C 100 0, 120 -150, 150 -150 C 180 -150, 200 0, 300 0 C 400 0, 420 -150, 450 -150 C 480 -150, 500 0, 600 0" fill="none" stroke="#4da6ff" stroke-width="5" stroke-linejoin="round" />
+    
+    <!-- Displacement Vectors -->
+    <line x1="75" y1="-50" x2="120" y2="-120" stroke="#ff4d4d" stroke-width="2" stroke-dasharray="2,2"/>
+    <circle cx="120" cy="-120" r="4" fill="#ff4d4d"/>
+    
+    <line x1="225" y1="-50" x2="180" y2="-120" stroke="#ff4d4d" stroke-width="2" stroke-dasharray="2,2"/>
+    <circle cx="180" cy="-120" r="4" fill="#ff4d4d"/>
+    
+    <text x="50" y="100" fill="#4dff4d" font-family="monospace" font-size="16" font-weight="bold">Standard Sine</text>
+    <text x="350" y="-180" fill="#4da6ff" font-family="monospace" font-size="18" font-weight="bold">Gerstner Trochoidal Peak</text>
+    <text x="180" y="-80" fill="#ff4d4d" font-family="monospace" font-size="12">Horizontal Disp.</text>
+  </g>
+</svg>
