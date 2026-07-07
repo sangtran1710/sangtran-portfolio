@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Kanit, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -18,16 +18,29 @@ const inter = Inter({
   display: "swap",
 });
 
+const kanit = Kanit({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-kanit",
+  display: "swap",
+});
+
+const mono = Roboto_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
+
 const baseUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: baseUrl,
   title: {
     default: SITE.title,
-    template: `%s | Sang Tran`,
+    template: `%s | Henry Tran`,
   },
   description: SITE.description,
-  authors: [{ name: "Sang Tran" }],
+  authors: [{ name: "Henry Tran" }],
   keywords: [
     "VFX Artist",
     "Real-time VFX",
@@ -36,7 +49,7 @@ export const metadata: Metadata = {
     "HLSL",
     "AAA Games",
     "Niagara",
-    "Sang Tran",
+    "Henry Tran",
     "Game VFX",
     "Technical Artist",
   ],
@@ -49,7 +62,7 @@ export const metadata: Metadata = {
         url: "/images/NWA.jpg",
         width: 1200,
         height: 630,
-        alt: "Sang Tran VFX artist portfolio preview",
+        alt: "Henry Tran VFX artist portfolio preview",
       },
     ],
   },
@@ -67,8 +80,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="min-h-screen font-sans antialiased">
+    <html lang="en" className={`${inter.variable} ${kanit.variable} ${mono.variable} dark`}>
+      <body className="min-h-screen font-sans bg-background text-foreground antialiased selection:bg-primary/30">
         <LanguageProvider>
           <SkipToContentLink />
           <Navbar />

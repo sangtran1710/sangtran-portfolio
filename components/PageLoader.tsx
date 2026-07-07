@@ -105,7 +105,7 @@ export default function PageLoader() {
             className="text-center mb-16"
           >
             <p className="text-sm font-semibold tracking-[0.3em] text-white/80 uppercase">
-              Sang Tran
+              Henry Tran
             </p>
             <p className="text-xs tracking-[0.2em] text-teal-400/70 uppercase mt-1">
               Senior VFX Artist

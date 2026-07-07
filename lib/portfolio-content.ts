@@ -15,14 +15,14 @@ import {
 import type { Locale } from "@/lib/i18n";
 
 const VI_SITE = {
-  title: "Sang Tran - Nghệ sĩ VFX",
+  title: "Henry Tran - Senior FX Artist & Technical Artist",
   description:
-    "Senior VFX Artist tập trung vào real-time effects, shader development và technical art cho game AAA và live-service content.",
+    "Senior FX Artist & Technical Artist tập trung vào real-time effects, shader development và technical art cho game AAA và live-service content.",
 };
 
 const VI_HERO = {
   tagline:
-    "Senior real-time VFX artist cho game AAA, cinematic và các dự án interactive.",
+    "Senior FX Artist & Technical Artist cho game AAA, cinematic và các dự án interactive.",
   description:
     "Tôi tạo ra các hiệu ứng dễ đọc, nhìn đủ đắt giá và vẫn trụ vững dưới áp lực production.",
 };
@@ -30,7 +30,7 @@ const VI_HERO = {
 const VI_ABOUT = {
   title: "Tạo ra hiệu ứng có cảm giác sống.",
   bio: [
-    "Tôi là Sang Tran, một visual effects artist sống tại TP. Hồ Chí Minh, với hơn 7 năm kinh nghiệm trong game development, cinematic và launch content.",
+    "Tôi là Henry Tran, một Senior FX Artist & Technical Artist sống tại TP. Hồ Chí Minh, với hơn 7 năm kinh nghiệm trong game development, cinematic và launch content.",
     "Tôi bước vào ngành qua một quá trình chuyển nghề khá chậm nhưng chắc, học bằng cách làm thật và tích lũy sự tự tin qua từng cột mốc. Hành trình đó đưa tôi từ các đầu việc hỗ trợ đến việc tự chịu trách nhiệm cho những sequence hiệu ứng lớn, trong đó có phần việc xuất hiện trong giai đoạn marketing sớm của Marvel's Spider-Man 2.",
     "Điều giữ tôi ở lại với nghề rất đơn giản: tôi thích tạo ra những khoảnh khắc có cảm giác sống trên màn hình. Tôi hợp với phản hồi rõ ràng, vòng lặp làm việc nhanh, và kiểu cộng tác nơi tay nghề đi cùng với giải quyết vấn đề.",
     "Tôi đang mở cho các vị trí full-time remote, nơi tôi có thể nhận ownership rõ, làm việc sát với team mạnh và tiếp tục nâng chuẩn chất lượng lên.",
@@ -64,7 +64,7 @@ const VI_EXPERIENCES = [
     role: "Senior VFX Artist",
     responsibilities: [
       "Phát triển và tối ưu real-time VFX cho các dự án AAA như Marvel's Spider-Man 2, Fortnite Remix Finale, New World: Aeternum và Until Dawn (PS5)",
-      "Viết HLSL shader và Niagara system trong Unreal Engine 5 cho các hiệu ứng particle chất lượng cao",
+      "Phát triển custom material shaders và Niagara systems trong Unreal Engine 5 cho các hiệu ứng particle chất lượng cao",
       "Xây Python tool và pipeline Houdini để tăng tốc workflow cho team và quá trình sản xuất asset",
       "Làm việc cross-functional với art director và tech lead từ Insomniac Games, Epic Games và Amazon Games",
     ],
@@ -128,7 +128,7 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
       "Đóng góp vào production trailer cinematic và in-game VFX cho đợt launch New World trên PS5 của Amazon Games, tập trung vào environmental effect và combat effect.",
     contributions: [
       "Tạo environmental VFX gồm weather, magic và destruction systems",
-      "Phát triển HLSL shader cho foliage animation và tương tác bề mặt nước",
+      "Tạo custom shader logic cho foliage animation và tương tác bề mặt nước",
       "Xây pipeline procedural bằng Houdini để tăng tốc quá trình sản xuất asset",
     ],
   },
@@ -160,7 +160,7 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
       "Tham gia với vai trò freelance VFX artist, phát triển real-time visual effects cho gameplay system và cinematic bằng Unreal Engine.",
     contributions: [
       "Thiết kế Niagara particle system cho combat ability và environmental effect",
-      "Viết HLSL shader cho material effect theo hướng stylized",
+      "Thiết kế custom materials cho các hiệu ứng stylized",
       "Làm việc từ xa với core team để iterate theo visual target",
     ],
   },

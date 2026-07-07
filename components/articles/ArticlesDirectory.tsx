@@ -1,8 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Clock, ExternalLink, Tag } from "lucide-react";
+import { ArrowRight, Clock, Tag, Code, Sparkles } from "lucide-react";
 import type { BlogPostMeta } from "@/lib/blog";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { formatDateByLocale } from "@/lib/i18n";
@@ -11,192 +12,263 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
   const { locale, copy } = useLanguage();
   const isVi = locale === "vi";
 
-  const shaderLexPost = posts.find((post) => post.slug === "ue5-material-library-portal");
-  const blogPosts = posts.filter((post) => post.slug !== "ue5-material-library-portal");
+  // State to switch tabs
+  const [activeTab, setActiveTab] = useState<"articles" | "shaderlex">("articles");
 
-  const headingText = isVi ? "Ghi chú & Bài viết" : "Articles";
-  const shaderLexDescription = isVi
-    ? "Thư mục tra cứu nhanh HLSL & Unreal Engine Material của tôi. Được thiết kế tối giản để phục vụ công việc và tra cứu nhanh khi đang làm dự án."
-    : "My personal reference sheets for UE5 materials and HLSL shaders. Built for rapid lookdev prototyping and quick node-graph lookup.";
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("tab") === "shaderlex") {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setActiveTab("shaderlex");
+      }
+    }
+  }, []);
 
+  const handleTabChange = (tab: "articles" | "shaderlex") => {
+    setActiveTab(tab);
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      if (tab === "shaderlex") {
+        params.set("tab", "shaderlex");
+      } else {
+        params.delete("tab");
+      }
+      const query = params.toString();
+      const newUrl = `${window.location.pathname}${query ? `?${query}` : ""}`;
+      window.history.replaceState(null, "", newUrl);
+    }
+  };
+
+  const shaderLexSlugs = ["cel-shade", "gerstner-waves", "vortex-polar", "depth-fade", "pom-mapping", "flow-map"];
+  const blogPosts = posts.filter(
+    (post) => !shaderLexSlugs.includes(post.slug) && post.slug !== "ue5-material-library-portal"
+  );
+
+  const headingText = isVi ? "Kho Tài Liệu & Ghi Chú" : "Learning Hub";
   const recentWritingHeading = isVi ? "Bài viết gần đây" : "Recent writing";
 
+  // Light, visual-focused catalog for ShaderLex (details are inside the deep-dive articles)
+  const shaderRecipes = [
+    {
+      id: "cel-shade",
+      category: "Stylized Rendering",
+      name: "Anime Cel Shading & Rim",
+      image: "/images/shaderlex/cel_shading_ref.png",
+      shortDesc: "Clean anime toon shading with NdotL step math, custom specular, and silhouette Fresnel rim outlines.",
+    },
+    {
+      id: "gerstner-waves",
+      category: "Vertex Animation",
+      name: "Gerstner Waves displacement",
+      image: "/images/shaderlex/gerstner_waves_ref.png",
+      shortDesc: "Trochoidal wave calculations in World Position Offset to create physical wave peaks and fluid ocean displacement.",
+    },
+    {
+      id: "vortex-polar",
+      category: "Math & UV Distortion",
+      name: "Polar Coordinate Vortex",
+      image: "/images/shaderlex/polar_vortex_ref.png",
+      shortDesc: "Converts Cartesian UV space into Polar coords to animate spiral swirl portal vortexes without centering pinch artifacts.",
+    },
+    {
+      id: "depth-fade",
+      category: "Translucency & VFX",
+      name: "Depth Fade Soft Particle",
+      image: "/images/shaderlex/depth_fade_ref.png",
+      shortDesc: "Uses Scene Depth buffer comparison to dynamically blend transparent VFX cards with solid geometry, removing hard edges.",
+    },
+    {
+      id: "pom-mapping",
+      category: "Advanced Materials",
+      name: "Parallax Occlusion Mapping",
+      image: "/images/shaderlex/pom_mapping_ref.png",
+      shortDesc: "Simulates actual 3D relief depth and self-occlusion on flat polygons via pixel shader heightmap ray-marching.",
+    },
+    {
+      id: "flow-map",
+      category: "Math & UV Distortion",
+      name: "Flow Map UV Distortion",
+      image: "/images/shaderlex/flow_map_ref.png",
+      shortDesc: "Animate liquid, fire, or lava flows using a 2D vector flow map texture with phase-swapped panning.",
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-[#f6f2eb] pt-28 pb-20 text-slate-700">
+    <div className="min-h-screen pt-28 pb-20 text-foreground bg-background">
       <main className="mx-auto max-w-[72rem] px-6 lg:px-8">
         <header className="mb-10 max-w-2xl">
-          <div className="mb-4 flex items-center gap-2 text-sm text-slate-500">
-            <Link href="/" className="transition hover:text-slate-900">
+          <div className="mb-4 flex items-center gap-2 text-sm text-muted-foreground font-mono">
+            <Link href="/" className="transition hover:text-primary">
               {copy.nav.home}
             </Link>
             <span>/</span>
-            <span className="text-slate-800 font-medium">{copy.blog.title}</span>
+            <span className="text-foreground font-medium">Learning Hub</span>
           </div>
-          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#4f8e89]">
-            {isVi ? "Kho tài liệu" : "Articles Library"}
+          <p className="mb-3 text-[11px] font-mono font-semibold uppercase tracking-[0.2em] text-primary">
+            {isVi ? "Tài Nguyên Kỹ Thuật" : "Resource Center"}
           </p>
-          <h1 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
+          <h1 className="text-4xl font-kanit font-semibold tracking-tight text-foreground sm:text-5xl">
             {headingText}
           </h1>
-          <p className="mt-4 text-base leading-relaxed text-slate-600">
-            {copy.blog.intro}
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+            {isVi 
+              ? "Ghi chép thực tế về tối ưu hóa shader, vfx pipeline và công cụ lập trình bổ trợ." 
+              : "Practical notes on shader optimization, VFX pipelines, and technical programming tools."}
           </p>
         </header>
 
-        {/* Simplified ShaderLex Card */}
-        <section className="mb-14 overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-[0_12px_38px_rgba(15,23,42,0.03)] hover:border-stone-300/80 transition-all duration-300">
-          <div className="grid lg:grid-cols-[minmax(0,1fr)_380px]">
-            <div className="p-7 sm:p-8 flex flex-col justify-between">
-              <div>
-                <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#4f8e89]">
-                  {isVi ? "Tài liệu kỹ thuật" : "Technical reference"}
-                </p>
-                <h2 className="mb-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-                  ShaderLex
-                </h2>
-                <p className="max-w-xl text-sm leading-relaxed text-slate-600">
-                  {shaderLexDescription}
-                </p>
-              </div>
+        {/* Tab Selection */}
+        <div className="mb-10 flex border-b border-white/10">
+          <button
+            onClick={() => handleTabChange("articles")}
+            className={`px-6 py-3.5 text-sm font-semibold tracking-wider transition-all border-b-2 uppercase ${
+              activeTab === "articles"
+                ? "border-primary text-white bg-white/[0.02]"
+                : "border-transparent text-stone-500 hover:text-stone-300"
+            }`}
+          >
+            {isVi ? "Ghi Chép & Bài Viết" : "Articles & Notes"}
+          </button>
+          <button
+            onClick={() => handleTabChange("shaderlex")}
+            className={`px-6 py-3.5 text-sm font-semibold tracking-wider transition-all border-b-2 uppercase flex items-center gap-2 ${
+              activeTab === "shaderlex"
+                ? "border-primary text-white bg-white/[0.02]"
+                : "border-transparent text-stone-500 hover:text-stone-300"
+            }`}
+          >
+            <Code className="h-4 w-4 text-primary" />
+            ShaderLex Recipes
+          </button>
+        </div>
 
-              <div className="mt-8">
-                <div className="flex flex-wrap gap-3">
-                  <Link
-                    href="/materials/index.html"
-                    className="inline-flex items-center gap-2.5 rounded-full bg-[#5c9d98] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(92,157,152,0.18)] transition-all hover:scale-[1.01] hover:bg-[#538f8a]"
-                  >
-                    {isVi ? "Mở ShaderLex" : "Open ShaderLex"}
-                    <ExternalLink className="h-4 w-4" />
-                  </Link>
-                  {shaderLexPost && (
-                    <Link
-                      href={`/blog/${shaderLexPost.slug}`}
-                      className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 hover:border-stone-300 hover:text-slate-900 transition-colors shadow-sm"
-                    >
-                      {isVi ? "Xem tổng quan" : "Read overview"}
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  )}
-                </div>
-
-                <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold uppercase tracking-wider text-slate-400">
-                  <Link href="/materials/ue5.html" className="transition hover:text-[#5c9d98]">
-                    {isVi ? "Cổng UE5" : "UE5 Hub"}
-                  </Link>
-                  <span className="text-stone-300">|</span>
-                  <Link href="/materials/style/style-roadmap.html" className="transition hover:text-[#5c9d98]">
-                    {isVi ? "Lộ trình phong cách" : "Style Roadmap"}
-                  </Link>
-                  <span className="text-stone-300">|</span>
-                  <Link href="/materials/recipes/magic-energy.html" className="transition hover:text-[#5c9d98]">
-                    {isVi ? "Công thức mẫu" : "Sample Recipe"}
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            <Link
-              href="/materials/index.html"
-              className="relative hidden min-h-[260px] border-l border-stone-100 lg:block bg-stone-50"
-              aria-label="Open ShaderLex"
-            >
-              <Image
-                src="/assets/materials/style/anime-cel-shader-pilot-02.png"
-                alt="ShaderLex material library visual preview"
-                fill
-                className="object-cover opacity-85 transition hover:opacity-100 duration-300"
-                sizes="380px"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-transparent opacity-10" />
-            </Link>
-          </div>
-        </section>
-
-        {/* Blog Posts list */}
-        <section id="blog" className="scroll-mt-28">
-          <div className="mb-6 flex items-end justify-between gap-4 border-b border-stone-200/80 pb-4">
-            <div>
-              <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#4f8e89]">
-                Blog
-              </p>
-              <h2 className="text-2xl font-bold tracking-tight text-slate-900">
+        {/* Tab Contents */}
+        {activeTab === "articles" ? (
+          <section className="space-y-10">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+              <h2 className="text-xs font-mono uppercase tracking-[0.25em] text-stone-400">
                 {recentWritingHeading}
               </h2>
             </div>
-          </div>
 
-          {blogPosts.length === 0 ? (
-            <p className="text-sm text-slate-500">{copy.common.noPosts}</p>
-          ) : (
-            <div className="space-y-6">
+            <div className="grid gap-6 md:grid-cols-2">
               {blogPosts.map((post) => (
                 <article
                   key={post.slug}
-                  className="group rounded-2xl border border-stone-200 bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-md hover:border-stone-300 hover:-translate-y-0.5"
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition hover:border-white/20 hover:bg-white/[0.04] duration-300"
                 >
-                  <Link href={`/blog/${post.slug}`} className="grid gap-6 sm:grid-cols-[220px_minmax(0,1fr)]">
-                    {post.thumbnail && (
-                      <div className="relative aspect-video overflow-hidden rounded-xl border border-stone-200/60 bg-stone-50">
+                  {/* Thumbnail rendering */}
+                  {post.thumbnail && (
+                    <div className="relative h-48 w-full overflow-hidden border-b border-white/10 bg-black/40">
+                      <Image
+                        src={post.thumbnail}
+                        alt={post.title}
+                        fill
+                        className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </div>
+                  )}
+
+                  <div className="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                        <span className="flex items-center gap-1">
+                          <Clock className="h-3.5 w-3.5" />
+                          {post.readTime}
+                        </span>
+                        <span>•</span>
+                        <span>{formatDateByLocale(post.date, locale)}</span>
+                      </div>
+
+                      <h3 className="mt-4 text-xl font-bold tracking-tight text-white group-hover:text-primary transition-colors font-kanit">
+                        <Link href={`/blog/${post.slug}`}>
+                          <span className="absolute inset-0" />
+                          {post.title}
+                        </Link>
+                      </h3>
+
+                      <p className="mt-3 text-sm leading-relaxed text-stone-400">
+                        {post.description}
+                      </p>
+                    </div>
+
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {post.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="inline-flex items-center gap-1 rounded-full bg-white/5 px-2.5 py-1 text-xs font-medium text-stone-400"
+                        >
+                          <Tag className="h-3 w-3" />
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        ) : (
+          <section className="space-y-8">
+            <div className="rounded-xl border border-primary/20 bg-primary/5 p-5 text-sm text-stone-300 flex items-start gap-3">
+              <Sparkles className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+              <p>
+                Welcome to ShaderLex. An interactive visual reference catalog for real-time graphics and shader development. Click any card to deep-dive into setup math, HLSL code blocks, and fresh-friendly explanations.
+              </p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {shaderRecipes.map((recipe) => (
+                <article
+                  key={recipe.id}
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition hover:border-white/20 hover:bg-white/[0.04] duration-300"
+                >
+                  <div>
+                    {/* Visual Preview */}
+                    {recipe.image && (
+                      <div className="relative h-44 w-full overflow-hidden border-b border-white/10 bg-[#070b11]">
                         <Image
-                          src={post.thumbnail}
-                          alt={post.title}
+                          src={recipe.image}
+                          alt={recipe.name}
                           fill
-                          className="object-cover transition-transform duration-500 ease-out group-hover:scale-103"
-                          sizes="(max-width: 640px) 100vw, 220px"
+                          className="object-contain p-2 opacity-95 group-hover:scale-102 transition-all duration-300"
+                          sizes="(max-width: 768px) 100vw, 33vw"
                         />
                       </div>
                     )}
 
-                    <div className="min-w-0 self-center py-1">
-                      {post.tags?.length > 0 && (
-                        <div className="mb-3 flex items-center gap-1.5">
-                          <Tag className="h-3.5 w-3.5 text-slate-400" />
-                          <div className="flex flex-wrap gap-2">
-                            {post.tags.slice(0, 3).map((tag) => (
-                              <span
-                                key={tag}
-                                className="text-[10px] font-semibold uppercase tracking-wider text-slate-500"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      <h3 className="mb-2.5 text-lg font-bold leading-snug text-slate-900 transition-colors duration-200 group-hover:text-[#5c9d98]">
-                        {post.title}
-                      </h3>
-                      <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-slate-600">
-                        {post.description}
-                      </p>
+                    <div className="p-5">
+                      <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-[#5c9d98] bg-[#5c9d98]/10 px-2 py-0.5 rounded">
+                        {recipe.category}
+                      </span>
                       
-                      <div className="flex items-center gap-4 text-xs text-slate-500">
-                        <time dateTime={post.date}>
-                          {formatDateByLocale(post.date, locale)}
-                        </time>
-                        {post.readTime && (
-                          <>
-                            <span>/</span>
-                            <span className="flex items-center gap-1">
-                              <Clock className="h-3.5 w-3.5 text-slate-400" />
-                              {post.readTime} {copy.common.dateReadSuffix}
-                            </span>
-                          </>
-                        )}
-                        <span className="ml-auto flex items-center gap-1 font-semibold text-[#4f8e89] transition-colors group-hover:text-[#5c9d98]">
-                          {isVi ? "Đọc tiếp" : "Read"}
-                          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                        </span>
-                      </div>
+                      <h3 className="mt-3 text-lg font-bold text-white group-hover:text-primary transition-colors font-kanit tracking-tight">
+                        <Link href={`/blog/${recipe.id}`}>
+                          <span className="absolute inset-0" />
+                          {recipe.name}
+                        </Link>
+                      </h3>
+
+                      <p className="mt-2 text-xs leading-relaxed text-stone-400">
+                        {recipe.shortDesc}
+                      </p>
                     </div>
-                  </Link>
+                  </div>
+
+                  <div className="px-5 pb-5">
+                    <div className="inline-flex items-center gap-1 text-[11px] font-mono uppercase tracking-wider text-primary group-hover:text-[#6baea7] transition-colors">
+                      Deep Dive
+                      <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
+                    </div>
+                  </div>
                 </article>
               ))}
             </div>
-          )}
-        </section>
+          </section>
+        )}
       </main>
     </div>
   );

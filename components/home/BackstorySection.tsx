@@ -49,7 +49,7 @@ export default function BackstorySection() {
     <section
       ref={sectionRef}
       id="backstory"
-      className="relative min-h-[80vh] py-24 lg:py-32 overflow-hidden bg-slate-50"
+      className="relative min-h-[80vh] py-24 lg:py-32 overflow-hidden bg-[#0b0e14]"
     >
       <motion.div
         className="absolute inset-0 opacity-[0.045] will-change-transform"
@@ -65,13 +65,13 @@ export default function BackstorySection() {
           aria-hidden
         />
       </motion.div>
-      <div className="absolute inset-0 bg-slate-50/80" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-50/50 to-slate-50" />
+      <div className="absolute inset-0 bg-[#0b0e14]/90" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0b0e14]/50 to-[#0b0e14]" />
 
       <div className="relative mx-auto max-w-4xl px-4 sm:px-6 md:px-8">
         <h2
           ref={titleRef}
-          className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-center text-slate-900 mb-16 sm:mb-20"
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-center text-white mb-16 sm:mb-20"
         >
           {locale === "vi" ? "Kinh nghiệm" : "Experience"}
         </h2>
@@ -79,7 +79,7 @@ export default function BackstorySection() {
         <div ref={timelineRef} className="relative max-w-3xl mx-auto pb-8">
           {/* Scroll-driven timeline vertical line */}
           <motion.div
-            className="absolute left-6 md:left-8 top-6 bottom-0 w-[2px] -translate-x-1/2 bg-gradient-to-b from-teal-300 via-teal-200/50 to-transparent origin-top"
+            className="absolute left-6 md:left-8 top-6 bottom-0 w-[2px] -translate-x-1/2 bg-gradient-to-b from-[#5c9d98] via-[#5c9d98]/30 to-transparent origin-top"
             style={
               !prefersReducedMotion
                 ? { scaleY: lineScale }
@@ -104,24 +104,24 @@ export default function BackstorySection() {
                   {/* Timeline Node - perfectly aligned with the line */}
                   <div className="absolute left-6 md:left-8 top-8 -translate-x-1/2 flex items-center justify-center z-10">
                     <motion.div
-                      className="w-5 h-5 rounded-full bg-white border-4 border-slate-50 ring-2 ring-teal-200 flex items-center justify-center transition-all duration-300 group-hover:scale-125 group-hover:ring-teal-300 group-hover:border-white"
+                      className="w-5 h-5 rounded-full bg-stone-900 border-4 border-stone-800 ring-2 ring-[#5c9d98]/20 flex items-center justify-center transition-all duration-300 group-hover:scale-125 group-hover:ring-[#5c9d98]/50 group-hover:border-stone-700"
                       initial={{ scale: 0 }}
                       whileInView={{ scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.12 + 0.2, type: "spring", stiffness: 200 }}
                     >
-                      <div className="w-1.5 h-1.5 rounded-full bg-teal-500 shadow-[0_0_8px_rgba(45,212,191,0.4)] transition-all duration-300 group-hover:bg-teal-600" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#5c9d98] shadow-[0_0_8px_rgba(92,157,152,0.4)] transition-all duration-300 group-hover:bg-[#6aa9a4]" />
                     </motion.div>
                   </div>
 
                   {/* Single Column Card Content */}
                   <div className="flex-1 pl-16 md:pl-20 pr-0 sm:pr-4">
-                    <div className="p-5 md:p-6 rounded-2xl bg-white border border-slate-200/70 shadow-sm transition-all duration-300 group-hover:shadow-md group-hover:border-teal-300/50 group-hover:-translate-y-1">
-                      <h3 className="font-bold text-slate-900 text-lg md:text-xl tracking-wide">{exp.role}</h3>
+                    <div className="p-5 md:p-6 rounded-2xl bg-white/[0.02] border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.2)] transition-all duration-300 group-hover:shadow-[0_20px_40px_rgba(92,157,152,0.06)] group-hover:border-[#5c9d98]/50 group-hover:-translate-y-1">
+                      <h3 className="font-bold text-white text-lg md:text-xl tracking-wide">{exp.role}</h3>
                       <p className="font-medium text-sm mt-1 flex flex-wrap items-center gap-2">
-                        <span className="text-teal-700 font-semibold">{exp.company}</span>
-                        <span className="text-slate-300 text-xs">|</span>
-                        <span className="text-slate-500">{exp.duration}</span>
+                        <span className="text-[#5c9d98] font-semibold">{exp.company}</span>
+                        <span className="text-stone-700 text-xs">|</span>
+                        <span className="text-stone-400">{exp.duration}</span>
                       </p>
 
                       {/* Tech Stack Tags - Max 4 to prevent clutter */}
@@ -130,13 +130,13 @@ export default function BackstorySection() {
                           {techList.slice(0, 4).map((tech, idx) => (
                             <span
                               key={idx}
-                              className="px-2.5 py-1 text-[11px] md:text-xs font-medium bg-teal-50 border border-teal-100 text-teal-700 rounded-md"
+                              className="px-2.5 py-1 text-[11px] md:text-xs font-medium bg-white/5 border border-white/10 text-stone-300 rounded-md"
                             >
                               {tech}
                             </span>
                           ))}
                           {techList.length > 4 && (
-                            <span className="px-2.5 py-1 text-[11px] md:text-xs font-medium bg-slate-100 border border-slate-200 text-slate-500 rounded-md">
+                            <span className="px-2.5 py-1 text-[11px] md:text-xs font-medium bg-white/10 border border-white/20 text-stone-400 rounded-md">
                               +{techList.length - 4}
                             </span>
                           )}
@@ -151,7 +151,7 @@ export default function BackstorySection() {
         </div>
 
         <motion.p
-          className="mt-16 max-w-2xl mx-auto text-center text-slate-500 text-sm md:text-base leading-relaxed"
+          className="mt-16 max-w-2xl mx-auto text-center text-stone-500 text-sm md:text-base leading-relaxed"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -169,7 +169,7 @@ export default function BackstorySection() {
         >
           <MagneticButton
             href="/about"
-            className="group inline-flex items-center gap-2.5 rounded-full border border-slate-200/70 bg-white px-8 py-3.5 text-sm font-semibold text-slate-700 hover:text-teal-700 transition-all duration-300 ease-out hover:bg-slate-50 hover:border-teal-300 hover:shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+            className="group inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-8 py-3.5 text-sm font-semibold text-stone-300 hover:text-white transition-all duration-300 ease-out hover:bg-white/10 hover:border-[#5c9d98]/50 hover:shadow-sm hover:scale-[1.02] active:scale-[0.98]"
           >
             {copy.home.backstoryCta}
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2} />

@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: url,
     },
     openGraph: {
-      title: `${project.title} - Sang Tran`,
+      title: `${project.title} - Henry Tran`,
       description: project.description,
       url,
       type: "article",
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: `${project.title} - Sang Tran`,
+      title: `${project.title} - Henry Tran`,
       description: project.description,
       images: [absoluteUrl(image)],
     },
@@ -349,3 +349,4 @@ export default function ProjectDetailPage({ params }: Props) {
     </div>
   );
 }
+

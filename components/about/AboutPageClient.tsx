@@ -89,7 +89,7 @@ export default function AboutPageClient() {
                 <div className="relative h-64 w-64 overflow-hidden rounded-[1.5rem] ring-1 ring-stone-200 shadow-[0_14px_34px_rgba(15,23,42,0.08)] sm:h-72 sm:w-72 lg:h-80 lg:w-80">
                   <Image
                     src="/images/optimized/avatar-sang-tran.jpg"
-                    alt="Sang Tran"
+                    alt="Henry Tran"
                     fill
                     className="object-cover object-[center_38%]"
                     sizes="(max-width: 640px) 256px, (max-width: 1024px) 288px, 320px"
@@ -113,7 +113,7 @@ export default function AboutPageClient() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.1 }}
                 >
-                  Sang Tran
+                  Henry Tran
                 </motion.h1>
                 <motion.p
                   className="mb-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg"

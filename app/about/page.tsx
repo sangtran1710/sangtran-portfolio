@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     canonical: "/about",
   },
   openGraph: {
-    title: "About Sang Tran",
+    title: "About Henry Tran",
     description: ABOUT.bio[0],
     url: "/about",
     type: "profile",

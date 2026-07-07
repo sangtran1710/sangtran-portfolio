@@ -31,27 +31,29 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [hoveredPath, setHoveredPath] = useState<string | null>(null);
   const { copy } = useLanguage();
   const isLanding = pathname === "/";
-  const isDarkNav =
-    isLanding ||
-    pathname === "/about" ||
-    pathname === "/showreel" ||
-    pathname.startsWith("/articles") ||
-    pathname.startsWith("/blog") ||
-    pathname.startsWith("/portfolio");
+  const isDarkNav = true;
   const navLinks = [
-    { href: "/", label: copy.nav.home },
-    { href: "/showreel", label: copy.nav.reel },
+    { href: "/", label: "Home" },
     {
-      href: "/articles",
-      label: copy.nav.blog,
+      href: "/portfolio",
+      label: "My Work",
       children: [
-        { href: "/articles#blog", label: "Blog" },
-        { href: "/materials/index.html", label: "ShaderLex" },
+        { href: "/portfolio", label: "All Projects" },
+        { href: "/showreel", label: "Showreel" },
       ],
     },
-    { href: "/about", label: copy.nav.about },
+    {
+      href: "/articles",
+      label: "Learning Hub",
+      children: [
+        { href: "/articles#blog", label: "Articles" },
+        { href: "/articles?tab=shaderlex", label: "ShaderLex" },
+      ],
+    },
+    { href: "/about", label: "About Me" },
   ];
   const prefetchRoute = (href: string) => {
     if (href.endsWith(".html")) return;
@@ -84,23 +86,22 @@ export default function Navbar() {
     >
       <div className="mx-auto flex h-20 max-w-[90rem] items-center justify-between px-6 lg:px-12">
         {/* Logo */}
-        <Link href="/" className="group flex flex-row items-baseline gap-1.5 leading-none">
+        <Link href="/" className="group flex flex-row items-baseline gap-0.5 leading-none">
           <span className={cn(
-            "text-2xl sm:text-[2rem] font-black tracking-[0.04em] uppercase transition-colors",
-            isDarkNav ? "text-white group-hover:text-white/88" : "text-slate-900 group-hover:text-slate-700"
+            "text-2xl sm:text-[2rem] font-black tracking-[0.04em] uppercase transition-colors text-white group-hover:text-white/88"
           )}>
-            SANG
+            HT
           </span>
-          <span className={cn(
-            "text-2xl sm:text-[2rem] font-black tracking-[0.04em] uppercase transition-colors",
-            isDarkNav ? "text-white group-hover:text-white/88" : "text-slate-900 group-hover:text-slate-700"
-          )}>
-            TRAN.
+          <span className="text-2xl sm:text-[2rem] font-black leading-none text-[#5c9d98]">
+            .
           </span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+        <nav 
+          className="hidden md:flex items-center gap-1 lg:gap-2"
+          onMouseLeave={() => setHoveredPath(null)}
+        >
           {navLinks.map(({ href, label, children }) => {
             const isActive =
               href === "/"
@@ -109,25 +110,41 @@ export default function Navbar() {
                   ? pathname.startsWith("/articles") || pathname.startsWith("/blog")
                   : pathname.startsWith(href);
             const hasChildren = Boolean(children?.length);
+            
+            // Underline active tab or hovered tab
+            const activeHref = navLinks.find(link => 
+              link.href === "/" ? pathname === "/" : 
+              link.href === "/articles" ? (pathname.startsWith("/articles") || pathname.startsWith("/blog")) :
+              pathname.startsWith(link.href)
+            )?.href || null;
+            const isUnderlined = hoveredPath ? hoveredPath === href : activeHref === href;
+
             return (
               <div key={label} className="group/navitem relative">
                 <Link
                   href={href}
-                  onMouseEnter={() => prefetchRoute(href)}
-                  onFocus={() => prefetchRoute(href)}
+                  onMouseEnter={() => {
+                    prefetchRoute(href);
+                    setHoveredPath(href);
+                  }}
+                  onFocus={() => {
+                    prefetchRoute(href);
+                    setHoveredPath(href);
+                  }}
                   className={cn(
-                    "relative inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-medium transition-all duration-300",
-                    isActive
-                      ? isDarkNav
-                        ? "bg-white/8 text-white shadow-[0_0_0_1px_rgba(255,255,255,0.06)_inset]"
-                        : "bg-white text-slate-900 shadow-[0_10px_24px_rgba(15,23,42,0.05)]"
-                      : isDarkNav
-                        ? "text-white/70 hover:bg-white/5 hover:text-white"
-                        : "text-slate-600 hover:bg-white/70 hover:text-slate-900"
+                    "relative inline-flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium transition-colors duration-200",
+                    isActive ? "text-white" : "text-white/70 hover:text-white"
                   )}
                 >
                   {label}
                   {hasChildren && <ChevronDown className="h-3.5 w-3.5 opacity-70" />}
+                  {isUnderlined && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute bottom-0 left-4 right-4 h-[2px] bg-[#5c9d98]"
+                      transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                    />
+                  )}
                 </Link>
                 {hasChildren && (
                   <div
@@ -162,23 +179,19 @@ export default function Navbar() {
 
           <div className="h-5 w-px bg-white/25 mx-1 lg:mx-2 hidden lg:block" />
 
-          {/* Portfolio CTA button */}
+          {/* Contact CTA button */}
           <Link
-            href="/portfolio"
-            onMouseEnter={() => prefetchRoute("/portfolio")}
-            onFocus={() => prefetchRoute("/portfolio")}
+            href="/contact"
+            onMouseEnter={() => prefetchRoute("/contact")}
+            onFocus={() => prefetchRoute("/contact")}
             className={cn(
-              "group relative inline-flex items-center justify-center overflow-hidden rounded-full px-5 py-[0.7rem] text-sm font-semibold transition-all duration-300",
-              pathname.startsWith("/portfolio")
-                ? isDarkNav
-                  ? "border border-white/14 bg-white/8 text-white"
-                  : "border border-stone-200 bg-white text-slate-900 shadow-[0_10px_24px_rgba(15,23,42,0.05)]"
-                : isDarkNav
-                  ? "border border-[#6ca9a4]/40 bg-[#5c9d98] text-white hover:bg-[#6aa9a4]"
-                  : "border border-[#6ca9a4]/20 bg-[#5c9d98] text-white shadow-[0_12px_28px_rgba(92,157,152,0.16)] hover:bg-[#538f8a]"
+              "group relative inline-flex items-center justify-center overflow-hidden rounded-full px-5 py-[0.7rem] text-sm font-semibold transition-all duration-300 cursor-pointer",
+              isDarkNav
+                ? "border border-[#6ca9a4]/40 bg-[#5c9d98] text-white hover:bg-[#6aa9a4]"
+                : "border border-[#6ca9a4]/20 bg-[#5c9d98] text-white shadow-[0_12px_28px_rgba(92,157,152,0.16)] hover:bg-[#538f8a]"
             )}
           >
-            <span className="relative z-10">{copy.nav.portfolio}</span>
+            <span className="relative z-10">Contact</span>
           </Link>
         </nav>
 
@@ -253,13 +266,13 @@ export default function Navbar() {
               </motion.a>
               <motion.div variants={itemVariants}>
                 <Link
-                  href="/portfolio"
-                  onTouchStart={() => prefetchRoute("/portfolio")}
-                  onFocus={() => prefetchRoute("/portfolio")}
+                  href="/contact"
                   onClick={() => setOpen(false)}
-                  className="mt-4 block rounded-full bg-[#5c9d98] px-6 py-3.5 text-center text-sm font-semibold text-white transition-colors hover:bg-[#538f8a]"
+                  onTouchStart={() => prefetchRoute("/contact")}
+                  onFocus={() => prefetchRoute("/contact")}
+                  className="mt-4 block w-full rounded-full bg-[#5c9d98] px-6 py-3.5 text-center text-sm font-semibold text-white transition-colors hover:bg-[#538f8a] cursor-pointer"
                 >
-                  {copy.nav.portfolio}
+                  Contact
                 </Link>
               </motion.div>
             </motion.div>

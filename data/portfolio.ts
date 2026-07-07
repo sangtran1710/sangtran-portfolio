@@ -43,9 +43,9 @@ export interface SkillGroup {
 }
 
 export const SITE = {
-  title: "Sang Tran - VFX Artist",
+  title: "Henry Tran - Principal VFX & Technical Artist",
   description:
-    "Senior real-time VFX artist specializing in production-ready effects, shaders, and technical art for games, cinematics, and launch content.",
+    "Principal real-time VFX and Technical Artist specializing in production-ready effects, shaders, and pipelines for AAA games, cinematics, and launch content.",
   email: "sangminhtran1710@gmail.com",
   logo: "/images/logo.png",
 };
@@ -54,13 +54,14 @@ export const SOCIALS = {
   linkedin: "https://www.linkedin.com/in/sang-tran-94686b160/",
   github: "https://github.com/sangtran1710",
   behance: "https://www.behance.net/sangtranminh",
+  artstation: "https://www.artstation.com/minhsang11",
   resume:
     "https://drive.google.com/drive/folders/1MNF25uY-XX6N0hwEDwFb6Dpalw9648gX?hl=vi",
 };
 
 export const HERO = {
-  name: "Sang Tran",
-  tagline: "Senior real-time VFX artist.",
+  name: "Henry Tran",
+  tagline: "Senior FX Artist & Technical Artist.",
   /** A short line; the rest is conveyed by video & images. */
   description:
     "I build clear, production-ready effects for gameplay, cinematics, and launch campaigns.",
@@ -71,21 +72,21 @@ export const HERO = {
 export const ABOUT = {
   title: "Production-ready real-time effects for shipped games and cinematic work.",
   bio: [
-    "I'm Sang Tran, a VFX artist based in Ho Chi Minh City, Vietnam, with more than 7 years of experience across games, cinematics, and launch content.",
+    "I'm Henry Tran, a VFX artist based in Ho Chi Minh City, Vietnam, with more than 7 years of experience across games, cinematics, and launch content.",
     "My path into VFX was built through practice: learning the tools, taking on real production work, and improving through delivery. That path led from support tasks to owning key effect sequences, including work featured in early marketing for Marvel's Spider-Man 2.",
     "I focus on effects that read clearly in motion, support the art direction, and hold up under production constraints. I work best with clear feedback, fast iteration, and teams that value both craft and execution.",
-    "I'm open to senior remote roles and freelance work where I can take ownership of real-time VFX, collaborate closely with art and tech teams, and deliver production-ready work.",
+    "I'm open to remote roles and freelance opportunities where I can take ownership of real-time VFX pipelines, shaders, and core tools.",
   ],
   location: "Ho Chi Minh City, Vietnam",
 };
 
 /** For home Profile section. portraitImage = front, portraitImageSecondary = back (flips on hover). */
 export const PROFILE = {
-  headline: "Senior Real-time VFX Artist",
-  title: "Sang Tran.",
+  headline: "Senior FX Artist & Technical Artist",
+  title: "Henry Tran.",
   /** Single line; detailed info reserved for the About page. */
   paragraph:
-    "Credits include **Sony**, **Epic**, **Amazon**, and **Netflix**. Based in **HCMC**, available for senior remote roles and freelance technical VFX work.",
+    "Credits include **Sony**, **Epic**, **Amazon**, and **Netflix**. Based in **HCMC**, available for remote positions and freelance technical leadership.",
   portraitImage: "/images/Portrait/z7554087716035_e6282b2e1378f725e4bcb1b51032c015.jpg",
   /** Image flipped on hover (secondary avatar in the Portrait folder) */
   portraitImageSecondary: "/images/Portrait/z7554087716035_e6282b2e1378f725e4bcb1b51032c015.jpg",
@@ -122,7 +123,7 @@ export const EXPERIENCES: Experience[] = [
     duration: "Apr 2022 - Present",
     responsibilities: [
       "Developed and optimized real-time VFX for AAA projects including Marvel's Spider-Man 2, Fortnite Remix Finale, New World: Aeternum, and Until Dawn (PS5)",
-      "Authored HLSL shaders and Unreal Engine 5 Niagara systems for production-quality effects",
+      "Developed custom material shaders and Unreal Engine 5 Niagara systems for production-quality effects",
       "Built Python tools and Houdini workflows to speed up asset production",
       "Worked with art directors, tech leads, and partner teams at Insomniac Games, Epic Games, and Amazon Games",
     ],
@@ -157,7 +158,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
   },
   {
     name: "Shaders & Materials",
-    skills: ["HLSL", "GLSL", "Unreal Material Graph", "Shader Optimization", "PBR Workflows"],
+    skills: ["Unreal Material Graph", "Shader Optimization", "HLSL (Custom Nodes)", "PBR Workflows"],
   },
   {
     name: "3D Software",
@@ -266,7 +267,7 @@ export const PROJECTS: Project[] = [
     categories: ["aaa", "cinematic"],
     contributions: [
       "Created environmental VFX including weather, magic, and destruction systems",
-      "Developed HLSL shaders for animated foliage and water surface interactions",
+      "Created custom shader logic for animated foliage and water surface interactions",
       "Built Houdini procedural pipelines to accelerate asset production",
     ],
     techStack: ["Houdini", "Blender", "Unreal Engine", "Python", "HLSL"],
@@ -324,7 +325,7 @@ export const PROJECTS: Project[] = [
     categories: ["realtime"],
     contributions: [
       "Designed Niagara particle systems for combat abilities and environmental effects",
-      "Authored HLSL shaders for stylized material effects",
+      "Designed custom materials for stylized effects",
       "Collaborated remotely with the core team to iterate on visual targets",
     ],
     techStack: ["Unreal Engine", "Houdini", "Blender", "HLSL"],

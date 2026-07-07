@@ -1,0 +1,93 @@
+---
+title: "Parallax Occlusion Mapping (POM): Simulated Depth in Pixel Shaders"
+description: "A deep dive into Parallax Occlusion Mapping, heightmap ray-marching, and performance tradeoffs for technical artists."
+date: "2026-05-05"
+tags: ["Advanced Materials", "Raymarching", "HLSL", "Unreal Engine", "Optimization"]
+thumbnail: "/images/shaderlex/pom_mapping_ref.png"
+readTime: "10 min"
+---
+
+Normal maps are the standard way to fake surface detail in games, but they suffer from one fatal flaw: **they are an illusion of lighting, not shape**. When you view a normal-mapped brick wall from a steep grazing angle, the surface looks completely flat, revealing that it's just a flat sheet of polygons.
+
+To get true depth displacement without adding millions of real triangles (which would crash the GPU), we use **Parallax Occlusion Mapping (POM)**.
+
+---
+
+## What is Parallax Occlusion Mapping?
+
+POM is a pixel shader rendering technique that uses **ray-marching** to simulate depth. 
+Instead of physically moving vertices (like displacement mapping), POM traces a 3D ray from the camera view direction directly into a 2D **heightmap texture** inside the pixel shader.
+
+By finding where the camera view vector intersects the heightmap data, the shader offsets the texture coordinates (UVs) to render the correct hidden surfaces, creating the illusion of occluded shapes, deep crevices, and self-shadowing.
+
+---
+
+## Under the Hood: The Ray-Marching Loop
+
+![Parallax Occlusion Mapping Heightmap Ray-Marching Steps](/images/shaderlex/pom_mapping_diagram.png)
+
+POM works by dividing the height of the surface (from `1.0` at the top to `0.0` at the bottom) into multiple horizontal slices or steps.
+
+1. The shader calculates the camera view ray direction projected onto the flat polygon surface.
+2. It steps along this ray, sampling the heightmap at each point.
+3. At each step, it checks if the ray depth is below the height value of the texture.
+4. Once it finds a sample where the ray depth is less than the heightmap value, it has found the intersection point.
+5. It then interpolates between the last two steps to find the exact intersection and uses this offset UV coordinate to sample the diffuse and normal maps.
+
+---
+
+## HLSL Code Structure
+
+Here is the ray-marching loop used inside a custom HLSL node for POM:
+
+```hlsl
+// POM Ray-marching loop structure
+float2 uvOffset = 0;
+float stepSize = 1.0 / numSteps;
+float currHeight = 1.0;
+float2 viewRay = (viewDir.xy / viewDir.z) * parallaxScale;
+
+for(int i = 0; i != numSteps; i++)
+{
+    // Sample the height texture
+    float height = HeightMap.Sample(HeightSampler, uv + uvOffset).r;
+    
+    // Check if view ray has intersected height geometry
+    if(height > currHeight) break;
+    
+    // Move ray deeper and offset UV coordinates along view direction
+    currHeight -= stepSize;
+    uvOffset += viewRay * stepSize;
+}
+
+// Offset UVs to sample final textures
+float2 finalUvs = uv + uvOffset;
+```
+
+---
+
+## Step-by-Step UE5 Material Setup
+
+Unreal Engine provides a built-in **ParallaxOcclusionMapping** material function:
+
+1. Create a heightmap texture (white is high, black is low).
+2. Create a **ParallaxOcclusionMapping** node.
+3. Connect the heightmap texture object to the **Heightmap Texture** input.
+4. Input your view direction by creating a **CameraVector** node and transforming it from World Space to Tangent Space.
+5. Set the **Height Ratio** (e.g. `0.05` for subtle depth, `0.1` for deep depth).
+6. Connect the **Parallax UVs** output to the UV inputs of your Diffuse, Normal, and Roughness textures.
+
+---
+
+## Performance & Optimization for Technical Artists
+
+POM is extremely GPU-heavy because it performs a texture sample inside a loop for *every single pixel* rendered on screen. If not optimized, POM will quickly cause a massive **pixel shader execution bottleneck**.
+
+### 1. Dynamic Step Scaling
+To save performance, do not run the maximum number of steps at all times.
+- If the camera is looking straight down, the ray doesn't need many steps to find the surface. Set `MinSteps = 4`.
+- If the camera is at a steep grazing angle, the ray travels a long distance and needs more detail. Set `MaxSteps = 32`.
+- Scale steps dynamically using the dot product of the Normal and View direction: `saturate(dot(N, V))`.
+
+### 2. Distance-Based LOD Fading
+POM is completely wasted on objects far away from the player. Use the **Distance** node in the material graph to fade out the parallax scale to `0.0` and decrease step counts to `1` beyond a certain range (e.g. `2000` units). This turns POM off dynamically in the distance, saving performance.

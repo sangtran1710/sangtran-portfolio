@@ -5,6 +5,7 @@ import SkillsSnapshot from "@/components/home/SkillsSnapshot";
 import BackstorySection from "@/components/home/BackstorySection";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
 import ContactSection from "@/components/home/ContactSection";
+import RunningTicker from "@/components/home/RunningTicker";
 import { SITE } from "@/data/portfolio";
 
 export const metadata: Metadata = {
@@ -31,6 +32,7 @@ export default function HomePage() {
       <ProfileSection />
       <SkillsSnapshot />
       <BackstorySection />
+      <RunningTicker />
       <ContactSection />
     </>
   );

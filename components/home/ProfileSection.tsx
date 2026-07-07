@@ -46,7 +46,7 @@ export default function ProfileSection() {
     <section
       ref={sectionRef}
       id="profile"
-      className="relative scroll-mt-24 overflow-hidden border-t border-stone-200 bg-[#f6f2eb]"
+      className="relative scroll-mt-24 overflow-hidden border-t border-white/10 bg-[#0b0e14]"
     >
       <div className="relative mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:py-28">
         <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(420px,1fr)] lg:gap-20">
@@ -58,7 +58,7 @@ export default function ProfileSection() {
               custom={0}
               className="space-y-4"
             >
-              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#4f8e89]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#5c9d98]">
                 {profile.headline}
               </p>
               <motion.span
@@ -73,18 +73,18 @@ export default function ProfileSection() {
             <TextReveal
               text={profile.paragraph}
               as="p"
-              className="max-w-xl text-[1.05rem] leading-[1.7] text-slate-700"
+              className="max-w-xl text-[1.05rem] leading-[1.7] text-stone-300"
               offset={["start 0.85", "start 0.45"]}
             />
 
             {/* Modern, minimalist stats row */}
-            <div className="grid grid-cols-3 gap-6 border-t border-stone-200/80 pt-6 mt-2 max-w-lg">
+            <div className="grid grid-cols-3 gap-6 border-t border-white/10 pt-6 mt-2 max-w-lg">
               {profile.stats.slice(0, 3).map(({ label, value }) => (
                 <div key={label} className="space-y-1">
-                  <span className="block text-3xl font-light tracking-tight text-slate-900 leading-none">
+                  <span className="block text-3xl font-light tracking-tight text-white leading-none">
                     {value}
                   </span>
-                  <span className="block text-[10px] font-semibold uppercase tracking-wider text-slate-500 leading-tight">
+                  <span className="block text-[10px] font-semibold uppercase tracking-wider text-stone-500 leading-tight">
                     {label}
                   </span>
                 </div>
@@ -101,7 +101,7 @@ export default function ProfileSection() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="gap-2.5 rounded-full border border-stone-200 bg-[#5c9d98] text-white hover:border-[#5c9d98] hover:bg-[#538f8a] hover:shadow-[0_12px_30px_rgba(92,157,152,0.18)]"
+                className="gap-2.5 rounded-full border border-white/10 bg-[#5c9d98] text-white hover:border-[#5c9d98] hover:bg-[#538f8a] hover:shadow-[0_12px_30px_rgba(92,157,152,0.18)]"
               >
                 <a href={SOCIALS.linkedin} target="_blank" rel="noopener noreferrer">
                   <Linkedin className="h-5 w-5" strokeWidth={1.5} />
@@ -118,7 +118,7 @@ export default function ProfileSection() {
             style={!prefersReducedMotion ? { y: avatarY } : undefined}
             className="order-1 lg:order-2 relative aspect-[4/5] max-h-[560px] w-full will-change-transform"
           >
-            <div className="relative h-full w-full overflow-hidden rounded-[1.75rem] border border-stone-200 bg-[#e9e1d5] shadow-[0_5px_9px_rgba(0,0,0,0.08)]">
+            <div className="relative h-full w-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-stone-900 shadow-2xl">
               {!avatarError ? (
                 <Image
                   src={profile.portraitImage}
@@ -134,7 +134,7 @@ export default function ProfileSection() {
                 </div>
               )}
               <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(5,8,12,0.02)_42%,rgba(5,8,12,0.24)_100%)]" />
-              <div className="pointer-events-none absolute bottom-5 left-5 rounded-full border border-white/30 bg-black/70 px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white shadow-[0_2px_8px_rgba(0,0,0,0.35)] backdrop-blur-md">
+              <div className="pointer-events-none absolute bottom-5 left-5 rounded-full border border-white/30 bg-black/75 px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white shadow-[0_2px_8px_rgba(0,0,0,0.5)] backdrop-blur-md">
                 {copy.home.profilePhotoCaption}
               </div>
             </div>

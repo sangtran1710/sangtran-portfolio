@@ -1,0 +1,83 @@
+---
+title: "Polar UV Vortex Shaders: Creating Portal and Swirl Effects"
+description: "Learn how to use Polar Coordinates to build circular scrolling vortexes, portals, and suction effects for game VFX."
+date: "2026-05-03"
+tags: ["Math", "UV Distortion", "VFX Shaders", "Unreal Engine", "HLSL"]
+thumbnail: "/images/shaderlex/polar_vortex_ref.png"
+readTime: "7 min"
+---
+
+Most texture panning shaders move coordinates in straight directions along the horizontal (U) and vertical (V) Cartesian axes. But if you want to create a black hole, a portal, a swirling vortex, or a magical circle, scrolling straight textures will never look right.
+
+To scroll textures circularly, we must convert our coordinates from **Cartesian (X, Y)** space to **Polar (Radius, Angle)** space.
+
+---
+
+## The Concept: Cartesian vs. Polar
+
+![Cartesian vs Polar Coordinates Grid Mapping](/images/shaderlex/polar_vortex_diagram.png)
+
+- **Cartesian UVs:** Every point is defined by a horizontal distance `u` and vertical distance `v`. Scrolling UVs moves textures in straight lines.
+- **Polar UVs:** Every point is defined by:
+  1. A distance from the center (Radius r).
+  2. An angle around the center (Angle theta or phi).
+  
+If we map a flat texture to Polar coordinates, scrolling the horizontal coordinate (u = Radius) will cause the texture to flow **inward/outward** from the center. Scrolling the vertical coordinate (v = Angle) will cause the texture to **rotate** around the center.
+
+---
+
+## Mathematical Conversion
+
+To convert a flat Cartesian coordinate system to Polar, we center our UVs by subtracting `0.5` so the center of rotation is `(0, 0)`. Then:
+
+1. **Radius (r):** The Pythagorean theorem calculates distance from the center:
+   `r = sqrt(x^2 + y^2)`
+2. **Angle (phi):** The trigonometric function calculates the angle in radians:
+   `phi = atan2(y, x)`
+
+---
+
+## Custom HLSL Implementation
+
+Here is the HLSL code to center Cartesian coordinates, calculate polar space, apply a spiral swirl offset, and return the final distorted coordinates:
+
+```hlsl
+// Convert Cartesian UVs to Polar space
+float2 centeredUv = uv - 0.5;
+float r = length(centeredUv);
+float phi = atan2(centeredUv.y, centeredUv.x);
+
+// Apply spiral twist distortion over time
+// Scrolling X moves texture inward. Scrolling Y rotates the texture.
+float u = r * tiling.x + time * speed.x;
+float v = (phi / 6.2831853) * tiling.y + r * swirlAmount + time * speed.y;
+
+float2 polarUv = float2(u, v);
+```
+
+---
+
+## Step-by-Step Shader Setup
+
+### Step 1: UV Remap
+Connect your mesh UVs to the polar converter code block. If you look at the output of the conversion node, a noise texture will look like a swirling galaxy.
+
+### Step 2: The "Center Pinch" Fix
+Because polar coordinate math squishes the entire width of the texture into the absolute center point `(0,0)`, you will notice an ugly, pixelated pinch artifact right in the center.
+
+To fix this:
+1. Create a radial gradient mask using distance from the center.
+2. Invert the gradient and multiply it by your texture opacity.
+3. This fades the texture to 0 opacity at the exact center point, hiding the ugly pinch.
+
+---
+
+## Common Production Traps & Solutions
+
+### 1. High Tiling Aliasing
+**Why it happens:** Because the texture repeats around the circle, when it scrolls near the center, the pixels get packed extremely close together, causing heavy aliasing and moiré patterns.
+**How to fix it:** Use Mipmapping, or fade out high-frequency texture details as the radius approaches zero.
+
+### 2. Mesh Layout & Circular Planes
+**Why it happens:** Applying a polar shader on a square plane wastes a lot of pixel cost on transparent corners where opacity is 0.
+**How to fix it:** Ditch square planes. Use a circular disc mesh with 12-16 sides. This saves fill-rate performance on the GPU by clipping off transparent waste zones.

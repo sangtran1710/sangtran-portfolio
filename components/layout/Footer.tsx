@@ -12,6 +12,12 @@ const BehanceIcon = () => (
   </svg>
 );
 
+const ArtstationIcon = () => (
+  <svg viewBox="0 0 512 512" className="h-4 w-4" fill="currentColor" aria-hidden="true">
+    <path d="M2.17 329.83L156.4 83.2h28.18L448.24 448H276.53L175.7 329.83H2.17zM294.67 83.2l53.94 92.17 84.18 143.92H510L365.17 83.2H294.67zM189.65 352.55L244.3 448H121.2l-51.3-89.84h119.75z" />
+  </svg>
+);
+
 export default function Footer() {
   const { locale, copy } = useLanguage();
   const year = new Date().getFullYear();
@@ -28,7 +34,8 @@ export default function Footer() {
   const socialLinks = [
     { href: SOCIALS.linkedin, label: "LinkedIn", Icon: Linkedin, className: "hover:text-[#0A66C2]" },
     { href: SOCIALS.github, label: "GitHub", Icon: Github },
-    { href: SOCIALS.behance, label: "Behance", Icon: BehanceIcon },
+    { href: SOCIALS.artstation, label: "ArtStation", Icon: ArtstationIcon, className: "hover:text-[#00B0FF]" },
+    { href: SOCIALS.behance, label: "Behance", Icon: BehanceIcon, className: "hover:text-[#0057ff]" },
     { href: `mailto:${site.email}`, label: "Email", Icon: Mail },
   ];
 
@@ -96,7 +103,7 @@ export default function Footer() {
         </div>
 
         <p className="mt-8 border-t border-white/5 pt-8 text-center text-xs font-medium text-slate-500">
-          &copy; {year} Sang Tran. {copy.common.builtWith}
+          &copy; {year} Henry Tran. {copy.common.builtWith}
         </p>
       </div>
     </footer>

@@ -54,6 +54,7 @@ export default function ProjectGrid() {
                 project={project}
                 featured={active === "all" && index === 0}
                 priority={index < 3}
+                light={true}
               />
             </div>
           ))}

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     canonical: "/articles",
   },
   openGraph: {
-    title: "Articles - Sang Tran",
+    title: "Articles - Henry Tran",
     description:
       "Articles, production notes, and ShaderLex: a UE5 material library for technical art, shaders, VFX, and Unreal Engine workflows.",
     url: "/articles",

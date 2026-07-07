@@ -83,7 +83,7 @@ export const UI_COPY = {
     about: {
       kicker: "About",
       shortBio:
-        "Senior VFX Artist focused on production-ready real-time effects, cinematic work, and technical art systems.",
+        "Senior FX Artist & Technical Artist focused on production-ready real-time effects, cinematic work, and technical art systems.",
       downloadResume: "Download Resume",
       viewPortfolio: "View Portfolio",
       experience: "Experience",
@@ -190,7 +190,7 @@ export const UI_COPY = {
     about: {
       kicker: "Giới thiệu",
       shortBio:
-        "Senior VFX Artist tập trung vào real-time effects, cinematic polish và technical art systems có thể dùng thật trong production.",
+        "Senior FX Artist & Technical Artist tập trung vào real-time effects, cinematic polish và technical art systems có thể dùng thật trong production.",
       downloadResume: "Tải Resume",
       viewPortfolio: "Xem Portfolio",
       experience: "Kinh nghiệm",

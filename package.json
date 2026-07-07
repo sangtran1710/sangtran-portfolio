@@ -12,9 +12,11 @@
     "visual:generate": "node scripts/generate-openrouter-visual.mjs"
   },
   "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.16",
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-separator": "^1.1.8",
     "@radix-ui/react-slot": "^1.2.4",
+    "@radix-ui/react-tabs": "^1.1.17",
     "@tailwindcss/typography": "^0.5.19",
     "@vercel/analytics": "^1.6.1",
     "class-variance-authority": "^0.7.1",

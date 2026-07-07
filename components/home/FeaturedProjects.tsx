@@ -15,7 +15,7 @@ export default function FeaturedProjects() {
   return (
     <section
       id="work"
-      className="relative z-10 -mt-10 scroll-mt-24 overflow-hidden rounded-t-[2.25rem] border-t border-stone-200/80 bg-[#f6f2eb] shadow-[0_-16px_36px_rgba(15,23,42,0.06)]"
+      className="relative z-10 -mt-10 scroll-mt-24 overflow-hidden rounded-t-[2.25rem] border-t border-white/10 bg-[#070a0f] shadow-[0_-20px_50px_rgba(0,0,0,0.5)]"
     >
       <div className="relative mx-auto max-w-7xl px-6 py-14 sm:px-8 lg:py-[4.75rem]">
         <motion.div
@@ -26,16 +26,16 @@ export default function FeaturedProjects() {
           transition={{ duration: 0.4 }}
         >
           <div>
-            <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+            <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
               {copy.home.selectedWork}
             </h2>
-            <p className="mt-2 max-w-xl text-sm leading-7 text-slate-600">
+            <p className="mt-2 max-w-xl text-sm leading-7 text-stone-400">
               {copy.home.selectedWorkBody}
             </p>
           </div>
           <Link
             href="/portfolio"
-            className="hidden items-center gap-2 rounded-full border border-stone-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-[0_5px_9px_rgba(0,0,0,0.04)] transition-all hover:-translate-y-0.5 hover:border-stone-300 hover:text-slate-950 hover:shadow-[0_8px_18px_rgba(15,23,42,0.08)] sm:inline-flex"
+            className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-stone-300 shadow-md transition-all hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/10 hover:text-white sm:inline-flex"
           >
             {copy.common.viewAll}
             <ArrowRight className="h-4 w-4" />
@@ -63,7 +63,7 @@ export default function FeaturedProjects() {
         <div className="mt-6 text-center sm:hidden">
           <Link
             href="/portfolio"
-            className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-white px-4 py-2 text-sm font-semibold text-[#4f8e89] shadow-[0_5px_9px_rgba(0,0,0,0.04)] transition-colors hover:text-slate-900"
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-[#5c9d98] shadow-md transition-colors hover:text-white hover:bg-white/10 hover:border-white/20"
           >
             {copy.common.viewAllProjects}
             <ArrowRight className="h-4 w-4" />
