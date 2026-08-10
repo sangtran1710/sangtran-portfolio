@@ -12,6 +12,8 @@ Understanding UV math is foundational for real-time VFX. By manipulating the UV 
 
 Here is a breakdown of how UV coordinates work and how they are commonly distorted in production pipelines.
 
+> **Code note:** The snippets are engine-agnostic shader pseudocode. Replace `BaseUV`, `Time`, texture objects, and sampler calls with the equivalents provided by the target engine.
+
 ---
 
 ## 1. The UV Coordinate Space (Cartesian Grid)
@@ -21,7 +23,7 @@ In shader programming, `UV` (or `TexCoord`) is simply a 2D vector `[X, Y]` (or `
 ### What it solves
 UV math allows us to shift, scale, and rotate *where* the pixels of a texture are being read from the source image.
 
-The most important thing to remember: **UV space goes from 0.0 to 1.0**. 
+The base texture domain is conventionally described from **0.0 to 1.0**, but UV coordinates are not restricted to that range. Negative values and values above 1.0 are valid; the sampler's Wrap, Clamp, Mirror, or Border mode decides what happens outside the base tile.
 - `[0, 0]` is the top-left corner (in DirectX/Unreal) or bottom-left (in OpenGL/Unity).
 - `[1, 1]` is the opposite corner.
 
@@ -73,20 +75,24 @@ Distortion breaks up the rigid grid structure, simulating natural organic flow o
 When building heat haze or water shaders, a grayscale Noise texture (or a Flow Map) is typically added to the base UVs. When the main texture (or the Scene Color buffer) is sampled using this warped grid, the image appears distorted, melted, or refracted like hot air.
 
 ```hlsl
-// Sample a noise texture to get random values between 0.0 and 1.0
-float distortionMap = tex2D(NoiseSampler, UV).r;
+// Sample two independent channels to get a 2D offset.
+float2 distortionSample = tex2D(NoiseSampler, UV).rg;
 
-// Remap noise from [0, 1] to [-1, 1] so it pushes equally in all directions
-float centeredNoise = (distortionMap * 2.0) - 1.0;
+// Remap both channels from [0, 1] to [-1, 1].
+float2 centeredOffset = (distortionSample * 2.0) - 1.0;
 
-// Add scaled noise to the base UVs
-float2 distortedUv = BaseUV + (centeredNoise * DistortionStrength);
+// Offset U and V independently.
+float2 distortedUv = BaseUV + (centeredOffset * DistortionStrength);
 ```
 
 <UvDistortionVisual />
 
-### Common Mistake: The "Pinch" Artifact
-Standard noise textures range from `0.0` to `1.0`. If you add this directly to your UVs without remapping it (as shown in the code above), the texture will only distort in a positive diagonal direction, causing it to slide off-center. I always multiply the noise by `2.0` and subtract `1.0` to ensure the distortion pushes and pulls equally in all directions.
+### Common Mistake: Biased or Diagonal Distortion
+Adding an uncentered `0.0` to `1.0` signal biases the offset in the positive direction. A second issue is using one grayscale channel as a `float2`: both U and V then receive the same value, so the distortion follows a diagonal. I use two independent channels (or two decorrelated samples), center both around zero, and inspect the flow direction before increasing strength.
 
 ### When not to use it
-Avoid extreme UV distortion on textures containing highly recognizable features, like text or detailed faces. High distortion will pull the UV coordinates so far apart that the texture will severely pixelate and tear, breaking the illusion.
+Avoid extreme UV distortion on recognizable features such as text or faces. Large, rapidly changing offsets can stretch features, expose sampler boundaries, and produce unstable mip selection. The exact artifact depends on texture resolution, derivatives, filtering, and sampler mode rather than distortion strength alone.
+
+## References
+- [Epic: Coordinates Material Expressions](https://dev.epicgames.com/documentation/en-us/unreal-engine/coordinates-material-expressions-in-unreal-engine)
+- [Microsoft HLSL intrinsic functions](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-intrinsic-functions)

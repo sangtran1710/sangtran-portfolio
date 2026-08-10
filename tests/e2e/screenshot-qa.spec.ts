@@ -22,6 +22,17 @@ test.describe("UI screenshot QA", () => {
       await page.screenshot({
         path: path.join(screenshotDir, "home-mobile.png"),
       });
+
+      await page.goto("/contact", { waitUntil: "networkidle" });
+      await page.screenshot({
+        path: path.join(screenshotDir, "contact-mobile.png"),
+      });
+
+      await page.goto("/rnd/erlangmon-vfx", { waitUntil: "networkidle" });
+      await page.screenshot({
+        path: path.join(screenshotDir, "erlangmon-project-mobile.png"),
+        fullPage: true,
+      });
       return;
     }
 
@@ -31,10 +42,14 @@ test.describe("UI screenshot QA", () => {
       { route: "/", selector: "#profile", name: "home-profile-desktop" },
       { route: "/portfolio", selector: "main section:first-of-type", name: "portfolio-intro-desktop" },
       { route: "/portfolio", selector: "article:first-of-type", name: "portfolio-card-desktop" },
+      { route: "/portfolio", selector: 'a[href="/rnd/erlangmon-vfx"]', name: "erlangmon-card-desktop" },
       { route: "/about", selector: "main > div", name: "about-desktop" },
       { route: "/about", selector: "#featured-credits", name: "about-credits-desktop" },
       { route: "/articles", selector: "main", name: "articles-desktop" },
+      { route: "/articles?tab=math", selector: "main", name: "math-index-desktop" },
       { route: "/articles?tab=shaderlex", selector: "main", name: "shaderlex-index-desktop" },
+      { route: "/contact", selector: "main", name: "contact-desktop" },
+      { route: "/rnd/erlangmon-vfx", selector: "article", name: "erlangmon-project-desktop" },
     ];
 
     for (const shot of shots) {
@@ -58,7 +73,7 @@ test.describe("UI screenshot QA", () => {
     const firstCard = page.locator("article").first();
     await expect(firstCard).toBeVisible();
 
-    const imageRegion = firstCard.locator(".aspect-\\[16\\/10\\]").first();
+    const imageRegion = firstCard.locator("div").first();
     const description = firstCard.locator("p").filter({
       hasText: /developed|created|contributed|playable/i,
     }).first();

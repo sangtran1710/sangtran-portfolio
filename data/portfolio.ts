@@ -61,7 +61,7 @@ export const SOCIALS = {
 
 export const HERO = {
   name: "Henry Tran",
-  tagline: "Senior FX Artist & Technical Artist.",
+  tagline: "Senior real-time VFX artist.",
   /** A short line; the rest is conveyed by video & images. */
   description:
     "I build clear, production-ready effects for gameplay, cinematics, and launch campaigns.",
@@ -418,6 +418,17 @@ export const IGAMING_ARTWORKS: IgamingArtwork[] = [
 ];
 
 export const RND_PROJECTS: RndProject[] = [
+  {
+    title: "Erlangmon VFX",
+    category: "Stylized character VFX",
+    tools: ["Unreal Engine", "Niagara", "Materials", "Blender"],
+    image: "/projects/erlangmon-vfx/poster.jpg",
+    link: "/rnd/erlangmon-vfx",
+    linkLabel: "View breakdown",
+    slug: "erlangmon-vfx",
+    year: "2026",
+    group: "vfx",
+  },
   {
     title: "TradingPower Tool v9.2",
     category: "Motion Graphics / AE Plugin Workflow",

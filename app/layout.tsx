@@ -3,7 +3,6 @@ import { Inter, Kanit, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import SocialStrip from "@/components/layout/SocialStrip";
 import ScrollToTop from "@/components/layout/ScrollToTop";
 import SkipToContentLink from "@/components/layout/SkipToContentLink";
 import PageTransitionWrapper from "@/components/layout/PageTransitionWrapper";
@@ -88,7 +87,6 @@ export default function RootLayout({
           <main id="main" className="relative">
             <PageTransitionWrapper>{children}</PageTransitionWrapper>
           </main>
-          <SocialStrip />
           <Footer />
           <ScrollToTop />
           <Analytics />

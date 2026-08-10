@@ -11,6 +11,8 @@ When I build advanced effects - like digital holographic scanning grids, anime-s
 
 Here are my personal production notes breaking down these essential utility math nodes, focusing on how they operate under the hood and how I use them daily.
 
+> **Code note:** The snippets below are engine-agnostic shader pseudocode. Names such as `Time`, `UV`, and sampled texture values need to be connected to the equivalent inputs in Unreal, Unity, or the target renderer.
+
 ---
 
 ## 1. Trigonometric Functions: Sine and Cosine
@@ -36,7 +38,7 @@ A common mistake is assuming Sine is just as cheap as addition. While simple add
 On many GPU architectures, transcendental functions are routed to the **SFU (Special Function Unit)**. Because a standard GPU Compute Unit often has fewer SFUs than ALUs, heavily utilizing Sine nodes in a Pixel Shader can sometimes introduce instruction latency.
 
 ### When not to use it
-Avoid using dynamic Sine functions in heavily overdrawn pixel shaders (like dense smoke particle systems) if you don't need perfect mathematical precision. Instead, I often use a **Lookup Table (LUT)** by baking a Sine wave into a tiny 1D gradient texture, or I use a polynomial approximation curve.
+In a heavily overdrawn pixel shader, repeated transcendental operations are worth profiling. A polynomial approximation or a small **Lookup Table (LUT)** can help when the shader is demonstrably ALU-bound, but a LUT also adds a texture read, cache pressure, filtering behavior, and precision limits. I compare the compiled shader and profile the target GPU before replacing `sin()`; there is no universal winner.
 
 ---
 
@@ -53,17 +55,22 @@ I use `Step(Edge, X)` as a mathematical scissor. It compares the input `X` again
 However, in production, I almost exclusively use `Smoothstep(Min, Max, X)`. Smoothstep acts like Step, but interpolates smoothly between 0.0 and 1.0 using a Hermite interpolation curve.
 
 ```hlsl
-// Creates a very tight gradient rather than an infinitely sharp cut
-float antiAliasedMask = smoothstep(0.48, 0.52, NoiseTexture);
+// Pixel-shader example: adapt the transition width to screen-space change.
+float edgeWidth = max(fwidth(NoiseValue), 1e-5);
+float antiAliasedMask = smoothstep(
+    0.5 - edgeWidth,
+    0.5 + edgeWidth,
+    NoiseValue
+);
 ```
 
 <StepVsSmoothstepVisual />
 
 ### Common Mistake
-A common mistake I see from junior artists is using a pure `Step` node to create hard edges. A pure `Step` creates jagged, pixelated edges that flicker brutally when the game camera moves far away due to mipmapping and screen-space aliasing. 
+A pure `Step` can create jagged edges and temporal shimmer when a threshold becomes smaller than a pixel. Replacing it with a fixed-width `smoothstep` softens the transition, but it does not automatically make the edge screen-space anti-aliased. For a pixel shader, I derive the transition width from `fwidth()` (or `ddx`/`ddy`) when the edge must remain stable across distance and resolution.
 
 ### When not to use it
-Avoid pure Step for alpha edges unless the hard aliasing is intentional. If the resulting mask defines the edge of a particle or mesh in a 3D environment, use `Smoothstep` with a very small delta range (e.g., `Min = 0.48`, `Max = 0.52`). It creates "hard" edges that are safely anti-aliased.
+Avoid a raw Step for moving alpha edges unless the hard aliasing is intentional. A derivative-aware `smoothstep` is a better default for screen-space stability. Derivatives are pixel-shader operations, so vertex-stage masks need a different strategy such as adequate tessellation, filtered texture data, or a transition sized for the target mesh.
 
 ---
 
@@ -90,7 +97,12 @@ float2 pixelatedUv = floor(UV * 64.0) / 64.0;
 ```
 
 ### Common Mistake
-When using `Fract` to pan textures, a common mistake is scaling the UVs *after* the `Fract` node. This causes the texture to tile incorrectly and clip. Always multiply/scale your UVs *before* you `Fract` them.
+`fract(UV * TileCount)` and `fract(UV) * TileCount` are different operations. The first creates `TileCount` wrapped repetitions inside the 0-to-1 domain; the second scales an already wrapped coordinate and may still be valid when the sampler or later math is expected to handle that range. I choose the order from the intended pattern instead of treating one order as universally correct.
 
 ### When not to use it
-I avoid using `Floor` to create blocky stepped gradients if I plan to use that gradient for normal mapping or displacement. The mathematically infinite "cliff" between steps will break normal generation. In those cases, a smoothed stepped curve is required.
+I avoid using `Floor` blindly for gradients that later drive generated normals or smooth displacement. The discontinuities can create large derivatives, visible seams, or abrupt geometry changes. Those artifacts may be intentional for a stepped style; otherwise I use a filtered or smoothed transition.
+
+## References
+- [Microsoft HLSL `smoothstep`](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-smoothstep)
+- [Microsoft HLSL `fwidth`](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-fwidth)
+- [NVIDIA: Advanced API Performance - Shaders](https://developer.nvidia.com/blog/advanced-api-performance-shaders/)

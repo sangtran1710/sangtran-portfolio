@@ -14,6 +14,8 @@ While the Cross Product might not be used as frequently as Lerp or Dot Product i
 
 Here are notes on how the Cross Product is leveraged in production.
 
+> **Code note:** Cross-product order and coordinate conventions matter. The snippets are engine-agnostic pseudocode and should be verified against the target engine's handedness and vector definitions.
+
 ---
 
 ## 1. What is the Cross Product?
@@ -54,25 +56,29 @@ For stylized wind trail effects common in competitive shooters, I often use the 
 
 ## 3. GPU Hardware & Optimization
 
-At the hardware level, a standard Cross Product requires **6 Multiplications and 3 Subtractions**, executing on the ALU. While ALU instructions are generally fast, there is a specific optimization I use when dealing with world-space axes.
+The expanded scalar formula contains **6 multiplications and 3 subtractions**, although the final machine instructions depend on compiler optimization and target hardware. In normal material work I use the engine's Cross node or the HLSL `cross()` intrinsic first, then inspect compiled output only if profiling identifies this code as meaningful.
 
 ### Common Mistake: The "Multiply by Zero" Trap
 Very often in procedural generation, I need to find the "Right" vector by crossing my "Forward" vector with the global "Up" axis `float3(0, 0, 1)`.
 
-If you drop a standard `Cross` node into Unreal or Unity for this:
+If you use a standard `Cross` node in Unreal or Unity for this:
 `cross(Forward, float3(0, 0, 1))`
 
-A naive graph can express the full 9-operation mathematical sequence. While modern shader compilers are often smart enough to optimize away the constants (multiplying by 0), relying purely on the compiler's black box can sometimes lead to missed optimizations depending on the target platform. 
+the compiler can usually constant-fold the zero terms and simplify the result. I verify the generated shader before replacing a readable intrinsic with hand-written arithmetic.
 
-### When not to use the standard node (The Swizzle Optimization)
-If one of your vectors is a static axis like `(0,0,1)`, I strongly recommend skipping the standard node and explicitly writing out the simplified math in a Custom HLSL block:
+### Optional specialization for a fixed axis
+If compiled output shows that a fixed-axis cross remains in a meaningful hot path, the expression can be written explicitly:
 
 ```hlsl
 // Manually simplifying the cross product when crossing with (0,0,1)
 float3 RightVector = float3(Forward.y, -Forward.x, 0.0);
 ```
 
-By doing this, you make the intent explicit and give the compiler less work to infer. On GPUs, swizzling (rearranging color channels) and negating (flipping the sign) occur at the register level and execute extremely fast, often being compiled out entirely.
+This version is mathematically valid for `cross(Forward, Up)` with `Up = (0,0,1)`, but it is less self-documenting and easier to get wrong when vector order changes. I treat it as a measured specialization, not a default replacement for the standard node.
 
 > [!WARNING]
 > **Check Your Handedness:** The simplified swizzle depends heavily on cross-product order and coordinate convention. Check the sign and order depending on whether you use `cross(Forward, Up)` or `cross(Up, Forward)`, and verify it against the specific engine's coordinate conventions (Left-Handed vs Right-Handed).
+
+## References
+- [Microsoft HLSL `cross`](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-cross)
+- [NVIDIA Shader Programs: use built-in functions](https://developer.nvidia.com/docs/drive/drive-os/archives/6.0.3/linux/sdk/oxy_ex-1/common/topics/graphics_content/ShaderPrograms72.html)

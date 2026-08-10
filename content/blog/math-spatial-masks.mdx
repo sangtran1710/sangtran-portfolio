@@ -12,6 +12,8 @@ While UV math operates in the 2D pixel space, real-time VFX often requires shade
 
 Here is a breakdown of how spatial mathematics are used in production VFX pipelines.
 
+> **Code note:** `WorldPosition`, `SceneDepth`, and `PixelDepth` below represent engine-provided values. Treat the snippets as pseudocode and verify the units and depth convention used by the target renderer.
+
 ---
 
 ## 1. The Spherical Mask (Distance Falloff)
@@ -38,7 +40,7 @@ float sphereMask = 1.0 - sphereGradient;
 <SphericalMaskVisual />
 
 ### Common Mistake
-A common error is using local `ObjectPosition` instead of `WorldPosition` when attempting to mask an effect across multiple different meshes. If you want a global shockwave to wash over rocks, trees, and the floor simultaneously, you must use absolute `WorldPosition`.
+In Unreal, `ObjectPositionWS` is not a local-space position; it is the world-space center of the object's bounds. It returns one center value for the object, while `WorldPosition` supplies the current shaded position. A shockwave that must line up continuously across rocks, trees, and terrain therefore needs world position at the vertex or pixel being evaluated, not the object center.
 
 ### When not to use it
 I avoid using pure Spherical Masks if the effect needs to conform to complex terrain (like a puddle that should only exist in physical dips on the ground). In those cases, a Z-height mask or a depth-based decal is much more appropriate.
@@ -63,7 +65,7 @@ float3 WPO = VertexNormal * sin(Time * Speed) * Amplitude;
 <WorldPositionOffsetVisual />
 
 ### Common Mistake: Bounding Box Culling
-Because WPO changes the physical shape of the mesh strictly on the GPU, the CPU doesn't know the mesh has expanded. This can cause the mesh to pop out of existence (cull) prematurely if the camera looks away from the object's original, un-inflated bounds. I always extend the `Bounds Scale` in the engine on meshes using heavy WPO!
+Large WPO can move vertices beyond the bounds used for culling, shadows, and occlusion. I first visualize out-of-bounds pixels and set a realistic maximum displacement. In current Unreal versions, **Max World Position Offset Displacement** can expand and clamp material bounds. `Bounds Scale` is still useful for some components, but increasing it globally can raise shadow and culling cost, so I only extend it as far as the measured deformation requires.
 
 ### When not to use it
 I never use WPO if the geometry needs accurate physical collision. The physics engine runs on the CPU and has no idea that the GPU pushed the vertices 5 meters to the left. If a player needs to stand on it, WPO is the wrong tool.
@@ -80,7 +82,7 @@ Depth Fade eliminates harsh clipping artifacts by calculating the distance betwe
 ### Production Use Case: Soft Particles
 I fix clipping using **Depth Fade**. This math compares two distinct buffers: the `PixelDepth` (distance to the particle) and the `SceneDepth` (distance to the solid wall behind it). 
 
-By subtracting the `PixelDepth` from the `SceneDepth`, I get the exact distance between the particle and the wall. As the particle gets closer to intersecting the wall, this difference approaches zero, which I use to multiply the particle's Opacity, fading it out softly before it clips.
+Subtracting compatible linearized depth values gives a view-depth separation between the translucent pixel and the opaque surface behind it. As that separation approaches zero, I use it to reduce opacity before the surfaces intersect. It is a depth-buffer measure, not a general Euclidean distance between arbitrary world-space points.
 
 ```hlsl
 // Get distance between the opaque wall behind the pixel, and the pixel itself
@@ -100,3 +102,8 @@ Applying Depth Fade with a massive fade distance (like 500 units) on a dense smo
 
 ### When not to use it
 I explicitly avoid Depth Fade for UI elements or stylized hard-edged anime effects where intersection clipping is an intentional artistic choice.
+
+## References
+- [Epic: Coordinates Material Expressions](https://dev.epicgames.com/documentation/en-us/unreal-engine/coordinates-material-expressions-in-unreal-engine)
+- [Epic: Unreal Engine Material Properties - World Position Offset](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-material-properties)
+- [Epic: Out of Bounds Pixels](https://dev.epicgames.com/documentation/en-us/unreal-engine/out-of-bounds-pixels-in-unreal-engine)

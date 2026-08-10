@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import HeroSection from "@/components/home/HeroSection";
 import ProfileSection from "@/components/home/ProfileSection";
-import SkillsSnapshot from "@/components/home/SkillsSnapshot";
-import BackstorySection from "@/components/home/BackstorySection";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
 import ContactSection from "@/components/home/ContactSection";
-import RunningTicker from "@/components/home/RunningTicker";
 import { SITE } from "@/data/portfolio";
 
 export const metadata: Metadata = {
@@ -30,9 +27,6 @@ export default function HomePage() {
       <HeroSection />
       <FeaturedProjects />
       <ProfileSection />
-      <SkillsSnapshot />
-      <BackstorySection />
-      <RunningTicker />
       <ContactSection />
     </>
   );

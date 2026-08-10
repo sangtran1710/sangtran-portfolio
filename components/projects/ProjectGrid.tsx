@@ -25,7 +25,7 @@ export default function ProjectGrid() {
 
   return (
     <div>
-      <div className="mb-12 flex flex-wrap gap-x-6 gap-y-3 border-b border-stone-200/90 pb-4">
+      <div className="mb-12 flex flex-wrap gap-x-6 gap-y-3 border-b border-white/10 pb-4">
         {filters.map(({ value, label }) => (
           <button
             key={value}
@@ -34,8 +34,8 @@ export default function ProjectGrid() {
             className={cn(
               "relative pb-1 text-sm font-medium transition-colors duration-200",
               active === value
-                ? "text-slate-900 after:absolute after:-bottom-[17px] after:left-0 after:h-[2px] after:w-full after:rounded-full after:bg-[#5c9d98]"
-                : "text-slate-500 hover:text-slate-900"
+                ? "text-white after:absolute after:-bottom-[17px] after:left-0 after:h-[2px] after:w-full after:bg-[#7db5b0]"
+                : "text-white/45 hover:text-white"
             )}
           >
             {label}
@@ -44,24 +44,14 @@ export default function ProjectGrid() {
       </div>
 
       {filtered.length > 0 ? (
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-9">
+        <div className="grid grid-cols-1 gap-x-7 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
           {filtered.map((project, index) => (
-            <div
-              key={project.slug}
-              className={cn(active === "all" && index === 0 && "lg:col-span-2")}
-            >
-              <ProjectCard
-                project={project}
-                featured={active === "all" && index === 0}
-                priority={index < 3}
-                light={true}
-              />
-            </div>
+            <ProjectCard key={project.slug} project={project} priority={index < 3} />
           ))}
         </div>
       ) : (
-        <div className="flex w-full flex-col items-center justify-center rounded-[1.5rem] border border-dashed border-stone-300 bg-white/70 py-12">
-          <p className="text-sm text-slate-500">{copy.common.noProjects}</p>
+        <div className="flex w-full flex-col items-center justify-center rounded-md border border-dashed border-white/15 py-12">
+          <p className="text-sm text-white/55">{copy.common.noProjects}</p>
         </div>
       )}
     </div>

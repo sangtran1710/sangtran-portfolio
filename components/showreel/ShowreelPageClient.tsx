@@ -19,7 +19,7 @@ export default function ShowreelPageClient() {
           {copy.common.backToHome}
         </Link>
       </div>
-      <ShowreelSection />
+      <ShowreelSection headingLevel="h1" />
       <div className="mx-auto max-w-5xl px-6 pb-20">
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs text-zinc-500">
           <span>Real-time VFX</span>

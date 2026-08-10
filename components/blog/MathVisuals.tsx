@@ -1,25 +1,56 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 
-export const DotProductVisual = () => {
-  const [angle, setAngle] = useState(0);
+function useVisibleAnimationTime() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const [time, setTime] = useState(0);
 
   useEffect(() => {
-    let animationFrameId: number;
-    let startTime: number;
+    const element = containerRef.current;
+    if (!element || prefersReducedMotion) return;
 
-    const animate = (time: number) => {
-      if (!startTime) startTime = time;
-      const progress = (time - startTime) / 3000; // 3 seconds per cycle
-      const currentAngle = Math.sin(progress * Math.PI * 2) * 45; // Oscillate between -45 and 45 degrees
-      setAngle(currentAngle);
+    let animationFrameId = 0;
+    let startTime = 0;
+    let lastUpdate = 0;
+
+    const animate = (now: number) => {
+      if (!startTime) startTime = now;
+      if (now - lastUpdate >= 1000 / 30) {
+        setTime((now - startTime) / 1000);
+        lastUpdate = now;
+      }
       animationFrameId = requestAnimationFrame(animate);
     };
 
-    animationFrameId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, []);
+    const stop = () => {
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = 0;
+    };
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !animationFrameId) {
+        animationFrameId = requestAnimationFrame(animate);
+      } else if (!entry.isIntersecting) {
+        stop();
+      }
+    });
+
+    observer.observe(element);
+    return () => {
+      observer.disconnect();
+      stop();
+    };
+  }, [prefersReducedMotion]);
+
+  return { containerRef, time: prefersReducedMotion ? 0 : time };
+}
+
+export const DotProductVisual = () => {
+  const { containerRef, time } = useVisibleAnimationTime();
+  const angle = (Math.sin(time * Math.PI * 0.4) + 1) * 90;
 
   // Vector A is fixed. Vector B rotates.
   // Base length 100
@@ -31,7 +62,7 @@ export const DotProductVisual = () => {
   const projection = vecB.x; 
 
   return (
-    <div className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
+    <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(20,184,166,0.05)_0%,transparent_70%)] pointer-events-none" />
       <svg width="300" height="200" viewBox="-50 -100 200 200" className="overflow-visible">
         {/* Grid */}
@@ -71,22 +102,8 @@ export const DotProductVisual = () => {
 };
 
 export const SineWaveVisual = () => {
-  const [offset, setOffset] = useState(0);
-
-  useEffect(() => {
-    let animationFrameId: number;
-    let startTime: number;
-
-    const animate = (time: number) => {
-      if (!startTime) startTime = time;
-      const progress = (time - startTime) / 1000; // Speed
-      setOffset(progress * Math.PI * 2);
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    animationFrameId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, []);
+  const { containerRef, time } = useVisibleAnimationTime();
+  const offset = time * Math.PI * 2;
 
   const points = Array.from({ length: 200 }).map((_, i) => {
     const x = i * 2;
@@ -101,7 +118,7 @@ export const SineWaveVisual = () => {
   }).join(" ");
 
   return (
-    <div className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
+    <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.05)_0%,transparent_70%)] pointer-events-none" />
       <svg width="400" height="150" viewBox="0 -75 400 150" className="overflow-visible">
         {/* Grid */}
@@ -132,22 +149,8 @@ export const MathGridBackground = () => {
 };
 
 export const CrossProductVisual = () => {
-  const [rotation, setRotation] = useState(0);
-
-  useEffect(() => {
-    let animationFrameId: number;
-    let startTime: number;
-
-    const animate = (time: number) => {
-      if (!startTime) startTime = time;
-      const progress = (time - startTime) / 4000;
-      setRotation(progress * Math.PI * 2);
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    animationFrameId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, []);
+  const { containerRef, time } = useVisibleAnimationTime();
+  const rotation = time * Math.PI * 0.5;
 
   // Simulate 3D rotation
   const cosR = Math.cos(rotation);
@@ -166,7 +169,7 @@ export const CrossProductVisual = () => {
   const cy = -80;
 
   return (
-    <div className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
+    <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(244,63,94,0.05)_0%,transparent_70%)] pointer-events-none" />
       <svg width="300" height="200" viewBox="-150 -120 300 200" className="overflow-visible">
         {/* Origin */}
@@ -203,23 +206,8 @@ export const CrossProductVisual = () => {
 };
 
 export const StepVsSmoothstepVisual = () => {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    let animationFrameId: number;
-    let startTime: number;
-
-    const animate = (time: number) => {
-      if (!startTime) startTime = time;
-      // Loop from 0 to 1 and back
-      const p = (time - startTime) / 3000;
-      setProgress((Math.sin(p * Math.PI) + 1) / 2);
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    animationFrameId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, []);
+  const { containerRef, time } = useVisibleAnimationTime();
+  const progress = (Math.sin(time * Math.PI / 3) + 1) / 2;
 
   const threshold = 0.5;
   const stepValue = progress >= threshold ? 1 : 0;
@@ -236,7 +224,7 @@ export const StepVsSmoothstepVisual = () => {
   }
 
   return (
-    <div className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
+    <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(234,179,8,0.05)_0%,transparent_70%)] pointer-events-none" />
       <svg width="400" height="150" viewBox="0 -20 400 150" className="overflow-visible">
         {/* Grid */}
@@ -269,26 +257,15 @@ export const StepVsSmoothstepVisual = () => {
 };
 // --- UV MATH VISUALS ---
 export const UvCartesianVisual = () => {
-  const [pos, setPos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    let animationFrameId: number;
-    let startTime: number;
-    const animate = (time: number) => {
-      if (!startTime) startTime = time;
-      const p = (time - startTime) / 4000;
-      setPos({
-        x: (Math.sin(p * Math.PI * 2) + 1) / 2, // 0 to 1
-        y: (Math.cos(p * Math.PI * 2) + 1) / 2, // 0 to 1
-      });
-      animationFrameId = requestAnimationFrame(animate);
-    };
-    animationFrameId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, []);
+  const { containerRef, time } = useVisibleAnimationTime();
+  const phase = time * Math.PI * 0.5;
+  const pos = {
+    x: (Math.sin(phase) + 1) / 2,
+    y: (Math.cos(phase) + 1) / 2,
+  };
 
   return (
-    <div className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
+    <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.05)_0%,transparent_70%)] pointer-events-none" />
       <svg width="240" height="240" viewBox="-20 -20 240 240" className="overflow-visible">
         <defs>
@@ -327,22 +304,12 @@ export const UvCartesianVisual = () => {
 };
 
 export const UvPanningVisual = () => {
-  const [time, setTime] = useState(0);
-
-  useEffect(() => {
-    let animationFrameId: number;
-    const animate = () => {
-      setTime(Date.now() / 1000);
-      animationFrameId = requestAnimationFrame(animate);
-    };
-    animate();
-    return () => cancelAnimationFrame(animationFrameId);
-  }, []);
+  const { containerRef, time } = useVisibleAnimationTime();
 
   const offset = (time * 50) % 100;
 
   return (
-    <div className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
+    <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
       <svg width="300" height="100" viewBox="0 0 300 100" className="overflow-hidden border border-white/10">
         <defs>
           <pattern id="checker" x={offset} y="0" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -362,20 +329,10 @@ export const UvPanningVisual = () => {
 };
 
 export const UvDistortionVisual = () => {
-  const [time, setTime] = useState(0);
-
-  useEffect(() => {
-    let animationFrameId: number;
-    const animate = () => {
-      setTime(Date.now() / 1000);
-      animationFrameId = requestAnimationFrame(animate);
-    };
-    animate();
-    return () => cancelAnimationFrame(animationFrameId);
-  }, []);
+  const { containerRef, time } = useVisibleAnimationTime();
 
   return (
-    <div className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
+    <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
       <svg width="200" height="200" viewBox="0 0 200 200" className="overflow-visible">
         <g stroke="rgba(20,184,166,0.5)" strokeWidth="2" fill="none">
           {Array.from({ length: 11 }).map((_, i) => {
@@ -406,30 +363,20 @@ export const UvDistortionVisual = () => {
 
 // --- SPATIAL MASKS VISUALS ---
 export const SphericalMaskVisual = () => {
-  const [pos, setPos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    let animationFrameId: number;
-    let startTime: number;
-    const animate = (time: number) => {
-      if (!startTime) startTime = time;
-      const p = (time - startTime) / 3000;
-      setPos({
-        x: Math.cos(p * Math.PI * 2) * 80,
-        y: Math.sin(p * Math.PI * 2) * 80,
-      });
-      animationFrameId = requestAnimationFrame(animate);
-    };
-    animationFrameId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, []);
+  const { containerRef, time } = useVisibleAnimationTime();
+  const angle = time * Math.PI * 0.5;
+  const animatedDistance = 60 + Math.sin(time * Math.PI * 0.65) * 55;
+  const pos = {
+    x: Math.cos(angle) * animatedDistance,
+    y: Math.sin(angle) * animatedDistance,
+  };
 
   const distance = Math.sqrt(pos.x * pos.x + pos.y * pos.y);
   const radius = 100;
   const maskValue = Math.max(0, 1 - distance / radius);
 
   return (
-    <div className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
+    <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
       <svg width="300" height="300" viewBox="-150 -150 300 300" className="overflow-visible">
         <circle cx="0" cy="0" r={radius} fill="rgba(239,68,68,0.1)" stroke="#ef4444" strokeWidth="2" strokeDasharray="4" />
         <circle cx="0" cy="0" r="4" fill="#ef4444" />
@@ -450,20 +397,10 @@ export const SphericalMaskVisual = () => {
 };
 
 export const WorldPositionOffsetVisual = () => {
-  const [time, setTime] = useState(0);
-
-  useEffect(() => {
-    let animationFrameId: number;
-    const animate = () => {
-      setTime(Date.now() / 1000);
-      animationFrameId = requestAnimationFrame(animate);
-    };
-    animate();
-    return () => cancelAnimationFrame(animationFrameId);
-  }, []);
+  const { containerRef, time } = useVisibleAnimationTime();
 
   return (
-    <div className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
+    <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
       <svg width="400" height="200" viewBox="0 -100 400 200" className="overflow-visible">
         <line x1="0" y1="0" x2="400" y2="0" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeDasharray="4" />
         {Array.from({ length: 21 }).map((_, i) => {
@@ -486,20 +423,8 @@ export const WorldPositionOffsetVisual = () => {
 };
 
 export const DepthFadeVisual = () => {
-  const [pos, setPos] = useState(0);
-
-  useEffect(() => {
-    let animationFrameId: number;
-    let startTime: number;
-    const animate = (time: number) => {
-      if (!startTime) startTime = time;
-      const p = (time - startTime) / 4000;
-      setPos(Math.sin(p * Math.PI * 2) * 50); // Oscillate between -50 and 50
-      animationFrameId = requestAnimationFrame(animate);
-    };
-    animationFrameId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, []);
+  const { containerRef, time } = useVisibleAnimationTime();
+  const pos = Math.sin(time * Math.PI * 0.5) * 50;
 
   const wallY = 0;
   const particleY = pos;
@@ -508,7 +433,7 @@ export const DepthFadeVisual = () => {
   const opacity = Math.min(1, depthDiff / fadeDistance);
 
   return (
-    <div className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
+    <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
       <svg width="300" height="200" viewBox="-150 -100 300 200" className="overflow-visible">
         {/* Wall */}
         <rect x="-150" y="-10" width="300" height="20" fill="rgba(255,255,255,0.1)" stroke="#fff" strokeWidth="2" />

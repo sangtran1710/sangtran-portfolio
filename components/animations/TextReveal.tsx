@@ -33,6 +33,7 @@ function WordReveal({
 
   return (
     <motion.span
+      aria-hidden="true"
       style={{ opacity, y }}
       className="inline-block mr-[0.25em] will-change-transform"
     >
@@ -69,6 +70,7 @@ export default function TextReveal({
 }: TextRevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
+  const accessibleText = text.replace(/\*\*/g, "");
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -78,7 +80,7 @@ export default function TextReveal({
   if (prefersReducedMotion) {
     return (
       <div ref={containerRef} className={`${wrapperClassName ?? ""} relative`}>
-        <Tag className={className}>{text.replace(/\*\*/g, "")}</Tag>
+        <Tag className={className}>{accessibleText}</Tag>
       </div>
     );
   }
@@ -95,7 +97,7 @@ export default function TextReveal({
 
   return (
     <div ref={containerRef} className={`${wrapperClassName ?? ""} relative`}>
-      <Tag className={className}>
+      <Tag className={className} aria-label={accessibleText}>
         {allWords.map((item, i) => {
           const start = i / totalWords;
           const end = Math.min(start + 1.5 / totalWords, 1);

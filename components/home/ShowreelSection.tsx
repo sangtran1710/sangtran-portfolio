@@ -14,7 +14,13 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { getLocalizedHero } from "@/lib/portfolio-content";
 
-export default function ShowreelSection() {
+interface ShowreelSectionProps {
+  headingLevel?: "h1" | "h2";
+}
+
+export default function ShowreelSection({
+  headingLevel = "h2",
+}: ShowreelSectionProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
@@ -22,6 +28,7 @@ export default function ShowreelSection() {
   const [started, setStarted] = useState(false);
   const { locale, copy } = useLanguage();
   const hero = getLocalizedHero(locale);
+  const Heading = headingLevel;
 
   const handlePlay = () => {
     const video = videoRef.current;
@@ -57,9 +64,9 @@ export default function ShowreelSection() {
           <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-teal-400">
             Showreel
           </p>
-          <h2 className="mt-2 text-3xl font-extrabold uppercase tracking-[0.1em] text-white sm:text-4xl lg:text-5xl">
+          <Heading className="mt-2 text-3xl font-extrabold uppercase tracking-[0.1em] text-white sm:text-4xl lg:text-5xl">
             {copy.showreel.title}
-          </h2>
+          </Heading>
         </div>
         <div className="hidden items-center gap-4 sm:flex">
           <p className="text-sm text-zinc-500">{copy.showreel.subtitle}</p>

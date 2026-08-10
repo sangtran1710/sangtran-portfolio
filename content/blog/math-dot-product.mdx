@@ -11,6 +11,8 @@ The `Dot Product` is one of the most heavily utilized mathematical operations in
 
 Here are my notes on what the Dot Product does visually, and how it's commonly used in production pipelines.
 
+> **Code note:** The snippets are engine-agnostic shader pseudocode. Confirm each engine's normal, light, and view-vector direction conventions before copying the formulas.
+
 ---
 
 ## 1. The Core Concept: The "Alignment Sensor"
@@ -20,12 +22,12 @@ Mathematically, the Dot Product projects one vector onto another.
 ### What it solves
 It measures the directional alignment between two vectors. If both vectors are normalized (length of 1), the result `dot(A, B)` returns the **cosine of the angle between them**, yielding a value between `-1.0` and `1.0`.
 
-**The Flashlight Analogy:**
-Imagine you are holding a flashlight pointing at a flat wall in a dark room.
-1. If you shine the light **perpendicularly (90 degrees)** straight at the wall, you get a perfect, highly concentrated circle of light. The alignment is perfect. **Result = 1.0**.
-2. If you slowly tilt the flashlight, the circle stretches and dims. The value smoothly transitions downwards.
-3. If you shine the light **parallel** to the wall (glancing right past it), no light hits the wall. **Result = 0.0**.
-4. If you point the flashlight **away** from the wall, the wall remains pitch black. **Result = -1.0**.
+**The Surface-Normal Analogy:**
+Imagine one arrow is the surface normal and the other is the direction from the surface toward the light.
+1. When both arrows point in the same direction, alignment is perfect. **Result = 1.0**.
+2. As the light direction rotates away, the value decreases smoothly.
+3. At 90 degrees the arrows are perpendicular. **Result = 0.0**.
+4. When they point in opposite directions, the light is behind the surface. **Result = -1.0**.
 
 <DotProductVisual />
 
@@ -64,7 +66,7 @@ When building stylized shaders, the `NdotL` value is often used as the **U-coord
 The mathematical formula for a 3D Dot Product is:
 `dot(A, B) = A.x*B.x + A.y*B.y + A.z*B.z`
 
-Modern GPUs are explicitly designed to execute this sequence via a hardware instruction called **FMA (Fused Multiply-Add)**. Because of this, a Dot Product is executed purely on the ALU (Arithmetic Logic Unit) and is often very cheap, executing in just a few clock cycles depending on the target hardware.
+Shader compilers usually lower this expression to ALU multiply/add or fused multiply-add operations, and some targets expose dedicated dot-product instructions. A dot product is generally inexpensive, but the exact instruction count, latency, and throughput depend on shader precision, compiler output, and target hardware. I confirm performance in the compiled shader rather than assigning a universal cycle count.
 
 ### Common Mistake: The `Normalize` Bottleneck Trap
 A very common mistake I see in peer reviews is aggressively calling `normalize()` on vectors before feeding them into a Dot Product. 
@@ -72,4 +74,8 @@ A very common mistake I see in peer reviews is aggressively calling `normalize()
 The `normalize()` function requires calculating the inverse square root (`rsqrt`) of the vector's length. This is a **Transcendental Function**, which is usually routed to the GPU's **SFU (Special Function Unit)**. Calling normalize excessively in a Pixel Shader can sometimes introduce instruction latency.
 
 ### When not to use it (or when to skip normalization)
-If I only need to check the *sign* of the Dot Product (e.g., to determine if a polygon is facing toward or away from the camera for a custom culling mask), **I do not normalize the vectors!** The sign (positive/negative) of a Dot Product is completely unaffected by the length of the input vectors. Skipping the normalize node is a common optimization I use to keep frame times low.
+If I only need to check the *sign* of the Dot Product (e.g., to determine if a polygon is facing toward or away from the camera for a custom culling mask), **I do not normalize the vectors.** Positive scaling does not change the sign, so normalization would add work without changing that test. The exception is a zero-length or invalid vector, which has no meaningful direction and should be handled explicitly.
+
+## References
+- [Microsoft HLSL `dot`](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-dot)
+- [Microsoft HLSL `normalize`](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-normalize)

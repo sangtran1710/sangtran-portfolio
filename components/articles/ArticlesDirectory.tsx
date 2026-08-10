@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Clock, Tag, Code, Sparkles, Calculator } from "lucide-react";
+import { ArrowRight, Clock, Code, Calculator } from "lucide-react";
 import type { BlogPostMeta } from "@/lib/blog";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { formatDateByLocale } from "@/lib/i18n";
@@ -47,8 +47,7 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
   const mathPosts = posts.filter((post) => mathSlugs.includes(post.slug))
     .sort((a, b) => mathSlugs.indexOf(a.slug) - mathSlugs.indexOf(b.slug));
 
-  const headingText = isVi ? "Kho Tài Liệu & Ghi Chú" : "Learning Hub";
-  const recentWritingHeading = isVi ? "Bài viết gần đây" : "Recent writing";
+  const headingText = isVi ? "Ghi chú" : "Notes";
 
   // Light, visual-focused catalog for ShaderLex (details are inside the deep-dive articles)
   const shaderRecipes = [
@@ -99,24 +98,14 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
   return (
     <div className="min-h-screen pt-24 sm:pt-28 pb-20 text-foreground bg-background">
       <main className="mx-auto max-w-[72rem] px-4 sm:px-6 lg:px-8">
-        <header className="mb-8 max-w-2xl">
-          <div className="mb-3 flex items-center gap-2 text-sm text-muted-foreground font-mono">
-            <Link href="/" className="transition hover:text-primary">
-              {copy.nav.home}
-            </Link>
-            <span>/</span>
-            <span className="text-foreground font-medium">Learning Hub</span>
-          </div>
-          <p className="mb-3 text-[11px] font-mono font-semibold uppercase tracking-[0.2em] text-primary">
-            {isVi ? "Tài Nguyên Kỹ Thuật" : "Resource Center"}
-          </p>
-          <h1 className="text-4xl font-kanit font-semibold tracking-tight text-foreground sm:text-5xl">
+        <header className="mb-10 max-w-xl">
+          <h1 className="text-4xl font-kanit font-medium tracking-tight text-foreground sm:text-5xl">
             {headingText}
           </h1>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             {isVi 
-              ? "Ghi chép thực tế về tối ưu hóa shader, vfx pipeline và công cụ lập trình bổ trợ." 
-              : "Practical notes on shader optimization, VFX pipelines, and technical programming tools."}
+              ? "Ghi chép về shader, VFX và công cụ kỹ thuật."
+              : "Notes on shaders, VFX, and technical art."}
           </p>
         </header>
 
@@ -159,21 +148,7 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
 
         {/* Tab Contents */}
         {activeTab === "articles" && (
-          <section className="space-y-8">
-            <div className="rounded-xl border border-primary/20 bg-primary/5 p-5 text-sm text-stone-300 flex items-start gap-3">
-              <Sparkles className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-              <p>
-                Production notes, deep-dive articles, and optimization techniques for real-time rendering pipelines.
-              </p>
-            </div>
-            
-            <div className="flex items-center gap-2 mb-6">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-              <h2 className="text-xs font-mono uppercase tracking-[0.25em] text-stone-400">
-                {recentWritingHeading}
-              </h2>
-            </div>
-
+          <section>
             <div className="grid gap-6 md:grid-cols-2">
               {blogPosts.map((post) => (
                 <article
@@ -204,29 +179,14 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
                         <span>{formatDateByLocale(post.date, locale)}</span>
                       </div>
 
-                      <h3 className="mt-4 text-xl font-bold tracking-tight text-white group-hover:text-primary transition-colors font-kanit">
+                      <h3 className="mt-4 text-xl font-medium tracking-tight text-white group-hover:text-primary transition-colors font-kanit">
                         <Link href={`/blog/${post.slug}`}>
                           <span className="absolute inset-0" />
                           {post.title}
                         </Link>
                       </h3>
-
-                      <p className="mt-3 text-sm leading-relaxed text-stone-400">
-                        {post.description}
-                      </p>
                     </div>
 
-                    <div className="mt-6 flex flex-wrap gap-2">
-                      {post.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="inline-flex items-center gap-1 rounded-full bg-white/5 px-2.5 py-1 text-xs font-medium text-stone-400"
-                        >
-                          <Tag className="h-3 w-3" />
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
                   </div>
                 </article>
               ))}
@@ -235,14 +195,7 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
         )}
 
         {activeTab === "shaderlex" && (
-          <section className="space-y-8">
-            <div className="rounded-xl border border-primary/20 bg-primary/5 p-5 text-sm text-stone-300 flex items-start gap-3">
-              <Sparkles className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-              <p>
-                Welcome to ShaderLex. An interactive visual reference catalog for real-time graphics and shader development. Click any card to deep-dive into setup math, HLSL code blocks, and fresh-friendly explanations.
-              </p>
-            </div>
-
+          <section>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {shaderRecipes.map((recipe) => (
                 <article
@@ -264,29 +217,20 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
                     )}
 
                     <div className="p-5">
-                      <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-[#5c9d98] bg-[#5c9d98]/10 px-2 py-0.5 rounded">
+                      <span className="text-[11px] font-medium text-[#7db5b0]">
                         {recipe.category}
                       </span>
                       
-                      <h3 className="mt-3 text-lg font-bold text-white group-hover:text-primary transition-colors font-kanit tracking-tight">
+                      <h3 className="mt-3 text-lg font-medium text-white group-hover:text-primary transition-colors font-kanit tracking-tight">
                         <Link href={`/blog/${recipe.id}`}>
                           <span className="absolute inset-0" />
                           {recipe.name}
                         </Link>
                       </h3>
 
-                      <p className="mt-2 text-xs leading-relaxed text-stone-400">
-                        {recipe.shortDesc}
-                      </p>
                     </div>
                   </div>
 
-                  <div className="px-5 pb-5">
-                    <div className="inline-flex items-center gap-1 text-[11px] font-mono uppercase tracking-wider text-primary group-hover:text-[#6baea7] transition-colors">
-                      Deep Dive
-                      <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
-                    </div>
-                  </div>
                 </article>
               ))}
             </div>
@@ -294,14 +238,7 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
         )}
 
         {activeTab === "math" && (
-          <section className="space-y-8">
-            <div className="rounded-xl border border-primary/20 bg-primary/5 p-5 text-sm text-stone-300 flex items-start gap-3">
-              <Sparkles className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-              <p>
-                Practical notes on the shader math I use for production VFX. Understanding these concepts helps with creating custom masking, calculating lighting direction, building UV distortion, controlling particle falloffs, and procedural vertex motion. Read these in order if you want to build masks, motion, distortion, and spatial effects without relying only on premade nodes.
-              </p>
-            </div>
-
+          <section>
             <div className="grid gap-6 md:grid-cols-2">
               {mathPosts.map((post) => (
                 <article
@@ -322,34 +259,25 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
 
                   <div className="p-6 flex-1 flex flex-col justify-between">
                     <div>
-                      <div className="flex items-center gap-4 text-[11px] font-mono uppercase tracking-widest text-primary">
+                      <div className="flex items-center gap-3 text-sm text-[#7db5b0]">
                         <span className="flex items-center gap-1">
                           <Clock className="h-3.5 w-3.5" />
                           {post.readTime}
                         </span>
                         <span>•</span>
-                        <span>MATH</span>
+                        <span>Math</span>
                       </div>
 
-                      <h3 className="mt-4 text-xl font-bold tracking-tight text-white group-hover:text-primary transition-colors font-kanit">
+                      <h3 className="mt-4 text-xl font-medium tracking-tight text-white group-hover:text-primary transition-colors font-kanit">
                         <Link href={`/blog/${post.slug}`}>
                           <span className="absolute inset-0" />
                           {post.title}
                         </Link>
                       </h3>
 
-                      <p className="mt-3 text-sm leading-relaxed text-stone-400">
-                        {post.description}
-                      </p>
                     </div>
                   </div>
                   
-                  <div className="px-6 pb-6">
-                    <div className="inline-flex items-center gap-1 text-[11px] font-mono uppercase tracking-wider text-primary group-hover:text-[#6baea7] transition-colors">
-                      Read Full Article
-                      <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
-                    </div>
-                  </div>
                 </article>
               ))}
             </div>
