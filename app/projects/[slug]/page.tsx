@@ -6,6 +6,7 @@ import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import ProjectVideo from "@/components/projects/ProjectVideo";
+import VfxAnatomy from "@/components/projects/VfxAnatomy";
 import { PROJECTS } from "@/data/portfolio";
 import { absoluteUrl } from "@/lib/seo";
 
@@ -138,6 +139,8 @@ export default function ProjectDetailPage({ params }: Props) {
         </div>
       ) : null}
 
+      {project.slug === "spider-man-2" && <VfxAnatomy />}
+
       {/* Additional images — compact grid */}
       {project.images && project.images.length > 0 && (
         <div className="mb-10">
@@ -247,22 +250,33 @@ export default function ProjectDetailPage({ params }: Props) {
       <div className="grid gap-10 lg:grid-cols-3">
         {/* Main content */}
         <div className="lg:col-span-2 space-y-8">
-          <div>
-            <h2 className="text-lg font-semibold mb-3">Overview</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              {project.description}
-            </p>
-          </div>
-
-          {project.workSummary && (
+          {project.slug === "spider-man-2" ? (
+            <div>
+              <h2 className="text-lg font-semibold mb-3">Role & scope</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                {project.workSummary} {project.description}
+              </p>
+            </div>
+          ) : (
             <>
-              <Separator />
               <div>
-                <h2 className="text-lg font-semibold mb-3">My role</h2>
+                <h2 className="text-lg font-semibold mb-3">Overview</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  {project.workSummary}
+                  {project.description}
                 </p>
               </div>
+
+              {project.workSummary && (
+                <>
+                  <Separator />
+                  <div>
+                    <h2 className="text-lg font-semibold mb-3">My role</h2>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {project.workSummary}
+                    </p>
+                  </div>
+                </>
+              )}
             </>
           )}
 

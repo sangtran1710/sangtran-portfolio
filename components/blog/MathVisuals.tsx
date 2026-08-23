@@ -48,6 +48,10 @@ function useVisibleAnimationTime() {
   return { containerRef, time: prefersReducedMotion ? 0 : time };
 }
 
+function svgNumber(value: number) {
+  return value.toFixed(4);
+}
+
 export const DotProductVisual = () => {
   const { containerRef, time } = useVisibleAnimationTime();
   const angle = (Math.sin(time * Math.PI * 0.4) + 1) * 90;
@@ -108,13 +112,13 @@ export const SineWaveVisual = () => {
   const points = Array.from({ length: 200 }).map((_, i) => {
     const x = i * 2;
     const y = Math.sin((i / 20) - offset) * 40;
-    return `${x},${y}`;
+    return `${x},${svgNumber(y)}`;
   }).join(" ");
 
   const cosinePoints = Array.from({ length: 200 }).map((_, i) => {
     const x = i * 2;
     const y = Math.cos((i / 20) - offset) * 40;
-    return `${x},${y}`;
+    return `${x},${svgNumber(y)}`;
   }).join(" ");
 
   return (
@@ -341,7 +345,7 @@ export const UvDistortionVisual = () => {
               const x = j * 10;
               const noiseX = Math.sin(y * 0.05 + time * 2) * 10;
               const noiseY = Math.cos(x * 0.05 + time * 1.5) * 10;
-              return `${j === 0 ? 'M' : 'L'} ${x + noiseX} ${y + noiseY}`;
+              return `${j === 0 ? 'M' : 'L'} ${svgNumber(x + noiseX)} ${svgNumber(y + noiseY)}`;
             }).join(" ");
             return <path key={`h-${i}`} d={d} />;
           })}
@@ -351,7 +355,7 @@ export const UvDistortionVisual = () => {
               const y = j * 10;
               const noiseX = Math.sin(y * 0.05 + time * 2) * 10;
               const noiseY = Math.cos(x * 0.05 + time * 1.5) * 10;
-              return `${j === 0 ? 'M' : 'L'} ${x + noiseX} ${y + noiseY}`;
+              return `${j === 0 ? 'M' : 'L'} ${svgNumber(x + noiseX)} ${svgNumber(y + noiseY)}`;
             }).join(" ");
             return <path key={`v-${i}`} d={d} />;
           })}

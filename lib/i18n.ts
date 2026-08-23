@@ -83,7 +83,7 @@ export const UI_COPY = {
     about: {
       kicker: "About",
       shortBio:
-        "Senior FX Artist & Technical Artist focused on production-ready real-time effects, cinematic work, and technical art systems.",
+        "Senior FX Artist with 7+ years across shipped games, cinematics, and launch content.",
       downloadResume: "Download Resume",
       viewPortfolio: "View Portfolio",
       experience: "Experience",
@@ -190,7 +190,7 @@ export const UI_COPY = {
     about: {
       kicker: "Giới thiệu",
       shortBio:
-        "Senior FX Artist & Technical Artist tập trung vào real-time effects, cinematic polish và technical art systems có thể dùng thật trong production.",
+        "Senior FX Artist với hơn 7 năm kinh nghiệm trong game, cinematic và launch content.",
       downloadResume: "Tải Resume",
       viewPortfolio: "Xem Portfolio",
       experience: "Kinh nghiệm",

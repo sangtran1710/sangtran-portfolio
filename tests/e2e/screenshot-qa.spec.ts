@@ -28,10 +28,24 @@ test.describe("UI screenshot QA", () => {
         path: path.join(screenshotDir, "contact-mobile.png"),
       });
 
+      await page.goto("/about", { waitUntil: "networkidle" });
+      await page.screenshot({
+        path: path.join(screenshotDir, "about-mobile.png"),
+        fullPage: true,
+      });
+
       await page.goto("/rnd/erlangmon-vfx", { waitUntil: "networkidle" });
       await page.screenshot({
         path: path.join(screenshotDir, "erlangmon-project-mobile.png"),
         fullPage: true,
+      });
+
+      await page.goto("/projects/spider-man-2", { waitUntil: "networkidle" });
+      const mobileAnatomy = page.getByTestId("vfx-anatomy");
+      await mobileAnatomy.scrollIntoViewIfNeeded();
+      await page.waitForTimeout(500);
+      await mobileAnatomy.screenshot({
+        path: path.join(screenshotDir, "spider-man-vfx-anatomy-mobile.png"),
       });
       return;
     }
@@ -47,9 +61,9 @@ test.describe("UI screenshot QA", () => {
       { route: "/about", selector: "#featured-credits", name: "about-credits-desktop" },
       { route: "/articles", selector: "main", name: "articles-desktop" },
       { route: "/articles?tab=math", selector: "main", name: "math-index-desktop" },
-      { route: "/articles?tab=shaderlex", selector: "main", name: "shaderlex-index-desktop" },
       { route: "/contact", selector: "main", name: "contact-desktop" },
       { route: "/rnd/erlangmon-vfx", selector: "article", name: "erlangmon-project-desktop" },
+      { route: "/projects/spider-man-2", selector: '[data-testid="vfx-anatomy"]', name: "spider-man-vfx-anatomy-desktop" },
     ];
 
     for (const shot of shots) {
@@ -62,6 +76,7 @@ test.describe("UI screenshot QA", () => {
         path: path.join(screenshotDir, `${shot.name}.png`),
       });
     }
+
   });
 
   test("project cards keep long copy outside thumbnails", async ({ page }, testInfo) => {

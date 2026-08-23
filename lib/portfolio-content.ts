@@ -28,12 +28,10 @@ const VI_HERO = {
 };
 
 const VI_ABOUT = {
-  title: "Tạo ra hiệu ứng có cảm giác sống.",
+  title: "Real-time VFX cho game và cinematic.",
   bio: [
-    "Tôi là Henry Tran (Tran Minh Sang), một Senior FX Artist & Technical Artist sống tại TP. Hồ Chí Minh, với hơn 7 năm kinh nghiệm trong game development, cinematic và launch content.",
-    "Tôi bước vào ngành qua một quá trình chuyển nghề khá chậm nhưng chắc, học bằng cách làm thật và tích lũy sự tự tin qua từng cột mốc. Hành trình đó đưa tôi từ các đầu việc hỗ trợ đến việc tự chịu trách nhiệm cho những sequence hiệu ứng lớn, trong đó có phần việc xuất hiện trong giai đoạn marketing sớm của Marvel's Spider-Man 2.",
-    "Điều giữ tôi ở lại với nghề rất đơn giản: tôi thích tạo ra những khoảnh khắc có cảm giác sống trên màn hình. Tôi hợp với phản hồi rõ ràng, vòng lặp làm việc nhanh, và kiểu cộng tác nơi tay nghề đi cùng với giải quyết vấn đề.",
-    "Tôi đang mở cho các vị trí full-time remote, nơi tôi có thể nhận ownership rõ, làm việc sát với team mạnh và tiếp tục nâng chuẩn chất lượng lên.",
+    "Henry Tran (Trần Minh Sang) là Senior FX Artist tại TP. Hồ Chí Minh, với hơn 7 năm kinh nghiệm trong game, cinematic và launch content.",
+    "Tôi làm real-time effects, Houdini simulation, shader và production tool. Hiện mở cho vị trí remote và một số dự án freelance phù hợp.",
   ],
   location: "TP. Hồ Chí Minh, Việt Nam",
 };
@@ -103,7 +101,7 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
       "Phát triển particle system và environmental VFX cho tựa game PS5 của Insomniac Games, đóng góp vào combat effects, web mechanics và không khí open-world.",
     contributions: [
       "Thực hiện Houdini simulation cho destruction và debris effects",
-      "Xây Niagara particle systems cho combat và traversal VFX",
+      "Xây real-time particle systems cho combat và traversal VFX",
       "Tối ưu hiệu ứng để đạt mục tiêu performance trên PS5",
       "Tích hợp asset qua pipeline Perforce cùng FX team của Insomniac",
     ],

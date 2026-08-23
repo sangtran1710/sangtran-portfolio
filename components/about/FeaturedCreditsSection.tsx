@@ -1,8 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import ScrollReveal from "@/components/animations/ScrollReveal";
-import TextReveal from "@/components/animations/TextReveal";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { getLocalizedAchievementCredits } from "@/lib/portfolio-content";
 
@@ -14,23 +12,16 @@ export default function FeaturedCreditsSection() {
 
   return (
     <section id="featured-credits" className="mb-20">
-      <TextReveal
-        text={copy.about.featuredCredits}
-        as="h2"
-        className="mb-2 text-3xl font-semibold tracking-tight text-slate-900"
-        offset={["start 0.9", "start 0.65"]}
-      />
+      <h2 className="mb-2 text-3xl font-semibold tracking-tight text-slate-900">
+        {copy.about.featuredCredits}
+      </h2>
       <p className="mb-8 max-w-2xl text-sm leading-6 text-slate-600">
         {copy.about.featuredCreditsBody}
       </p>
 
       <div className="grid gap-6 sm:grid-cols-2">
         {credits.map((item, index) => (
-          <ScrollReveal
-            key={`${item.image}-${index}`}
-            variant="fadeUp"
-            offset={["start 0.95", "start 0.75"]}
-          >
+          <div key={`${item.image}-${index}`}>
             <article className="overflow-hidden rounded-[1.5rem] border border-stone-200 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.05)] transition-all duration-300 hover:border-stone-300 hover:shadow-[0_18px_40px_rgba(15,23,42,0.08)]">
               <div className="relative aspect-[3/4] border-b border-stone-200 bg-stone-50">
                 <Image
@@ -56,7 +47,7 @@ export default function FeaturedCreditsSection() {
                 </div>
               )}
             </article>
-          </ScrollReveal>
+          </div>
         ))}
       </div>
     </section>

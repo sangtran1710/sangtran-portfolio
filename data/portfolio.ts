@@ -70,12 +70,10 @@ export const HERO = {
 };
 
 export const ABOUT = {
-  title: "Production-ready real-time effects for shipped games and cinematic work.",
+  title: "Real-time VFX for games and cinematics.",
   bio: [
-    "I'm Henry Tran (Tran Minh Sang), a VFX artist based in Ho Chi Minh City, Vietnam, with more than 7 years of experience across games, cinematics, and launch content.",
-    "My path into VFX was built through practice: learning the tools, taking on real production work, and improving through delivery. That path led from support tasks to owning key effect sequences, including work featured in early marketing for Marvel's Spider-Man 2.",
-    "I focus on effects that read clearly in motion, support the art direction, and hold up under production constraints. I work best with clear feedback, fast iteration, and teams that value both craft and execution.",
-    "I'm open to remote roles and freelance opportunities where I can take ownership of real-time VFX pipelines, shaders, and core tools.",
+    "Henry Tran (Tran Minh Sang) is a Senior FX Artist based in Ho Chi Minh City with 7+ years across games, cinematics, and launch content.",
+    "I build real-time effects, Houdini simulations, shaders, and production tools. Available for remote roles and selected freelance work.",
   ],
   location: "Ho Chi Minh City, Vietnam",
 };
@@ -196,11 +194,11 @@ export const PROJECTS: Project[] = [
     categories: ["aaa", "realtime"],
     contributions: [
       "Authored Houdini simulations for destruction and debris effects",
-      "Built Niagara particle systems for combat and traversal VFX",
+      "Built real-time particle systems for combat and traversal VFX",
       "Optimized effects to hit PS5 performance targets",
       "Integrated assets via Perforce pipelines with the Insomniac FX team",
     ],
-    techStack: ["Houdini", "Blender", "Unreal Engine", "Python", "HLSL", "Perforce"],
+    techStack: ["Houdini", "Blender", "Proprietary Engine", "Python", "HLSL", "Perforce"],
     videoUrl: "https://www.youtube.com/embed/bgqGdIoa52s?start=1",
     isFeatured: true,
   },

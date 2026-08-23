@@ -6,17 +6,17 @@ import { getAllPosts } from "@/lib/blog";
 export const metadata: Metadata = {
   title: "Articles",
   description:
-    "Articles, production notes, and ShaderLex: a UE5 material library for technical art, shaders, VFX, and Unreal Engine workflows.",
+    "Production notes on real-time VFX, shaders, and technical art workflows.",
   alternates: {
     canonical: "/articles",
   },
   openGraph: {
     title: "Articles - Henry Tran",
     description:
-      "Articles, production notes, and ShaderLex: a UE5 material library for technical art, shaders, VFX, and Unreal Engine workflows.",
+      "Production notes on real-time VFX, shaders, and technical art workflows.",
     url: "/articles",
     type: "website",
-    images: ["/assets/materials/style/anime-cel-shader-pilot-02.png"],
+    images: ["/images/NWA.jpg"],
   },
 };
 

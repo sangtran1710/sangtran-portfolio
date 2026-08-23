@@ -129,10 +129,6 @@ export default function AboutPageClient() {
                   </div>
                 </div>
 
-                <p className="max-w-2xl text-base leading-8 text-slate-700">
-                  {about.bio[0]}
-                </p>
-
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Button
                     asChild
