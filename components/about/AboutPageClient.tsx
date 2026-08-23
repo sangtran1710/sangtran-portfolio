@@ -82,9 +82,6 @@ export default function AboutPageClient() {
               <motion.div
                 className="relative mx-auto lg:mx-0 will-change-transform"
                 style={!prefersReducedMotion ? { y: avatarY } : undefined}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
               >
                 <div className="relative h-64 w-64 overflow-hidden rounded-[1.5rem] ring-1 ring-stone-200 shadow-[0_14px_34px_rgba(15,23,42,0.08)] sm:h-72 sm:w-72 lg:h-80 lg:w-80">
                   <Image
@@ -99,37 +96,17 @@ export default function AboutPageClient() {
               </motion.div>
 
               <div>
-                <motion.p
-                  className="mb-3 text-[11px] font-medium uppercase tracking-[0.16em] text-[#4f8e89]"
-                  initial={{ opacity: 0, x: -12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4 }}
-                >
+                <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.16em] text-[#4f8e89]">
                   {copy.about.kicker}
-                </motion.p>
-                <motion.h1
-                  className="mb-3 text-4xl font-semibold tracking-tight text-slate-900 sm:text-[3.35rem]"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                >
+                </p>
+                <h1 className="mb-3 text-4xl font-semibold tracking-tight text-slate-900 sm:text-[3.35rem]">
                   Henry Tran
-                </motion.h1>
-                <motion.p
-                  className="mb-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg"
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                >
+                </h1>
+                <p className="mb-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">
                   {copy.about.shortBio}
-                </motion.p>
+                </p>
 
-                <motion.div
-                  className="mb-6 flex flex-wrap items-center gap-4"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3, duration: 0.5 }}
-                >
+                <div className="mb-6 flex flex-wrap items-center gap-4">
                   <span className="inline-flex items-center gap-1.5 text-sm text-slate-500">
                     <MapPin className="h-3.5 w-3.5 text-[#4f8e89]" />
                     {about.location}
@@ -150,23 +127,13 @@ export default function AboutPageClient() {
                       </a>
                     ))}
                   </div>
-                </motion.div>
+                </div>
 
-                <motion.p
-                  className="max-w-2xl text-base leading-8 text-slate-700"
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.35, duration: 0.5 }}
-                >
+                <p className="max-w-2xl text-base leading-8 text-slate-700">
                   {about.bio[0]}
-                </motion.p>
+                </p>
 
-                <motion.div
-                  className="mt-8 flex flex-wrap gap-3"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.45, duration: 0.4 }}
-                >
+                <div className="mt-8 flex flex-wrap gap-3">
                   <Button
                     asChild
                     size="lg"
@@ -185,7 +152,7 @@ export default function AboutPageClient() {
                   >
                     <Link href="/portfolio">{copy.about.viewPortfolio}</Link>
                   </Button>
-                </motion.div>
+                </div>
               </div>
             </div>
           </div>

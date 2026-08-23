@@ -30,7 +30,7 @@ const VI_HERO = {
 const VI_ABOUT = {
   title: "Tạo ra hiệu ứng có cảm giác sống.",
   bio: [
-    "Tôi là Henry Tran, một Senior FX Artist & Technical Artist sống tại TP. Hồ Chí Minh, với hơn 7 năm kinh nghiệm trong game development, cinematic và launch content.",
+    "Tôi là Henry Tran (Tran Minh Sang), một Senior FX Artist & Technical Artist sống tại TP. Hồ Chí Minh, với hơn 7 năm kinh nghiệm trong game development, cinematic và launch content.",
     "Tôi bước vào ngành qua một quá trình chuyển nghề khá chậm nhưng chắc, học bằng cách làm thật và tích lũy sự tự tin qua từng cột mốc. Hành trình đó đưa tôi từ các đầu việc hỗ trợ đến việc tự chịu trách nhiệm cho những sequence hiệu ứng lớn, trong đó có phần việc xuất hiện trong giai đoạn marketing sớm của Marvel's Spider-Man 2.",
     "Điều giữ tôi ở lại với nghề rất đơn giản: tôi thích tạo ra những khoảnh khắc có cảm giác sống trên màn hình. Tôi hợp với phản hồi rõ ràng, vòng lặp làm việc nhanh, và kiểu cộng tác nơi tay nghề đi cùng với giải quyết vấn đề.",
     "Tôi đang mở cho các vị trí full-time remote, nơi tôi có thể nhận ownership rõ, làm việc sát với team mạnh và tiếp tục nâng chuẩn chất lượng lên.",
@@ -41,7 +41,7 @@ const VI_ABOUT = {
 const VI_PROFILE = {
   headline: "Senior Real-time VFX Artist",
   paragraph:
-    "**Sony** / **Epic** / **Amazon** / **Netflix**. Làm việc tại **TP.HCM** và đang mở cho cả full-time lẫn freelance.",
+    "Sony / Epic / Amazon / Netflix. Làm việc tại TP.HCM và đang mở cho cả full-time lẫn freelance.",
   ctaText: "Liên hệ với tôi",
   stats: [
     { label: "Game đã ra mắt", value: "8+" },

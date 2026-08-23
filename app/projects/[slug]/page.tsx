@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import ProjectVideo from "@/components/projects/ProjectVideo";
 import { PROJECTS } from "@/data/portfolio";
 import { absoluteUrl } from "@/lib/seo";
 
@@ -120,16 +121,11 @@ export default function ProjectDetailPage({ params }: Props) {
 
       {/* Video embed or image */}
       {embedUrl ? (
-        <div className="relative w-full overflow-hidden rounded-xl bg-zinc-950 mb-10"
-          style={{ paddingTop: "56.25%" }}>
-          <iframe
-            src={embedUrl}
-            title={project.title}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="absolute inset-0 h-full w-full"
-          />
-        </div>
+        <ProjectVideo
+          embedUrl={embedUrl}
+          poster={project.thumbnail || "/images/NWA.jpg"}
+          title={project.title}
+        />
       ) : project.thumbnail ? (
         <div className="relative h-72 sm:h-96 overflow-hidden rounded-xl bg-muted mb-10">
           <Image

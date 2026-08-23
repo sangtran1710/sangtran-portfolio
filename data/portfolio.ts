@@ -72,7 +72,7 @@ export const HERO = {
 export const ABOUT = {
   title: "Production-ready real-time effects for shipped games and cinematic work.",
   bio: [
-    "I'm Henry Tran, a VFX artist based in Ho Chi Minh City, Vietnam, with more than 7 years of experience across games, cinematics, and launch content.",
+    "I'm Henry Tran (Tran Minh Sang), a VFX artist based in Ho Chi Minh City, Vietnam, with more than 7 years of experience across games, cinematics, and launch content.",
     "My path into VFX was built through practice: learning the tools, taking on real production work, and improving through delivery. That path led from support tasks to owning key effect sequences, including work featured in early marketing for Marvel's Spider-Man 2.",
     "I focus on effects that read clearly in motion, support the art direction, and hold up under production constraints. I work best with clear feedback, fast iteration, and teams that value both craft and execution.",
     "I'm open to remote roles and freelance opportunities where I can take ownership of real-time VFX pipelines, shaders, and core tools.",
@@ -86,7 +86,7 @@ export const PROFILE = {
   title: "Henry Tran.",
   /** Single line; detailed info reserved for the About page. */
   paragraph:
-    "Credits include **Sony**, **Epic**, **Amazon**, and **Netflix**. Based in **HCMC**, available for remote positions and freelance technical leadership.",
+    "Credits include Sony, Epic, Amazon, and Netflix. Based in HCMC, available for remote positions and freelance technical leadership.",
   portraitImage: "/images/Portrait/z7554087716035_e6282b2e1378f725e4bcb1b51032c015.jpg",
   /** Image flipped on hover (secondary avatar in the Portrait folder) */
   portraitImageSecondary: "/images/Portrait/z7554087716035_e6282b2e1378f725e4bcb1b51032c015.jpg",
