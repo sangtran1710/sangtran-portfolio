@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, Play } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { getLocalizedHero } from "@/lib/portfolio-content";
 
@@ -22,14 +22,14 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-[88svh] items-end overflow-hidden bg-[#050607] pt-[4.5rem]"
+      className="relative flex min-h-[68svh] items-end overflow-hidden bg-[#050607] pt-[4.5rem] sm:min-h-[72svh]"
     >
       <div className="absolute inset-0">
         {prefersReducedMotion ? (
           <div className="h-full w-full bg-[#0b0e12]" />
         ) : (
           <video
-            className="h-full w-full object-cover object-center"
+            className="h-full w-full object-cover object-center brightness-[0.72] saturate-[0.72]"
             autoPlay
             muted
             loop
@@ -54,13 +54,16 @@ export default function HeroSection() {
         <h1 className="mt-3 max-w-4xl font-kanit text-5xl font-normal leading-none text-white sm:text-[4rem] lg:text-[5rem]">
           {hero.name}
         </h1>
-        <div className="mt-9 flex flex-wrap gap-x-8 gap-y-4 text-base font-medium text-white">
-          <Link href="/showreel" className="inline-flex items-center gap-2 border-b border-white/60 pb-2 transition-colors hover:border-[#7db5b0] hover:text-[#a7d2ce]">
-            <Play className="h-3.5 w-3.5 fill-current" />
-            Showreel
+        <p className="mt-5 max-w-xl text-base leading-7 text-white/70 sm:text-lg">
+          {hero.description}
+        </p>
+        <div className="mt-8 flex flex-wrap gap-x-8 gap-y-4 text-base font-medium text-white">
+          <Link href="/portfolio" className="inline-flex items-center gap-2 border-b border-white/60 pb-2 transition-colors hover:border-[#7db5b0] hover:text-[#a7d2ce]">
+            Selected work
+            <ArrowUpRight className="h-4 w-4" />
           </Link>
-          <Link href="/portfolio" className="inline-flex items-center gap-2 border-b border-white/20 pb-2 text-white/75 transition-colors hover:border-white hover:text-white">
-            Work
+          <Link href="/rnd/erlangmon-vfx" className="inline-flex items-center gap-2 border-b border-white/20 pb-2 text-white/75 transition-colors hover:border-white hover:text-white">
+            Technical breakdown
             <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>

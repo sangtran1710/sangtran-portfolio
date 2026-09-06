@@ -9,6 +9,8 @@ import {
   VolumeX,
   ExternalLink,
   Youtube,
+  Film,
+  CheckCircle2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -17,6 +19,37 @@ import { getLocalizedHero } from "@/lib/portfolio-content";
 interface ShowreelSectionProps {
   headingLevel?: "h1" | "h2";
 }
+
+const SHOT_BREAKDOWNS = [
+  {
+    title: "Marvel's Spider-Man 2",
+    client: "Insomniac Games",
+    engine: "Proprietary Engine · Houdini",
+    contribution:
+      "Authored combat hit particles, dynamic debris simulations, and environmental traversal VFX optimized for PS5 60 FPS performance mode.",
+  },
+  {
+    title: "Fortnite - Remix The Finale",
+    client: "Epic Games",
+    engine: "Unreal Engine · Niagara",
+    contribution:
+      "Implemented weapon-skin visual effects, stylized energy bursts, and live-event particle systems tuned for cross-platform play.",
+  },
+  {
+    title: "New World: Aeternum",
+    client: "Amazon Games",
+    engine: "Unreal Engine · Houdini",
+    contribution:
+      "Created environmental weather systems, ambient mist, and procedural material interactions for foliage and water.",
+  },
+  {
+    title: "Erlangmon VFX Study",
+    client: "Personal Technical Study",
+    engine: "Unreal Engine 5 · Niagara · Shaders",
+    contribution:
+      "Built complete character VFX package: buff aura, skill slash synchronized with animation timing (1.31s offset), and mobile overdraw profiling.",
+  },
+];
 
 export default function ShowreelSection({
   headingLevel = "h2",
@@ -112,6 +145,7 @@ export default function ShowreelSection({
             muted
             loop
             playsInline
+            controls={started}
             preload="none"
             className="aspect-video w-full object-cover"
             onError={() => setHasError(true)}
@@ -147,8 +181,8 @@ export default function ShowreelSection({
           )}
 
           {started && (
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <div className="pointer-events-auto absolute bottom-14 left-4 right-4 flex items-center justify-between">
                 <button
                   type="button"
                   onClick={togglePlay}
@@ -198,6 +232,46 @@ export default function ShowreelSection({
             ? copy.common.hoverForControls
             : copy.common.clickToPlay}
       </p>
+
+      {/* Shot Breakdown & Contributions */}
+      <div className="mt-16 rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
+        <div className="mb-6 flex items-center gap-3">
+          <Film className="h-5 w-5 text-[#7db5b0]" />
+          <div>
+            <h3 className="text-lg font-semibold tracking-tight text-white">
+              {copy.showreel.shotBreakdown}
+            </h3>
+            <p className="text-xs text-white/50">
+              {copy.showreel.shotBreakdownBody}
+            </p>
+          </div>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2">
+          {SHOT_BREAKDOWNS.map((shot) => (
+            <div
+              key={shot.title}
+              className="rounded-xl border border-white/5 bg-black/20 p-4 transition-colors hover:border-white/15"
+            >
+              <div className="flex items-start justify-between gap-2">
+                <h4 className="text-sm font-semibold text-white">
+                  {shot.title}
+                </h4>
+                <span className="rounded bg-white/10 px-2 py-0.5 text-[10px] text-white/70">
+                  {shot.client}
+                </span>
+              </div>
+              <p className="mt-1 text-[11px] font-medium text-[#7db5b0]">
+                {shot.engine}
+              </p>
+              <p className="mt-2.5 flex items-start gap-2 text-xs leading-relaxed text-white/60">
+                <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-teal-400" />
+                <span>{shot.contribution}</span>
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

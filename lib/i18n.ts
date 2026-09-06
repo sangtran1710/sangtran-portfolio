@@ -31,7 +31,11 @@ export const UI_COPY = {
       overview: "Overview",
       myRole: "My role",
       contributions: "Contributions",
+      productionConstraints: "Production Constraints",
+      technicalInvolvement: "Technical Implementation",
+      verifiedEvidence: "Verified Evidence & Proof",
       techStack: "Tech Stack",
+      engine: "Engine",
       role: "Role",
       platform: "Platform",
       period: "Period",
@@ -64,8 +68,12 @@ export const UI_COPY = {
     home: {
       playShowreel: "Play showreel",
       viewPortfolio: "View portfolio",
-      selectedWork: "Selected work",
-      selectedWorkBody: "A concise selection of shipped game, cinematic, and launch-content work.",
+      selectedWork: "Selected production work",
+      selectedWorkBody: "Released projects with my role and production contribution stated clearly.",
+      technicalSpotlight: "Technical breakdowns & pipeline tools",
+      technicalSpotlightBody: "In-depth case studies on effect creation, Unreal Engine systems, and pipeline automation.",
+      viewBreakdown: "View breakdown",
+      viewToolBreakdown: "View tool breakdown",
       backstoryOutro:
         "Focused on practical VFX work across Niagara, shaders, Houdini workflows, and cross-studio production.",
       backstoryCta: "Read Full Resume",
@@ -79,11 +87,19 @@ export const UI_COPY = {
       body:
         "A curated selection of real-time VFX, cinematic work, and technical art. Released projects are prioritized; R&D and tool experiments are grouped separately below.",
       selectedProjects: "Released projects",
+      gameSectionTitle: "Game Production (Real-time)",
+      gameSectionBody: "Real-time VFX and engine integration across AAA console releases, live events, and commercial indie games.",
+      filmSectionTitle: "Film & Broadcast VFX",
+      filmSectionBody: "Offline Houdini simulations and broadcast-quality visual effects for episodic television and streaming platforms.",
+      filterAllGames: "All Games",
+      filterAaa: "AAA",
+      filterRealtime: "Real-time",
+      filterCinematic: "In-Engine Cinematics",
     },
     about: {
       kicker: "About",
       shortBio:
-        "Senior FX Artist with 7+ years across shipped games, cinematics, and launch content.",
+        "Senior FX Artist whose real-time game production career began in 2022, following an earlier background in video and motion design.",
       downloadResume: "Download Resume",
       viewPortfolio: "View Portfolio",
       experience: "Experience",
@@ -93,10 +109,16 @@ export const UI_COPY = {
       featuredCredits: "Featured Credits",
       featuredCreditsBody:
         "Released productions where my credit appears in the final project.",
+      clientEndorsements: "Client Endorsements & Recommendations",
+      clientEndorsementsBody:
+        "Verified feedback from freelance production and technical VFX contracts on Upwork (All 5.0 ★).",
+      viewVerifiedReview: "View Upwork verification",
     },
     showreel: {
       title: "Showreel",
       subtitle: "Real-time VFX - AAA - Cinematic",
+      shotBreakdown: "Shot Breakdown & Contributions",
+      shotBreakdownBody: "Exact production ownership across featured titles in the showreel.",
     },
     blog: {
       kicker: "Blog",
@@ -138,7 +160,11 @@ export const UI_COPY = {
       overview: "Tổng quan",
       myRole: "Vai trò của tôi",
       contributions: "Phần tôi thực hiện",
+      productionConstraints: "Ràng buộc sản xuất",
+      technicalInvolvement: "Giải pháp kỹ thuật",
+      verifiedEvidence: "Bằng chứng xác thực",
       techStack: "Tech Stack",
+      engine: "Engine",
       role: "Vai trò",
       platform: "Nền tảng",
       period: "Thời gian",
@@ -171,8 +197,12 @@ export const UI_COPY = {
     home: {
       playShowreel: "Xem showreel",
       viewPortfolio: "Xem portfolio",
-      selectedWork: "Dự án tiêu biểu",
-      selectedWorkBody: "Một số dự án đã ship và các sản phẩm đã sẵn sàng để trình bày.",
+      selectedWork: "Dự án production chọn lọc",
+      selectedWorkBody: "Các dự án đã phát hành với vai trò và đóng góp kỹ thuật rõ ràng.",
+      technicalSpotlight: "Phân tích kỹ thuật & Công cụ pipeline",
+      technicalSpotlightBody: "Các case study đi sâu vào effect creation, hệ thống Unreal Engine và tự động hoá quy trình.",
+      viewBreakdown: "Xem phân tích",
+      viewToolBreakdown: "Xem chi tiết công cụ",
       backstoryOutro:
         "Tôi luôn sẵn sàng cho thử thách mới, từ Niagara, shader đến pipeline Houdini và môi trường làm việc xuyên studio.",
       backstoryCta: "Xem hồ sơ đầy đủ",
@@ -186,11 +216,19 @@ export const UI_COPY = {
       body:
         "Một bộ tuyển chọn tập trung vào VFX đã sẵn sàng cho launch, cinematic và technical art. Các dự án đã ship và sẵn sàng để trình bày được đặt lên trước; phần thử nghiệm và R&D nằm bên dưới.",
       selectedProjects: "Dự án chọn lọc",
+      gameSectionTitle: "Dự án Game (Real-time)",
+      gameSectionBody: "Visual effects real-time và tích hợp engine cho game console AAA, live events và game indie thương mại.",
+      filmSectionTitle: "Kỹ xảo Phim & Truyền hình (Broadcast)",
+      filmSectionBody: "Mô phỏng offline bằng Houdini và VFX chất lượng cao cho các series phim truyền hình và nền tảng phát sóng.",
+      filterAllGames: "Tất cả Game",
+      filterAaa: "AAA",
+      filterRealtime: "Thời gian thực",
+      filterCinematic: "Cinematic trong Game",
     },
     about: {
       kicker: "Giới thiệu",
       shortBio:
-        "Senior FX Artist với hơn 7 năm kinh nghiệm trong game, cinematic và launch content.",
+        "Senior FX Artist; bắt đầu làm game real-time từ năm 2022, sau giai đoạn làm video và motion design.",
       downloadResume: "Tải Resume",
       viewPortfolio: "Xem Portfolio",
       experience: "Kinh nghiệm",
@@ -200,10 +238,16 @@ export const UI_COPY = {
       featuredCredits: "Credit nổi bật",
       featuredCreditsBody:
         "Một số sản phẩm mà credit của tôi xuất hiện trong bản phát hành cuối cùng.",
+      clientEndorsements: "Đánh giá & Chứng thực từ Khách hàng",
+      clientEndorsementsBody:
+        "Phản hồi thực tế từ các hợp đồng freelance và sản xuất VFX kỹ thuật trên Upwork (100% đánh giá 5.0 ★).",
+      viewVerifiedReview: "Xem ảnh chứng thực Upwork",
     },
     showreel: {
       title: "Showreel",
       subtitle: "Real-time VFX - AAA - Cinematic",
+      shotBreakdown: "Chi tiết từng shot & Đóng góp thực tế",
+      shotBreakdownBody: "Phần việc tôi trực tiếp thực hiện trong từng dự án xuất hiện trong reel.",
     },
     blog: {
       kicker: "Blog",

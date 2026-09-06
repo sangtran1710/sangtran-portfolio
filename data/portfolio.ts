@@ -1,6 +1,7 @@
 export type ProjectCategory = "aaa" | "realtime" | "cinematic" | "igaming";
 
 export interface Project {
+  projectType?: "game" | "film";
   slug: string;
   thumbnail: string;
   title: string;
@@ -14,6 +15,8 @@ export interface Project {
   images?: string[];
   /** Breakdown: URL + VFX name + optional caption (Behance-style: video -> text -> video -> image) */
   breakdownClips?: { url: string; title: string; caption?: string }[];
+  evidenceBreakdown?: { image: string; title: string; caption: string; tag?: string }[];
+  steamUrl?: string;
   isFeatured?: boolean;
   /** Display period e.g. "12/2022 - 9/2023" */
   duration?: string;
@@ -25,6 +28,12 @@ export interface Project {
   workSummary?: string;
   /** Visual style: "stylized" | "realistic" */
   style?: "stylized" | "realistic";
+  /** Target engine (e.g. "Proprietary Engine", "Unreal Engine 5") */
+  engine?: string;
+  /** Production constraints (e.g. target framerate, memory, platform budget) */
+  constraints?: string[];
+  /** Technical highlights / how problems were solved */
+  technicalHighlights?: string[];
   /** Optional custom URL if this doesn't use the standard /projects/[slug] route */
   link?: string;
 }
@@ -55,25 +64,26 @@ export const SOCIALS = {
   github: "https://github.com/sangtran1710",
   behance: "https://www.behance.net/sangtranminh",
   artstation: "https://www.artstation.com/minhsang11",
-  resume:
-    "https://drive.google.com/drive/folders/1MNF25uY-XX6N0hwEDwFb6Dpalw9648gX?hl=vi",
+  resume: "/Henry_Tran_Senior_Technical_VFX_Artist_CV.pdf",
 };
 
 export const HERO = {
   name: "Henry Tran",
-  tagline: "Senior real-time VFX artist.",
+  tagline: "Hands-on real-time VFX for game production.",
   /** A short line; the rest is conveyed by video & images. */
   description:
-    "I build clear, production-ready effects for gameplay, cinematics, and launch campaigns.",
+    "I build, optimize, and integrate production-ready effects across proprietary engines and Unreal Engine.",
   showreelUrl: "/video/reel_final.mp4",
   showreelYoutube: "https://www.youtube.com/watch?v=qK8jtTMHCRU",
 };
 
 export const ABOUT = {
-  title: "Real-time VFX for games and cinematics.",
+  title: "Hands-on VFX, shaders, and engine integration.",
   bio: [
-    "Henry Tran (Tran Minh Sang) is a Senior FX Artist based in Ho Chi Minh City with 7+ years across games, cinematics, and launch content.",
-    "I build real-time effects, Houdini simulations, shaders, and production tools. Available for remote roles and selected freelance work.",
+    "Henry Tran (Tran Minh Sang) is a Senior FX Artist based in Ho Chi Minh City, specializing in real-time effects for games and cinematics. His real-time game production career began in 2022, following an earlier background in video production, motion graphics, and animation.",
+    "That earlier motion and video background provides a strong instinct for timing, silhouette clarity, easing curves, and visual hierarchy — ensuring gameplay effects are punchy, readable, and never visual noise.",
+    "In production, I have contributed to AAA releases including Marvel's Spider-Man 2 and Fortnite Remix Finale, working within strict performance budgets, Perforce asset pipelines, and both proprietary and Unreal Engine environments.",
+    "I focus on the entire practical execution loop: effect creation, custom HLSL/material graphs, lightweight Python/Blender pipeline tools, and in-engine profiling to guarantee stability and performance on target hardware.",
   ],
   location: "Ho Chi Minh City, Vietnam",
 };
@@ -84,15 +94,15 @@ export const PROFILE = {
   title: "Henry Tran.",
   /** Single line; detailed info reserved for the About page. */
   paragraph:
-    "Credits include Sony, Epic, Amazon, and Netflix. Based in HCMC, available for remote positions and freelance technical leadership.",
-  portraitImage: "/images/Portrait/z7554087716035_e6282b2e1378f725e4bcb1b51032c015.jpg",
+    "Hands-on across effect creation, optimization, engine integration, and lightweight production tools. Based in HCMC and open to remote collaboration.",
+  portraitImage: "/images/Portrait/avatar.png",
   /** Image flipped on hover (secondary avatar in the Portrait folder) */
-  portraitImageSecondary: "/images/Portrait/z7554087716035_e6282b2e1378f725e4bcb1b51032c015.jpg",
+  portraitImageSecondary: "/images/Portrait/avatar.png",
   ctaText: "Contact me",
   stats: [
     { label: "Shipped Games", value: "8+" },
     { label: "Commercial Projects", value: "20+" },
-    { label: "Years Experience", value: "7+" },
+    { label: "Years in Creative Production", value: "7+" },
     { label: "Tools", value: "Unreal Engine, Unity, Premiere Pro, After Effects, JangaFX" },
     { label: "3D Software", value: "Blender, Houdini, Maya, 3Ds Max, Cinema 4D" },
   ] as const,
@@ -110,8 +120,9 @@ export const EXPERIENCES: Experience[] = [
     role: "Freelance Technical VFX Artist",
     duration: "2024 - Present",
     responsibilities: [
-      "Deliver real-time VFX and technical art for indie and mid-size game studios",
-      "Build Niagara systems, shaders, and optimized Unreal Engine effects",
+      "Deliver real-time VFX, shaders, and technical art directly for indie and mid-size studios with lean pipelines",
+      "Build modular Niagara systems, custom master materials, and profiling passes for locked framerate targets",
+      "Bridge DCC-to-engine handoff with lightweight Python scripts and optimized mesh preparation",
     ],
     technologies: "Unreal Engine 5, Niagara, HLSL, Houdini",
   },
@@ -121,7 +132,7 @@ export const EXPERIENCES: Experience[] = [
     duration: "Apr 2022 - Present",
     responsibilities: [
       "Developed and optimized real-time VFX for AAA projects including Marvel's Spider-Man 2, Fortnite Remix Finale, New World: Aeternum, and Until Dawn (PS5)",
-      "Developed custom material shaders and Unreal Engine 5 Niagara systems for production-quality effects",
+      "Authored custom shaders and Niagara systems for production gameplay and cinematics",
       "Built Python tools and Houdini workflows to speed up asset production",
       "Worked with art directors, tech leads, and partner teams at Insomniac Games, Epic Games, and Amazon Games",
     ],
@@ -199,6 +210,17 @@ export const PROJECTS: Project[] = [
       "Integrated assets via Perforce pipelines with the Insomniac FX team",
     ],
     techStack: ["Houdini", "Blender", "Proprietary Engine", "Python", "HLSL", "Perforce"],
+    engine: "Proprietary Engine",
+    constraints: [
+      "PS5 locked 60 FPS performance mode target",
+      "Proprietary particle system memory budget",
+      "Strict Perforce check-in conventions and asset hierarchy",
+    ],
+    technicalHighlights: [
+      "Houdini destruction and debris simulation pipelines",
+      "Real-time particle system integration for traversal and combat",
+      "Particle count and overdraw profiling on PS5 hardware",
+    ],
     videoUrl: "https://www.youtube.com/embed/bgqGdIoa52s?start=1",
     isFeatured: true,
   },
@@ -223,6 +245,17 @@ export const PROJECTS: Project[] = [
       "Worked directly with Epic's FX team on style, performance, and technical constraints",
     ],
     techStack: ["Unreal Engine", "Houdini", "Blender", "Python", "HLSL", "Perforce"],
+    engine: "Unreal Engine",
+    constraints: [
+      "Multi-platform performance across PC, console, and mobile",
+      "Strict visual readability amidst high-density multiplayer gameplay",
+      "Epic Games Niagara pipeline standards and LOD rules",
+    ],
+    technicalHighlights: [
+      "Modular Niagara emitters for weapon skins and live event moments",
+      "Stylized noise-erosion shaders and unlit master materials",
+      "Particle lifecycle and drawcall optimization",
+    ],
     videoUrl: "https://www.youtube.com/embed/c-rtUmJPLQM?start=272",
     images: [
       "/images/Fornite/hq720.jpg",
@@ -269,6 +302,15 @@ export const PROJECTS: Project[] = [
       "Built Houdini procedural pipelines to accelerate asset production",
     ],
     techStack: ["Houdini", "Blender", "Unreal Engine", "Python", "HLSL"],
+    engine: "Unreal Engine",
+    constraints: [
+      "Cinematic environment fidelity under tight marketing milestones",
+      "Dynamic weather and lighting consistency",
+    ],
+    technicalHighlights: [
+      "Custom shader logic for foliage motion and water interactions",
+      "Procedural Houdini geometry workflows for environment dressing",
+    ],
     videoUrl: "https://www.youtube.com/embed/qK8jtTMHCRU",
     isFeatured: true,
   },
@@ -293,7 +335,116 @@ export const PROJECTS: Project[] = [
       "Optimized light setups for real-time performance on PS5 hardware",
     ],
     techStack: ["Unreal Engine 5"],
+    engine: "Unreal Engine 5",
+    constraints: [
+      "Real-time Lumen global illumination performance budget on PS5",
+      "Atmospheric horror contrast preservation",
+    ],
+    technicalHighlights: [
+      "UE5 Lumen lighting setups for cinematic sequences",
+      "Volumetric fog optimization for 60 FPS console target",
+    ],
     videoUrl: "https://www.youtube.com/embed/8nApBGPy0ao",
+  },
+  {
+    slug: "malignant",
+    thumbnail: "/projects/malignant/steam-capsule.jpg",
+    title: "Malignant",
+    role: "Technical VFX Artist (Freelance)",
+    year: "2025 - 2026",
+    duration: "10/2025 - 5/2026",
+    platform: "PC (Steam)",
+    style: "realistic",
+    client: "Buzzkill Interactive",
+    workSummary:
+      "Authored 80% of visual effects for the 80s horde-shooter Malignant on Steam: weapon combat VFX, blood & gore simulations, environment fire, UMG HUD, and mutagen screen overlays.",
+    description:
+      "Contracted via Upwork to design, optimize, and integrate core gameplay VFX, UMG widget feedback, and gore simulation pipelines in Unreal Engine 5 for an indie commercial release.",
+    categories: ["realtime"],
+    contributions: [
+      "Simulated fluid blood splatters and impacts using LiquiGen (JangaFX), exporting sprite sheets and flipbooks into Unreal Engine 5",
+      "Engineered rate-limiting Blueprint logic (0.1s cooldown throttling) for Niagara blood hits to eliminate frame drops during automatic weapon fire",
+      "Created weapon combat VFX including dual-channel SMG muzzle flash lights, recoil integration, and projectile impacts",
+      "Designed and implemented UMG HUD widgets (WBP_ActiveSyringe, WBP_InactiveSyringes) featuring dynamic radial cooldowns and stylized ink-brush ammo meters",
+      "Built full-screen post-process and material overlay effects for low health, mutagen vein growth, and mutation state transitions",
+      "Dressed night town levels (L_Town1) with environment fires, burning vehicles, floating embers, and local light sources",
+    ],
+    techStack: [
+      "Unreal Engine 5",
+      "Niagara",
+      "LiquiGen",
+      "Blueprints",
+      "UMG",
+      "HLSL / Materials",
+      "JangaFX",
+    ],
+    engine: "Unreal Engine 5",
+    constraints: [
+      "Maintain 40+ FPS during dense mutant horde encounters and high-fire-rate weapon bursts",
+      "Rate-limit particle system spawning on bullet hits to prevent CPU/GPU hitches",
+      "Keep stylized 80s horror atmosphere readable with dynamic fire and blood decals in dark environments",
+    ],
+    technicalHighlights: [
+      "LiquiGen fluid simulation pipeline for blood splatter variations and flipbooks",
+      "Niagara bullet impact rate-limiting throttling with timed boolean flags and 30s decal persistence",
+      "UMG Widget Blueprint architecture for radial cooldowns and active syringe mutagen states",
+      "In-engine STATGROUP_game performance profiling for draw call and tick budget verification",
+    ],
+    steamUrl: "https://store.steampowered.com/app/4314740/Malignant/",
+    isFeatured: true,
+    images: [
+      "/projects/malignant/malignant-combat-profiling.png",
+      "/projects/malignant/malignant-ue5-editor-fire.png",
+      "/projects/malignant/malignant-liquigen-blood-sim.png",
+      "/projects/malignant/malignant-umg-screen-overlay.png",
+      "/projects/malignant/malignant-umg-syringe-cooldowns.png",
+      "/projects/malignant/malignant-blueprint-weapon-vfx.png",
+      "/projects/malignant/malignant-blueprint-blood-rate-limit.png",
+    ],
+    evidenceBreakdown: [
+      {
+        image: "/projects/malignant/malignant-combat-profiling.png",
+        title: "In-Engine Profiling & Live Combat (UE5 PIE)",
+        tag: "Unreal Engine 5 · Profiling",
+        caption: "Live Play-In-Editor profiling against sewer mutant hordes (AIC_SewerMutant) using STATGROUP_game. Monitored draw calls (574), primitive counts (2852k), and tick times to guarantee smooth 40+ FPS performance under heavy combat stress.",
+      },
+      {
+        image: "/projects/malignant/malignant-ue5-editor-fire.png",
+        title: "Environment Fire & Level Dressing (L_Town1)",
+        tag: "Niagara · Environment VFX",
+        caption: "Authored environment fire emitters, floating paper debris, and ember particles in L_Town1 (Daybreak town) within Unreal Engine 5. Tuned dynamic point lights to illuminate dark streets without blowing out shadow contrast.",
+      },
+      {
+        image: "/projects/malignant/malignant-liquigen-blood-sim.png",
+        title: "Blood Splatter Fluid Simulation",
+        tag: "LiquiGen (JangaFX) · Simulation",
+        caption: "Simulated high-velocity blood splatter trajectories using LiquiGen (JangaFX). Generated multi-angle flipbook sprite sheets for in-engine Niagara burst emitters.",
+      },
+      {
+        image: "/projects/malignant/malignant-umg-screen-overlay.png",
+        title: "Mutagen Syringe UMG & Screen Overlay",
+        tag: "UMG · Screen Post-Process",
+        caption: "Engineered the core WBP_ActiveSyringe widget blueprint with a stylized ink-brush health bar and mutagen gauge. Added dynamic full-screen red vein overlay shaders that trigger when health drops or when mutant powers activate.",
+      },
+      {
+        image: "/projects/malignant/malignant-umg-syringe-cooldowns.png",
+        title: "Mutation Skill Cooldowns & Overlays",
+        tag: "UMG · Radial Shaders",
+        caption: "Designed WBP_InactiveSyringes for mutant ability states (Boneblades, Abomination, Tox). Implemented material-driven radial fill meters to communicate cooldown progress clearly during fast-paced encounters.",
+      },
+      {
+        image: "/projects/malignant/malignant-blueprint-weapon-vfx.png",
+        title: "Weapon VFX & Muzzle Flash Logic",
+        tag: "Blueprint · Weapon VFX",
+        caption: "Blueprint logic in BP_SMG controlling dual-side muzzle flash point lights with a 0.02s auto-cutoff timer, weapon recoil integration, and randomized impact VFX.",
+      },
+      {
+        image: "/projects/malignant/malignant-blueprint-blood-rate-limit.png",
+        title: "Niagara Blood Hit Rate-Limiting",
+        tag: "Blueprint · Performance Optimization",
+        caption: "Performance optimization gate for bullet impact blood VFX. Uses a 0.1s timed boolean flag to throttle particle system spawns during automatic weapon fire, preventing particle flooding while spawning 30-second persistent blood decals (MI_BloodDecal).",
+      },
+    ],
   },
   {
     slug: "black-knight",
@@ -327,6 +478,15 @@ export const PROJECTS: Project[] = [
       "Collaborated remotely with the core team to iterate on visual targets",
     ],
     techStack: ["Unreal Engine", "Houdini", "Blender", "HLSL"],
+    engine: "Unreal Engine",
+    constraints: [
+      "Indie production constraints: lightweight asset footprint, high iteration speed",
+      "Clear visual hierarchy for gameplay abilities",
+    ],
+    technicalHighlights: [
+      "Unreal Engine Niagara particle systems for combat abilities",
+      "Stylized dissolve and Fresnel material shaders",
+    ],
     images: ["/images/havoc-landing-page.png"],
   },
   /*
@@ -417,6 +577,17 @@ export const IGAMING_ARTWORKS: IgamingArtwork[] = [
 
 export const RND_PROJECTS: RndProject[] = [
   {
+    title: "VFX Flow",
+    category: "Pipeline Tool & Quality Gate",
+    tools: ["PowerShell", "WPF", "Python", "Perforce CLI"],
+    image: "/projects/vfx-flow/showcase_asset_qc_ready.png",
+    link: "/rnd/vfx-flow",
+    linkLabel: "View pipeline breakdown",
+    slug: "vfx-flow",
+    year: "2026",
+    group: "vfx",
+  },
+  {
     title: "Erlangmon VFX",
     category: "Stylized character VFX",
     tools: ["Unreal Engine", "Niagara", "Materials", "Blender"],
@@ -428,15 +599,15 @@ export const RND_PROJECTS: RndProject[] = [
     group: "vfx",
   },
   {
-    title: "TradingPower Tool v9.2",
-    category: "Motion Graphics / AE Plugin Workflow",
-    tools: ["After Effects", "ExtendScript", "TradingPower Tool", "Motion Design"],
-    image: "/images/Thumbnail.png",
-    embedUrl:
-      "https://www.youtube.com/embed/5AH8Ys5XTQI?muted=1&mute=1&autoplay=1&loop=1&playlist=5AH8Ys5XTQI",
-    link: "/rnd/tradingpower-tool",
-    linkLabel: "View Case Study",
+    title: "Destructible Separate Mesh Tool",
+    category: "Blender Python Pipeline Tool",
+    tools: ["Blender", "Python", "Technical Art", "Pipeline"],
+    image: "/assets/blog/destructible-separate-mesh-tool/separated-crack-mesh.png",
+    link: "/blog/destructible-separate-mesh-tool",
+    linkLabel: "View tool breakdown",
+    slug: "destructible-separate-mesh-tool",
     year: "2026",
+    group: "vfx",
   },
   {
     title: "HistoryBlends - AI Filmmaking",
@@ -459,27 +630,15 @@ export const RND_PROJECTS: RndProject[] = [
     year: "2025",
   },
   {
-    title: "Semi-Realistic",
-    category: "VFX",
-    tools: ["VFX", "Reel"],
+    title: "Stylized Combat & Magic VFX",
+    category: "Real-time VFX Study",
+    tools: ["Unreal Engine", "Niagara", "HLSL"],
     image: "https://img.youtube.com/vi/_g9fzTlKCVQ/sddefault.jpg",
     embedUrl:
       "https://www.youtube.com/embed/_g9fzTlKCVQ?muted=1&mute=1&start=235&autoplay=1&loop=1&playlist=_g9fzTlKCVQ",
     link: "https://www.youtube.com/watch?v=_g9fzTlKCVQ",
     linkLabel: "Watch on YouTube",
     year: "2026",
-    group: "vfx",
-  },
-  {
-    title: "Fortnite Full Reel",
-    category: "Fortnite / VFX",
-    tools: ["Unreal Engine", "Niagara", "VFX"],
-    image: "https://img.youtube.com/vi/oHyDLyVmhF8/sddefault.jpg",
-    embedUrl:
-      "https://www.youtube.com/embed/oHyDLyVmhF8?muted=1&mute=1&autoplay=1&loop=1&playlist=oHyDLyVmhF8",
-    link: "/projects/fortnite-remix",
-    linkLabel: "View Fortnite Work",
-    year: "2025",
     group: "vfx",
   },
   {
@@ -622,4 +781,64 @@ export interface AchievementCredit {
 export const ACHIEVEMENT_CREDITS: AchievementCredit[] = [
   { image: "/images/achivements/SpiderMan2.png", title: "Marvel's Spider-Man 2", subtitle: "VFX Artist" },
   { image: "/images/achivements/BlackKnightNetflix.png", title: "Black Knight (Netflix)", subtitle: "VFX Artist" },
+];
+
+export interface ClientReview {
+  projectSlug?: string;
+  projectLabel?: string;
+  title: string;
+  period: string;
+  rating: number;
+  review: string;
+  tags: string[];
+  image: string;
+}
+
+export const CLIENT_REVIEWS: ClientReview[] = [
+  {
+    title: "Unreal Engine Gameplay and Content Creation Specialist",
+    period: "Oct 30, 2025 - May 9, 2026",
+    rating: 5.0,
+    review:
+      "Sang is a multi-talented and hard-working creative. His communication is clear, he works well to deadlines, and if a problem arises he is quick to come up with solutions. I would highly recommend working with this freelancer.",
+    tags: [
+      "Reliable",
+      "Committed to Quality",
+      "Solution Oriented",
+      "Clear Communicator",
+      "Detail Oriented",
+    ],
+    image: "/images/reviews/upwork-review-gameplay-content.png",
+    projectSlug: "malignant",
+    projectLabel: "Malignant (Steam)",
+  },
+  {
+    title: "Creative & Technical Production",
+    period: "Feb 21, 2025 - Dec 4, 2025",
+    rating: 5.0,
+    review:
+      "Sang is an amazing individual. He is very professional and committed to deadlines. I would be happy to work with him again in the future. Thank you for your time. I hope you get great projects ahead, and I wish you the very best in your future endeavours.",
+    tags: [
+      "Reliable",
+      "Committed to Quality",
+      "Solution Oriented",
+      "Accountable for Outcomes",
+      "Professional",
+    ],
+    image: "/images/reviews/upwork-review-professional-deadlines.png",
+  },
+  {
+    title: "Unreal Blow Smoke VFX",
+    period: "Jun 29, 2024 - Jun 30, 2024",
+    rating: 5.0,
+    review:
+      "Sang was very professional in his communication and delivered on time. He did an amazing job and incorporated feedback effectively. I definitely recommend him for your Realtime VFX needs!",
+    tags: [
+      "Professional",
+      "Reliable",
+      "Committed to Quality",
+      "Collaborative",
+    ],
+    image: "/images/reviews/upwork-review-smoke-vfx.png",
+  },
 ];

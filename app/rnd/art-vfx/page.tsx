@@ -17,11 +17,11 @@ export default function ArtVfxPage() {
         <main className="min-h-screen bg-zinc-950 text-foreground selection:bg-teal-500/30">
             <div className="relative mx-auto max-w-4xl px-6 py-24 sm:py-32">
                 <Link
-                    href="/rnd"
+                    href="/portfolio#rnd"
                     className="group mb-8 inline-flex items-center gap-2 text-sm font-medium text-white/50 hover:text-white transition-colors"
                 >
                     <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-                    Back to Lab
+                    Back to Experiments
                 </Link>
 
                 <header className="mb-12">

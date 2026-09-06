@@ -7,7 +7,7 @@ import { getLocalizedFeaturedProjects } from "@/lib/portfolio-content";
 import ProjectCard from "@/components/projects/ProjectCard";
 
 export default function FeaturedProjects() {
-  const { locale } = useLanguage();
+  const { locale, copy } = useLanguage();
   const projects = getLocalizedFeaturedProjects(locale);
 
   return (
@@ -16,8 +16,11 @@ export default function FeaturedProjects() {
       className="scroll-mt-24 border-t border-white/10 bg-[#070a0f]"
     >
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-24">
-        <div className="mb-10 flex items-end justify-between gap-4">
-          <h2 className="text-3xl font-medium tracking-tight text-white sm:text-4xl">Work</h2>
+        <div className="mb-10 flex items-end justify-between gap-8">
+          <div>
+            <h2 className="text-3xl font-medium tracking-tight text-white sm:text-4xl">{copy.home.selectedWork}</h2>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-white/55">{copy.home.selectedWorkBody}</p>
+          </div>
           <Link
             href="/portfolio"
             className="hidden items-center gap-2 border-b border-white/25 pb-1 text-sm font-medium text-white/70 transition-colors hover:border-white hover:text-white sm:inline-flex"

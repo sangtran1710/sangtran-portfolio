@@ -41,11 +41,11 @@ test.describe("UI screenshot QA", () => {
       });
 
       await page.goto("/projects/spider-man-2", { waitUntil: "networkidle" });
-      const mobileAnatomy = page.getByTestId("vfx-anatomy");
-      await mobileAnatomy.scrollIntoViewIfNeeded();
+      const mobileHeading = page.locator("h1").first();
+      await mobileHeading.scrollIntoViewIfNeeded();
       await page.waitForTimeout(500);
-      await mobileAnatomy.screenshot({
-        path: path.join(screenshotDir, "spider-man-vfx-anatomy-mobile.png"),
+      await page.screenshot({
+        path: path.join(screenshotDir, "spider-man-page-mobile.png"),
       });
       return;
     }
@@ -63,7 +63,7 @@ test.describe("UI screenshot QA", () => {
       { route: "/articles?tab=math", selector: "main", name: "math-index-desktop" },
       { route: "/contact", selector: "main", name: "contact-desktop" },
       { route: "/rnd/erlangmon-vfx", selector: "article", name: "erlangmon-project-desktop" },
-      { route: "/projects/spider-man-2", selector: '[data-testid="vfx-anatomy"]', name: "spider-man-vfx-anatomy-desktop" },
+      { route: "/projects/spider-man-2", selector: 'h1', name: "spider-man-page-desktop" },
     ];
 
     for (const shot of shots) {

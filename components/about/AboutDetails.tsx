@@ -3,6 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import ExperienceTimeline from "@/components/about/ExperienceTimeline";
 import FeaturedCreditsSection from "@/components/about/FeaturedCreditsSection";
+import ClientEndorsementsSection from "@/components/about/ClientEndorsementsSection";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import {
   getLocalizedAbout,
@@ -21,7 +22,7 @@ export default function AboutDetails() {
           {about.title}
         </h2>
         <div className="max-w-3xl space-y-5">
-          {about.bio.slice(1).map((paragraph, index) => (
+          {about.bio.map((paragraph, index) => (
             <p
               key={index}
               className="text-base leading-8 text-slate-700 sm:text-[17px]"
@@ -40,6 +41,10 @@ export default function AboutDetails() {
         </h2>
         <ExperienceTimeline />
       </section>
+
+      <div className="mb-20 h-px bg-stone-300/70" />
+
+      <ClientEndorsementsSection />
 
       <div className="mb-20 h-px bg-stone-300/70" />
 

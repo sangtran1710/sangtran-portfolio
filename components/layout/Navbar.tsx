@@ -89,6 +89,7 @@ export default function Navbar() {
               <Link
                 key={href}
                 href={href}
+                prefetch={true}
                 onMouseEnter={() => prefetchRoute(href)}
                 onFocus={() => prefetchRoute(href)}
                 className={cn(
@@ -136,6 +137,7 @@ export default function Navbar() {
                   <motion.div key={label} variants={itemVariants}>
                     <Link
                       href={href}
+                      prefetch={true}
                       onTouchStart={() => prefetchRoute(href)}
                       onFocus={() => prefetchRoute(href)}
                       onClick={() => setOpen(false)}

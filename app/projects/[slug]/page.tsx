@@ -2,11 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, CheckCircle2, ShieldCheck, Wrench, FileCheck2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import ProjectVideo from "@/components/projects/ProjectVideo";
-import VfxAnatomy from "@/components/projects/VfxAnatomy";
 import { PROJECTS } from "@/data/portfolio";
 import { absoluteUrl } from "@/lib/seo";
 
@@ -60,12 +59,9 @@ const CATEGORY_LABELS: Record<string, string> = {
 };
 
 function getYoutubeEmbedUrl(url: string): string {
-  // Already an embed URL
   if (url.includes("/embed/")) return url;
-  // youtube.com/watch?v=ID
   const match = url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
   if (match) return `https://www.youtube.com/embed/${match[1]}`;
-  // Bare ID (11 chars)
   if (/^[a-zA-Z0-9_-]{11}$/.test(url)) return `https://www.youtube.com/embed/${url}`;
   return url;
 }
@@ -99,18 +95,23 @@ export default function ProjectDetailPage({ params }: Props) {
 
       {/* Header: Title + period @ client */}
       <div className="mb-8">
-        <div className="flex flex-wrap gap-2 mb-3">
+        <div className="flex flex-wrap items-center gap-2 mb-3">
           {project.categories.map((cat) => (
             <Badge key={cat} variant="secondary">
               {CATEGORY_LABELS[cat] ?? cat}
             </Badge>
           ))}
+          {project.engine && (
+            <Badge variant="outline" className="border-primary/40 text-primary">
+              {project.engine}
+            </Badge>
+          )}
         </div>
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-2">
           {project.title}
         </h1>
         <p className="text-muted-foreground">
-          {project.duration ?? project.year}
+          {project.role} · {project.duration ?? project.year}
           {project.client && (
             <>
               {" @ "}
@@ -139,10 +140,83 @@ export default function ProjectDetailPage({ params }: Props) {
         </div>
       ) : null}
 
-      {project.slug === "spider-man-2" && <VfxAnatomy />}
+      {project.slug === "spider-man-2" && (
+        <figure className="mb-10 overflow-hidden rounded-xl border border-white/10 bg-muted/30">
+          <div className="relative aspect-video">
+            <Image
+              src="/images/projects/spider-man-2/sparx-studio-team.png"
+              alt="Sparx studio team gathering during Marvel's Spider-Man 2 production"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 896px"
+            />
+          </div>
+          <figcaption className="px-4 py-3 text-sm text-muted-foreground">
+            A Sparx* studio team gathering during the Marvel&apos;s Spider-Man 2 production period.
+          </figcaption>
+        </figure>
+      )}
 
-      {/* Additional images — compact grid */}
-      {project.images && project.images.length > 0 && (
+
+{/* Evidence Breakdown (Rich annotated showcase) */}
+      {project.evidenceBreakdown && project.evidenceBreakdown.length > 0 ? (
+        <div className="mb-12">
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
+                In-Engine Evidence & Systems Breakdown
+              </h2>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Direct in-editor captures, profiling logs, and simulation node graphs from production.
+              </p>
+            </div>
+            {project.steamUrl && (
+              <a
+                href={project.steamUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs font-medium text-white transition-colors hover:bg-white/10"
+              >
+                Official Steam Store
+                <ArrowUpRight className="h-3.5 w-3.5 text-[#7db5b0]" />
+              </a>
+            )}
+          </div>
+          <div className="space-y-8">
+            {project.evidenceBreakdown.map((item, i) => (
+              <figure
+                key={i}
+                className="overflow-hidden rounded-2xl border border-white/10 bg-[#0c1017] shadow-xl"
+              >
+                <div className="relative aspect-video w-full bg-black">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 1024px) 100vw, 896px"
+                  />
+                </div>
+                <figcaption className="border-t border-white/10 bg-[#0e131b] p-5 sm:p-6">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <h3 className="text-base font-semibold text-white">
+                      {item.title}
+                    </h3>
+                    {item.tag && (
+                      <span className="rounded bg-white/10 px-2 py-0.5 text-[11px] font-mono text-[#a7d2ce]">
+                        {item.tag}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm leading-relaxed text-zinc-300">
+                    {item.caption}
+                  </p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      ) : project.images && project.images.length > 0 ? (
         <div className="mb-10">
           <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-3">
             Gallery
@@ -164,9 +238,9 @@ export default function ProjectDetailPage({ params }: Props) {
             ))}
           </div>
         </div>
-      )}
+      ) : null}
 
-      {/* Breakdown — Behance-style: video → text → video → image → video */}
+      {/* Breakdown clips */}
       {project.breakdownClips && project.breakdownClips.length > 0 && (() => {
         const clips = project.breakdownClips;
         const gallery = project.images ?? [];
@@ -175,7 +249,6 @@ export default function ProjectDetailPage({ params }: Props) {
         let imgIndex = 0;
         clips.forEach((clip, i) => {
           blocks.push({ type: "video", clip, index: i });
-          // Sau mỗi 3 video chèn 1 hình từ gallery (nếu còn)
           if ((i + 1) % 3 === 0 && imgIndex < gallery.length) {
             blocks.push({ type: "image", src: gallery[imgIndex], index: imgIndex });
             imgIndex += 1;
@@ -247,43 +320,34 @@ export default function ProjectDetailPage({ params }: Props) {
         );
       })()}
 
+      {/* Structured Case Study Grid */}
       <div className="grid gap-10 lg:grid-cols-3">
-        {/* Main content */}
+        {/* Main content: 5-part structure */}
         <div className="lg:col-span-2 space-y-8">
-          {project.slug === "spider-man-2" ? (
-            <div>
-              <h2 className="text-lg font-semibold mb-3">Role & scope</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                {project.workSummary} {project.description}
+          {/* 1. Role & Scope */}
+          <div>
+            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2">
+              <span className="text-xs font-mono text-primary">01</span>
+              Role & Scope
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              {project.workSummary || project.description}
+            </p>
+            {project.workSummary && project.description && project.workSummary !== project.description && (
+              <p className="mt-3 text-muted-foreground leading-relaxed">
+                {project.description}
               </p>
-            </div>
-          ) : (
-            <>
-              <div>
-                <h2 className="text-lg font-semibold mb-3">Overview</h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  {project.description}
-                </p>
-              </div>
-
-              {project.workSummary && (
-                <>
-                  <Separator />
-                  <div>
-                    <h2 className="text-lg font-semibold mb-3">My role</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {project.workSummary}
-                    </p>
-                  </div>
-                </>
-              )}
-            </>
-          )}
+            )}
+          </div>
 
           <Separator />
 
+          {/* 2. What I Contributed */}
           <div>
-            <h2 className="text-lg font-semibold mb-4">Contributions</h2>
+            <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
+              <span className="text-xs font-mono text-primary">02</span>
+              What I Contributed
+            </h2>
             <ul className="space-y-3">
               {project.contributions.map((item, i) => (
                 <li key={i} className="flex gap-3 text-sm leading-relaxed">
@@ -293,10 +357,98 @@ export default function ProjectDetailPage({ params }: Props) {
               ))}
             </ul>
           </div>
+
+          {/* 3. Production Constraints */}
+          {project.constraints && project.constraints.length > 0 && (
+            <>
+              <Separator />
+              <div>
+                <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                  <span className="text-xs font-mono text-primary">03</span>
+                  Production Constraints
+                </h2>
+                <ul className="space-y-3">
+                  {project.constraints.map((item, i) => (
+                    <li key={i} className="flex gap-3 text-sm leading-relaxed">
+                      <ShieldCheck className="h-4 w-4 text-amber-400/90 flex-shrink-0 mt-0.5" />
+                      <span className="text-muted-foreground">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </>
+          )}
+
+          {/* 4. Technical Implementation */}
+          {project.technicalHighlights && project.technicalHighlights.length > 0 && (
+            <>
+              <Separator />
+              <div>
+                <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                  <span className="text-xs font-mono text-primary">04</span>
+                  Technical Implementation
+                </h2>
+                <ul className="space-y-3">
+                  {project.technicalHighlights.map((item, i) => (
+                    <li key={i} className="flex gap-3 text-sm leading-relaxed">
+                      <Wrench className="h-4 w-4 text-[#7db5b0] flex-shrink-0 mt-0.5" />
+                      <span className="text-muted-foreground">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </>
+          )}
+
+          {/* 5. Verified Evidence */}
+          <Separator />
+          <div>
+            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2">
+              <span className="text-xs font-mono text-primary">05</span>
+              Verified Evidence & Proof
+            </h2>
+            <div className="rounded-xl border border-border bg-muted/20 p-4 text-sm text-muted-foreground leading-relaxed">
+              <div className="flex items-start gap-3">
+                <FileCheck2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <p>
+                  Work delivered under professional contract through Sparx* / client pipelines.
+                  {project.slug === "spider-man-2" && " Verified with Sparx* team production gathering and published credits."}
+                  {project.slug === "fortnite-remix" && " Verified with published cinematic trailer footage and official breakdown clips."}
+                  {project.slug === "new-world" && " Verified with published PS5 cinematic trailer footage."}
+                  {project.slug === "until-dawn" && " Verified with published PS5 remake cinematic sequences."}
+                  {project.slug === "black-knight" && " Verified with official Netflix broadcast end credits."}
+                  {project.slug === "malignant" && (
+                    <span>
+                      {" "}Verified with 5.0★ Upwork client contract (&ldquo;Unreal Engine Gameplay and Content Creation Specialist&rdquo;), in-editor UE5 project evidence, and the official{" "}
+                      <a
+                        href="https://store.steampowered.com/app/4314740/Malignant/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline hover:text-white"
+                      >
+                        Steam store listing
+                      </a>.
+                    </span>
+                  )}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Sidebar: Role, Platform, Engine, Category */}
+        {/* Sidebar: Role, Platform, Engine, Category, Tech Stack */}
         <div className="space-y-6">
+          {project.steamUrl && (
+            <a
+              href={project.steamUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#5c9d98] px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white shadow-lg transition-colors hover:bg-[#538f8a]"
+            >
+              View on Steam Store
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
+          )}
           <div className="rounded-xl border border-border bg-muted/30 p-5">
             <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
               Tech Stack
@@ -315,6 +467,12 @@ export default function ProjectDetailPage({ params }: Props) {
               <p className="text-xs text-muted-foreground">Role</p>
               <p className="text-sm font-medium mt-0.5">{project.role}</p>
             </div>
+            {project.engine && (
+              <div>
+                <p className="text-xs text-muted-foreground">Engine</p>
+                <p className="text-sm font-medium mt-0.5 text-[#7db5b0]">{project.engine}</p>
+              </div>
+            )}
             {project.platform && (
               <div>
                 <p className="text-xs text-muted-foreground">Platform</p>
@@ -359,4 +517,3 @@ export default function ProjectDetailPage({ params }: Props) {
     </div>
   );
 }
-

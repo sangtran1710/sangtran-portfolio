@@ -10,7 +10,8 @@ import { cn } from "@/lib/utils";
 export default function ProjectGrid() {
   const [active, setActive] = useState<"all" | ProjectCategory>("all");
   const { locale, copy } = useLanguage();
-  const projects = getLocalizedProjects(locale);
+  const allProjects = getLocalizedProjects(locale);
+  const projects = allProjects.filter((p) => p.projectType !== "film");
   const filters: { value: "all" | ProjectCategory; label: string }[] = [
     { value: "all", label: copy.categories.all },
     { value: "aaa", label: copy.categories.aaa },

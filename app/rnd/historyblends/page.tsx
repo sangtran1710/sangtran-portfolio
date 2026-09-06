@@ -17,11 +17,11 @@ export default function HistoryBlendsPage() {
             <div className="mx-auto max-w-4xl px-6">
                 {/* Back link */}
                 <Link
-                    href="/rnd"
+                    href="/portfolio#rnd"
                     className="inline-flex items-center gap-1.5 text-sm text-zinc-400 hover:text-white transition-colors mb-8"
                 >
                     <ArrowLeft className="h-4 w-4" />
-                    Back to The Lab
+                    Back to Experiments
                 </Link>
 
                 {/* Header */}
