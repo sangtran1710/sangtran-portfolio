@@ -99,7 +99,7 @@ export const UI_COPY = {
     about: {
       kicker: "About",
       shortBio:
-        "Senior FX Artist whose real-time game production career began in 2022, following an earlier background in video and motion design.",
+        "Technical VFX Artist whose real-time game production career began in 2022, following an earlier background in video and motion design.",
       downloadResume: "Download Resume",
       viewPortfolio: "View Portfolio",
       experience: "Experience",
@@ -228,7 +228,7 @@ export const UI_COPY = {
     about: {
       kicker: "Giới thiệu",
       shortBio:
-        "Senior FX Artist; bắt đầu làm game real-time từ năm 2022, sau giai đoạn làm video và motion design.",
+        "Technical VFX Artist; bắt đầu làm game real-time từ năm 2022, sau giai đoạn làm video và motion design.",
       downloadResume: "Tải Resume",
       viewPortfolio: "Xem Portfolio",
       experience: "Kinh nghiệm",

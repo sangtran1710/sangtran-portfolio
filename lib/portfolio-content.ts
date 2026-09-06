@@ -16,9 +16,9 @@ import {
 import type { Locale } from "@/lib/i18n";
 
 const VI_SITE = {
-  title: "Henry Tran - Senior FX Artist & Technical Artist",
+  title: "Henry Tran - Technical VFX Artist",
   description:
-    "Senior FX Artist & Technical Artist tập trung vào real-time effects, shader development và technical art cho game AAA và live-service content.",
+    "Technical VFX Artist tập trung vào real-time effects, shader development và technical art cho game AAA và live-service content.",
 };
 
 const VI_HERO = {
@@ -31,7 +31,7 @@ const VI_HERO = {
 const VI_ABOUT = {
   title: "VFX thực chiến, shader và tích hợp engine.",
   bio: [
-    "Henry Tran (Trần Minh Sang) là Senior FX Artist tại TP. Hồ Chí Minh, chuyên về real-time effects cho game và cinematic. Sự nghiệp làm game VFX thực tế của tôi bắt đầu từ năm 2022, sau giai đoạn làm video production, motion graphics và animation.",
+    "Henry Tran (Trần Minh Sang) là Technical VFX Artist tại TP. Hồ Chí Minh, chuyên về real-time effects cho game và cinematic. Sự nghiệp làm game VFX thực tế của tôi bắt đầu từ năm 2022, sau giai đoạn làm video production, motion graphics và animation.",
     "Kinh nghiệm motion và video trước đó mang lại cho tôi cảm quan nhạy bén về đường cong chuyển động, nhịp điệu (timing), bố cục và độ dễ đọc (readability) — những yếu tố quyết định độ đã tay và tác động thị giác của hiệu ứng trong game.",
     "Trong quy trình sản xuất, tôi đã tham gia thực hiện hiệu ứng cho các dự án lớn như Marvel's Spider-Man 2 và Fortnite Remix Finale, tuân thủ chặt chẽ ngân sách performance, cấu trúc asset trên Perforce, trên cả engine riêng của đối tác lẫn Unreal Engine.",
     "Tôi tập trung vào toàn bộ vòng lặp thực thi: tạo effect, viết shader/material graph, xây dựng pipeline tool Python/Blender gọn nhẹ, và profiling trong engine để đảm bảo hiệu ứng chạy ổn định trên phần cứng mục tiêu.",
@@ -40,7 +40,7 @@ const VI_ABOUT = {
 };
 
 const VI_PROFILE = {
-  headline: "Senior Real-time VFX Artist",
+  headline: "Technical VFX Artist",
   paragraph:
     "Thực hiện VFX, tối ưu, tích hợp engine và các production tool gọn nhẹ. Làm việc tại TP.HCM và mở cho cơ hội remote phù hợp.",
   ctaText: "Liên hệ với tôi",

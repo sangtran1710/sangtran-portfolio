@@ -108,7 +108,7 @@ export default function PageLoader() {
               Henry Tran
             </p>
             <p className="text-xs tracking-[0.2em] text-teal-400/70 uppercase mt-1">
-              Senior VFX Artist
+              Technical VFX Artist
             </p>
           </motion.div>
 
