@@ -209,19 +209,19 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
     ],
     evidenceBreakdown: [
       {
-        image: "/projects/malignant/malignant-combat-profiling.png",
+        image: "/projects/malignant/malignant-combat-profiling.webp",
         title: "Profiling hiệu năng & Thực chiến In-Game (UE5 PIE)",
         tag: "Unreal Engine 5 · Profiling",
         caption: "Profiling trực tiếp trong chế độ Play-In-Editor khi đối đầu bầy quái vật cống (AIC_SewerMutant) bằng lệnh STATGROUP_game. Kiểm soát draw call (574), primitive count (2852k) và chu kỳ tick để giữ vững framerate 40+ FPS dưới mật độ quái dày.",
       },
       {
-        image: "/projects/malignant/malignant-ue5-editor-fire.png",
+        image: "/projects/malignant/malignant-ue5-editor-fire.webp",
         title: "Lửa môi trường & Trang trí màn chơi (L_Town1)",
         tag: "Niagara · Environment VFX",
         caption: "Tạo hệ thống emitter lửa môi trường, mảnh giấy bay rải rác và tàn tro phát sáng trong map L_Town1 (thị trấn Daybreak). Cân chỉnh ánh sáng điểm động (point light) chiếu rọi đường phố đêm tối mà không làm cháy tương phản bóng đổ.",
       },
       {
-        image: "/projects/malignant/malignant-liquigen-blood-sim.png",
+        image: "/projects/malignant/malignant-liquigen-blood-sim.webp",
         title: "Mô phỏng Fluid tia máu bắn (LiquiGen)",
         tag: "LiquiGen (JangaFX) · Simulation",
         caption: "Mô phỏng quỹ đạo tia máu tốc độ cao bằng phần mềm LiquiGen (JangaFX). Xuất texture dạng flipbook/sprite sheet đa góc độ để đưa vào emitter Niagara trong Unreal Engine 5.",

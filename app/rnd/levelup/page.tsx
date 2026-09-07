@@ -47,7 +47,7 @@ export default function LevelUpPage() {
                 <div className="relative w-full overflow-hidden rounded-xl bg-zinc-950 mb-10 border border-white/10"
                     style={{ paddingTop: "56.25%" }}>
                     <Image
-                        src="/images/LevelUp.png"
+                        src="/images/LevelUp.webp"
                         alt="Level Up Environment Thumbnail"
                         fill
                         className="object-cover"

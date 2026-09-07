@@ -44,7 +44,7 @@ export default function TechnicalSpotlight() {
       description: isVi
         ? "Công cụ Python viết cho Blender giúp cô lập material vết nứt destructible, tự động tạo emitter mesh siêu nhẹ từ tâm các mảnh vỡ, và chuẩn bị FX UV layout để test panner/noise trước khi export."
         : "A custom Blender Python tool that extracts fracture materials, automatically generates lightweight emitter meshes from piece centroids, and preps directional FX UV layouts before export.",
-      image: "/assets/blog/destructible-separate-mesh-tool/separated-crack-mesh.png",
+      image: "/assets/blog/destructible-separate-mesh-tool/separated-crack-mesh.webp",
       link: "/blog/destructible-separate-mesh-tool",
       actionText: copy.home.viewToolBreakdown,
       aspect: "aspect-video",

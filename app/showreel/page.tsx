@@ -12,13 +12,13 @@ export const metadata: Metadata = {
     description: "VFX Reel 2025 - Real-time VFX / AAA / Cinematic",
     url: "/showreel",
     type: "video.other",
-    images: ["/images/Fornite/Screenshot 2025-08-16 005729.png"],
+    images: ["/images/Fornite/Screenshot 2025-08-16 005729.webp"],
   },
   twitter: {
     card: "summary_large_image",
     title: "VFX Reel 2025 - Henry Tran",
     description: "VFX Reel 2025 - Real-time VFX / AAA / Cinematic",
-    images: ["/images/Fornite/Screenshot 2025-08-16 005729.png"],
+    images: ["/images/Fornite/Screenshot 2025-08-16 005729.webp"],
   },
 };
 

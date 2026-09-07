@@ -27,12 +27,12 @@ export default function HeroSection() {
     >
       <div className="absolute inset-0">
         <Image
-          src="/images/hero-tech-art.png"
-          alt="Henry Tran Technical VFX"
+          src="/images/hero-hardcore-drone.jpg"
+          alt="Henry Tran Real-time VFX"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-right opacity-70"
+          className="object-cover object-[70%_center] opacity-60 brightness-95"
         />
       </div>
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,6,7,0.88)_0%,rgba(5,6,7,0.42)_48%,rgba(5,6,7,0.1)_100%)]" />

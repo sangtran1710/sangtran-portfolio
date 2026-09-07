@@ -56,7 +56,7 @@ export const SITE = {
   description:
     "Technical VFX Artist specializing in production-ready effects, shaders, and pipelines for AAA games, cinematics, and launch content.",
   email: "sangminhtran1710@gmail.com",
-  logo: "/images/logo.png",
+  logo: "/images/logo.webp",
 };
 
 export const SOCIALS = {
@@ -95,9 +95,9 @@ export const PROFILE = {
   /** Single line; detailed info reserved for the About page. */
   paragraph:
     "Hands-on across effect creation, optimization, engine integration, and lightweight production tools. Based in HCMC and open to remote collaboration.",
-  portraitImage: "/images/Portrait/avatar.png",
+  portraitImage: "/images/Portrait/avatar.webp",
   /** Image flipped on hover (secondary avatar in the Portrait folder) */
-  portraitImageSecondary: "/images/Portrait/avatar.png",
+  portraitImageSecondary: "/images/Portrait/avatar.webp",
   ctaText: "Contact me",
   stats: [
     { label: "Shipped Games", value: "8+" },
@@ -260,10 +260,10 @@ export const PROJECTS: Project[] = [
     images: [
       "/images/Fornite/hq720.jpg",
       "/images/Fornite/hq720 (1).jpg",
-      "/images/Fornite/Screenshot 2025-08-16 005424.png",
-      "/images/Fornite/Screenshot 2025-08-16 005538.png",
-      "/images/Fornite/Screenshot 2025-08-16 005614.png",
-      "/images/Fornite/Screenshot 2025-08-16 005729.png",
+      "/images/Fornite/Screenshot 2025-08-16 005424.webp",
+      "/images/Fornite/Screenshot 2025-08-16 005538.webp",
+      "/images/Fornite/Screenshot 2025-08-16 005614.webp",
+      "/images/Fornite/Screenshot 2025-08-16 005729.webp",
     ],
     breakdownClips: [
       { url: "https://www.youtube.com/watch?v=4NifXy2W_Uk", title: "Weapon Skin VFX", caption: "Weapon skin effects for the event." },
@@ -393,9 +393,9 @@ export const PROJECTS: Project[] = [
     steamUrl: "https://store.steampowered.com/app/4314740/Malignant/",
     isFeatured: true,
     images: [
-      "/projects/malignant/malignant-combat-profiling.png",
-      "/projects/malignant/malignant-ue5-editor-fire.png",
-      "/projects/malignant/malignant-liquigen-blood-sim.png",
+      "/projects/malignant/malignant-combat-profiling.webp",
+      "/projects/malignant/malignant-ue5-editor-fire.webp",
+      "/projects/malignant/malignant-liquigen-blood-sim.webp",
       "/projects/malignant/malignant-umg-screen-overlay.png",
       "/projects/malignant/malignant-umg-syringe-cooldowns.png",
       "/projects/malignant/malignant-blueprint-weapon-vfx.png",
@@ -403,19 +403,19 @@ export const PROJECTS: Project[] = [
     ],
     evidenceBreakdown: [
       {
-        image: "/projects/malignant/malignant-combat-profiling.png",
+        image: "/projects/malignant/malignant-combat-profiling.webp",
         title: "In-Engine Profiling & Live Combat (UE5 PIE)",
         tag: "Unreal Engine 5 · Profiling",
         caption: "Live Play-In-Editor profiling against sewer mutant hordes (AIC_SewerMutant) using STATGROUP_game. Monitored draw calls (574), primitive counts (2852k), and tick times to guarantee smooth 40+ FPS performance under heavy combat stress.",
       },
       {
-        image: "/projects/malignant/malignant-ue5-editor-fire.png",
+        image: "/projects/malignant/malignant-ue5-editor-fire.webp",
         title: "Environment Fire & Level Dressing (L_Town1)",
         tag: "Niagara · Environment VFX",
         caption: "Authored environment fire emitters, floating paper debris, and ember particles in L_Town1 (Daybreak town) within Unreal Engine 5. Tuned dynamic point lights to illuminate dark streets without blowing out shadow contrast.",
       },
       {
-        image: "/projects/malignant/malignant-liquigen-blood-sim.png",
+        image: "/projects/malignant/malignant-liquigen-blood-sim.webp",
         title: "Blood Splatter Fluid Simulation",
         tag: "LiquiGen (JangaFX) · Simulation",
         caption: "Simulated high-velocity blood splatter trajectories using LiquiGen (JangaFX). Generated multi-angle flipbook sprite sheets for in-engine Niagara burst emitters.",
@@ -487,12 +487,12 @@ export const PROJECTS: Project[] = [
       "Unreal Engine Niagara particle systems for combat abilities",
       "Stylized dissolve and Fresnel material shaders",
     ],
-    images: ["/images/havoc-landing-page.png"],
+    images: ["/images/havoc-landing-page.webp"],
   },
   /*
   {
     slug: "wolverine",
-    thumbnail: "/images/Wolverine.png",
+    thumbnail: "/images/Wolverine.webp",
     title: "Marvel's Wolverine",
     role: "VFX Artist",
     year: "2025",
@@ -599,10 +599,21 @@ export const RND_PROJECTS: RndProject[] = [
     group: "vfx",
   },
   {
+    title: "Celestial Legion — Xianxia Combat VFX",
+    category: "Real-time VFX / Outsource Art Test",
+    tools: ["Unreal Engine 5", "Niagara", "Materials", "Sequencer"],
+    image: "/projects/celestial-legion-vfx/poster.jpg",
+    link: "/rnd/celestial-legion-vfx",
+    linkLabel: "View breakdown",
+    slug: "celestial-legion-vfx",
+    year: "2024",
+    group: "vfx",
+  },
+  {
     title: "Destructible Separate Mesh Tool",
     category: "Blender Python Pipeline Tool",
     tools: ["Blender", "Python", "Technical Art", "Pipeline"],
-    image: "/assets/blog/destructible-separate-mesh-tool/separated-crack-mesh.png",
+    image: "/assets/blog/destructible-separate-mesh-tool/separated-crack-mesh.webp",
     link: "/blog/destructible-separate-mesh-tool",
     linkLabel: "View tool breakdown",
     slug: "destructible-separate-mesh-tool",
@@ -613,7 +624,7 @@ export const RND_PROJECTS: RndProject[] = [
     title: "HistoryBlends - AI Filmmaking",
     category: "AI Content Creation",
     tools: ["Sora", "Veo-2", "ChatGPT", "Midjourney", "Prompt Engineering"],
-    image: "/images/Gemini_Generated_Image_ynlyiiynlyiiynly.png",
+    image: "/images/historyblends-cover.webp",
     link: "/rnd/historyblends",
     linkLabel: "View project details",
     slug: "historyblends",
@@ -623,7 +634,7 @@ export const RND_PROJECTS: RndProject[] = [
     title: "Level Up - Crypto.com",
     category: "3D Environment",
     tools: ["Blender", "After Effects"],
-    image: "/images/LevelUp.png",
+    image: "/images/LevelUp.webp",
     link: "/rnd/levelup",
     linkLabel: "View project details",
     slug: "levelup",
@@ -645,7 +656,7 @@ export const RND_PROJECTS: RndProject[] = [
     title: "Divecore - Diving Watch Strap",
     category: "3D Product",
     tools: ["Blender"],
-    image: "/images/WatchHPBlender/Screenshot.png",
+    image: "/images/WatchHPBlender/Screenshot.webp",
     link: "https://www.artstation.com/artwork/qJL4AN",
     linkLabel: "View on ArtStation",
     year: "2024",
@@ -667,7 +678,7 @@ export const RND_PROJECTS: RndProject[] = [
     title: "Ethereum Bloom",
     category: "Flowers growing into Ethereum logo",
     tools: ["Unreal Engine", "Niagara"],
-    image: "/images/ETH.png",
+    image: "/images/ETH.webp",
     embedUrl:
       "https://player.vimeo.com/video/1108882585?background=1&autopause=0&muted=1&loop=1&playsinline=1&badge=0&title=0&byline=0",
     link: "https://www.behance.net/gallery/232255967/ETHEREUM-MOTION-ART",
@@ -699,7 +710,7 @@ export const RND_PROJECTS: RndProject[] = [
     title: "iPhone 11 Pro Max TVC",
     category: "3D Product Commercial",
     tools: ["Cinema 4D", "Octane", "After Effects"],
-    image: "/images/Iphone%2011.png",
+    image: "/images/Iphone%2011.webp",
     link: "https://www.behance.net/gallery/136697475/iPhone-11-Pro-Max-TVC",
     year: "2021",
   },
@@ -707,7 +718,7 @@ export const RND_PROJECTS: RndProject[] = [
     title: "Food Court Bitexco TVC",
     category: "Commercial Production",
     tools: ["Premiere Pro", "After Effects", "Filming"],
-    image: "/images/FoodCourt.png",
+    image: "/images/FoodCourt.webp",
     link: "/rnd/utop-bitexco",
     linkLabel: "View project details",
     slug: "utop-bitexco",
@@ -727,7 +738,7 @@ export const RND_PROJECTS: RndProject[] = [
     title: "Utop Event TVCs",
     category: "Commercial Production",
     tools: ["Filming", "Premiere Pro", "After Effects"],
-    image: "/images/utop.png",
+    image: "/images/utop.webp",
     link: "/rnd/utop-events",
     linkLabel: "View project details",
     slug: "utop-events",
@@ -767,7 +778,7 @@ export const CERTIFICATES: Certificate[] = [
     issuer: "Google (Coursera)",
     year: "2025",
     url: "https://coursera.org/verify/professional-cert/VKX385M7YJYL",
-    image: "/images/certificates/Coursera%20VKX385M7YJYL.png",
+    image: "/images/certificates/Coursera%20VKX385M7YJYL.webp",
   },
 ];
 
@@ -779,8 +790,8 @@ export interface AchievementCredit {
 }
 
 export const ACHIEVEMENT_CREDITS: AchievementCredit[] = [
-  { image: "/images/achivements/SpiderMan2.png", title: "Marvel's Spider-Man 2", subtitle: "VFX Artist" },
-  { image: "/images/achivements/BlackKnightNetflix.png", title: "Black Knight (Netflix)", subtitle: "VFX Artist" },
+  { image: "/images/achivements/SpiderMan2.webp", title: "Marvel's Spider-Man 2", subtitle: "VFX Artist" },
+  { image: "/images/achivements/BlackKnightNetflix.webp", title: "Black Knight (Netflix)", subtitle: "VFX Artist" },
 ];
 
 export interface ClientReview {

@@ -144,7 +144,7 @@ export default function ProjectDetailPage({ params }: Props) {
         <figure className="mb-10 overflow-hidden rounded-xl border border-white/10 bg-muted/30">
           <div className="relative aspect-video">
             <Image
-              src="/images/projects/spider-man-2/sparx-studio-team.png"
+              src="/images/projects/spider-man-2/sparx-studio-team.webp"
               alt="Sparx studio team gathering during Marvel's Spider-Man 2 production"
               fill
               className="object-cover"

@@ -1,7 +1,39 @@
+import type { Metadata } from "next";
 import { RND_PROJECTS } from "@/data/portfolio";
 import { ArrowLeft, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
+export const metadata: Metadata = {
+    title: "Shatter Earth Impact VFX",
+    description:
+        "Real-time impact VFX study built in Unreal Engine with Blender and Substance Designer — earth shatter, debris simulation, and stylized shader work.",
+    alternates: {
+        canonical: "/rnd/art-vfx",
+    },
+    openGraph: {
+        title: "Shatter Earth Impact VFX - Henry Tran",
+        description:
+            "Real-time impact VFX study in Unreal Engine with Blender and Substance Designer: earth shatter, debris, and stylized shaders.",
+        url: "/rnd/art-vfx",
+        type: "article",
+        images: [
+            {
+                url: "https://img.youtube.com/vi/FcIUXgQ4c3s/maxresdefault.jpg",
+                width: 1280,
+                height: 720,
+                alt: "Shatter Earth Impact VFX real-time effect breakdown",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Shatter Earth Impact VFX - Henry Tran",
+        description:
+            "Real-time impact VFX study in Unreal Engine with Blender and Substance Designer.",
+        images: ["https://img.youtube.com/vi/FcIUXgQ4c3s/maxresdefault.jpg"],
+    },
+};
 
 export default function ArtVfxPage() {
     const project = RND_PROJECTS.find((p) => p.slug === "art-vfx");

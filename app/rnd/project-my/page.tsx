@@ -1,7 +1,39 @@
+import type { Metadata } from "next";
 import { RND_PROJECTS } from "@/data/portfolio";
 import { ArrowLeft, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
+export const metadata: Metadata = {
+    title: "Houdini / Redshift / Unreal Engine R&D",
+    description:
+        "Graduation project exploring a Houdini-to-Unreal Engine pipeline with Redshift rendering — procedural simulation, look development, and real-time integration.",
+    alternates: {
+        canonical: "/rnd/project-my",
+    },
+    openGraph: {
+        title: "Houdini / Redshift / Unreal Engine R&D - Henry Tran",
+        description:
+            "Graduation project exploring a Houdini-to-Unreal Engine pipeline with Redshift rendering, procedural simulation, and real-time integration.",
+        url: "/rnd/project-my",
+        type: "article",
+        images: [
+            {
+                url: "/video/project-my-poster.jpg",
+                width: 1200,
+                height: 630,
+                alt: "Houdini, Redshift and Unreal Engine R&D graduation project",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Houdini / Redshift / Unreal Engine R&D - Henry Tran",
+        description:
+            "Graduation project exploring a Houdini-to-Unreal Engine pipeline with Redshift rendering.",
+        images: ["/video/project-my-poster.jpg"],
+    },
+};
 
 export default function ProjectMyPage() {
     const project = RND_PROJECTS.find((p) => p.slug === "project-my");
@@ -52,11 +84,12 @@ export default function ProjectMyPage() {
                     <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-white/10 shadow-2xl bg-zinc-900">
                         <video
                             src="/video/project-my.mp4"
+                            poster="/video/project-my-poster.jpg"
                             controls
-                            autoPlay
                             muted
                             loop
                             playsInline
+                            preload="metadata"
                             className="absolute inset-0 w-full h-full object-cover"
                         />
                     </div>
