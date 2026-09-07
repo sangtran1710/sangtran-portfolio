@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -25,23 +26,14 @@ export default function HeroSection() {
       className="relative flex min-h-[68svh] items-end overflow-hidden bg-[#050607] pt-[4.5rem] sm:min-h-[72svh]"
     >
       <div className="absolute inset-0">
-        {prefersReducedMotion ? (
-          <div className="h-full w-full bg-[#0b0e12]" />
-        ) : (
-          <video
-            className="h-full w-full object-cover object-center brightness-[0.72] saturate-[0.72]"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="/images/optimized/hero-reel-poster.jpg"
-            aria-label="Henry Tran technical art showreel preview"
-          >
-            <source media="(max-width: 767px)" src="/video/hero-reel-mobile.mp4" type="video/mp4" />
-            <source src="/video/hero-reel-desktop.mp4" type="video/mp4" />
-          </video>
-        )}
+        <Image
+          src="/images/hero-tech-art.png"
+          alt="Henry Tran Technical VFX"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-right opacity-70"
+        />
       </div>
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,6,7,0.88)_0%,rgba(5,6,7,0.42)_48%,rgba(5,6,7,0.1)_100%)]" />
       <div className="absolute inset-x-0 bottom-0 h-2/3 bg-[linear-gradient(0deg,rgba(5,6,7,0.95)_0%,rgba(5,6,7,0)_100%)]" />
