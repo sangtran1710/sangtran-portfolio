@@ -31,10 +31,9 @@ const VI_HERO = {
 const VI_ABOUT = {
   title: "VFX thực chiến, shader và tích hợp engine.",
   bio: [
-    "Henry Tran (Trần Minh Sang) là Technical VFX Artist tại TP. Hồ Chí Minh, chuyên về real-time effects cho game và cinematic. Sự nghiệp làm game VFX thực tế của tôi bắt đầu từ năm 2022, sau giai đoạn làm video production, motion graphics và animation.",
-    "Kinh nghiệm motion và video trước đó mang lại cho tôi cảm quan nhạy bén về đường cong chuyển động, nhịp điệu (timing), bố cục và độ dễ đọc (readability) — những yếu tố quyết định độ đã tay và tác động thị giác của hiệu ứng trong game.",
-    "Trong quy trình sản xuất, tôi đã tham gia thực hiện hiệu ứng cho các dự án lớn như Marvel's Spider-Man 2 và Fortnite Remix Finale, tuân thủ chặt chẽ ngân sách performance, cấu trúc asset trên Perforce, trên cả engine riêng của đối tác lẫn Unreal Engine.",
-    "Tôi tập trung vào toàn bộ vòng lặp thực thi: tạo effect, viết shader/material graph, xây dựng pipeline tool Python/Blender gọn nhẹ, và profiling trong engine để đảm bảo hiệu ứng chạy ổn định trên phần cứng mục tiêu.",
+    "Tôi là Technical VFX Artist tại TP. Hồ Chí Minh, chuyên về real-time gameplay VFX, shader tùy biến và tối ưu hiệu năng trong engine cho game và cinematic.",
+    "Kinh nghiệm sản xuất thực chiến của tôi bao gồm các dự án AAA như Marvel's Spider-Man 2 và Fortnite: Remix, làm việc trực tiếp với Niagara, custom engine và pipeline Perforce.",
+    "Trọng tâm của tôi là toàn bộ quy trình technical art: từ tạo effect và viết HLSL/material graph, đến phát triển công cụ Python tự động hóa và profiling để giữ vững framerate mục tiêu.",
   ],
   location: "TP. Hồ Chí Minh, Việt Nam",
 };

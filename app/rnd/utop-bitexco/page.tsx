@@ -8,6 +8,16 @@ export const metadata: Metadata = {
     title: "Food Court Bitexco TVC — Commercial Production",
     description:
         "An indie TVC production for Utop (FPT Software) featuring concept development, directing, filming, editing, and VFX.",
+    alternates: {
+        canonical: "/rnd/utop-bitexco",
+    },
+    openGraph: {
+        title: "Food Court Bitexco TVC — Commercial Production | Henry Tran",
+        description:
+            "An indie TVC production for Utop (FPT Software) featuring concept development, directing, filming, editing, and VFX.",
+        url: "/rnd/utop-bitexco",
+        images: ["/images/utop.webp"],
+    },
 };
 
 export default function UtopBitexcoPage() {

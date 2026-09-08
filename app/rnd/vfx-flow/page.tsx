@@ -8,10 +8,14 @@ export const metadata: Metadata = {
   title: "VFX Flow — Production Asset Validator & Perforce Submission Tool",
   description:
     "A lightweight, non-intrusive pipeline companion tool built for a confidential AAA production (PROJECT-TITAN) to automate asset QC, protect shared repositories, and streamline Perforce submissions.",
+  alternates: {
+    canonical: "/rnd/vfx-flow",
+  },
   openGraph: {
     title: "VFX Flow | Henry Tran",
     description:
       "A deep dive into building an automated asset quality control gatekeeper, work log rollover engine, and Perforce staging toolkit for AAA game production.",
+    url: "/rnd/vfx-flow",
     images: ["/projects/vfx-flow/showcase_asset_qc_ready.png"],
   },
 };

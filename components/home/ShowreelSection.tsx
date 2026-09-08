@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
+import Link from "next/link";
 import {
   Play,
   Pause,
@@ -10,7 +11,7 @@ import {
   ExternalLink,
   Youtube,
   Film,
-  CheckCircle2,
+  ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -20,34 +21,34 @@ interface ShowreelSectionProps {
   headingLevel?: "h1" | "h2";
 }
 
-const SHOT_BREAKDOWNS = [
+const REEL_CUES = [
   {
+    time: "00:00",
+    seconds: 0,
     title: "Marvel's Spider-Man 2",
-    client: "Insomniac Games",
+    client: "Insomniac Games / Sony",
     engine: "Proprietary Engine · Houdini",
-    contribution:
-      "Authored combat hit particles, dynamic debris simulations, and environmental traversal VFX optimized for PS5 60 FPS performance mode.",
   },
   {
+    time: "00:10",
+    seconds: 10,
     title: "Fortnite - Remix The Finale",
     client: "Epic Games",
     engine: "Unreal Engine · Niagara",
-    contribution:
-      "Implemented weapon-skin visual effects, stylized energy bursts, and live-event particle systems tuned for cross-platform play.",
   },
   {
+    time: "00:20",
+    seconds: 20,
     title: "New World: Aeternum",
     client: "Amazon Games",
     engine: "Unreal Engine · Houdini",
-    contribution:
-      "Created environmental weather systems, ambient mist, and procedural material interactions for foliage and water.",
   },
   {
-    title: "Erlangmon VFX Study",
-    client: "Personal Technical Study",
-    engine: "Unreal Engine 5 · Niagara · Shaders",
-    contribution:
-      "Built complete character VFX package: buff aura, skill slash synchronized with animation timing (1.31s offset), and mobile overdraw profiling.",
+    time: "00:30",
+    seconds: 30,
+    title: "Technical VFX & R&D",
+    client: "Stylized Combat & Shaders",
+    engine: "Unreal Engine 5 · Niagara · HLSL",
   },
 ];
 
@@ -88,6 +89,17 @@ export default function ShowreelSection({
     if (!video) return;
     video.muted = !video.muted;
     setMuted(video.muted);
+  };
+
+  const seekTo = (seconds: number) => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.currentTime = seconds;
+    if (video.paused) {
+      video.play().catch(() => {});
+      setPlaying(true);
+      setStarted(true);
+    }
   };
 
   return (
@@ -233,42 +245,53 @@ export default function ShowreelSection({
             : copy.common.clickToPlay}
       </p>
 
-      {/* Shot Breakdown & Contributions */}
-      <div className="mt-16 rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
-        <div className="mb-6 flex items-center gap-3">
-          <Film className="h-5 w-5 text-[#7db5b0]" />
-          <div>
-            <h3 className="text-lg font-semibold tracking-tight text-white">
+      {/* Interactive Cue Sheet */}
+      <div className="mt-12 rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-7">
+        <div className="flex flex-col gap-3 pb-4 border-b border-white/10 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-2.5">
+            <Film className="h-4 w-4 text-[#7db5b0]" />
+            <h3 className="text-sm font-semibold tracking-wide text-white">
               {copy.showreel.shotBreakdown}
             </h3>
-            <p className="text-xs text-white/50">
-              {copy.showreel.shotBreakdownBody}
-            </p>
           </div>
+          <Link
+            href="/portfolio"
+            className="group inline-flex items-center gap-1.5 text-xs font-medium text-[#7db5b0] transition-colors hover:text-white"
+          >
+            <span>{locale === "vi" ? "Xem chi tiết dự án tại Work" : "Explore detailed breakdowns in Work"}</span>
+            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+          </Link>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
-          {SHOT_BREAKDOWNS.map((shot) => (
-            <div
-              key={shot.title}
-              className="rounded-xl border border-white/5 bg-black/20 p-4 transition-colors hover:border-white/15"
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {REEL_CUES.map((cue) => (
+            <button
+              key={cue.time}
+              type="button"
+              onClick={() => seekTo(cue.seconds)}
+              title={locale === "vi" ? `Nhảy đến ${cue.time}` : `Jump to ${cue.time}`}
+              className="group flex flex-col justify-between rounded-xl border border-white/5 bg-black/30 p-3.5 text-left transition-all hover:border-[#7db5b0]/40 hover:bg-white/[0.04]"
             >
-              <div className="flex items-start justify-between gap-2">
-                <h4 className="text-sm font-semibold text-white">
-                  {shot.title}
-                </h4>
-                <span className="rounded bg-white/10 px-2 py-0.5 text-[10px] text-white/70">
-                  {shot.client}
+              <div className="flex items-center justify-between gap-2">
+                <span className="font-mono text-xs font-semibold text-[#7db5b0] transition-colors group-hover:text-teal-300">
+                  {cue.time}
+                </span>
+                <span className="text-[10px] text-white/40 transition-colors group-hover:text-white/60">
+                  {locale === "vi" ? "Nhấp để phát" : "Click to seek"}
                 </span>
               </div>
-              <p className="mt-1 text-[11px] font-medium text-[#7db5b0]">
-                {shot.engine}
-              </p>
-              <p className="mt-2.5 flex items-start gap-2 text-xs leading-relaxed text-white/60">
-                <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-teal-400" />
-                <span>{shot.contribution}</span>
-              </p>
-            </div>
+              <div className="mt-2.5 min-w-0">
+                <p className="text-sm font-medium text-white truncate group-hover:text-[#a7d2ce]">
+                  {cue.title}
+                </p>
+                <p className="mt-0.5 text-xs text-white/50 truncate">
+                  {cue.client}
+                </p>
+                <p className="mt-1 text-[11px] text-[#7db5b0]/70 truncate">
+                  {cue.engine}
+                </p>
+              </div>
+            </button>
           ))}
         </div>
       </div>

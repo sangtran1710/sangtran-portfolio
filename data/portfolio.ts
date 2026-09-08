@@ -79,11 +79,11 @@ export const HERO = {
 
 export const ABOUT = {
   title: "Hands-on VFX, shaders, and engine integration.",
+  portraitImage: "/images/Portrait/avatar.webp",
   bio: [
-    "Henry Tran (Tran Minh Sang) is a Technical VFX Artist based in Ho Chi Minh City, specializing in real-time effects for games and cinematics. His real-time game production career began in 2022, following an earlier background in video production, motion graphics, and animation.",
-    "That earlier motion and video background provides a strong instinct for timing, silhouette clarity, easing curves, and visual hierarchy — ensuring gameplay effects are punchy, readable, and never visual noise.",
-    "In production, I have contributed to AAA releases including Marvel's Spider-Man 2 and Fortnite Remix Finale, working within strict performance budgets, Perforce asset pipelines, and both proprietary and Unreal Engine environments.",
-    "I focus on the entire practical execution loop: effect creation, custom HLSL/material graphs, lightweight Python/Blender pipeline tools, and in-engine profiling to guarantee stability and performance on target hardware.",
+    "I am a Technical VFX Artist based in Ho Chi Minh City, specializing in real-time gameplay effects, custom shaders, and engine optimization for games and cinematics.",
+    "My production experience covers AAA releases including Marvel's Spider-Man 2 and Fortnite: Remix, working with Niagara, proprietary engines, and Perforce pipelines.",
+    "I focus on the full technical art loop — authoring modular Niagara/HLSL effects, building lightweight Python pipeline tools, and profiling performance for locked framerates on target hardware.",
   ],
   location: "Ho Chi Minh City, Vietnam",
 };

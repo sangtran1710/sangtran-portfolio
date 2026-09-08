@@ -7,10 +7,14 @@ export const metadata: Metadata = {
   title: "Erlangmon VFX",
   description:
     "A stylized character VFX study built in Unreal Engine with Niagara, custom materials, animation timing, and mobile performance in mind.",
+  alternates: {
+    canonical: "/rnd/erlangmon-vfx",
+  },
   openGraph: {
     title: "Erlangmon VFX | Henry Tran",
     description:
       "A breakdown of stylized character effects, custom shading, timing integration, and mobile optimization.",
+    url: "/rnd/erlangmon-vfx",
     images: ["/projects/erlangmon-vfx/poster.jpg"],
   },
 };

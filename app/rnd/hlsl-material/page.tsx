@@ -8,6 +8,16 @@ export const metadata: Metadata = {
   title: "HLSL Material R&D — Unreal Engine",
   description:
     "R&D on HLSL custom materials in Unreal Engine: noise, flowing textures, and procedural patterns for real-time VFX.",
+  alternates: {
+    canonical: "/rnd/hlsl-material",
+  },
+  openGraph: {
+    title: "HLSL Material R&D — Unreal Engine | Henry Tran",
+    description:
+      "R&D on HLSL custom materials in Unreal Engine: noise, flowing textures, and procedural patterns for real-time VFX.",
+    url: "/rnd/hlsl-material",
+    images: ["/images/optimized/new-world-aeternum.jpg"],
+  },
 };
 
 const VIDEOS = [

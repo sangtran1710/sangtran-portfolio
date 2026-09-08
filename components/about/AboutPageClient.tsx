@@ -83,14 +83,15 @@ export default function AboutPageClient() {
                 className="relative mx-auto lg:mx-0 will-change-transform"
                 style={!prefersReducedMotion ? { y: avatarY } : undefined}
               >
-                <div className="relative h-64 w-64 overflow-hidden rounded-[1.5rem] ring-1 ring-stone-200 shadow-[0_14px_34px_rgba(15,23,42,0.08)] sm:h-72 sm:w-72 lg:h-80 lg:w-80">
+                <div className="relative h-64 w-64 overflow-hidden rounded-[1.5rem] bg-stone-200 ring-1 ring-stone-200 shadow-[0_14px_34px_rgba(15,23,42,0.08)] sm:h-72 sm:w-72 lg:h-80 lg:w-80">
                   <Image
-                    src="/images/optimized/avatar-sang-tran.jpg"
+                    src={about.portraitImage || "/images/Portrait/avatar.webp"}
                     alt="Henry Tran"
                     fill
+                    unoptimized
+                    priority
                     className="object-cover object-[center_38%]"
                     sizes="(max-width: 640px) 256px, (max-width: 1024px) 288px, 320px"
-                    priority
                   />
                 </div>
               </motion.div>

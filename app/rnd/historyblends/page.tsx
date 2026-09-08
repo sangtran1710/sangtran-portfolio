@@ -9,6 +9,16 @@ export const metadata: Metadata = {
     title: "HistoryBlends — AI Filmmaking",
     description:
         "A deep dive into the AI-driven storytelling process used to create HistoryBlends, leveraging Sora, Veo-2, ChatGPT, and Midjourney.",
+    alternates: {
+        canonical: "/rnd/historyblends",
+    },
+    openGraph: {
+        title: "HistoryBlends — AI Filmmaking | Henry Tran",
+        description:
+            "A deep dive into the AI-driven storytelling process used to create HistoryBlends, leveraging Sora, Veo-2, ChatGPT, and Midjourney.",
+        url: "/rnd/historyblends",
+        images: ["/images/HistoryBlends.webp"],
+    },
 };
 
 export default function HistoryBlendsPage() {

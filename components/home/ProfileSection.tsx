@@ -20,6 +20,8 @@ export default function ProfileSection() {
               src={profile.portraitImage}
               alt="Henry Tran"
               fill
+              unoptimized
+              priority
               sizes="(max-width: 1024px) 100vw, 420px"
               className="object-cover object-center"
               onError={() => setAvatarError(true)}

@@ -9,6 +9,16 @@ export const metadata: Metadata = {
     title: "Level Up — 3D Environment",
     description:
         "A personal R&D project exploring 3D environment creation in Blender, inspired by Crypto.com's 2025 slogan 'Level Up'.",
+    alternates: {
+        canonical: "/rnd/levelup",
+    },
+    openGraph: {
+        title: "Level Up — 3D Environment | Henry Tran",
+        description:
+            "A personal R&D project exploring 3D environment creation in Blender, inspired by Crypto.com's 2025 slogan 'Level Up'.",
+        url: "/rnd/levelup",
+        images: ["/images/levelup.webp"],
+    },
 };
 
 export default function LevelUpPage() {

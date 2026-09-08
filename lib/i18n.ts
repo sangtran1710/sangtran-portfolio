@@ -99,7 +99,7 @@ export const UI_COPY = {
     about: {
       kicker: "About",
       shortBio:
-        "Technical VFX Artist whose real-time game production career began in 2022, following an earlier background in video and motion design.",
+        "Technical VFX Artist specializing in real-time gameplay effects, custom shaders, and engine optimization.",
       downloadResume: "Download Resume",
       viewPortfolio: "View Portfolio",
       experience: "Experience",
@@ -117,8 +117,8 @@ export const UI_COPY = {
     showreel: {
       title: "Showreel",
       subtitle: "Real-time VFX - AAA - Cinematic",
-      shotBreakdown: "Shot Breakdown & Contributions",
-      shotBreakdownBody: "Exact production ownership across featured titles in the showreel.",
+      shotBreakdown: "Reel Cue Sheet",
+      shotBreakdownBody: "Direct timestamps and production ownership for shots featured in the reel.",
     },
     blog: {
       kicker: "Blog",
@@ -228,7 +228,7 @@ export const UI_COPY = {
     about: {
       kicker: "Giới thiệu",
       shortBio:
-        "Technical VFX Artist; bắt đầu làm game real-time từ năm 2022, sau giai đoạn làm video và motion design.",
+        "Technical VFX Artist chuyên về real-time gameplay effects, shader tùy biến và tối ưu hiệu năng trong engine.",
       downloadResume: "Tải Resume",
       viewPortfolio: "Xem Portfolio",
       experience: "Kinh nghiệm",
@@ -246,8 +246,8 @@ export const UI_COPY = {
     showreel: {
       title: "Showreel",
       subtitle: "Real-time VFX - AAA - Cinematic",
-      shotBreakdown: "Chi tiết từng shot & Đóng góp thực tế",
-      shotBreakdownBody: "Phần việc tôi trực tiếp thực hiện trong từng dự án xuất hiện trong reel.",
+      shotBreakdown: "Mốc thời gian Reel",
+      shotBreakdownBody: "Mốc thời gian và vai trò sản xuất cụ thể cho từng phân đoạn trong reel.",
     },
     blog: {
       kicker: "Blog",

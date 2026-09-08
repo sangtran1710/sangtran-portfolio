@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     description: ABOUT.bio[0],
     url: "/about",
     type: "profile",
-    images: ["/images/Portrait/z7554087716035_e6282b2e1378f725e4bcb1b51032c015.jpg"],
+    images: ["/images/Portrait/avatar.webp"],
   },
 };
 
