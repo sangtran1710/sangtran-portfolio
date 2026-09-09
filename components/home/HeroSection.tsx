@@ -42,6 +42,12 @@ export default function HeroSection() {
         style={prefersReducedMotion ? undefined : { opacity: contentOpacity, y: contentY }}
         className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 sm:px-8 sm:pb-20 lg:px-12 lg:pb-24"
       >
+        {/* Professional Role Badge */}
+        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1 text-xs font-medium text-stone-300 backdrop-blur-md">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#5c9d98]" />
+          <span>Real-Time VFX & Technical Art</span>
+        </div>
+
         <p className="text-base font-normal text-white/75">{hero.tagline}</p>
         <h1 className="mt-3 max-w-4xl font-kanit text-5xl font-normal leading-none text-white sm:text-[4rem] lg:text-[5rem]">
           {hero.name}
@@ -54,7 +60,19 @@ export default function HeroSection() {
             Selected work
             <ArrowUpRight className="h-4 w-4" />
           </Link>
-          <Link href="/rnd/erlangmon-vfx" className="inline-flex items-center gap-2 border-b border-white/20 pb-2 text-white/75 transition-colors hover:border-white hover:text-white">
+          <Link
+            href="/rnd/erlangmon-vfx"
+            prefetch={true}
+            onMouseEnter={() => {
+              if (typeof window !== "undefined") {
+                const img1 = new window.Image();
+                img1.src = "/projects/erlangmon-vfx/poster.webp";
+                const img2 = new window.Image();
+                img2.src = "/projects/erlangmon-vfx/cel-shading.webp";
+              }
+            }}
+            className="inline-flex items-center gap-2 border-b border-white/20 pb-2 text-white/75 transition-colors hover:border-white hover:text-white"
+          >
             Technical breakdown
             <ArrowUpRight className="h-4 w-4" />
           </Link>

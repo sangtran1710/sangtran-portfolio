@@ -1,10 +1,13 @@
 "use client";
 
+import Image from "next/image";
+import { ArrowUpRight, Github } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import ExperienceTimeline from "@/components/about/ExperienceTimeline";
 import FeaturedCreditsSection from "@/components/about/FeaturedCreditsSection";
 import ClientEndorsementsSection from "@/components/about/ClientEndorsementsSection";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { SOCIALS } from "@/data/portfolio";
 import {
   getLocalizedAbout,
   getLocalizedSkillGroups,
@@ -49,6 +52,61 @@ export default function AboutDetails() {
       <div className="mb-20 h-px bg-stone-300/70" />
 
       <FeaturedCreditsSection />
+
+      <div className="mb-20 h-px bg-stone-300/70" />
+
+      {/* GitHub Development Cadence */}
+      <section className="mb-20">
+        <div className="mb-6 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+          <div>
+            <h2 className="text-3xl font-semibold tracking-tight text-slate-900">
+              {locale === "vi" ? "Tần suất Phát triển & R&D" : "Development Cadence & R&D"}
+            </h2>
+            <p className="mt-2 text-sm text-slate-600">
+              {locale === "vi"
+                ? "Theo dõi tiến độ commit code, công cụ Python và shader thực tế trên GitHub."
+                : "Tracking consistent real-time shader, Python tooling, and engine pipeline commits on GitHub."}
+            </p>
+          </div>
+          <a
+            href={SOCIALS.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-[#4f8e89] transition-colors hover:text-[#3d706c]"
+          >
+            <Github className="h-4 w-4" />
+            <span>github.com/sangtran1710</span>
+            <ArrowUpRight className="h-3.5 w-3.5" />
+          </a>
+        </div>
+
+        <a
+          href={SOCIALS.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group block overflow-hidden rounded-2xl border border-stone-800 bg-[#0d1117] p-5 shadow-[0_12px_30px_rgba(15,23,42,0.08)] transition-all hover:border-teal-500/50 hover:shadow-[0_18px_40px_rgba(15,23,42,0.14)] sm:p-6"
+        >
+          <div className="mb-3 flex items-center justify-between text-xs text-slate-400">
+            <span className="flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+              </span>
+              Active Technical Production Cadence
+            </span>
+            <span className="font-semibold text-emerald-400">176 contributions in 2026</span>
+          </div>
+          <div className="overflow-hidden rounded-lg">
+            <Image
+              src="/images/github-contributions.png"
+              alt="Henry Tran GitHub Contribution Activity - 176 contributions in 2026"
+              width={852}
+              height={189}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        </a>
+      </section>
 
       <div className="mb-20 h-px bg-stone-300/70" />
 

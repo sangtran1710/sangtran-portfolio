@@ -81,7 +81,7 @@ export default function ErlangmonVfxPage() {
           controls
           playsInline
           preload="metadata"
-          poster="/projects/erlangmon-vfx/poster.jpg"
+          poster="/projects/erlangmon-vfx/poster.webp"
         >
           <source src="/projects/erlangmon-vfx/showcase.mp4" type="video/mp4" />
           Your browser does not support embedded video.
@@ -122,11 +122,13 @@ export default function ErlangmonVfxPage() {
 
           <div className="mt-16 grid gap-5 lg:grid-cols-[1.25fr_0.75fr]">
             <figure>
-              <div className="relative aspect-[807/659] overflow-hidden rounded-md bg-black">
+              <div className="relative aspect-[807/659] overflow-hidden rounded-md bg-stone-200">
                 <Image
                   src="/projects/erlangmon-vfx/cel-shading.webp"
                   alt="Erlangmon character with blue cel shading and Fresnel rim light"
                   fill
+                  priority
+                  unoptimized
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 62vw"
                 />
@@ -137,11 +139,13 @@ export default function ErlangmonVfxPage() {
             </figure>
 
             <figure>
-              <div className="relative aspect-[686/680] overflow-hidden rounded-md bg-black">
+              <div className="relative aspect-[686/680] overflow-hidden rounded-md bg-stone-200">
                 <Image
                   src="/projects/erlangmon-vfx/buff-aura.webp"
                   alt="Erlangmon character standing inside cyan buff rings"
                   fill
+                  priority
+                  unoptimized
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 38vw"
                 />
@@ -183,11 +187,12 @@ export default function ErlangmonVfxPage() {
 
         <div className="mt-16 grid gap-5 lg:grid-cols-2">
           <figure>
-            <div className="relative aspect-[1898/1023] overflow-hidden rounded-md border border-white/10 bg-black">
+            <div className="relative aspect-[1898/1023] overflow-hidden rounded-md border border-white/10 bg-stone-900">
               <Image
                 src="/projects/erlangmon-vfx/material-graph.webp"
                 alt="Unreal Engine material graph used for Erlangmon VFX"
                 fill
+                unoptimized
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
@@ -196,11 +201,12 @@ export default function ErlangmonVfxPage() {
           </figure>
 
           <figure>
-            <div className="relative aspect-[1904/926] overflow-hidden rounded-md border border-white/10 bg-black">
+            <div className="relative aspect-[1904/926] overflow-hidden rounded-md border border-white/10 bg-stone-900">
               <Image
                 src="/projects/erlangmon-vfx/niagara-system.webp"
                 alt="Unreal Engine Niagara system for the Erlangmon effect"
                 fill
+                unoptimized
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />

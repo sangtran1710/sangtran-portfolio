@@ -16,7 +16,7 @@ export default function ProjectCard({ project, priority = false }: ProjectCardPr
   return (
     <Link href={project.link || `/projects/${project.slug}`} className="group block h-full">
       <article className="flex h-full flex-col">
-        <div className="relative aspect-[16/9] overflow-hidden rounded-sm bg-stone-900">
+        <div className="relative aspect-[16/9] overflow-hidden rounded-md border border-white/10 bg-stone-900 transition-colors duration-300 group-hover:border-white/20">
           <Image
             src={project.thumbnail}
             alt={project.title}
@@ -46,8 +46,8 @@ export default function ProjectCard({ project, priority = false }: ProjectCardPr
           </h3>
           <p className="mt-1 text-sm font-medium text-[#7db5b0]">{credit}</p>
           <p className="mt-3 line-clamp-3 text-sm leading-6 text-white/60">{project.description}</p>
-          
-          <div className="mt-5 flex flex-wrap gap-1.5">
+
+          <div className="mt-4 flex flex-wrap gap-1.5">
             {project.techStack?.slice(0, 3).map((tech) => (
               <span key={tech} className="rounded border border-white/10 bg-white/[0.03] px-2 py-0.5 text-[11px] text-white/55">
                 {tech}
