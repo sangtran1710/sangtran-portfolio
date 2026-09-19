@@ -12,10 +12,12 @@ export interface Project {
   contributions: string[];
   techStack: string[];
   videoUrl?: string;
+  videoPoster?: string;
+  videoTitle?: string;
   images?: string[];
   /** Breakdown: URL + VFX name + optional caption (Behance-style: video -> text -> video -> image) */
   breakdownClips?: { url: string; title: string; caption?: string }[];
-  evidenceBreakdown?: { image: string; title: string; caption: string; tag?: string }[];
+  evidenceBreakdown?: { image: string; title: string; caption: string; tag?: string; link?: string }[];
   steamUrl?: string;
   isFeatured?: boolean;
   /** Display period e.g. "12/2022 - 9/2023" */
@@ -69,10 +71,9 @@ export const SOCIALS = {
 
 export const HERO = {
   name: "Henry Tran",
-  tagline: "Hands-on real-time VFX for game production.",
-  /** A short line; the rest is conveyed by video & images. */
+  tagline: "",
   description:
-    "I build, optimize, and integrate production-ready effects across proprietary engines and Unreal Engine.",
+    "Real-time VFX and technical art for games — gameplay effects, custom shaders, and in-engine optimization.",
   showreelUrl: "/video/reel_final.mp4",
   showreelYoutube: "https://www.youtube.com/watch?v=qK8jtTMHCRU",
 };
@@ -82,7 +83,7 @@ export const ABOUT = {
   portraitImage: "/images/Portrait/avatar.webp",
   bio: [
     "I am a Technical VFX Artist based in Ho Chi Minh City, specializing in real-time gameplay effects, custom shaders, and engine optimization for games and cinematics.",
-    "My production experience covers AAA releases including Marvel's Spider-Man 2 and Fortnite: Remix, working with Niagara, proprietary engines, and Perforce pipelines.",
+    "My production experience covers AAA releases including Marvel's Wolverine, Marvel's Spider-Man 2, and Fortnite: Remix, working with Niagara, proprietary engines, and Perforce pipelines.",
     "I focus on the full technical art loop — authoring modular Niagara/HLSL effects, building lightweight Python pipeline tools, and profiling performance for locked framerates on target hardware.",
   ],
   location: "Ho Chi Minh City, Vietnam",
@@ -92,9 +93,8 @@ export const ABOUT = {
 export const PROFILE = {
   headline: "Technical VFX Artist",
   title: "Henry Tran.",
-  /** Single line; detailed info reserved for the About page. */
   paragraph:
-    "Hands-on across effect creation, optimization, engine integration, and lightweight production tools. Based in HCMC and open to remote collaboration.",
+    "Technical VFX Artist with AAA production experience across Unreal Engine and proprietary pipelines. Open to remote roles and freelance collaboration.",
   portraitImage: "/images/Portrait/avatar.webp",
   /** Image flipped on hover (secondary avatar in the Portrait folder) */
   portraitImageSecondary: "/images/Portrait/avatar.webp",
@@ -131,7 +131,7 @@ export const EXPERIENCES: Experience[] = [
     role: "Senior VFX Artist",
     duration: "Apr 2022 - Present",
     responsibilities: [
-      "Developed and optimized real-time VFX for AAA projects including Marvel's Spider-Man 2, Fortnite Remix Finale, New World: Aeternum, and Until Dawn (PS5)",
+      "Developed and optimized real-time VFX for AAA projects including Marvel's Wolverine (PS5), Marvel's Spider-Man 2 (PS5), Fortnite Remix Finale, New World: Aeternum, and Until Dawn (PS5)",
       "Authored custom shaders and Niagara systems for production gameplay and cinematics",
       "Built Python tools and Houdini workflows to speed up asset production",
       "Worked with art directors, tech leads, and partner teams at Insomniac Games, Epic Games, and Amazon Games",
@@ -188,6 +188,83 @@ export const SKILL_GROUPS: SkillGroup[] = [
 ];
 
 export const PROJECTS: Project[] = [
+  {
+    slug: "wolverine",
+    thumbnail: "/images/projects/wolverine/wolverine-hero.webp",
+    title: "Marvel's Wolverine",
+    role: "Senior VFX Artist",
+    year: "2026",
+    duration: "09/2026",
+    platform: "PlayStation 5",
+    style: "realistic",
+    client: "Insomniac Games",
+    workSummary:
+      "Real-time VFX and simulation for Marvel's Wolverine on PS5.",
+    description:
+      "Senior VFX Artist at Sparx* - A Virtuos Studio, delivering gameplay and cinematic effects for Insomniac Games.",
+    categories: ["aaa", "realtime"],
+    contributions: [
+      "Real-time particle systems and combat VFX in proprietary engine",
+      "Houdini simulations and shaders for cinematic sequences",
+      "Overdraw and GPU profiling targeting locked 60 FPS on PS5",
+    ],
+    techStack: ["Proprietary Engine", "Houdini", "HLSL", "Perforce"],
+    engine: "Proprietary Engine",
+    constraints: [
+      "PS5 60 FPS performance & memory budgets",
+      "Proprietary engine pipeline compliance",
+      "Multi-studio Perforce synchronization",
+    ],
+    technicalHighlights: [
+      "Combat & impact particle systems",
+      "Houdini simulation workflows & runtime shaders",
+      "In-engine GPU profiling & overdraw reduction",
+    ],
+    videoUrl: "https://www.youtube.com/embed/lbiMqaLTKlQ",
+    videoPoster: "/images/projects/wolverine/wolverine-video-poster.webp",
+    videoTitle: "Jean TK Explosion (In-Game Cinematic VFX)",
+    breakdownClips: [
+      {
+        url: "https://youtu.be/lbiMqaLTKlQ",
+        title: "Jean TK Explosion Cutscene (In-Game VFX)",
+        caption: "In-game telekinesis explosion sequence and debris simulation authored for Marvel's Wolverine on PS5.",
+      },
+      {
+        url: "https://youtu.be/JfV_lwWiJDk?start=780",
+        title: "Official In-Game End Credits (13:00)",
+        caption: "Senior VFX Artist credit verification under Sparx* - A Virtuos Studio at 13:00.",
+      },
+    ],
+    images: [
+      "/images/projects/wolverine/wolverine-artblast-explosion.webp",
+      "/images/projects/wolverine/wolverine-artblast-hangar.webp",
+      "/images/projects/wolverine/wolverine-hero.webp",
+      "/images/projects/wolverine/wolverine-action.webp",
+      "/images/projects/wolverine/wolverine-madripoor.webp",
+    ],
+    evidenceBreakdown: [
+      {
+        image: "/images/projects/wolverine/wolverine-credit-evidence.webp",
+        title: "In-Game End Credits",
+        caption: "Senior VFX Artist credit under Sparx* - A Virtuos Studio. Verified in official end credits roll.",
+        tag: "In-Game Credit",
+        link: "https://youtu.be/JfV_lwWiJDk?t=780",
+      },
+      {
+        image: "/images/projects/wolverine/wolverine-artblast-explosion.webp",
+        title: "ArtBlast: Warehouse Explosion",
+        caption: "Volumetric fire simulation, shockwave lighting, and anamorphic flares.",
+        tag: "Production VFX",
+      },
+      {
+        image: "/images/projects/wolverine/wolverine-artblast-hangar.webp",
+        title: "ArtBlast: Night Assault",
+        caption: "Gunship thrusters, muzzle flashes, laser tracers, and impact blood.",
+        tag: "Production VFX",
+      },
+    ],
+    isFeatured: true,
+  },
   {
     slug: "spider-man-2",
     thumbnail: "/images/spiderman-2-ps5.jpg",
@@ -489,33 +566,13 @@ export const PROJECTS: Project[] = [
     ],
     images: ["/images/havoc-landing-page.webp"],
   },
-  /*
-  {
-    slug: "wolverine",
-    thumbnail: "/images/Wolverine.webp",
-    title: "Marvel's Wolverine",
-    role: "VFX Artist",
-    year: "2025",
-    duration: "10/2024 - Present",
-    platform: "PS5",
-    style: "realistic",
-    client: "Insomniac Games",
-    workSummary:
-      "Contributed VFX work visible in publicly released trailer footage.",
-    description:
-      "Selected VFX contributions are visible in released trailer footage. Further project details remain under NDA.",
-    categories: ["aaa", "realtime"],
-    contributions: ["Public trailer VFX contribution; further details under NDA"],
-    techStack: ["Unreal Engine", "Houdini", "Perforce"],
-    videoUrl: "https://www.youtube.com/watch?v=s3pDMUWlA6I",
-  },
-  */
 ];
 
 export const FEATURED_PROJECTS = PROJECTS.filter((p) => p.isFeatured);
 
-/** AAA titles: Spider-Man 2, Fortnite, New World, Until Dawn, Wolverine */
+/** AAA titles: Wolverine, Spider-Man 2, Fortnite, New World, Until Dawn */
 export const AAA_PROJECT_SLUGS = [
+  "wolverine",
   "spider-man-2",
   "fortnite-remix",
   "new-world",
@@ -790,8 +847,9 @@ export interface AchievementCredit {
 }
 
 export const ACHIEVEMENT_CREDITS: AchievementCredit[] = [
-  { image: "/images/achivements/SpiderMan2.webp", title: "Marvel's Spider-Man 2", subtitle: "VFX Artist" },
-  { image: "/images/achivements/BlackKnightNetflix.webp", title: "Black Knight (Netflix)", subtitle: "VFX Artist" },
+  { image: "/images/achivements/Wolverine.webp", title: "Marvel's Wolverine", subtitle: "Senior VFX Artist" },
+  { image: "/images/achivements/SpiderMan2.webp", title: "Marvel's Spider-Man 2", subtitle: "FX Artist" },
+  { image: "/images/achivements/BlackKnightNetflix.webp", title: "Black Knight (Netflix)", subtitle: "FX Artist" },
 ];
 
 export interface ClientReview {

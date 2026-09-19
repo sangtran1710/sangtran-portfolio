@@ -19,7 +19,6 @@ export default function FeaturedProjects() {
         <div className="mb-10 flex items-end justify-between gap-8">
           <div>
             <h2 className="text-3xl font-medium tracking-tight text-white sm:text-4xl">{copy.home.selectedWork}</h2>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-white/55">{copy.home.selectedWorkBody}</p>
           </div>
           <Link
             href="/portfolio"

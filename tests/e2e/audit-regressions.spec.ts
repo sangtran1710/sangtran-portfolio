@@ -9,7 +9,7 @@ test.describe("Audit regressions", () => {
   test("math demos cover a useful animated range", async ({ page }, testInfo) => {
     test.skip(testInfo.project.name.includes("mobile"), "One animation sample is sufficient.");
 
-    await page.goto("/blog/math-dot-product", { waitUntil: "networkidle" });
+    await page.goto("/blog/math-for-vfx-shaders", { waitUntil: "networkidle" });
     const dotValue = page.getByText(/^Dot Product:/).first();
     await dotValue.scrollIntoViewIfNeeded();
 
@@ -22,7 +22,6 @@ test.describe("Audit regressions", () => {
     expect(Math.min(...dotSamples)).toBeLessThan(-0.8);
     expect(Math.max(...dotSamples)).toBeGreaterThan(0.8);
 
-    await page.goto("/blog/math-spatial-masks", { waitUntil: "networkidle" });
     const distanceValue = page.getByText(/^Distance:/).first();
     const maskValue = page.getByText(/^Mask Value:/).first();
     await distanceValue.scrollIntoViewIfNeeded();
@@ -99,7 +98,7 @@ test.describe("Audit regressions", () => {
     await expect(page.getByRole("heading", { level: 1, name: "Erlangmon VFX" })).toBeVisible();
     await expect(page.locator("video")).toHaveAttribute(
       "poster",
-      "/projects/erlangmon-vfx/poster.jpg",
+      "/projects/erlangmon-vfx/poster.webp",
     );
     await expect(page.locator('video source[type="video/mp4"]')).toHaveAttribute(
       "src",

@@ -4,14 +4,14 @@ import PortfolioPageClient from "@/components/portfolio/PortfolioPageClient";
 export const metadata: Metadata = {
   title: "Portfolio",
   description:
-    "Production VFX work by Henry Tran across Marvel's Spider-Man 2, Fortnite, New World: Aeternum, and more.",
+    "Production VFX work by Henry Tran across Marvel's Wolverine, Marvel's Spider-Man 2, Fortnite, New World: Aeternum, and more.",
   alternates: {
     canonical: "/portfolio",
   },
   openGraph: {
     title: "Portfolio - Henry Tran",
     description:
-      "Production VFX work by Henry Tran across Marvel's Spider-Man 2, Fortnite, New World: Aeternum, and more.",
+      "Production VFX work by Henry Tran across Marvel's Wolverine, Marvel's Spider-Man 2, Fortnite, New World: Aeternum, and more.",
     url: "/portfolio",
     type: "website",
     images: ["/images/spiderman-2-ps5.jpg"],
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Portfolio - Henry Tran",
     description:
-      "Production VFX work by Henry Tran across Marvel's Spider-Man 2, Fortnite, New World: Aeternum, and more.",
+      "Production VFX work by Henry Tran across Marvel's Wolverine, Marvel's Spider-Man 2, Fortnite, New World: Aeternum, and more.",
     images: ["/images/spiderman-2-ps5.jpg"],
   },
 };

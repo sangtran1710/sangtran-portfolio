@@ -36,21 +36,19 @@ export default function ProfileSection() {
           <div className="max-w-3xl">
             <h2 className="text-3xl font-medium tracking-tight text-white sm:text-4xl">About</h2>
             <p className="mt-6 text-lg leading-8 text-stone-300">{profile.paragraph}</p>
-            <div className="mt-6 flex flex-wrap items-center gap-2.5 text-xs text-[#7db5b0]">
+            <div className="mt-5 flex flex-wrap items-center gap-2.5 text-xs text-[#7db5b0]">
               <span className="inline-flex items-center gap-1 font-medium bg-[#5c9d98]/10 px-2.5 py-1 rounded-full border border-[#5c9d98]/20">
                 ★ 5.0 Upwork Client Rating
               </span>
-              <span className="text-white/25">·</span>
-              <span className="text-white/60">Unreal Engine Gameplay & Real-time VFX</span>
             </div>
 
             {/* GitHub Engineering Cadence / Frequency Card */}
-            <div className="mt-8 rounded-xl border border-white/10 bg-[#0d1117] p-4 sm:p-5 shadow-2xl">
+            <div className="mt-7 rounded-xl border border-white/10 bg-[#0d1117] p-4 sm:p-5 shadow-2xl">
               <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-white/10">
                 <div className="flex items-center gap-2">
                   <Github className="h-4 w-4 text-white/80" />
                   <span className="text-xs font-medium text-white/90">
-                    {isVi ? "Hoạt động GitHub & R&D" : "GitHub Activity & Development Cadence"}
+                    {isVi ? "Hoạt động GitHub & R&D" : "GitHub Activity & Cadence"}
                   </span>
                   <span className="relative flex h-2 w-2 ml-1">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
@@ -84,10 +82,10 @@ export default function ProfileSection() {
                 />
               </a>
 
-              <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-white/50">
-                <span className="flex items-center gap-1.5 text-white/70">
+              <div className="mt-2.5 flex items-center justify-between text-xs text-white/50">
+                <span className="flex items-center gap-1.5 text-white/60">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  {isVi ? "Cập nhật shader & công cụ định kỳ" : "Active shader & tooling commits"}
+                  {isVi ? "Hoạt động gần đây" : "Recent commits"}
                 </span>
                 <span className="font-medium text-emerald-400">176 contributions in 2026</span>
               </div>

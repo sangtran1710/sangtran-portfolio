@@ -7,6 +7,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { getLocalizedHero } from "@/lib/portfolio-content";
+import AtmosphericVfxCanvas from "@/components/animations/AtmosphericVfxCanvas";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -27,16 +28,17 @@ export default function HeroSection() {
     >
       <div className="absolute inset-0">
         <Image
-          src="/images/hero-hardcore-drone.jpg"
-          alt="Henry Tran Real-time VFX"
+          src="/images/hero-wolverine-explosion.webp"
+          alt="Marvel's Wolverine Real-Time VFX by Henry Tran"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[70%_center] opacity-60 brightness-95"
+          className="object-cover object-[62%_35%] opacity-70 brightness-95"
         />
       </div>
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,6,7,0.88)_0%,rgba(5,6,7,0.42)_48%,rgba(5,6,7,0.1)_100%)]" />
       <div className="absolute inset-x-0 bottom-0 h-2/3 bg-[linear-gradient(0deg,rgba(5,6,7,0.95)_0%,rgba(5,6,7,0)_100%)]" />
+      <AtmosphericVfxCanvas />
 
       <motion.div
         style={prefersReducedMotion ? undefined : { opacity: contentOpacity, y: contentY }}
@@ -48,8 +50,7 @@ export default function HeroSection() {
           <span>Real-Time VFX & Technical Art</span>
         </div>
 
-        <p className="text-base font-normal text-white/75">{hero.tagline}</p>
-        <h1 className="mt-3 max-w-4xl font-kanit text-5xl font-normal leading-none text-white sm:text-[4rem] lg:text-[5rem]">
+        <h1 className="mt-4 max-w-4xl font-kanit text-5xl font-normal leading-none text-white sm:text-[4rem] lg:text-[5rem]">
           {hero.name}
         </h1>
         <p className="mt-5 max-w-xl text-base leading-7 text-white/70 sm:text-lg">

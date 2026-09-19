@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
-import Link from "next/link";
 import {
   Play,
   Pause,
@@ -10,8 +9,6 @@ import {
   VolumeX,
   ExternalLink,
   Youtube,
-  Film,
-  ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -20,37 +17,6 @@ import { getLocalizedHero } from "@/lib/portfolio-content";
 interface ShowreelSectionProps {
   headingLevel?: "h1" | "h2";
 }
-
-const REEL_CUES = [
-  {
-    time: "00:00",
-    seconds: 0,
-    title: "Marvel's Spider-Man 2",
-    client: "Insomniac Games / Sony",
-    engine: "Proprietary Engine · Houdini",
-  },
-  {
-    time: "00:10",
-    seconds: 10,
-    title: "Fortnite - Remix The Finale",
-    client: "Epic Games",
-    engine: "Unreal Engine · Niagara",
-  },
-  {
-    time: "00:20",
-    seconds: 20,
-    title: "New World: Aeternum",
-    client: "Amazon Games",
-    engine: "Unreal Engine · Houdini",
-  },
-  {
-    time: "00:30",
-    seconds: 30,
-    title: "Technical VFX & R&D",
-    client: "Stylized Combat & Shaders",
-    engine: "Unreal Engine 5 · Niagara · HLSL",
-  },
-];
 
 export default function ShowreelSection({
   headingLevel = "h2",
@@ -88,18 +54,6 @@ export default function ShowreelSection({
     const video = videoRef.current;
     if (!video) return;
     video.muted = !video.muted;
-    setMuted(video.muted);
-  };
-
-  const seekTo = (seconds: number) => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.currentTime = seconds;
-    if (video.paused) {
-      video.play().catch(() => {});
-      setPlaying(true);
-      setStarted(true);
-    }
   };
 
   return (
@@ -244,57 +198,6 @@ export default function ShowreelSection({
             ? copy.common.hoverForControls
             : copy.common.clickToPlay}
       </p>
-
-      {/* Interactive Cue Sheet */}
-      <div className="mt-12 rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-7">
-        <div className="flex flex-col gap-3 pb-4 border-b border-white/10 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-2.5">
-            <Film className="h-4 w-4 text-[#7db5b0]" />
-            <h3 className="text-sm font-semibold tracking-wide text-white">
-              {copy.showreel.shotBreakdown}
-            </h3>
-          </div>
-          <Link
-            href="/portfolio"
-            className="group inline-flex items-center gap-1.5 text-xs font-medium text-[#7db5b0] transition-colors hover:text-white"
-          >
-            <span>{locale === "vi" ? "Xem chi tiết dự án tại Work" : "Explore detailed breakdowns in Work"}</span>
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        </div>
-
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {REEL_CUES.map((cue) => (
-            <button
-              key={cue.time}
-              type="button"
-              onClick={() => seekTo(cue.seconds)}
-              title={locale === "vi" ? `Nhảy đến ${cue.time}` : `Jump to ${cue.time}`}
-              className="group flex flex-col justify-between rounded-xl border border-white/5 bg-black/30 p-3.5 text-left transition-all hover:border-[#7db5b0]/40 hover:bg-white/[0.04]"
-            >
-              <div className="flex items-center justify-between gap-2">
-                <span className="font-mono text-xs font-semibold text-[#7db5b0] transition-colors group-hover:text-teal-300">
-                  {cue.time}
-                </span>
-                <span className="text-[10px] text-white/40 transition-colors group-hover:text-white/60">
-                  {locale === "vi" ? "Nhấp để phát" : "Click to seek"}
-                </span>
-              </div>
-              <div className="mt-2.5 min-w-0">
-                <p className="text-sm font-medium text-white truncate group-hover:text-[#a7d2ce]">
-                  {cue.title}
-                </p>
-                <p className="mt-0.5 text-xs text-white/50 truncate">
-                  {cue.client}
-                </p>
-                <p className="mt-1 text-[11px] text-[#7db5b0]/70 truncate">
-                  {cue.engine}
-                </p>
-              </div>
-            </button>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }

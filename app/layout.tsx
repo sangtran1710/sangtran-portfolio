@@ -89,7 +89,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <ScrollToTop />
-          <Analytics />
+          {process.env.VERCEL && <Analytics />}
         </LanguageProvider>
       </body>
     </html>

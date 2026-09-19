@@ -19,7 +19,7 @@ export default function FeaturedCreditsSection() {
         {copy.about.featuredCreditsBody}
       </p>
 
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {credits.map((item, index) => (
           <div key={`${item.image}-${index}`}>
             <article className="overflow-hidden rounded-[1.5rem] border border-stone-200 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.05)] transition-all duration-300 hover:border-stone-300 hover:shadow-[0_18px_40px_rgba(15,23,42,0.08)]">
@@ -29,7 +29,7 @@ export default function FeaturedCreditsSection() {
                   alt={item.title ?? "Credit"}
                   fill
                   className="object-contain"
-                  sizes="(max-width: 640px) 100vw, 50vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               </div>
               {(item.title || item.subtitle) && (

@@ -8,7 +8,7 @@ Personal portfolio showcasing **VFX & Technical Art** work for AAA games and cin
 
 ## About
 
-I'm **Sang Tran**, a Senior VFX Artist based in Ho Chi Minh City, Vietnam. This site highlights real-time visual effects work for studios such as **Sony** (Marvel's Spider-Man 2), **Epic** (Fortnite), **Amazon** (New World: Aeternum), and **Netflix** (Black Knight), plus Web3 and indie projects.
+I'm **Sang Tran**, a Senior VFX Artist based in Ho Chi Minh City, Vietnam. This site highlights real-time visual effects work for studios such as **Sony** (Marvel's Wolverine, Marvel's Spider-Man 2), **Epic** (Fortnite), **Amazon** (New World: Aeternum), and **Netflix** (Black Knight), plus Web3 and indie projects.
 
 - **Focus:** Real-time VFX, Niagara, HLSL, Houdini, pipeline automation
 - **Stack (work):** Unreal Engine 5, Houdini, Blender, Python

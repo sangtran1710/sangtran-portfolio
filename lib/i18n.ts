@@ -68,10 +68,10 @@ export const UI_COPY = {
     home: {
       playShowreel: "Play showreel",
       viewPortfolio: "View portfolio",
-      selectedWork: "Selected production work",
-      selectedWorkBody: "Released projects with my role and production contribution stated clearly.",
-      technicalSpotlight: "Technical breakdowns & pipeline tools",
-      technicalSpotlightBody: "In-depth case studies on effect creation, Unreal Engine systems, and pipeline automation.",
+      selectedWork: "Selected Work",
+      selectedWorkBody: "",
+      technicalSpotlight: "Technical Breakdowns",
+      technicalSpotlightBody: "",
       viewBreakdown: "View breakdown",
       viewToolBreakdown: "View tool breakdown",
       backstoryOutro:
@@ -79,7 +79,7 @@ export const UI_COPY = {
       backstoryCta: "Read Full Resume",
       contactTitle: "Contact",
       contactBody:
-        "For senior remote roles, freelance VFX, or production support, reach me by email or LinkedIn.",
+        "Open for senior remote roles, freelance VFX, and technical art.",
       profilePhotoCaption: "Real-time VFX / Technical Art",
     },
     portfolio: {
@@ -197,10 +197,10 @@ export const UI_COPY = {
     home: {
       playShowreel: "Xem showreel",
       viewPortfolio: "Xem portfolio",
-      selectedWork: "Dự án production chọn lọc",
-      selectedWorkBody: "Các dự án đã phát hành với vai trò và đóng góp kỹ thuật rõ ràng.",
-      technicalSpotlight: "Phân tích kỹ thuật & Công cụ pipeline",
-      technicalSpotlightBody: "Các case study đi sâu vào effect creation, hệ thống Unreal Engine và tự động hoá quy trình.",
+      selectedWork: "Dự án Tiêu biểu",
+      selectedWorkBody: "",
+      technicalSpotlight: "Phân tích Kỹ thuật",
+      technicalSpotlightBody: "",
       viewBreakdown: "Xem phân tích",
       viewToolBreakdown: "Xem chi tiết công cụ",
       backstoryOutro:
@@ -208,7 +208,7 @@ export const UI_COPY = {
       backstoryCta: "Xem hồ sơ đầy đủ",
       contactTitle: "Liên hệ",
       contactBody:
-        "Email hoặc LinkedIn là nhanh nhất. Tôi đang mở cho vị trí full-time và cả freelance.",
+        "Sẵn sàng cho các vị trí Technical VFX và hợp tác sản xuất.",
       profilePhotoCaption: "Real-time VFX / Technical Art",
     },
     portfolio: {

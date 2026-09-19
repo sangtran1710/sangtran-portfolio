@@ -22,17 +22,16 @@ const VI_SITE = {
 };
 
 const VI_HERO = {
-  tagline:
-    "Real-time VFX thực chiến cho quy trình sản xuất game.",
+  tagline: "",
   description:
-    "Tôi xây dựng, tối ưu và tích hợp hiệu ứng production-ready trên custom engine và Unreal Engine.",
+    "Real-time VFX và technical art cho game — gameplay effects, custom shaders và tối ưu hiệu năng trong engine.",
 };
 
 const VI_ABOUT = {
   title: "VFX thực chiến, shader và tích hợp engine.",
   bio: [
     "Tôi là Technical VFX Artist tại TP. Hồ Chí Minh, chuyên về real-time gameplay VFX, shader tùy biến và tối ưu hiệu năng trong engine cho game và cinematic.",
-    "Kinh nghiệm sản xuất thực chiến của tôi bao gồm các dự án AAA như Marvel's Spider-Man 2 và Fortnite: Remix, làm việc trực tiếp với Niagara, custom engine và pipeline Perforce.",
+    "Kinh nghiệm sản xuất thực chiến của tôi bao gồm các dự án AAA như Marvel's Wolverine, Marvel's Spider-Man 2 và Fortnite: Remix, làm việc trực tiếp với Niagara, custom engine và pipeline Perforce.",
     "Trọng tâm của tôi là toàn bộ quy trình technical art: từ tạo effect và viết HLSL/material graph, đến phát triển công cụ Python tự động hóa và profiling để giữ vững framerate mục tiêu.",
   ],
   location: "TP. Hồ Chí Minh, Việt Nam",
@@ -41,7 +40,7 @@ const VI_ABOUT = {
 const VI_PROFILE = {
   headline: "Technical VFX Artist",
   paragraph:
-    "Thực hiện VFX, tối ưu, tích hợp engine và các production tool gọn nhẹ. Làm việc tại TP.HCM và mở cho cơ hội remote phù hợp.",
+    "Technical VFX Artist với kinh nghiệm thực chiến trên Unreal Engine và engine độc quyền. Sẵn sàng cho các cơ hội hợp tác remote.",
   ctaText: "Liên hệ với tôi",
   stats: [
     { label: "Game đã ra mắt", value: "8+" },
@@ -64,7 +63,7 @@ const VI_EXPERIENCES = [
   {
     role: "Senior VFX Artist",
     responsibilities: [
-      "Phát triển và tối ưu real-time VFX cho các dự án AAA như Marvel's Spider-Man 2, Fortnite Remix Finale, New World: Aeternum và Until Dawn (PS5)",
+      "Phát triển và tối ưu real-time VFX cho các dự án AAA như Marvel's Wolverine (PS5), Marvel's Spider-Man 2 (PS5), Fortnite Remix Finale, New World: Aeternum và Until Dawn (PS5)",
       "Tạo shader tùy biến và hệ thống Niagara trong Unreal Engine 5 cho gameplay và cinematic",
       "Xây Python tool và pipeline Houdini để tăng tốc workflow cho team và quá trình sản xuất asset",
       "Làm việc cross-functional với art director và tech lead từ Insomniac Games, Epic Games và Amazon Games",
@@ -280,12 +279,60 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
     ],
   },
   wolverine: {
-    role: "VFX Artist",
+    role: "Senior VFX Artist",
+    videoTitle: "Jean TK Explosion (Cutscene VFX Trong Game)",
+    breakdownClips: [
+      {
+        url: "https://youtu.be/lbiMqaLTKlQ",
+        title: "Jean TK Explosion Cutscene (In-Game VFX)",
+        caption: "Hiệu ứng nổ telekinesis và simulation real-time thực hiện cho Marvel's Wolverine trên PS5.",
+      },
+      {
+        url: "https://youtu.be/JfV_lwWiJDk?start=780",
+        title: "Credit Trong Game (Mốc 13:00)",
+        caption: "Ghi nhận chính thức chức danh Senior VFX Artist thuộc Sparx* - A Virtuos Studio tại 13:00.",
+      },
+    ],
     workSummary:
-      "Có đóng góp VFX xuất hiện trong trailer đã được công bố công khai.",
+      "VFX real-time và simulation cho Marvel's Wolverine trên PS5.",
     description:
-      "Một phần VFX contribution có xuất hiện trong trailer đã phát hành. Các chi tiết khác vẫn thuộc NDA.",
-    contributions: ["VFX contribution trong trailer công khai; các chi tiết khác thuộc NDA"],
+      "Senior VFX Artist tại Sparx* - A Virtuos Studio, thực hiện hiệu ứng gameplay và cinematic cho Insomniac Games.",
+    contributions: [
+      "Hệ thống hạt real-time và combat VFX trên engine độc quyền của studio",
+      "Mô phỏng Houdini và shader cho các phân cảnh cinematic",
+      "Tối ưu overdraw và profiling GPU khóa cứng 60 FPS trên PS5",
+    ],
+    constraints: [
+      "Hiệu năng 60 FPS và ngân sách bộ nhớ khắt khe của PS5",
+      "Tiêu chuẩn pipeline engine nội bộ của Insomniac Games",
+      "Đồng bộ Perforce đa studio giữa Sparx* và Insomniac",
+    ],
+    technicalHighlights: [
+      "Particle system cho combat và hiệu ứng va chạm",
+      "Pipeline Houdini simulation kết hợp runtime shader",
+      "Profiling GPU và triệt tiêu overdraw in-engine",
+    ],
+    evidenceBreakdown: [
+      {
+        image: "/images/projects/wolverine/wolverine-credit-evidence.webp",
+        title: "Credit Trong Game",
+        caption: "Credit chức danh Senior VFX Artist dưới tên Sparx* - A Virtuos Studio. Ghi nhận tại mốc 13:00 của credit.",
+        tag: "In-Game Credit",
+        link: "https://youtu.be/JfV_lwWiJDk?t=780",
+      },
+      {
+        image: "/images/projects/wolverine/wolverine-artblast-explosion.webp",
+        title: "ArtBlast: Vụ Nổ Nhà Kho",
+        caption: "Mô phỏng khói lửa volumetric, shockwave lighting và anamorphic flare.",
+        tag: "Production VFX",
+      },
+      {
+        image: "/images/projects/wolverine/wolverine-artblast-hangar.webp",
+        title: "ArtBlast: Đột Kích Đêm",
+        caption: "Lửa phản lực tàu bay, chớp nòng súng, vệt laser và hiệu ứng máu va chạm.",
+        tag: "Production VFX",
+      },
+    ],
   },
 };
 
@@ -297,6 +344,7 @@ const VI_EDUCATION = [
 const VI_CERTIFICATES = [{}, {}] as const;
 
 const VI_CREDITS = [
+  { subtitle: "Senior VFX Artist" },
   { subtitle: "VFX Artist" },
   { subtitle: "VFX Artist" },
 ] as const;

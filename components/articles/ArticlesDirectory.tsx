@@ -32,19 +32,13 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
     router.replace(newUrl, { scroll: false });
   };
 
-  const mathSlugs = [
-    "math-essential-functions", 
-    "math-uv-coordinates", 
-    "math-dot-product", 
-    "math-spatial-masks",
-    "math-cross-product"
-  ];
-  
+  const isMathPost = (post: BlogPostMeta) =>
+    post.tags.includes("Math") || post.slug.startsWith("math-");
+
   const toolPosts = posts.filter(
-    (post) => !mathSlugs.includes(post.slug) && post.slug !== "ue5-material-library-portal"
+    (post) => !isMathPost(post) && post.slug !== "ue5-material-library-portal"
   );
-  const mathPosts = posts.filter((post) => mathSlugs.includes(post.slug))
-    .sort((a, b) => mathSlugs.indexOf(a.slug) - mathSlugs.indexOf(b.slug));
+  const mathPosts = posts.filter((post) => isMathPost(post));
 
   const allPosts = [...toolPosts, ...mathPosts];
 
@@ -127,7 +121,7 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
         <section>
           <div className="grid gap-6 md:grid-cols-2">
             {displayedPosts.map((post) => {
-              const isMath = mathSlugs.includes(post.slug);
+              const isMath = isMathPost(post);
               return (
                 <article
                   key={post.slug}

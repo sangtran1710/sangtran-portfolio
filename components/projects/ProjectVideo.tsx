@@ -8,12 +8,14 @@ interface ProjectVideoProps {
   embedUrl: string;
   poster: string;
   title: string;
+  videoTitle?: string;
 }
 
 export default function ProjectVideo({
   embedUrl,
   poster,
   title,
+  videoTitle,
 }: ProjectVideoProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const playerUrl = `${embedUrl}${embedUrl.includes("?") ? "&" : "?"}autoplay=1`;
@@ -43,15 +45,21 @@ export default function ProjectVideo({
             sizes="(max-width: 1024px) 100vw, 896px"
             className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
           />
-          <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-black/5 transition-colors group-hover:from-black/50" />
+          <span className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10 transition-colors group-hover:from-black/70" />
           <span className="absolute inset-0 flex items-center justify-center">
-            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/95 text-slate-950 shadow-xl transition-transform duration-200 group-hover:scale-110">
+            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-red-600 text-white shadow-2xl transition-transform duration-200 group-hover:scale-110">
               <Play className="ml-1 h-7 w-7 fill-current" aria-hidden="true" />
             </span>
           </span>
-          <span className="absolute bottom-5 left-5 text-sm font-medium text-white">
-            Play project video
-          </span>
+          <div className="absolute bottom-5 left-5 right-5 flex flex-wrap items-center justify-between gap-2">
+            <span className="text-sm sm:text-base font-semibold text-white drop-shadow-md flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+              {videoTitle || "Play project video"}
+            </span>
+            <span className="rounded bg-black/60 backdrop-blur-md px-2.5 py-1 text-xs font-mono text-zinc-300">
+              YouTube In-Engine Video
+            </span>
+          </div>
         </button>
       )}
     </div>

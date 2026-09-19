@@ -125,8 +125,9 @@ export default function ProjectDetailPage({ params }: Props) {
       {embedUrl ? (
         <ProjectVideo
           embedUrl={embedUrl}
-          poster={project.thumbnail || "/images/NWA.jpg"}
+          poster={project.videoPoster || project.thumbnail || "/images/NWA.jpg"}
           title={project.title}
+          videoTitle={project.videoTitle}
         />
       ) : project.thumbnail ? (
         <div className="relative h-72 sm:h-96 overflow-hidden rounded-xl bg-muted mb-10">
@@ -202,11 +203,24 @@ export default function ProjectDetailPage({ params }: Props) {
                     <h3 className="text-base font-semibold text-white">
                       {item.title}
                     </h3>
-                    {item.tag && (
-                      <span className="rounded bg-white/10 px-2 py-0.5 text-[11px] font-mono text-[#a7d2ce]">
-                        {item.tag}
-                      </span>
-                    )}
+                    <div className="flex items-center gap-2">
+                      {item.tag && (
+                        <span className="rounded bg-white/10 px-2 py-0.5 text-[11px] font-mono text-[#a7d2ce]">
+                          {item.tag}
+                        </span>
+                      )}
+                      {item.link && (
+                        <a
+                          href={item.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 rounded border border-white/20 bg-white/5 px-2.5 py-0.5 text-[11px] font-medium text-white transition-colors hover:bg-white/10 hover:border-white/30"
+                        >
+                          Watch Video
+                          <ArrowUpRight className="h-3 w-3 text-[#7db5b0]" />
+                        </a>
+                      )}
+                    </div>
                   </div>
                   <p className="text-sm leading-relaxed text-zinc-300">
                     {item.caption}

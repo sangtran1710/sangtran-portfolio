@@ -10,6 +10,7 @@ import {
 
 export default function RunningTicker() {
   const tickerItems = [
+    { name: "MARVEL'S WOLVERINE", path: siPlaystation.path, scale: 1.1 },
     { name: "MARVEL'S SPIDER-MAN 2", path: siPlaystation.path, scale: 1.1 },
     { name: "SONY INTERACTIVE ENTERTAINMENT", path: siSony.path, scale: 1.8 },
     { name: "FORTNITE", path: siEpicgames.path, scale: 0.95 },
