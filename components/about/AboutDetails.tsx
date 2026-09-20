@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import ExperienceTimeline from "@/components/about/ExperienceTimeline";
 import FeaturedCreditsSection from "@/components/about/FeaturedCreditsSection";
@@ -61,6 +62,31 @@ export default function AboutDetails() {
             </div>
           ))}
         </div>
+      </section>
+
+      <div className="mb-16 h-px bg-stone-300/70" />
+
+      {/* 5. Personal Note */}
+      <section className="mb-12">
+        <figure className="overflow-hidden rounded-3xl border border-stone-200/90 bg-white p-4 sm:p-5 shadow-[0_12px_36px_rgba(15,23,42,0.05)]">
+          <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden rounded-2xl bg-stone-100">
+            <Image
+              src="/images/Portrait/family-winter.webp"
+              alt="Henry Tran with family"
+              fill
+              unoptimized
+              className="object-cover object-[center_35%]"
+              sizes="(max-width: 1024px) 100vw, 1152px"
+            />
+          </div>
+          <figcaption className="px-2 pt-4 pb-1">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+              {locale === "vi"
+                ? "Tôi thích nhất những cảm giác thế này cùng gia đình, ngắm nhìn thiên nhiên sau nhiều giờ làm việc chăm chỉ."
+                : "My favorite moments with family — taking in nature and recharging after long hours of dedicated work."}
+            </p>
+          </figcaption>
+        </figure>
       </section>
     </div>
   );
