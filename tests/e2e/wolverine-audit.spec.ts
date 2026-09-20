@@ -24,6 +24,16 @@ test.describe("Marvel's Wolverine Integration Audit", () => {
       path: path.join(ARTIFACT_DIR, "wolverine-about-credits.png"),
     });
 
+    // Verify Sparx studio life section
+    await expect(page.getByText("Studio Life & Team Culture")).toBeVisible();
+    await expect(page.locator('img[alt="Sparx* Studio Beach Team Building"]')).toBeVisible();
+    await expect(page.locator('img[alt="Sparx* Birthday Card"]')).toBeVisible();
+    await expect(page.locator('img[alt="Sparx* Year-End Gala"]')).toBeVisible();
+    const studioLifeSection = page.getByText("Studio Life & Team Culture").locator("xpath=ancestor::section");
+    await studioLifeSection.screenshot({
+      path: path.join(ARTIFACT_DIR, "sparx-studio-life.png"),
+    });
+
     // Verify personal family photo section
     const familyPhoto = page.locator('img[alt="Henry Tran with family"]');
     await expect(familyPhoto).toBeVisible();
