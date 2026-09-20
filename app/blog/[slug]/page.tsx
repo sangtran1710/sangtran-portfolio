@@ -10,6 +10,12 @@ import {
   UvCartesianVisual, UvPanningVisual, UvDistortionVisual, 
   SphericalMaskVisual, WorldPositionOffsetVisual, DepthFadeVisual
 } from "@/components/blog/MathVisuals";
+import {
+  VideoPlayer,
+  TextureCard,
+  TextureGallery,
+  ProductionNotice,
+} from "@/components/blog/HoudiniVisuals";
 
 interface Props {
   params: { slug: string };
@@ -136,7 +142,8 @@ export default function BlogPostPage({ params }: Props) {
           <MDXRemote source={post.content} components={{ 
             DotProductVisual, SineWaveVisual, CrossProductVisual, StepVsSmoothstepVisual,
             UvCartesianVisual, UvPanningVisual, UvDistortionVisual,
-            SphericalMaskVisual, WorldPositionOffsetVisual, DepthFadeVisual
+            SphericalMaskVisual, WorldPositionOffsetVisual, DepthFadeVisual,
+            VideoPlayer, TextureCard, TextureGallery, ProductionNotice
           }} />
         </div>
 
