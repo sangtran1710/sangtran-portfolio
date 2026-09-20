@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ArrowUpRight, CheckCircle2, ShieldCheck, Wrench, FileCheck2 } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import ProjectVideo from "@/components/projects/ProjectVideo";
@@ -165,10 +165,10 @@ export default function ProjectDetailPage({ params }: Props) {
           <div className="mb-6 flex flex-wrap items-center justify-between gap-2">
             <div>
               <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
-                In-Engine Evidence & Systems Breakdown
+                In-Engine Systems & Technical Breakdown
               </h2>
               <p className="mt-1 text-xs text-muted-foreground">
-                Direct in-editor captures, profiling logs, and simulation node graphs from production.
+                Production captures, Blueprint logic, and simulation node workflows.
               </p>
             </div>
             {project.steamUrl && (
@@ -334,123 +334,42 @@ export default function ProjectDetailPage({ params }: Props) {
         );
       })()}
 
-      {/* Structured Case Study Grid */}
+      {/* Overview & Contributions */}
       <div className="grid gap-10 lg:grid-cols-3">
-        {/* Main content: 5-part structure */}
+        {/* Main content: Role Overview & My Contribution */}
         <div className="lg:col-span-2 space-y-8">
-          {/* 1. Role & Scope */}
           <div>
-            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <span className="text-xs font-mono text-primary">01</span>
-              Role & Scope
+            <h2 className="text-xl font-semibold tracking-tight text-white mb-3">
+              Overview & Scope
             </h2>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-sm sm:text-base leading-relaxed text-zinc-300">
               {project.workSummary || project.description}
             </p>
             {project.workSummary && project.description && project.workSummary !== project.description && (
-              <p className="mt-3 text-muted-foreground leading-relaxed">
+              <p className="mt-3 text-sm sm:text-base leading-relaxed text-zinc-400">
                 {project.description}
               </p>
             )}
           </div>
 
-          <Separator />
+          <Separator className="bg-white/10" />
 
-          {/* 2. What I Contributed */}
           <div>
-            <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              <span className="text-xs font-mono text-primary">02</span>
-              What I Contributed
+            <h2 className="text-xl font-semibold tracking-tight text-white mb-4">
+              My Contribution
             </h2>
-            <ul className="space-y-3">
+            <ul className="space-y-3.5">
               {project.contributions.map((item, i) => (
-                <li key={i} className="flex gap-3 text-sm leading-relaxed">
-                  <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-muted-foreground">{item}</span>
+                <li key={i} className="flex items-start gap-3 text-sm leading-relaxed text-zinc-300">
+                  <CheckCircle2 className="h-4 w-4 text-[#7db5b0] flex-shrink-0 mt-1" />
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
           </div>
-
-          {/* 3. Production Constraints */}
-          {project.constraints && project.constraints.length > 0 && (
-            <>
-              <Separator />
-              <div>
-                <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                  <span className="text-xs font-mono text-primary">03</span>
-                  Production Constraints
-                </h2>
-                <ul className="space-y-3">
-                  {project.constraints.map((item, i) => (
-                    <li key={i} className="flex gap-3 text-sm leading-relaxed">
-                      <ShieldCheck className="h-4 w-4 text-amber-400/90 flex-shrink-0 mt-0.5" />
-                      <span className="text-muted-foreground">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </>
-          )}
-
-          {/* 4. Technical Implementation */}
-          {project.technicalHighlights && project.technicalHighlights.length > 0 && (
-            <>
-              <Separator />
-              <div>
-                <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                  <span className="text-xs font-mono text-primary">04</span>
-                  Technical Implementation
-                </h2>
-                <ul className="space-y-3">
-                  {project.technicalHighlights.map((item, i) => (
-                    <li key={i} className="flex gap-3 text-sm leading-relaxed">
-                      <Wrench className="h-4 w-4 text-[#7db5b0] flex-shrink-0 mt-0.5" />
-                      <span className="text-muted-foreground">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </>
-          )}
-
-          {/* 5. Verified Evidence */}
-          <Separator />
-          <div>
-            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <span className="text-xs font-mono text-primary">05</span>
-              Verified Evidence & Proof
-            </h2>
-            <div className="rounded-xl border border-border bg-muted/20 p-4 text-sm text-muted-foreground leading-relaxed">
-              <div className="flex items-start gap-3">
-                <FileCheck2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                <p>
-                  Work delivered under professional contract through Sparx* / client pipelines.
-                  {project.slug === "spider-man-2" && " Verified with Sparx* team production gathering and published credits."}
-                  {project.slug === "fortnite-remix" && " Verified with published cinematic trailer footage and official breakdown clips."}
-                  {project.slug === "new-world" && " Verified with published PS5 cinematic trailer footage."}
-                  {project.slug === "until-dawn" && " Verified with published PS5 remake cinematic sequences."}
-                  {project.slug === "black-knight" && " Verified with official Netflix broadcast end credits."}
-                  {project.slug === "malignant" && (
-                    <span>
-                      {" "}Verified with 5.0★ Upwork client contract (&ldquo;Unreal Engine Gameplay and Content Creation Specialist&rdquo;), in-editor UE5 project evidence, and the official{" "}
-                      <a
-                        href="https://store.steampowered.com/app/4314740/Malignant/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="underline hover:text-white"
-                      >
-                        Steam store listing
-                      </a>.
-                    </span>
-                  )}
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
 
-        {/* Sidebar: Role, Platform, Engine, Category, Tech Stack */}
+        {/* Sidebar: Role, Platform, Engine, Category, Tech Stack, Credit */}
         <div className="space-y-6">
           {project.steamUrl && (
             <a
@@ -501,7 +420,7 @@ export default function ProjectDetailPage({ params }: Props) {
             </div>
             {project.client && (
               <div>
-                <p className="text-xs text-muted-foreground">Client</p>
+                <p className="text-xs text-muted-foreground">Client / Studio</p>
                 <p className="text-sm font-medium mt-0.5 text-primary">
                   {project.client}
                 </p>
@@ -524,6 +443,19 @@ export default function ProjectDetailPage({ params }: Props) {
                   </Badge>
                 ))}
               </div>
+            </div>
+
+            <div className="pt-3 border-t border-white/10 text-xs text-white/50 leading-relaxed">
+              <p>
+                Production Credit: Credited under{" "}
+                <span className="text-white/80 font-medium">
+                  {project.slug === "malignant"
+                    ? "Buzzkill Interactive / Upwork"
+                    : project.client
+                    ? `Sparx* / ${project.client}`
+                    : "Sparx* - A Virtuos Studio"}
+                </span>
+              </p>
             </div>
           </div>
         </div>

@@ -30,9 +30,8 @@ const VI_HERO = {
 const VI_ABOUT = {
   title: "VFX thực chiến, shader và tích hợp engine.",
   bio: [
-    "Tôi là Technical VFX Artist tại TP. Hồ Chí Minh, chuyên về real-time gameplay VFX, shader tùy biến và tối ưu hiệu năng trong engine cho game và cinematic.",
-    "Kinh nghiệm sản xuất thực chiến của tôi bao gồm các dự án AAA như Marvel's Wolverine, Marvel's Spider-Man 2 và Fortnite: Remix, làm việc trực tiếp với Niagara, custom engine và pipeline Perforce.",
-    "Trọng tâm của tôi là toàn bộ quy trình technical art: từ tạo effect và viết HLSL/material graph, đến phát triển công cụ Python tự động hóa và profiling để giữ vững framerate mục tiêu.",
+    "Technical VFX Artist chuyên về real-time gameplay effects, custom shader, tối ưu GPU và tích hợp engine.",
+    "Kinh nghiệm thực chiến AAA qua Marvel's Wolverine, Marvel's Spider-Man 2 và Fortnite, làm việc với Niagara, proprietary engine và pipeline Perforce.",
   ],
   location: "TP. Hồ Chí Minh, Việt Nam",
 };
@@ -86,12 +85,10 @@ const VI_EXPERIENCES = [
 ] as const;
 
 const VI_SKILL_GROUPS = [
-  { name: "VFX & Mô phỏng" },
+  { name: "Kỹ xảo & Mô phỏng Real-Time" },
   { name: "Shader & Vật liệu" },
-  { name: "Phần mềm 3D" },
-  { name: "Game Engine" },
-  { name: "Lập trình & Pipeline" },
-  { name: "AI & Công cụ mới" },
+  { name: "Kỹ thuật & Pipeline" },
+  { name: "Phần mềm 3D & DCC" },
 ] as const;
 
 const VI_PROJECTS: Record<string, Partial<Project>> = {
@@ -143,9 +140,9 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
   "new-world": {
     role: "FX Artist",
     workSummary:
-      "FX Artist cho cinematic trailer nhằm quảng bá bản phát hành New World trên PS5. Dự án từ Amazon Games.",
+      "VFX cinematic và môi trường cho chiến dịch ra mắt New World: Aeternum trên PS5 của Amazon Games.",
     description:
-      "Đóng góp vào production trailer cinematic và in-game VFX cho đợt launch New World trên PS5 của Amazon Games, tập trung vào environmental effect và combat effect.",
+      "Thực hiện environmental VFX, hệ thống thời tiết và shader tương tác cây cỏ cho bản phát hành PS5 của New World: Aeternum.",
     contributions: [
       "Tạo environmental VFX gồm weather, magic và destruction systems",
       "Tạo custom shader logic cho foliage animation và tương tác bề mặt nước",

@@ -90,7 +90,7 @@ test.describe("UI screenshot QA", () => {
 
     const imageRegion = firstCard.locator("div").first();
     const description = firstCard.locator("p").filter({
-      hasText: /developed|created|contributed|playable/i,
+      hasText: /gameplay|vfx|developed|created|contributed|playable|engine/i,
     }).first();
 
     await expect(imageRegion).toBeVisible();

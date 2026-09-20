@@ -1,11 +1,13 @@
 "use client";
 
 import { useRef, useEffect, useState, useMemo, useCallback } from "react";
-import { ArrowUpRight, Gamepad2, ImageOff } from "lucide-react";
+import { ArrowUpRight, ChevronDown, ImageOff } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { RND_PROJECTS } from "@/data/portfolio";
 import type { RndProject } from "@/data/portfolio";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
 /*  Thumbnail — always static image, never autoplay video / iframe    */
@@ -95,27 +97,35 @@ function CardLink({
   );
 }
 
+const ARCHIVE_SLUGS = new Set([
+  "utop-bitexco",
+  "smart-menu",
+  "utop-events",
+  "iPhone 11 Pro Max TVC",
+  "Circle and Vellum",
+  "project-my",
+  "Divecore - Diving Watch Strap",
+]);
+
 /* ================================================================== */
 /*  MAIN COMPONENT                                                     */
 /* ================================================================== */
 export default function RndSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [inView, setInView] = useState(true);
+  const [isArchiveOpen, setIsArchiveOpen] = useState(false);
+  const { locale } = useLanguage();
+  const isVi = locale === "vi";
 
-  const igamingProjects = useMemo(
-    () => RND_PROJECTS.filter((p) => p.group === "igaming"),
+  // Tier 2: Technical VFX, Niagara Systems, Shaders & Pipeline Tooling
+  const technicalProjects = useMemo(
+    () => RND_PROJECTS.filter((p) => !ARCHIVE_SLUGS.has(p.slug || p.title)),
     []
   );
-  const vfxProjects = useMemo(
-    () => RND_PROJECTS.filter((p) => p.group === "vfx"),
-    []
-  );
-  const recentProjects = useMemo(
-    () => RND_PROJECTS.filter((p) => !p.group && Number(p.year) >= 2025),
-    []
-  );
+
+  // Tier 3: Older Commercial TVCs & Early Product Renders (Collapsed)
   const archiveProjects = useMemo(
-    () => RND_PROJECTS.filter((p) => !p.group && (Number(p.year) <= 2024 || !p.year)),
+    () => RND_PROJECTS.filter((p) => ARCHIVE_SLUGS.has(p.slug || p.title)),
     []
   );
 
@@ -131,170 +141,101 @@ export default function RndSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="rnd" className="relative w-full">
-      <div className="relative z-10 mx-auto max-w-7xl px-6 py-10 pb-20">
-        <div className="space-y-14">
-
-          {/* ── iGAMING ── */}
-          {igamingProjects.length > 0 && (
-            <section className="space-y-5">
-              <div className="flex items-center gap-3">
-                <Gamepad2 className="h-5 w-5 text-yellow-400" />
-                <h2 className="text-lg sm:text-xl font-bold text-white uppercase tracking-widest">
-                  iGaming
-                </h2>
-                <span className="text-[10px] text-yellow-400/50 uppercase tracking-widest font-medium">
-                  Playable Demo
-                </span>
-                <div className="h-px flex-1 bg-yellow-500/10" />
+    <div ref={sectionRef as unknown as React.RefObject<HTMLDivElement>} className="relative w-full pt-4 pb-16">
+      {/* ── Tier 2: Technical VFX & Pipeline R&D ── */}
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {technicalProjects.map((project, i) => (
+          <CardLink
+            key={project.title}
+            project={project}
+            className={`group relative block overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/60 transition-all duration-500 hover:border-teal-500/40 hover:bg-zinc-900/90
+              ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+            style={{ transitionDelay: inView ? `${i * 0.05}s` : "0s" }}
+          >
+            <div className="relative aspect-video w-full overflow-hidden bg-zinc-950">
+              <Thumbnail project={project} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute top-2.5 right-2.5 flex h-7 w-7 items-center justify-center rounded-full bg-black/40 backdrop-blur-sm text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <ArrowUpRight className="h-3.5 w-3.5" />
               </div>
-              <div className="grid gap-4 md:gap-6 sm:grid-cols-2">
-                {igamingProjects.map((project, i) => (
-                  <CardLink
-                    key={project.title}
-                    project={project}
-                    className={`group relative block overflow-hidden transition-all duration-500
-                      ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
-                    style={{ transitionDelay: inView ? `${i * 0.08}s` : "0s" }}
-                  >
-                    <div className="relative aspect-[16/10] bg-zinc-900 overflow-hidden rounded-xl md:rounded-2xl">
-                      <Thumbnail project={project} sizes="(max-width: 640px) 100vw, 50vw" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
-                      <div className="absolute inset-0 bg-yellow-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center bg-yellow-500/20 backdrop-blur-sm text-yellow-300 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110">
-                        <ArrowUpRight className="h-4 w-4" />
-                      </div>
-                      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
-                        <div className="flex items-center gap-2 mb-1.5">
-                          <span className="text-[10px] font-semibold uppercase tracking-widest text-yellow-400">
-                            {project.category}
-                          </span>
-                        </div>
-                        <h3 className="text-base sm:text-lg font-bold text-white leading-tight group-hover:text-yellow-300 transition-colors">
-                          {project.title}
-                        </h3>
-                        <div className="flex flex-wrap gap-1.5 mt-2.5">
-                          {project.tools.map((tool) => (
-                            <span key={tool} className="text-[10px] text-yellow-200/70 bg-yellow-500/10 px-1.5 py-0.5">
-                              {tool}
-                            </span>
-                          ))}
-                        </div>
-                        {project.linkLabel && (
-                          <span className="inline-flex items-center gap-1 mt-3 text-[11px] font-medium text-yellow-400 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <Gamepad2 className="h-3 w-3" />
-                            {project.linkLabel}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </CardLink>
+            </div>
+            <div className="p-4 sm:p-5">
+              <p className="text-[10px] font-mono uppercase tracking-widest text-[#7db5b0] mb-1">
+                {project.category}
+              </p>
+              <h3 className="text-base font-semibold text-white group-hover:text-[#a7d2ce] transition-colors line-clamp-1">
+                {project.title}
+              </h3>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {project.tools.slice(0, 3).map((tool) => (
+                  <span key={tool} className="rounded border border-white/10 bg-white/[0.03] px-2 py-0.5 text-[10px] text-white/50">
+                    {tool}
+                  </span>
                 ))}
               </div>
-            </section>
-          )}
-
-          {/* ── VFX ── */}
-          {vfxProjects.length > 0 && (
-            <section className="space-y-5">
-              <div className="flex items-center gap-3">
-                <h2 className="text-lg sm:text-xl font-bold text-white uppercase tracking-widest">VFX</h2>
-                <div className="h-px flex-1 bg-white/8" />
-              </div>
-              <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {vfxProjects.map((project, i) => (
-                  <CardLink
-                    key={project.title}
-                    project={project}
-                    className={`group relative block overflow-hidden transition-all duration-500
-                      ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
-                    style={{ transitionDelay: inView ? `${i * 0.06}s` : "0s" }}
-                  >
-                    <div className="relative aspect-video bg-zinc-900 overflow-hidden rounded-xl md:rounded-2xl">
-                      <Thumbnail project={project} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent" />
-                      <div className="absolute inset-0 bg-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute top-2.5 right-2.5 flex h-7 w-7 items-center justify-center bg-white/10 backdrop-blur-sm text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
-                        <ArrowUpRight className="h-3.5 w-3.5" />
-                      </div>
-                      <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
-                        <p className="text-[9px] font-semibold uppercase tracking-widest text-teal-300 mb-0.5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">{project.category}</p>
-                        <h3 className="text-sm font-semibold text-white leading-tight group-hover:text-teal-300 transition-colors line-clamp-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]">{project.title}</h3>
-                      </div>
-                    </div>
-                  </CardLink>
-                ))}
-              </div>
-            </section>
-          )}
-
-          {/* ── RECENT (2025–2026) ── */}
-          {recentProjects.length > 0 && (
-            <section className="space-y-5">
-              <div className="flex items-center gap-3">
-                <h2 className="text-lg sm:text-xl font-bold text-white uppercase tracking-widest">Recent</h2>
-                <span className="text-[10px] font-medium uppercase tracking-widest text-white/25">2025 - 2026</span>
-                <div className="h-px flex-1 bg-white/8" />
-              </div>
-              <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {recentProjects.map((project, i) => (
-                  <CardLink
-                    key={project.title}
-                    project={project}
-                    className={`group relative block overflow-hidden transition-all duration-500
-                      ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
-                    style={{ transitionDelay: inView ? `${i * 0.06}s` : "0s" }}
-                  >
-                    <div className="relative aspect-video bg-zinc-900 overflow-hidden rounded-xl md:rounded-2xl">
-                      <Thumbnail project={project} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent" />
-                      <div className="absolute top-2.5 right-2.5 flex h-7 w-7 items-center justify-center bg-white/10 backdrop-blur-sm text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
-                        <ArrowUpRight className="h-3.5 w-3.5" />
-                      </div>
-                      <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
-                        <p className="text-[9px] font-semibold uppercase tracking-widest text-white/65 mb-0.5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">{project.category}</p>
-                        <h3 className="text-sm font-semibold text-white leading-tight group-hover:text-teal-300 transition-colors line-clamp-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]">{project.title}</h3>
-                      </div>
-                    </div>
-                  </CardLink>
-                ))}
-              </div>
-            </section>
-          )}
-
-          {/* ── ARCHIVE (2020–2024) ── */}
-          {archiveProjects.length > 0 && (
-            <section className="space-y-4">
-              <div className="flex items-center gap-3">
-                <h2 className="text-sm font-semibold text-white/40 uppercase tracking-widest">Archive</h2>
-                <span className="text-[10px] uppercase tracking-widest text-white/20">2020 - 2024</span>
-                <div className="h-px flex-1 bg-white/5" />
-              </div>
-              <div className="grid gap-4 md:gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
-                {archiveProjects.map((project, i) => (
-                  <CardLink
-                    key={project.title}
-                    project={project}
-                    className={`group relative block overflow-hidden transition-all duration-500
-                      ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-                    style={{ transitionDelay: inView ? `${i * 0.04}s` : "0s" }}
-                  >
-                    <div className="relative aspect-video bg-zinc-900 overflow-hidden rounded-lg md:rounded-xl">
-                      <Thumbnail project={project} sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/15" />
-                      <div className="absolute bottom-0 left-0 right-0 p-2.5">
-                        <p className="text-[8px] font-semibold uppercase tracking-widest text-white/60 mb-0.5">{project.year}</p>
-                        <h3 className="text-[11px] sm:text-xs font-semibold text-white leading-tight transition-colors line-clamp-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]">{project.title}</h3>
-                      </div>
-                    </div>
-                  </CardLink>
-                ))}
-              </div>
-            </section>
-          )}
-
-        </div>
+            </div>
+          </CardLink>
+        ))}
       </div>
-    </section>
+
+      {/* ── Tier 3: Older Commercial Work & Archive (Collapsed Accordion) ── */}
+      {archiveProjects.length > 0 && (
+        <div className="mt-16 pt-10 border-t border-white/10">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <button
+                type="button"
+                onClick={() => setIsArchiveOpen((prev) => !prev)}
+                className="group inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.02] px-5 py-3 text-sm font-medium text-white/70 transition-all hover:border-white/25 hover:bg-white/[0.05] hover:text-white"
+              >
+                <span>
+                  {isVi
+                    ? "Dự án Thương mại & TVC Cũ (2019 - 2021)"
+                    : "Older Work & Commercial Archive (2019 - 2021)"}
+                </span>
+                <span className="rounded-full bg-white/10 px-2 py-0.5 text-xs text-white/50">
+                  {archiveProjects.length}
+                </span>
+                <ChevronDown
+                  className={cn(
+                    "h-4 w-4 text-white/50 transition-transform duration-300",
+                    isArchiveOpen && "rotate-180 text-white"
+                  )}
+                />
+              </button>
+            </div>
+            <p className="text-xs text-white/40">
+              {isVi
+                ? "Video quảng cáo, TVC sản phẩm và motion graphics thương mại thời kỳ đầu."
+                : "Earlier broadcast TVCs, product promos, and corporate motion graphics."}
+            </p>
+          </div>
+
+          {isArchiveOpen && (
+            <div className="mt-8 grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 animate-in fade-in duration-300">
+              {archiveProjects.map((project) => (
+                <CardLink
+                  key={project.title}
+                  project={project}
+                  className="group relative block overflow-hidden rounded-xl border border-white/10 bg-zinc-900/50 transition-all hover:border-white/20"
+                >
+                  <div className="relative aspect-video bg-zinc-950 overflow-hidden">
+                    <Thumbnail project={project} sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-3">
+                      <p className="text-[9px] font-mono text-white/50 mb-0.5">{project.year || "Archive"}</p>
+                      <h4 className="text-xs font-medium text-white group-hover:text-teal-300 transition-colors line-clamp-1">
+                        {project.title}
+                      </h4>
+                    </div>
+                  </div>
+                </CardLink>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
   );
 }

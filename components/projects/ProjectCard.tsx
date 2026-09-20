@@ -47,15 +47,9 @@ export default function ProjectCard({ project, priority = false }: ProjectCardPr
             {project.title}
           </h3>
           <p className="mt-1 text-sm font-medium text-[#7db5b0]">{credit}</p>
-          <p className="mt-2.5 line-clamp-2 text-sm leading-relaxed text-white/55">{project.description}</p>
-
-          <div className="mt-3.5 flex flex-wrap gap-1.5">
-            {project.techStack?.slice(0, 3).map((tech) => (
-              <span key={tech} className="rounded border border-white/10 bg-white/[0.03] px-2 py-0.5 text-[11px] text-white/50">
-                {tech}
-              </span>
-            ))}
-          </div>
+          <p className="mt-2.5 text-xs font-mono tracking-wide text-white/60">
+            {project.cardHighlight || (project.techStack ? project.techStack.slice(0, 3).join(" · ") : "")}
+          </p>
 
           <span className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium text-[#7db5b0] transition-colors group-hover:text-white">
             View project

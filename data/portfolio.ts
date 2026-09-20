@@ -20,6 +20,8 @@ export interface Project {
   evidenceBreakdown?: { image: string; title: string; caption: string; tag?: string; link?: string }[];
   steamUrl?: string;
   isFeatured?: boolean;
+  /** Short punchy 1-line discipline highlight for visual card e.g. "Gameplay VFX · Houdini · Proprietary Engine" */
+  cardHighlight?: string;
   /** Display period e.g. "12/2022 - 9/2023" */
   duration?: string;
   /** e.g. "Console, PC" */
@@ -82,9 +84,8 @@ export const ABOUT = {
   title: "Hands-on VFX, shaders, and engine integration.",
   portraitImage: "/images/Portrait/avatar.webp",
   bio: [
-    "I am a Technical VFX Artist based in Ho Chi Minh City, specializing in real-time gameplay effects, custom shaders, and engine optimization for games and cinematics.",
-    "My production experience covers AAA releases including Marvel's Wolverine, Marvel's Spider-Man 2, and Fortnite: Remix, working with Niagara, proprietary engines, and Perforce pipelines.",
-    "I focus on the full technical art loop — authoring modular Niagara/HLSL effects, building lightweight Python pipeline tools, and profiling performance for locked framerates on target hardware.",
+    "Technical VFX Artist specializing in real-time gameplay effects, custom shaders, GPU optimization, and seamless engine integration.",
+    "AAA production experience across Marvel's Wolverine, Marvel's Spider-Man 2, and Fortnite, working across Niagara, proprietary engines, and Perforce pipelines.",
   ],
   location: "Ho Chi Minh City, Vietnam",
 };
@@ -162,28 +163,20 @@ export const EXPERIENCES: Experience[] = [
 
 export const SKILL_GROUPS: SkillGroup[] = [
   {
-    name: "VFX & Simulation",
-    skills: ["Niagara (UE5)", "Houdini VFX", "After Effects", "Particle Systems", "Physics Simulation"],
+    name: "Core VFX & Simulation",
+    skills: ["Unreal Engine 5", "Niagara", "Houdini VFX", "Proprietary Engines", "Particle Systems", "GPU Optimization"],
   },
   {
     name: "Shaders & Materials",
-    skills: ["Unreal Material Graph", "Shader Optimization", "HLSL (Custom Nodes)", "PBR Workflows"],
+    skills: ["Unreal Material Graph", "HLSL (Custom Nodes)", "Shader Optimization", "PBR Workflows"],
   },
   {
-    name: "3D Software",
-    skills: ["Houdini", "Blender", "Maya", "Cinema 4D", "3ds Max", "Substance Designer"],
+    name: "Technical & Pipeline",
+    skills: ["Python", "VEX", "Perforce", "Pipeline Automation", "Git"],
   },
   {
-    name: "Game Engines",
-    skills: ["Unreal Engine 5", "Unity", "Niagara", "Sequencer / MRQ"],
-  },
-  {
-    name: "Programming & Pipeline",
-    skills: ["Python", "VEX", "C++ (basics)", "Pipeline Automation", "Perforce", "Git"],
-  },
-  {
-    name: "AI & Emerging Tools",
-    skills: ["Sora", "Veo-2", "ChatGPT", "Midjourney", "Stable Diffusion", "Prompt Engineering"],
+    name: "3D & DCC Software",
+    skills: ["Houdini", "Blender", "Maya", "Substance Designer"],
   },
 ];
 
@@ -193,6 +186,7 @@ export const PROJECTS: Project[] = [
     thumbnail: "/images/projects/wolverine/wolverine-hero.webp",
     title: "Marvel's Wolverine",
     role: "Senior VFX Artist",
+    cardHighlight: "Gameplay & Cinematic VFX · Proprietary Engine",
     year: "2026",
     duration: "09/2026",
     platform: "PlayStation 5",
@@ -270,6 +264,7 @@ export const PROJECTS: Project[] = [
     thumbnail: "/images/spiderman-2-ps5.jpg",
     title: "Marvel's Spider-Man 2",
     role: "FX Artist",
+    cardHighlight: "Gameplay VFX · Houdini · Proprietary Engine",
     year: "2023",
     duration: "12/2022 - 9/2023",
     platform: "Console, PC",
@@ -306,6 +301,7 @@ export const PROJECTS: Project[] = [
     thumbnail: "/images/optimized/fortnite-live-event.jpg",
     title: "Fortnite - Remix The Finale",
     role: "FX Artist",
+    cardHighlight: "Weapon Skins & Live Event VFX · Niagara · Unreal Engine",
     year: "2024",
     duration: "6/2023 - 10/2023",
     platform: "PC, Console, Mobile",
@@ -343,18 +339,12 @@ export const PROJECTS: Project[] = [
       "/images/Fornite/Screenshot 2025-08-16 005729.webp",
     ],
     breakdownClips: [
-      { url: "https://www.youtube.com/watch?v=4NifXy2W_Uk", title: "Weapon Skin VFX", caption: "Weapon skin effects for the event." },
-      { url: "https://www.youtube.com/watch?v=u-e9ByS_e80", title: "Live Event Effects", caption: "Real-time effects for the live finale." },
-      { url: "https://youtu.be/zwNhOnKD32Y", title: "Environment & Atmosphere", caption: "Environment and atmosphere VFX." },
-      { url: "https://youtu.be/6X8aDzsubDs", title: "Impact & Hit FX", caption: "Impact and hit feedback effects." },
-      { url: "https://youtu.be/JcexkztUoC8", title: "Ability / Magic VFX", caption: "Ability and magic spell effects." },
-      { url: "https://youtu.be/rT3SvdKiz6o", title: "UI & Feedback FX", caption: "UI and player feedback effects." },
-      { url: "https://youtu.be/WoRsXjZ4nfA", title: "Destruction & Debris", caption: "Destruction and debris systems." },
-      { url: "https://www.youtube.com/watch?v=gavwRrNk_bw", title: "Trail & Projectile", caption: "Trail and projectile VFX." },
-      { url: "https://youtu.be/g4cY2vwfroM", title: "Screen & Post FX", caption: "Screen space and post-process effects." },
-      { url: "https://youtu.be/G0elrE1kde4", title: "Niagara Systems Breakdown", caption: "Niagara system breakdown and setup." },
-      { url: "https://youtu.be/oHyDLyVmhF8", title: "Full Reel / Compilation", caption: "Full breakdown reel." },
-      { url: "https://www.youtube.com/watch?v=L8tW8BJh3oU", title: "VFX Breakdown", caption: "Additional breakdown clip." },
+      { url: "https://www.youtube.com/watch?v=4NifXy2W_Uk", title: "Weapon Skin VFX" },
+      { url: "https://www.youtube.com/watch?v=u-e9ByS_e80", title: "Live Event Effects" },
+      { url: "https://youtu.be/zwNhOnKD32Y", title: "Environment & Atmosphere" },
+      { url: "https://youtu.be/6X8aDzsubDs", title: "Impact & Hit FX" },
+      { url: "https://youtu.be/G0elrE1kde4", title: "Niagara Systems Breakdown" },
+      { url: "https://youtu.be/oHyDLyVmhF8", title: "Full Reel / Compilation" },
     ],
     isFeatured: true,
   },
@@ -363,15 +353,16 @@ export const PROJECTS: Project[] = [
     thumbnail: "/images/optimized/new-world-aeternum.jpg",
     title: "New World: Aeternum",
     role: "FX Artist",
+    cardHighlight: "Cinematic & Environment VFX · Houdini · Unreal Engine",
     year: "2024",
     duration: "12/2023 - 5/2024",
     platform: "PS5, PC",
     style: "realistic",
     client: "Amazon Games",
     workSummary:
-      "FX Artist on the cinematic trailer supporting the New World: Aeternum PS5 launch.",
+      "Cinematic and environment VFX for Amazon Games' PS5 launch campaign.",
     description:
-      "Contributed cinematic and in-game VFX for Amazon Games' PS5 launch campaign, focused on environment, combat, and atmosphere.",
+      "Authored environmental VFX, dynamic weather systems, and foliage interaction shaders for the New World: Aeternum PS5 release.",
     categories: ["aaa", "cinematic"],
     contributions: [
       "Created environmental VFX including weather, magic, and destruction systems",
@@ -396,6 +387,7 @@ export const PROJECTS: Project[] = [
     thumbnail: "/images/until-dawn-ps5.jpg",
     title: "Until Dawn",
     role: "Lighting Artist",
+    cardHighlight: "Cinematic Horror Lighting · Lumen · Unreal Engine 5",
     year: "2024",
     duration: "9/2023 - 12/2023",
     platform: "PS5",
@@ -428,6 +420,7 @@ export const PROJECTS: Project[] = [
     thumbnail: "/projects/malignant/steam-capsule.jpg",
     title: "Malignant",
     role: "Technical VFX Artist (Freelance)",
+    cardHighlight: "Gore Simulation & Combat VFX · Niagara · LiquiGen",
     year: "2025 - 2026",
     duration: "10/2025 - 5/2026",
     platform: "PC (Steam)",
@@ -528,6 +521,7 @@ export const PROJECTS: Project[] = [
     thumbnail: "/images/Black_Knight_Thumbnail.jpg",
     title: "Black Knight (Netflix)",
     role: "FX Houdini Artist",
+    cardHighlight: "Destruction Simulation · Pyro & FLIP · Houdini",
     year: "2023",
     description:
       "Created dynamic and environmental VFX for the Netflix original series within a broadcast-focused cinematic pipeline.",
@@ -545,6 +539,7 @@ export const PROJECTS: Project[] = [
     thumbnail: "/images/havoc-logo.png",
     title: "Havoc - Game",
     role: "VFX Artist (Freelance)",
+    cardHighlight: "Combat Ability VFX · Niagara · Unreal Engine",
     year: "2024",
     description:
       "Contributed freelance real-time VFX for gameplay systems and cinematics in Unreal Engine.",

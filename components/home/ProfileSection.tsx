@@ -42,55 +42,6 @@ export default function ProfileSection() {
               </span>
             </div>
 
-            {/* GitHub Engineering Cadence / Frequency Card */}
-            <div className="mt-7 rounded-xl border border-white/10 bg-[#0d1117] p-4 sm:p-5 shadow-2xl">
-              <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-white/10">
-                <div className="flex items-center gap-2">
-                  <Github className="h-4 w-4 text-white/80" />
-                  <span className="text-xs font-medium text-white/90">
-                    {isVi ? "Hoạt động GitHub & R&D" : "GitHub Activity & Cadence"}
-                  </span>
-                  <span className="relative flex h-2 w-2 ml-1">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
-                  </span>
-                </div>
-                <a
-                  href={SOCIALS.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-1 text-xs text-teal-400 transition-colors hover:text-teal-300"
-                >
-                  <span>github.com/sangtran1710</span>
-                  <ArrowUpRight className="h-3 w-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                </a>
-              </div>
-
-              <a
-                href={SOCIALS.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3.5 block overflow-hidden rounded-lg border border-white/5 bg-[#0d1117] transition-all hover:border-teal-500/40 hover:ring-1 hover:ring-teal-500/30"
-                title={isVi ? "Xem hồ sơ GitHub của Henry Tran" : "View Henry Tran's GitHub profile"}
-              >
-                <Image
-                  src="/images/github-contributions.png"
-                  alt="Henry Tran GitHub Contribution Activity - 176 contributions in 2026"
-                  width={852}
-                  height={189}
-                  className="w-full h-auto object-cover rounded-md"
-                />
-              </a>
-
-              <div className="mt-2.5 flex items-center justify-between text-xs text-white/50">
-                <span className="flex items-center gap-1.5 text-white/60">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  {isVi ? "Hoạt động gần đây" : "Recent commits"}
-                </span>
-                <span className="font-medium text-emerald-400">176 contributions in 2026</span>
-              </div>
-            </div>
-
             <div className="mt-8 flex items-center gap-6">
               <a
                 href={SOCIALS.linkedin}
