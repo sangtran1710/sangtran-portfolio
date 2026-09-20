@@ -23,6 +23,14 @@ test.describe("Marvel's Wolverine Integration Audit", () => {
     await creditsSection.screenshot({
       path: path.join(ARTIFACT_DIR, "wolverine-about-credits.png"),
     });
+
+    // Verify personal family photo section
+    const familyPhoto = page.locator('img[alt="Henry Tran with family"]');
+    await expect(familyPhoto).toBeVisible();
+    const familyFigure = familyPhoto.locator("xpath=ancestor::figure");
+    await familyFigure.screenshot({
+      path: path.join(ARTIFACT_DIR, "family-photo-fixed.png"),
+    });
   });
 
   test("Portfolio page features Marvel's Wolverine at top of AAA list", async ({ page }) => {
