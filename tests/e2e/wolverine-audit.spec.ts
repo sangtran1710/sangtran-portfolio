@@ -73,9 +73,9 @@ test.describe("Marvel's Wolverine Integration Audit", () => {
     await expect(page.getByText("In-Game Credit")).toBeVisible();
     await expect(page.getByRole("link", { name: "Watch Video" })).toBeVisible();
 
-    // Breakdown clips check
-    await expect(page.getByText("Breakdown Clips")).toBeVisible();
-    await expect(page.getByText("Jean TK Explosion Cutscene (In-Game VFX)")).toBeVisible();
+    // Visual breakdown check
+    await expect(page.getByText("Selected Breakdown")).toBeVisible();
+    await expect(page.getByText("ArtBlast: Warehouse Explosion")).toBeVisible();
   });
 
   test("Home page features Marvel's Wolverine as first project in Selected Work", async ({ page }) => {

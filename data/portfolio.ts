@@ -38,6 +38,8 @@ export interface Project {
   constraints?: string[];
   /** Technical highlights / how problems were solved */
   technicalHighlights?: string[];
+  /** Concise Technical Notes (max 3 bullets combining constraints & technical highlights) */
+  technicalNotes?: string[];
   /** Optional custom URL if this doesn't use the standard /projects/[slug] route */
   link?: string;
 }
@@ -214,36 +216,15 @@ export const PROJECTS: Project[] = [
       "Houdini simulation workflows & runtime shaders",
       "In-engine GPU profiling & overdraw reduction",
     ],
+    technicalNotes: [
+      "Targeted locked 60 FPS on PS5 with GPU profiling and overdraw reduction passes",
+      "Proprietary engine pipeline compliance and multi-studio Perforce synchronization",
+      "Houdini simulation pipelines for destruction and debris integrated into runtime shaders",
+    ],
     videoUrl: "https://www.youtube.com/embed/lbiMqaLTKlQ",
     videoPoster: "/images/projects/wolverine/wolverine-video-poster.webp",
     videoTitle: "Jean TK Explosion (In-Game Cinematic VFX)",
-    breakdownClips: [
-      {
-        url: "https://youtu.be/lbiMqaLTKlQ",
-        title: "Jean TK Explosion Cutscene (In-Game VFX)",
-        caption: "In-game telekinesis explosion sequence and debris simulation authored for Marvel's Wolverine on PS5.",
-      },
-      {
-        url: "https://youtu.be/JfV_lwWiJDk?start=780",
-        title: "Official In-Game End Credits (13:00)",
-        caption: "Senior VFX Artist credit verification under Sparx* - A Virtuos Studio at 13:00.",
-      },
-    ],
-    images: [
-      "/images/projects/wolverine/wolverine-artblast-explosion.webp",
-      "/images/projects/wolverine/wolverine-artblast-hangar.webp",
-      "/images/projects/wolverine/wolverine-hero.webp",
-      "/images/projects/wolverine/wolverine-action.webp",
-      "/images/projects/wolverine/wolverine-madripoor.webp",
-    ],
     evidenceBreakdown: [
-      {
-        image: "/images/projects/wolverine/wolverine-credit-evidence.webp",
-        title: "In-Game End Credits",
-        caption: "Senior VFX Artist credit under Sparx* - A Virtuos Studio. Verified in official end credits roll.",
-        tag: "In-Game Credit",
-        link: "https://youtu.be/JfV_lwWiJDk?t=780",
-      },
       {
         image: "/images/projects/wolverine/wolverine-artblast-explosion.webp",
         title: "ArtBlast: Warehouse Explosion",
@@ -255,6 +236,13 @@ export const PROJECTS: Project[] = [
         title: "ArtBlast: Night Assault",
         caption: "Gunship thrusters, muzzle flashes, laser tracers, and impact blood.",
         tag: "Production VFX",
+      },
+      {
+        image: "/images/projects/wolverine/wolverine-credit-evidence.webp",
+        title: "In-Game End Credits",
+        caption: "Senior VFX Artist credit under Sparx* - A Virtuos Studio at 13:00.",
+        tag: "In-Game Credit",
+        link: "https://youtu.be/JfV_lwWiJDk?t=780",
       },
     ],
     isFeatured: true,
@@ -293,7 +281,26 @@ export const PROJECTS: Project[] = [
       "Real-time particle system integration for traversal and combat",
       "Particle count and overdraw profiling on PS5 hardware",
     ],
+    technicalNotes: [
+      "PS5 locked 60 FPS performance mode target with real-time particle overdraw profiling",
+      "Houdini destruction and debris simulation pipelines integrated into proprietary engine",
+      "Adhered to strict Perforce branch check-in conventions with the Insomniac FX team",
+    ],
     videoUrl: "https://www.youtube.com/embed/bgqGdIoa52s?start=1",
+    evidenceBreakdown: [
+      {
+        image: "/images/projects/spider-man-2/sparx-studio-team.webp",
+        title: "Sparx* Studio Production Team Gathering",
+        caption: "Sparx* studio team gathering during the Marvel's Spider-Man 2 production period.",
+        tag: "Production Team",
+      },
+      {
+        image: "/images/achivements/SpiderMan2.webp",
+        title: "Official In-Game End Credits",
+        caption: "FX Artist credit under Sparx* - A Virtuos Studio in Marvel's Spider-Man 2 official credits roll.",
+        tag: "Credit Verification",
+      },
+    ],
     isFeatured: true,
   },
   {
@@ -328,6 +335,11 @@ export const PROJECTS: Project[] = [
       "Modular Niagara emitters for weapon skins and live event moments",
       "Stylized noise-erosion shaders and unlit master materials",
       "Particle lifecycle and drawcall optimization",
+    ],
+    technicalNotes: [
+      "Cross-platform performance optimization across PC, console, and mobile tiers",
+      "Modular Niagara emitters for weapon skins and live-event finale sequences",
+      "Complied with Epic Games Niagara pipeline standards, LOD rules, and drawcall budgets",
     ],
     videoUrl: "https://www.youtube.com/embed/c-rtUmJPLQM?start=272",
     images: [
@@ -379,6 +391,10 @@ export const PROJECTS: Project[] = [
       "Custom shader logic for foliage motion and water interactions",
       "Procedural Houdini geometry workflows for environment dressing",
     ],
+    technicalNotes: [
+      "Custom shader logic for animated foliage motion and dynamic water surface interactions",
+      "Procedural Houdini geometry workflows to accelerate environment dressing under tight marketing milestones",
+    ],
     videoUrl: "https://www.youtube.com/embed/qK8jtTMHCRU",
     isFeatured: true,
   },
@@ -412,6 +428,10 @@ export const PROJECTS: Project[] = [
     technicalHighlights: [
       "UE5 Lumen lighting setups for cinematic sequences",
       "Volumetric fog optimization for 60 FPS console target",
+    ],
+    technicalNotes: [
+      "Unreal Engine 5 Lumen global illumination setups tuned for horror cinematic mood",
+      "Volumetric fog and shadow optimization for 60 FPS console target on PS5",
     ],
     videoUrl: "https://www.youtube.com/embed/8nApBGPy0ao",
   },
@@ -459,6 +479,11 @@ export const PROJECTS: Project[] = [
       "Niagara bullet impact rate-limiting throttling with timed boolean flags and 30s decal persistence",
       "UMG Widget Blueprint architecture for radial cooldowns and active syringe mutagen states",
       "In-engine STATGROUP_game performance profiling for draw call and tick budget verification",
+    ],
+    technicalNotes: [
+      "LiquiGen fluid blood simulations exported as optimized sprite sheets and flipbooks into UE5",
+      "Blueprint rate-limiting logic (0.1s cooldown throttling) to eliminate frame drops during automatic weapon fire",
+      "Dynamic UMG HUD widgets and fullscreen low-health post-process overlays",
     ],
     steamUrl: "https://store.steampowered.com/app/4314740/Malignant/",
     isFeatured: true,
@@ -532,6 +557,10 @@ export const PROJECTS: Project[] = [
       "Worked within strict production deadlines on a compressed broadcast schedule",
     ],
     techStack: ["Houdini", "Blender", "Maya", "Nuke", "Python"],
+    technicalNotes: [
+      "Houdini dust, sandstorm, and vehicle explosion simulations for Netflix episodic broadcast",
+      "Multi-pass volumetric rendering and comp passes for seamless live-action integration",
+    ],
     videoUrl: "https://www.youtube.com/embed/Se26Op9sEC8?start=8",
   },
   {
@@ -558,6 +587,10 @@ export const PROJECTS: Project[] = [
     technicalHighlights: [
       "Unreal Engine Niagara particle systems for combat abilities",
       "Stylized dissolve and Fresnel material shaders",
+    ],
+    technicalNotes: [
+      "Stylized anime combat impacts and energy trails created in Unreal Engine Niagara",
+      "Unlit cel-shaded master materials and custom noise-erosion shader logic",
     ],
     images: ["/images/havoc-landing-page.webp"],
   },

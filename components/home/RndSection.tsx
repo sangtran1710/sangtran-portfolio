@@ -98,6 +98,10 @@ function CardLink({
 }
 
 const ARCHIVE_SLUGS = new Set([
+  "historyblends",
+  "levelup",
+  "Ethereum Bloom",
+  "ethereum-bloom",
   "utop-bitexco",
   "smart-menu",
   "utop-events",
@@ -191,8 +195,8 @@ export default function RndSection() {
               >
                 <span>
                   {isVi
-                    ? "Dự án Thương mại & TVC Cũ (2019 - 2021)"
-                    : "Older Work & Commercial Archive (2019 - 2021)"}
+                    ? "Dự án Cũ & Lưu trữ (AI, Crypto & TVC)"
+                    : "Older Work & Archive (AI, Crypto & TVC)"}
                 </span>
                 <span className="rounded-full bg-white/10 px-2 py-0.5 text-xs text-white/50">
                   {archiveProjects.length}
@@ -207,8 +211,8 @@ export default function RndSection() {
             </div>
             <p className="text-xs text-white/40">
               {isVi
-                ? "Video quảng cáo, TVC sản phẩm và motion graphics thương mại thời kỳ đầu."
-                : "Earlier broadcast TVCs, product promos, and corporate motion graphics."}
+                ? "Dự án thử nghiệm AI, môi trường 3D crypto và video thương mại thời kỳ đầu."
+                : "AI filmmaking experiments, crypto 3D environments, and earlier commercial TVCs."}
             </p>
           </div>
 
