@@ -311,11 +311,11 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
     ],
     evidenceBreakdown: [
       {
-        image: "/images/projects/wolverine/wolverine-credit-evidence.webp",
-        title: "Credit Trong Game",
-        caption: "Credit chức danh Senior VFX Artist dưới tên Sparx* - A Virtuos Studio. Ghi nhận tại mốc 13:00 của credit.",
-        tag: "In-Game Credit",
-        link: "https://youtu.be/JfV_lwWiJDk?t=780",
+        image: "/images/projects/wolverine/wolverine-action.webp",
+        title: "Cutscene Cinematic Trong Game (Mốc 22:27)",
+        caption: "Hiệu ứng va chạm combat cận chiến, tia lửa vuốt sắc và các chuỗi VFX cinematic thời gian thực trong game.",
+        tag: "Cinematic VFX",
+        link: "https://youtu.be/3boUBsYHY3I?t=1347",
       },
       {
         image: "/images/projects/wolverine/wolverine-artblast-explosion.webp",
@@ -328,6 +328,13 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
         title: "ArtBlast: Đột Kích Đêm",
         caption: "Lửa phản lực tàu bay, chớp nòng súng, vệt laser và hiệu ứng máu va chạm.",
         tag: "Production VFX",
+      },
+      {
+        image: "/images/projects/wolverine/wolverine-credit-evidence.webp",
+        title: "Credit Trong Game",
+        caption: "Credit chức danh Senior VFX Artist dưới tên Sparx* - A Virtuos Studio. Ghi nhận tại mốc 13:00 của credit.",
+        tag: "In-Game Credit",
+        link: "https://youtu.be/JfV_lwWiJDk?t=780",
       },
     ],
   },

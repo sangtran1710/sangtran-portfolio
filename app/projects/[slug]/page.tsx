@@ -72,7 +72,10 @@ function getYoutubeVideoId(url: string): string | null {
 
 function getYoutubeWatchUrl(url: string): string {
   const id = getYoutubeVideoId(url);
-  return id ? `https://www.youtube.com/watch?v=${id}` : url;
+  if (!id) return url;
+  const timeMatch = url.match(/[?&](?:t|start)=(\d+)/);
+  const timeParam = timeMatch ? `&t=${timeMatch[1]}s` : "";
+  return `https://www.youtube.com/watch?v=${id}${timeParam}`;
 }
 
 export default function ProjectDetailPage({ params }: Props) {
@@ -212,15 +215,38 @@ export default function ProjectDetailPage({ params }: Props) {
                 key={i}
                 className="overflow-hidden rounded-2xl border border-white/10 bg-[#0c1017] shadow-xl"
               >
-                <div className="relative aspect-video w-full bg-black">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 1024px) 100vw, 896px"
-                  />
-                </div>
+                {item.link ? (
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative block aspect-video w-full bg-black overflow-hidden cursor-pointer"
+                    aria-label={`Watch ${item.title}`}
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-contain transition-transform duration-300 group-hover:scale-[1.01]"
+                      sizes="(max-width: 1024px) 100vw, 896px"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/25 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-black/70 text-white backdrop-blur-sm border border-white/20 shadow-lg">
+                        <Play className="h-5 w-5 fill-white text-white translate-x-0.5" />
+                      </div>
+                    </div>
+                  </a>
+                ) : (
+                  <div className="relative aspect-video w-full bg-black">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-contain"
+                      sizes="(max-width: 1024px) 100vw, 896px"
+                    />
+                  </div>
+                )}
                 <figcaption className="border-t border-white/10 bg-[#0e131b] p-5 sm:p-6">
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                     <h3 className="text-base font-semibold text-white">

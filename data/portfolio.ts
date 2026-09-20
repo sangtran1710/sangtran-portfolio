@@ -226,6 +226,13 @@ export const PROJECTS: Project[] = [
     videoTitle: "Jean TK Explosion (In-Game Cinematic VFX)",
     evidenceBreakdown: [
       {
+        image: "/images/projects/wolverine/wolverine-action.webp",
+        title: "In-Game Cinematic Cutscenes (22:27)",
+        caption: "Real-time character combat, claw impacts, sparks, and dynamic in-engine cinematic VFX sequences.",
+        tag: "Cinematic VFX",
+        link: "https://youtu.be/3boUBsYHY3I?t=1347",
+      },
+      {
         image: "/images/projects/wolverine/wolverine-artblast-explosion.webp",
         title: "ArtBlast: Warehouse Explosion",
         caption: "Volumetric fire simulation, shockwave lighting, and anamorphic flares.",
