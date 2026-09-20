@@ -312,22 +312,31 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
     evidenceBreakdown: [
       {
         image: "/images/projects/wolverine/wolverine-action.webp",
-        title: "Cutscene Cinematic Trong Game (Mốc 22:27)",
+        title: "Cutscene Cinematic Trong Game",
         caption: "Hiệu ứng va chạm combat cận chiến, tia lửa vuốt sắc và các chuỗi VFX cinematic thời gian thực trong game.",
         tag: "Cinematic VFX",
         link: "https://youtu.be/3boUBsYHY3I?t=1347",
+        timestamps: [
+          { time: "22:27", label: "Combat & Tia Lửa Móng Vuốt", url: "https://youtu.be/3boUBsYHY3I?t=1347" },
+          { time: "48:46", label: "Jean TK & Vụ Nổ Nhà Kho", url: "https://youtu.be/3boUBsYHY3I?t=2926" },
+          { time: "49:39", label: "Tàu Bay Rút Quân (Hangar)", url: "https://youtu.be/3boUBsYHY3I?t=2979" },
+          { time: "1:11:12", label: "Đột Nhập Căn Cứ Thí Nghiệm", url: "https://youtu.be/3boUBsYHY3I?t=4272" },
+          { time: "1:58:50", label: "Cuồng Nộ Berserker", url: "https://youtu.be/3boUBsYHY3I?t=7130" },
+        ],
       },
       {
         image: "/images/projects/wolverine/wolverine-artblast-explosion.webp",
         title: "ArtBlast: Vụ Nổ Nhà Kho",
         caption: "Mô phỏng khói lửa volumetric, shockwave lighting và anamorphic flare.",
         tag: "Production VFX",
+        link: "https://youtu.be/3boUBsYHY3I?t=2926",
       },
       {
         image: "/images/projects/wolverine/wolverine-artblast-hangar.webp",
         title: "ArtBlast: Đột Kích Đêm",
         caption: "Lửa phản lực tàu bay, chớp nòng súng, vệt laser và hiệu ứng máu va chạm.",
         tag: "Production VFX",
+        link: "https://youtu.be/3boUBsYHY3I?t=2979",
       },
       {
         image: "/images/projects/wolverine/wolverine-credit-evidence.webp",

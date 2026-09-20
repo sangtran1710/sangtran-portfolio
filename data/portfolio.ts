@@ -17,7 +17,14 @@ export interface Project {
   images?: string[];
   /** Breakdown: URL + VFX name + optional caption (Behance-style: video -> text -> video -> image) */
   breakdownClips?: { url: string; title: string; caption?: string }[];
-  evidenceBreakdown?: { image: string; title: string; caption: string; tag?: string; link?: string }[];
+  evidenceBreakdown?: {
+    image: string;
+    title: string;
+    caption: string;
+    tag?: string;
+    link?: string;
+    timestamps?: { time: string; label: string; url: string }[];
+  }[];
   steamUrl?: string;
   isFeatured?: boolean;
   /** Short punchy 1-line discipline highlight for visual card e.g. "Gameplay VFX · Houdini · Proprietary Engine" */
@@ -227,22 +234,31 @@ export const PROJECTS: Project[] = [
     evidenceBreakdown: [
       {
         image: "/images/projects/wolverine/wolverine-action.webp",
-        title: "In-Game Cinematic Cutscenes (22:27)",
-        caption: "Real-time character combat, claw impacts, sparks, and dynamic in-engine cinematic VFX sequences.",
+        title: "In-Game Cinematic Cutscenes",
+        caption: "Real-time character combat, claw impacts, sparks, telekinesis simulations, and in-engine cinematic sequences in proprietary engine.",
         tag: "Cinematic VFX",
         link: "https://youtu.be/3boUBsYHY3I?t=1347",
+        timestamps: [
+          { time: "22:27", label: "Combat & Claw Sparks", url: "https://youtu.be/3boUBsYHY3I?t=1347" },
+          { time: "48:46", label: "Jean TK & Warehouse", url: "https://youtu.be/3boUBsYHY3I?t=2926" },
+          { time: "49:39", label: "Gunship Extraction", url: "https://youtu.be/3boUBsYHY3I?t=2979" },
+          { time: "1:11:12", label: "Facility Infiltration", url: "https://youtu.be/3boUBsYHY3I?t=4272" },
+          { time: "1:58:50", label: "Berserker Rage & Combat", url: "https://youtu.be/3boUBsYHY3I?t=7130" },
+        ],
       },
       {
         image: "/images/projects/wolverine/wolverine-artblast-explosion.webp",
         title: "ArtBlast: Warehouse Explosion",
         caption: "Volumetric fire simulation, shockwave lighting, and anamorphic flares.",
         tag: "Production VFX",
+        link: "https://youtu.be/3boUBsYHY3I?t=2926",
       },
       {
         image: "/images/projects/wolverine/wolverine-artblast-hangar.webp",
         title: "ArtBlast: Night Assault",
         caption: "Gunship thrusters, muzzle flashes, laser tracers, and impact blood.",
         tag: "Production VFX",
+        link: "https://youtu.be/3boUBsYHY3I?t=2979",
       },
       {
         image: "/images/projects/wolverine/wolverine-credit-evidence.webp",

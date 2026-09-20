@@ -274,6 +274,29 @@ export default function ProjectDetailPage({ params }: Props) {
                   <p className="text-sm leading-relaxed text-zinc-300">
                     {item.caption}
                   </p>
+                  {item.timestamps && item.timestamps.length > 0 && (
+                    <div className="mt-4 pt-3.5 border-t border-white/5">
+                      <div className="text-[11px] font-mono font-medium text-zinc-400 mb-2 uppercase tracking-wider">
+                        Cinematic Sequences & Timestamps
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {item.timestamps.map((ts, idx) => (
+                          <a
+                            key={idx}
+                            href={ts.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-1.5 text-xs text-zinc-200 transition-all hover:border-[#7db5b0]/50 hover:bg-[#7db5b0]/10 hover:text-white"
+                          >
+                            <Play className="h-3 w-3 fill-[#7db5b0] text-[#7db5b0] group-hover:scale-110 transition-transform" />
+                            <span className="font-mono text-[#a7d2ce] font-semibold">{ts.time}</span>
+                            <span className="text-zinc-300 group-hover:text-white">{ts.label}</span>
+                            <ArrowUpRight className="h-3 w-3 text-zinc-500 group-hover:text-zinc-300" />
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </figcaption>
               </figure>
             ))}

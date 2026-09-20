@@ -68,11 +68,18 @@ test.describe("Marvel's Wolverine Integration Audit", () => {
     const src = await iframe.getAttribute("src");
     expect(src).toContain("lbiMqaLTKlQ");
 
-    // In-game cinematic cutscene check
-    await expect(page.getByText("In-Game Cinematic Cutscenes (22:27)")).toBeVisible();
+    // In-game cinematic cutscenes check
+    await expect(page.getByText("In-Game Cinematic Cutscenes", { exact: true })).toBeVisible();
     await expect(page.getByText("Cinematic VFX", { exact: true })).toBeVisible();
-    const cutsceneLink = page.locator('a[href="https://youtu.be/3boUBsYHY3I?t=1347"]').first();
-    await expect(cutsceneLink).toBeVisible();
+    await expect(page.locator('a[href="https://youtu.be/3boUBsYHY3I?t=1347"]').first()).toBeVisible();
+    await expect(page.locator('a[href="https://youtu.be/3boUBsYHY3I?t=2926"]').first()).toBeVisible();
+    await expect(page.locator('a[href="https://youtu.be/3boUBsYHY3I?t=2979"]').first()).toBeVisible();
+    await expect(page.locator('a[href="https://youtu.be/3boUBsYHY3I?t=4272"]').first()).toBeVisible();
+    await expect(page.locator('a[href="https://youtu.be/3boUBsYHY3I?t=7130"]').first()).toBeVisible();
+
+    // ArtBlast video links check
+    await expect(page.getByText("ArtBlast: Warehouse Explosion")).toBeVisible();
+    await expect(page.getByText("ArtBlast: Night Assault")).toBeVisible();
 
     // In-game evidence check
     await expect(page.getByText("In-Game End Credits", { exact: true })).toBeVisible();
@@ -82,7 +89,6 @@ test.describe("Marvel's Wolverine Integration Audit", () => {
 
     // Visual breakdown check
     await expect(page.getByText("Selected Breakdown")).toBeVisible();
-    await expect(page.getByText("ArtBlast: Warehouse Explosion")).toBeVisible();
   });
 
   test("Home page features Marvel's Wolverine as first project in Selected Work", async ({ page }) => {
