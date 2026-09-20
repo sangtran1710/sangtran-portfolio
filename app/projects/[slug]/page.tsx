@@ -277,7 +277,7 @@ export default function ProjectDetailPage({ params }: Props) {
                   {item.timestamps && item.timestamps.length > 0 && (
                     <div className="mt-4 pt-3.5 border-t border-white/5">
                       <div className="text-[11px] font-mono font-medium text-zinc-400 mb-2 uppercase tracking-wider">
-                        Cinematic Sequences & Timestamps
+                        Key Sequences & Timestamps
                       </div>
                       <div className="flex flex-wrap gap-2">
                         {item.timestamps.map((ts, idx) => (

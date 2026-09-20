@@ -68,6 +68,12 @@ test.describe("Marvel's Wolverine Integration Audit", () => {
     const src = await iframe.getAttribute("src");
     expect(src).toContain("lbiMqaLTKlQ");
 
+    // In-game gameplay VFX check
+    await expect(page.getByText("In-Game Gameplay: Bullet Impacts & Trigger Volumes (02:29)")).toBeVisible();
+    await expect(page.locator('a[href="https://youtu.be/9JdiQpn4SvQ?t=149"]').first()).toBeVisible();
+    await expect(page.getByText("In-Game Gameplay: Aggressive & Stealth Combat")).toBeVisible();
+    await expect(page.locator('a[href="https://www.youtube.com/watch?v=iQYeXYa2Tfo"]').first()).toBeVisible();
+
     // In-game cinematic cutscenes check
     await expect(page.getByText("In-Game Cinematic Cutscenes", { exact: true })).toBeVisible();
     await expect(page.getByText("Cinematic VFX", { exact: true })).toBeVisible();

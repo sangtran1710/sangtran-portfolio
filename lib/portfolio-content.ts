@@ -295,7 +295,7 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
     description:
       "Senior VFX Artist tại Sparx* - A Virtuos Studio, thực hiện hiệu ứng gameplay và cinematic cho Insomniac Games.",
     contributions: [
-      "Hệ thống hạt real-time và combat VFX trên engine độc quyền của studio",
+      "Combat VFX, hệ thống đạn bắn, hiệu ứng nổ và trigger volume môi trường trên engine độc quyền của studio",
       "Mô phỏng Houdini và shader cho các phân cảnh cinematic",
       "Tối ưu overdraw và profiling GPU khóa cứng 60 FPS trên PS5",
     ],
@@ -310,6 +310,23 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
       "Profiling GPU và triệt tiêu overdraw in-engine",
     ],
     evidenceBreakdown: [
+      {
+        image: "/images/projects/wolverine/wolverine-madripoor.webp",
+        title: "Gameplay Trong Game: Đạn Bắn & Trigger Volume (02:29)",
+        caption: "Hệ thống đạn bắn, hiệu ứng nổ (explosion), và VFX tương tác môi trường kích hoạt qua trigger volume khi nhân vật di chuyển vào vùng giao tranh.",
+        tag: "Gameplay VFX",
+        link: "https://youtu.be/9JdiQpn4SvQ?t=149",
+        timestamps: [
+          { time: "02:29", label: "Demo Combat, Vụ Nổ & Trigger Volume", url: "https://youtu.be/9JdiQpn4SvQ?t=149" },
+        ],
+      },
+      {
+        image: "/images/projects/wolverine/wolverine-hero.webp",
+        title: "Gameplay Trong Game: Combat & Hạ Gục Lén Lút",
+        caption: "VFX hạ gục lén lút (stealth takedown), hệ thống hạt va chạm móng vuốt, decal máu môi trường và combat dồn dập trên PS5.",
+        tag: "Gameplay VFX",
+        link: "https://www.youtube.com/watch?v=iQYeXYa2Tfo",
+      },
       {
         image: "/images/projects/wolverine/wolverine-action.webp",
         title: "Cutscene Cinematic Trong Game",

@@ -207,7 +207,7 @@ export const PROJECTS: Project[] = [
       "Senior VFX Artist at Sparx* - A Virtuos Studio, delivering gameplay and cinematic effects for Insomniac Games.",
     categories: ["aaa", "realtime"],
     contributions: [
-      "Real-time particle systems and combat VFX in proprietary engine",
+      "Real-time combat VFX, bullet impacts, explosions, and gameplay trigger volumes in proprietary engine",
       "Houdini simulations and shaders for cinematic sequences",
       "Overdraw and GPU profiling targeting locked 60 FPS on PS5",
     ],
@@ -232,6 +232,23 @@ export const PROJECTS: Project[] = [
     videoPoster: "/images/projects/wolverine/wolverine-video-poster.webp",
     videoTitle: "Jean TK Explosion (In-Game Cinematic VFX)",
     evidenceBreakdown: [
+      {
+        image: "/images/projects/wolverine/wolverine-madripoor.webp",
+        title: "In-Game Gameplay: Bullet Impacts & Trigger Volumes (02:29)",
+        caption: "Real-time bullet projectiles, hit impacts, explosion dynamics, and environmental trigger volume interactions activated as character enters combat zones.",
+        tag: "Gameplay VFX",
+        link: "https://youtu.be/9JdiQpn4SvQ?t=149",
+        timestamps: [
+          { time: "02:29", label: "Demo Combat, Explosions & Trigger Volumes", url: "https://youtu.be/9JdiQpn4SvQ?t=149" },
+        ],
+      },
+      {
+        image: "/images/projects/wolverine/wolverine-hero.webp",
+        title: "In-Game Gameplay: Aggressive & Stealth Combat",
+        caption: "Real-time stealth takedowns, claw impact particle emitters, environmental blood decals, and aggressive in-engine combat gameplay on PS5.",
+        tag: "Gameplay VFX",
+        link: "https://www.youtube.com/watch?v=iQYeXYa2Tfo",
+      },
       {
         image: "/images/projects/wolverine/wolverine-action.webp",
         title: "In-Game Cinematic Cutscenes",
