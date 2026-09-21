@@ -63,7 +63,7 @@ const VI_EXPERIENCES = [
     role: "Senior VFX Artist",
     responsibilities: [
       "Phát triển và tối ưu real-time VFX cho các dự án AAA như Marvel's Wolverine (PS5), Marvel's Spider-Man 2 (PS5), Fortnite Remix Finale, New World: Aeternum và Until Dawn (PS5)",
-      "Tạo shader tùy biến và hệ thống Niagara trong Unreal Engine 5 cho gameplay và cinematic",
+      "Tạo shader tùy biến, hệ thống hạt và Niagara trên cả engine độc quyền và Unreal Engine 5 cho gameplay và cinematic",
       "Xây Python tool và pipeline Houdini để tăng tốc workflow cho team và quá trình sản xuất asset",
       "Làm việc cross-functional với art director và tech lead từ Insomniac Games, Epic Games và Amazon Games",
     ],

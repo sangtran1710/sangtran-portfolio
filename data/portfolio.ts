@@ -47,6 +47,8 @@ export interface Project {
   technicalHighlights?: string[];
   /** Concise Technical Notes (max 3 bullets combining constraints & technical highlights) */
   technicalNotes?: string[];
+  /** Exact production credit label e.g. 'Credited under Sparx* / Insomniac Games' or 'Freelance / Indie Studio' */
+  productionCredit?: string;
   /** Optional custom URL if this doesn't use the standard /projects/[slug] route */
   link?: string;
 }
@@ -142,11 +144,11 @@ export const EXPERIENCES: Experience[] = [
     duration: "Apr 2022 - Present",
     responsibilities: [
       "Developed and optimized real-time VFX for AAA projects including Marvel's Wolverine (PS5), Marvel's Spider-Man 2 (PS5), Fortnite Remix Finale, New World: Aeternum, and Until Dawn (PS5)",
-      "Authored custom shaders and Niagara systems for production gameplay and cinematics",
+      "Authored custom shaders, particle systems, and Niagara setups across proprietary engines and Unreal Engine",
       "Built Python tools and Houdini workflows to speed up asset production",
       "Worked with art directors, tech leads, and partner teams at Insomniac Games, Epic Games, and Amazon Games",
     ],
-    technologies: "Proprietary engines, Unreal Engine, Houdini, Python, HLSL, Perforce",
+    technologies: "Proprietary Engines, Unreal Engine 5, Houdini, Python, HLSL, Perforce",
   },
   {
     company: "BadClay Studio",
@@ -207,9 +209,9 @@ export const PROJECTS: Project[] = [
       "Senior VFX Artist at Sparx* - A Virtuos Studio, delivering gameplay and cinematic effects for Insomniac Games.",
     categories: ["aaa", "realtime"],
     contributions: [
-      "Real-time combat VFX, bullet impacts, explosions, and gameplay trigger volumes in proprietary engine",
-      "Houdini simulations and shaders for cinematic sequences",
-      "Performance profiling and overdraw optimization for PS5",
+      "Real-time combat VFX, bullet impacts, and explosion dynamics in proprietary engine",
+      "Houdini simulations and destruction shaders for cinematic sequences",
+      "Gameplay trigger volumes and interactive combat FX integration",
     ],
     techStack: ["Proprietary Engine", "Houdini", "HLSL", "Perforce"],
     engine: "Proprietary Engine",
@@ -228,6 +230,7 @@ export const PROJECTS: Project[] = [
       "Proprietary engine pipeline compliance and multi-studio Perforce synchronization",
       "Houdini simulation pipelines for destruction and debris integrated into runtime shaders",
     ],
+    productionCredit: "Credited under Sparx* / Insomniac Games",
     videoUrl: "https://www.youtube.com/embed/lbiMqaLTKlQ",
     videoPoster: "/images/projects/wolverine/wolverine-video-poster.webp",
     videoTitle: "Jean TK Explosion (In-Game Cinematic VFX)",
@@ -306,7 +309,6 @@ export const PROJECTS: Project[] = [
     contributions: [
       "Authored Houdini simulations for destruction and debris effects",
       "Built real-time particle systems for combat and traversal VFX",
-      "Optimized effects to hit PS5 performance targets",
       "Integrated assets via Perforce pipelines with the Insomniac FX team",
     ],
     techStack: ["Houdini", "Blender", "Proprietary Engine", "Python", "HLSL", "Perforce"],
@@ -326,6 +328,7 @@ export const PROJECTS: Project[] = [
       "Houdini destruction and debris simulation pipelines integrated into proprietary engine",
       "Adhered to strict Perforce branch check-in conventions with the Insomniac FX team",
     ],
+    productionCredit: "Credited under Sparx* / Insomniac Games",
     videoUrl: "https://www.youtube.com/embed/bgqGdIoa52s?start=1",
     evidenceBreakdown: [
       {
@@ -376,6 +379,7 @@ export const PROJECTS: Project[] = [
       "Complied with Epic Games Niagara pipeline standards, LOD rules, and drawcall budgets",
     ],
     videoUrl: "https://www.youtube.com/embed/c-rtUmJPLQM?start=272",
+    productionCredit: "Credited under Sparx* / Epic Games",
     breakdownClips: [
       { url: "https://www.youtube.com/watch?v=4NifXy2W_Uk", title: "Weapon Skin VFX" },
       { url: "https://www.youtube.com/watch?v=u-e9ByS_e80", title: "Live Event Effects" },
@@ -422,6 +426,7 @@ export const PROJECTS: Project[] = [
       "Dynamic weather and lighting consistency across changing daylight states",
     ],
     videoUrl: "https://www.youtube.com/embed/qK8jtTMHCRU",
+    productionCredit: "Credited under Sparx* / Amazon Games",
     isFeatured: true,
   },
   {
@@ -460,6 +465,7 @@ export const PROJECTS: Project[] = [
       "Volumetric fog and shadow optimization for 60 FPS console target on PS5",
     ],
     videoUrl: "https://www.youtube.com/embed/8nApBGPy0ao",
+    productionCredit: "Credited under Sparx* / Ballistic Moon",
   },
   {
     slug: "malignant",
@@ -509,6 +515,7 @@ export const PROJECTS: Project[] = [
       "Blueprint rate-limiting logic (0.1s cooldown throttling) to eliminate frame drops during automatic weapon fire",
       "Dynamic UMG HUD widgets and fullscreen low-health post-process overlays",
     ],
+    productionCredit: "Buzzkill Interactive / Upwork",
     steamUrl: "https://store.steampowered.com/app/4314740/Malignant/",
     isFeatured: true,
     images: [
@@ -591,6 +598,7 @@ export const PROJECTS: Project[] = [
       "Procedural pyro and FLIP fluid solvers tuned for broadcast turnaround timelines",
       "Multi-pass volumetric rendering and comp passes for live-action integration",
     ],
+    productionCredit: "Credited under BadClay Studio / Netflix",
     videoUrl: "https://www.youtube.com/embed/Se26Op9sEC8?start=8",
   },
   {
@@ -619,6 +627,7 @@ export const PROJECTS: Project[] = [
       "GPU-driven Niagara emitters optimized for low overdraw during multi-character clashes",
       "Custom HLSL and material parameter collections for synchronized skill timing",
     ],
+    productionCredit: "Freelance / Indie Studio",
     images: ["/images/havoc-landing-page.webp"],
   },
 ];

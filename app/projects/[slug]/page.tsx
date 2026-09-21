@@ -424,13 +424,14 @@ export default function ProjectDetailPage({ params }: Props) {
 
           <div className="flex items-center gap-4">
             <p className="text-[11px] text-zinc-400">
-              Production Credit: Credited under{" "}
+              Production Credit:{" "}
               <span className="text-zinc-200 font-medium">
-                {project.slug === "malignant"
-                  ? "Buzzkill Interactive / Upwork"
-                  : project.client
-                  ? `Sparx* / ${project.client}`
-                  : "Sparx* - A Virtuos Studio"}
+                {project.productionCredit ??
+                  (project.role.toLowerCase().includes("freelance")
+                    ? `Freelance / ${project.client}`
+                    : project.client
+                    ? `Credited under Sparx* / ${project.client}`
+                    : "Sparx* - A Virtuos Studio")}
               </span>
             </p>
             {project.steamUrl && (
