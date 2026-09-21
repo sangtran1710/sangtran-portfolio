@@ -1,181 +1,128 @@
 ---
 title: "Procedural Destructibles & VFX Pipelines in Houdini"
-description: "Behind the scenes of building procedural destruction systems, 3D volume slicing, and COP texture baking workflows for Marvel's Wolverine."
+description: "How I used Houdini to turn heavy offline simulations into runtime-friendly textures, atlases, and destructible assets."
 date: "2026-05-12"
 tags: ["Houdini", "Destructibles", "Technical Art", "VFX Pipeline", "Marvel's Wolverine"]
 thumbnail: "/assets/blog/houdini-wolverine-destructibles/poster-rbd-bridge.webp"
-readTime: "6 min"
+readTime: "4 min"
 ---
 
-<ProductionNotice title="Production Context & Engine Copyright Notice">
-  <p>
-    The procedural fracture setups, rigid body dynamic (RBD) simulations, volume slicing tools, and COP texture baking networks documented in this note were authored for <strong>Marvel's Wolverine</strong> during my time at <strong>Sparx* - a Virtuos Studio</strong> in co-development with <strong>Insomniac Games</strong>.
-  </p>
-  <p>
-    In strict compliance with studio non-disclosure agreements (NDA) and proprietary game engine copyrights, <strong>no real-time in-engine captures, runtime shaders, or proprietary tools are shown here</strong>. The workflows and screen recordings below focus entirely on the offline procedural Houdini architecture, simulation solvers, and custom texture generation graphs.
-  </p>
+Destruction work for real-time projects isn't just about blowing meshes apart—it's about turning expensive physics simulations into lightweight, runtime-ready data.
+
+I used Houdini mainly to move heavy offline simulation into reusable textures, atlases, and pre-fractured assets.
+
+<ProductionNotice>
+  <strong className="text-zinc-200 font-medium">Production note:</strong> Offline Houdini workflows only. No proprietary engine captures or tools are shown.
 </ProductionNotice>
 
-In high-impact action titles, destruction isn't just visual spectacle—it is direct gameplay feedback. When a character smashes through concrete or slams into industrial machinery, players expect immediate physical consequence: chunks tearing apart, dust billowing from fractures, and ground surfaces cracking beneath the impact.
-
-Achieving this at 60 FPS across complex game levels requires careful technical art pipelines. You cannot simply drop an offline physics simulation into an engine and hope for the best. 
-
-Instead, Houdini acts as the procedural forge: solving rigid body dynamics, clustering fracture geometry, slicing volumetric fluids into texture atlases, and synthesizing multi-channel displacement maps through Compositing Operators (COPs).
-
 ---
 
-## 1. Multi-Stage Rigid Body Dynamics (RBD) & Forcefield Collapses
-
-Large-scale environment destruction—such as suspension bridges, security checkpoints, and structural gates—demands realistic weight and progressive structural failure. 
-
-If all fracture pieces break simultaneously, the simulation looks like shattered glass rather than heavy reinforced concrete and steel.
+## 1. Multi-Stage RBD & Forcefield Collapse
 
 <VideoPlayer
   src="/assets/blog/houdini-wolverine-destructibles/wolverine-houdini-rbd-bridge.mp4"
   poster="/assets/blog/houdini-wolverine-destructibles/poster-rbd-bridge.webp"
-  title="RBD Bridge & Forcefield Destruction Simulation"
-  caption="Houdini Bullet solver simulating structural stress, progressive constraint failure, and directional forcefield propagation across a bridge structure."
+  title="Bridge Destruction & Forcefield Collapse"
+  caption="Bullet solver setup handling progressive structural failure across a suspension bridge span."
 />
 
-### Key Pipeline Highlights
+Large structures look unnatural when pieces shatter all at once. I broke the collapse into sequential phases:
 
-- **Hierarchical Constraint Networks**: Using multi-tier constraints (`Glue` for rigid initial binding, switching to `Soft` and `ConeTwist` as stress exceeds defined breaking thresholds).
-- **Directional Volume Triggering**: Rather than relying strictly on passive collision geometry, directional forcefield volumes propagate through the structure, causing failure points to travel organically along structural load vectors.
-- **Debris & Secondary Separation**: Separating primary structural chunks from high-frequency debris shells, ensuring clean data packaging for downstream optimization.
+- **Constraint hierarchy**: Primary framing held by stiff `Glue` constraints, which switch to `Soft` and `ConeTwist` as stress builds up to allow plastic bending before release.
+- **Directional forcefield**: Rather than passive collisions, an animated directional velocity volume pushes through the structure to drive failure along realistic load lines.
+- **Debris separation**: High-frequency surface concrete shards are split from structural core chunks for downstream LOD and culling.
 
 ---
 
-## 2. Modular Prop Destruction & Automated Clustering
-
-Level designers place hundreds of industrial props across environments: rooftop HVAC units, transformer boxes, ventilation ducts, and metal lockers. Manually fracturing each asset by hand is impossible at AAA scale.
-
-I developed automated Houdini Digital Asset (HDA) workflows—incorporating custom nodes like `dtk_fracture` and `dtk_validator`—to turn intact hero props into production-ready destructible hierarchies.
+## 2. Modular Prop Destruction & Clustering
 
 <VideoPlayer
   src="/assets/blog/houdini-wolverine-destructibles/wolverine-houdini-prop-destruction.mp4"
   poster="/assets/blog/houdini-wolverine-destructibles/poster-prop-destruction.webp"
-  title="Industrial Prop Multi-Stage Fracture & Clustering"
-  caption="Exploded view validation showing internal structural framing, metal casing panels, interior debris separation, and piece clustering."
+  title="Prop Fracture & Exploded View Validation"
+  caption="Exploded view showing interior structural ribs, metal panel separation, and collision piece clusters."
 />
 
-### What the Pipeline Solves
+Level designers placed dozens of industrial props across environments—rooftop HVAC units, electrical boxes, ducts. Manually cutting these by hand was impractical, so I built an HDA pipeline (`dtk_fracture` + `dtk_validator`) to automate the pass.
 
-1. **Material Assignment by Depth**: The fracture network distinguishes between the original pristine outer surface and interior concrete/metal cut faces, assigning dedicated material IDs and vertex colors automatically.
-2. **Cluster Optimization**: Pure Voronoi fracturing creates too many tiny fragments that bottleneck physics budgets. Grouping adjacent shards into cohesive clusters maintains realistic silhouette breakups while drastically cutting dynamic actor counts.
-3. **Automated Topology Validation**: `dtk_validator` inspects every piece for non-manifold edges, inverted normals, unassigned UVs, and concavity before baking colliders.
+### What I automated:
+- **Interior vs. exterior cuts**: Automatic vertex color and material ID assignment between pristine outer metal and interior concrete/metal cut faces.
+- **Cluster grouping**: Clumping tiny Voronoi shards into larger physical clusters to keep rigid body counts within real-time physics budgets.
+- **Topology validation**: `dtk_validator` flags non-manifold geometry, flipped normals, and concavity before geometry ever leaves Houdini.
 
 ---
 
-## 3. Ground Impact Cracks & COP Vector Displacement Baking
+## 3. Ground Impact Cracks & COP Vector Displacement Baker
 
-Combat moves—such as heavy ground slams, claw impacts, and explosive shockwaves—need sharp, believable terrain deformation. 
+Combat impacts need physical bite on the floor. Standard heightmaps only push vertices along a single normal vector, which can't produce lateral tearing, undercut rock edges, or jagged trench lips.
 
-Scalar height maps can only push vertices up or down along the surface normal vector. But real fractures exhibit lateral tearing, undercut rock shelves, and trench spreading. To support this, I built a procedural crack growth system in Houdini that bakes full **3D Vector Displacement Maps (VDM)** and tangent normal maps using **COP (Compositing Operators)** networks.
+For ground strikes, I authored procedural crack growth networks in Houdini that bake full **3D Vector Displacement Maps (VDM)** and tangent normal maps through **COP (Compositing Operators)** networks.
 
 <VideoPlayer
   src="/assets/blog/houdini-wolverine-destructibles/wolverine-houdini-vector-displacement.mp4"
   poster="/assets/blog/houdini-wolverine-destructibles/poster-vector-displacement.webp"
-  title="Houdini COP Vector Displacement & Normal Baker"
-  caption="Procedural crack impact network calculating spatial delta vectors, edge erosion, and tangent-space normal derivation inside Houdini COPs."
+  title="COP Vector Displacement & Normal Baker"
+  caption="Custom COP graph baking 3D spatial delta offsets and tangent normals directly from fracture curves."
 />
 
-### The Baked Texture Channels
-
-In a Vector Displacement workflow:
-- The **Color / Mask (`_c`)** channel isolates the pulverized crack trench from untouched surrounding asphalt or rock, providing blending masks for decal shaders and dust emitters.
-- The **Vector Displacement (`_disp_m`)** map stores actual 3D $(dx, dy, dz)$ spatial deltas. Neutral gray $(0.5, 0.5, 0.5)$ represents zero displacement, while color variations push vertices along arbitrary 3D vectors.
-- The **Normal Map (`_n`)** captures crisp grazing-angle micro-relief, chiselled bevels, and fragmented pebble scattering without requiring millions of polygons at runtime.
-
-### Texture Set 1: Ground Crack Fracture
-
-<TextureGallery
-  title="Crack Mesh: Ground Fracture Texture Suite"
-  description="High-resolution texture outputs generated from procedural crack simulations via Houdini COP baking."
->
+### Crack Mesh: Ground Fracture Suite
+<TextureGallery>
   <TextureCard
     src="/assets/blog/houdini-wolverine-destructibles/crack_mesh_growing_crack_c.webp"
-    title="Crack Color / Mask"
-    channel="RGB / Linear"
-    type="Albedo & Mask"
-    description="Isolates the high-contrast fracture trench and pulverized edge wear for material blending."
+    title="Color / Mask"
+    caption="Blend + fracture isolation"
   />
   <TextureCard
     src="/assets/blog/houdini-wolverine-destructibles/crack_mesh_growing_crack_disp_m.webp"
     title="Vector Displacement"
-    channel="RGB Float -> 8-bit"
-    type="VDM (3D Delta)"
-    description="Encodes 3D spatial delta offsets (dx, dy, dz) allowing lateral spreading and undercut trench depth."
+    caption="3D positional offset (dx, dy, dz)"
   />
   <TextureCard
     src="/assets/blog/houdini-wolverine-destructibles/crack_mesh_growing_crack_n.webp"
     title="Tangent Normal"
-    channel="RGB Normal"
-    type="Tangent Normal"
-    description="Bakes sharp micro-facet bevels and surface crumbling for dynamic lighting response."
+    caption="Surface micro-detail"
   />
 </TextureGallery>
 
-### Texture Set 2: Branching Root / Tendril Growth
-
-<TextureGallery
-  title="Crack Mesh: Growing Roots & Tendril Suite"
-  description="Multi-channel baked maps for organic tendril expansion and deep stress-crack propagation."
->
+### Crack Mesh: Growing Roots Suite
+<TextureGallery>
   <TextureCard
     src="/assets/blog/houdini-wolverine-destructibles/crack_mesh_growing_roots_c.webp"
-    title="Roots Color / Mask"
-    channel="RGB / Linear"
-    type="Albedo & Mask"
-    description="Organic branching mask defining root growth propagation and edge attenuation."
+    title="Color / Mask"
+    caption="Organic blend + tendril mask"
   />
   <TextureCard
     src="/assets/blog/houdini-wolverine-destructibles/crack_mesh_growing_roots_disp_m.webp"
     title="Vector Displacement"
-    channel="RGB Float -> 8-bit"
-    type="VDM (3D Delta)"
-    description="Encodes wide lateral displacement and bulging soil ridges along fracture tendrils."
+    caption="3D positional offset (dx, dy, dz)"
   />
   <TextureCard
     src="/assets/blog/houdini-wolverine-destructibles/crack_mesh_growing_roots_n.webp"
     title="Tangent Normal"
-    channel="RGB Normal"
-    type="Tangent Normal"
-    description="Captures steep vertical crevices and grazing-angle relief along twisting root branches."
+    caption="Surface micro-detail"
   />
 </TextureGallery>
 
 ---
 
-## 4. 3D Volume Texture & Pseudo-Volume Slicing Pipeline
+## 4. 3D Volume Slicing to Texture Sheet
 
-Simulating volumetric dust, dense smoke, and shockwave pressure waves in Houdini yields stunning high-resolution OpenVDB grids. However, modern game engines cannot simulate volumetric fluid grids at 60 FPS in real time.
+High-resolution volumetric simulations are generally too expensive to reproduce directly at runtime at the same fidelity.
 
-To solve this, I designed a volumetric slicing pipeline (`slice_vdb`) that converts 3D voxel density fields into 2D texture sheets and 3D volume texture atlases.
+To bring dense smoke and shockwave plumes into the project without simulating 3D fluid grids dynamically, I set up a slicing pipeline (`slice_vdb`):
 
 <VideoPlayer
   src="/assets/blog/houdini-wolverine-destructibles/wolverine-houdini-volume-texture.mp4"
   poster="/assets/blog/houdini-wolverine-destructibles/poster-volume-texture.webp"
-  title="OpenVDB 3D Volume Slicing & Texture Atlas Generation"
-  caption="Slicing high-resolution volumetric smoke simulations into contiguous grid sheets for real-time shader raymarching."
+  title="OpenVDB 3D Volume Slicing"
+  caption="Slicing high-resolution volumetric smoke simulations into contiguous grid sheets for real-time raymarching."
 />
 
-### How It Works
-
-1. **Volume Resampling & Normalization**: The OpenVDB density and temperature fields are normalized to $[0, 1]$ bounds, clipping unnecessary sparse voxel space to maximize texture resolution.
-2. **Equidistant Z-Slicing**: The volume is sliced into discrete cross-sections (e.g. 50 Z-slices) along the vertical or projection axis.
-3. **Atlas Packing**: The slices are packed into a power-of-two 2D texture atlas (e.g. 4096&times;4096).
-4. **Shader Raymarching**: Inside the real-time engine shader, a raymarching pass steps through the pseudo-volume or 3D texture using UV coordinate transformation, reconstructing true depth-aware volumetric smoke and light scattering with minimal GPU cost.
+1. **Field clamp & normalize**: Normalize VDB density and temperature to $[0, 1]$ bounds.
+2. **Equidistant slicing**: Slice the 3D voxel volume into discrete planar cross-sections (50 Z-slices).
+3. **Atlas packing**: Pack cross-sections into a single 4096&times;4096 power-of-two texture sheet.
+4. **Shader raymarch**: At runtime, a lightweight custom shader steps through the slice coordinates to reconstruct volumetric depth with zero runtime fluid simulation.
 
 ---
 
-## Technical Art Philosophy
-
-Working on a title as demanding as *Marvel's Wolverine* reinforced a core lesson in technical art: **simulation fidelity is meaningless if it cannot be delivered within real-time budgets.**
-
-Houdini isn't just an art tool; it is an offline computation engine. By leveraging procedural graph logic, Bullet physics solvers, and COP texture baking, we can:
-
-- Turn chaotic physics into structured, reproducible game assets.
-- Encode expensive 3D spatial calculations into lightweight texture maps.
-- Provide production teams with standardized tools that remove hundreds of hours of manual asset authoring.
-
-The result is cinematic destructibility that feels immediate, heavy, and satisfying under the player's fingertips.
+The core goal across these setups was always the same: keep the artist control and simulation fidelity of Houdini, but package the output into clean, highly optimized data—compact textures, clustered shards, and lightweight atlases—that engine shaders and physics systems can handle effortlessly.

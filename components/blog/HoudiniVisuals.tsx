@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-import { ShieldAlert, Layers, Film } from "lucide-react";
+import { Layers, Film } from "lucide-react";
 
 export function VideoPlayer({
   src,
@@ -51,36 +50,43 @@ export function VideoPlayer({
 export function TextureCard({
   src,
   title,
+  caption,
+  description,
   channel,
   type,
-  description,
 }: {
   src: string;
   title: string;
-  channel: string;
-  type: string;
-  description: string;
+  caption?: string;
+  description?: string;
+  channel?: string;
+  type?: string;
 }) {
+  const text = caption || description;
   return (
-    <div className="group rounded-xl border border-zinc-800 bg-zinc-900/50 p-3 hover:border-teal-500/40 transition-colors">
-      <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-zinc-950 border border-zinc-800/60 mb-3">
+    <div className="group rounded-xl border border-zinc-800/80 bg-zinc-900/50 p-3 hover:border-teal-500/40 transition-colors">
+      <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-zinc-950 border border-zinc-800/60 mb-2.5">
         <img
           src={src}
           alt={title}
-          loading="lazy"
+          loading="eager"
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
-        <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/75 backdrop-blur-sm border border-zinc-700/60 text-[10px] font-mono text-teal-300">
-          {channel}
-        </div>
+        {channel && (
+          <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/75 backdrop-blur-sm border border-zinc-700/60 text-[10px] font-mono text-teal-300">
+            {channel}
+          </div>
+        )}
       </div>
-      <div className="flex items-center justify-between mb-1">
+      <div className="flex items-center justify-between mb-0.5">
         <h4 className="text-sm font-semibold text-zinc-200">{title}</h4>
-        <span className="text-[10px] px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-400 font-mono">
-          {type}
-        </span>
+        {type && (
+          <span className="text-[10px] px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-400 font-mono">
+            {type}
+          </span>
+        )}
       </div>
-      <p className="text-xs text-zinc-400 leading-relaxed">{description}</p>
+      {text && <p className="text-xs text-zinc-400 leading-snug">{text}</p>}
     </div>
   );
 }
@@ -95,12 +101,12 @@ export function TextureGallery({
   children: React.ReactNode;
 }) {
   return (
-    <div className="my-8 rounded-xl border border-zinc-800/80 bg-zinc-950/60 p-5">
+    <div className="my-6 rounded-xl border border-zinc-800/80 bg-zinc-950/60 p-4">
       {(title || description) && (
-        <div className="mb-4">
+        <div className="mb-3">
           {title && (
-            <h3 className="text-base font-bold text-white mb-1 flex items-center gap-2">
-              <Layers className="w-4 h-4 text-teal-400" />
+            <h3 className="text-sm font-bold text-white mb-0.5 flex items-center gap-2">
+              <Layers className="w-3.5 h-3.5 text-teal-400" />
               {title}
             </h3>
           )}
@@ -117,23 +123,21 @@ export function TextureGallery({
 }
 
 export function ProductionNotice({
-  title = "Production Context & Engine Copyright Notice",
   children,
 }: {
   title?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }) {
   return (
-    <div className="my-8 rounded-xl border border-amber-500/30 bg-amber-950/20 p-5 relative overflow-hidden">
-      <div className="flex items-start gap-3.5">
-        <ShieldAlert className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-        <div>
-          <h4 className="text-sm font-semibold text-amber-200 mb-1.5">{title}</h4>
-          <div className="text-xs text-zinc-300 leading-relaxed space-y-2">
-            {children}
-          </div>
-        </div>
+    <aside className="my-6 px-4 py-3 rounded-xl border border-zinc-800/80 bg-zinc-900/40 text-xs text-zinc-400 flex items-start sm:items-center gap-2.5">
+      <span className="w-2 h-2 rounded-full bg-teal-400 shrink-0 mt-1 sm:mt-0" />
+      <div className="leading-relaxed text-zinc-400">
+        {children || (
+          <span>
+            <strong className="text-zinc-200 font-medium">Production note:</strong> Offline Houdini workflows only. No proprietary engine captures or tools are shown.
+          </span>
+        )}
       </div>
-    </div>
+    </aside>
   );
 }
