@@ -22,60 +22,41 @@ export default function ClientEndorsementsSection() {
   const secondaryReviews = reviews.slice(1);
 
   return (
-    <section id="client-endorsements" className="mb-20">
-      <div className="mb-8">
-        <div className="flex items-center gap-2 mb-2">
-          <span className="flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-amber-600 bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/20">
-            <Star className="h-3.5 w-3.5 fill-amber-500 text-amber-500" />
-            Client Testimonial
+    <section id="client-endorsements" className="mb-12">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-mono uppercase tracking-widest text-[#4f8e89]">
+            {copy.about.clientEndorsements}
           </span>
-          <span className="text-xs font-medium text-slate-500">Upwork Verified · 100% Job Success</span>
+          <span className="text-slate-300">·</span>
+          <div className="flex items-center gap-1 text-xs text-amber-600 font-medium">
+            <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+            <span>5.0 (Upwork Verified)</span>
+          </div>
         </div>
-        <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-          {copy.about.clientEndorsements}
-        </h2>
-        <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
-          {copy.about.clientEndorsementsBody}
-        </p>
       </div>
 
-      {/* Featured Premier Review Card */}
-      <article className="rounded-[1.5rem] border border-stone-200 bg-white p-6 sm:p-8 shadow-[0_12px_30px_rgba(15,23,42,0.05)] transition-all duration-300 hover:border-stone-300 hover:shadow-[0_18px_40px_rgba(15,23,42,0.08)]">
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
+      {/* Featured Compact Review Card */}
+      <article className="rounded-2xl border border-stone-200/90 bg-white p-5 sm:p-6 shadow-sm transition-all duration-300 hover:border-stone-300 hover:shadow-md">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
           <div className="flex-1">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="flex items-center gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className="h-4 w-4 fill-amber-400 text-amber-400"
-                    aria-hidden="true"
-                  />
-                ))}
-                <span className="ml-1.5 text-xs font-bold text-slate-900">5.0</span>
-              </div>
-              <span className="text-xs text-slate-400">·</span>
-              <span className="text-xs font-medium text-[#4f8e89]">
-                {featuredReview.projectLabel || "Commercial Release"}
-              </span>
-              <span className="text-xs text-slate-400">·</span>
-              <span className="text-xs text-slate-500">{featuredReview.period}</span>
+            <div className="flex items-center gap-2 mb-2 text-xs">
+              <span className="font-semibold text-slate-900">{featuredReview.title}</span>
+              <span className="text-slate-300">·</span>
+              <span className="font-medium text-[#4f8e89]">{featuredReview.projectLabel || "Commercial Release"}</span>
+              <span className="text-slate-300">·</span>
+              <span className="text-slate-500 font-mono text-[11px]">{featuredReview.period}</span>
             </div>
 
-            <h3 className="text-base font-semibold text-slate-900 mb-3">
-              {featuredReview.title}
-            </h3>
-
-            <blockquote className="text-sm sm:text-[15px] leading-relaxed text-slate-700 italic border-l-2 border-[#4f8e89]/40 pl-4 mb-5">
+            <blockquote className="text-sm leading-relaxed text-slate-700 italic border-l-2 border-[#4f8e89]/40 pl-3.5 my-3">
               &ldquo;{featuredReview.review}&rdquo;
             </blockquote>
 
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="text-xs font-medium text-slate-500">Client Endorsement:</span>
+            <div className="flex flex-wrap items-center gap-1.5 mt-3">
               {featuredReview.tags.slice(0, 3).map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-md bg-stone-100 px-2 py-0.5 text-xs font-medium text-slate-600"
+                  className="rounded bg-stone-100 px-2 py-0.5 text-[11px] text-slate-600"
                 >
                   {tag}
                 </span>
@@ -83,14 +64,14 @@ export default function ClientEndorsementsSection() {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row md:flex-col items-stretch md:items-end justify-center gap-3">
+          <div className="flex items-center md:self-center flex-shrink-0">
             <button
               type="button"
               onClick={() => setSelectedProof(featuredReview)}
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-xs font-medium text-slate-700 transition-colors hover:bg-stone-100 hover:text-slate-900"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-slate-700 transition-colors hover:bg-stone-100 hover:text-slate-900"
             >
-              <Eye className="h-4 w-4 text-[#4f8e89]" />
-              {copy.about.viewVerifiedReview}
+              <Eye className="h-3.5 w-3.5 text-[#4f8e89]" />
+              <span>{copy.about.viewVerifiedReview}</span>
             </button>
           </div>
         </div>

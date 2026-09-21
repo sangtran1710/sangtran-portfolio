@@ -31,35 +31,33 @@ export default function FeaturedProjects() {
           </Link>
         </div>
 
-        {/* 1 Featured Anchor + 2 Supporting Cards */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 items-stretch">
-          {/* Featured Title: Marvel's Wolverine */}
-          <div className="lg:col-span-7 flex">
-            {projects[0] && (
-              <ProjectCard
-                project={projects[0]}
-                priority
-                featured
-                className="w-full"
-              />
-            )}
-          </div>
+        {/* Editorial Rhythm: 1 Dominant Hero + 2 Supporting Releases */}
+        <div className="space-y-6">
+          {/* Dominant Hero: Marvel's Wolverine */}
+          {projects[0] && (
+            <ProjectCard
+              project={projects[0]}
+              priority
+              featured
+              className="w-full"
+            />
+          )}
 
-          {/* Supporting Column: Spider-Man 2 & Fortnite */}
-          <div className="flex flex-col gap-6 lg:col-span-5 justify-between">
+          {/* Supporting Duo: Spider-Man 2 & Fortnite */}
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {projects[1] && (
               <ProjectCard
                 project={projects[1]}
                 priority
                 supporting
-                className="flex-1"
+                className="w-full"
               />
             )}
             {projects[2] && (
               <ProjectCard
                 project={projects[2]}
                 supporting
-                className="flex-1"
+                className="w-full"
               />
             )}
           </div>

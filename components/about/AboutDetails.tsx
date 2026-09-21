@@ -34,29 +34,28 @@ export default function AboutDetails() {
 
       <div className="mb-16 h-px bg-stone-300/70" />
 
-      {/* 4. Core Technical Skills & Software */}
-      <section className="mb-16">
-        <h2 className="mb-8 text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+      {/* 4. Core Technical Skills & Software (Compact) */}
+      <section className="mb-14">
+        <h3 className="mb-4 text-xs font-mono uppercase tracking-widest text-[#4f8e89]">
           {copy.about.skillsAndTools}
-        </h2>
-        <div className="grid gap-6 sm:grid-cols-2">
+        </h3>
+        <div className="rounded-2xl border border-stone-200/90 bg-white p-4 sm:p-5 shadow-sm divide-y divide-stone-100">
           {skillGroups.map((group) => (
             <div
               key={group.name}
-              className="rounded-2xl border border-stone-200 bg-white p-5 shadow-[0_8px_24px_rgba(15,23,42,0.04)]"
+              className="py-3 first:pt-0 last:pb-0 flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6"
             >
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#4f8e89]">
+              <span className="text-xs font-semibold text-slate-800 w-44 flex-shrink-0">
                 {group.name}
-              </h3>
+              </span>
               <div className="flex flex-wrap gap-1.5">
                 {group.skills.map((skill) => (
-                  <Badge
+                  <span
                     key={skill}
-                    variant="outline"
-                    className="rounded-full border border-stone-200 bg-stone-50 text-xs font-normal text-slate-700"
+                    className="rounded-md border border-stone-200/70 bg-stone-50 px-2.5 py-0.5 text-xs text-slate-600 font-normal"
                   >
                     {skill}
-                  </Badge>
+                  </span>
                 ))}
               </div>
             </div>
@@ -64,24 +63,24 @@ export default function AboutDetails() {
         </div>
       </section>
 
-      <div className="mb-16 h-px bg-stone-300/70" />
+      <div className="mb-14 h-px bg-stone-300/70" />
 
-      {/* 5. Studio Life & Memories (Sparx* · 2022–2023) */}
-      <section className="mb-16">
-        <div className="mb-8">
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-            {locale === "vi" ? "Kỷ niệm & Văn hóa Studio" : "Studio Life & Team Culture"}
-          </h2>
-          <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+      {/* 5. Studio Life & Memories (Sparx* · 2022–2023) - Gentle Footnote */}
+      <section className="mb-12">
+        <div className="mb-6">
+          <h3 className="text-xs font-mono uppercase tracking-widest text-[#4f8e89]">
+            {locale === "vi" ? "Văn hóa Studio & Hoạt động nhóm" : "Studio Life & Team Culture"}
+          </h3>
+          <p className="mt-1 text-xs text-slate-500 leading-relaxed">
             {locale === "vi"
-              ? "Game hay được tạo nên từ những tập thể gắn kết. Một vài khoảnh khắc đáng nhớ cùng đồng đội tại Sparx* - A Virtuos Studio (2022–2023)."
-              : "Great games are built by cohesive teams. Memorable moments from team-building, studio celebrations, and production milestones at Sparx* - A Virtuos Studio (2022–2023)."}
+              ? "Những khoảnh khắc gắn kết cùng đồng đội tại Sparx* - A Virtuos Studio (2022–2023)."
+              : "Moments of collaboration and milestones with the Sparx* - A Virtuos Studio crew (2022–2023)."}
           </p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-12 items-stretch">
           {/* Beach Team Building - 16:9 - spans 7 columns */}
-          <figure className="md:col-span-7 flex flex-col overflow-hidden rounded-3xl border border-stone-200/90 bg-white p-3 sm:p-4 shadow-[0_12px_36px_rgba(15,23,42,0.05)]">
+          <figure className="md:col-span-7 flex flex-col overflow-hidden rounded-3xl border border-stone-200/90 bg-white p-3 sm:p-4 shadow-sm">
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl bg-stone-100">
               <Image
                 src="/images/Portrait/sparx-teambuilding.webp"
@@ -106,7 +105,7 @@ export default function AboutDetails() {
           {/* 2 Portrait Cards side by side in the remaining 5 columns */}
           <div className="md:col-span-5 grid grid-cols-2 gap-4">
             {/* Birthday Card */}
-            <figure className="flex flex-col overflow-hidden rounded-3xl border border-stone-200/90 bg-white p-2.5 sm:p-3 shadow-[0_12px_36px_rgba(15,23,42,0.05)]">
+            <figure className="flex flex-col overflow-hidden rounded-3xl border border-stone-200/90 bg-white p-2.5 sm:p-3 shadow-sm">
               <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-stone-100">
                 <Image
                   src="/images/Portrait/sparx-birthday.webp"
@@ -129,7 +128,7 @@ export default function AboutDetails() {
             </figure>
 
             {/* Year-End Gala */}
-            <figure className="flex flex-col overflow-hidden rounded-3xl border border-stone-200/90 bg-white p-2.5 sm:p-3 shadow-[0_12px_36px_rgba(15,23,42,0.05)]">
+            <figure className="flex flex-col overflow-hidden rounded-3xl border border-stone-200/90 bg-white p-2.5 sm:p-3 shadow-sm">
               <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-stone-100">
                 <Image
                   src="/images/Portrait/sparx-yearend.webp"

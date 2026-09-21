@@ -75,11 +75,11 @@ export default function ProjectCard({
         )}
       >
         <article className="flex h-full flex-col">
-          {/* Visual Showcase (Dominance 65-70%) */}
+          {/* Visual Showcase */}
           <div
             className={cn(
               "relative w-full overflow-hidden rounded-xl bg-zinc-950 transition-colors duration-300",
-              featured ? "aspect-[16/11] lg:aspect-[16/11.5]" : "aspect-[16/9.5]"
+              featured ? "aspect-[16/9] sm:aspect-[2/1] lg:aspect-[2.2/1]" : "aspect-[16/9.5]"
             )}
           >
             <Image
@@ -87,10 +87,10 @@ export default function ProjectCard({
               alt={project.title}
               fill
               priority={priority}
-              className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
               sizes={
                 featured
-                  ? "(max-width: 1024px) 100vw, 60vw"
+                  ? "(max-width: 1024px) 100vw, 1200px"
                   : "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
               }
             />
@@ -104,32 +104,46 @@ export default function ProjectCard({
           </div>
 
           {/* Typography & Editorial Metadata */}
-          <div className="flex flex-1 flex-col pt-4">
-            <h3
-              className={cn(
-                "font-bold uppercase tracking-tight text-white transition-colors group-hover:text-[#a7d2ce]",
-                featured ? "text-xl sm:text-2xl" : "text-lg sm:text-xl"
+          <div className="flex flex-1 flex-col pt-4 sm:pt-5">
+            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+              <h3
+                className={cn(
+                  "font-semibold tracking-tight text-white transition-colors group-hover:text-[#a7d2ce]",
+                  featured ? "text-2xl sm:text-3xl lg:text-4xl" : "text-xl sm:text-2xl"
+                )}
+              >
+                {project.title}
+              </h3>
+              {enginePlatform && (
+                <p className="text-[10px] font-mono tracking-[0.14em] uppercase text-white/40 flex-shrink-0">
+                  {enginePlatform}
+                </p>
               )}
-            >
-              {project.title}
-            </h3>
+            </div>
+
             <p className="mt-1 text-xs sm:text-sm font-medium text-[#7db5b0]">
               {credit}
             </p>
-            {enginePlatform && (
-              <p className="mt-1.5 text-[10px] font-mono tracking-wider uppercase text-white/45">
-                {enginePlatform}
+
+            {featured && (
+              <p className="mt-2.5 text-xs sm:text-sm leading-relaxed text-white/60 max-w-3xl line-clamp-2">
+                {project.workSummary || project.description}
               </p>
             )}
 
             {/* Editorial discipline & technical lines */}
-            <div className="mt-3 pt-2.5 border-t border-white/[0.06] space-y-0.5">
-              <p className="text-xs text-white/75 font-normal leading-relaxed">
-                {line1}
-              </p>
-              <p className="text-[11px] font-mono text-white/40 leading-relaxed">
-                {line2}
-              </p>
+            <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between">
+              <div>
+                <p className="text-xs text-white/75 font-normal leading-relaxed">
+                  {line1}
+                </p>
+                <p className="text-[11px] font-mono text-white/40 leading-relaxed mt-0.5">
+                  {line2}
+                </p>
+              </div>
+              <span className="inline-flex items-center gap-1 text-xs font-medium text-[#7db5b0] group-hover:text-white transition-colors flex-shrink-0 ml-4">
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </span>
             </div>
           </div>
         </article>
