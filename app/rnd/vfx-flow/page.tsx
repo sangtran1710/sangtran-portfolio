@@ -29,23 +29,23 @@ const facts = [
 const metrics = [
   {
     number: "< 2 min",
-    label: "Submission Prep Time",
-    subtext: "Down from 15 mins of manual checklists",
+    label: "Submission Prep",
+    subtext: "Reduced from ~15 min manual verification",
   },
   {
-    number: "100%",
+    number: "Write-Lock",
     label: "Shared Library Protection",
-    subtext: "Guarded against accidental /fx_library/ edits",
+    subtext: "Guards core /fx_library/ from rogue check-ins",
   },
   {
-    number: "0 WIP Loss",
-    label: "Automated Nightly Shelve",
-    subtext: "Scheduled 23:00 Perforce backup pass",
+    number: "Nightly",
+    label: "Automated Shelves",
+    subtext: "Scheduled Perforce backup of active changelists",
   },
   {
-    number: "8 Rules",
-    label: "Automated Validation",
-    subtext: "Naming, syntax, thumbnails & particle budgets",
+    number: "8 Checks",
+    label: "Pre-Flight Validation",
+    subtext: "Naming, paths, texture formats & asset limits",
   },
 ];
 

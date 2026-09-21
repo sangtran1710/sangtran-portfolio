@@ -153,31 +153,6 @@ export default function AboutDetails() {
           </div>
         </div>
       </section>
-
-      <div className="mb-16 h-px bg-stone-300/70" />
-
-      {/* 6. Personal Note */}
-      <section className="mb-12">
-        <figure className="mx-auto max-w-3xl overflow-hidden rounded-3xl border border-stone-200/90 bg-white p-3 sm:p-4 shadow-[0_12px_36px_rgba(15,23,42,0.05)]">
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-stone-100">
-            <Image
-              src="/images/Portrait/family-winter.webp"
-              alt="Henry Tran with family"
-              fill
-              unoptimized
-              className="object-cover object-center"
-              sizes="(max-width: 768px) 100vw, 768px"
-            />
-          </div>
-          <figcaption className="px-2 pt-3.5 pb-1">
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal text-center">
-              {locale === "vi"
-                ? "Tôi thích nhất những cảm giác thế này cùng gia đình, ngắm nhìn thiên nhiên sau nhiều giờ làm việc chăm chỉ."
-                : "My favorite moments with family — taking in nature and recharging after long hours of dedicated work."}
-            </p>
-          </figcaption>
-        </figure>
-      </section>
     </div>
   );
 }

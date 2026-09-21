@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { Layers, Film } from "lucide-react";
 
 export function VideoPlayer({
@@ -66,11 +67,12 @@ export function TextureCard({
   return (
     <div className="group rounded-xl border border-zinc-800/80 bg-zinc-900/50 p-3 hover:border-teal-500/40 transition-colors">
       <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-zinc-950 border border-zinc-800/60 mb-2.5">
-        <img
+        <Image
           src={src}
           alt={title}
-          loading="eager"
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          fill
+          sizes="(max-width: 768px) 50vw, 33vw"
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
         {channel && (
           <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/75 backdrop-blur-sm border border-zinc-700/60 text-[10px] font-mono text-teal-300">

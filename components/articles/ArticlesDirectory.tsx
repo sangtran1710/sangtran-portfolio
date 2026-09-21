@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Clock, Calculator, Wrench, Layers } from "lucide-react";
@@ -12,24 +12,32 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
   const { locale } = useLanguage();
   const isVi = locale === "vi";
 
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const tabQuery = searchParams?.get("tab");
+  // Default to "all" so Next.js static prerender generates full article cards in HTML
+  const [activeTab, setActiveTab] = useState<"all" | "tools" | "math">("all");
 
-  // Default to "all" so recruiters immediately see full breadth of technical notes
-  const activeTab = tabQuery === "math" || tabQuery === "tools" ? tabQuery : "all";
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const tab = params.get("tab");
+      if (tab === "math" || tab === "tools") {
+        requestAnimationFrame(() => {
+          setActiveTab(tab);
+        });
+      }
+    }
+  }, []);
 
   const handleTabChange = (tab: "all" | "tools" | "math") => {
-    const params = new URLSearchParams(searchParams?.toString() || "");
-    if (tab === "all") {
-      params.delete("tab");
-    } else {
-      params.set("tab", tab);
+    setActiveTab(tab);
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      if (tab === "all") {
+        url.searchParams.delete("tab");
+      } else {
+        url.searchParams.set("tab", tab);
+      }
+      window.history.replaceState({}, "", url.pathname + (url.search ? url.search : ""));
     }
-    
-    const query = params.toString();
-    const newUrl = `${window.location.pathname}${query ? `?${query}` : ""}`;
-    router.replace(newUrl, { scroll: false });
   };
 
   const isMathPost = (post: BlogPostMeta) =>

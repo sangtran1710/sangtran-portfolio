@@ -100,9 +100,7 @@ export default function CelestialLegionVfxPage() {
           <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">
             <h2 className="font-kanit text-3xl font-light leading-tight sm:text-4xl">What I built</h2>
             <p className="max-w-2xl text-base leading-8 text-black/65 sm:text-lg">
-              Commissioned as a technical art test for an unannounced Chinese action RPG, this piece
-              treats ultimate ability visual design as a coordinated choreography between character animation,
-              emissive material effects, camera timing, and particle performance.
+              Commissioned as a technical art test for an unannounced action RPG, the sequence combines character animation, emissive materials, Niagara mesh particles, and Sequencer timing into a single combat ultimate.
             </p>
           </div>
 
@@ -161,9 +159,7 @@ export default function CelestialLegionVfxPage() {
             <div>
               <h3 className="text-lg font-medium text-teal-300">Large-scale particle instancing & draw calls</h3>
               <p className="mt-3 max-w-2xl leading-7 text-white/60">
-                Spawning a dense legion of phantom warriors requires careful budget control. Instead of instantiating
-                heavy skeletal meshes, the formation uses Niagara mesh particles with baked animation poses and shared
-                material instances. This drastically minimizes CPU draw call overhead while keeping the army visually imposing.
+                Spawning a dense legion of phantom warriors requires careful budget control. Niagara mesh particles with baked animation poses and shared material instances were used instead of full skeletal characters to keep the large formation cheap to render and minimize CPU draw calls.
               </p>
             </div>
             <div className="border-t border-white/10 pt-10">
@@ -224,8 +220,7 @@ export default function CelestialLegionVfxPage() {
           <h2 className="font-kanit text-3xl font-light leading-tight sm:text-4xl">Future Polish</h2>
           <p className="max-w-2xl text-base leading-8 text-white/60 sm:text-lg">
             For full gameplay integration, the next pass would incorporate custom cracked-earth ground decals under
-            each summoned soldier, audio-reactive haptic timing, and dynamic disintegration dissolve shaders when the
-            army executes its coordinated strike.
+            each summoned soldier and dynamic disintegration dissolve shaders when the army executes its coordinated strike.
           </p>
         </div>
       </section>

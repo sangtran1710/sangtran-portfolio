@@ -188,6 +188,9 @@ export default function RndSection() {
         <div className="mt-16 pt-10 border-t border-white/10">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
+              <p className="text-xs font-mono uppercase tracking-widest text-[#7db5b0] mb-2.5">
+                {isVi ? "Dự án trước đây — Motion / CG / Film" : "Earlier work — Motion / CG / Film"}
+              </p>
               <button
                 type="button"
                 onClick={() => setIsArchiveOpen((prev) => !prev)}
@@ -195,8 +198,8 @@ export default function RndSection() {
               >
                 <span>
                   {isVi
-                    ? "Dự án Cũ & Lưu trữ (AI, Crypto & TVC)"
-                    : "Older Work & Archive (AI, Crypto & TVC)"}
+                    ? (isArchiveOpen ? "Thu gọn lưu trữ" : "Xem lưu trữ →")
+                    : (isArchiveOpen ? "Hide archive" : "View archive →")}
                 </span>
                 <span className="rounded-full bg-white/10 px-2 py-0.5 text-xs text-white/50">
                   {archiveProjects.length}
@@ -209,7 +212,7 @@ export default function RndSection() {
                 />
               </button>
             </div>
-            <p className="text-xs text-white/40">
+            <p className="text-xs text-white/40 max-w-md">
               {isVi
                 ? "Dự án thử nghiệm AI, môi trường 3D crypto và video thương mại thời kỳ đầu."
                 : "AI filmmaking experiments, crypto 3D environments, and earlier commercial TVCs."}
