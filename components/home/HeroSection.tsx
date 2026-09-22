@@ -28,16 +28,16 @@ export default function HeroSection() {
     >
       <div className="absolute inset-0">
         <Image
-          src="/images/hero-wolverine-explosion.webp"
+          src="/images/hero-wolverine-night-assault.webp"
           alt="Marvel's Wolverine Real-Time VFX by Henry Tran"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[62%_35%] opacity-70 brightness-95"
+          className="object-cover object-[50%_30%] opacity-85 brightness-105"
         />
       </div>
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,6,7,0.88)_0%,rgba(5,6,7,0.42)_48%,rgba(5,6,7,0.1)_100%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-[linear-gradient(0deg,rgba(5,6,7,0.95)_0%,rgba(5,6,7,0)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,6,7,0.85)_0%,rgba(5,6,7,0.35)_45%,rgba(5,6,7,0.05)_100%)]" />
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(0deg,rgba(5,6,7,0.95)_0%,rgba(5,6,7,0)_100%)]" />
       <AtmosphericVfxCanvas />
 
       <motion.div

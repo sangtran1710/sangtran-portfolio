@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Cpu, Wrench, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Cpu, Wrench, ShieldCheck, Layers } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 
@@ -12,17 +12,17 @@ export default function TechnicalSpotlight() {
 
   const spotlights = [
     {
-      title: "Erlangmon VFX",
-      badge: "Unreal Engine 5 · Niagara",
-      badgeIcon: Cpu,
-      meta: isVi ? "Tối ưu overdraw & Shader" : "Overdraw optimization & Shaders",
-      visualCue: "Niagara Viewport · Shader Graph",
-      chips: ["Mobile Overdraw Budget", "Cel-Shaded Master Material"],
+      title: "Houdini Destructibles & Pipeline",
+      badge: "Houdini · RBD Simulation",
+      badgeIcon: Layers,
+      meta: isVi ? "Mô phỏng RBD & Pipeline Runtime" : "RBD Simulation & Runtime Atlases",
+      visualCue: "Houdini Viewport · Bullet Solver",
+      chips: ["Multi-Stage RBD Constraints", "Runtime Volume & Atlases"],
       description: isVi
-        ? "VFX nhân vật stylized trong UE5 với cel-shading và tối ưu overdraw mobile."
-        : "Stylized character VFX in UE5 with custom cel-shading and mobile overdraw profiling.",
-      image: "/projects/erlangmon-vfx/poster.jpg",
-      link: "/rnd/erlangmon-vfx",
+        ? "Pipeline chuyển đổi mô phỏng vật lý Houdini phức tạp thành texture atlas và asset phá hủy tối ưu runtime."
+        : "How heavy offline physics simulations are converted into runtime-friendly textures, atlases, and destructible assets.",
+      image: "/assets/blog/houdini-wolverine-destructibles/poster-rbd-bridge.webp",
+      link: "/blog/houdini-destructibles-and-vfx-pipeline",
       actionText: copy.home.viewBreakdown,
       aspect: "aspect-video",
     },
