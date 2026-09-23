@@ -105,25 +105,24 @@ export default function ProjectCard({
 
           {/* Typography & Editorial Metadata */}
           <div className="flex flex-1 flex-col pt-4 sm:pt-5">
-            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-              <h3
-                className={cn(
-                  "font-semibold tracking-tight text-white transition-colors group-hover:text-[#a7d2ce]",
-                  featured ? "text-2xl sm:text-3xl lg:text-4xl" : "text-xl sm:text-2xl"
-                )}
-              >
-                {project.title}
-              </h3>
-              {enginePlatform && (
-                <p className="text-[10px] font-mono tracking-[0.14em] uppercase text-white/40 flex-shrink-0">
-                  {enginePlatform}
-                </p>
+            <h3
+              className={cn(
+                "font-semibold tracking-tight text-white transition-colors group-hover:text-[#a7d2ce]",
+                featured ? "text-2xl sm:text-3xl lg:text-4xl" : "text-xl sm:text-2xl"
               )}
-            </div>
+            >
+              {project.title}
+            </h3>
 
             <p className="mt-1 text-xs sm:text-sm font-medium text-[#7db5b0]">
               {credit}
             </p>
+
+            {enginePlatform && (
+              <p className="mt-1.5 text-[10px] font-mono tracking-[0.14em] uppercase text-white/40">
+                {enginePlatform}
+              </p>
+            )}
 
             {featured && (
               <p className="mt-2.5 text-xs sm:text-sm leading-relaxed text-white/60 max-w-3xl line-clamp-2">
