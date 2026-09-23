@@ -121,8 +121,8 @@ To bring dense smoke and shockwave plumes into the project without simulating 3D
 1. **Field clamp & normalize**: Normalize VDB density and temperature to $[0, 1]$ bounds.
 2. **Equidistant slicing**: Slice the 3D voxel volume into discrete planar cross-sections (50 Z-slices).
 3. **Atlas packing**: Pack cross-sections into a single 4096&times;4096 power-of-two texture sheet.
-4. **Shader raymarch**: At runtime, a lightweight custom shader steps through the slice coordinates to reconstruct volumetric depth with zero runtime fluid simulation.
+4. **Shader raymarch**: At runtime, a lightweight custom shader steps through the slice coordinates to reconstruct volumetric depth without requiring runtime 3D fluid simulation.
 
 ---
 
-The core goal across these setups was always the same: keep the artist control and simulation fidelity of Houdini, but package the output into clean, highly optimized data—compact textures, clustered shards, and lightweight atlases—that engine shaders and physics systems can handle effortlessly.
+The core goal across these setups was always the same: keep the artist control and simulation fidelity of Houdini, but package the output into clean, highly optimized data—compact textures, clustered shards, and lightweight atlases—that runtime shaders and collision systems can consume within production frame budgets.

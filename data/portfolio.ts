@@ -95,7 +95,7 @@ export const ABOUT = {
   title: "Hands-on VFX, shaders, and engine integration.",
   portraitImage: "/images/Portrait/avatar.webp",
   bio: [
-    "Technical VFX Artist specializing in real-time gameplay effects, custom shaders, GPU optimization, and seamless engine integration.",
+    "Technical VFX Artist specializing in real-time gameplay effects, custom shaders, GPU optimization, and production engine integration.",
     "AAA production experience across Marvel's Wolverine, Marvel's Spider-Man 2, and Fortnite, working across Niagara, proprietary engines, and Perforce pipelines.",
   ],
   location: "Ho Chi Minh City, Vietnam",
@@ -133,7 +133,7 @@ export const EXPERIENCES: Experience[] = [
     duration: "2024 - Present",
     responsibilities: [
       "Deliver real-time VFX, shaders, and technical art directly for indie and mid-size studios with lean pipelines",
-      "Build modular Niagara systems, custom master materials, and profiling passes for locked framerate targets",
+      "Build modular Niagara systems, custom master materials, and profiling passes targeting tight framerate budgets",
       "Bridge DCC-to-engine handoff with lightweight Python scripts and optimized mesh preparation",
     ],
     technologies: "Unreal Engine 5, Niagara, HLSL, Houdini",
@@ -226,7 +226,7 @@ export const PROJECTS: Project[] = [
       "In-engine GPU profiling & overdraw reduction",
     ],
     technicalNotes: [
-      "Targeted locked 60 FPS on PS5 with GPU profiling and overdraw reduction passes",
+      "Targeted 60 FPS frame budgets on PS5 using GPU profiling and overdraw reduction passes",
       "Proprietary engine pipeline compliance and multi-studio Perforce synchronization",
       "Houdini simulation pipelines for destruction and debris integrated into runtime shaders",
     ],
@@ -314,7 +314,7 @@ export const PROJECTS: Project[] = [
     techStack: ["Houdini", "Blender", "Proprietary Engine", "Python", "HLSL", "Perforce"],
     engine: "Proprietary Engine",
     constraints: [
-      "PS5 locked 60 FPS performance mode target",
+      "PS5 60 FPS Performance Mode target",
       "Proprietary particle system memory budget",
       "Strict Perforce check-in conventions and asset hierarchy",
     ],
@@ -324,7 +324,7 @@ export const PROJECTS: Project[] = [
       "Particle count and overdraw profiling on PS5 hardware",
     ],
     technicalNotes: [
-      "PS5 locked 60 FPS performance mode target with real-time particle overdraw profiling",
+      "Budgeted within PS5 60 FPS Performance Mode using real-time particle overdraw profiling",
       "Houdini destruction and debris simulation pipelines integrated into proprietary engine",
       "Adhered to strict Perforce branch check-in conventions with the Insomniac FX team",
     ],
@@ -458,11 +458,11 @@ export const PROJECTS: Project[] = [
     ],
     technicalHighlights: [
       "UE5 Lumen lighting setups for cinematic sequences",
-      "Volumetric fog optimization for 60 FPS console target",
+      "Volumetric fog optimization targeted at 60 FPS console budgets",
     ],
     technicalNotes: [
       "Unreal Engine 5 Lumen global illumination setups tuned for horror cinematic mood",
-      "Volumetric fog and shadow optimization for 60 FPS console target on PS5",
+      "Volumetric fog and shadow optimization targeting PS5 60 FPS performance budgets",
     ],
     videoUrl: "https://www.youtube.com/embed/8nApBGPy0ao",
     productionCredit: "Credited under Sparx* / Ballistic Moon",
@@ -479,7 +479,7 @@ export const PROJECTS: Project[] = [
     style: "realistic",
     client: "Buzzkill Interactive",
     workSummary:
-      "Authored 80% of visual effects for the 80s horde-shooter Malignant on Steam: weapon combat VFX, blood & gore simulations, environment fire, UMG HUD, and mutagen screen overlays.",
+      "Lead VFX Artist for the 80s horde-shooter Malignant on Steam: delivered weapon combat VFX, blood & gore simulations, environment fire, UMG HUD, and mutagen screen overlays.",
     description:
       "Contracted via Upwork to design, optimize, and integrate core gameplay VFX, UMG widget feedback, and gore simulation pipelines in Unreal Engine 5 for an indie commercial release.",
     categories: ["realtime"],
@@ -512,7 +512,7 @@ export const PROJECTS: Project[] = [
     ],
     technicalNotes: [
       "LiquiGen fluid blood simulations exported as optimized sprite sheets and flipbooks into UE5",
-      "Blueprint rate-limiting logic (0.1s cooldown throttling) to eliminate frame drops during automatic weapon fire",
+      "Blueprint rate-limiting logic (0.1s cooldown throttling) to mitigate frame hitching during automatic weapon fire",
       "Dynamic UMG HUD widgets and fullscreen low-health post-process overlays",
     ],
     productionCredit: "Buzzkill Interactive / Upwork",

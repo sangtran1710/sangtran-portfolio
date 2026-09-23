@@ -240,7 +240,7 @@ export const UI_COPY = {
         "Một số sản phẩm mà credit của tôi xuất hiện trong bản phát hành cuối cùng.",
       clientEndorsements: "Đánh giá & Chứng thực từ Khách hàng",
       clientEndorsementsBody:
-        "Phản hồi thực tế từ các hợp đồng freelance và sản xuất VFX kỹ thuật trên Upwork (100% đánh giá 5.0 ★).",
+        "Phản hồi thực tế từ các hợp đồng freelance và sản xuất VFX kỹ thuật trên Upwork (đánh giá 5.0 ★).",
       viewVerifiedReview: "Xem ảnh chứng thực Upwork",
     },
     showreel: {

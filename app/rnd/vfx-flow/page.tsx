@@ -76,8 +76,8 @@ export default function VfxFlowPage() {
             </h1>
           </div>
           <p className="max-w-xl text-base leading-7 text-white/70 sm:text-lg sm:leading-8">
-            A production pipeline toolkit and automated quality gatekeeper engineered to eliminate 
-            asset submission rejections, protect shared game repositories, and accelerate daily artist workflows.
+            A production pipeline toolkit and automated quality gatekeeper engineered to prevent 
+            asset submission errors, protect shared game repositories, and accelerate daily artist workflows.
           </p>
         </div>
 
@@ -340,7 +340,7 @@ export default function VfxFlowPage() {
                   <h3 className="text-sm font-semibold text-white">Automated Nightly Shelve at 23:00</h3>
                   <p className="mt-1 text-xs leading-relaxed text-zinc-400">
                     A background Windows Task Scheduler passes checked-out assets into a pending shelf 
-                    every night without reverting local changes, guaranteeing zero lost progress.
+                    every night without reverting local changes, providing an automated safety net against lost work.
                   </p>
                 </div>
               </div>
@@ -363,11 +363,11 @@ export default function VfxFlowPage() {
             </div>
             <div className="space-y-8">
               <div>
-                <h3 className="text-lg font-medium text-white">Multi-Threaded Runspaces for Smooth 60 FPS UI</h3>
+                <h3 className="text-lg font-medium text-white">Multi-Threaded Runspaces for Responsive UI</h3>
                 <p className="mt-2 text-sm leading-relaxed text-zinc-400">
                   Perforce CLI queries and regex file scans can block the main application thread on large workspaces. 
                   I designed the backend using isolated PowerShell Runspaces, offloading heavy I/O operations asynchronously 
-                  so the XAML WPF interface remains responsive with zero UI freezing.
+                  so the XAML WPF interface remains responsive without UI freezing during large directory queries.
                 </p>
               </div>
               <div className="border-t border-white/10 pt-6">

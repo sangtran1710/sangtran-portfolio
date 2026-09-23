@@ -180,7 +180,7 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
   "malignant": {
     role: "Technical VFX Artist (Freelance)",
     workSummary:
-      "Thực hiện 80% hệ thống visual effects cho tựa game horde-shooter Malignant trên Steam: combat VFX vũ khí, mô phỏng máu bằng LiquiGen, lửa môi trường, HUD UMG và hiệu ứng màn hình biến dị.",
+      "Đảm nhiệm vai trò VFX Artist chính cho tựa game horde-shooter Malignant trên Steam: combat VFX vũ khí, mô phỏng máu bằng LiquiGen, lửa môi trường, HUD UMG và hiệu ứng màn hình biến dị.",
     description:
       "Hợp đồng qua Upwork: thiết kế, tối ưu và tích hợp VFX gameplay, widget UMG và pipeline mô phỏng gore trong Unreal Engine 5 cho bản phát hành thương mại trên Steam của Buzzkill Interactive.",
     contributions: [
@@ -192,7 +192,7 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
       "Set up VFX môi trường cho map thị trấn đêm (L_Town1): xe cảnh sát bốc cháy, tàn tro trôi dạt và nguồn sáng lửa",
     ],
     constraints: [
-      "Đảm bảo framerate ổn định trên 40 FPS khi đối đầu với bầy quái vật đột biến đông đúc và hỏa lực bắn liên thanh",
+      "Mục tiêu duy trì framerate trên 40 FPS trong các pha giao tranh mật độ quái đông và hỏa lực bắn liên thanh",
       "Giới hạn tốc độ spawn hạt của Niagara khi trúng đạn để tránh giật lag CPU/GPU",
       "Giữ độ dễ đọc cho gameplay trong bối cảnh môi trường đêm tối kết hợp với hiệu ứng lửa và decal máu",
     ],
@@ -297,7 +297,7 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
     contributions: [
       "Combat VFX, hệ thống đạn bắn, hiệu ứng nổ và trigger volume môi trường trên engine độc quyền của studio",
       "Mô phỏng Houdini và shader cho các phân cảnh cinematic",
-      "Tối ưu overdraw và profiling GPU khóa cứng 60 FPS trên PS5",
+      "Tối ưu overdraw và profiling GPU theo ngân sách 60 FPS trên PS5",
     ],
     constraints: [
       "Hiệu năng 60 FPS và ngân sách bộ nhớ khắt khe của PS5",
