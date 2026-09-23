@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ArrowUpRight, CheckCircle2, Play, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Play } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import ProjectVideo from "@/components/projects/ProjectVideo";
 import { PROJECTS } from "@/data/portfolio";
@@ -149,37 +149,33 @@ export default function ProjectDetailPage({ params }: Props) {
         </div>
       ) : null}
 
-      {/* 2. My Contribution & Technical Notes */}
-      <div className="mb-12 rounded-2xl border border-white/10 bg-[#0c1017] p-6 sm:p-8 shadow-xl">
+      {/* 2. Editorial: My Contribution & Technical Notes */}
+      <div className="mb-14 space-y-8 max-w-3xl">
         <div>
-          <h2 className="text-lg font-semibold tracking-tight text-white mb-4 flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-[#7db5b0]" />
+          <h2 className="text-base sm:text-lg font-semibold tracking-tight text-white mb-3">
             My Contribution
           </h2>
-          <ul className="space-y-3">
+          <div className="space-y-2">
             {project.contributions.map((item, i) => (
-              <li key={i} className="flex items-start gap-3 text-sm leading-relaxed text-zinc-300">
-                <CheckCircle2 className="h-4 w-4 text-[#7db5b0] flex-shrink-0 mt-0.5" />
-                <span>{item}</span>
-              </li>
+              <p key={i} className="text-sm sm:text-base leading-relaxed text-zinc-300">
+                {item}
+              </p>
             ))}
-          </ul>
+          </div>
         </div>
 
-        {/* Technical Notes (Combined constraints & tech highlights, max 3 bullets) */}
         {technicalNotes.length > 0 && (
-          <div className="mt-6 pt-6 border-t border-white/10">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-[#7db5b0] mb-3">
+          <div>
+            <h3 className="text-base sm:text-lg font-semibold tracking-tight text-white mb-3">
               Technical Notes
             </h3>
-            <ul className="space-y-2.5">
+            <div className="space-y-2">
               {technicalNotes.slice(0, 3).map((note, i) => (
-                <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#7db5b0] mt-2 flex-shrink-0" />
-                  <span>{note}</span>
-                </li>
+                <p key={i} className="text-sm sm:text-base leading-relaxed text-zinc-400">
+                  {note}
+                </p>
               ))}
-            </ul>
+            </div>
           </div>
         )}
       </div>

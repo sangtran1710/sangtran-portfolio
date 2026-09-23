@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, CheckCircle2, FlaskConical, Sparkles } from "lucide-react";
+import { ArrowLeft, FlaskConical, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
