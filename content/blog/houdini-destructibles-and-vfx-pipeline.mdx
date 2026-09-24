@@ -4,7 +4,7 @@ description: "How I used Houdini to turn heavy offline simulations into runtime-
 date: "2026-05-12"
 tags: ["Houdini", "Destructibles", "Technical Art", "VFX Pipeline", "Marvel's Wolverine"]
 thumbnail: "/assets/blog/houdini-wolverine-destructibles/poster-rbd-bridge.webp"
-readTime: "4 min"
+readTime: "5 min"
 ---
 
 Destruction work for real-time projects isn't just about blowing meshes apart—it's about turning expensive physics simulations into lightweight, runtime-ready data.
@@ -12,7 +12,7 @@ Destruction work for real-time projects isn't just about blowing meshes apart—
 I used Houdini mainly to move heavy offline simulation into reusable textures, atlases, and pre-fractured assets.
 
 <ProductionNotice>
-  <strong className="text-zinc-200 font-medium">Production note:</strong> Offline Houdini workflows only. No proprietary engine captures or tools are shown.
+  <strong className="text-zinc-200 font-medium">Production note:</strong> Offline Houdini workflows and isolated real-time VFX validation tests. No proprietary engine code or confidential game assets shown.
 </ProductionNotice>
 
 ---
@@ -118,6 +118,30 @@ To bring dense smoke and shockwave plumes into the project without simulating 3D
 2. **Equidistant slicing**: Slice the 3D voxel volume into discrete planar cross-sections (50 Z-slices).
 3. **Atlas packing**: Pack cross-sections into a single 4096&times;4096 power-of-two texture sheet.
 4. **Shader raymarch**: At runtime, a lightweight custom shader steps through the slice coordinates to reconstruct volumetric depth without requiring runtime 3D fluid simulation.
+
+---
+
+## 5. Liquid Impact & Particle Fluid Splats
+
+Fast-moving melee combat and blunt impacts require convincing fluid reactions—droplet arcs, secondary spray, and ground splats that ground the hit in the environment.
+
+Simulating fluid dynamics directly at runtime is too unpredictable and costly for a 60 FPS budget. Instead, I simulated the primary splash dynamics in Houdini to author particle emitter data and surface impact behaviors:
+
+<VideoPlayer
+  src="/assets/blog/houdini-wolverine-destructibles/wolverine-houdini-liquid-splash.mp4"
+  poster="/assets/blog/houdini-wolverine-destructibles/poster-liquid-splash.webp"
+  caption="Houdini particle fluid setup (AVFX_liquid) isolating primary splash plumes, droplet breakups, and ground collision contact points."
+/>
+
+From the simulation network, the splash data is separated into two deliverables:
+- **Velocity & spray emitters**: Primary splash arcs and trailing droplets packaged into lightweight particle spawn templates.
+- **Surface splat masks**: Collision contact positions driving runtime decals and mesh splats with specular roughness variation on ground materials.
+
+<VideoPlayer
+  src="/assets/blog/houdini-wolverine-destructibles/wolverine-runtime-liquid-splash.mp4"
+  poster="/assets/blog/houdini-wolverine-destructibles/poster-runtime-liquid-splash.webp"
+  caption="Real-time viewport validation showing directional droplet velocity, ground contact decals, and specular wetness response."
+/>
 
 ---
 
