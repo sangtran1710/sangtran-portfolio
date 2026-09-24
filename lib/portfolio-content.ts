@@ -321,6 +321,21 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
         ],
       },
       {
+        image: "/images/projects/wolverine/wolverine-behind-the-scenes.webp",
+        title: "Behind-the-Scenes Chính Thức: Phát Triển VFX & Combat",
+        caption: "Video tài liệu hậu trường chính thức từ Marvel Entertainment chia sẻ quá trình phát triển in-engine, hiệu ứng phân mảnh/dismemberment, trạng thái Berserker rage, kỹ thuật móng vuốt Helix và hiệu năng real-time trên PS5.",
+        tag: "Behind The Scenes",
+        link: "https://www.youtube.com/watch?v=HafvPBjOHxQ",
+        timestamps: [
+          { time: "01:07", label: "VFX Chém Rời (Dismemberment) & Máu/Tia Lửa", url: "https://youtu.be/HafvPBjOHxQ?t=67" },
+          { time: "01:21", label: "Hậu Kỳ Trạng Thái Cuồng Nộ Berserker", url: "https://youtu.be/HafvPBjOHxQ?t=81" },
+          { time: "01:40", label: "Ma Sát & Lực Cản Khi Cắm Vuốt", url: "https://youtu.be/HafvPBjOHxQ?t=100" },
+          { time: "02:09", label: "VFX Đòn Đánh Diện Rộng Helix Claws", url: "https://youtu.be/HafvPBjOHxQ?t=129" },
+          { time: "03:07", label: "Mutant Blood Magic & Ký Tự Cổ", url: "https://youtu.be/HafvPBjOHxQ?t=187" },
+          { time: "03:40", label: "Hiệu Năng Real-Time In-Frame Trên PS5", url: "https://youtu.be/HafvPBjOHxQ?t=220" },
+        ],
+      },
+      {
         image: "/images/projects/wolverine/wolverine-hero.webp",
         title: "Gameplay Trong Game: Combat & Hạ Gục Lén Lút",
         caption: "VFX hạ gục lén lút (stealth takedown), hệ thống hạt va chạm móng vuốt, decal máu môi trường và combat dồn dập trên PS5.",

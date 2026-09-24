@@ -246,6 +246,21 @@ export const PROJECTS: Project[] = [
         ],
       },
       {
+        image: "/images/projects/wolverine/wolverine-behind-the-scenes.webp",
+        title: "Official Behind-the-Scenes: VFX & Combat Development",
+        caption: "Official Marvel Entertainment featurette detailing in-engine combat development, character dismemberment VFX coordination, Berserker rage post-processing, Helix claw AOE dynamics, and real-time PS5 runtime performance.",
+        tag: "Behind The Scenes",
+        link: "https://www.youtube.com/watch?v=HafvPBjOHxQ",
+        timestamps: [
+          { time: "01:07", label: "Dismemberment & Blood/Sparks VFX", url: "https://youtu.be/HafvPBjOHxQ?t=67" },
+          { time: "01:21", label: "Berserker Rage Post-FX", url: "https://youtu.be/HafvPBjOHxQ?t=81" },
+          { time: "01:40", label: "Claw Friction & Impact Resistance", url: "https://youtu.be/HafvPBjOHxQ?t=100" },
+          { time: "02:09", label: "Helix Claws & AOE Attack VFX", url: "https://youtu.be/HafvPBjOHxQ?t=129" },
+          { time: "03:07", label: "Mutant Blood Magic & Glyphs", url: "https://youtu.be/HafvPBjOHxQ?t=187" },
+          { time: "03:40", label: "Real-Time PS5 In-Frame Performance", url: "https://youtu.be/HafvPBjOHxQ?t=220" },
+        ],
+      },
+      {
         image: "/images/projects/wolverine/wolverine-hero.webp",
         title: "In-Game Gameplay: Aggressive & Stealth Combat",
         caption: "Real-time stealth takedowns, claw impact particle emitters, environmental blood decals, and aggressive in-engine combat gameplay on PS5.",
