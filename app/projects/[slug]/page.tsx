@@ -188,9 +188,6 @@ export default function ProjectDetailPage({ params }: Props) {
               <h2 className="text-base font-semibold text-white">
                 Selected Breakdown
               </h2>
-              <p className="mt-1 text-xs text-zinc-400">
-                Production captures, in-engine setups, and simulation workflows.
-              </p>
             </div>
             {project.steamUrl && (
               <a
@@ -254,17 +251,6 @@ export default function ProjectDetailPage({ params }: Props) {
                           {item.tag}
                         </span>
                       )}
-                      {item.link && (
-                        <a
-                          href={item.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 rounded border border-white/20 bg-white/5 px-2.5 py-0.5 text-[11px] font-medium text-white transition-colors hover:bg-white/10 hover:border-white/30"
-                        >
-                          Watch Video
-                          <ArrowUpRight className="h-3 w-3 text-[#7db5b0]" />
-                        </a>
-                      )}
                     </div>
                   </div>
                   <p className="text-sm leading-relaxed text-zinc-300">
@@ -272,8 +258,8 @@ export default function ProjectDetailPage({ params }: Props) {
                   </p>
                   {item.timestamps && item.timestamps.length > 0 && (
                     <div className="mt-4 pt-3.5 border-t border-white/5">
-                      <div className="text-[11px] font-mono font-medium text-zinc-400 mb-2 uppercase tracking-wider">
-                        Key Sequences & Timestamps
+                      <div className="text-[11px] font-mono text-zinc-500 mb-2 uppercase tracking-wider">
+                        Timestamps
                       </div>
                       <div className="flex flex-wrap gap-2">
                         {item.timestamps.map((ts, idx) => (
@@ -307,9 +293,6 @@ export default function ProjectDetailPage({ params }: Props) {
             <h2 className="text-base font-semibold text-white">
               Selected Breakdown Clips
             </h2>
-            <p className="mt-1 text-xs text-zinc-400">
-              Click any clip to watch on YouTube.
-            </p>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

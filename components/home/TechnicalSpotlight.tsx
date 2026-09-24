@@ -89,12 +89,6 @@ export default function TechnicalSpotlight() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80" />
 
-                      {/* Technical Viewport / Tool Cue Pill */}
-                      <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 rounded-md bg-black/75 px-2 py-0.5 text-[10px] font-mono text-zinc-300 backdrop-blur-md border border-white/10">
-                        <span className="h-1.5 w-1.5 rounded-full bg-[#7db5b0]" />
-                        <span>{item.visualCue}</span>
-                      </div>
-
                       <div className="absolute top-2.5 right-2.5 flex h-7 w-7 items-center justify-center rounded-full bg-black/50 backdrop-blur-sm text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
                         <ArrowUpRight className="h-3.5 w-3.5" />
                       </div>

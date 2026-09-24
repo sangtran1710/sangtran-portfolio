@@ -2,12 +2,11 @@
 
 import React from "react";
 import Image from "next/image";
-import { Layers, Film } from "lucide-react";
+import { Layers } from "lucide-react";
 
 export function VideoPlayer({
   src,
   poster,
-  title,
   caption,
 }: {
   src: string;
@@ -17,18 +16,6 @@ export function VideoPlayer({
 }) {
   return (
     <figure className="my-8 rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900/60 shadow-2xl transition-all">
-      {title && (
-        <div className="px-4 py-2.5 border-b border-zinc-800/80 bg-zinc-900/90 flex items-center justify-between text-xs text-zinc-300 font-mono">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
-            <span className="font-medium text-zinc-200">{title}</span>
-          </div>
-          <span className="text-[11px] text-zinc-500 uppercase tracking-wider font-sans flex items-center gap-1">
-            <Film className="w-3 h-3 text-zinc-500" />
-            Houdini Capture
-          </span>
-        </div>
-      )}
       <div className="relative aspect-video w-full bg-black">
         <video
           src={src}
@@ -131,8 +118,7 @@ export function ProductionNotice({
   children?: React.ReactNode;
 }) {
   return (
-    <aside className="my-6 px-4 py-3 rounded-xl border border-zinc-800/80 bg-zinc-900/40 text-xs text-zinc-400 flex items-start sm:items-center gap-2.5">
-      <span className="w-2 h-2 rounded-full bg-teal-400 shrink-0 mt-1 sm:mt-0" />
+    <aside className="my-6 border-l-2 border-zinc-700 bg-zinc-900/40 px-4 py-3 text-xs text-zinc-400 rounded-r-xl">
       <div className="leading-relaxed text-zinc-400">
         {children || (
           <span>

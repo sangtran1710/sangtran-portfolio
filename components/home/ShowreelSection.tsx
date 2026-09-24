@@ -191,13 +191,11 @@ export default function ShowreelSection({
         </div>
       )}
 
-      <p className="mt-3 text-center text-xs text-zinc-600">
-        {hasError
-          ? copy.common.youtubeHosted
-          : started
-            ? copy.common.hoverForControls
-            : copy.common.clickToPlay}
-      </p>
+      {hasError && (
+        <p className="mt-3 text-center text-xs text-zinc-600">
+          {copy.common.youtubeHosted}
+        </p>
+      )}
     </section>
   );
 }

@@ -51,15 +51,6 @@ export default function ProjectVideo({
               <Play className="ml-1 h-7 w-7 fill-current" aria-hidden="true" />
             </span>
           </span>
-          <div className="absolute bottom-5 left-5 right-5 flex flex-wrap items-center justify-between gap-2">
-            <span className="text-sm sm:text-base font-semibold text-white drop-shadow-md flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
-              {videoTitle || "Play project video"}
-            </span>
-            <span className="rounded bg-black/60 backdrop-blur-md px-2.5 py-1 text-xs font-mono text-zinc-300">
-              YouTube In-Engine Video
-            </span>
-          </div>
         </button>
       )}
     </div>
