@@ -5,14 +5,14 @@ import { getAllPosts } from "@/lib/blog";
 export const metadata: Metadata = {
   title: "Articles",
   description:
-    "Production notes on real-time VFX, shaders, and technical art workflows.",
+    "Notes from my VFX work: shaders, math, Houdini, and the tools I build along the way.",
   alternates: {
     canonical: "/articles",
   },
   openGraph: {
     title: "Articles - Henry Tran",
     description:
-      "Production notes on real-time VFX, shaders, and technical art workflows.",
+      "Notes from my VFX work: shaders, math, Houdini, and the tools I build along the way.",
     url: "/articles",
     type: "website",
     images: ["/images/NWA.jpg"],

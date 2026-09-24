@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 const facts = [
-  { label: "Role", value: "VFX and Technical Artist" },
+  { label: "Role", value: "VFX Artist" },
   { label: "Origin / Scope", value: "Outsource Production Test (Mid 2024)" },
   { label: "Built with", value: "Unreal Engine 5, Niagara, Sequencer" },
 ];
@@ -37,6 +37,29 @@ const systems = [
   {
     title: "Celestial Legion Summoning",
     body: "A massive formation of glowing golden armored phantom warriors spawned across the platform grid, simultaneously kneeling and rising in battle-ready stance.",
+  },
+];
+
+const processShots = [
+  {
+    src: "/projects/celestial-legion-vfx/golden-warrior-lookdev.webp",
+    alt: "Golden warrior effect look development in an Unreal preview",
+    caption: "Testing how the gold reads across the armor and silhouette.",
+  },
+  {
+    src: "/projects/celestial-legion-vfx/dissolve-material.webp",
+    alt: "Unreal material graph and glowing sphere preview",
+    caption: "Material work in progress: the glow and dissolve controls beside the preview.",
+  },
+  {
+    src: "/projects/celestial-legion-vfx/warrior-viewport.webp",
+    alt: "Armored warrior model in a 3D viewport with colored setup markers",
+    caption: "A viewport check of the warrior asset before the glowing treatment.",
+  },
+  {
+    src: "/projects/celestial-legion-vfx/effect-placement-test.webp",
+    alt: "In-level effect placement test with guide lines around a ground circle",
+    caption: "An early placement test in the level. The yellow lines and red circle are guides, not final VFX.",
   },
 ];
 
@@ -211,6 +234,29 @@ export default function CelestialLegionVfxPage() {
               High-angle view demonstrating the multi-row grid alignment of the summoned legion.
             </figcaption>
           </figure>
+        </div>
+
+        <div className="mt-20 border-t border-white/10 pt-12">
+          <h2 className="font-kanit text-3xl font-light sm:text-4xl">From the workbench</h2>
+          <p className="mt-3 max-w-2xl leading-7 text-white/60">
+            A few snapshots from the material, character, and level tests behind the sequence.
+          </p>
+          <div className="mt-8 grid gap-8 md:grid-cols-2">
+            {processShots.map((shot) => (
+              <figure key={shot.src}>
+                <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-white/10 bg-black">
+                  <Image
+                    src={shot.src}
+                    alt={shot.alt}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+                <figcaption className="mt-3 text-sm leading-6 text-white/50">{shot.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
 

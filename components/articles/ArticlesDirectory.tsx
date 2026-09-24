@@ -59,8 +59,8 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
 
   const headingText = isVi ? "Ghi chú kỹ thuật" : "Technical Notes";
   const subtitleText = isVi
-    ? "Ghi chép chuyên sâu về shader, toán đồ họa VFX và công cụ pipeline tự động hóa."
-    : "Practical notes on shaders, VFX math, and pipeline automation tools.";
+    ? "Những điều tôi học được khi làm VFX, mày mò shader, toán và tự viết công cụ cho công việc."
+    : "Things I've learned while making VFX, figuring out shaders and math, and building little tools along the way.";
 
   return (
     <div className="min-h-screen pt-24 sm:pt-28 pb-20 text-foreground bg-background">
@@ -128,8 +128,9 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
         {/* Post Grid */}
         <section>
           <div className="grid gap-6 md:grid-cols-2">
-            {displayedPosts.map((post) => {
+            {displayedPosts.map((post, index) => {
               const isMath = isMathPost(post);
+              const isVfxStudy = post.tags.includes("VFX Study");
               return (
                 <article
                   key={post.slug}
@@ -144,6 +145,7 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
                         src={post.thumbnail}
                         alt={post.title}
                         fill
+                        priority={index === 0}
                         className={`${
                           isMath 
                             ? "object-contain p-2 opacity-95 group-hover:scale-[1.02]" 
@@ -162,7 +164,7 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
                             ? "bg-teal-500/10 text-[#5c9d98] border border-teal-500/20"
                             : "bg-blue-500/10 text-blue-400 border border-blue-500/20"
                         }`}>
-                          {isMath ? "Math for VFX" : "Pipeline Tool"}
+                          {isMath ? "Math for VFX" : isVfxStudy ? "VFX Study" : "Pipeline Tool"}
                         </span>
                         <span>•</span>
                         <span className="flex items-center gap-1">

@@ -8,6 +8,7 @@ test.describe("Deep Comprehensive Site Experience Audit", () => {
     "/articles",
     "/articles?tab=math",
     "/articles?tab=tools",
+    "/blog/stormfront-volumetric-cloud-lightning",
     "/blog/math-for-vfx-shaders",
     "/blog/destructible-separate-mesh-tool",
     "/about",
@@ -109,15 +110,16 @@ test.describe("Deep Comprehensive Site Experience Audit", () => {
   test("Notes page tab filtering and consolidated math article", async ({ page }) => {
     await page.goto("/articles", { waitUntil: "networkidle" });
 
-    // Verify there are exactly 2 articles on All Notes
+    // Verify the personal VFX study appears alongside the existing notes.
     const articles = page.locator("article");
-    await expect(articles).toHaveCount(2);
+    await expect(articles).toHaveCount(4);
+    await expect(page.getByRole("link", { name: /Stormfront: A Real-Time Boss Arena Sky/i })).toBeVisible();
 
     // Switch to Tools tab
     const toolsTab = page.getByRole("button", { name: /Tools & Pipeline|Công cụ/i });
     await toolsTab.click();
     await page.waitForTimeout(300);
-    await expect(page.locator("article")).toHaveCount(1);
+    await expect(page.locator("article")).toHaveCount(3);
     await expect(page.getByText(/Destructible Separate Mesh Tool/i)).toBeVisible();
 
     // Switch to Math tab
@@ -136,6 +138,22 @@ test.describe("Deep Comprehensive Site Experience Audit", () => {
     await expect(page.getByText(/^Dot Product:/).first()).toBeVisible();
     await expect(page.getByText(/Cross Product: Orthogonal to A and B/i).first()).toBeVisible();
     await expect(page.getByText(/^Distance:/).first()).toBeVisible();
+  });
+
+  test("Stormfront breakdown images open at full size", async ({ page }) => {
+    await page.goto("/blog/stormfront-volumetric-cloud-lightning");
+
+    for (const image of [
+      "cloud-material-graph.webp",
+      "cloud-instance-parameters.webp",
+      "blueprint-mid-setup.webp",
+      "shader-complexity-diagnostic.webp",
+    ]) {
+      const path = `/assets/blog/stormfront/${image}`;
+      const link = page.locator(`a[href="${path}"]`);
+      await expect(link.locator("img")).toBeVisible();
+      expect((await page.request.get(path)).ok()).toBe(true);
+    }
   });
 
   test("Legacy math URLs redirect properly to unified article anchors", async ({ page }) => {

@@ -32,11 +32,11 @@ export default function PortfolioPageClient() {
           <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
             {isVi ? "Game AAA & Kỹ xảo Thương mại" : "AAA Games & Commercial Releases"}
           </h2>
-          <p className="mt-2 text-sm leading-6 text-white/55">
-            {isVi
-              ? "Kỹ xảo thời gian thực, gameplay VFX và in-engine cinematic trên các hệ máy console, PC và streaming."
-              : "Real-time gameplay effects, in-engine cinematics, and broadcast VFX across console, PC, and streaming productions."}
-          </p>
+            <p className="mt-2 text-sm leading-6 text-white/55">
+              {isVi
+                ? "Gameplay VFX và cinematic cho console, PC và streaming."
+                : "Gameplay VFX and in-engine cinematics for console, PC, and streaming."}
+            </p>
         </div>
 
         <ProjectGrid />
@@ -52,12 +52,12 @@ export default function PortfolioPageClient() {
               </span>
             </div>
             <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-              {isVi ? "Kỹ xảo Anime, Shader & Công cụ Pipeline" : "Stylized Anime VFX, Shaders & Pipeline Tools"}
+              {isVi ? "VFX Stylized & Công cụ" : "Stylized VFX & Tools"}
             </h2>
             <p className="mt-2 text-sm leading-6 text-white/55">
               {isVi
-                ? "Thử nghiệm cel-shading, hệ thống hạt Niagara chuyên sâu và công cụ tự động hóa pipeline Python/DCC."
-                : "Stylized cel-shading, advanced Niagara systems, custom shaders, and automated Python DCC pipeline tooling."}
+                ? "Các thử nghiệm stylized, Niagara và công cụ hỗ trợ workflow."
+                : "Stylized effects, Niagara experiments, and tools that support the workflow."}
             </p>
           </div>
 

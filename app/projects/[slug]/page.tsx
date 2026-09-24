@@ -66,7 +66,7 @@ function getYoutubeEmbedUrl(url: string): string {
 }
 
 function getYoutubeVideoId(url: string): string | null {
-  const match = url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  const match = url.match(/(?:v=|youtu\.be\/|\/embed\/)([a-zA-Z0-9_-]{11})/);
   return match ? match[1] : null;
 }
 
@@ -132,6 +132,7 @@ export default function ProjectDetailPage({ params }: Props) {
         <div className="mb-10">
           <ProjectVideo
             embedUrl={embedUrl}
+            watchUrl={getYoutubeWatchUrl(project.videoUrl!)}
             poster={project.videoPoster || project.thumbnail || "/images/NWA.jpg"}
             title={project.title}
             videoTitle={project.videoTitle}

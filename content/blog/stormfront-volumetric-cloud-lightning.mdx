@@ -1,0 +1,57 @@
+---
+title: "Stormfront: Making a Storm Sky Feel Alive"
+description: "I wanted the sky to move, feel heavy, and flash with lightning—without eating the whole frame budget. Here's how the study went."
+date: "2026-09-24"
+thumbnail: "/assets/blog/stormfront/poster-wide.jpg"
+tags: ["Unreal Engine", "Volumetric Clouds", "Niagara", "Blueprint", "VFX Study"]
+readTime: "5 min"
+---
+
+This is a personal VFX study, not a shot from a shipped game. I started with a familiar boss-fight image: a small figure under a sky that feels much larger than the arena. *Tides of Annihilation* and *Black Myth: Wukong* were visual references for that scale and pressure, not sources of assets or a recipe for the implementation. I also studied Sky Creator's approach to treating weather as a connected visual system, then built this test with Unreal Engine's native tools and my own project assets.
+
+The question was simple: can the sky keep moving, hold a convincing mass, and react to lightning without spending the whole frame budget on cloud detail?
+
+<VideoPlayer src="/assets/blog/stormfront/stormfront-study-wide.mp4" poster="/assets/blog/stormfront/poster-wide.jpg" caption="Full 38-second Unreal viewport recording, reframed only to remove Editor panels. The on-screen profiler is part of the technical capture; the floor and figure are scale references, not a finished arena." />
+
+## Building weight before detail
+
+The cloud study uses Unreal's Volumetric Cloud system. The project material and its instance expose separate controls for layout, shape, 3D noise, density, and storm lighting. I worked with those controls to find the broad bank first. The moving gaps matter as much as the bright areas: they break the silhouette and stop the sky from becoming one continuous grey lid.
+
+[![Unreal material graph for the storm cloud, organized into shape and lighting sections](/assets/blog/stormfront/cloud-material-graph.webp)](/assets/blog/stormfront/cloud-material-graph.webp)
+
+*The storm cloud material graph. This overview shows how the authoring work is divided, not the detail of every node.*
+
+[![Cloud material instance controls for layout, noise, density, and storm lighting](/assets/blog/stormfront/cloud-instance-parameters.webp)](/assets/blog/stormfront/cloud-instance-parameters.webp)
+
+*The material instance used while tuning the cloud. Layout and shape controls were more useful to this shot than adding fine noise alone.*
+
+An early version had plenty of small texture but still felt flat. More detail was not the answer. The useful change was to judge the bank from the gameplay camera: vary the larger masses, preserve openings, and let the underside turn dark enough that a flash has something to reveal. The motion needed to change those shapes over time, not simply slide a static pattern across the frame.
+
+## Giving the flash a rhythm
+
+The storm Blueprint creates a dynamic material instance for the cloud at runtime. Its flash sequence changes the cloud's lightning-color parameter and drives a Point Light. A peak, short dip, and second peak make the illumination feel less like a single switch. The controller can flash at two positions across the bank.
+
+[![Storm Controller Blueprint showing BeginPlay creation of a dynamic material instance and a timer for flashes](/assets/blog/stormfront/blueprint-mid-setup.webp)](/assets/blog/stormfront/blueprint-mid-setup.webp)
+
+*Part of the Storm Controller's Event Graph: it creates the runtime material instance and schedules the flash function. The flash sequence continues outside this crop.*
+
+The first problem here was readability. A hard, uniform change made the sky feel like a screen-wide exposure pulse; two obviously alternating positions felt mechanical. I kept judging the transition in motion: how quickly the cloud brightens, whether its internal shape appears, and whether it returns to darkness without a distracting snap. This remains a hand-timed flash system rather than a physically simulated lightning scatter model.
+
+There is also a separate Niagara lightning-strike layer using a ribbon and a ground impact. It is not the subject of the embedded cloud clip, and the strike and cloud-flash systems are not yet proven to be synchronized in a final gameplay shot. I would test that timing before presenting them as one integrated effect.
+
+## Spending the frame budget
+
+The visual target is a dynamic, readable storm at a 60 fps gameplay budget, not maximum cloud realism. I could push finer erosion and denser light transport further, but those additions only earn their cost if they improve the shot from the player's camera. In this study, the broad mass, moving gaps, and lightning response do more work than another layer of micro-detail.
+
+Profiling changed where I looked. In one earlier Unreal Editor sample on an RTX 3070 at a 1295 × 729 viewport render resolution, `VolumetricCloud` averaged 4.83 ms and `VolumetricCloudShadow` 1.88 ms. That made cloud rendering the first cost to investigate. The embedded video was recorded through OBS at 60 fps, but its Unreal viewport was smaller than 1080p and the recording alone does not prove stable 60 fps in a production arena. It is a useful visual and performance checkpoint, not a shipping benchmark.
+
+[![Unreal Shader Complexity view with GPU timing overlay and a checkerboard sky](/assets/blog/stormfront/shader-complexity-diagnostic.webp)](/assets/blog/stormfront/shader-complexity-diagnostic.webp)
+
+*A separate Shader Complexity diagnostic. The sky appears as a checkerboard in this view, and no volumetric-cloud timing is visible. The 1.27 ms GPU number belongs to this visualization at 1372 × 910; it is **not** the cost of rendering the storm. I used the lit-view GPU pass timings above to judge cloud cost instead.*
+
+The current balance is deliberate: a sky with motion and shape at a cost worth measuring, with room to become more realistic if a later scene and hardware budget justify it. The next honest test is a representative boss arena, several full flash cycles, and frame-time distribution—not a single attractive frame or FPS counter.
+
+## References
+
+- [Tides of Annihilation](https://www.playstation.com/en-us/games/tides-of-annihilation/) — boss-arena scale and atmosphere.
+- [Black Myth: Wukong boss-fight trailer](https://www.youtube.com/watch?v=6oebEcQd5lQ) — figure-to-environment contrast and dramatic weather framing.

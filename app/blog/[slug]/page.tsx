@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, Clock, Tag } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
+import { SITE } from "@/data/portfolio";
 import { absoluteUrl } from "@/lib/seo";
 import { 
   DotProductVisual, SineWaveVisual, CrossProductVisual, StepVsSmoothstepVisual, MathGridBackground,
@@ -146,6 +147,19 @@ export default function BlogPostPage({ params }: Props) {
             VideoPlayer, TextureCard, TextureGallery, ProductionNotice
           }} />
         </div>
+
+        <aside className="mt-16 rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 sm:p-8">
+          <h2 className="text-lg font-semibold text-white">Want to talk through any of this?</h2>
+          <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+            If you have a question about a setup, need a hand with a technical problem, or spotted something I should fix, send me a note.
+          </p>
+          <a
+            href={`mailto:${SITE.email}?subject=${encodeURIComponent(`Question about ${post.title}`)}`}
+            className="mt-5 inline-flex rounded-full border border-teal-500/40 px-4 py-2 text-sm font-medium text-teal-300 transition-colors hover:border-teal-300 hover:bg-teal-500/10"
+          >
+            Email me ↗
+          </a>
+        </aside>
 
         {/* Footer */}
         <div className="mt-16 pt-8 border-t border-zinc-800 flex items-center justify-between">

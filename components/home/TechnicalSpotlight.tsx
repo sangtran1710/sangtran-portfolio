@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Cpu, Wrench, ShieldCheck, Layers } from "lucide-react";
+import { ArrowUpRight, Wrench, ShieldCheck, Layers } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 
@@ -12,15 +12,12 @@ export default function TechnicalSpotlight() {
 
   const spotlights = [
     {
-      title: "Houdini Destructibles & Pipeline",
-      badge: "Houdini · RBD Simulation",
+      title: "Houdini Destruction",
+      badge: "Houdini",
       badgeIcon: Layers,
-      meta: isVi ? "Mô phỏng RBD & Pipeline Runtime" : "RBD Simulation & Runtime Atlases",
-      visualCue: "Houdini Viewport · Bullet Solver",
-      chips: ["Multi-Stage RBD Constraints", "Runtime Volume & Atlases"],
       description: isVi
-        ? "Pipeline chuyển đổi mô phỏng vật lý Houdini phức tạp thành texture atlas và asset phá hủy tối ưu runtime."
-        : "How heavy offline physics simulations are converted into runtime-friendly textures, atlases, and destructible assets.",
+        ? "Từ mô phỏng RBD nặng sang clustered shards, texture atlas và asset có thể dùng trong runtime."
+        : "Turning heavy RBD sims into clustered shards, texture atlases, and runtime-ready assets.",
       image: "/assets/blog/houdini-wolverine-destructibles/poster-rbd-bridge.webp",
       link: "/blog/houdini-destructibles-and-vfx-pipeline",
       actionText: copy.home.viewBreakdown,
@@ -28,29 +25,23 @@ export default function TechnicalSpotlight() {
     },
     {
       title: "VFX Flow",
-      badge: "WPF · Perforce Automation",
+      badge: "WPF · Perforce",
       badgeIcon: ShieldCheck,
-      meta: isVi ? "Pipeline Toolkit & Asset QC" : "Pipeline Toolkit & Asset QC",
-      visualCue: "WPF Desktop UI · Perforce P4 Gate",
-      chips: ["8 Pre-Flight QC Checks", "Nightly Automated Shelves"],
       description: isVi
-        ? "Bộ toolkit QC asset tự động và quản lý submit Perforce cho production AAA."
-        : "Automated asset QC toolkit and Perforce submission pipeline for AAA production.",
+        ? "Chạy các bước kiểm tra asset trước khi submit và gom workflow Perforce vào một tool."
+        : "Pre-flight asset checks and Perforce submission steps gathered into one tool.",
       image: "/projects/vfx-flow/showcase_asset_qc_ready.png",
       link: "/rnd/vfx-flow",
       actionText: copy.home.viewBreakdown,
       aspect: "aspect-video",
     },
     {
-      title: "Destructible Separate Mesh Tool",
-      badge: "Blender · Python Tool",
+      title: "Fracture Mesh Prep",
+      badge: "Blender · Python",
       badgeIcon: Wrench,
-      meta: isVi ? "Pipeline automation & FX UV" : "Pipeline automation & FX UV",
-      visualCue: "Blender 3D Viewport · Centroid Emitter",
-      chips: ["Centroid Extraction", "Lightweight FX UVs"],
       description: isVi
-        ? "Script Python Blender tách tâm mảnh vỡ thành emitter mesh siêu nhẹ."
-        : "Blender Python tool extracting fracture centroids into lightweight emitter meshes.",
+        ? "Tách fracture faces, tạo emitter mesh nhẹ và chuẩn bị FX UV mà không phải cleanup thủ công từng asset."
+        : "Extracting fracture faces, lightweight emitter meshes, and FX UVs without repeating the cleanup by hand.",
       image: "/assets/blog/destructible-separate-mesh-tool/separated-crack-mesh.webp",
       link: "/blog/destructible-separate-mesh-tool",
       actionText: copy.home.viewToolBreakdown,
@@ -95,13 +86,10 @@ export default function TechnicalSpotlight() {
                     </div>
 
                     <div className="p-5 sm:p-6">
-                      <div className="flex flex-wrap items-center gap-2">
+                      <div className="flex items-center gap-2">
                         <span className="inline-flex items-center gap-1.5 rounded-md border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[11px] font-normal text-white/80">
                           <Icon className="h-3 w-3 text-[#7db5b0]" />
                           {item.badge}
-                        </span>
-                        <span className="text-[10px] font-mono text-white/40">
-                          {item.meta}
                         </span>
                       </div>
 
@@ -113,17 +101,6 @@ export default function TechnicalSpotlight() {
                         {item.description}
                       </p>
 
-                      {/* Technical visual chips */}
-                      <div className="mt-3.5 flex flex-wrap gap-1.5">
-                        {item.chips.map((chip) => (
-                          <span
-                            key={chip}
-                            className="rounded border border-white/5 bg-white/[0.02] px-2 py-0.5 text-[10px] font-mono text-white/50"
-                          >
-                            {chip}
-                          </span>
-                        ))}
-                      </div>
                     </div>
                   </div>
 

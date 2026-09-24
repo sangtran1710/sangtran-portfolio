@@ -68,7 +68,7 @@ export const DotProductVisual = () => {
   return (
     <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(20,184,166,0.05)_0%,transparent_70%)] pointer-events-none" />
-      <svg width="300" height="200" viewBox="-50 -100 200 200" className="overflow-visible">
+      <svg width="300" height="200" viewBox="-50 -100 200 200" className="max-w-full h-auto overflow-hidden" role="img" aria-label="Two rotating vectors and their dot product">
         {/* Grid */}
         <g stroke="rgba(255,255,255,0.05)" strokeWidth="1">
           <line x1="-50" y1="0" x2="150" y2="0" />
@@ -83,14 +83,14 @@ export const DotProductVisual = () => {
         <g transform="translate(0,0)">
           <line x1="0" y1="0" x2={vecA.x} y2={vecA.y} stroke="#fff" strokeWidth="3" strokeLinecap="round" />
           <polygon points="0,-4 8,0 0,4" transform={`translate(${vecA.x}, ${vecA.y})`} fill="#fff" />
-          <text x={vecA.x + 15} y="5" fill="#fff" fontSize="12" fontFamily="monospace">Vector A</text>
+          <text x="66" y="-10" fill="#fff" fontSize="12" fontFamily="monospace">Vector A</text>
         </g>
 
         {/* Vector B */}
         <g transform="translate(0,0)">
           <line x1="0" y1="0" x2={vecB.x} y2={vecB.y} stroke="#14b8a6" strokeWidth="3" strokeLinecap="round" />
           <polygon points="0,-4 8,0 0,4" transform={`translate(${vecB.x}, ${vecB.y}) rotate(${angle})`} fill="#14b8a6" />
-          <text x={vecB.x + 10} y={vecB.y - 10} fill="#14b8a6" fontSize="12" fontFamily="monospace">Vector B</text>
+          <text x="-40" y="80" fill="#14b8a6" fontSize="12" fontFamily="monospace">Vector B</text>
         </g>
 
         {/* Angle Arc */}
@@ -124,7 +124,7 @@ export const SineWaveVisual = () => {
   return (
     <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.05)_0%,transparent_70%)] pointer-events-none" />
-      <svg width="400" height="150" viewBox="0 -75 400 150" className="overflow-visible">
+      <svg width="400" height="150" viewBox="0 -75 400 150" className="max-w-full h-auto overflow-hidden" role="img" aria-label="Sine and cosine waves with a quarter-cycle offset">
         {/* Grid */}
         <g stroke="rgba(255,255,255,0.05)" strokeWidth="1">
           <line x1="0" y1="0" x2="400" y2="0" />
@@ -136,9 +136,10 @@ export const SineWaveVisual = () => {
         <polyline points={cosinePoints} fill="none" stroke="#a855f7" strokeWidth="3" strokeDasharray="6 6" strokeLinecap="round" strokeLinejoin="round" />
         
         {/* Labels */}
-        <text x="10" y="-50" fill="#14b8a6" fontSize="12" fontFamily="monospace">Sine</text>
-        <text x="10" y="-35" fill="#a855f7" fontSize="12" fontFamily="monospace">Cosine</text>
       </svg>
+      <div className="absolute bottom-3 flex gap-5 text-xs font-mono" aria-hidden="true">
+        <span className="text-teal-400">━ Sine</span><span className="text-purple-400">┄ Cosine</span>
+      </div>
     </div>
   );
 };
@@ -175,7 +176,7 @@ export const CrossProductVisual = () => {
   return (
     <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(244,63,94,0.05)_0%,transparent_70%)] pointer-events-none" />
-      <svg width="300" height="200" viewBox="-150 -120 300 200" className="overflow-visible">
+      <svg width="300" height="200" viewBox="-150 -120 300 200" className="max-w-full h-auto overflow-hidden" role="img" aria-label="Two perpendicular vectors and their cross product">
         {/* Origin */}
         <circle cx="0" cy="0" r="4" fill="#fff" />
         
@@ -183,28 +184,26 @@ export const CrossProductVisual = () => {
         <g>
           <line x1="0" y1="0" x2={ax} y2={ay} stroke="#f43f5e" strokeWidth="3" strokeLinecap="round" />
           <polygon points="-4,-4 8,0 -4,4" transform={`translate(${ax}, ${ay}) rotate(${Math.atan2(ay, ax) * 180 / Math.PI})`} fill="#f43f5e" />
-          <text x={ax + 10} y={ay + 10} fill="#f43f5e" fontSize="12" fontFamily="monospace">Vector A</text>
         </g>
 
         {/* Vector B (Blue) */}
         <g>
           <line x1="0" y1="0" x2={bx} y2={by} stroke="#3b82f6" strokeWidth="3" strokeLinecap="round" />
           <polygon points="-4,-4 8,0 -4,4" transform={`translate(${bx}, ${by}) rotate(${Math.atan2(by, bx) * 180 / Math.PI})`} fill="#3b82f6" />
-          <text x={bx + 10} y={by + 10} fill="#3b82f6" fontSize="12" fontFamily="monospace">Vector B</text>
         </g>
 
         {/* Vector C - Cross Product (Green) */}
         <g>
           <line x1="0" y1="0" x2={cx} y2={cy} stroke="#10b981" strokeWidth="4" strokeLinecap="round" />
           <polygon points="-6,-4 10,0 -6,4" transform={`translate(${cx}, ${cy}) rotate(-90)`} fill="#10b981" />
-          <text x={cx + 10} y={cy - 10} fill="#10b981" fontSize="12" fontFamily="monospace" fontWeight="bold">A × B</text>
         </g>
         
-        {/* Info */}
-        <text x="-140" y="-100" fill="rgba(255,255,255,0.6)" fontSize="12" fontFamily="monospace">
-          Cross Product: Orthogonal to A and B
-        </text>
       </svg>
+      <div className="absolute bottom-3 flex gap-4 text-[11px] font-mono" aria-hidden="true">
+        <span className="text-rose-400">A</span>
+        <span className="text-blue-400">B</span>
+        <span className="text-emerald-400">A × B</span>
+      </div>
     </div>
   );
 };
@@ -230,7 +229,7 @@ export const StepVsSmoothstepVisual = () => {
   return (
     <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(234,179,8,0.05)_0%,transparent_70%)] pointer-events-none" />
-      <svg width="400" height="150" viewBox="0 -20 400 150" className="overflow-visible">
+      <svg width="400" height="150" viewBox="0 -20 400 150" className="max-w-full h-auto overflow-hidden" role="img" aria-label="Step and smoothstep curves with animated input">
         {/* Grid */}
         <g stroke="rgba(255,255,255,0.05)" strokeWidth="1">
           <line x1="0" y1="100" x2="400" y2="100" />
@@ -252,10 +251,12 @@ export const StepVsSmoothstepVisual = () => {
         <circle cx={progress * 400} cy={100 - smoothValue * 100} r="6" fill="#eab308" />
 
         {/* Labels */}
-        <text x="10" y="20" fill="#ef4444" fontSize="12" fontFamily="monospace">Step: {stepValue.toFixed(2)}</text>
-        <text x="10" y="40" fill="#eab308" fontSize="12" fontFamily="monospace">Smoothstep: {smoothValue.toFixed(2)}</text>
-        <text x="10" y="60" fill="#fff" fontSize="12" fontFamily="monospace">Input X: {progress.toFixed(2)}</text>
       </svg>
+      <div className="absolute bottom-3 flex gap-3 text-[11px] font-mono" aria-hidden="true">
+        <span className="text-red-400">Step {stepValue.toFixed(2)}</span>
+        <span className="text-yellow-400">Smooth {smoothValue.toFixed(2)}</span>
+        <span className="text-white">X {progress.toFixed(2)}</span>
+      </div>
     </div>
   );
 };
@@ -271,7 +272,7 @@ export const UvCartesianVisual = () => {
   return (
     <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.05)_0%,transparent_70%)] pointer-events-none" />
-      <svg width="240" height="240" viewBox="-20 -20 240 240" className="overflow-visible">
+      <svg width="280" height="280" viewBox="-35 -25 280 280" className="max-w-full h-auto overflow-hidden" role="img" aria-label="Animated position in UV coordinates">
         <defs>
           <linearGradient id="uvGradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#000" />
@@ -314,7 +315,7 @@ export const UvPanningVisual = () => {
 
   return (
     <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
-      <svg width="300" height="100" viewBox="0 0 300 100" className="overflow-hidden border border-white/10">
+      <svg width="300" height="100" viewBox="0 0 300 100" className="max-w-full h-auto overflow-hidden border border-white/10" role="img" aria-label="Repeating texture coordinates moving over time">
         <defs>
           <pattern id="checker" x={offset} y="0" width="40" height="40" patternUnits="userSpaceOnUse">
             <rect width="20" height="20" fill="rgba(255,255,255,0.1)" />
@@ -337,7 +338,7 @@ export const UvDistortionVisual = () => {
 
   return (
     <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
-      <svg width="200" height="200" viewBox="0 0 200 200" className="overflow-visible">
+      <svg width="220" height="220" viewBox="-10 -10 220 220" className="max-w-full h-auto overflow-hidden" role="img" aria-label="Grid distorted by animated offsets">
         <g stroke="rgba(20,184,166,0.5)" strokeWidth="2" fill="none">
           {Array.from({ length: 11 }).map((_, i) => {
             const y = i * 20;
@@ -381,7 +382,7 @@ export const SphericalMaskVisual = () => {
 
   return (
     <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
-      <svg width="300" height="300" viewBox="-150 -150 300 300" className="overflow-visible">
+      <svg width="320" height="320" viewBox="-160 -160 320 320" className="max-w-full h-auto overflow-hidden" role="img" aria-label="Distance from a moving point to the center of a radial mask">
         <circle cx="0" cy="0" r={radius} fill="rgba(239,68,68,0.1)" stroke="#ef4444" strokeWidth="2" strokeDasharray="4" />
         <circle cx="0" cy="0" r="4" fill="#ef4444" />
         <text x="10" y="-10" fill="#ef4444" fontSize="12">Center (WorldSpace)</text>
@@ -392,7 +393,7 @@ export const SphericalMaskVisual = () => {
         <text x="-140" y="130" fill="#fff" fontSize="14" fontFamily="monospace">
           Distance: {distance.toFixed(0)}
         </text>
-        <text x="-140" y="150" fill="#ef4444" fontSize="14" fontFamily="monospace">
+        <text x="-140" y="145" fill="#ef4444" fontSize="14" fontFamily="monospace">
           Mask Value: {maskValue.toFixed(2)}
         </text>
       </svg>
@@ -405,7 +406,7 @@ export const WorldPositionOffsetVisual = () => {
 
   return (
     <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
-      <svg width="400" height="200" viewBox="0 -100 400 200" className="overflow-visible">
+      <svg width="400" height="200" viewBox="0 -100 400 200" className="max-w-full h-auto overflow-hidden" role="img" aria-label="Vertices displaced into an animated wave">
         <line x1="0" y1="0" x2="400" y2="0" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeDasharray="4" />
         {Array.from({ length: 21 }).map((_, i) => {
           const x = i * 20;
@@ -438,14 +439,14 @@ export const DepthFadeVisual = () => {
 
   return (
     <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
-      <svg width="300" height="200" viewBox="-150 -100 300 200" className="overflow-visible">
+      <svg width="340" height="220" viewBox="-170 -110 340 220" className="max-w-full h-auto overflow-hidden" role="img" aria-label="Particle opacity fading near a solid surface">
         {/* Wall */}
         <rect x="-150" y="-10" width="300" height="20" fill="rgba(255,255,255,0.1)" stroke="#fff" strokeWidth="2" />
         <text x="-140" y="-15" fill="#fff" fontSize="12">Solid Wall (Scene Depth)</text>
 
         {/* Camera Ray */}
         <line x1="0" y1="100" x2="0" y2="-100" stroke="rgba(255,255,255,0.1)" strokeWidth="1" strokeDasharray="2" />
-        <text x="5" y="90" fill="rgba(255,255,255,0.4)" fontSize="10">Camera Ray</text>
+        <text x="8" y="55" fill="rgba(255,255,255,0.4)" fontSize="10">Camera Ray</text>
 
         {/* Particle Sprite */}
         <circle cx="0" cy={particleY} r="30" fill={`rgba(20,184,166,${particleY > wallY ? opacity : 0})`} stroke="#14b8a6" strokeWidth="2" />
@@ -456,13 +457,11 @@ export const DepthFadeVisual = () => {
           <line x1="40" y1={wallY} x2="40" y2={particleY} stroke="#ef4444" strokeWidth="2" />
         )}
         
-        <text x="-140" y="80" fill="#fff" fontSize="14" fontFamily="monospace">
-          Depth Difference: {particleY > wallY ? depthDiff.toFixed(0) : '0 (Occluded)'}
-        </text>
-        <text x="-140" y="100" fill="#14b8a6" fontSize="14" fontFamily="monospace">
-          Alpha (Opacity): {particleY > wallY ? opacity.toFixed(2) : '0.00'}
-        </text>
       </svg>
+      <div className="absolute bottom-3 flex flex-wrap justify-center gap-x-4 gap-y-1 px-3 text-[11px] font-mono" aria-hidden="true">
+        <span className="text-white">Depth {particleY > wallY ? depthDiff.toFixed(0) : 'occluded'}</span>
+        <span className="text-teal-400">Opacity {particleY > wallY ? opacity.toFixed(2) : '0.00'}</span>
+      </div>
     </div>
   );
 };

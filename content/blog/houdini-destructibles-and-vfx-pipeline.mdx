@@ -1,8 +1,8 @@
 ---
-title: "Procedural Destructibles & VFX Pipelines in Houdini"
-description: "How I used Houdini to turn heavy offline simulations into runtime-friendly textures, atlases, and destructible assets."
+title: "Getting Houdini Destruction into Real Time"
+description: "Big simulations are fun. Getting them to run in real time is the tricky part. Here are a few ways I turned Houdini work into lighter assets."
 date: "2026-05-12"
-tags: ["Houdini", "Destructibles", "Technical Art", "VFX Pipeline", "Marvel's Wolverine"]
+tags: ["Houdini", "Destructibles", "Technical Art", "VFX Pipeline", "AAA VFX"]
 thumbnail: "/assets/blog/houdini-wolverine-destructibles/poster-rbd-bridge.webp"
 readTime: "5 min"
 ---
@@ -41,12 +41,11 @@ Large structures look unnatural when pieces shatter all at once. I broke the col
   caption="Exploded view showing interior structural ribs, metal panel separation, and collision piece clusters."
 />
 
-Level designers placed dozens of industrial props across environments—rooftop HVAC units, electrical boxes, ducts. Manually cutting these by hand was impractical, so I built an HDA pipeline (`dtk_fracture` + `dtk_validator`) to automate the pass.
+Level designers placed dozens of industrial props across environments—rooftop HVAC units, electrical boxes, ducts. Cutting each one by hand was impractical, so I used Houdini to prepare the fractured pieces for simulation and real-time use.
 
-### What I automated:
+### What the setup handled:
 - **Interior vs. exterior cuts**: Automatic vertex color and material ID assignment between pristine outer metal and interior concrete/metal cut faces.
 - **Cluster grouping**: Clumping tiny Voronoi shards into larger physical clusters to keep rigid body counts within real-time physics budgets.
-- **Topology validation**: `dtk_validator` flags non-manifold geometry, flipped normals, and concavity before geometry ever leaves Houdini.
 
 ---
 
