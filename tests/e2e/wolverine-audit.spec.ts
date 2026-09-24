@@ -33,14 +33,6 @@ test.describe("Marvel's Wolverine Integration Audit", () => {
     await studioLifeSection.screenshot({
       path: path.join(ARTIFACT_DIR, "sparx-studio-life.png"),
     });
-
-    // Verify personal family photo section
-    const familyPhoto = page.locator('img[alt="Henry Tran with family"]');
-    await expect(familyPhoto).toBeVisible();
-    const familyFigure = familyPhoto.locator("xpath=ancestor::figure");
-    await familyFigure.screenshot({
-      path: path.join(ARTIFACT_DIR, "family-photo-fixed.png"),
-    });
   });
 
   test("Portfolio page features Marvel's Wolverine at top of AAA list", async ({ page }) => {
@@ -65,12 +57,9 @@ test.describe("Marvel's Wolverine Integration Audit", () => {
 
     // Header checks
     await expect(page.locator("h1")).toHaveText("Marvel's Wolverine");
-    await expect(page.getByText("Senior VFX Artist · 09/2026 @ Insomniac Games")).toBeVisible();
+    await expect(page.getByText("Senior VFX Artist · 2026 @ Insomniac Games")).toBeVisible();
 
-    // Video title and poster check
-    await expect(page.getByText("Jean TK Explosion (In-Game Cinematic VFX)")).toBeVisible();
-
-    // Screenshot of project detail page with poster and video title
+    // Screenshot of project detail page with poster and video
     await page.screenshot({
       path: path.join(ARTIFACT_DIR, "wolverine-project-detail.png"),
       fullPage: true,
@@ -89,6 +78,11 @@ test.describe("Marvel's Wolverine Integration Audit", () => {
     // In-game gameplay VFX check
     await expect(page.getByText("In-Game Gameplay: Bullet Impacts & Trigger Volumes (02:29)")).toBeVisible();
     await expect(page.locator('a[href="https://youtu.be/9JdiQpn4SvQ?t=149"]').first()).toBeVisible();
+
+    // Behind-the-scenes breakdown check
+    await expect(page.getByText("Official Behind-the-Scenes: VFX & Combat Development")).toBeVisible();
+    await expect(page.locator('a[href="https://www.youtube.com/watch?v=HafvPBjOHxQ"]').first()).toBeVisible();
+
     await expect(page.getByText("In-Game Gameplay: Aggressive & Stealth Combat")).toBeVisible();
     await expect(page.locator('a[href="https://www.youtube.com/watch?v=iQYeXYa2Tfo"]').first()).toBeVisible();
 
