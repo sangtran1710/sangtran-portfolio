@@ -86,7 +86,7 @@ export const HERO = {
   name: "Henry Tran",
   tagline: "",
   description:
-    "Real-time VFX and technical art for games — gameplay effects, custom shaders, and in-engine optimization.",
+    "Real-time effects, shaders, and engine tools for games.",
   showreelUrl: "/video/reel_final.mp4",
   showreelYoutube: "https://www.youtube.com/watch?v=qK8jtTMHCRU",
 };
@@ -106,7 +106,7 @@ export const PROFILE = {
   headline: "Technical VFX Artist",
   title: "Henry Tran.",
   paragraph:
-    "Technical VFX Artist with AAA production experience across Unreal Engine and proprietary pipelines. Open to remote roles and freelance collaboration.",
+    "Based in Ho Chi Minh City, working across Unreal Engine and proprietary tools.",
   portraitImage: "/images/Portrait/avatar.webp",
   /** Image flipped on hover (secondary avatar in the Portrait folder) */
   portraitImageSecondary: "/images/Portrait/avatar.webp",
@@ -194,7 +194,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
 export const PROJECTS: Project[] = [
   {
     slug: "wolverine",
-    thumbnail: "/images/projects/wolverine/wolverine-hero.webp",
+    thumbnail: "/images/projects/wolverine/wolverine-cover-art-jock.png",
     title: "Marvel's Wolverine",
     role: "Senior VFX Artist",
     cardHighlight: "Gameplay & Cinematic VFX · Proprietary Engine",

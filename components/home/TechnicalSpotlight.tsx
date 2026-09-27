@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Wrench, ShieldCheck, Layers } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 
@@ -13,39 +13,27 @@ export default function TechnicalSpotlight() {
   const spotlights = [
     {
       title: "Houdini Destruction",
-      badge: "Houdini",
-      badgeIcon: Layers,
       description: isVi
-        ? "Từ mô phỏng RBD nặng sang clustered shards, texture atlas và asset có thể dùng trong runtime."
-        : "Turning heavy RBD sims into clustered shards, texture atlases, and runtime-ready assets.",
+        ? "RBD sim thành shards và atlas dùng trong runtime."
+        : "RBD sims into runtime shards and atlases.",
       image: "/assets/blog/houdini-wolverine-destructibles/poster-rbd-bridge.webp",
       link: "/blog/houdini-destructibles-and-vfx-pipeline",
-      actionText: copy.home.viewBreakdown,
-      aspect: "aspect-video",
     },
     {
       title: "VFX Flow",
-      badge: "WPF · Perforce",
-      badgeIcon: ShieldCheck,
       description: isVi
-        ? "Chạy các bước kiểm tra asset trước khi submit và gom workflow Perforce vào một tool."
-        : "Pre-flight asset checks and Perforce submission steps gathered into one tool.",
+        ? "Kiểm tra asset và chuẩn bị Perforce submission."
+        : "Asset checks and Perforce submission in one tool.",
       image: "/projects/vfx-flow/showcase_asset_qc_ready.png",
       link: "/rnd/vfx-flow",
-      actionText: copy.home.viewBreakdown,
-      aspect: "aspect-video",
     },
     {
       title: "Fracture Mesh Prep",
-      badge: "Blender · Python",
-      badgeIcon: Wrench,
       description: isVi
-        ? "Tách fracture faces, tạo emitter mesh nhẹ và chuẩn bị FX UV mà không phải cleanup thủ công từng asset."
-        : "Extracting fracture faces, lightweight emitter meshes, and FX UVs without repeating the cleanup by hand.",
+        ? "Tách fracture faces, tạo emitter mesh và FX UV."
+        : "Fracture faces, emitter meshes, and FX UVs.",
       image: "/assets/blog/destructible-separate-mesh-tool/separated-crack-mesh.webp",
       link: "/blog/destructible-separate-mesh-tool",
-      actionText: copy.home.viewToolBreakdown,
-      aspect: "aspect-video",
     },
   ];
 
@@ -59,9 +47,7 @@ export default function TechnicalSpotlight() {
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {spotlights.map((item) => {
-            const Icon = item.badgeIcon;
-            return (
+          {spotlights.map((item) => (
               <Link
                 key={item.title}
                 href={item.link}
@@ -86,14 +72,7 @@ export default function TechnicalSpotlight() {
                     </div>
 
                     <div className="p-5 sm:p-6">
-                      <div className="flex items-center gap-2">
-                        <span className="inline-flex items-center gap-1.5 rounded-md border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[11px] font-normal text-white/80">
-                          <Icon className="h-3 w-3 text-[#7db5b0]" />
-                          {item.badge}
-                        </span>
-                      </div>
-
-                      <h3 className="mt-3 text-xl font-semibold tracking-tight text-white transition-colors group-hover:text-[#a7d2ce]">
+                      <h3 className="text-xl font-semibold tracking-tight text-white transition-colors group-hover:text-[#a7d2ce]">
                         {item.title}
                       </h3>
 
@@ -104,16 +83,9 @@ export default function TechnicalSpotlight() {
                     </div>
                   </div>
 
-                  <div className="px-5 pb-5 pt-0 sm:px-6 sm:pb-6">
-                    <span className="inline-flex items-center gap-1.5 text-xs font-medium text-[#7db5b0] transition-colors group-hover:text-white">
-                      {item.actionText}
-                      <ArrowUpRight className="h-3.5 w-3.5" />
-                    </span>
-                  </div>
                 </SpotlightCard>
               </Link>
-            );
-          })}
+          ))}
         </div>
       </div>
     </section>

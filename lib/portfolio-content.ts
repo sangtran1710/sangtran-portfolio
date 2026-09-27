@@ -24,7 +24,7 @@ const VI_SITE = {
 const VI_HERO = {
   tagline: "",
   description:
-    "Real-time VFX và technical art cho game — gameplay effects, custom shaders và tối ưu hiệu năng trong engine.",
+    "Hiệu ứng real-time, shader và công cụ trong engine cho game.",
 };
 
 const VI_ABOUT = {
@@ -39,7 +39,7 @@ const VI_ABOUT = {
 const VI_PROFILE = {
   headline: "Technical VFX Artist",
   paragraph:
-    "Technical VFX Artist với kinh nghiệm thực chiến trên Unreal Engine và engine độc quyền. Sẵn sàng cho các cơ hội hợp tác remote.",
+    "Làm việc tại TP. Hồ Chí Minh, với Unreal Engine và các engine riêng của studio.",
   ctaText: "Liên hệ với tôi",
   stats: [
     { label: "Game đã ra mắt", value: "8+" },

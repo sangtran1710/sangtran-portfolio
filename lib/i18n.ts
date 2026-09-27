@@ -79,7 +79,7 @@ export const UI_COPY = {
       backstoryCta: "Read Full Resume",
       contactTitle: "Contact",
       contactBody:
-        "Open for senior remote roles, freelance VFX, and technical art.",
+        "For VFX projects and technical questions.",
       profilePhotoCaption: "Real-time VFX / Technical Art",
     },
     portfolio: {
@@ -208,7 +208,7 @@ export const UI_COPY = {
       backstoryCta: "Xem hồ sơ đầy đủ",
       contactTitle: "Liên hệ",
       contactBody:
-        "Sẵn sàng cho các vị trí Technical VFX và hợp tác sản xuất.",
+        "Trao đổi về dự án VFX và các câu hỏi kỹ thuật.",
       profilePhotoCaption: "Real-time VFX / Technical Art",
     },
     portfolio: {

@@ -39,7 +39,7 @@ export default function FeaturedProjects() {
               project={projects[0]}
               priority
               featured
-              className="w-full"
+              className="mx-auto w-full max-w-5xl"
             />
           )}
 

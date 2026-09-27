@@ -15,38 +15,6 @@ interface ProjectCardProps {
   className?: string;
 }
 
-function getEditorialLines(project: Project): [string, string] {
-  if (project.slug === "wolverine") {
-    return ["Gameplay & cinematic VFX", "Proprietary engine"];
-  }
-  if (project.slug === "spider-man-2") {
-    return ["Gameplay & destruction VFX", "Houdini · Proprietary engine"];
-  }
-  if (project.slug === "fortnite-remix") {
-    return ["Weapon skins & live event VFX", "Niagara · Unreal Engine"];
-  }
-  if (project.slug === "new-world") {
-    return ["Cinematic & environment VFX", "Houdini · Unreal Engine"];
-  }
-  if (project.slug === "until-dawn") {
-    return ["Cinematic horror lighting", "Lumen · Unreal Engine 5"];
-  }
-  if (project.slug === "malignant") {
-    return ["Gore simulation & combat VFX", "LiquiGen · Niagara · UE5"];
-  }
-  if (project.slug === "black-knight") {
-    return ["Destruction & pyro simulation", "Houdini · Broadcast VFX"];
-  }
-  if (project.slug === "havoc") {
-    return ["Combat ability VFX", "Niagara · Unreal Engine"];
-  }
-  if (project.cardHighlight && project.cardHighlight.includes(" · ")) {
-    const parts = project.cardHighlight.split(" · ");
-    return [parts[0], parts.slice(1).join(" · ")];
-  }
-  return [project.cardHighlight || project.role, project.engine || "Real-time VFX"];
-}
-
 export default function ProjectCard({
   project,
   priority = false,
@@ -54,14 +22,7 @@ export default function ProjectCard({
   supporting = false,
   className,
 }: ProjectCardProps) {
-  const [line1, line2] = getEditorialLines(project);
   const credit = project.client ? `${project.role} · ${project.client}` : project.role;
-  const enginePlatform = [
-    project.engine?.toUpperCase(),
-    project.platform?.toUpperCase(),
-  ]
-    .filter(Boolean)
-    .join(" / ");
 
   return (
     <Link
@@ -79,7 +40,7 @@ export default function ProjectCard({
           <div
             className={cn(
               "relative w-full overflow-hidden rounded-xl bg-zinc-950 transition-colors duration-300",
-              featured ? "aspect-[16/9] sm:aspect-[2/1] lg:aspect-[2.2/1]" : "aspect-[16/9.5]"
+              featured ? "aspect-[16/9]" : "aspect-[16/9.5]"
             )}
           >
             <Image
@@ -118,32 +79,6 @@ export default function ProjectCard({
               {credit}
             </p>
 
-            {enginePlatform && (
-              <p className="mt-1.5 text-[10px] font-mono tracking-[0.14em] uppercase text-white/40">
-                {enginePlatform}
-              </p>
-            )}
-
-            {featured && (
-              <p className="mt-2.5 text-xs sm:text-sm leading-relaxed text-white/60 max-w-3xl line-clamp-2">
-                {project.workSummary || project.description}
-              </p>
-            )}
-
-            {/* Editorial discipline & technical lines */}
-            <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between">
-              <div>
-                <p className="text-xs text-white/75 font-normal leading-relaxed">
-                  {line1}
-                </p>
-                <p className="text-[11px] font-mono text-white/40 leading-relaxed mt-0.5">
-                  {line2}
-                </p>
-              </div>
-              <span className="inline-flex items-center gap-1 text-xs font-medium text-[#7db5b0] group-hover:text-white transition-colors flex-shrink-0 ml-4">
-                <ArrowUpRight className="h-3.5 w-3.5" />
-              </span>
-            </div>
           </div>
         </article>
       </SpotlightCard>
