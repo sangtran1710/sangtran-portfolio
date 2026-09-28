@@ -17,10 +17,11 @@ export default function FeaturedProjects() {
     >
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-24">
         <div className="mb-10 flex items-end justify-between gap-8">
-          <div>
+          <div className="flex min-w-0 flex-1 items-center gap-6">
             <h2 className="text-3xl font-medium tracking-tight text-white sm:text-4xl">
               {copy.home.selectedWork}
             </h2>
+            <div className="hidden h-px flex-1 bg-white/15 sm:block" />
           </div>
           <Link
             href="/portfolio"

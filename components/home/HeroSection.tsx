@@ -44,34 +44,36 @@ export default function HeroSection() {
         style={prefersReducedMotion ? undefined : { opacity: contentOpacity, y: contentY }}
         className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 sm:px-8 sm:pb-20 lg:px-12 lg:pb-24"
       >
-        <p className="text-sm font-medium tracking-wide text-[#a7d2ce]">VFX Artist</p>
-        <h1 className="mt-4 max-w-4xl font-kanit text-5xl font-normal leading-none text-white sm:text-[4rem] lg:text-[5rem]">
-          {hero.name}
-        </h1>
-        <p className="mt-5 max-w-xl text-base leading-7 text-white/70 sm:text-lg">
-          {hero.description}
-        </p>
-        <div className="mt-8 flex flex-wrap gap-x-8 gap-y-4 text-base font-medium text-white">
-          <Link href="/portfolio" className="inline-flex items-center gap-2 border-b border-white/60 pb-2 transition-colors hover:border-[#7db5b0] hover:text-[#a7d2ce]">
-            Selected work
-            <ArrowUpRight className="h-4 w-4" />
-          </Link>
-          <Link
-            href="/rnd/erlangmon-vfx"
-            prefetch={true}
-            onMouseEnter={() => {
-              if (typeof window !== "undefined") {
-                const img1 = new window.Image();
-                img1.src = "/projects/erlangmon-vfx/poster.webp";
-                const img2 = new window.Image();
-                img2.src = "/projects/erlangmon-vfx/cel-shading.webp";
-              }
-            }}
-            className="inline-flex items-center gap-2 border-b border-white/20 pb-2 text-white/75 transition-colors hover:border-white hover:text-white"
-          >
-            Technical breakdown
-            <ArrowUpRight className="h-4 w-4" />
-          </Link>
+        <div className="border-l-2 border-[#5c9d98] pl-5 sm:pl-6">
+          <p className="text-xs font-medium uppercase tracking-[0.28em] text-[#a7d2ce]">VFX Artist</p>
+          <h1 className="mt-4 max-w-4xl font-kanit text-5xl font-normal leading-none text-white sm:text-[4rem] lg:text-[5rem]">
+            {hero.name}
+          </h1>
+          <p className="mt-5 max-w-xl text-base leading-7 text-white/70 sm:text-lg">
+            {hero.description}
+          </p>
+          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-4 text-base font-medium text-white">
+            <Link href="/portfolio" className="inline-flex items-center gap-2 border-b border-white/60 pb-2 transition-colors hover:border-[#7db5b0] hover:text-[#a7d2ce]">
+              Selected work
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/rnd/erlangmon-vfx"
+              prefetch={true}
+              onMouseEnter={() => {
+                if (typeof window !== "undefined") {
+                  const img1 = new window.Image();
+                  img1.src = "/projects/erlangmon-vfx/poster.webp";
+                  const img2 = new window.Image();
+                  img2.src = "/projects/erlangmon-vfx/cel-shading.webp";
+                }
+              }}
+              className="inline-flex items-center gap-2 border-b border-white/20 pb-2 text-white/75 transition-colors hover:border-white hover:text-white"
+            >
+              Technical breakdown
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </motion.div>
     </section>
