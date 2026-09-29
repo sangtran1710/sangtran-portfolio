@@ -83,12 +83,12 @@ export default function BlogPostPage({ params }: Props) {
         <header className="mb-10">
           {/* Tags */}
           {post.tags?.length > 0 && (
-            <div className="flex items-center gap-2 mb-4 flex-wrap">
-              <Tag className="h-3 w-3 text-zinc-600 shrink-0" />
+            <div className="flex items-center gap-2 mb-5 flex-wrap">
+              <Tag className="h-3.5 w-3.5 text-zinc-500 shrink-0 mr-0.5" />
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-[10px] font-semibold uppercase tracking-widest text-zinc-500"
+                  className="inline-flex items-center rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-0.5 text-xs font-medium text-zinc-300"
                 >
                   {tag}
                 </span>
