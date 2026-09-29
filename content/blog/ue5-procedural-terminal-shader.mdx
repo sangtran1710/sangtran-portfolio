@@ -56,3 +56,12 @@ Authoring this effect as a procedural shader rather than a flipbook or media pla
 - **Zero Texture Streaming Overhead**: Because all distortion, scanlines, and breathing pulses are evaluated procedurally via lightweight math nodes (`Sin`, `Frac`, `Step`, `Clamp`), there is zero texture memory footprint for animation frames.
 - **Resolution Independence**: The graphic and scanlines remain razor-sharp at any viewing distance or camera orbit angle, scaling seamlessly from small handheld props to giant holographic billboards.
 - **Instant Iteration via Instances**: Exposing 27 parameters in `MI_Biohazard_Terminal` means artists can change warning colors, switch from slow standby pulses to frantic alarms, or trigger scripted damage without touching shader code or re-exporting textures.
+
+---
+
+## Reference & Inspiration
+
+This shader study was inspired by a 2D motion design concept:
+- [Biohazard Warning Glitchy VJ Loop (Pinterest)](https://pin.it/3Uew9ebLj) — visual motion reference for the glitch slicing rhythm, retro scanline density, and high-contrast red warning palette.
+
+The challenge was taking a concept typically authored as pre-rendered 2D motion graphics in After Effects or video editing tools, and reconstructing it entirely as a real-time, parameter-driven procedural shader inside Unreal Engine 5.
