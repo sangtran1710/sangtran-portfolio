@@ -126,7 +126,7 @@ export default function AmbientAudioPlayer() {
 
               <div className="flex flex-col text-[11px] leading-tight font-mono">
                 <span className="text-white/90 font-medium">
-                  {isPlaying ? "Where Stars Fall" : "Ambient Soundscape"}
+                  {isPlaying ? "Mellow · Lo-Fi Chill" : "Lo-Fi Chill Beats"}
                 </span>
                 <span className="text-white/50 text-[10px]">
                   {isPlaying ? "Click to pause" : "Click to chill"}
