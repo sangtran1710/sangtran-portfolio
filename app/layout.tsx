@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import ScrollToTop from "@/components/layout/ScrollToTop";
 import SkipToContentLink from "@/components/layout/SkipToContentLink";
 import PageTransitionWrapper from "@/components/layout/PageTransitionWrapper";
+import AmbientAudioPlayer from "@/components/layout/AmbientAudioPlayer";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import { SITE } from "@/data/portfolio";
 import { getSiteUrl } from "@/lib/seo";
@@ -89,6 +90,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <ScrollToTop />
+          <AmbientAudioPlayer />
           {process.env.VERCEL && <Analytics />}
         </LanguageProvider>
       </body>
