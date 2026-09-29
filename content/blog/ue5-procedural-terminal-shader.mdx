@@ -1,67 +1,45 @@
 ---
 title: "Procedural Terminal Shader: Glitch, Scanlines & Emissive Breath in UE5"
-description: "A real-time material study authoring a procedural CRT terminal warning shader with quantized glitch slices, periodic breath, and modular node architecture."
+description: "A real-time material study translating a 2D motion graphic into a fully procedural, parameter-driven terminal shader in Unreal Engine 5."
 date: "2026-09-30"
 thumbnail: "/assets/blog/ue5-terminal-shader/poster-terminal-hero.webp"
 tags: ["Unreal Engine", "Shader", "Technical Art", "Material Graph", "VFX Study"]
-readTime: "4 min"
+readTime: "2 min"
 ---
 
-This is a personal real-time material study built in Unreal Engine 5, exploring how to author a reactive Sci-Fi / Biohazard terminal shader entirely through procedural math in the material graph—without relying on external flipbook textures or pre-rendered video clips.
+I wanted to take a 2D motion graphic concept—specifically this [Biohazard Warning VJ Loop](https://pin.it/3Uew9ebLj)—and rebuild it entirely inside Unreal Engine as a runtime procedural shader instead of relying on a video clip or flipbook texture.
 
-The goal was to build a flexible, unlit masked shader that combines organic emissive breathing, fine CRT scanlines, and timed procedural glitch slices, with all critical behaviors exposed as clean parameters for technical artists and level designers.
+The result is a single unlit masked material with zero texture streaming cost, combining horizontal glitch slices, CRT scanlines, and an organic emissive breathing pulse.
 
 <VideoPlayer
   src="/assets/blog/ue5-terminal-shader/ue5-biohazard-terminal-study.mp4"
   poster="/assets/blog/ue5-terminal-shader/poster-terminal-hero.webp"
-  caption="Real-time Unreal Engine 5 viewport demonstration showing material instance parameter tuning and full node graph architecture."
+  caption="Real-time Unreal Engine 5 viewport demonstration showing material instance parameter tuning and node graph architecture."
 />
 
 ---
 
-## 1. Deconstructing the Glitch & Scanline Layers
+## Breakdown & Material Controls
 
-A common pitfall with digital glitch shaders is applying uniform screen noise, which looks like camera static rather than a malfunctioning CRT terminal. To make the distortion feel mechanical and localized, I split the effect into discrete mathematical passes:
+To make the glitch feel mechanical rather than uniform static noise, UV coordinates are quantized into horizontal bands with step divisions and randomized jitter offsets. 
 
-1. **Quantized UV Slices**: Instead of a smooth distortion, UV coordinates are quantized into horizontal bands using `Floor` and step divisions. Each band samples a pseudo-random jitter offset, causing distinct horizontal rows of the logo to tear left or right.
-2. **Periodic Emissive Breath**: A low-frequency sine wave smoothly scales brightness between `BreathMin` and 1.0, giving the warning sign a living, rhythmic pulse.
-3. **CRT Scanlines**: A high-frequency sine function driven by UV coordinates produces evenly spaced scanlines. Artists can adjust `ScanlineCount` (e.g. 220) and `ScanlineStrength` to match anything from subtle modern holographic UI to harsh retro phosphor monitors.
-4. **Burst Timing & Glitch Force**: A timer network controls glitch bursts, exposing `BurstInterval`, `GlitchDuration`, and `BurstChance`. The `GlitchForce` slider allows instant manual override for cutscene triggers or cinematic gameplay events.
+All core behaviors are exposed directly on the material instance (`MI_Biohazard_Terminal`), letting artists tune timing, scanline density, and glitch intensity on the fly:
 
 ![Material Instance Details panel showing exposed parameter groups](/assets/blog/ue5-terminal-shader/instance-parameters.webp)
 
+- **Glitch timing**: `BurstInterval`, `GlitchDuration`, and `BurstChance` control random glitch spikes, with `GlitchForce` available as a direct override for scripted gameplay events.
+- **Scanlines & Breath**: High-frequency UV sine tiling for CRT phosphor lines, combined with a slow sine pulse scaling emissive intensity.
+
 ---
 
-## 2. Material Graph Architecture (172 Nodes, 27 Parameters)
+## Graph Organization (172 nodes, 27 parameters)
 
-To keep a complex 172-node shader maintainable and readable across a team, I structured the graph into distinct functional blocks:
+Because procedural math networks can get messy quickly, the master material (`M_Biohazard_Terminal_Clean`) is divided into dedicated functional blocks:
 
 ![Overview of the modular color-coded material graph in Unreal Engine 5](/assets/blog/ue5-terminal-shader/material-graph-overview.webp)
 
-- **[1] Glitch Run (Red)**: Handles the primary UV step divisions and directional slice offsets along the horizontal axis.
-- **[2] Glitch Noise (Yellow)**: Computes high-frequency bandline noise, jitter thresholds, and random dropouts.
-- **[3] Logo Sample & Island UV (Blue)**: Manages logo texture sampling and coordinates across isolated graphic islands.
-- **[4] Island Flicker (Purple)**: Applies per-band dropout factors and intermittent electrical flicker to individual components of the symbol.
-- **[5] Breath & Scanlines (Green)**: Generates the base breathing pulse and CRT line frequency.
-- **[6] Composite (Blue)**: Blends the glow falloff, emissive intensity, warning tint (`WarningColor`), and backdrop opacity into the final Emissive and Opacity Mask pins.
+UV slice distortion, jitter noise, logo sampling, and scanlines are calculated in separate passes before feeding into the final composite block to drive Emissive and Opacity Mask.
 
 ![Detailed view of the Composite stage combining emissive layers and opacity masks](/assets/blog/ue5-terminal-shader/material-composite-nodes.webp)
 
----
-
-## 3. Real-Time Performance & Pipeline Benefits
-
-Authoring this effect as a procedural shader rather than a flipbook or media player offers distinct production advantages:
-
-- **Zero Texture Streaming Overhead**: Because all distortion, scanlines, and breathing pulses are evaluated procedurally via lightweight math nodes (`Sin`, `Frac`, `Step`, `Clamp`), there is zero texture memory footprint for animation frames.
-- **Resolution Independence**: The graphic and scanlines remain razor-sharp at any viewing distance or camera orbit angle, scaling seamlessly from small handheld props to giant holographic billboards.
-- **Instant Iteration via Instances**: Exposing 27 parameters in `MI_Biohazard_Terminal` means artists can change warning colors, switch from slow standby pulses to frantic alarms, or trigger scripted damage without touching shader code or re-exporting textures.
-
----
-
-## Reference & Inspiration
-
-This shader study was inspired by a 2D motion design concept:
-- [Biohazard Warning Glitchy VJ Loop (Pinterest)](https://pin.it/3Uew9ebLj) — visual motion reference for the glitch slicing rhythm, retro scanline density, and high-contrast red warning palette.
-
-The challenge was taking a concept typically authored as pre-rendered 2D motion graphics in After Effects or video editing tools, and reconstructing it entirely as a real-time, parameter-driven procedural shader inside Unreal Engine 5.
+Building it procedurally keeps the memory footprint at zero, maintains sharp sub-pixel detail at any camera distance, and allows instant color and timing variations directly in engine.
