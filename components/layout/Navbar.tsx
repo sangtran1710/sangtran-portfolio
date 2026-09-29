@@ -93,13 +93,24 @@ export default function Navbar() {
                 onMouseEnter={() => prefetchRoute(href)}
                 onFocus={() => prefetchRoute(href)}
                 className={cn(
-                  "inline-flex border-b-2 px-3 py-2 text-[0.9375rem] font-medium transition-colors duration-200",
+                  "relative inline-flex px-3 py-2 text-[0.9375rem] font-medium transition-colors duration-200",
                   isActive
-                    ? "border-[#5c9d98] text-white"
-                    : "border-transparent text-white/65 hover:text-white",
+                    ? "text-white"
+                    : "text-white/65 hover:text-white",
                 )}
               >
                 {label}
+                {isActive && (
+                  <motion.span
+                    layoutId="navbar-active-indicator"
+                    className="absolute inset-x-3 bottom-0 h-[2px] bg-[#5c9d98]"
+                    transition={{
+                      type: "spring",
+                      stiffness: 400,
+                      damping: 32,
+                    }}
+                  />
+                )}
               </Link>
             );
           })}
