@@ -7,7 +7,7 @@ import { notFound } from "next/navigation";
 export const metadata: Metadata = {
     title: "Shatter Earth Impact VFX",
     description:
-        "Real-time impact VFX study built in Unreal Engine with Blender and Substance Designer — earth shatter, debris simulation, and stylized shader work.",
+        "Real-time impact VFX study built in Unreal Engine with Blender and Substance Designer: earth shatter, debris simulation, and stylized shader work.",
     alternates: {
         canonical: "/rnd/art-vfx",
     },
@@ -97,8 +97,8 @@ export default function ArtVfxPage() {
                     <h2 className="text-2xl font-bold text-white uppercase tracking-widest mb-6">About the Project</h2>
                     <p className="text-white/70 leading-relaxed mb-6">
                         Real-time VFX made in Unreal Engine, with assets from Substance Designer and Blender. The 3D
-                        model was modeled and animated in Blender, then brought into Unreal; the rest of the effect—materials,
-                        lighting, and VFX presentation—was done in UE.
+                        model was modeled and animated in Blender, then brought into Unreal; the rest of the effect (materials,
+                        lighting, and VFX presentation) was done in UE.
                     </p>
 
                     <div className="grid sm:grid-cols-2 gap-8 mt-12 bg-zinc-900/50 p-6 sm:p-8 rounded-xl border border-white/5">

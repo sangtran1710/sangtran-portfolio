@@ -7,7 +7,7 @@ import { notFound } from "next/navigation";
 export const metadata: Metadata = {
     title: "Houdini / Redshift / Unreal Engine R&D",
     description:
-        "Graduation project exploring a Houdini-to-Unreal Engine pipeline with Redshift rendering — procedural simulation, look development, and real-time integration.",
+        "Graduation project exploring a Houdini-to-Unreal Engine pipeline with Redshift rendering: procedural simulation, look development, and real-time integration.",
     alternates: {
         canonical: "/rnd/project-my",
     },

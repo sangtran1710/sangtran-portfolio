@@ -6,14 +6,14 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
-    title: "HistoryBlends — AI Filmmaking",
+    title: "HistoryBlends: AI Filmmaking",
     description:
         "A deep dive into the AI-driven storytelling process used to create HistoryBlends, leveraging Sora, Veo-2, ChatGPT, and Midjourney.",
     alternates: {
         canonical: "/rnd/historyblends",
     },
     openGraph: {
-        title: "HistoryBlends — AI Filmmaking | Henry Tran",
+        title: "HistoryBlends: AI Filmmaking | Henry Tran",
         description:
             "A deep dive into the AI-driven storytelling process used to create HistoryBlends, leveraging Sora, Veo-2, ChatGPT, and Midjourney.",
         url: "/rnd/historyblends",
@@ -72,7 +72,7 @@ export default function HistoryBlendsPage() {
                         <section>
                             <h2 className="text-xl font-bold uppercase tracking-wider text-white mb-4">Project Overview</h2>
                             <p className="text-zinc-400 leading-relaxed text-base">
-                                HistoryBlends is a storytelling initiative where I actively leverage generative AI—including Sora, Veo-2, and Midjourney—to direct and produce full historical sequences. The project serves as a showcase of blending cutting-edge AI tools with established cinematic principles to craft compelling visual narratives that retain viewer engagement.
+                                HistoryBlends is a storytelling initiative where I use generative AI tools like Sora, Veo-2, and Midjourney to direct and produce complete historical sequences. The project serves as a showcase of blending cutting-edge AI tools with established cinematic principles to craft compelling visual narratives that retain viewer engagement.
                             </p>
                             <p className="text-zinc-400 leading-relaxed text-base mt-4">
                                 Generating reliable, high-quality historical visuals requires an intricate understanding of prompt engineering to avoid artifacts, ensure frame-to-frame consistency, and match the emotional tone of the voiceover narrative.

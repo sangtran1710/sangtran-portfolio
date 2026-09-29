@@ -1,6 +1,6 @@
 ---
 title: "Stormfront: Making a Storm Sky Feel Alive"
-description: "I wanted the sky to move, feel heavy, and flash with lightning—without eating the whole frame budget. Here's how the study went."
+description: "I wanted the sky to move, feel heavy, and flash with lightning without eating the whole frame budget. Here's how the study went."
 date: "2026-09-24"
 thumbnail: "/assets/blog/stormfront/poster-wide.jpg"
 tags: ["Unreal Engine", "Volumetric Clouds", "Niagara", "Blueprint", "VFX Study"]
@@ -49,9 +49,9 @@ Profiling changed where I looked. In one earlier Unreal Editor sample on an RTX 
 
 *A separate Shader Complexity diagnostic. The sky appears as a checkerboard in this view, and no volumetric-cloud timing is visible. The 1.27 ms GPU number belongs to this visualization at 1372 × 910; it is **not** the cost of rendering the storm. I used the lit-view GPU pass timings above to judge cloud cost instead.*
 
-The current balance is deliberate: a sky with motion and shape at a cost worth measuring, with room to become more realistic if a later scene and hardware budget justify it. The next honest test is a representative boss arena, several full flash cycles, and frame-time distribution—not a single attractive frame or FPS counter.
+The current balance is deliberate: a sky with motion and shape at a cost worth measuring, with room to become more realistic if a later scene and hardware budget justify it. The next honest test is a representative boss arena, several full flash cycles, and frame-time distribution, not a single attractive frame or FPS counter.
 
 ## References
 
-- [Tides of Annihilation](https://www.playstation.com/en-us/games/tides-of-annihilation/) — boss-arena scale and atmosphere.
-- [Black Myth: Wukong boss-fight trailer](https://www.youtube.com/watch?v=6oebEcQd5lQ) — figure-to-environment contrast and dramatic weather framing.
+- [Tides of Annihilation](https://www.playstation.com/en-us/games/tides-of-annihilation/): boss-arena scale and atmosphere.
+- [Black Myth: Wukong boss-fight trailer](https://www.youtube.com/watch?v=6oebEcQd5lQ): figure-to-environment contrast and dramatic weather framing.

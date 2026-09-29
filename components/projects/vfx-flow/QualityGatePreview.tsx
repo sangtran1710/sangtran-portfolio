@@ -75,7 +75,7 @@ export default function QualityGatePreview() {
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-rose-400 text-xs font-semibold uppercase tracking-wider">
               <span className="h-2 w-2 rounded-full bg-rose-500 animate-pulse" />
-              Status: 1 Error, 1 Warning — Submission Locked
+              Status: 1 Error, 1 Warning | Submission Locked
             </div>
             <p className="text-sm leading-relaxed text-zinc-300">
               The automated scan flagged a disallowed <code className="text-rose-300 bg-rose-950/60 px-1 py-0.5 rounded">_vfx</code> substring 
@@ -87,7 +87,7 @@ export default function QualityGatePreview() {
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-emerald-400 text-xs font-semibold uppercase tracking-wider">
               <span className="h-2 w-2 rounded-full bg-emerald-500" />
-              Status: Ready — All Checks Passed
+              Status: Ready | All Checks Passed
             </div>
             <p className="text-sm leading-relaxed text-zinc-300">
               All 8 naming conventions, required <code className="text-emerald-300 bg-emerald-950/60 px-1 py-0.5 rounded">.thumbnail</code> presence, 

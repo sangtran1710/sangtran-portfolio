@@ -4,14 +4,14 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Celestial Legion — Xianxia Combat VFX",
+  title: "Celestial Legion: Xianxia Combat VFX",
   description:
     "A real-time combat VFX study and technical art test built in Unreal Engine Niagara for an unannounced Chinese fantasy project, featuring talisman rune seals, golden radiance, and mass celestial legion summoning.",
   alternates: {
     canonical: "/rnd/celestial-legion-vfx",
   },
   openGraph: {
-    title: "Celestial Legion — Xianxia Combat VFX | Henry Tran",
+    title: "Celestial Legion: Xianxia Combat VFX | Henry Tran",
     description:
       "Breakdown of Eastern fantasy combat VFX, talisman seal shaders, sequencer choreography, and Niagara legion summoning in Unreal Engine.",
     url: "/rnd/celestial-legion-vfx",

@@ -7,7 +7,7 @@ thumbnail: "/assets/blog/houdini-wolverine-destructibles/poster-rbd-bridge.webp"
 readTime: "5 min"
 ---
 
-Destruction work for real-time projects isn't just about blowing meshes apart—it's about turning expensive physics simulations into lightweight, runtime-ready data.
+Destruction work for real-time projects isn't just about blowing meshes apart. It's about turning expensive physics simulations into lightweight, runtime-ready data.
 
 I used Houdini mainly to move heavy offline simulation into reusable textures, atlases, and pre-fractured assets.
 
@@ -41,7 +41,7 @@ Large structures look unnatural when pieces shatter all at once. I broke the col
   caption="Exploded view showing interior structural ribs, metal panel separation, and collision piece clusters."
 />
 
-Level designers placed dozens of industrial props across environments—rooftop HVAC units, electrical boxes, ducts. Cutting each one by hand was impractical, so I used Houdini to prepare the fractured pieces for simulation and real-time use.
+Level designers placed dozens of industrial props across environments, such as rooftop HVAC units, electrical boxes, and ducts. Cutting each one by hand was impractical, so I used Houdini to prepare the fractured pieces for simulation and real-time use.
 
 ### What the setup handled:
 - **Interior vs. exterior cuts**: Automatic vertex color and material ID assignment between pristine outer metal and interior concrete/metal cut faces.
@@ -122,7 +122,7 @@ To bring dense smoke and shockwave plumes into the project without simulating 3D
 
 ## 5. Liquid Impact & Particle Fluid Splats
 
-Fast-moving melee combat and blunt impacts require convincing fluid reactions—droplet arcs, secondary spray, and ground splats that ground the hit in the environment.
+Fast-moving melee combat and blunt impacts require convincing fluid reactions: droplet arcs, secondary spray, and ground splats that ground the hit in the environment.
 
 Simulating fluid dynamics directly at runtime is too unpredictable and costly for a 60 FPS budget. Instead, I simulated the primary splash dynamics in Houdini to author particle emitter data and surface impact behaviors:
 
@@ -144,4 +144,4 @@ From the simulation network, the splash data is separated into two deliverables:
 
 ---
 
-The core goal across these setups was always the same: keep the artist control and simulation fidelity of Houdini, but package the output into clean, highly optimized data—compact textures, clustered shards, and lightweight atlases—that runtime shaders and collision systems can consume within production frame budgets.
+The core goal across these setups was always the same: keep the artist control and simulation fidelity of Houdini, but package the output into clean, optimized data (compact textures, clustered shards, and lightweight atlases) that runtime shaders and collision systems can consume within production frame budgets.

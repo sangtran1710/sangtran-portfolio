@@ -5,14 +5,14 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
-    title: "Smart Menu TVC — App Promo",
+    title: "Smart Menu TVC: App Promo",
     description:
         "An app promo TVC for Utop (FPT Software) highlighting the Smart Menu feature.",
     alternates: {
         canonical: "/rnd/smart-menu",
     },
     openGraph: {
-        title: "Smart Menu TVC — App Promo | Henry Tran",
+        title: "Smart Menu TVC: App Promo | Henry Tran",
         description:
             "An app promo TVC for Utop (FPT Software) highlighting the Smart Menu feature.",
         url: "/rnd/smart-menu",

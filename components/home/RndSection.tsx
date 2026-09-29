@@ -189,7 +189,7 @@ export default function RndSection() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <p className="text-xs font-mono uppercase tracking-widest text-[#7db5b0] mb-2.5">
-                {isVi ? "Dự án trước đây — Motion / CG / Film" : "Earlier work — Motion / CG / Film"}
+                {isVi ? "Dự án trước đây · Motion / CG / Film" : "Earlier work · Motion / CG / Film"}
               </p>
               <button
                 type="button"

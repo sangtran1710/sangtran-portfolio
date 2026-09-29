@@ -5,7 +5,7 @@ import { ArrowLeft, CheckCircle2, Clock, ShieldCheck, Terminal, Wrench, Lock, La
 import QualityGatePreview from "@/components/projects/vfx-flow/QualityGatePreview";
 
 export const metadata: Metadata = {
-  title: "VFX Flow — Production Asset Validator & Perforce Submission Tool",
+  title: "VFX Flow: Production Asset Validator & Perforce Submission Tool",
   description:
     "A lightweight, non-intrusive pipeline companion tool built for a confidential AAA production (PROJECT-TITAN) to automate asset QC, protect shared repositories, and streamline Perforce submissions.",
   alternates: {

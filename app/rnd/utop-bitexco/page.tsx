@@ -5,14 +5,14 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
-    title: "Food Court Bitexco TVC — Commercial Production",
+    title: "Food Court Bitexco TVC: Commercial Production",
     description:
         "An indie TVC production for Utop (FPT Software) featuring concept development, directing, filming, editing, and VFX.",
     alternates: {
         canonical: "/rnd/utop-bitexco",
     },
     openGraph: {
-        title: "Food Court Bitexco TVC — Commercial Production | Henry Tran",
+        title: "Food Court Bitexco TVC: Commercial Production | Henry Tran",
         description:
             "An indie TVC production for Utop (FPT Software) featuring concept development, directing, filming, editing, and VFX.",
         url: "/rnd/utop-bitexco",

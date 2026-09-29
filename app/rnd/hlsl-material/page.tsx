@@ -5,14 +5,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "HLSL Material R&D — Unreal Engine",
+  title: "HLSL Material R&D: Unreal Engine",
   description:
     "R&D on HLSL custom materials in Unreal Engine: noise, flowing textures, and procedural patterns for real-time VFX.",
   alternates: {
     canonical: "/rnd/hlsl-material",
   },
   openGraph: {
-    title: "HLSL Material R&D — Unreal Engine | Henry Tran",
+    title: "HLSL Material R&D: Unreal Engine | Henry Tran",
     description:
       "R&D on HLSL custom materials in Unreal Engine: noise, flowing textures, and procedural patterns for real-time VFX.",
     url: "/rnd/hlsl-material",
@@ -100,7 +100,7 @@ export default function HlslMaterialPage() {
             This R&D focuses on custom HLSL in Unreal Engine to drive material effects: procedural noise and flowing
             textures that would be expensive or inflexible with node-based materials alone. Writing shader code
             directly gives control over UV animation, noise octaves, and blending so that surfaces can scroll, distort,
-            or reveal patterns in real time—useful for energy shields, holograms, damage decals, and environmental VFX.
+            or reveal patterns in real time, useful for energy shields, holograms, damage decals, and environmental VFX.
           </p>
           <p className="text-white/70 leading-relaxed mb-4">
             The clips above show different passes: noise-based distortion, flowing tex coordinates with time and

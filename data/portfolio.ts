@@ -751,7 +751,7 @@ export const RND_PROJECTS: RndProject[] = [
     group: "vfx",
   },
   {
-    title: "Celestial Legion — Xianxia Combat VFX",
+    title: "Celestial Legion: Xianxia Combat VFX",
     category: "Real-time VFX / Outsource Art Test",
     tools: ["Unreal Engine 5", "Niagara", "Materials", "Sequencer"],
     image: "/projects/celestial-legion-vfx/poster.jpg",

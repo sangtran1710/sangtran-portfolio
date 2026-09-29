@@ -5,14 +5,14 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
-    title: "Utop Event TVCs — Commercial Production",
+    title: "Utop Event TVCs: Commercial Production",
     description:
         "A collection of early commercial and event highlight videos produced for Utop, featuring the Thang Long event.",
     alternates: {
         canonical: "/rnd/utop-events",
     },
     openGraph: {
-        title: "Utop Event TVCs — Commercial Production | Henry Tran",
+        title: "Utop Event TVCs: Commercial Production | Henry Tran",
         description:
             "A collection of early commercial and event highlight videos produced for Utop, featuring the Thang Long event.",
         url: "/rnd/utop-events",
