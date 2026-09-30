@@ -35,7 +35,7 @@ export default function ProfileSection() {
           <div className="max-w-3xl">
             <div className="mb-2 flex items-center gap-2">
               <span className="text-xs font-mono uppercase tracking-wider text-[#5eb3ab]">
-                {"// ABOUT"}
+                ABOUT
               </span>
             </div>
             <h2 className="text-3xl font-medium tracking-tight text-white sm:text-4xl">Henry Tran</h2>

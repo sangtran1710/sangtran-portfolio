@@ -14,7 +14,7 @@ export default function ContactSection() {
         <div>
           <div className="mb-3 flex items-center gap-2">
             <span className="text-xs font-mono uppercase tracking-wider text-[#5eb3ab]">
-              {"// GET IN TOUCH"}
+              GET IN TOUCH
             </span>
           </div>
           <h2 className="text-3xl font-medium tracking-tight text-white sm:text-5xl lg:text-6xl font-kanit">

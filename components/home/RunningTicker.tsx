@@ -62,7 +62,7 @@ export default function RunningTicker() {
                 </svg>
               )}
               <span>{item.name}</span>
-              <span className="text-[#5c9d98] font-bold select-none ml-6">{"//"}</span>
+              <span className="text-slate-600 font-normal select-none ml-6">/</span>
             </div>
           ))}
         </div>

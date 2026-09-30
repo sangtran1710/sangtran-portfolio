@@ -69,7 +69,7 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
         <header className="mb-10 max-w-2xl">
           <div className="mb-2 flex items-center gap-2">
             <span className="text-xs font-mono uppercase tracking-wider text-[#5eb3ab]">
-              {"// KNOWLEDGE BASE & LAB NOTES"}
+              KNOWLEDGE BASE & LAB NOTES
             </span>
           </div>
           <h1 className="text-4xl font-kanit font-medium tracking-tight text-white sm:text-5xl">
