@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState, useMemo, useCallback } from "react";
-import { ArrowUpRight, ChevronDown, ImageOff } from "lucide-react";
+import { ChevronDown, ImageOff } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { RND_PROJECTS } from "@/data/portfolio";
@@ -30,7 +30,7 @@ function Thumbnail({ project, sizes }: { project: RndProject; sizes: string }) {
     return (
       <video
         src={src}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
         muted
         playsInline
         preload="metadata"
@@ -44,7 +44,7 @@ function Thumbnail({ project, sizes }: { project: RndProject; sizes: string }) {
       <img
         src={src}
         alt={project.title}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
         loading="lazy"
         onError={onError}
       />
@@ -55,7 +55,7 @@ function Thumbnail({ project, sizes }: { project: RndProject; sizes: string }) {
       src={src}
       alt={project.title}
       fill
-      className="object-cover transition-transform duration-500 group-hover:scale-105"
+      className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
       sizes={sizes}
       onError={onError}
     />
@@ -147,37 +147,39 @@ export default function RndSection() {
   return (
     <div ref={sectionRef as unknown as React.RefObject<HTMLDivElement>} className="relative w-full pt-4 pb-16">
       {/* ── Tier 2: Technical VFX & Pipeline R&D ── */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {technicalProjects.map((project, i) => (
           <CardLink
             key={project.title}
             project={project}
-            className={`group relative block overflow-hidden rounded-xl border border-[#364156] bg-[#232a38] transition-all duration-300 hover:border-[#4b5a75] hover:bg-[#2b3445]
-              ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+            className={`group block h-full transition-all duration-300 ${
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
             style={{ transitionDelay: inView ? `${i * 0.05}s` : "0s" }}
           >
-            <div className="relative aspect-video w-full overflow-hidden bg-[#161a23]">
-              <Thumbnail project={project} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
-              <div className="absolute top-2.5 right-2.5 flex h-7 w-7 items-center justify-center rounded border border-white/20 bg-black/70 text-slate-300 opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-hover:text-white">
-                <ArrowUpRight className="h-3.5 w-3.5" />
+            <article className="flex h-full flex-col">
+              {/* Visual Showcase - Pure flat image with subtle hairline border */}
+              <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-[#364156]/70 bg-[#161a23] transition-colors duration-300 group-hover:border-[#5eb3ab]/60">
+                <Thumbnail project={project} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
               </div>
-            </div>
-            <div className="p-4 sm:p-5">
-              <p className="text-[10px] font-mono uppercase tracking-widest text-[#5eb3ab] mb-1">
-                {project.category}
-              </p>
-              <h3 className="text-base font-medium tracking-tight text-white group-hover:text-[#5eb3ab] transition-colors line-clamp-1">
-                {project.title}
-              </h3>
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {project.tools.slice(0, 3).map((tool) => (
-                  <span key={tool} className="rounded border border-[#364156] bg-[#161a23] px-2 py-0.5 text-[10px] font-mono text-slate-300">
-                    {tool}
-                  </span>
-                ))}
+
+              {/* Typography & Editorial Metadata */}
+              <div className="flex flex-1 flex-col pt-3.5">
+                <p className="text-[10px] font-mono uppercase tracking-[0.16em] text-[#5eb3ab]">
+                  {project.category}
+                </p>
+
+                <h3 className="mt-1 text-base font-medium tracking-tight text-white transition-colors duration-200 group-hover:text-[#5eb3ab] line-clamp-1">
+                  {project.title}
+                </h3>
+
+                {project.tools && project.tools.length > 0 && (
+                  <p className="mt-1.5 text-xs font-mono text-slate-400">
+                    {project.tools.slice(0, 3).join(" · ")}
+                  </p>
+                )}
               </div>
-            </div>
+            </article>
           </CardLink>
         ))}
       </div>
@@ -193,14 +195,14 @@ export default function RndSection() {
               <button
                 type="button"
                 onClick={() => setIsArchiveOpen((prev) => !prev)}
-                className="group inline-flex items-center gap-3 rounded-xl border border-[#364156] bg-[#161a23] px-5 py-3 text-sm font-medium text-slate-300 transition-all hover:border-[#4b5a75] hover:bg-[#232a38] hover:text-white"
+                className="group inline-flex items-center gap-3 rounded-lg border border-[#364156] bg-[#161a23] px-4 py-2.5 text-sm font-medium text-slate-300 transition-all hover:border-[#4b5a75] hover:bg-[#232a38] hover:text-white"
               >
                 <span>
                   {isVi
                     ? (isArchiveOpen ? "Thu gọn lưu trữ" : "Xem lưu trữ →")
                     : (isArchiveOpen ? "Hide archive" : "View archive →")}
                 </span>
-                <span className="rounded-full bg-[#232a38] border border-[#364156] px-2 py-0.5 text-xs text-slate-300">
+                <span className="rounded bg-[#232a38] border border-[#364156] px-2 py-0.5 text-xs font-mono text-slate-300">
                   {archiveProjects.length}
                 </span>
                 <ChevronDown
@@ -219,23 +221,26 @@ export default function RndSection() {
           </div>
 
           {isArchiveOpen && (
-            <div className="mt-8 grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 animate-in fade-in duration-300">
+            <div className="mt-8 grid gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 animate-in fade-in duration-300">
               {archiveProjects.map((project) => (
                 <CardLink
                   key={project.title}
                   project={project}
-                  className="group relative block overflow-hidden rounded-xl border border-[#364156] bg-[#232a38] transition-all hover:border-[#4b5a75] hover:bg-[#2b3445]"
+                  className="group block"
                 >
-                  <div className="relative aspect-video bg-[#161a23] overflow-hidden">
-                    <Thumbnail project={project} sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-3">
-                      <p className="text-[9px] font-mono text-slate-400 mb-0.5">{project.year || "Archive"}</p>
-                      <h4 className="text-xs font-medium text-white group-hover:text-[#5eb3ab] transition-colors line-clamp-1">
+                  <article className="flex flex-col">
+                    <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-[#364156]/70 bg-[#161a23] transition-colors duration-200 group-hover:border-[#5eb3ab]/60">
+                      <Thumbnail project={project} sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" />
+                    </div>
+                    <div className="pt-2">
+                      <p className="text-[9px] font-mono uppercase tracking-wider text-slate-400">
+                        {project.year || "Archive"}
+                      </p>
+                      <h4 className="mt-0.5 text-xs font-medium text-white transition-colors duration-200 group-hover:text-[#5eb3ab] line-clamp-1">
                         {project.title}
                       </h4>
                     </div>
-                  </div>
+                  </article>
                 </CardLink>
               ))}
             </div>

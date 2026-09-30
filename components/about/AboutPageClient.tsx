@@ -64,26 +64,26 @@ export default function AboutPageClient() {
   );
 
   return (
-    <div className="min-h-screen bg-[linear-gradient(180deg,#1c212c_0%,#232a38_10%,#f6f2eb_10%,#f6f2eb_100%)] pt-20">
+    <div className="min-h-screen bg-[#1c212c] pt-20 text-white">
       <div ref={heroRef} className="relative overflow-hidden pb-16">
         <AboutHeroBackground />
 
         <div className="relative z-10 mx-auto max-w-6xl px-6 pt-6">
           <Link
             href="/"
-            className="mb-8 inline-flex items-center gap-1.5 text-sm text-white/65 transition-colors hover:text-white"
+            className="mb-8 inline-flex items-center gap-1.5 text-sm text-slate-400 transition-colors hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" />
             {copy.common.backToHome}
           </Link>
 
-          <div className="rounded-[2rem] border border-stone-200/90 bg-[#fbf8f2] px-6 py-6 shadow-[0_18px_44px_rgba(15,23,42,0.06)] sm:px-8 sm:py-8 lg:px-10 lg:py-10">
+          <div className="rounded-2xl border border-[#364156] bg-[#161a23]/60 px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12 backdrop-blur-sm">
             <div className="grid items-start gap-8 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-12">
               <motion.div
                 className="relative mx-auto lg:mx-0 will-change-transform"
                 style={!prefersReducedMotion ? { y: avatarY } : undefined}
               >
-                <div className="relative h-64 w-64 overflow-hidden rounded-[1.5rem] bg-stone-200 ring-1 ring-stone-200 shadow-[0_14px_34px_rgba(15,23,42,0.08)] sm:h-72 sm:w-72 lg:h-80 lg:w-80">
+                <div className="relative h-64 w-64 overflow-hidden rounded-xl border border-[#364156] bg-[#1c212c] sm:h-72 sm:w-72 lg:h-80 lg:w-80">
                   <Image
                     src={about.portraitImage || "/images/Portrait/avatar.webp"}
                     alt="Henry Tran"
@@ -97,22 +97,22 @@ export default function AboutPageClient() {
               </motion.div>
 
               <div>
-                <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.16em] text-[#4f8e89]">
+                <p className="mb-2 text-xs font-mono uppercase tracking-[0.18em] text-[#5eb3ab]">
                   {copy.about.kicker}
                 </p>
-                <h1 className="mb-3 text-4xl font-semibold tracking-tight text-slate-900 sm:text-[3.35rem]">
+                <h1 className="mb-3 font-kanit text-4xl font-normal tracking-tight text-white sm:text-5xl lg:text-6xl">
                   Henry Tran
                 </h1>
-                <p className="mb-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">
+                <p className="mb-6 max-w-xl text-base leading-relaxed text-slate-300 sm:text-lg">
                   {copy.about.shortBio}
                 </p>
 
-                <div className="mb-6 flex flex-wrap items-center gap-4">
-                  <span className="inline-flex items-center gap-1.5 text-sm text-slate-500">
-                    <MapPin className="h-3.5 w-3.5 text-[#4f8e89]" />
+                <div className="mb-8 flex flex-wrap items-center gap-4">
+                  <span className="inline-flex items-center gap-1.5 text-sm text-slate-400">
+                    <MapPin className="h-3.5 w-3.5 text-[#5eb3ab]" />
                     {about.location}
                   </span>
-                  <span className="h-4 w-px bg-slate-300" />
+                  <span className="h-3.5 w-px bg-[#364156]" />
                   <div className="flex items-center gap-3">
                     {socialLinks.map(({ href, icon: Icon, label, custom }) => (
                       <a
@@ -120,7 +120,7 @@ export default function AboutPageClient() {
                         href={href}
                         target={href.startsWith("mailto") ? undefined : "_blank"}
                         rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-                        className="text-slate-500 transition-colors hover:text-slate-900"
+                        className="text-slate-400 transition-colors hover:text-white"
                         aria-label={label}
                         title={label}
                       >
@@ -130,22 +130,22 @@ export default function AboutPageClient() {
                   </div>
                 </div>
 
-                <div className="mt-8 flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-3">
                   <Button
                     asChild
                     size="lg"
-                    className="gap-2.5 rounded-full border-0 bg-[#5c9d98] text-white hover:bg-[#538f8a]"
+                    className="gap-2.5 rounded-lg border-0 bg-[#5eb3ab] font-medium text-[#161a23] hover:bg-[#72c2ba]"
                   >
                     <a href={SOCIALS.resume} target="_blank" rel="noopener noreferrer">
                       {copy.about.downloadResume}
-                      <ExternalLink className="h-4 w-4" strokeWidth={1.5} />
+                      <ExternalLink className="h-4 w-4" strokeWidth={2} />
                     </a>
                   </Button>
                   <Button
                     asChild
                     variant="outline"
                     size="lg"
-                    className="gap-2.5 rounded-full border-stone-200 bg-white text-slate-700 hover:bg-stone-50"
+                    className="gap-2.5 rounded-lg border-[#364156] bg-[#161a23] text-slate-200 hover:bg-[#232a38] hover:text-white"
                   >
                     <Link href="/portfolio">{copy.about.viewPortfolio}</Link>
                   </Button>

@@ -12,18 +12,18 @@ export default function FeaturedCreditsSection() {
 
   return (
     <section id="featured-credits" className="mb-20">
-      <h2 className="mb-2 text-3xl font-semibold tracking-tight text-slate-900">
+      <h2 className="mb-2 font-kanit text-2xl font-normal tracking-tight text-white sm:text-3xl">
         {copy.about.featuredCredits}
       </h2>
-      <p className="mb-8 max-w-2xl text-sm leading-6 text-slate-600">
+      <p className="mb-8 max-w-2xl text-sm leading-6 text-slate-400">
         {copy.about.featuredCreditsBody}
       </p>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {credits.map((item, index) => (
           <div key={`${item.image}-${index}`}>
-            <article className="overflow-hidden rounded-[1.5rem] border border-stone-200 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.05)] transition-all duration-300 hover:border-stone-300 hover:shadow-[0_18px_40px_rgba(15,23,42,0.08)]">
-              <div className="relative aspect-[3/4] border-b border-stone-200 bg-stone-50">
+            <article className="overflow-hidden rounded-xl border border-[#364156] bg-[#161a23] transition-colors duration-200 hover:border-[#5eb3ab]/60">
+              <div className="relative aspect-[3/4] border-b border-[#364156] bg-[#1c212c]">
                 <Image
                   src={item.image}
                   alt={item.title ?? "Credit"}
@@ -35,12 +35,12 @@ export default function FeaturedCreditsSection() {
               {(item.title || item.subtitle) && (
                 <div className="p-4">
                   {item.title && (
-                    <p className="text-sm font-medium text-slate-900">
+                    <p className="text-sm font-medium text-white">
                       {item.title}
                     </p>
                   )}
                   {item.subtitle && (
-                    <p className="mt-0.5 text-xs text-slate-500">
+                    <p className="mt-0.5 text-xs text-slate-400">
                       {item.subtitle}
                     </p>
                   )}
