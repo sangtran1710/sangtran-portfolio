@@ -23,10 +23,10 @@ const SPECS: SpecItem[] = [
     valueVi: "Unreal Engine 5 · Niagara · HLSL · Houdini",
   },
   {
-    labelEn: "Shipped Productions",
-    labelVi: "Dự án Sản xuất",
-    valueEn: "Marvel's Wolverine · Spider-Man 2 · Fortnite",
-    valueVi: "Marvel's Wolverine · Spider-Man 2 · Fortnite",
+    labelEn: "Production Focus",
+    labelVi: "Định hướng Sản xuất",
+    valueEn: "AAA Games · In-Engine Cinematics",
+    valueVi: "Game AAA · In-Engine Cinematics",
   },
   {
     labelEn: "Pipeline & Systems",

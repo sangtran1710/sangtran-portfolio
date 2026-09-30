@@ -45,18 +45,13 @@ export default function HeroSection() {
       >
         <div className="max-w-3xl">
           <p className="text-xs font-mono uppercase tracking-[0.24em] text-[#5eb3ab]">
-            {isVi ? "Kỹ nghệ Kỹ xảo Real-Time & Pipeline" : "Senior Technical VFX Artist"}
+            Senior VFX Artist
           </p>
           <h1 className="mt-3 font-kanit text-5xl font-normal leading-none tracking-tight text-white sm:text-6xl lg:text-7xl">
             {hero.name}
           </h1>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-200 sm:text-lg">
             {hero.description}
-          </p>
-          <p className="mt-2 text-xs font-mono text-slate-400">
-            {isVi
-              ? "Dự án: Marvel's Wolverine · Spider-Man 2 · Fortnite"
-              : "Shipped: Marvel's Wolverine · Marvel's Spider-Man 2 · Fortnite"}
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4 text-sm font-medium">
             <Link
