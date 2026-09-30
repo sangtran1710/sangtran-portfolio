@@ -26,7 +26,7 @@ export default function ProjectGrid() {
 
   return (
     <div>
-      <div className="mb-12 flex flex-wrap gap-x-6 gap-y-3 border-b border-white/10 pb-4">
+      <div className="mb-12 flex flex-wrap gap-x-6 gap-y-3 border-b border-[#364156] pb-4">
         {filters.map(({ value, label }) => (
           <button
             key={value}
@@ -35,8 +35,8 @@ export default function ProjectGrid() {
             className={cn(
               "relative pb-1 text-sm font-medium transition-colors duration-200",
               active === value
-                ? "text-white after:absolute after:-bottom-[17px] after:left-0 after:h-[2px] after:w-full after:bg-[#7db5b0]"
-                : "text-white/45 hover:text-white"
+                ? "text-white after:absolute after:-bottom-[17px] after:left-0 after:h-[2px] after:w-full after:bg-[#5eb3ab]"
+                : "text-slate-400 hover:text-white"
             )}
           >
             {label}
@@ -51,7 +51,7 @@ export default function ProjectGrid() {
           ))}
         </div>
       ) : (
-        <div className="flex w-full flex-col items-center justify-center rounded-md border border-dashed border-white/15 py-12">
+        <div className="flex w-full flex-col items-center justify-center rounded-md border border-dashed border-[#364156] py-12">
           <p className="text-sm text-white/55">{copy.common.noProjects}</p>
         </div>
       )}

@@ -66,7 +66,7 @@ export default function BlogPostPage({ params }: Props) {
   if (!post) notFound();
 
   return (
-    <div className="min-h-screen bg-zinc-950 pt-28 pb-24 relative overflow-hidden">
+    <div className="min-h-screen bg-[#1c212c] pt-28 pb-24 relative overflow-hidden">
       <MathGridBackground />
       <div className="mx-auto max-w-2xl px-6 relative z-10">
 
@@ -88,7 +88,7 @@ export default function BlogPostPage({ params }: Props) {
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-0.5 text-xs font-medium text-zinc-300"
+                  className="inline-flex items-center rounded-md border border-[#364156] bg-[#161a23] px-2.5 py-0.5 text-xs font-mono text-slate-300"
                 >
                   {tag}
                 </span>
@@ -105,7 +105,7 @@ export default function BlogPostPage({ params }: Props) {
           </p>
 
           {/* Meta bar */}
-          <div className="flex items-center gap-4 text-xs text-zinc-600 border-b border-zinc-800 pb-8">
+          <div className="flex items-center gap-4 text-xs text-slate-400 border-b border-[#364156] pb-8">
             <time dateTime={post.date}>
               {new Date(post.date).toLocaleDateString("en-US", {
                 year: "numeric",
@@ -133,36 +133,36 @@ export default function BlogPostPage({ params }: Props) {
           prose-p:text-zinc-400 prose-p:leading-relaxed prose-p:text-[15px]
           prose-a:text-teal-400 prose-a:no-underline hover:prose-a:text-teal-300 hover:prose-a:underline
           prose-strong:text-zinc-200 prose-strong:font-semibold
-          prose-code:text-teal-300 prose-code:bg-zinc-900 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-none prose-code:after:content-none
-          prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-800 prose-pre:rounded-xl
-          prose-blockquote:border-l-teal-500 prose-blockquote:text-zinc-400
-          prose-hr:border-zinc-800
-          prose-li:text-zinc-400 prose-li:leading-relaxed
+          prose-code:text-[#5eb3ab] prose-code:bg-[#161a23] prose-code:border prose-code:border-[#364156] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-none prose-code:after:content-none
+          prose-pre:bg-[#161a23] prose-pre:border prose-pre:border-[#364156] prose-pre:rounded-xl
+          prose-blockquote:border-l-[#5eb3ab] prose-blockquote:text-slate-300
+          prose-hr:border-[#364156]
+          prose-li:text-slate-300 prose-li:leading-relaxed
           prose-ul:my-4 prose-ol:my-4
         ">
           <MDXRemote source={post.content} components={{ 
             DotProductVisual, SineWaveVisual, CrossProductVisual, StepVsSmoothstepVisual,
-            UvCartesianVisual, UvPanningVisual, UvDistortionVisual,
+            UvCartesianVisual, UvPanningVisual, UvDistortionVisual, 
             SphericalMaskVisual, WorldPositionOffsetVisual, DepthFadeVisual,
             VideoPlayer, TextureCard, TextureGallery, ProductionNotice
           }} />
         </div>
 
-        <aside className="mt-16 rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 sm:p-8">
+        <aside className="mt-16 rounded-xl border border-[#364156] bg-[#232a38] p-6 sm:p-8">
           <h2 className="text-lg font-semibold text-white">Want to talk through any of this?</h2>
-          <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+          <p className="mt-2 text-sm leading-relaxed text-slate-300">
             If you have a question about a setup, need a hand with a technical problem, or spotted something I should fix, send me a note.
           </p>
           <a
             href={`mailto:${SITE.email}?subject=${encodeURIComponent(`Question about ${post.title}`)}`}
-            className="mt-5 inline-flex rounded-full border border-teal-500/40 px-4 py-2 text-sm font-medium text-teal-300 transition-colors hover:border-teal-300 hover:bg-teal-500/10"
+            className="mt-5 inline-flex rounded-full border border-[#5eb3ab]/40 px-4 py-2 text-sm font-medium text-[#5eb3ab] transition-colors hover:border-[#5eb3ab] hover:bg-[#5eb3ab]/10"
           >
             Email me ↗
           </a>
         </aside>
 
         {/* Footer */}
-        <div className="mt-16 pt-8 border-t border-zinc-800 flex items-center justify-between">
+        <div className="mt-16 pt-8 border-t border-[#364156] flex items-center justify-between">
           <Link
             href="/articles"
             className="inline-flex items-center gap-1.5 text-sm text-zinc-500 hover:text-white transition-colors"

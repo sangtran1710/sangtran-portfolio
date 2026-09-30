@@ -33,7 +33,7 @@ export default function SkillsSnapshot() {
   const displayGroups = getLocalizedSkillGroups(locale).slice(0, 3);
 
   return (
-    <section id="skills" className="relative border-t border-white/10 bg-[#070a0f] scroll-mt-24">
+    <section id="skills" className="relative border-t border-[#364156] bg-[#1c212c] scroll-mt-24">
       <div className="mx-auto max-w-5xl px-6 py-20">
         <div className="flex items-end justify-between mb-8">
           <div>

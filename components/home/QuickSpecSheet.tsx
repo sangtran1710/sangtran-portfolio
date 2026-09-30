@@ -43,10 +43,10 @@ export default function QuickSpecSheet() {
   return (
     <section
       aria-label="Technical Specification Sheet"
-      className="border-y border-[#242b38] bg-[#11141a]/95 text-white"
+      className="border-y border-[#364156] bg-[#161a23] text-white"
     >
       <div className="mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#242b38]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#364156]">
           {SPECS.map((spec) => (
             <div
               key={spec.labelEn}

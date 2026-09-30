@@ -83,7 +83,7 @@ export default function AmbientAudioPlayer() {
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: 8, scale: 0.96 }}
               transition={{ duration: 0.16, ease: [0.22, 1, 0.36, 1] }}
-              className="pointer-events-none hidden sm:flex items-center gap-2.5 rounded-full border border-white/10 bg-[#0c1015]/90 px-3 py-1.5 backdrop-blur-md shadow-lg"
+              className="pointer-events-none hidden sm:flex items-center gap-2.5 rounded-full border border-[#364156] bg-[#232a38]/95 px-3 py-1.5 backdrop-blur-md shadow-lg"
             >
               {/* Mini Equalizer Bars */}
               <div className="flex items-end gap-[2px] h-3 w-3">
@@ -141,7 +141,7 @@ export default function AmbientAudioPlayer() {
           type="button"
           onClick={togglePlay}
           aria-label={isPlaying ? "Pause ambient sound" : "Play ambient sound"}
-          className="group relative flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-[#0b0e13]/90 p-0 backdrop-blur-md shadow-[0_8px_20px_rgba(0,0,0,0.5)] transition-all duration-200 hover:scale-105 hover:border-white/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5c9d98]"
+          className="group relative flex h-10 w-10 items-center justify-center rounded-full border border-[#364156] bg-[#232a38]/95 p-0 backdrop-blur-md shadow-[0_8px_20px_rgba(0,0,0,0.5)] transition-all duration-200 hover:scale-105 hover:border-[#4b5a75] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5eb3ab]"
         >
           {/* Vinyl Disc SVG */}
           <motion.div

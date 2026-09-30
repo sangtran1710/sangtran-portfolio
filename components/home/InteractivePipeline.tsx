@@ -15,7 +15,7 @@ export default function InteractivePipeline() {
   const perfLabel = isVi ? "Mượt mà & Tối ưu" : "Optimized AAA";
 
   return (
-    <div className="mt-12 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-md p-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+    <div className="mt-12 rounded-2xl border border-[#364156] bg-[#232a38] backdrop-blur-md p-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
       <div className="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-[#5c9d98] mb-1">
@@ -58,7 +58,7 @@ export default function InteractivePipeline() {
       </div>
 
       {/* The Visual Sandbox - Fixed dimensions for perfect SVG path alignment */}
-      <div className="w-full overflow-x-auto no-scrollbar rounded-xl border border-white/5 bg-[#05080c]/90 py-4">
+      <div className="w-full overflow-x-auto no-scrollbar rounded-xl border border-[#364156] bg-[#161a23] py-4">
         <div className="relative w-[720px] h-[240px] mx-auto shrink-0 select-none">
           
           {/* Background Grid Pattern */}
@@ -96,28 +96,28 @@ export default function InteractivePipeline() {
           </svg>
 
           {/* Node 1: Houdini */}
-          <div className="absolute left-[40px] top-[30px] w-[160px] h-[60px] rounded-lg border border-[#5c9d98]/20 bg-[#070a0f]/80 p-2.5 shadow-md flex flex-col justify-center transition-colors duration-300 hover:border-[#5c9d98]/40">
+          <div className="absolute left-[40px] top-[30px] w-[160px] h-[60px] rounded-lg border border-[#5c9d98]/20 bg-[#1c212c] p-2.5 shadow-md flex flex-col justify-center transition-colors duration-300 hover:border-[#5c9d98]/40">
             <span className="block text-[8px] font-mono font-bold tracking-widest text-[#5c9d98]">PROCEDURAL</span>
             <span className="block text-xs font-semibold text-white mt-0.5">HOUDINI PIPELINE</span>
             <span className="block text-[9px] text-stone-500 mt-1 font-mono leading-none">Auto Asset Generator</span>
           </div>
 
           {/* Node 2: HLSL */}
-          <div className="absolute left-[40px] top-[150px] w-[160px] h-[60px] rounded-lg border border-[#5c9d98]/20 bg-[#070a0f]/80 p-2.5 shadow-md flex flex-col justify-center transition-colors duration-300 hover:border-[#5c9d98]/40">
+          <div className="absolute left-[40px] top-[150px] w-[160px] h-[60px] rounded-lg border border-[#5c9d98]/20 bg-[#1c212c] p-2.5 shadow-md flex flex-col justify-center transition-colors duration-300 hover:border-[#5c9d98]/40">
             <span className="block text-[8px] font-mono font-bold tracking-widest text-[#5c9d98]">SHADER LOGIC</span>
             <span className="block text-xs font-semibold text-white mt-0.5">MATERIAL SHADERS</span>
             <span className="block text-[9px] text-stone-500 mt-1 font-mono leading-none">Shader Graph Math</span>
           </div>
 
           {/* Node 3: Niagara */}
-          <div className="absolute left-[280px] top-[90px] w-[160px] h-[60px] rounded-lg border border-[#5c9d98]/20 bg-[#070a0f]/80 p-2.5 shadow-md flex flex-col justify-center transition-colors duration-300 hover:border-[#5c9d98]/40">
+          <div className="absolute left-[280px] top-[90px] w-[160px] h-[60px] rounded-lg border border-[#5c9d98]/20 bg-[#1c212c] p-2.5 shadow-md flex flex-col justify-center transition-colors duration-300 hover:border-[#5c9d98]/40">
             <span className="block text-[8px] font-mono font-bold tracking-widest text-[#5c9d98]">SIMULATION</span>
             <span className="block text-xs font-semibold text-white mt-0.5">NIAGARA VFX</span>
             <span className="block text-[9px] text-stone-500 mt-1 font-mono leading-none">Particle Physics Solvers</span>
           </div>
 
           {/* Node 4: Game Runtime */}
-          <div className="absolute left-[520px] top-[90px] w-[160px] h-[60px] rounded-lg border border-white/10 bg-[#070a0f]/80 p-2.5 shadow-md flex flex-col justify-center transition-colors duration-300 hover:border-white/20">
+          <div className="absolute left-[520px] top-[90px] w-[160px] h-[60px] rounded-lg border border-white/10 bg-[#1c212c] p-2.5 shadow-md flex flex-col justify-center transition-colors duration-300 hover:border-white/20">
             <span className="block text-[8px] font-mono font-bold tracking-widest text-stone-500">RUNTIME DISPLAY</span>
             <span className="block text-xs font-semibold text-white mt-0.5">GAME RUNTIME</span>
             <span className="block text-[9px] text-green-400 mt-1 font-mono leading-none font-bold">Stable 60 FPS (Optimized)</span>

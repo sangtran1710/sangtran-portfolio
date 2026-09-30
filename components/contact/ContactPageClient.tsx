@@ -13,14 +13,14 @@ const links = [
 
 export default function ContactPageClient() {
   return (
-    <div className="min-h-screen bg-[#070a0f] px-6 pb-20 pt-28 text-white sm:px-8 lg:px-12">
+    <div className="min-h-screen bg-[#1c212c] px-6 pb-20 pt-28 text-white sm:px-8 lg:px-12">
       <div className="mx-auto max-w-5xl">
         <Link href="/" className="inline-flex items-center gap-2 text-sm text-white/55 transition-colors hover:text-white">
           <ArrowLeft className="h-4 w-4" />
           Home
         </Link>
 
-        <div className="mt-20 border-b border-white/10 pb-14">
+        <div className="mt-20 border-b border-[#364156] pb-14">
           <h1 className="text-5xl font-medium tracking-tight sm:text-7xl">Contact</h1>
           <p className="mt-6 max-w-lg text-lg leading-8 text-white/65">
             Email is the fastest way to reach me.
@@ -34,7 +34,7 @@ export default function ContactPageClient() {
           </a>
         </div>
 
-        <nav aria-label="Contact links" className="divide-y divide-white/10">
+        <nav aria-label="Contact links" className="divide-y divide-[#364156]">
           {links.map((link) => (
             <a
               key={link.label}

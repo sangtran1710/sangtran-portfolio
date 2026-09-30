@@ -13,7 +13,7 @@ export default function FeaturedProjects() {
   return (
     <section
       id="work"
-      className="scroll-mt-24 border-t border-[#242b38] bg-[#0e1117]"
+      className="scroll-mt-24 border-t border-[#364156] bg-[#1c212c]"
     >
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-24">
         <div className="mb-10 flex items-end justify-between gap-8">
@@ -21,7 +21,7 @@ export default function FeaturedProjects() {
             <h2 className="text-3xl font-medium tracking-tight text-white sm:text-4xl">
               {copy.home.selectedWork}
             </h2>
-            <div className="hidden h-px flex-1 bg-[#242b38] sm:block" />
+            <div className="hidden h-px flex-1 bg-[#364156] sm:block" />
           </div>
           <Link
             href="/portfolio"

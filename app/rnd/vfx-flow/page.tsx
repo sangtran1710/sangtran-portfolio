@@ -51,7 +51,7 @@ const metrics = [
 
 export default function VfxFlowPage() {
   return (
-    <article className="bg-[#070a0f] text-white">
+    <article className="bg-[#1c212c] text-white">
       {/* Header */}
       <header className="mx-auto max-w-7xl px-6 pb-12 pt-28 sm:pb-16 sm:pt-32 lg:px-10">
         <Link
@@ -82,9 +82,9 @@ export default function VfxFlowPage() {
         </div>
 
         {/* Fact metadata bar */}
-        <dl className="mt-12 grid border-y border-white/10 sm:grid-cols-3">
+        <dl className="mt-12 grid border-y border-[#364156] sm:grid-cols-3">
           {facts.map((fact) => (
-            <div key={fact.label} className="py-5 sm:border-r sm:border-white/10 sm:px-6 sm:first:pl-0 sm:last:border-r-0">
+            <div key={fact.label} className="py-5 sm:border-r sm:border-[#364156] sm:px-6 sm:first:pl-0 sm:last:border-r-0">
               <dt className="text-xs text-white/45">{fact.label}</dt>
               <dd className="mt-1 text-sm font-medium text-white/85">{fact.value}</dd>
             </div>
@@ -96,7 +96,7 @@ export default function VfxFlowPage() {
           {metrics.map((m) => (
             <div
               key={m.label}
-              className="rounded-xl border border-white/10 bg-white/[0.02] p-5 backdrop-blur-sm"
+              className="rounded-xl border border-[#364156] bg-[#232a38] p-5 backdrop-blur-sm"
             >
               <div className="font-kanit text-3xl font-normal text-[#a7d2ce] sm:text-4xl">
                 {m.number}
@@ -112,7 +112,7 @@ export default function VfxFlowPage() {
 
       {/* Hero Video Section */}
       <section aria-label="VFX Flow live screencast" className="mx-auto max-w-7xl px-6 pb-20 lg:px-10">
-        <div className="overflow-hidden rounded-2xl border border-white/10 bg-black shadow-2xl">
+        <div className="overflow-hidden rounded-2xl border border-[#364156] bg-[#161a23] shadow-2xl">
           <video
             className="aspect-video w-full object-cover"
             controls
@@ -131,7 +131,7 @@ export default function VfxFlowPage() {
       </section>
 
       {/* The Core Problem */}
-      <section className="bg-[#0e131b] py-20 text-white border-y border-white/10">
+      <section className="bg-[#161a23] py-20 text-white border-y border-[#364156]">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
@@ -191,7 +191,7 @@ export default function VfxFlowPage() {
         <QualityGatePreview />
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-6">
+          <div className="rounded-xl border border-[#364156] bg-[#232a38] p-6">
             <ShieldCheck className="h-5 w-5 text-[#5c9d98] mb-3" />
             <h3 className="text-base font-medium text-white">8-Rule Validation Engine</h3>
             <p className="mt-2 text-xs leading-relaxed text-zinc-400">
@@ -199,7 +199,7 @@ export default function VfxFlowPage() {
               map suffixes (_c, _n, _g, _m), and VFX descriptor hierarchies.
             </p>
           </div>
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-6">
+          <div className="rounded-xl border border-[#364156] bg-[#232a38] p-6">
             <Zap className="h-5 w-5 text-[#5c9d98] mb-3" />
             <h3 className="text-base font-medium text-white">Particle Budget Heuristics</h3>
             <p className="mt-2 text-xs leading-relaxed text-zinc-400">
@@ -207,7 +207,7 @@ export default function VfxFlowPage() {
               before runtime profiling to prevent catastrophic overdraw spikes.
             </p>
           </div>
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-6">
+          <div className="rounded-xl border border-[#364156] bg-[#232a38] p-6">
             <Layers className="h-5 w-5 text-[#5c9d98] mb-3" />
             <h3 className="text-base font-medium text-white">Integrity & AssetKit Audits</h3>
             <p className="mt-2 text-xs leading-relaxed text-zinc-400">
@@ -219,7 +219,7 @@ export default function VfxFlowPage() {
       </section>
 
       {/* Pillar 2: Production Work Log */}
-      <section className="bg-[#0b0e14] py-24 border-t border-white/10">
+      <section className="bg-[#1c212c] py-24 border-t border-[#364156]">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center">
             <div>
@@ -259,7 +259,7 @@ export default function VfxFlowPage() {
               </ul>
             </div>
 
-            <figure className="overflow-hidden rounded-xl border border-white/10 bg-black shadow-2xl">
+            <figure className="overflow-hidden rounded-xl border border-[#364156] bg-[#161a23] shadow-2xl">
               <Image
                 src="/projects/vfx-flow/showcase_work_log.png"
                 alt="VFX Flow Work Log interface with color-coded status rows and rollover banner"
@@ -268,7 +268,7 @@ export default function VfxFlowPage() {
                 className="w-full object-cover"
                 sizes="(max-width: 1024px) 100vw, 55vw"
               />
-              <figcaption className="p-4 text-xs text-zinc-500 border-t border-white/10 bg-[#0c1017]">
+              <figcaption className="p-4 text-xs text-zinc-400 border-t border-[#364156] bg-[#161a23]">
                 Color-coded task states: Done (Green), Doing (Amber), Waiting (Blue), Blocked (Red with slip counter).
               </figcaption>
             </figure>
@@ -279,7 +279,7 @@ export default function VfxFlowPage() {
       {/* Pillar 3: Perforce Submission & Library Guard */}
       <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-center">
-          <figure className="order-2 lg:order-1 overflow-hidden rounded-xl border border-white/10 bg-black shadow-2xl">
+          <figure className="order-2 lg:order-1 overflow-hidden rounded-xl border border-[#364156] bg-[#161a23] shadow-2xl">
             <Image
               src="/projects/vfx-flow/showcase_submission_workflow.png"
               alt="Perforce Submission staging interface with color-coded asset families and dual-format descriptions"
@@ -288,7 +288,7 @@ export default function VfxFlowPage() {
               className="w-full object-cover"
               sizes="(max-width: 1024px) 100vw, 55vw"
             />
-            <figcaption className="p-4 text-xs text-zinc-500 border-t border-white/10 bg-[#0c1017]">
+            <figcaption className="p-4 text-xs text-zinc-400 border-t border-[#364156] bg-[#161a23]">
               P4 Submission Manager: Smart file visualization, dual description generators, and scheduled 23:00 auto-shelve.
             </figcaption>
           </figure>
@@ -350,7 +350,7 @@ export default function VfxFlowPage() {
       </section>
 
       {/* Architecture & Engineering Decisions */}
-      <section className="bg-[#0b0e12] py-20 border-t border-white/10">
+      <section className="bg-[#1c212c] py-20 border-t border-[#364156]">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
@@ -370,14 +370,14 @@ export default function VfxFlowPage() {
                   so the XAML WPF interface remains responsive without UI freezing during large directory queries.
                 </p>
               </div>
-              <div className="border-t border-white/10 pt-6">
+              <div className="border-t border-[#364156] pt-6">
                 <h3 className="text-lg font-medium text-white">Asset-Only Sandboxing Boundary</h3>
                 <p className="mt-2 text-sm leading-relaxed text-zinc-400">
                   The tool operates strictly in user-space without requiring administrative privileges or intrusive daemons. 
                   It interacts purely through standard Perforce CLI wrappers, ensuring safe, frictionless deployment on production workstations.
                 </p>
               </div>
-              <div className="border-t border-white/10 pt-6">
+              <div className="border-t border-[#364156] pt-6">
                 <h3 className="text-lg font-medium text-white">Confidentiality & NDA Sanitization</h3>
                 <p className="mt-2 text-sm leading-relaxed text-zinc-400">
                   Built and verified in real production at Sparx* for a confidential AAA action-adventure project. 
@@ -391,7 +391,7 @@ export default function VfxFlowPage() {
       </section>
 
       {/* Bottom CTA */}
-      <footer className="border-t border-white/10 bg-[#070a0f] py-16">
+      <footer className="border-t border-[#364156] bg-[#161a23] py-16">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 sm:flex-row lg:px-10">
           <div>
             <h3 className="font-kanit text-xl text-white">Looking for hands-on pipeline & VFX support?</h3>
@@ -400,7 +400,7 @@ export default function VfxFlowPage() {
           <div className="flex gap-4">
             <Link
               href="/portfolio#rnd"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full border border-[#364156] bg-[#232a38] px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#2b3445]"
             >
               All Experiments
             </Link>

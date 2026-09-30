@@ -13,10 +13,10 @@ export default function ProfileSection() {
   const isVi = locale === "vi";
 
   return (
-    <section id="profile" className="border-t border-[#242b38] bg-[#0e1117]">
+    <section id="profile" className="border-t border-[#364156] bg-[#1c212c]">
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-24">
         <div className="grid gap-12 lg:grid-cols-[320px_1fr] lg:items-start">
-          <div className="relative aspect-[4/5] w-full max-w-xs justify-self-center overflow-hidden rounded-lg border border-[#242b38] bg-[#151921] lg:justify-self-start">
+          <div className="relative aspect-[4/5] w-full max-w-xs justify-self-center overflow-hidden rounded-lg border border-[#364156] bg-[#232a38] lg:justify-self-start">
             {!avatarError ? (
               <Image
                 src={profile.portraitImage}

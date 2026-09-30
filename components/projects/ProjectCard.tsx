@@ -31,7 +31,7 @@ export default function ProjectCard({
     >
       <div
         className={cn(
-          "h-full rounded-lg border border-[#242b38] bg-[#151921] p-4 transition-colors duration-200 hover:border-[#3b475c] hover:bg-[#181d27] sm:p-5",
+          "h-full rounded-lg border border-[#364156] bg-[#232a38] p-4 transition-colors duration-200 hover:border-[#4b5a75] hover:bg-[#2b3445] sm:p-5",
           featured && "p-5 sm:p-6"
         )}
       >
@@ -39,7 +39,7 @@ export default function ProjectCard({
           {/* Visual Showcase - Pure image, no heavy dark vignette */}
           <div
             className={cn(
-              "relative w-full overflow-hidden rounded-md border border-[#242b38] bg-[#0e1117]",
+              "relative w-full overflow-hidden rounded-md border border-[#364156] bg-[#161a23]",
               featured ? "aspect-[16/9]" : "aspect-[16/9.5]"
             )}
           >
@@ -90,7 +90,7 @@ export default function ProjectCard({
                 {project.techStack.slice(0, 3).map((tech) => (
                   <span
                     key={tech}
-                    className="rounded border border-[#242b38] bg-[#0e1117] px-2 py-0.5 text-[10px] font-mono text-slate-400"
+                    className="rounded border border-[#364156] bg-[#161a23] px-2 py-0.5 text-[10px] font-mono text-slate-300"
                   >
                     {tech}
                   </span>

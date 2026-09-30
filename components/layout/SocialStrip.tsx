@@ -94,7 +94,7 @@ export default function SocialStrip() {
               title={label}
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className={`w-10 h-10 rounded-full border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-md flex items-center justify-center text-stone-400 transition-all duration-300 ${color}`}
+              className={`w-10 h-10 rounded-full border border-[#364156] bg-[#232a38]/90 backdrop-blur-md flex items-center justify-center text-slate-300 transition-all duration-300 ${color}`}
             >
               <Icon className="w-4 h-4" strokeWidth={1.8} />
             </motion.a>

@@ -207,14 +207,14 @@ export default function ProjectDetailPage({ params }: Props) {
             {project.evidenceBreakdown.map((item, i) => (
               <figure
                 key={i}
-                className="overflow-hidden rounded-2xl border border-white/10 bg-[#0c1017] shadow-xl"
+                className="overflow-hidden rounded-2xl border border-[#364156] bg-[#232a38] shadow-xl"
               >
                 {item.link ? (
                   <a
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative block aspect-video w-full bg-black overflow-hidden cursor-pointer"
+                    className="group relative block aspect-video w-full bg-[#161a23] overflow-hidden cursor-pointer"
                     aria-label={`Watch ${item.title}`}
                   >
                     <Image
@@ -231,7 +231,7 @@ export default function ProjectDetailPage({ params }: Props) {
                     </div>
                   </a>
                 ) : (
-                  <div className="relative aspect-video w-full bg-black">
+                  <div className="relative aspect-video w-full bg-[#161a23]">
                     <Image
                       src={item.image}
                       alt={item.title}
@@ -241,7 +241,7 @@ export default function ProjectDetailPage({ params }: Props) {
                     />
                   </div>
                 )}
-                <figcaption className="border-t border-white/10 bg-[#0e131b] p-5 sm:p-6">
+                <figcaption className="border-t border-[#364156] bg-[#161a23] p-5 sm:p-6">
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                     <h3 className="text-base font-semibold text-white">
                       {item.title}
@@ -307,9 +307,9 @@ export default function ProjectDetailPage({ params }: Props) {
                   href={watchUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-[#0c1017] transition-all hover:border-[#7db5b0]/40 hover:bg-[#0e131b]"
+                  className="group flex flex-col overflow-hidden rounded-xl border border-[#364156] bg-[#232a38] transition-all hover:border-[#4b5a75] hover:bg-[#2b3445]"
                 >
-                  <div className="relative aspect-video w-full overflow-hidden bg-zinc-950">
+                  <div className="relative aspect-video w-full overflow-hidden bg-[#161a23]">
                     <Image
                       src={`https://img.youtube.com/vi/${id}/sddefault.jpg`}
                       alt={clip.title}
@@ -352,7 +352,7 @@ export default function ProjectDetailPage({ params }: Props) {
               {project.images.map((img, i) => (
                 <div
                   key={i}
-                  className="relative aspect-video overflow-hidden rounded-xl bg-zinc-900 border border-white/10"
+                  className="relative aspect-video overflow-hidden rounded-xl bg-[#161a23] border border-[#364156]"
                 >
                   <Image
                     src={img}
@@ -368,8 +368,8 @@ export default function ProjectDetailPage({ params }: Props) {
         )}
 
       {/* 4. Compact Metadata at Bottom */}
-      <div className="rounded-2xl border border-white/10 bg-[#090d14] p-5 sm:p-6 text-xs text-zinc-400">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-4 border-b border-white/10">
+      <div className="rounded-2xl border border-[#364156] bg-[#232a38] p-5 sm:p-6 text-xs text-slate-300">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-4 border-b border-[#364156]">
           <div>
             <p className="text-[10px] font-mono uppercase tracking-wider text-zinc-500">Role</p>
             <p className="font-medium text-white mt-1 text-sm">{project.role}</p>

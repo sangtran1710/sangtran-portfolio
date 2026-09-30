@@ -9,7 +9,7 @@ export default function ContactSection() {
   const isVi = locale === "vi";
 
   return (
-    <section id="contact" className="border-t border-[#242b38] bg-[#0e1117]">
+    <section id="contact" className="border-t border-[#364156] bg-[#1c212c]">
       <div className="mx-auto max-w-7xl px-6 py-24 sm:px-8 lg:px-12 lg:py-32">
         <div>
           <div className="mb-3 flex items-center gap-2">

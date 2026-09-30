@@ -65,7 +65,7 @@ const processShots = [
 
 export default function CelestialLegionVfxPage() {
   return (
-    <article className="bg-[#070a0f] text-white">
+    <article className="bg-[#1c212c] text-white">
       <header className="mx-auto max-w-7xl px-6 pb-12 pt-28 sm:pb-16 sm:pt-32 lg:px-10">
         <Link
           href="/portfolio#rnd"
@@ -88,11 +88,11 @@ export default function CelestialLegionVfxPage() {
           </p>
         </div>
 
-        <dl className="mt-12 grid border-y border-white/10 sm:grid-cols-3">
+        <dl className="mt-12 grid border-y border-[#364156] sm:grid-cols-3">
           {facts.map((fact) => (
             <div
               key={fact.label}
-              className="py-5 sm:border-r sm:border-white/10 sm:px-6 sm:first:pl-0 sm:last:border-r-0"
+              className="py-5 sm:border-r sm:border-[#364156] sm:px-6 sm:first:pl-0 sm:last:border-r-0"
             >
               <dt className="text-xs text-white/45">{fact.label}</dt>
               <dd className="mt-1 text-sm text-white/85">{fact.value}</dd>
@@ -103,7 +103,7 @@ export default function CelestialLegionVfxPage() {
 
       {/* Video Showcase */}
       <section aria-label="Celestial Legion VFX showcase" className="mx-auto max-w-7xl px-6 pb-20 lg:px-10">
-        <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-white/10 bg-black shadow-2xl">
+        <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-[#364156] bg-[#161a23] shadow-2xl">
           <video
             className="h-full w-full object-cover"
             controls
@@ -206,7 +206,7 @@ export default function CelestialLegionVfxPage() {
 
         <div className="mt-16 grid gap-5 lg:grid-cols-2">
           <figure>
-            <div className="relative aspect-video overflow-hidden rounded-lg border border-white/10 bg-black">
+            <div className="relative aspect-video overflow-hidden rounded-lg border border-[#364156] bg-[#161a23]">
               <Image
                 src="/projects/celestial-legion-vfx/rune-circle.jpg"
                 alt="Rotating talisman rune seal around character"
@@ -221,7 +221,7 @@ export default function CelestialLegionVfxPage() {
           </figure>
 
           <figure>
-            <div className="relative aspect-video overflow-hidden rounded-lg border border-white/10 bg-black">
+            <div className="relative aspect-video overflow-hidden rounded-lg border border-[#364156] bg-[#161a23]">
               <Image
                 src="/projects/celestial-legion-vfx/army-array.jpg"
                 alt="Bird-eye view of celestial army formation on platform"
@@ -236,7 +236,7 @@ export default function CelestialLegionVfxPage() {
           </figure>
         </div>
 
-        <div className="mt-20 border-t border-white/10 pt-12">
+        <div className="mt-20 border-t border-[#364156] pt-12">
           <h2 className="font-kanit text-3xl font-light sm:text-4xl">From the workbench</h2>
           <p className="mt-3 max-w-2xl leading-7 text-white/60">
             A few snapshots from the material, character, and level tests behind the sequence.
@@ -244,7 +244,7 @@ export default function CelestialLegionVfxPage() {
           <div className="mt-8 grid gap-8 md:grid-cols-2">
             {processShots.map((shot) => (
               <figure key={shot.src}>
-                <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-white/10 bg-black">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-[#364156] bg-[#161a23]">
                   <Image
                     src={shot.src}
                     alt={shot.alt}
@@ -261,7 +261,7 @@ export default function CelestialLegionVfxPage() {
       </section>
 
       {/* Next Pass */}
-      <section className="border-t border-white/10 bg-[#0b0e12]">
+      <section className="border-t border-[#364156] bg-[#161a23]">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 py-20 sm:py-24 lg:grid-cols-[0.7fr_1.3fr] lg:px-10">
           <h2 className="font-kanit text-3xl font-light leading-tight sm:text-4xl">Future Polish</h2>
           <p className="max-w-2xl text-base leading-8 text-white/60 sm:text-lg">

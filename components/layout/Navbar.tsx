@@ -61,7 +61,7 @@ export default function Navbar() {
   }, [router]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 w-full border-b border-[#242b38] bg-[#0e1117]/85 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 w-full border-b border-[#364156] bg-[#1c212c]/90 backdrop-blur-md">
       <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-6 sm:px-8 lg:px-12">
         {/* Logo */}
         <Link href="/" className="group flex flex-row items-baseline gap-0.5 font-kanit leading-none">
@@ -128,7 +128,7 @@ export default function Navbar() {
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-72 border-[#242b38] bg-[#0e1117] p-0 text-white">
+          <SheetContent side="right" className="w-72 border-[#364156] bg-[#1c212c] p-0 text-white">
             <motion.div
               className="flex flex-col pt-20 px-6 gap-5"
               variants={containerVariants}

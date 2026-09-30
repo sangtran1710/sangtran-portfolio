@@ -37,7 +37,7 @@ export default function TechnicalSpotlight() {
   ];
 
   return (
-    <section id="technical-spotlight" className="border-t border-[#242b38] bg-[#0e1117]">
+    <section id="technical-spotlight" className="border-t border-[#364156] bg-[#1c212c]">
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-24">
         <div className="mb-10 max-w-2xl">
           <div className="mb-2 flex items-center gap-2">
@@ -57,10 +57,10 @@ export default function TechnicalSpotlight() {
               href={item.link}
               className="group block h-full"
             >
-              <div className="flex h-full flex-col justify-between overflow-hidden rounded-lg border border-[#242b38] bg-[#151921] transition-colors duration-200 hover:border-[#3b475c] hover:bg-[#181d27]">
+              <div className="flex h-full flex-col justify-between overflow-hidden rounded-lg border border-[#364156] bg-[#232a38] transition-colors duration-200 hover:border-[#4b5a75] hover:bg-[#2b3445]">
                 <div>
                   {/* Visual Showcase - Clear and crisp */}
-                  <div className="relative aspect-video w-full overflow-hidden border-b border-[#242b38] bg-[#0e1117]">
+                  <div className="relative aspect-video w-full overflow-hidden border-b border-[#364156] bg-[#161a23]">
                     <Image
                       src={item.image}
                       alt={item.title}

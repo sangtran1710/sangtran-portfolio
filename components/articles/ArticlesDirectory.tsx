@@ -64,7 +64,7 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
     : "Field notes on real-time VFX, HLSL shader mechanics, simulation math, and production pipeline tools.";
 
   return (
-    <div className="min-h-screen pt-24 sm:pt-28 pb-20 text-white bg-[#0e1117]">
+    <div className="min-h-screen pt-24 sm:pt-28 pb-20 text-white bg-[#1c212c]">
       <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <header className="mb-10 max-w-2xl">
           <div className="mb-2 flex items-center gap-2">
@@ -81,20 +81,20 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
         </header>
 
         {/* Flat Technical Tab Filters */}
-        <div className="mb-8 flex flex-wrap gap-2 border-b border-[#242b38] pb-4">
+        <div className="mb-8 flex flex-wrap gap-2 border-b border-[#364156] pb-4">
           <button
             type="button"
             onClick={() => handleTabChange("all")}
             className={cn(
               "flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono rounded-md border transition-colors",
               activeTab === "all"
-                ? "bg-[#181e28] text-white border-[#5eb3ab]"
-                : "bg-[#11141a] text-slate-400 border-[#242b38] hover:border-slate-600 hover:text-slate-200"
+                ? "bg-[#2b3445] text-white border-[#5eb3ab]"
+                : "bg-[#161a23] text-slate-400 border-[#364156] hover:border-slate-500 hover:text-slate-200"
             )}
           >
             <Layers className="h-3.5 w-3.5 text-[#5eb3ab]" />
             <span>{isVi ? "TẤT CẢ" : "ALL NOTES"}</span>
-            <span className="font-mono text-[10px] text-slate-500">[{allPosts.length}]</span>
+            <span className="font-mono text-[10px] text-slate-400">[{allPosts.length}]</span>
           </button>
 
           <button
@@ -103,13 +103,13 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
             className={cn(
               "flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono rounded-md border transition-colors",
               activeTab === "tools"
-                ? "bg-[#181e28] text-white border-[#5eb3ab]"
-                : "bg-[#11141a] text-slate-400 border-[#242b38] hover:border-slate-600 hover:text-slate-200"
+                ? "bg-[#2b3445] text-white border-[#5eb3ab]"
+                : "bg-[#161a23] text-slate-400 border-[#364156] hover:border-slate-500 hover:text-slate-200"
             )}
           >
             <Wrench className="h-3.5 w-3.5 text-[#5eb3ab]" />
             <span>{isVi ? "CÔNG CỤ & PIPELINE" : "TOOLS & PIPELINE"}</span>
-            <span className="font-mono text-[10px] text-slate-500">[{toolPosts.length}]</span>
+            <span className="font-mono text-[10px] text-slate-400">[{toolPosts.length}]</span>
           </button>
 
           <button
@@ -118,13 +118,13 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
             className={cn(
               "flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono rounded-md border transition-colors",
               activeTab === "math"
-                ? "bg-[#181e28] text-white border-[#5eb3ab]"
-                : "bg-[#11141a] text-slate-400 border-[#242b38] hover:border-slate-600 hover:text-slate-200"
+                ? "bg-[#2b3445] text-white border-[#5eb3ab]"
+                : "bg-[#161a23] text-slate-400 border-[#364156] hover:border-slate-500 hover:text-slate-200"
             )}
           >
             <Calculator className="h-3.5 w-3.5 text-[#5eb3ab]" />
             <span>{isVi ? "TOÁN CHO VFX" : "MATH FOR VFX"}</span>
-            <span className="font-mono text-[10px] text-slate-500">[{mathPosts.length}]</span>
+            <span className="font-mono text-[10px] text-slate-400">[{mathPosts.length}]</span>
           </button>
         </div>
 
@@ -139,11 +139,11 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
               return (
                 <article
                   key={post.slug}
-                  className="group relative flex flex-col justify-between overflow-hidden rounded-lg border border-[#242b38] bg-[#151921] transition-colors duration-200 hover:border-[#3b475c] hover:bg-[#181d27]"
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-lg border border-[#364156] bg-[#232a38] transition-colors duration-200 hover:border-[#4b5a75] hover:bg-[#2b3445]"
                 >
                   {/* Thumbnail rendering - Clean and unmuted */}
                   {post.thumbnail && (
-                    <div className="relative h-48 w-full overflow-hidden border-b border-[#242b38] bg-[#0e1117]">
+                    <div className="relative h-48 w-full overflow-hidden border-b border-[#364156] bg-[#161a23]">
                       <Image
                         src={post.thumbnail}
                         alt={post.title}
@@ -161,7 +161,7 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
                   <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                     <div>
                       <div className="flex flex-wrap items-center gap-2 text-[11px] font-mono">
-                        <span className="rounded-sm border border-[#242b38] bg-[#0e1117] px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-[#5eb3ab]">
+                        <span className="rounded-sm border border-[#364156] bg-[#161a23] px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-[#5eb3ab]">
                           [{categoryBadge.toUpperCase()}]
                         </span>
                         <span className="text-slate-500">•</span>
@@ -187,11 +187,11 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
                       )}
                     </div>
 
-                    <div className="mt-5 flex flex-wrap gap-1.5 pt-4 border-t border-[#242b38]">
+                    <div className="mt-5 flex flex-wrap gap-1.5 pt-4 border-t border-[#364156]">
                       {post.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-sm border border-[#242b38] bg-[#0e1117] px-2 py-0.5 text-[10px] font-mono text-slate-400"
+                          className="rounded-sm border border-[#364156] bg-[#161a23] px-2 py-0.5 text-[10px] font-mono text-slate-300"
                         >
                           #{tag}
                         </span>

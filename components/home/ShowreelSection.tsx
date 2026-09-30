@@ -83,7 +83,7 @@ export default function ShowreelSection({
       </div>
 
       {hasError ? (
-        <div className="flex aspect-video flex-col items-center justify-center rounded-2xl border border-zinc-800 bg-zinc-900/50">
+        <div className="flex aspect-video flex-col items-center justify-center rounded-2xl border border-[#364156] bg-[#232a38]">
           <p className="mb-4 text-sm text-zinc-500">
             {copy.common.videoUnavailable}
           </p>
@@ -104,7 +104,7 @@ export default function ShowreelSection({
           </Button>
         </div>
       ) : (
-        <div className="group relative overflow-hidden rounded-2xl bg-zinc-950 shadow-2xl ring-1 ring-white/5">
+        <div className="group relative overflow-hidden rounded-2xl bg-[#161a23] shadow-2xl ring-1 ring-[#364156]">
           <video
             ref={videoRef}
             src={hero.showreelUrl}

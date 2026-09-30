@@ -8,9 +8,9 @@ export default function QualityGatePreview() {
   const [mode, setMode] = useState<"blocked" | "ready">("blocked");
 
   return (
-    <div className="overflow-hidden rounded-xl border border-white/10 bg-[#0c1017]">
+    <div className="overflow-hidden rounded-xl border border-[#364156] bg-[#161a23]">
       {/* Tab Header Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 bg-[#121822] px-5 py-4 sm:px-6">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#364156] bg-[#232a38] px-5 py-4 sm:px-6">
         <div className="flex items-center gap-2">
           {mode === "blocked" ? (
             <ShieldAlert className="h-5 w-5 text-rose-400" />
@@ -22,7 +22,7 @@ export default function QualityGatePreview() {
           </span>
         </div>
 
-        <div className="inline-flex rounded-lg border border-white/10 bg-black/40 p-1">
+        <div className="inline-flex rounded-lg border border-[#364156] bg-[#161a23] p-1">
           <button
             type="button"
             onClick={() => setMode("blocked")}
@@ -51,7 +51,7 @@ export default function QualityGatePreview() {
       </div>
 
       {/* Screen Preview */}
-      <div className="relative aspect-[16/9] w-full bg-black">
+      <div className="relative aspect-[16/9] w-full bg-[#161a23]">
         <Image
           src={
             mode === "blocked"
@@ -70,7 +70,7 @@ export default function QualityGatePreview() {
       </div>
 
       {/* Explanation Banner */}
-      <div className="border-t border-white/10 bg-[#0f141c] p-5 sm:p-6">
+      <div className="border-t border-[#364156] bg-[#232a38] p-5 sm:p-6">
         {mode === "blocked" ? (
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-rose-400 text-xs font-semibold uppercase tracking-wider">

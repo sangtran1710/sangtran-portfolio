@@ -49,7 +49,7 @@ export default function BackstorySection() {
     <section
       ref={sectionRef}
       id="backstory"
-      className="relative min-h-[80vh] py-24 lg:py-32 overflow-hidden bg-[#0b0e14]"
+      className="relative min-h-[80vh] py-24 lg:py-32 overflow-hidden bg-[#1c212c]"
     >
       <motion.div
         className="absolute inset-0 opacity-[0.045] will-change-transform"

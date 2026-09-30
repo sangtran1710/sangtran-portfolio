@@ -30,10 +30,10 @@ export default function RunningTicker() {
   const scrollItems = [...tickerItems, ...tickerItems, ...tickerItems];
 
   return (
-    <section className="relative z-10 w-full overflow-hidden border-y border-white/5 bg-[#05080c] py-4">
+    <section className="relative z-10 w-full overflow-hidden border-y border-[#364156] bg-[#161a23] py-4">
       {/* Left & Right gradient fade overlays for high-end cinematic feel */}
-      <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-32 bg-gradient-to-r from-[#05080c] to-transparent" />
-      <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-32 bg-gradient-to-l from-[#05080c] to-transparent" />
+      <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-32 bg-gradient-to-r from-[#161a23] to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-32 bg-gradient-to-l from-[#161a23] to-transparent" />
 
       <div className="relative flex w-full items-center overflow-hidden">
         {/* Scrolling container - Slowed down to 60s for premium readability */}
@@ -46,13 +46,13 @@ export default function RunningTicker() {
           {scrollItems.map((item, index) => (
             <div
               key={`${item.name}-${index}`}
-              className="flex items-center gap-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-stone-500 transition-colors duration-300 hover:text-white group cursor-default"
+              className="flex items-center gap-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-slate-400 transition-colors duration-300 hover:text-white group cursor-default"
             >
               {item.path && (
                 <svg
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="h-4 w-4 shrink-0 opacity-40 text-stone-500 transition-all duration-300 group-hover:text-[#5c9d98] group-hover:opacity-100"
+                  className="h-4 w-4 shrink-0 opacity-40 text-slate-400 transition-all duration-300 group-hover:text-[#5eb3ab] group-hover:opacity-100"
                   style={{
                     transform: `scale(${item.scale || 1})`,
                   }}
@@ -62,7 +62,7 @@ export default function RunningTicker() {
                 </svg>
               )}
               <span>{item.name}</span>
-              <span className="text-slate-600 font-normal select-none ml-6">/</span>
+              <span className="text-slate-500 font-normal select-none ml-6">/</span>
             </div>
           ))}
         </div>

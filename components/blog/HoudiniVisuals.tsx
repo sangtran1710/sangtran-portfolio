@@ -15,8 +15,8 @@ export function VideoPlayer({
   caption?: string;
 }) {
   return (
-    <figure className="my-8 rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900/60 shadow-2xl transition-all">
-      <div className="relative aspect-video w-full bg-black">
+    <figure className="my-8 rounded-xl overflow-hidden border border-[#364156] bg-[#232a38] shadow-2xl transition-all">
+      <div className="relative aspect-video w-full bg-[#161a23]">
         <video
           src={src}
           poster={poster}
@@ -27,7 +27,7 @@ export function VideoPlayer({
         />
       </div>
       {caption && (
-        <figcaption className="px-4 py-3 text-xs text-zinc-400 bg-zinc-900/40 border-t border-zinc-800/60 leading-relaxed">
+        <figcaption className="px-4 py-3 text-xs text-slate-300 bg-[#161a23] border-t border-[#364156] leading-relaxed">
           {caption}
         </figcaption>
       )}
@@ -52,8 +52,8 @@ export function TextureCard({
 }) {
   const text = caption || description;
   return (
-    <div className="group rounded-xl border border-zinc-800/80 bg-zinc-900/50 p-3 hover:border-teal-500/40 transition-colors">
-      <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-zinc-950 border border-zinc-800/60 mb-2.5">
+    <div className="group rounded-xl border border-[#364156] bg-[#232a38] p-3 hover:border-[#4b5a75] transition-colors">
+      <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-[#161a23] border border-[#364156] mb-2.5">
         <Image
           src={src}
           alt={title}
@@ -70,7 +70,7 @@ export function TextureCard({
       <div className="flex items-center justify-between mb-0.5">
         <h4 className="text-sm font-semibold text-zinc-200">{title}</h4>
         {type && (
-          <span className="text-[10px] px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-400 font-mono">
+          <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#161a23] border border-[#364156] text-slate-300 font-mono">
             {type}
           </span>
         )}
@@ -90,7 +90,7 @@ export function TextureGallery({
   children: React.ReactNode;
 }) {
   return (
-    <div className="my-6 rounded-xl border border-zinc-800/80 bg-zinc-950/60 p-4">
+    <div className="my-6 rounded-xl border border-[#364156] bg-[#161a23] p-4">
       {(title || description) && (
         <div className="mb-3">
           {title && (
@@ -118,7 +118,7 @@ export function ProductionNotice({
   children?: React.ReactNode;
 }) {
   return (
-    <aside className="my-6 border-l-2 border-zinc-700 bg-zinc-900/40 px-4 py-3 text-xs text-zinc-400 rounded-r-xl">
+    <aside className="my-6 border-l-2 border-[#5eb3ab] bg-[#232a38] px-4 py-3 text-xs text-slate-300 rounded-r-xl">
       <div className="leading-relaxed text-zinc-400">
         {children || (
           <span>

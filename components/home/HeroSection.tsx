@@ -24,7 +24,7 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-[68svh] items-end overflow-hidden bg-[#0e1117] pt-[4.5rem] sm:min-h-[72svh]"
+      className="relative flex min-h-[68svh] items-end overflow-hidden bg-[#1c212c] pt-[4.5rem] sm:min-h-[72svh]"
     >
       <div className="absolute inset-0">
         <Image
@@ -36,8 +36,8 @@ export default function HeroSection() {
           className="object-cover object-[50%_30%] opacity-90 brightness-105"
         />
       </div>
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(14,17,23,0.85)_0%,rgba(14,17,23,0.35)_45%,rgba(14,17,23,0.05)_100%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(0deg,rgba(14,17,23,0.95)_0%,rgba(14,17,23,0)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(28,33,44,0.88)_0%,rgba(28,33,44,0.38)_45%,rgba(28,33,44,0.05)_100%)]" />
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(0deg,rgba(28,33,44,0.96)_0%,rgba(28,33,44,0)_100%)]" />
       <AtmosphericVfxCanvas />
 
       <motion.div

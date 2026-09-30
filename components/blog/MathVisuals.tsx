@@ -66,7 +66,7 @@ export const DotProductVisual = () => {
   const projection = vecB.x; 
 
   return (
-    <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
+    <div ref={containerRef} className="w-full flex justify-center py-10 bg-[#232a38] rounded-xl border border-[#364156] my-8 overflow-hidden relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(20,184,166,0.05)_0%,transparent_70%)] pointer-events-none" />
       <svg width="300" height="200" viewBox="-50 -100 200 200" className="max-w-full h-auto overflow-hidden" role="img" aria-label="Two rotating vectors and their dot product">
         {/* Grid */}
@@ -122,7 +122,7 @@ export const SineWaveVisual = () => {
   }).join(" ");
 
   return (
-    <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
+    <div ref={containerRef} className="w-full flex justify-center py-10 bg-[#232a38] rounded-xl border border-[#364156] my-8 overflow-hidden relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.05)_0%,transparent_70%)] pointer-events-none" />
       <svg width="400" height="150" viewBox="0 -75 400 150" className="max-w-full h-auto overflow-hidden" role="img" aria-label="Sine and cosine waves with a quarter-cycle offset">
         {/* Grid */}
@@ -174,7 +174,7 @@ export const CrossProductVisual = () => {
   const cy = -80;
 
   return (
-    <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
+    <div ref={containerRef} className="w-full flex justify-center py-10 bg-[#232a38] rounded-xl border border-[#364156] my-8 overflow-hidden relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(244,63,94,0.05)_0%,transparent_70%)] pointer-events-none" />
       <svg width="300" height="200" viewBox="-150 -120 300 200" className="max-w-full h-auto overflow-hidden" role="img" aria-label="Two perpendicular vectors and their cross product">
         {/* Origin */}
@@ -227,7 +227,7 @@ export const StepVsSmoothstepVisual = () => {
   }
 
   return (
-    <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
+    <div ref={containerRef} className="w-full flex justify-center py-10 bg-[#232a38] rounded-xl border border-[#364156] my-8 overflow-hidden relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(234,179,8,0.05)_0%,transparent_70%)] pointer-events-none" />
       <svg width="400" height="150" viewBox="0 -20 400 150" className="max-w-full h-auto overflow-hidden" role="img" aria-label="Step and smoothstep curves with animated input">
         {/* Grid */}
@@ -270,7 +270,7 @@ export const UvCartesianVisual = () => {
   };
 
   return (
-    <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
+    <div ref={containerRef} className="w-full flex justify-center py-10 bg-[#232a38] rounded-xl border border-[#364156] my-8 overflow-hidden relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.05)_0%,transparent_70%)] pointer-events-none" />
       <svg width="280" height="280" viewBox="-35 -25 280 280" className="max-w-full h-auto overflow-hidden" role="img" aria-label="Animated position in UV coordinates">
         <defs>
@@ -314,7 +314,7 @@ export const UvPanningVisual = () => {
   const offset = (time * 50) % 100;
 
   return (
-    <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
+    <div ref={containerRef} className="w-full flex justify-center py-10 bg-[#232a38] rounded-xl border border-[#364156] my-8 overflow-hidden relative">
       <svg width="300" height="100" viewBox="0 0 300 100" className="max-w-full h-auto overflow-hidden border border-white/10" role="img" aria-label="Repeating texture coordinates moving over time">
         <defs>
           <pattern id="checker" x={offset} y="0" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -337,7 +337,7 @@ export const UvDistortionVisual = () => {
   const { containerRef, time } = useVisibleAnimationTime();
 
   return (
-    <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
+    <div ref={containerRef} className="w-full flex justify-center py-10 bg-[#232a38] rounded-xl border border-[#364156] my-8 overflow-hidden relative">
       <svg width="220" height="220" viewBox="-10 -10 220 220" className="max-w-full h-auto overflow-hidden" role="img" aria-label="Grid distorted by animated offsets">
         <g stroke="rgba(20,184,166,0.5)" strokeWidth="2" fill="none">
           {Array.from({ length: 11 }).map((_, i) => {
@@ -381,7 +381,7 @@ export const SphericalMaskVisual = () => {
   const maskValue = Math.max(0, 1 - distance / radius);
 
   return (
-    <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
+    <div ref={containerRef} className="w-full flex justify-center py-10 bg-[#232a38] rounded-xl border border-[#364156] my-8 overflow-hidden relative">
       <svg width="320" height="320" viewBox="-160 -160 320 320" className="max-w-full h-auto overflow-hidden" role="img" aria-label="Distance from a moving point to the center of a radial mask">
         <circle cx="0" cy="0" r={radius} fill="rgba(239,68,68,0.1)" stroke="#ef4444" strokeWidth="2" strokeDasharray="4" />
         <circle cx="0" cy="0" r="4" fill="#ef4444" />
@@ -405,7 +405,7 @@ export const WorldPositionOffsetVisual = () => {
   const { containerRef, time } = useVisibleAnimationTime();
 
   return (
-    <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
+    <div ref={containerRef} className="w-full flex justify-center py-10 bg-[#232a38] rounded-xl border border-[#364156] my-8 overflow-hidden relative">
       <svg width="400" height="200" viewBox="0 -100 400 200" className="max-w-full h-auto overflow-hidden" role="img" aria-label="Vertices displaced into an animated wave">
         <line x1="0" y1="0" x2="400" y2="0" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeDasharray="4" />
         {Array.from({ length: 21 }).map((_, i) => {
@@ -438,7 +438,7 @@ export const DepthFadeVisual = () => {
   const opacity = Math.min(1, depthDiff / fadeDistance);
 
   return (
-    <div ref={containerRef} className="w-full flex justify-center py-10 bg-zinc-900/50 rounded-2xl border border-zinc-800 my-8 overflow-hidden relative">
+    <div ref={containerRef} className="w-full flex justify-center py-10 bg-[#232a38] rounded-xl border border-[#364156] my-8 overflow-hidden relative">
       <svg width="340" height="220" viewBox="-170 -110 340 220" className="max-w-full h-auto overflow-hidden" role="img" aria-label="Particle opacity fading near a solid surface">
         {/* Wall */}
         <rect x="-150" y="-10" width="300" height="20" fill="rgba(255,255,255,0.1)" stroke="#fff" strokeWidth="2" />
