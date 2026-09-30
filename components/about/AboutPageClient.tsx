@@ -64,7 +64,7 @@ export default function AboutPageClient() {
   );
 
   return (
-    <div className="min-h-screen bg-[linear-gradient(180deg,#11171e_0%,#171d24_10%,#f6f2eb_10%,#f6f2eb_100%)] pt-20">
+    <div className="min-h-screen bg-[linear-gradient(180deg,#1c212c_0%,#232a38_10%,#f6f2eb_10%,#f6f2eb_100%)] pt-20">
       <div ref={heroRef} className="relative overflow-hidden pb-16">
         <AboutHeroBackground />
 

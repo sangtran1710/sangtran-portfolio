@@ -65,7 +65,7 @@ export default function VfxFlowPage() {
         <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-end">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-3">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-[#5c9d98]/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#7db5b0] border border-[#5c9d98]/25">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[#5c9d98]/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#5eb3ab] border border-[#5c9d98]/25">
                 <Wrench className="h-3.5 w-3.5" />
                 Pipeline Tooling & Quality Gate
               </span>
@@ -135,7 +135,7 @@ export default function VfxFlowPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-[#7db5b0] mb-2">
+              <p className="text-xs font-semibold uppercase tracking-wider text-[#5eb3ab] mb-2">
                 Production Context
               </p>
               <h2 className="font-kanit text-3xl font-light leading-tight sm:text-4xl">
@@ -176,7 +176,7 @@ export default function VfxFlowPage() {
       {/* Pillar 1: Automated Asset QC & Submission Gate */}
       <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
         <div className="mb-12 max-w-3xl">
-          <span className="text-xs font-semibold uppercase tracking-wider text-[#7db5b0]">
+          <span className="text-xs font-semibold uppercase tracking-wider text-[#5eb3ab]">
             Pillar 01
           </span>
           <h2 className="mt-2 font-kanit text-3xl font-light sm:text-4xl">
@@ -223,7 +223,7 @@ export default function VfxFlowPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#7db5b0]">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#5eb3ab]">
                 Pillar 02
               </span>
               <h2 className="mt-2 font-kanit text-3xl font-light sm:text-4xl">
@@ -294,7 +294,7 @@ export default function VfxFlowPage() {
           </figure>
 
           <div className="order-1 lg:order-2">
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#7db5b0]">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#5eb3ab]">
               Pillar 03
             </span>
             <h2 className="mt-2 font-kanit text-3xl font-light sm:text-4xl">
@@ -307,7 +307,7 @@ export default function VfxFlowPage() {
 
             <div className="mt-8 space-y-6">
               <div className="flex gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#5c9d98]/10 text-[#7db5b0]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#5c9d98]/10 text-[#5eb3ab]">
                   <Lock className="h-5 w-5" />
                 </div>
                 <div>
@@ -320,7 +320,7 @@ export default function VfxFlowPage() {
               </div>
 
               <div className="flex gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#5c9d98]/10 text-[#7db5b0]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#5c9d98]/10 text-[#5eb3ab]">
                   <Terminal className="h-5 w-5" />
                 </div>
                 <div>
@@ -333,7 +333,7 @@ export default function VfxFlowPage() {
               </div>
 
               <div className="flex gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#5c9d98]/10 text-[#7db5b0]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#5c9d98]/10 text-[#5eb3ab]">
                   <Clock className="h-5 w-5" />
                 </div>
                 <div>
@@ -354,7 +354,7 @@ export default function VfxFlowPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-[#7db5b0] mb-2">
+              <p className="text-xs font-semibold uppercase tracking-wider text-[#5eb3ab] mb-2">
                 Engineering
               </p>
               <h2 className="font-kanit text-3xl font-light leading-tight sm:text-4xl">

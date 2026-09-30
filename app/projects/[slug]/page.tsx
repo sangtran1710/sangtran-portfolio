@@ -108,7 +108,7 @@ export default function ProjectDetailPage({ params }: Props) {
             </Badge>
           ))}
           {project.engine && (
-            <Badge variant="outline" className="border-[#7db5b0]/40 text-[#7db5b0] text-xs">
+            <Badge variant="outline" className="border-[#5eb3ab]/40 text-[#5eb3ab] text-xs">
               {project.engine}
             </Badge>
           )}
@@ -121,7 +121,7 @@ export default function ProjectDetailPage({ params }: Props) {
           {project.client && (
             <>
               {" @ "}
-              <span className="text-[#7db5b0] font-medium">{project.client}</span>
+              <span className="text-[#5eb3ab] font-medium">{project.client}</span>
             </>
           )}
         </p>
@@ -198,7 +198,7 @@ export default function ProjectDetailPage({ params }: Props) {
                 className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs font-medium text-white transition-colors hover:bg-white/10"
               >
                 Official Steam Store
-                <ArrowUpRight className="h-3.5 w-3.5 text-[#7db5b0]" />
+                <ArrowUpRight className="h-3.5 w-3.5 text-[#5eb3ab]" />
               </a>
             )}
           </div>
@@ -269,9 +269,9 @@ export default function ProjectDetailPage({ params }: Props) {
                             href={ts.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-1.5 text-xs text-zinc-200 transition-all hover:border-[#7db5b0]/50 hover:bg-[#7db5b0]/10 hover:text-white"
+                            className="group inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-1.5 text-xs text-zinc-200 transition-all hover:border-[#5eb3ab]/50 hover:bg-[#5eb3ab]/10 hover:text-white"
                           >
-                            <Play className="h-3 w-3 fill-[#7db5b0] text-[#7db5b0] group-hover:scale-110 transition-transform" />
+                            <Play className="h-3 w-3 fill-[#5eb3ab] text-[#5eb3ab] group-hover:scale-110 transition-transform" />
                             <span className="font-mono text-[#a7d2ce] font-semibold">{ts.time}</span>
                             <span className="text-zinc-300 group-hover:text-white">{ts.label}</span>
                             <ArrowUpRight className="h-3 w-3 text-zinc-500 group-hover:text-zinc-300" />
@@ -376,7 +376,7 @@ export default function ProjectDetailPage({ params }: Props) {
           </div>
           <div>
             <p className="text-[10px] font-mono uppercase tracking-wider text-zinc-500">Engine</p>
-            <p className="font-medium text-[#7db5b0] mt-1 text-sm">{project.engine || "Proprietary"}</p>
+            <p className="font-medium text-[#5eb3ab] mt-1 text-sm">{project.engine || "Proprietary"}</p>
           </div>
           <div>
             <p className="text-[10px] font-mono uppercase tracking-wider text-zinc-500">Platform</p>
@@ -422,7 +422,7 @@ export default function ProjectDetailPage({ params }: Props) {
                 className="inline-flex items-center gap-1 rounded-lg border border-white/20 bg-white/5 px-2.5 py-1 text-xs font-medium text-white hover:bg-white/10 transition-colors"
               >
                 Steam Store
-                <ArrowUpRight className="h-3 w-3 text-[#7db5b0]" />
+                <ArrowUpRight className="h-3 w-3 text-[#5eb3ab]" />
               </a>
             )}
           </div>

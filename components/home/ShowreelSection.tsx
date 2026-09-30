@@ -60,7 +60,7 @@ export default function ShowreelSection({
     <section id="reel" className="mx-auto max-w-5xl px-6 py-8">
       <div className="mb-6 flex items-end justify-between">
         <div>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-teal-400">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-[#5eb3ab]">
             Showreel
           </p>
           <Heading className="mt-2 text-3xl font-extrabold uppercase tracking-[0.1em] text-white sm:text-4xl lg:text-5xl">
