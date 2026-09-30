@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Clock, Calculator, Wrench, Layers } from "lucide-react";
+import { Clock } from "lucide-react";
 import type { BlogPostMeta } from "@/lib/blog";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { formatDateByLocale } from "@/lib/i18n";
@@ -58,21 +58,19 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
         ? mathPosts 
         : allPosts;
 
-  const headingText = isVi ? "Ghi chú kỹ thuật & R&D" : "Technical Notes & R&D";
+  const headingText = isVi ? "Ghi chép Kỹ thuật & R&D" : "Technical Notes & R&D";
   const subtitleText = isVi
     ? "Ghi chép thực chiến về Niagara VFX, shader HLSL, toán mô phỏng và công cụ pipeline trong game AAA."
     : "Field notes on real-time VFX, HLSL shader mechanics, simulation math, and production pipeline tools.";
 
   return (
     <div className="min-h-screen pt-24 sm:pt-28 pb-20 text-white bg-[#1c212c]">
-      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <header className="mb-10 max-w-2xl">
-          <div className="mb-2 flex items-center gap-2">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#5eb3ab]">
-              KNOWLEDGE BASE & LAB NOTES
-            </span>
-          </div>
-          <h1 className="text-4xl font-kanit font-medium tracking-tight text-white sm:text-5xl">
+      <main className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+        <header className="mb-12 max-w-2xl">
+          <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#5eb3ab]">
+            {isVi ? "GHI CHÉP THỰC CHIẾN" : "TECHNICAL JOURNAL & LAB NOTES"}
+          </span>
+          <h1 className="mt-2 text-4xl font-kanit font-normal tracking-tight text-white sm:text-5xl">
             {headingText}
           </h1>
           <p className="mt-4 text-base leading-relaxed text-slate-300">
@@ -80,57 +78,54 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
           </p>
         </header>
 
-        {/* Flat Technical Tab Filters */}
-        <div className="mb-8 flex flex-wrap gap-2 border-b border-[#364156] pb-4">
+        {/* Clean Filter Tabs */}
+        <div className="mb-10 flex flex-wrap gap-2 border-b border-[#364156]/60 pb-4">
           <button
             type="button"
             onClick={() => handleTabChange("all")}
             className={cn(
-              "flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono rounded-md border transition-colors",
+              "px-4 py-1.5 text-xs font-mono transition-colors",
               activeTab === "all"
-                ? "bg-[#2b3445] text-white border-[#5eb3ab]"
-                : "bg-[#161a23] text-slate-400 border-[#364156] hover:border-slate-500 hover:text-slate-200"
+                ? "border-b-2 border-[#5eb3ab] font-medium text-white"
+                : "text-slate-400 hover:text-white"
             )}
           >
-            <Layers className="h-3.5 w-3.5 text-[#5eb3ab]" />
-            <span>{isVi ? "TẤT CẢ" : "ALL NOTES"}</span>
-            <span className="font-mono text-[10px] text-slate-400">[{allPosts.length}]</span>
+            <span>{isVi ? "Tất cả" : "All Notes"}</span>
+            <span className="ml-1.5 text-slate-500">({allPosts.length})</span>
           </button>
 
           <button
             type="button"
             onClick={() => handleTabChange("tools")}
             className={cn(
-              "flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono rounded-md border transition-colors",
+              "px-4 py-1.5 text-xs font-mono transition-colors",
               activeTab === "tools"
-                ? "bg-[#2b3445] text-white border-[#5eb3ab]"
-                : "bg-[#161a23] text-slate-400 border-[#364156] hover:border-slate-500 hover:text-slate-200"
+                ? "border-b-2 border-[#5eb3ab] font-medium text-white"
+                : "text-slate-400 hover:text-white"
             )}
           >
-            <Wrench className="h-3.5 w-3.5 text-[#5eb3ab]" />
-            <span>{isVi ? "CÔNG CỤ & PIPELINE" : "TOOLS & PIPELINE"}</span>
-            <span className="font-mono text-[10px] text-slate-400">[{toolPosts.length}]</span>
+            <span>{isVi ? "Công cụ & Pipeline" : "Tools & Pipeline"}</span>
+            <span className="ml-1.5 text-slate-500">({toolPosts.length})</span>
           </button>
 
           <button
             type="button"
             onClick={() => handleTabChange("math")}
             className={cn(
-              "flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono rounded-md border transition-colors",
+              "px-4 py-1.5 text-xs font-mono transition-colors",
               activeTab === "math"
-                ? "bg-[#2b3445] text-white border-[#5eb3ab]"
-                : "bg-[#161a23] text-slate-400 border-[#364156] hover:border-slate-500 hover:text-slate-200"
+                ? "border-b-2 border-[#5eb3ab] font-medium text-white"
+                : "text-slate-400 hover:text-white"
             )}
           >
-            <Calculator className="h-3.5 w-3.5 text-[#5eb3ab]" />
-            <span>{isVi ? "TOÁN CHO VFX" : "MATH FOR VFX"}</span>
-            <span className="font-mono text-[10px] text-slate-400">[{mathPosts.length}]</span>
+            <span>{isVi ? "Toán cho VFX" : "Math for VFX"}</span>
+            <span className="ml-1.5 text-slate-500">({mathPosts.length})</span>
           </button>
         </div>
 
-        {/* Precision Post Grid */}
+        {/* Flat Editorial Article Grid */}
         <section>
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-10 md:grid-cols-2">
             {displayedPosts.map((post, index) => {
               const isMath = isMathPost(post);
               const isVfxStudy = post.tags.includes("VFX Study");
@@ -139,65 +134,57 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
               return (
                 <article
                   key={post.slug}
-                  className="group relative flex flex-col justify-between overflow-hidden rounded-lg border border-[#364156] bg-[#232a38] transition-colors duration-200 hover:border-[#4b5a75] hover:bg-[#2b3445]"
+                  className="group relative flex flex-col justify-between"
                 >
-                  {/* Thumbnail rendering - Clean and unmuted */}
-                  {post.thumbnail && (
-                    <div className="relative h-48 w-full overflow-hidden border-b border-[#364156] bg-[#161a23]">
-                      <Image
-                        src={post.thumbnail}
-                        alt={post.title}
-                        fill
-                        priority={index === 0}
-                        className={cn(
-                          "transition-transform duration-300 group-hover:scale-[1.02]",
-                          isMath ? "object-contain p-3" : "object-cover"
-                        )}
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                    </div>
-                  )}
+                  <Link href={`/blog/${post.slug}`} className="block">
+                    {/* Thumbnail - Flat, crisp border */}
+                    {post.thumbnail && (
+                      <div className="relative h-56 w-full overflow-hidden rounded-lg border border-[#364156]/70 bg-[#161a23] transition-colors duration-300 group-hover:border-[#5eb3ab]/60">
+                        <Image
+                          src={post.thumbnail}
+                          alt={post.title}
+                          fill
+                          priority={index === 0}
+                          className={cn(
+                            "transition-transform duration-500 ease-out group-hover:scale-[1.02]",
+                            isMath ? "object-contain p-4" : "object-cover"
+                          )}
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      </div>
+                    )}
 
-                  <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                      <div className="flex flex-wrap items-center gap-2 text-[11px] font-mono">
-                        <span className="rounded-sm border border-[#364156] bg-[#161a23] px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-[#5eb3ab]">
-                          [{categoryBadge.toUpperCase()}]
+                    <div className="pt-4">
+                      <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
+                        <span className="uppercase tracking-[0.14em] text-[#5eb3ab]">
+                          {categoryBadge}
                         </span>
-                        <span className="text-slate-500">•</span>
+                        <span className="text-slate-600">/</span>
                         <span className="flex items-center gap-1 text-slate-400">
                           <Clock className="h-3 w-3" />
                           {post.readTime}
                         </span>
-                        <span className="text-slate-500">•</span>
+                        <span className="text-slate-600">/</span>
                         <span className="text-slate-400">{formatDateByLocale(post.date, locale)}</span>
                       </div>
 
-                      <h3 className="mt-3 text-lg sm:text-xl font-medium tracking-tight text-white group-hover:text-[#5eb3ab] transition-colors font-kanit">
-                        <Link href={`/blog/${post.slug}`}>
-                          <span className="absolute inset-0" />
-                          {post.title}
-                        </Link>
-                      </h3>
+                      <h2 className="mt-2 text-xl font-medium tracking-tight text-white transition-colors duration-200 group-hover:text-[#5eb3ab] font-kanit">
+                        {post.title}
+                      </h2>
 
                       {post.description && (
-                        <p className="mt-2 text-xs sm:text-sm text-slate-300 line-clamp-2 leading-relaxed">
+                        <p className="mt-1.5 text-sm leading-relaxed text-slate-300 line-clamp-2">
                           {post.description}
                         </p>
                       )}
-                    </div>
 
-                    <div className="mt-5 flex flex-wrap gap-1.5 pt-4 border-t border-[#364156]">
-                      {post.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-sm border border-[#364156] bg-[#161a23] px-2 py-0.5 text-[10px] font-mono text-slate-300"
-                        >
-                          #{tag}
-                        </span>
-                      ))}
+                      {post.tags && post.tags.length > 0 && (
+                        <p className="mt-3 text-xs font-mono text-slate-400">
+                          {post.tags.slice(0, 4).join(" · ")}
+                        </p>
+                      )}
                     </div>
-                  </div>
+                  </Link>
                 </article>
               );
             })}

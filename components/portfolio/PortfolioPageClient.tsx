@@ -36,8 +36,8 @@ export default function PortfolioPageClient() {
       <section className="mx-auto max-w-7xl px-6 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <div className="mb-10 max-w-3xl">
           <div className="mb-3 flex items-center gap-2">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#5eb3ab]">
-              {isVi ? "01 / DỰ ÁN SẢN XUẤT" : "01 / PRODUCTION RELEASES"}
+            <span className="text-xs font-mono uppercase tracking-[0.18em] text-[#5eb3ab]">
+              {isVi ? "Dự án Sản xuất" : "Production Releases"}
             </span>
           </div>
           <h2 className="font-kanit text-3xl font-normal tracking-tight text-white sm:text-4xl">
@@ -58,8 +58,8 @@ export default function PortfolioPageClient() {
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           <div className="mb-6 max-w-3xl">
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs font-mono uppercase tracking-wider text-[#5eb3ab]">
-                {isVi ? "02 / KỸ THUẬT VFX & R&D" : "02 / TECHNICAL VFX & R&D"}
+              <span className="text-xs font-mono uppercase tracking-[0.18em] text-[#5eb3ab]">
+                {isVi ? "Kỹ thuật VFX & Nghiên cứu R&D" : "Technical VFX & R&D"}
               </span>
             </div>
             <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">

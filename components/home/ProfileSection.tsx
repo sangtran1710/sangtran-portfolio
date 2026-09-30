@@ -13,10 +13,10 @@ export default function ProfileSection() {
   const isVi = locale === "vi";
 
   return (
-    <section id="profile" className="border-t border-[#364156] bg-[#1c212c]">
+    <section id="profile" className="border-t border-[#364156]/60 bg-[#1c212c]">
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-24">
-        <div className="grid gap-12 lg:grid-cols-[320px_1fr] lg:items-start">
-          <div className="relative aspect-[4/5] w-full max-w-xs justify-self-center overflow-hidden rounded-lg border border-[#364156] bg-[#232a38] lg:justify-self-start">
+        <div className="grid gap-12 lg:grid-cols-[300px_1fr] lg:items-start">
+          <div className="relative aspect-[4/5] w-full max-w-xs justify-self-center overflow-hidden rounded-lg border border-[#364156]/70 bg-[#161a23] lg:justify-self-start">
             {!avatarError ? (
               <Image
                 src={profile.portraitImage}
@@ -33,15 +33,14 @@ export default function ProfileSection() {
             )}
           </div>
           <div className="max-w-3xl">
-            <div className="mb-2 flex items-center gap-2">
-              <span className="text-xs font-mono uppercase tracking-wider text-[#5eb3ab]">
-                ABOUT
-              </span>
-            </div>
-            <h2 className="text-3xl font-medium tracking-tight text-white sm:text-4xl">Henry Tran</h2>
-            <p className="mt-6 text-base sm:text-lg leading-relaxed text-slate-300">{profile.paragraph}</p>
-            <Link href="/about" className="mt-8 inline-block border-b border-slate-600 pb-1 text-sm font-medium text-slate-200 transition-colors hover:border-[#5eb3ab] hover:text-[#5eb3ab]">
-              {isVi ? "Đọc thêm về tôi" : "More about my experience"} →
+            <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#5eb3ab]">
+              {isVi ? "GIỚI THIỆU" : "ABOUT THE ARTIST"}
+            </span>
+            <h2 className="mt-2 text-3xl font-medium tracking-tight text-white sm:text-4xl">Henry Tran</h2>
+            <p className="mt-5 text-base sm:text-lg leading-relaxed text-slate-300">{profile.paragraph}</p>
+            <Link href="/about" className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-slate-300 transition-colors hover:text-[#5eb3ab]">
+              {isVi ? "Đọc thêm về kinh nghiệm" : "More about my experience"}
+              <span aria-hidden="true">&rarr;</span>
             </Link>
           </div>
         </div>

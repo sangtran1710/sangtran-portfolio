@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
@@ -23,83 +22,65 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   const credit = project.client ? `${project.role} · ${project.client}` : project.role;
   const primaryCategory = project.categories?.[0] || "aaa";
+  const categoryLabel = primaryCategory === "aaa" ? "AAA Production" : `${primaryCategory.toUpperCase()} Production`;
 
   return (
     <Link
       href={project.link || `/projects/${project.slug}`}
       className={cn("group block h-full", className)}
     >
-      <div
-        className={cn(
-          "h-full rounded-lg border border-[#364156] bg-[#232a38] p-4 transition-colors duration-200 hover:border-[#4b5a75] hover:bg-[#2b3445] sm:p-5",
-          featured && "p-5 sm:p-6"
-        )}
-      >
-        <article className="flex h-full flex-col">
-          {/* Visual Showcase - Pure image, no heavy dark vignette */}
-          <div
+      <article className="flex h-full flex-col">
+        {/* Visual Showcase - Pure flat image with subtle border */}
+        <div
+          className={cn(
+            "relative w-full overflow-hidden rounded-lg border border-[#364156]/70 bg-[#161a23] transition-colors duration-300 group-hover:border-[#5eb3ab]/60",
+            featured ? "aspect-[16/9]" : "aspect-[16/10]"
+          )}
+        >
+          <Image
+            src={project.thumbnail}
+            alt={project.title}
+            fill
+            priority={priority}
+            className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+            sizes={
+              featured
+                ? "(max-width: 1024px) 100vw, 1200px"
+                : "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            }
+          />
+        </div>
+
+        {/* Typography & Editorial Metadata */}
+        <div className="flex flex-1 flex-col pt-4">
+          <div className="flex items-center gap-2 text-xs font-mono">
+            <span className="uppercase tracking-[0.14em] text-[#5eb3ab]">
+              {categoryLabel}
+            </span>
+            <span className="text-slate-600">/</span>
+            <span className="text-slate-400">{project.year}</span>
+          </div>
+
+          <h3
             className={cn(
-              "relative w-full overflow-hidden rounded-md border border-[#364156] bg-[#161a23]",
-              featured ? "aspect-[16/9]" : "aspect-[16/9.5]"
+              "mt-1.5 font-medium tracking-tight text-white transition-colors duration-200 group-hover:text-[#5eb3ab]",
+              featured ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"
             )}
           >
-            <Image
-              src={project.thumbnail}
-              alt={project.title}
-              fill
-              priority={priority}
-              className="object-cover transition-transform duration-300 group-hover:scale-[1.01]"
-              sizes={
-                featured
-                  ? "(max-width: 1024px) 100vw, 1200px"
-                  : "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              }
-            />
+            {project.title}
+          </h3>
 
-            {/* Top-right subtle flat indicator */}
-            <div className="absolute top-2.5 right-2.5 flex h-7 w-7 items-center justify-center rounded border border-white/20 bg-black/70 text-slate-300 opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-hover:text-white">
-              <ArrowUpRight className="h-3.5 w-3.5" />
-            </div>
-          </div>
+          <p className="mt-1 text-sm font-normal text-slate-300">
+            {credit}
+          </p>
 
-          {/* Typography & Editorial Metadata */}
-          <div className="flex flex-1 flex-col pt-4">
-            <div className="flex items-center gap-2 text-[11px] font-mono">
-              <span className="text-[#5eb3ab] uppercase tracking-wider">
-                [{primaryCategory.toUpperCase()} RELEASE]
-              </span>
-              <span className="text-slate-500">•</span>
-              <span className="text-slate-400">{project.year}</span>
-            </div>
-
-            <h3
-              className={cn(
-                "mt-2 font-medium tracking-tight text-white transition-colors group-hover:text-[#5eb3ab]",
-                featured ? "text-2xl sm:text-3xl" : "text-lg sm:text-xl"
-              )}
-            >
-              {project.title}
-            </h3>
-
-            <p className="mt-1 text-xs sm:text-sm font-medium text-slate-300">
-              {credit}
+          {project.techStack && project.techStack.length > 0 && (
+            <p className="mt-2 text-xs font-mono text-slate-400">
+              {project.techStack.slice(0, 3).join(" · ")}
             </p>
-
-            {project.techStack && project.techStack.length > 0 && (
-              <div className="mt-3 flex flex-wrap gap-1.5 pt-2">
-                {project.techStack.slice(0, 3).map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded border border-[#364156] bg-[#161a23] px-2 py-0.5 text-[10px] font-mono text-slate-300"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
-        </article>
-      </div>
+          )}
+        </div>
+      </article>
     </Link>
   );
 }

@@ -3,10 +3,8 @@ import { Inter, Kanit, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import ScrollToTop from "@/components/layout/ScrollToTop";
 import SkipToContentLink from "@/components/layout/SkipToContentLink";
 import PageTransitionWrapper from "@/components/layout/PageTransitionWrapper";
-import AmbientAudioPlayer from "@/components/layout/AmbientAudioPlayer";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import { SITE } from "@/data/portfolio";
 import { getSiteUrl } from "@/lib/seo";
@@ -89,8 +87,6 @@ export default function RootLayout({
             <PageTransitionWrapper>{children}</PageTransitionWrapper>
           </main>
           <Footer />
-          <ScrollToTop />
-          <AmbientAudioPlayer />
           {process.env.VERCEL && <Analytics />}
         </LanguageProvider>
       </body>

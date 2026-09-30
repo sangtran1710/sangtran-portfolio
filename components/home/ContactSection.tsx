@@ -9,14 +9,12 @@ export default function ContactSection() {
   const isVi = locale === "vi";
 
   return (
-    <section id="contact" className="border-t border-[#364156] bg-[#1c212c]">
-      <div className="mx-auto max-w-7xl px-6 py-24 sm:px-8 lg:px-12 lg:py-32">
+    <section id="contact" className="border-t border-[#364156]/60 bg-[#1c212c]">
+      <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:px-12 lg:py-28">
         <div>
-          <div className="mb-3 flex items-center gap-2">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#5eb3ab]">
-              GET IN TOUCH
-            </span>
-          </div>
+          <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#5eb3ab]">
+            {isVi ? "LIÊN HỆ TRỰC TIẾP" : "DIRECT INQUIRIES"}
+          </span>
           <h2 className="text-3xl font-medium tracking-tight text-white sm:text-5xl lg:text-6xl font-kanit">
             {isVi ? "Liên hệ hợp tác" : "Let's connect"}
           </h2>

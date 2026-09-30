@@ -10,30 +10,34 @@ export default function FeaturedProjects() {
   const { locale, copy } = useLanguage();
   const projects = getLocalizedFeaturedProjects(locale);
 
+  const isVi = locale === "vi";
+
   return (
     <section
       id="work"
-      className="scroll-mt-24 border-t border-[#364156] bg-[#1c212c]"
+      className="scroll-mt-24 border-t border-[#364156]/60 bg-[#1c212c]"
     >
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-24">
-        <div className="mb-10 flex items-end justify-between gap-8">
-          <div className="flex min-w-0 flex-1 items-center gap-6">
-            <h2 className="text-3xl font-medium tracking-tight text-white sm:text-4xl">
+        <div className="mb-12 flex items-end justify-between">
+          <div>
+            <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#5eb3ab]">
+              {isVi ? "DỰ ÁN TIÊU BIỂU" : "FEATURED PRODUCTIONS"}
+            </span>
+            <h2 className="mt-2 text-3xl font-medium tracking-tight text-white sm:text-4xl">
               {copy.home.selectedWork}
             </h2>
-            <div className="hidden h-px flex-1 bg-[#364156] sm:block" />
           </div>
           <Link
             href="/portfolio"
-            className="hidden items-center gap-2 border-b border-slate-600 pb-1 text-sm font-medium text-slate-300 transition-colors hover:border-[#5eb3ab] hover:text-[#5eb3ab] sm:inline-flex"
+            className="hidden items-center gap-1.5 text-sm font-medium text-slate-400 transition-colors hover:text-[#5eb3ab] sm:inline-flex"
           >
-            View all
+            {isVi ? "Xem tất cả" : "View all work"}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
         {/* Editorial Rhythm: 1 Dominant Hero + 2 Supporting Releases */}
-        <div className="space-y-6">
+        <div className="space-y-12">
           {/* Dominant Hero: Marvel's Wolverine */}
           {projects[0] && (
             <ProjectCard
@@ -45,7 +49,7 @@ export default function FeaturedProjects() {
           )}
 
           {/* Supporting Duo: Spider-Man 2 & Fortnite */}
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {projects[1] && (
               <ProjectCard
                 project={projects[1]}

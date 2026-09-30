@@ -42,20 +42,17 @@ export default function QuickSpecSheet() {
 
   return (
     <section
-      aria-label="Technical Specification Sheet"
-      className="border-y border-[#364156] bg-[#161a23] text-white"
+      aria-label="Studio Technical Specifications"
+      className="border-y border-[#364156]/50 bg-[#161a23]/50 text-white"
     >
-      <div className="mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#364156]">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-1 gap-6 py-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {SPECS.map((spec) => (
-            <div
-              key={spec.labelEn}
-              className="flex flex-col justify-center px-6 py-4 sm:px-8 lg:px-6 lg:py-5"
-            >
-              <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#5eb3ab] mb-1.5">
+            <div key={spec.labelEn} className="flex flex-col">
+              <span className="text-[11px] font-mono uppercase tracking-[0.16em] text-slate-400">
                 {isVi ? spec.labelVi : spec.labelEn}
               </span>
-              <p className="text-xs sm:text-[13px] font-medium tracking-tight text-slate-100">
+              <p className="mt-1 text-xs sm:text-[13px] font-medium tracking-tight text-slate-200">
                 {isVi ? spec.valueVi : spec.valueEn}
               </p>
             </div>
