@@ -61,14 +61,14 @@ export default function Navbar() {
   }, [router]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 w-full border-b border-white/10 bg-[#0b0e12]/55 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 w-full border-b border-[#242b38] bg-[#0e1117]/85 backdrop-blur-md">
       <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-6 sm:px-8 lg:px-12">
         {/* Logo */}
         <Link href="/" className="group flex flex-row items-baseline gap-0.5 font-kanit leading-none">
           <span className="text-[1.75rem] font-bold text-white transition-colors group-hover:text-white/85">
             HT
           </span>
-          <span className="text-[1.75rem] font-bold leading-none text-[#5c9d98]">
+          <span className="text-[1.75rem] font-bold leading-none text-[#5eb3ab]">
             .
           </span>
         </Link>
@@ -103,7 +103,7 @@ export default function Navbar() {
                 {isActive && (
                   <motion.span
                     layoutId="navbar-active-indicator"
-                    className="absolute inset-x-3 bottom-0 h-[2px] bg-[#5c9d98]"
+                    className="absolute inset-x-3 bottom-0 h-[2px] bg-[#5eb3ab]"
                     transition={{
                       type: "spring",
                       stiffness: 400,
@@ -128,7 +128,7 @@ export default function Navbar() {
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-72 border-white/10 bg-[#0b0e12] p-0 text-white">
+          <SheetContent side="right" className="w-72 border-[#242b38] bg-[#0e1117] p-0 text-white">
             <motion.div
               className="flex flex-col pt-20 px-6 gap-5"
               variants={containerVariants}

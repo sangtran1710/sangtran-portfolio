@@ -24,7 +24,7 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-[68svh] items-end overflow-hidden bg-[#050607] pt-[4.5rem] sm:min-h-[72svh]"
+      className="relative flex min-h-[68svh] items-end overflow-hidden bg-[#0e1117] pt-[4.5rem] sm:min-h-[72svh]"
     >
       <div className="absolute inset-0">
         <Image
@@ -33,27 +33,27 @@ export default function HeroSection() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[50%_30%] opacity-85 brightness-105"
+          className="object-cover object-[50%_30%] opacity-90 brightness-105"
         />
       </div>
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,6,7,0.85)_0%,rgba(5,6,7,0.35)_45%,rgba(5,6,7,0.05)_100%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(0deg,rgba(5,6,7,0.95)_0%,rgba(5,6,7,0)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(14,17,23,0.85)_0%,rgba(14,17,23,0.35)_45%,rgba(14,17,23,0.05)_100%)]" />
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(0deg,rgba(14,17,23,0.95)_0%,rgba(14,17,23,0)_100%)]" />
       <AtmosphericVfxCanvas />
 
       <motion.div
         style={prefersReducedMotion ? undefined : { opacity: contentOpacity, y: contentY }}
         className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 sm:px-8 sm:pb-20 lg:px-12 lg:pb-24"
       >
-        <div className="border-l-2 border-[#5c9d98] pl-5 sm:pl-6">
-          <p className="text-xs font-medium uppercase tracking-[0.28em] text-[#a7d2ce]">VFX Artist</p>
+        <div className="border-l-2 border-[#5eb3ab] pl-5 sm:pl-6">
+          <p className="text-xs font-mono uppercase tracking-[0.28em] text-[#5eb3ab]">Technical VFX Artist</p>
           <h1 className="mt-4 max-w-4xl font-kanit text-5xl font-normal leading-none text-white sm:text-[4rem] lg:text-[5rem]">
             {hero.name}
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-7 text-white/70 sm:text-lg">
+          <p className="mt-5 max-w-xl text-base leading-7 text-slate-300 sm:text-lg">
             {hero.description}
           </p>
           <div className="mt-8 flex flex-wrap gap-x-8 gap-y-4 text-base font-medium text-white">
-            <Link href="/portfolio" className="inline-flex items-center gap-2 border-b border-white/60 pb-2 transition-colors hover:border-[#7db5b0] hover:text-[#a7d2ce]">
+            <Link href="/portfolio" className="inline-flex items-center gap-2 border-b border-white/60 pb-2 transition-colors hover:border-[#5eb3ab] hover:text-[#5eb3ab]">
               Selected work
               <ArrowUpRight className="h-4 w-4" />
             </Link>

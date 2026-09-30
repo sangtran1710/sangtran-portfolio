@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HeroSection from "@/components/home/HeroSection";
+import QuickSpecSheet from "@/components/home/QuickSpecSheet";
 import ProfileSection from "@/components/home/ProfileSection";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
 import TechnicalSpotlight from "@/components/home/TechnicalSpotlight";
@@ -26,6 +27,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <QuickSpecSheet />
       <FeaturedProjects />
       <TechnicalSpotlight />
       <ProfileSection />

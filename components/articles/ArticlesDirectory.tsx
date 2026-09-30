@@ -7,6 +7,7 @@ import { Clock, Calculator, Wrench, Layers } from "lucide-react";
 import type { BlogPostMeta } from "@/lib/blog";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { formatDateByLocale } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
 
 export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
   const { locale } = useLanguage();
@@ -57,125 +58,122 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
         ? mathPosts 
         : allPosts;
 
-  const headingText = isVi ? "Ghi chú kỹ thuật" : "Technical Notes";
+  const headingText = isVi ? "Ghi chú kỹ thuật & R&D" : "Technical Notes & R&D";
   const subtitleText = isVi
-    ? "Những điều tôi học được khi làm VFX, mày mò shader, toán và tự viết công cụ cho công việc."
-    : "Things I've learned while making VFX, figuring out shaders and math, and building little tools along the way.";
+    ? "Ghi chép thực chiến về Niagara VFX, shader HLSL, toán mô phỏng và công cụ pipeline trong game AAA."
+    : "Field notes on real-time VFX, HLSL shader mechanics, simulation math, and production pipeline tools.";
 
   return (
-    <div className="min-h-screen pt-24 sm:pt-28 pb-20 text-foreground bg-background">
-      <main className="mx-auto max-w-[72rem] px-4 sm:px-6 lg:px-8">
-        <header className="mb-10 max-w-xl">
-          <h1 className="text-4xl font-kanit font-medium tracking-tight text-foreground sm:text-5xl">
+    <div className="min-h-screen pt-24 sm:pt-28 pb-20 text-white bg-[#0e1117]">
+      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <header className="mb-10 max-w-2xl">
+          <div className="mb-2 flex items-center gap-2">
+            <span className="text-xs font-mono uppercase tracking-wider text-[#5eb3ab]">
+              {"// KNOWLEDGE BASE & LAB NOTES"}
+            </span>
+          </div>
+          <h1 className="text-4xl font-kanit font-medium tracking-tight text-white sm:text-5xl">
             {headingText}
           </h1>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+          <p className="mt-4 text-base leading-relaxed text-slate-300">
             {subtitleText}
           </p>
         </header>
 
-        {/* Tab Filters */}
-        <div className="mb-8 flex flex-wrap gap-2 border-b border-white/10 pb-4">
+        {/* Flat Technical Tab Filters */}
+        <div className="mb-8 flex flex-wrap gap-2 border-b border-[#242b38] pb-4">
           <button
             type="button"
             onClick={() => handleTabChange("all")}
-            className={`flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-medium rounded-full transition-all ${
+            className={cn(
+              "flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono rounded-md border transition-colors",
               activeTab === "all"
-                ? "bg-[#5c9d98] text-white shadow-sm"
-                : "bg-white/5 text-stone-400 hover:bg-white/10 hover:text-white"
-            }`}
+                ? "bg-[#181e28] text-white border-[#5eb3ab]"
+                : "bg-[#11141a] text-slate-400 border-[#242b38] hover:border-slate-600 hover:text-slate-200"
+            )}
           >
-            <Layers className="h-3.5 w-3.5" />
-            <span>{isVi ? "Tất cả" : "All Notes"}</span>
-            <span className="ml-0.5 rounded-full bg-black/20 px-1.5 py-0.2 text-[11px]">
-              {allPosts.length}
-            </span>
+            <Layers className="h-3.5 w-3.5 text-[#5eb3ab]" />
+            <span>{isVi ? "TẤT CẢ" : "ALL NOTES"}</span>
+            <span className="font-mono text-[10px] text-slate-500">[{allPosts.length}]</span>
           </button>
 
           <button
             type="button"
             onClick={() => handleTabChange("tools")}
-            className={`flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-medium rounded-full transition-all ${
+            className={cn(
+              "flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono rounded-md border transition-colors",
               activeTab === "tools"
-                ? "bg-[#5c9d98] text-white shadow-sm"
-                : "bg-white/5 text-stone-400 hover:bg-white/10 hover:text-white"
-            }`}
+                ? "bg-[#181e28] text-white border-[#5eb3ab]"
+                : "bg-[#11141a] text-slate-400 border-[#242b38] hover:border-slate-600 hover:text-slate-200"
+            )}
           >
-            <Wrench className="h-3.5 w-3.5" />
-            <span>{isVi ? "Công cụ & Pipeline" : "Tools & Pipeline"}</span>
-            <span className="ml-0.5 rounded-full bg-black/20 px-1.5 py-0.2 text-[11px]">
-              {toolPosts.length}
-            </span>
+            <Wrench className="h-3.5 w-3.5 text-[#5eb3ab]" />
+            <span>{isVi ? "CÔNG CỤ & PIPELINE" : "TOOLS & PIPELINE"}</span>
+            <span className="font-mono text-[10px] text-slate-500">[{toolPosts.length}]</span>
           </button>
 
           <button
             type="button"
             onClick={() => handleTabChange("math")}
-            className={`flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-medium rounded-full transition-all ${
+            className={cn(
+              "flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono rounded-md border transition-colors",
               activeTab === "math"
-                ? "bg-[#5c9d98] text-white shadow-sm"
-                : "bg-white/5 text-stone-400 hover:bg-white/10 hover:text-white"
-            }`}
+                ? "bg-[#181e28] text-white border-[#5eb3ab]"
+                : "bg-[#11141a] text-slate-400 border-[#242b38] hover:border-slate-600 hover:text-slate-200"
+            )}
           >
-            <Calculator className="h-3.5 w-3.5" />
-            <span>{isVi ? "Toán cho VFX" : "Math for VFX"}</span>
-            <span className="ml-0.5 rounded-full bg-black/20 px-1.5 py-0.2 text-[11px]">
-              {mathPosts.length}
-            </span>
+            <Calculator className="h-3.5 w-3.5 text-[#5eb3ab]" />
+            <span>{isVi ? "TOÁN CHO VFX" : "MATH FOR VFX"}</span>
+            <span className="font-mono text-[10px] text-slate-500">[{mathPosts.length}]</span>
           </button>
         </div>
 
-        {/* Post Grid */}
+        {/* Precision Post Grid */}
         <section>
           <div className="grid gap-6 md:grid-cols-2">
             {displayedPosts.map((post, index) => {
               const isMath = isMathPost(post);
               const isVfxStudy = post.tags.includes("VFX Study");
+              const categoryBadge = isMath ? "Math for VFX" : isVfxStudy ? "VFX Study" : "Pipeline Tool";
+
               return (
                 <article
                   key={post.slug}
-                  className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition hover:border-white/20 hover:bg-white/[0.04] duration-300"
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-lg border border-[#242b38] bg-[#151921] transition-colors duration-200 hover:border-[#3b475c] hover:bg-[#181d27]"
                 >
-                  {/* Thumbnail rendering */}
+                  {/* Thumbnail rendering - Clean and unmuted */}
                   {post.thumbnail && (
-                    <div className={`relative h-48 w-full overflow-hidden border-b border-white/10 ${
-                      isMath ? "bg-[#070b11]" : "bg-black/40"
-                    }`}>
+                    <div className="relative h-48 w-full overflow-hidden border-b border-[#242b38] bg-[#0e1117]">
                       <Image
                         src={post.thumbnail}
                         alt={post.title}
                         fill
                         priority={index === 0}
-                        className={`${
-                          isMath 
-                            ? "object-contain p-2 opacity-95 group-hover:scale-[1.02]" 
-                            : "object-cover opacity-80 group-hover:opacity-100 group-hover:scale-[1.02]"
-                        } transition-all duration-500`}
+                        className={cn(
+                          "transition-transform duration-300 group-hover:scale-[1.02]",
+                          isMath ? "object-contain p-3" : "object-cover"
+                        )}
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
                     </div>
                   )}
 
-                  <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                     <div>
-                      <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                        <span className={`font-semibold uppercase tracking-wider px-2 py-0.5 rounded text-[10px] ${
-                          isMath
-                            ? "bg-teal-500/10 text-[#5c9d98] border border-teal-500/20"
-                            : "bg-blue-500/10 text-blue-400 border border-blue-500/20"
-                        }`}>
-                          {isMath ? "Math for VFX" : isVfxStudy ? "VFX Study" : "Pipeline Tool"}
+                      <div className="flex flex-wrap items-center gap-2 text-[11px] font-mono">
+                        <span className="rounded-sm border border-[#242b38] bg-[#0e1117] px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-[#5eb3ab]">
+                          [{categoryBadge.toUpperCase()}]
                         </span>
-                        <span>•</span>
-                        <span className="flex items-center gap-1">
-                          <Clock className="h-3.5 w-3.5" />
+                        <span className="text-slate-500">•</span>
+                        <span className="flex items-center gap-1 text-slate-400">
+                          <Clock className="h-3 w-3" />
                           {post.readTime}
                         </span>
-                        <span>•</span>
-                        <span>{formatDateByLocale(post.date, locale)}</span>
+                        <span className="text-slate-500">•</span>
+                        <span className="text-slate-400">{formatDateByLocale(post.date, locale)}</span>
                       </div>
 
-                      <h3 className="mt-4 text-xl font-medium tracking-tight text-white group-hover:text-primary transition-colors font-kanit">
+                      <h3 className="mt-3 text-lg sm:text-xl font-medium tracking-tight text-white group-hover:text-[#5eb3ab] transition-colors font-kanit">
                         <Link href={`/blog/${post.slug}`}>
                           <span className="absolute inset-0" />
                           {post.title}
@@ -183,19 +181,19 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
                       </h3>
 
                       {post.description && (
-                        <p className="mt-2.5 text-sm text-stone-400 line-clamp-2 leading-relaxed">
+                        <p className="mt-2 text-xs sm:text-sm text-slate-300 line-clamp-2 leading-relaxed">
                           {post.description}
                         </p>
                       )}
                     </div>
 
-                    <div className="mt-6 flex flex-wrap gap-1.5 pt-4 border-t border-white/5">
+                    <div className="mt-5 flex flex-wrap gap-1.5 pt-4 border-t border-[#242b38]">
                       {post.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="text-[11px] text-stone-400 bg-white/5 px-2 py-0.5 rounded"
+                          className="rounded-sm border border-[#242b38] bg-[#0e1117] px-2 py-0.5 text-[10px] font-mono text-slate-400"
                         >
-                          {tag}
+                          #{tag}
                         </span>
                       ))}
                     </div>
