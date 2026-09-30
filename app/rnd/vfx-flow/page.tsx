@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "VFX Flow | Henry Tran",
     description:
-      "A deep dive into building an automated asset quality control gatekeeper, work log rollover engine, and Perforce staging toolkit for AAA game production.",
+      "Technical breakdown of the automated QC validator, work log rollover engine, and Perforce staging toolkit built for AAA game production.",
     url: "/rnd/vfx-flow",
     images: ["/projects/vfx-flow/showcase_asset_qc_ready.png"],
   },

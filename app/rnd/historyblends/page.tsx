@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, FlaskConical, Sparkles } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
     title: "HistoryBlends: AI Filmmaking",
     description:
-        "A deep dive into the AI-driven storytelling process used to create HistoryBlends, leveraging Sora, Veo-2, ChatGPT, and Midjourney.",
+        "Production pipeline and generative workflow breakdown for HistoryBlends, combining Sora, Veo-2, ChatGPT, and Midjourney for historical cinematic sequences.",
     alternates: {
         canonical: "/rnd/historyblends",
     },
     openGraph: {
         title: "HistoryBlends: AI Filmmaking | Henry Tran",
         description:
-            "A deep dive into the AI-driven storytelling process used to create HistoryBlends, leveraging Sora, Veo-2, ChatGPT, and Midjourney.",
+            "Production pipeline and generative workflow breakdown for HistoryBlends, combining Sora, Veo-2, ChatGPT, and Midjourney for historical cinematic sequences.",
         url: "/rnd/historyblends",
         images: ["/images/HistoryBlends.webp"],
     },
@@ -38,7 +38,6 @@ export default function HistoryBlendsPage() {
                 <div className="mb-8">
                     <div className="flex flex-wrap gap-2 mb-4">
                         <Badge variant="secondary" className="bg-teal-500/10 text-teal-400 hover:bg-teal-500/20">
-                            <FlaskConical className="h-3 w-3 mr-1" />
                             AI Content Creation
                         </Badge>
                         <Badge variant="secondary" className="bg-zinc-800 text-zinc-300">
@@ -72,10 +71,10 @@ export default function HistoryBlendsPage() {
                         <section>
                             <h2 className="text-xl font-bold uppercase tracking-wider text-white mb-4">Project Overview</h2>
                             <p className="text-zinc-400 leading-relaxed text-base">
-                                HistoryBlends is a storytelling initiative where I use generative AI tools like Sora, Veo-2, and Midjourney to direct and produce complete historical sequences. The project serves as a showcase of blending cutting-edge AI tools with established cinematic principles to craft compelling visual narratives that retain viewer engagement.
+                                HistoryBlends is an experimental storytelling project exploring end-to-end historical sequence production with Sora, Veo-2, and Midjourney. The goal was to establish a repeatable generative pipeline combining cinematic composition, shot pacing, and voiceover synchronization.
                             </p>
                             <p className="text-zinc-400 leading-relaxed text-base mt-4">
-                                Generating reliable, high-quality historical visuals requires an intricate understanding of prompt engineering to avoid artifacts, ensure frame-to-frame consistency, and match the emotional tone of the voiceover narrative.
+                                Producing consistent historical footage required structured prompt architecture to mitigate temporal artifacts, maintain visual continuity across shots, and match scene tone with voiceover pacing.
                             </p>
                         </section>
 
@@ -87,8 +86,8 @@ export default function HistoryBlendsPage() {
                             <div className="space-y-8">
                                 <div className="relative pl-6 border-l-2 border-teal-500/30">
                                     <h3 className="text-lg font-semibold text-zinc-200 mb-2 flex items-center gap-2">
-                                        <Sparkles className="h-4 w-4 text-teal-400" />
-                                        Script Analysis via ChatGPT
+                                        <span className="text-xs font-mono text-teal-400">01</span>
+                                        Script Analysis & Shot Breakdown
                                     </h3>
                                     <p className="text-zinc-400 text-sm leading-relaxed">
                                         Breaking down historical facts and narratives into vivid, shot-by-shot visual descriptions. I use advanced prompting to analyze the pacing and extract physical characteristics of the subjects, environments, and required camera movements for each scene.
@@ -97,8 +96,8 @@ export default function HistoryBlendsPage() {
 
                                 <div className="relative pl-6 border-l-2 border-teal-500/30">
                                     <h3 className="text-lg font-semibold text-zinc-200 mb-2 flex items-center gap-2">
-                                        <Sparkles className="h-4 w-4 text-teal-400" />
-                                        Image & Concept Direction
+                                        <span className="text-xs font-mono text-teal-400">02</span>
+                                        Concept Direction & Style Bible
                                     </h3>
                                     <p className="text-zinc-400 text-sm leading-relaxed">
                                         Utilizing Midjourney to establish the visual language, character designs, and initial mood boards. Creating a consistent style guide ensures that the subsequent motion generation remains cohesive.
@@ -107,7 +106,7 @@ export default function HistoryBlendsPage() {
 
                                 <div className="relative pl-6 border-l-2 border-teal-500/30">
                                     <h3 className="text-lg font-semibold text-zinc-200 mb-2 flex items-center gap-2">
-                                        <Sparkles className="h-4 w-4 text-teal-400" />
+                                        <span className="text-xs font-mono text-teal-400">03</span>
                                         Generative Motion (Sora & Veo-2)
                                     </h3>
                                     <p className="text-zinc-400 text-sm leading-relaxed">
@@ -117,8 +116,8 @@ export default function HistoryBlendsPage() {
 
                                 <div className="relative pl-6 border-l-2 border-teal-500/30">
                                     <h3 className="text-lg font-semibold text-zinc-200 mb-2 flex items-center gap-2">
-                                        <Sparkles className="h-4 w-4 text-teal-400" />
-                                        Editing & Synchronization
+                                        <span className="text-xs font-mono text-teal-400">04</span>
+                                        Editorial & Audio Synchronization
                                     </h3>
                                     <p className="text-zinc-400 text-sm leading-relaxed">
                                         Piecing together the generated clips and syncing them meticulously with the voiceover and sound effects. The visuals must breathe with the script to maintain an attractive flow and prevent viewer fatigue.

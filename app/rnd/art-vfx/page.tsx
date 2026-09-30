@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { RND_PROJECTS } from "@/data/portfolio";
-import { ArrowLeft, Sparkles } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -58,8 +58,7 @@ export default function ArtVfxPage() {
 
                 <header className="mb-12">
                     <div className="flex items-center gap-2 mb-4">
-                        <span className="inline-flex items-center gap-1.5 rounded-full bg-teal-400/20 px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-teal-300">
-                            <Sparkles className="h-3.5 w-3.5" />
+                        <span className="inline-flex items-center rounded-full bg-teal-400/10 px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-teal-300">
                             {project.category}
                         </span>
                     </div>

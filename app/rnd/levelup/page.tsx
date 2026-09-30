@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Box, Lightbulb } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
@@ -38,7 +38,6 @@ export default function LevelUpPage() {
                 <div className="mb-8">
                     <div className="flex flex-wrap gap-2 mb-4">
                         <Badge variant="secondary" className="bg-blue-500/10 text-blue-400 hover:bg-blue-500/20">
-                            <Box className="h-3 w-3 mr-1" />
                             3D Environment
                         </Badge>
                         <Badge variant="secondary" className="bg-zinc-800 text-zinc-300">
@@ -83,7 +82,7 @@ export default function LevelUpPage() {
                             <div className="space-y-8">
                                 <div className="relative pl-6 border-l-2 border-blue-500/30">
                                     <h3 className="text-lg font-semibold text-zinc-200 mb-2 flex items-center gap-2">
-                                        <Lightbulb className="h-4 w-4 text-blue-400" />
+                                        <span className="text-xs font-mono text-blue-400">01</span>
                                         Inspired by Crypto.com
                                     </h3>
                                     <p className="text-zinc-400 text-sm leading-relaxed">
