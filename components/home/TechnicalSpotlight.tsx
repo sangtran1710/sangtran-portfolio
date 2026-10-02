@@ -12,8 +12,8 @@ export default function TechnicalSpotlight() {
     {
       title: "Houdini Destruction",
       description: isVi
-        ? "RBD sim thành shards và atlas dùng trong runtime."
-        : "RBD sims into runtime shards and atlases for real-time engines.",
+        ? "Từ mô phỏng phá hủy trong Houdini đến các asset gọn hơn cho real-time."
+        : "Turning Houdini destruction sims into lighter assets for real-time use.",
       image: "/assets/blog/houdini-wolverine-destructibles/poster-rbd-bridge.webp",
       link: "/blog/houdini-destructibles-and-vfx-pipeline",
     },
