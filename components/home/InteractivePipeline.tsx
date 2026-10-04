@@ -15,10 +15,10 @@ export default function InteractivePipeline() {
   const perfLabel = isVi ? "Mượt mà & Tối ưu" : "Optimized AAA";
 
   return (
-    <div className="mt-12 rounded-2xl border border-[#364156] bg-[#232a38] backdrop-blur-md p-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+    <div className="mt-12 rounded-2xl border border-border bg-card backdrop-blur-md p-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
       <div className="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-[#5c9d98] mb-1">
+          <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-1">
             {isVi ? "QUY TRÌNH HỆ THỐNG KỸ THUẬT" : "TECHNICAL PIPELINE WORKFLOW"}
           </h3>
           <p className="text-xs text-stone-400 max-w-xl">
@@ -58,7 +58,7 @@ export default function InteractivePipeline() {
       </div>
 
       {/* The Visual Sandbox - Fixed dimensions for perfect SVG path alignment */}
-      <div className="w-full overflow-x-auto no-scrollbar rounded-xl border border-[#364156] bg-[#161a23] py-4">
+      <div className="w-full overflow-x-auto no-scrollbar rounded-xl border border-border bg-section py-4">
         <div className="relative w-[720px] h-[240px] mx-auto shrink-0 select-none">
           
           {/* Background Grid Pattern */}
@@ -73,51 +73,51 @@ export default function InteractivePipeline() {
           {/* Wires (SVG paths connecting nodes) */}
           <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
             {/* Glow Paths */}
-            <path d="M 200 60 C 240 60, 240 120, 280 120" fill="none" stroke="#5c9d98" strokeWidth="6" className="opacity-10 blur-sm" />
-            <path d="M 200 180 C 240 180, 240 120, 280 120" fill="none" stroke="#5c9d98" strokeWidth="6" className="opacity-10 blur-sm" />
-            <path d="M 440 120 L 520 120" fill="none" stroke="#5c9d98" strokeWidth="6" className="opacity-10 blur-sm" />
+            <path d="M 200 60 C 240 60, 240 120, 280 120" fill="none" stroke="#58CFC8" strokeWidth="6" className="opacity-10 blur-sm" />
+            <path d="M 200 180 C 240 180, 240 120, 280 120" fill="none" stroke="#58CFC8" strokeWidth="6" className="opacity-10 blur-sm" />
+            <path d="M 440 120 L 520 120" fill="none" stroke="#58CFC8" strokeWidth="6" className="opacity-10 blur-sm" />
 
             {/* Core Lines */}
-            <path d="M 200 60 C 240 60, 240 120, 280 120" fill="none" stroke="#5c9d98" strokeWidth="1.5" className="opacity-40" />
-            <path d="M 200 180 C 240 180, 240 120, 280 120" fill="none" stroke="#5c9d98" strokeWidth="1.5" className="opacity-40" />
-            <path d="M 440 120 L 520 120" fill="none" stroke="#5c9d98" strokeWidth="1.5" className="opacity-40" />
+            <path d="M 200 60 C 240 60, 240 120, 280 120" fill="none" stroke="#58CFC8" strokeWidth="1.5" className="opacity-40" />
+            <path d="M 200 180 C 240 180, 240 120, 280 120" fill="none" stroke="#58CFC8" strokeWidth="1.5" className="opacity-40" />
+            <path d="M 440 120 L 520 120" fill="none" stroke="#58CFC8" strokeWidth="1.5" className="opacity-40" />
 
             {/* Input & Output Pins (Visual Graph Nodes Connector Dots) */}
-            <circle cx="200" cy="60" r="3.5" fill="#5c9d98" stroke="#05080c" strokeWidth="1.5" className="opacity-80" />
-            <circle cx="200" cy="180" r="3.5" fill="#5c9d98" stroke="#05080c" strokeWidth="1.5" className="opacity-80" />
-            <circle cx="280" cy="120" r="3.5" fill="#5c9d98" stroke="#05080c" strokeWidth="1.5" className="opacity-80" />
-            <circle cx="440" cy="120" r="3.5" fill="#5c9d98" stroke="#05080c" strokeWidth="1.5" className="opacity-80" />
-            <circle cx="520" cy="120" r="3.5" fill="#5c9d98" stroke="#05080c" strokeWidth="1.5" className="opacity-80" />
+            <circle cx="200" cy="60" r="3.5" fill="#58CFC8" stroke="#0D1015" strokeWidth="1.5" className="opacity-80" />
+            <circle cx="200" cy="180" r="3.5" fill="#58CFC8" stroke="#0D1015" strokeWidth="1.5" className="opacity-80" />
+            <circle cx="280" cy="120" r="3.5" fill="#58CFC8" stroke="#0D1015" strokeWidth="1.5" className="opacity-80" />
+            <circle cx="440" cy="120" r="3.5" fill="#58CFC8" stroke="#0D1015" strokeWidth="1.5" className="opacity-80" />
+            <circle cx="520" cy="120" r="3.5" fill="#58CFC8" stroke="#0D1015" strokeWidth="1.5" className="opacity-80" />
 
             {/* Flowing Data Particles */}
-            <circle r="3" fill="#5c9d98" className="animate-flow-slow" style={{ offsetPath: "path('M 200 60 C 240 60, 240 120, 280 120')" }} />
-            <circle r="3" fill="#5c9d98" className="animate-flow-slow" style={{ offsetPath: "path('M 200 180 C 240 180, 240 120, 280 120')" }} />
-            <circle r="3.5" fill="#5c9d98" className="animate-flow-fast" style={{ offsetPath: "path('M 440 120 L 520 120')" }} />
+            <circle r="3" fill="#58CFC8" className="animate-flow-slow" style={{ offsetPath: "path('M 200 60 C 240 60, 240 120, 280 120')" }} />
+            <circle r="3" fill="#58CFC8" className="animate-flow-slow" style={{ offsetPath: "path('M 200 180 C 240 180, 240 120, 280 120')" }} />
+            <circle r="3.5" fill="#58CFC8" className="animate-flow-fast" style={{ offsetPath: "path('M 440 120 L 520 120')" }} />
           </svg>
 
           {/* Node 1: Houdini */}
-          <div className="absolute left-[40px] top-[30px] w-[160px] h-[60px] rounded-lg border border-[#5c9d98]/20 bg-[#1c212c] p-2.5 shadow-md flex flex-col justify-center transition-colors duration-300 hover:border-[#5c9d98]/40">
-            <span className="block text-[8px] font-mono font-bold tracking-widest text-[#5c9d98]">PROCEDURAL</span>
+          <div className="absolute left-[40px] top-[30px] w-[160px] h-[60px] rounded-lg border border-primary/20 bg-background p-2.5 shadow-md flex flex-col justify-center transition-colors duration-300 hover:border-primary/40">
+            <span className="block text-[8px] font-mono font-bold tracking-widest text-primary">PROCEDURAL</span>
             <span className="block text-xs font-semibold text-white mt-0.5">HOUDINI PIPELINE</span>
             <span className="block text-[9px] text-stone-500 mt-1 font-mono leading-none">Auto Asset Generator</span>
           </div>
 
           {/* Node 2: HLSL */}
-          <div className="absolute left-[40px] top-[150px] w-[160px] h-[60px] rounded-lg border border-[#5c9d98]/20 bg-[#1c212c] p-2.5 shadow-md flex flex-col justify-center transition-colors duration-300 hover:border-[#5c9d98]/40">
-            <span className="block text-[8px] font-mono font-bold tracking-widest text-[#5c9d98]">SHADER LOGIC</span>
+          <div className="absolute left-[40px] top-[150px] w-[160px] h-[60px] rounded-lg border border-primary/20 bg-background p-2.5 shadow-md flex flex-col justify-center transition-colors duration-300 hover:border-primary/40">
+            <span className="block text-[8px] font-mono font-bold tracking-widest text-primary">SHADER LOGIC</span>
             <span className="block text-xs font-semibold text-white mt-0.5">MATERIAL SHADERS</span>
             <span className="block text-[9px] text-stone-500 mt-1 font-mono leading-none">Shader Graph Math</span>
           </div>
 
           {/* Node 3: Niagara */}
-          <div className="absolute left-[280px] top-[90px] w-[160px] h-[60px] rounded-lg border border-[#5c9d98]/20 bg-[#1c212c] p-2.5 shadow-md flex flex-col justify-center transition-colors duration-300 hover:border-[#5c9d98]/40">
-            <span className="block text-[8px] font-mono font-bold tracking-widest text-[#5c9d98]">SIMULATION</span>
+          <div className="absolute left-[280px] top-[90px] w-[160px] h-[60px] rounded-lg border border-primary/20 bg-background p-2.5 shadow-md flex flex-col justify-center transition-colors duration-300 hover:border-primary/40">
+            <span className="block text-[8px] font-mono font-bold tracking-widest text-primary">SIMULATION</span>
             <span className="block text-xs font-semibold text-white mt-0.5">NIAGARA VFX</span>
             <span className="block text-[9px] text-stone-500 mt-1 font-mono leading-none">Particle Physics Solvers</span>
           </div>
 
           {/* Node 4: Game Runtime */}
-          <div className="absolute left-[520px] top-[90px] w-[160px] h-[60px] rounded-lg border border-white/10 bg-[#1c212c] p-2.5 shadow-md flex flex-col justify-center transition-colors duration-300 hover:border-white/20">
+          <div className="absolute left-[520px] top-[90px] w-[160px] h-[60px] rounded-lg border border-white/10 bg-background p-2.5 shadow-md flex flex-col justify-center transition-colors duration-300 hover:border-white/20">
             <span className="block text-[8px] font-mono font-bold tracking-widest text-stone-500">RUNTIME DISPLAY</span>
             <span className="block text-xs font-semibold text-white mt-0.5">GAME RUNTIME</span>
             <span className="block text-[9px] text-green-400 mt-1 font-mono leading-none font-bold">Stable 60 FPS (Optimized)</span>

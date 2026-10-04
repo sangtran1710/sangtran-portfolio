@@ -64,34 +64,34 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
     : "Field notes on real-time VFX, HLSL shader mechanics, simulation math, and production pipeline tools.";
 
   return (
-    <div className="min-h-screen pt-24 sm:pt-28 pb-20 text-white bg-[#1c212c]">
+    <div className="min-h-screen pt-24 sm:pt-28 pb-20 text-white bg-background">
       <main className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <header className="mb-12 max-w-2xl">
-          <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#5eb3ab]">
+          <span className="text-xs font-mono uppercase tracking-[0.2em] text-primary">
             {isVi ? "GHI CHÉP THỰC CHIẾN" : "TECHNICAL JOURNAL & LAB NOTES"}
           </span>
           <h1 className="mt-2 text-4xl font-kanit font-normal tracking-tight text-white sm:text-5xl">
             {headingText}
           </h1>
-          <p className="mt-4 text-base leading-relaxed text-slate-300">
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             {subtitleText}
           </p>
         </header>
 
         {/* Clean Filter Tabs */}
-        <div className="mb-10 flex flex-wrap gap-2 border-b border-[#364156]/60 pb-4">
+        <div className="mb-10 flex flex-wrap gap-2 border-b border-border/60 pb-4">
           <button
             type="button"
             onClick={() => handleTabChange("all")}
             className={cn(
               "px-4 py-1.5 text-xs font-mono transition-colors",
               activeTab === "all"
-                ? "border-b-2 border-[#5eb3ab] font-medium text-white"
-                : "text-slate-400 hover:text-white"
+                ? "border-b-2 border-primary font-medium text-white"
+                : "text-muted-foreground hover:text-white"
             )}
           >
             <span>{isVi ? "Tất cả" : "All Notes"}</span>
-            <span className="ml-1.5 text-slate-500">({allPosts.length})</span>
+            <span className="ml-1.5 text-quiet">({allPosts.length})</span>
           </button>
 
           <button
@@ -100,12 +100,12 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
             className={cn(
               "px-4 py-1.5 text-xs font-mono transition-colors",
               activeTab === "tools"
-                ? "border-b-2 border-[#5eb3ab] font-medium text-white"
-                : "text-slate-400 hover:text-white"
+                ? "border-b-2 border-primary font-medium text-white"
+                : "text-muted-foreground hover:text-white"
             )}
           >
             <span>{isVi ? "Công cụ & Pipeline" : "Tools & Pipeline"}</span>
-            <span className="ml-1.5 text-slate-500">({toolPosts.length})</span>
+            <span className="ml-1.5 text-quiet">({toolPosts.length})</span>
           </button>
 
           <button
@@ -114,12 +114,12 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
             className={cn(
               "px-4 py-1.5 text-xs font-mono transition-colors",
               activeTab === "math"
-                ? "border-b-2 border-[#5eb3ab] font-medium text-white"
-                : "text-slate-400 hover:text-white"
+                ? "border-b-2 border-primary font-medium text-white"
+                : "text-muted-foreground hover:text-white"
             )}
           >
             <span>{isVi ? "Toán cho VFX" : "Math for VFX"}</span>
-            <span className="ml-1.5 text-slate-500">({mathPosts.length})</span>
+            <span className="ml-1.5 text-quiet">({mathPosts.length})</span>
           </button>
         </div>
 
@@ -139,7 +139,7 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
                   <Link href={`/blog/${post.slug}`} className="block">
                     {/* Thumbnail - Flat, crisp border */}
                     {post.thumbnail && (
-                      <div className="relative h-56 w-full overflow-hidden rounded-lg border border-[#364156]/70 bg-[#161a23] transition-colors duration-300 group-hover:border-[#5eb3ab]/60">
+                      <div className="relative h-56 w-full overflow-hidden rounded-lg border border-border/70 bg-section transition-colors duration-300 group-hover:border-primary/60">
                         <Image
                           src={post.thumbnail}
                           alt={post.title}
@@ -156,30 +156,30 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
 
                     <div className="pt-4">
                       <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
-                        <span className="uppercase tracking-[0.14em] text-[#5eb3ab]">
+                        <span className="uppercase tracking-[0.14em] text-primary">
                           {categoryBadge}
                         </span>
-                        <span className="text-slate-600">/</span>
-                        <span className="flex items-center gap-1 text-slate-400">
+                        <span className="text-quiet">/</span>
+                        <span className="flex items-center gap-1 text-muted-foreground">
                           <Clock className="h-3 w-3" />
                           {post.readTime}
                         </span>
-                        <span className="text-slate-600">/</span>
-                        <span className="text-slate-400">{formatDateByLocale(post.date, locale)}</span>
+                        <span className="text-quiet">/</span>
+                        <span className="text-muted-foreground">{formatDateByLocale(post.date, locale)}</span>
                       </div>
 
-                      <h2 className="mt-2 text-xl font-medium tracking-tight text-white transition-colors duration-200 group-hover:text-[#5eb3ab] font-kanit">
+                      <h2 className="mt-2 text-xl font-medium tracking-tight text-white transition-colors duration-200 group-hover:text-primary font-kanit">
                         {post.title}
                       </h2>
 
                       {post.description && (
-                        <p className="mt-1.5 text-sm leading-relaxed text-slate-300 line-clamp-2">
+                        <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground line-clamp-2">
                           {post.description}
                         </p>
                       )}
 
                       {post.tags && post.tags.length > 0 && (
-                        <p className="mt-3 text-xs font-mono text-slate-400">
+                        <p className="mt-3 text-xs font-mono text-muted-foreground">
                           {post.tags.slice(0, 4).join(" · ")}
                         </p>
                       )}

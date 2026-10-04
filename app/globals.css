@@ -42,25 +42,29 @@
 
 @layer base {
   :root {
-    --background: 221 23% 14%;
-    --foreground: 210 40% 98%;
-    --card: 220 23% 18%;
-    --card-foreground: 210 40% 98%;
-    --popover: 220 23% 18%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 174 42% 48%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 220 21% 22%;
-    --secondary-foreground: 210 40% 96%;
-    --muted: 220 21% 22%;
-    --muted-foreground: 215 25% 82%;
-    --accent: 174 42% 48%;
-    --accent-foreground: 0 0% 100%;
+    --background: 217.5 23.53% 6.67%;
+    --section: 212.73 23.4% 9.22%;
+    --foreground: 216 23.81% 95.88%;
+    --card: 212.31 22.03% 11.57%;
+    --card-foreground: 216 23.81% 95.88%;
+    --popover: 212.31 22.03% 11.57%;
+    --popover-foreground: 216 23.81% 95.88%;
+    --primary: 176.47 55.35% 57.84%;
+    --primary-foreground: 217.5 23.53% 6.67%;
+    --primary-hover: 176.15 61.58% 65.29%;
+    --secondary: 212.73 23.4% 9.22%;
+    --secondary-foreground: 211.58 10.5% 64.51%;
+    --muted: 212.31 22.03% 11.57%;
+    --muted-foreground: 211.58 10.5% 64.51%;
+    --quiet-foreground: 211.43 8.79% 53.14%;
+    --accent: 176.47 55.35% 57.84%;
+    --accent-foreground: 217.5 23.53% 6.67%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 219 23% 28%;
-    --input: 219 23% 28%;
-    --ring: 174 42% 48%;
+    --border: 213.75 17.78% 17.65%;
+    --border-hover: 210 15.15% 25.88%;
+    --input: 213.75 17.78% 17.65%;
+    --ring: 176.47 55.35% 57.84%;
     --radius: 0.5rem;
   }
 }
@@ -78,7 +82,7 @@
 
   /* Custom text selection */
   ::selection {
-    @apply bg-teal-500/20 text-slate-950;
+    @apply bg-primary/25 text-foreground;
   }
 
   /* Thin custom scrollbar for code blocks */
@@ -114,8 +118,8 @@
 }
 
 .dark-glass-panel {
-  background: linear-gradient(180deg, rgba(27, 34, 42, 0.92), rgba(21, 28, 36, 0.88));
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, hsl(var(--card) / 0.92), hsl(var(--section) / 0.88));
+  border: 1px solid hsl(var(--border));
   box-shadow:
     0 16px 40px rgba(15, 23, 42, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);

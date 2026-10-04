@@ -9,10 +9,10 @@ export default function ContactSection() {
   const isVi = locale === "vi";
 
   return (
-    <section id="contact" className="border-t border-[#364156]/60 bg-[#1c212c]">
+    <section id="contact" className="border-t border-border/60 bg-background">
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:px-12 lg:py-28">
         <div>
-          <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#5eb3ab]">
+          <span className="text-xs font-mono uppercase tracking-[0.2em] text-primary">
             {isVi ? "LIÊN HỆ TRỰC TIẾP" : "DIRECT INQUIRIES"}
           </span>
           <h2 className="text-3xl font-medium tracking-tight text-white sm:text-5xl lg:text-6xl font-kanit">
@@ -20,7 +20,7 @@ export default function ContactSection() {
           </h2>
           <a
             href={`mailto:${site.email}`}
-            className="mt-8 inline-block border-b-2 border-slate-600 pb-2 font-mono text-xl font-medium tracking-tight text-white transition-colors hover:border-[#5eb3ab] hover:text-[#5eb3ab] sm:text-3xl"
+            className="mt-8 inline-block border-b-2 border-slate-600 pb-2 font-mono text-xl font-medium tracking-tight text-white transition-colors hover:border-primary hover:text-primary sm:text-3xl"
           >
             {site.email}
           </a>

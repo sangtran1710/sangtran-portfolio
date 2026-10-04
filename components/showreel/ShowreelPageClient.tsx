@@ -130,10 +130,10 @@ export default function ShowreelPageClient() {
   const activeIndex = getActiveShotIndex();
 
   return (
-    <div className="relative min-h-screen bg-[#1c212c] pt-24 pb-20 text-white">
+    <div className="relative min-h-screen bg-background pt-24 pb-20 text-white">
       {/* Subtle Cinematic Stage Glow */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[500px] overflow-hidden">
-        <div className="absolute left-1/2 top-10 h-[380px] w-[800px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(94,179,171,0.12),transparent_70%)] blur-3xl" />
+        <div className="absolute left-1/2 top-10 h-[380px] w-[800px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(88,207,200,0.08),transparent_70%)] blur-3xl" />
       </div>
 
       <main className="relative z-10 mx-auto max-w-5xl px-6 sm:px-8">
@@ -141,7 +141,7 @@ export default function ShowreelPageClient() {
         <div className="mb-6 flex items-center justify-between">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-slate-400 transition-colors hover:text-[#5eb3ab]"
+            className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-muted-foreground transition-colors hover:text-primary"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             {copy.common.backToHome}
@@ -151,7 +151,7 @@ export default function ShowreelPageClient() {
             href={HERO.showreelYoutube}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-mono text-slate-400 transition-colors hover:text-[#5eb3ab]"
+            className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground transition-colors hover:text-primary"
           >
             <Youtube className="h-3.5 w-3.5 text-red-400" />
             <span>YouTube 4K</span>
@@ -164,17 +164,17 @@ export default function ShowreelPageClient() {
           <h1 className="font-kanit text-3xl font-medium tracking-tight text-white sm:text-4xl">
             Real-Time VFX Showreel
           </h1>
-          <span className="text-xs font-mono text-slate-400">
+          <span className="text-xs font-mono text-muted-foreground">
             00:41 · 4K 60FPS
           </span>
         </div>
 
         {/* Cinema Video Player */}
         <div className="relative mb-8">
-          <div className="group relative aspect-video w-full overflow-hidden rounded-xl border border-[#364156] bg-[#161a23] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.85)] ring-1 ring-white/10">
+          <div className="group relative aspect-video w-full overflow-hidden rounded-xl border border-border bg-section shadow-[0_20px_50px_-12px_rgba(0,0,0,0.85)] ring-1 ring-white/10">
             {hasError ? (
               <div className="flex h-full flex-col items-center justify-center p-6 text-center">
-                <p className="mb-4 text-sm text-slate-400">
+                <p className="mb-4 text-sm text-muted-foreground">
                   {copy.common.videoUnavailable}
                 </p>
                 <a
@@ -217,7 +217,7 @@ export default function ShowreelPageClient() {
                     <div className="absolute inset-0 bg-black/25 transition-colors group-hover/poster:bg-black/35" />
 
                     {/* Glassmorphic Play Trigger */}
-                    <div className="relative z-10 flex h-20 w-20 items-center justify-center rounded-full border border-white/30 bg-black/40 text-white shadow-2xl backdrop-blur-md transition-all duration-300 group-hover/poster:scale-110 group-hover/poster:border-[#5eb3ab] group-hover/poster:bg-[#5eb3ab] group-hover/poster:text-slate-900">
+                    <div className="relative z-10 flex h-20 w-20 items-center justify-center rounded-full border border-white/30 bg-black/40 text-white shadow-2xl backdrop-blur-md transition-all duration-300 group-hover/poster:scale-110 group-hover/poster:border-primary group-hover/poster:bg-primary group-hover/poster:text-slate-900">
                       <Play className="ml-1 h-8 w-8 fill-current" />
                     </div>
                   </button>
@@ -262,8 +262,8 @@ export default function ShowreelPageClient() {
                 className={cn(
                   "group relative flex flex-col overflow-hidden rounded-lg border text-left transition-all duration-200",
                   isActive
-                    ? "border-[#5eb3ab] bg-[#232a38] shadow-md shadow-[#5eb3ab]/10"
-                    : "border-[#364156]/70 bg-[#161a23]/70 hover:border-slate-500 hover:bg-[#232a38]"
+                    ? "border-primary bg-card shadow-md shadow-primary/10"
+                    : "border-border/70 bg-section/70 hover:border-slate-500 hover:bg-card"
                 )}
               >
                 {/* Visual Thumbnail */}
@@ -275,18 +275,18 @@ export default function ShowreelPageClient() {
                     className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                     sizes="(max-width: 640px) 50vw, 25vw"
                   />
-                  <div className="absolute bottom-1.5 left-1.5 flex items-center gap-1 rounded bg-black/80 px-1.5 py-0.5 text-[10px] font-mono text-slate-200">
-                    <Play className="h-2 w-2 fill-current text-[#5eb3ab]" />
+                  <div className="absolute bottom-1.5 left-1.5 flex items-center gap-1 rounded bg-black/80 px-1.5 py-0.5 text-[10px] font-mono text-foreground">
+                    <Play className="h-2 w-2 fill-current text-primary" />
                     <span>{shot.timecode}</span>
                   </div>
                 </div>
 
                 {/* Minimal Label */}
                 <div className="p-2.5">
-                  <p className="truncate text-xs font-medium text-white transition-colors group-hover:text-[#5eb3ab]">
+                  <p className="truncate text-xs font-medium text-white transition-colors group-hover:text-primary">
                     {shot.title}
                   </p>
-                  <p className="mt-0.5 truncate text-[11px] font-mono text-slate-400">
+                  <p className="mt-0.5 truncate text-[11px] font-mono text-muted-foreground">
                     {shot.client}
                   </p>
                 </div>

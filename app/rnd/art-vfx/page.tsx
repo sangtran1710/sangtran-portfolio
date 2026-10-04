@@ -46,7 +46,7 @@ export default function ArtVfxPage() {
     const youtubeId = "FcIUXgQ4c3s";
 
     return (
-        <main className="min-h-screen bg-zinc-950 text-foreground selection:bg-teal-500/30">
+        <main className="min-h-screen bg-background text-foreground selection:bg-teal-500/30">
             <div className="relative mx-auto max-w-4xl px-6 py-24 sm:py-32">
                 <Link
                     href="/portfolio#rnd"
@@ -80,7 +80,7 @@ export default function ArtVfxPage() {
 
                 {/* Video Embed */}
                 <div className="mb-16">
-                    <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-white/10 shadow-2xl bg-zinc-900">
+                    <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-white/10 shadow-2xl bg-section">
                         <iframe
                             src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=0&rel=0`}
                             title="YouTube video player"
@@ -100,7 +100,7 @@ export default function ArtVfxPage() {
                         lighting, and VFX presentation) was done in UE.
                     </p>
 
-                    <div className="grid sm:grid-cols-2 gap-8 mt-12 bg-zinc-900/50 p-6 sm:p-8 rounded-xl border border-white/5">
+                    <div className="grid sm:grid-cols-2 gap-8 mt-12 bg-section/50 p-6 sm:p-8 rounded-xl border border-white/5">
                         <div>
                             <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-3">Role</h3>
                             <ul className="space-y-2 text-sm text-white/70">

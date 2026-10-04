@@ -23,8 +23,8 @@ export function ContactTerminal({ children }: { children: React.ReactNode }) {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="max-w-xl p-0 border border-[#364156] bg-[#161a23] shadow-2xl overflow-hidden gap-0 rounded-lg">
-        <DialogHeader className="bg-[#232a38] px-4 py-3 border-b border-[#364156] flex flex-row items-center space-y-0">
+      <DialogContent className="max-w-xl p-0 border border-border bg-section shadow-2xl overflow-hidden gap-0 rounded-lg">
+        <DialogHeader className="bg-card px-4 py-3 border-b border-border flex flex-row items-center space-y-0">
           <div className="flex gap-2 mr-4 mt-0.5">
             <div className="w-3 h-3 rounded-full bg-red-500/80" />
             <div className="w-3 h-3 rounded-full bg-yellow-500/80" />

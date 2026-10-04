@@ -42,7 +42,7 @@ const systems = [
 
 export default function ErlangmonVfxPage() {
   return (
-    <article className="bg-[#1c212c] text-white">
+    <article className="bg-background text-white">
       <header className="mx-auto max-w-7xl px-6 pb-12 pt-28 sm:pb-16 sm:pt-32 lg:px-10">
         <Link
           href="/portfolio#rnd"
@@ -65,9 +65,9 @@ export default function ErlangmonVfxPage() {
           </p>
         </div>
 
-        <dl className="mt-12 grid border-y border-[#364156] sm:grid-cols-3">
+        <dl className="mt-12 grid border-y border-border sm:grid-cols-3">
           {facts.map((fact) => (
-            <div key={fact.label} className="py-5 sm:border-r sm:border-[#364156] sm:px-6 sm:first:pl-0 sm:last:border-r-0">
+            <div key={fact.label} className="py-5 sm:border-r sm:border-border sm:px-6 sm:first:pl-0 sm:last:border-r-0">
               <dt className="text-xs text-white/45">{fact.label}</dt>
               <dd className="mt-1 text-sm text-white/85">{fact.value}</dd>
             </div>
@@ -77,7 +77,7 @@ export default function ErlangmonVfxPage() {
 
       <section aria-label="Erlangmon VFX showcase" className="mx-auto max-w-7xl px-6 pb-20 lg:px-10">
         <video
-          className="aspect-video w-full rounded-md border border-[#364156] bg-[#161a23] object-cover"
+          className="aspect-video w-full rounded-md border border-border bg-section object-cover"
           controls
           playsInline
           preload="metadata"
@@ -174,7 +174,7 @@ export default function ErlangmonVfxPage() {
                 remain immediate, so each gameplay event keeps its intended response.
               </p>
             </div>
-            <div className="border-t border-[#364156] pt-10">
+            <div className="border-t border-border pt-10">
               <h3 className="text-lg font-medium">Mobile-aware geometry and overdraw</h3>
               <p className="mt-3 max-w-2xl leading-7 text-white/60">
                 Tight slash and ring meshes reduce unused translucent coverage. I checked the
@@ -187,7 +187,7 @@ export default function ErlangmonVfxPage() {
 
         <div className="mt-16 grid gap-5 lg:grid-cols-2">
           <figure>
-            <div className="relative aspect-[1898/1023] overflow-hidden rounded-md border border-[#364156] bg-[#161a23]">
+            <div className="relative aspect-[1898/1023] overflow-hidden rounded-md border border-border bg-section">
               <Image
                 src="/projects/erlangmon-vfx/material-graph.webp"
                 alt="Unreal Engine material graph used for Erlangmon VFX"
@@ -201,7 +201,7 @@ export default function ErlangmonVfxPage() {
           </figure>
 
           <figure>
-            <div className="relative aspect-[1904/926] overflow-hidden rounded-md border border-[#364156] bg-[#161a23]">
+            <div className="relative aspect-[1904/926] overflow-hidden rounded-md border border-border bg-section">
               <Image
                 src="/projects/erlangmon-vfx/niagara-system.webp"
                 alt="Unreal Engine Niagara system for the Erlangmon effect"
@@ -216,7 +216,7 @@ export default function ErlangmonVfxPage() {
         </div>
       </section>
 
-      <section className="border-t border-[#364156] bg-[#161a23]">
+      <section className="border-t border-border bg-section">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 py-20 sm:py-24 lg:grid-cols-[0.7fr_1.3fr] lg:px-10">
           <h2 className="font-kanit text-3xl font-light leading-tight sm:text-4xl">Next pass</h2>
           <p className="max-w-2xl text-base leading-8 text-white/60 sm:text-lg">

@@ -51,7 +51,7 @@ const metrics = [
 
 export default function VfxFlowPage() {
   return (
-    <article className="bg-[#1c212c] text-white">
+    <article className="bg-background text-white">
       {/* Header */}
       <header className="mx-auto max-w-7xl px-6 pb-12 pt-28 sm:pb-16 sm:pt-32 lg:px-10">
         <Link
@@ -65,11 +65,11 @@ export default function VfxFlowPage() {
         <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-end">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-3">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-[#5c9d98]/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#5eb3ab] border border-[#5c9d98]/25">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary border border-primary/25">
                 <Wrench className="h-3.5 w-3.5" />
                 Pipeline Tooling & Quality Gate
               </span>
-              <span className="text-xs text-zinc-500 font-mono">PROJECT-TITAN</span>
+              <span className="text-xs text-quiet font-mono">PROJECT-TITAN</span>
             </div>
             <h1 className="max-w-4xl font-kanit text-5xl font-light leading-none sm:text-6xl lg:text-7xl">
               VFX Flow
@@ -82,9 +82,9 @@ export default function VfxFlowPage() {
         </div>
 
         {/* Fact metadata bar */}
-        <dl className="mt-12 grid border-y border-[#364156] sm:grid-cols-3">
+        <dl className="mt-12 grid border-y border-border sm:grid-cols-3">
           {facts.map((fact) => (
-            <div key={fact.label} className="py-5 sm:border-r sm:border-[#364156] sm:px-6 sm:first:pl-0 sm:last:border-r-0">
+            <div key={fact.label} className="py-5 sm:border-r sm:border-border sm:px-6 sm:first:pl-0 sm:last:border-r-0">
               <dt className="text-xs text-white/45">{fact.label}</dt>
               <dd className="mt-1 text-sm font-medium text-white/85">{fact.value}</dd>
             </div>
@@ -96,9 +96,9 @@ export default function VfxFlowPage() {
           {metrics.map((m) => (
             <div
               key={m.label}
-              className="rounded-xl border border-[#364156] bg-[#232a38] p-5 backdrop-blur-sm"
+              className="rounded-xl border border-border bg-card p-5 backdrop-blur-sm"
             >
-              <div className="font-kanit text-3xl font-normal text-[#a7d2ce] sm:text-4xl">
+              <div className="font-kanit text-3xl font-normal text-primary-hover sm:text-4xl">
                 {m.number}
               </div>
               <div className="mt-2 text-xs font-semibold uppercase tracking-wider text-white/90">
@@ -112,7 +112,7 @@ export default function VfxFlowPage() {
 
       {/* Hero Video Section */}
       <section aria-label="VFX Flow live screencast" className="mx-auto max-w-7xl px-6 pb-20 lg:px-10">
-        <div className="overflow-hidden rounded-2xl border border-[#364156] bg-[#161a23] shadow-2xl">
+        <div className="overflow-hidden rounded-2xl border border-border bg-section shadow-2xl">
           <video
             className="aspect-video w-full object-cover"
             controls
@@ -124,25 +124,25 @@ export default function VfxFlowPage() {
             Your browser does not support embedded video.
           </video>
         </div>
-        <div className="mt-3 flex items-center justify-between text-xs text-zinc-500">
+        <div className="mt-3 flex items-center justify-between text-xs text-quiet">
           <span>Live screencast: Work Log, Asset QC Gate, and Perforce Submission Staging</span>
           <span className="font-mono">WPF / XAML GUI · Multi-Threaded Runspaces</span>
         </div>
       </section>
 
       {/* The Core Problem */}
-      <section className="bg-[#161a23] py-20 text-white border-y border-[#364156]">
+      <section className="bg-section py-20 text-white border-y border-border">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-[#5eb3ab] mb-2">
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-2">
                 Production Context
               </p>
               <h2 className="font-kanit text-3xl font-light leading-tight sm:text-4xl">
                 Why 6 PM submissions break AAA builds
               </h2>
             </div>
-            <div className="space-y-6 text-base leading-8 text-zinc-300 sm:text-lg">
+            <div className="space-y-6 text-base leading-8 text-muted-foreground sm:text-lg">
               <p>
                 In high-velocity AAA development, artists work up to the deadline before committing 
                 large changelists to Perforce. With dozens of interrelated files (.visualeffect, .material, .texture, .model), 
@@ -151,19 +151,19 @@ export default function VfxFlowPage() {
               <div className="grid gap-6 sm:grid-cols-3 pt-4">
                 <div className="rounded-lg border border-rose-500/20 bg-rose-950/20 p-4">
                   <h3 className="font-semibold text-rose-300 text-sm mb-1">Naming & Syntax Errors</h3>
-                  <p className="text-xs text-zinc-400 leading-relaxed">
+                  <p className="text-xs text-muted-foreground leading-relaxed">
                     Forbidden substrings like &apos;_vfx&apos; or incorrect texture suffixes break automated build packaging.
                   </p>
                 </div>
                 <div className="rounded-lg border border-amber-500/20 bg-amber-950/20 p-4">
                   <h3 className="font-semibold text-amber-300 text-sm mb-1">Shared Library Regressions</h3>
-                  <p className="text-xs text-zinc-400 leading-relaxed">
+                  <p className="text-xs text-muted-foreground leading-relaxed">
                     Accidental check-ins to common /fx_library/ files silently break assets across the entire studio.
                   </p>
                 </div>
                 <div className="rounded-lg border border-blue-500/20 bg-blue-950/20 p-4">
                   <h3 className="font-semibold text-blue-300 text-sm mb-1">Uncommitted WIP Loss</h3>
-                  <p className="text-xs text-zinc-400 leading-relaxed">
+                  <p className="text-xs text-muted-foreground leading-relaxed">
                     Unshelved local experiments risk corruption or accidental overwrites during daily mainline syncs.
                   </p>
                 </div>
@@ -176,13 +176,13 @@ export default function VfxFlowPage() {
       {/* Pillar 1: Automated Asset QC & Submission Gate */}
       <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
         <div className="mb-12 max-w-3xl">
-          <span className="text-xs font-semibold uppercase tracking-wider text-[#5eb3ab]">
+          <span className="text-xs font-semibold uppercase tracking-wider text-primary">
             Pillar 01
           </span>
           <h2 className="mt-2 font-kanit text-3xl font-light sm:text-4xl">
             Automated Asset QC & Readiness Gate
           </h2>
-          <p className="mt-4 text-base leading-7 text-zinc-400">
+          <p className="mt-4 text-base leading-7 text-muted-foreground">
             A static analysis engine scans authored files before any changelist can be created. 
             Try toggling the interactive gate below to inspect how violations are caught and resolved.
           </p>
@@ -191,26 +191,26 @@ export default function VfxFlowPage() {
         <QualityGatePreview />
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          <div className="rounded-xl border border-[#364156] bg-[#232a38] p-6">
-            <ShieldCheck className="h-5 w-5 text-[#5c9d98] mb-3" />
+          <div className="rounded-xl border border-border bg-card p-6">
+            <ShieldCheck className="h-5 w-5 text-primary mb-3" />
             <h3 className="text-base font-medium text-white">8-Rule Validation Engine</h3>
-            <p className="mt-2 text-xs leading-relaxed text-zinc-400">
+            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
               Enforces strict lowercase tokens, forbidden substring filters (_vfx, _fx, _gp), 
               map suffixes (_c, _n, _g, _m), and VFX descriptor hierarchies.
             </p>
           </div>
-          <div className="rounded-xl border border-[#364156] bg-[#232a38] p-6">
-            <Zap className="h-5 w-5 text-[#5c9d98] mb-3" />
+          <div className="rounded-xl border border-border bg-card p-6">
+            <Zap className="h-5 w-5 text-primary mb-3" />
             <h3 className="text-base font-medium text-white">Particle Budget Heuristics</h3>
-            <p className="mt-2 text-xs leading-relaxed text-zinc-400">
+            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
               Parses particle system capacities and flags configurations exceeding 30,000 particles 
               before runtime profiling to prevent catastrophic overdraw spikes.
             </p>
           </div>
-          <div className="rounded-xl border border-[#364156] bg-[#232a38] p-6">
-            <Layers className="h-5 w-5 text-[#5c9d98] mb-3" />
+          <div className="rounded-xl border border-border bg-card p-6">
+            <Layers className="h-5 w-5 text-primary mb-3" />
             <h3 className="text-base font-medium text-white">Integrity & AssetKit Audits</h3>
-            <p className="mt-2 text-xs leading-relaxed text-zinc-400">
+            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
               Verifies mandatory .thumbnail presence for all materials and effects, ensuring 
               assets never ship with missing editor icons or broken AssetKit links.
             </p>
@@ -219,39 +219,39 @@ export default function VfxFlowPage() {
       </section>
 
       {/* Pillar 2: Production Work Log */}
-      <section className="bg-[#1c212c] py-24 border-t border-[#364156]">
+      <section className="bg-background py-24 border-t border-border">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#5eb3ab]">
+              <span className="text-xs font-semibold uppercase tracking-wider text-primary">
                 Pillar 02
               </span>
               <h2 className="mt-2 font-kanit text-3xl font-light sm:text-4xl">
                 Command-Driven Work Log & Rollover Engine
               </h2>
-              <p className="mt-4 text-base leading-7 text-zinc-300">
+              <p className="mt-4 text-base leading-7 text-muted-foreground">
                 Context-switching between Jira, Perforce, and DCC viewports slows artists down. 
                 VFX Flow provides an ultra-fast inline terminal interface for tracking daily production beats.
               </p>
 
-              <ul className="mt-8 space-y-4 text-sm text-zinc-400">
+              <ul className="mt-8 space-y-4 text-sm text-muted-foreground">
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="h-4 w-4 text-[#5c9d98] mt-1 shrink-0" />
+                  <CheckCircle2 className="h-4 w-4 text-primary mt-1 shrink-0" />
                   <span>
                     <strong className="text-white">Inline Shorthand:</strong> Fast input supporting tags like{" "}
-                    <code className="text-xs bg-white/10 px-1 py-0.5 rounded text-zinc-200">!high</code>,{" "}
-                    <code className="text-xs bg-white/10 px-1 py-0.5 rounded text-zinc-200">@today</code>, and{" "}
-                    <code className="text-xs bg-white/10 px-1 py-0.5 rounded text-zinc-200">cl:10523140</code>.
+                    <code className="text-xs bg-white/10 px-1 py-0.5 rounded text-foreground">!high</code>,{" "}
+                    <code className="text-xs bg-white/10 px-1 py-0.5 rounded text-foreground">@today</code>, and{" "}
+                    <code className="text-xs bg-white/10 px-1 py-0.5 rounded text-foreground">cl:10523140</code>.
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="h-4 w-4 text-[#5c9d98] mt-1 shrink-0" />
+                  <CheckCircle2 className="h-4 w-4 text-primary mt-1 shrink-0" />
                   <span>
                     <strong className="text-white">Task Rollover:</strong> Incomplete tasks automatically move to the next day with a slip-day counter (<code className="text-xs text-rose-300">+9d</code>).
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="h-4 w-4 text-[#5c9d98] mt-1 shrink-0" />
+                  <CheckCircle2 className="h-4 w-4 text-primary mt-1 shrink-0" />
                   <span>
                     <strong className="text-white">Brief PDF Parser:</strong> Uses PyMuPDF to extract task names, due dates, and review notes directly from review briefs.
                   </span>
@@ -259,7 +259,7 @@ export default function VfxFlowPage() {
               </ul>
             </div>
 
-            <figure className="overflow-hidden rounded-xl border border-[#364156] bg-[#161a23] shadow-2xl">
+            <figure className="overflow-hidden rounded-xl border border-border bg-section shadow-2xl">
               <Image
                 src="/projects/vfx-flow/showcase_work_log.png"
                 alt="VFX Flow Work Log interface with color-coded status rows and rollover banner"
@@ -268,7 +268,7 @@ export default function VfxFlowPage() {
                 className="w-full object-cover"
                 sizes="(max-width: 1024px) 100vw, 55vw"
               />
-              <figcaption className="p-4 text-xs text-zinc-400 border-t border-[#364156] bg-[#161a23]">
+              <figcaption className="p-4 text-xs text-muted-foreground border-t border-border bg-section">
                 Color-coded task states: Done (Green), Doing (Amber), Waiting (Blue), Blocked (Red with slip counter).
               </figcaption>
             </figure>
@@ -279,7 +279,7 @@ export default function VfxFlowPage() {
       {/* Pillar 3: Perforce Submission & Library Guard */}
       <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-center">
-          <figure className="order-2 lg:order-1 overflow-hidden rounded-xl border border-[#364156] bg-[#161a23] shadow-2xl">
+          <figure className="order-2 lg:order-1 overflow-hidden rounded-xl border border-border bg-section shadow-2xl">
             <Image
               src="/projects/vfx-flow/showcase_submission_workflow.png"
               alt="Perforce Submission staging interface with color-coded asset families and dual-format descriptions"
@@ -288,44 +288,44 @@ export default function VfxFlowPage() {
               className="w-full object-cover"
               sizes="(max-width: 1024px) 100vw, 55vw"
             />
-            <figcaption className="p-4 text-xs text-zinc-400 border-t border-[#364156] bg-[#161a23]">
+            <figcaption className="p-4 text-xs text-muted-foreground border-t border-border bg-section">
               P4 Submission Manager: Smart file visualization, dual description generators, and scheduled 23:00 auto-shelve.
             </figcaption>
           </figure>
 
           <div className="order-1 lg:order-2">
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#5eb3ab]">
+            <span className="text-xs font-semibold uppercase tracking-wider text-primary">
               Pillar 03
             </span>
             <h2 className="mt-2 font-kanit text-3xl font-light sm:text-4xl">
               Perforce Automation & Shared Library Guard
             </h2>
-            <p className="mt-4 text-base leading-7 text-zinc-300">
+            <p className="mt-4 text-base leading-7 text-muted-foreground">
               Writing accurate changelist descriptions and sorting asset dependencies by hand is prone to oversight. 
               VFX Flow automates the entire Perforce staging pass.
             </p>
 
             <div className="mt-8 space-y-6">
               <div className="flex gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#5c9d98]/10 text-[#5eb3ab]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   <Lock className="h-5 w-5" />
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-white">Shared Library Protection Gate</h3>
-                  <p className="mt-1 text-xs leading-relaxed text-zinc-400">
-                    Intercepts changelists touching common directories like <code className="text-zinc-200">/fx_library/</code> or <code className="text-zinc-200">/shared/</code>, 
+                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                    Intercepts changelists touching common directories like <code className="text-foreground">/fx_library/</code> or <code className="text-foreground">/shared/</code>,
                     locking submission until an explicit supervisor override is granted.
                   </p>
                 </div>
               </div>
 
               <div className="flex gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#5c9d98]/10 text-[#5eb3ab]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   <Terminal className="h-5 w-5" />
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-white">Dual-Format Description Generator</h3>
-                  <p className="mt-1 text-xs leading-relaxed text-zinc-400">
+                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                     Produces synchronized internal sync check blocks for lead reviews alongside formal 
                     bulleted descriptions for formal Perforce P4V changelist commits with one click.
                   </p>
@@ -333,12 +333,12 @@ export default function VfxFlowPage() {
               </div>
 
               <div className="flex gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#5c9d98]/10 text-[#5eb3ab]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   <Clock className="h-5 w-5" />
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-white">Automated Nightly Shelve at 23:00</h3>
-                  <p className="mt-1 text-xs leading-relaxed text-zinc-400">
+                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                     A background Windows Task Scheduler passes checked-out assets into a pending shelf 
                     every night without reverting local changes, providing an automated safety net against lost work.
                   </p>
@@ -350,11 +350,11 @@ export default function VfxFlowPage() {
       </section>
 
       {/* Architecture & Engineering Decisions */}
-      <section className="bg-[#1c212c] py-20 border-t border-[#364156]">
+      <section className="bg-background py-20 border-t border-border">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-[#5eb3ab] mb-2">
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-2">
                 Engineering
               </p>
               <h2 className="font-kanit text-3xl font-light leading-tight sm:text-4xl">
@@ -364,25 +364,25 @@ export default function VfxFlowPage() {
             <div className="space-y-8">
               <div>
                 <h3 className="text-lg font-medium text-white">Multi-Threaded Runspaces for Responsive UI</h3>
-                <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                   Perforce CLI queries and regex file scans can block the main application thread on large workspaces. 
                   I designed the backend using isolated PowerShell Runspaces, offloading heavy I/O operations asynchronously 
                   so the XAML WPF interface remains responsive without UI freezing during large directory queries.
                 </p>
               </div>
-              <div className="border-t border-[#364156] pt-6">
+              <div className="border-t border-border pt-6">
                 <h3 className="text-lg font-medium text-white">Asset-Only Sandboxing Boundary</h3>
-                <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                   The tool operates strictly in user-space without requiring administrative privileges or intrusive daemons. 
                   It interacts purely through standard Perforce CLI wrappers, ensuring safe, frictionless deployment on production workstations.
                 </p>
               </div>
-              <div className="border-t border-[#364156] pt-6">
+              <div className="border-t border-border pt-6">
                 <h3 className="text-lg font-medium text-white">Confidentiality & NDA Sanitization</h3>
-                <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                   Built and verified in real production at Sparx* for a confidential AAA action-adventure project. 
                   All depot paths, client identifiers, and project codenames in this showcase have been sanitized to{" "}
-                  <code className="text-[#a7d2ce]">PROJECT-TITAN</code> and <code className="text-[#a7d2ce]">[STUDIO-FX]</code> in full accordance with client non-disclosure agreements.
+                  <code className="text-primary-hover">PROJECT-TITAN</code> and <code className="text-primary-hover">[STUDIO-FX]</code> in full accordance with client non-disclosure agreements.
                 </p>
               </div>
             </div>
@@ -391,22 +391,22 @@ export default function VfxFlowPage() {
       </section>
 
       {/* Bottom CTA */}
-      <footer className="border-t border-[#364156] bg-[#161a23] py-16">
+      <footer className="border-t border-border bg-section py-16">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 sm:flex-row lg:px-10">
           <div>
             <h3 className="font-kanit text-xl text-white">Looking for hands-on pipeline & VFX support?</h3>
-            <p className="mt-1 text-sm text-zinc-400">Open to senior remote roles, freelance VFX, and studio tool development.</p>
+            <p className="mt-1 text-sm text-muted-foreground">Open to senior remote roles, freelance VFX, and studio tool development.</p>
           </div>
           <div className="flex gap-4">
             <Link
               href="/portfolio#rnd"
-              className="inline-flex items-center gap-2 rounded-full border border-[#364156] bg-[#232a38] px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#2b3445]"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-card"
             >
               All Experiments
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-[#5c9d98] px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#538f8a]"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-primary-hover"
             >
               Get in touch
             </Link>

@@ -23,12 +23,12 @@ export const metadata: Metadata = {
 
 export default function LevelUpPage() {
     return (
-        <div className="min-h-screen bg-zinc-950 pt-24 pb-16">
+        <div className="min-h-screen bg-background pt-24 pb-16">
             <div className="mx-auto max-w-4xl px-6">
                 {/* Back link */}
                 <Link
                     href="/portfolio#rnd"
-                    className="inline-flex items-center gap-1.5 text-sm text-zinc-400 hover:text-white transition-colors mb-8"
+                    className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-white transition-colors mb-8"
                 >
                     <ArrowLeft className="h-4 w-4" />
                     Back to Experiments
@@ -40,20 +40,20 @@ export default function LevelUpPage() {
                         <Badge variant="secondary" className="bg-blue-500/10 text-blue-400 hover:bg-blue-500/20">
                             3D Environment
                         </Badge>
-                        <Badge variant="secondary" className="bg-zinc-800 text-zinc-300">
+                        <Badge variant="secondary" className="bg-card text-muted-foreground">
                             Personal R&D
                         </Badge>
                     </div>
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-[0.1em] text-white mb-4">
                         Level <span className="text-blue-400">Up</span>
                     </h1>
-                    <p className="text-zinc-400 text-lg">
+                    <p className="text-muted-foreground text-lg">
                         Researching and building high-fidelity 3D environments in Blender, inspired by Crypto.com.
                     </p>
                 </div>
 
                 {/* Hero Image */}
-                <div className="relative w-full overflow-hidden rounded-xl bg-zinc-950 mb-10 border border-white/10"
+                <div className="relative w-full overflow-hidden rounded-xl bg-background mb-10 border border-white/10"
                     style={{ paddingTop: "56.25%" }}>
                     <Image
                         src="/images/LevelUp.webp"
@@ -69,7 +69,7 @@ export default function LevelUpPage() {
                     <div className="lg:col-span-2 space-y-10">
                         <section>
                             <h2 className="text-xl font-bold uppercase tracking-wider text-white mb-4">Project Overview</h2>
-                            <p className="text-zinc-400 leading-relaxed text-base">
+                            <p className="text-muted-foreground leading-relaxed text-base">
                                 &quot;Level Up&quot; is a personal research and development project focused on pushing the boundaries of 3D environment creation using Blender. This project serves as a technical playground to refine my skills in world-building, texturing, lighting, and creating grand cinematic compositions.
                             </p>
                         </section>
@@ -81,11 +81,11 @@ export default function LevelUpPage() {
 
                             <div className="space-y-8">
                                 <div className="relative pl-6 border-l-2 border-blue-500/30">
-                                    <h3 className="text-lg font-semibold text-zinc-200 mb-2 flex items-center gap-2">
+                                    <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
                                         <span className="text-xs font-mono text-blue-400">01</span>
                                         Inspired by Crypto.com
                                     </h3>
-                                    <p className="text-zinc-400 text-sm leading-relaxed">
+                                    <p className="text-muted-foreground text-sm leading-relaxed">
                                         The core aesthetic and thematic inspiration comes from Crypto.com&apos;s brand identity. Specifically, the project is built around their 2025 slogan: <strong>&quot;Level Up&quot;</strong>. By taking this concept, I aimed to visualize what &quot;Leveling Up&quot; looks like translated into an epic, large-scale 3D cinematic environment.
                                     </p>
                                 </div>
@@ -96,28 +96,28 @@ export default function LevelUpPage() {
 
                     {/* Sidebar */}
                     <div className="space-y-6">
-                        <div className="rounded-xl border border-white/10 bg-zinc-900/50 p-6">
-                            <h3 className="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-4">
+                        <div className="rounded-xl border border-white/10 bg-section/50 p-6">
+                            <h3 className="text-xs font-semibold uppercase tracking-widest text-quiet mb-4">
                                 Tech Stack
                             </h3>
                             <div className="flex flex-wrap gap-2">
                                 {["Blender", "After Effects"].map((tech) => (
-                                    <Badge key={tech} variant="outline" className="border-zinc-700 bg-zinc-950 text-zinc-300">
+                                    <Badge key={tech} variant="outline" className="border-border bg-background text-muted-foreground">
                                         {tech}
                                     </Badge>
                                 ))}
                             </div>
                         </div>
 
-                        <div className="rounded-xl border border-white/10 bg-zinc-900/50 p-6 space-y-5">
+                        <div className="rounded-xl border border-white/10 bg-section/50 p-6 space-y-5">
                             <div>
-                                <p className="text-xs text-zinc-500 uppercase tracking-widest">Role</p>
-                                <p className="text-sm font-medium text-zinc-200 mt-1">3D Environment Artist</p>
+                                <p className="text-xs text-quiet uppercase tracking-widest">Role</p>
+                                <p className="text-sm font-medium text-foreground mt-1">3D Environment Artist</p>
                             </div>
 
                             <div>
-                                <p className="text-xs text-zinc-500 uppercase tracking-widest">Type</p>
-                                <p className="text-sm font-medium text-zinc-200 mt-1">Personal R&D</p>
+                                <p className="text-xs text-quiet uppercase tracking-widest">Type</p>
+                                <p className="text-sm font-medium text-foreground mt-1">Personal R&D</p>
                             </div>
 
                             <div className="pt-4 mt-2 border-t border-white/10">

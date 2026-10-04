@@ -33,7 +33,7 @@ export default function ProjectCard({
         {/* Visual Showcase - Pure flat image with subtle border */}
         <div
           className={cn(
-            "relative w-full overflow-hidden rounded-lg border border-[#364156]/70 bg-[#161a23] transition-colors duration-300 group-hover:border-[#5eb3ab]/60",
+            "relative w-full overflow-hidden rounded-lg border border-border/70 bg-section transition-colors duration-300 group-hover:border-primary/60",
             featured ? "aspect-[16/9]" : "aspect-[16/10]"
           )}
         >
@@ -54,28 +54,28 @@ export default function ProjectCard({
         {/* Typography & Editorial Metadata */}
         <div className="flex flex-1 flex-col pt-4">
           <div className="flex items-center gap-2 text-xs font-mono">
-            <span className="uppercase tracking-[0.14em] text-[#5eb3ab]">
+            <span className="uppercase tracking-[0.14em] text-primary">
               {categoryLabel}
             </span>
-            <span className="text-slate-600">/</span>
-            <span className="text-slate-400">{project.year}</span>
+            <span className="text-quiet">/</span>
+            <span className="text-muted-foreground">{project.year}</span>
           </div>
 
           <h3
             className={cn(
-              "mt-1.5 font-medium tracking-tight text-white transition-colors duration-200 group-hover:text-[#5eb3ab]",
+              "mt-1.5 font-medium tracking-tight text-white transition-colors duration-200 group-hover:text-primary",
               featured ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"
             )}
           >
             {project.title}
           </h3>
 
-          <p className="mt-1 text-sm font-normal text-slate-300">
+          <p className="mt-1 text-sm font-normal text-muted-foreground">
             {credit}
           </p>
 
           {project.techStack && project.techStack.length > 0 && (
-            <p className="mt-2 text-xs font-mono text-slate-400">
+            <p className="mt-2 text-xs font-mono text-muted-foreground">
               {project.techStack.slice(0, 3).join(" · ")}
             </p>
           )}

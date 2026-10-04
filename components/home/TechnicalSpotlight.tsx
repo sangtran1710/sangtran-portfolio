@@ -36,10 +36,10 @@ export default function TechnicalSpotlight() {
   ];
 
   return (
-    <section id="technical-spotlight" className="border-t border-[#364156]/60 bg-[#1c212c]">
+    <section id="technical-spotlight" className="border-t border-border/60 bg-background">
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-24">
         <div className="mb-12 max-w-2xl">
-          <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#5eb3ab]">
+          <span className="text-xs font-mono uppercase tracking-[0.2em] text-primary">
             {isVi ? "NGHIÊN CỨU & CÔNG CỤ" : "R&D & TECHNICAL SPOTLIGHT"}
           </span>
           <h2 className="mt-2 text-3xl font-medium tracking-tight text-white sm:text-4xl">
@@ -56,7 +56,7 @@ export default function TechnicalSpotlight() {
             >
               <article className="flex h-full flex-col">
                 {/* Visual Showcase - Flat and crisp */}
-                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg border border-[#364156]/70 bg-[#161a23] transition-colors duration-300 group-hover:border-[#5eb3ab]/60">
+                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg border border-border/70 bg-section transition-colors duration-300 group-hover:border-primary/60">
                   <Image
                     src={item.image}
                     alt={item.title}
@@ -67,11 +67,11 @@ export default function TechnicalSpotlight() {
                 </div>
 
                 <div className="pt-4">
-                  <h3 className="text-lg sm:text-xl font-medium tracking-tight text-white transition-colors duration-200 group-hover:text-[#5eb3ab]">
+                  <h3 className="text-lg sm:text-xl font-medium tracking-tight text-white transition-colors duration-200 group-hover:text-primary">
                     {item.title}
                   </h3>
 
-                  <p className="mt-1 text-sm leading-relaxed text-slate-300">
+                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                     {item.description}
                   </p>
                 </div>

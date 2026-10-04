@@ -15,12 +15,12 @@ export default function FeaturedProjects() {
   return (
     <section
       id="work"
-      className="scroll-mt-24 border-t border-[#364156]/60 bg-[#1c212c]"
+      className="scroll-mt-24 border-t border-border/60 bg-background"
     >
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-24">
         <div className="mb-12 flex items-end justify-between">
           <div>
-            <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#5eb3ab]">
+            <span className="text-xs font-mono uppercase tracking-[0.2em] text-primary">
               {isVi ? "DỰ ÁN TIÊU BIỂU" : "FEATURED PRODUCTIONS"}
             </span>
             <h2 className="mt-2 text-3xl font-medium tracking-tight text-white sm:text-4xl">
@@ -29,7 +29,7 @@ export default function FeaturedProjects() {
           </div>
           <Link
             href="/portfolio"
-            className="hidden items-center gap-1.5 text-sm font-medium text-slate-400 transition-colors hover:text-[#5eb3ab] sm:inline-flex"
+            className="hidden items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary sm:inline-flex"
           >
             {isVi ? "Xem tất cả" : "View all work"}
             <ArrowRight className="h-4 w-4" />

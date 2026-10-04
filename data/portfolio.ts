@@ -347,6 +347,18 @@ export const PROJECTS: Project[] = [
     videoUrl: "https://www.youtube.com/embed/bgqGdIoa52s?start=1",
     evidenceBreakdown: [
       {
+        image: "/images/projects/spider-man-2/story-water.webp",
+        title: "Waterfront action",
+        caption: "Public story trailer frame, shown for project context rather than shot-specific credit.",
+        tag: "Official Trailer Frame",
+      },
+      {
+        image: "/images/projects/spider-man-2/story-fire.webp",
+        title: "Fire and debris",
+        caption: "Public story trailer frame, shown for project context rather than shot-specific credit.",
+        tag: "Official Trailer Frame",
+      },
+      {
         image: "/images/achivements/SpiderMan2.webp",
         title: "Official In-Game End Credits",
         caption: "FX Artist credit under Sparx* - A Virtuos Studio in Marvel's Spider-Man 2 official credits roll.",

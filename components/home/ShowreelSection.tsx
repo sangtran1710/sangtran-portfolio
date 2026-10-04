@@ -60,7 +60,7 @@ export default function ShowreelSection({
     <section id="reel" className="mx-auto max-w-5xl px-6 py-8">
       <div className="mb-6 flex items-end justify-between">
         <div>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-[#5eb3ab]">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary">
             Showreel
           </p>
           <Heading className="mt-2 text-3xl font-extrabold uppercase tracking-[0.1em] text-white sm:text-4xl lg:text-5xl">
@@ -68,12 +68,12 @@ export default function ShowreelSection({
           </Heading>
         </div>
         <div className="hidden items-center gap-4 sm:flex">
-          <p className="text-sm text-zinc-500">{copy.showreel.subtitle}</p>
+          <p className="text-sm text-quiet">{copy.showreel.subtitle}</p>
           <a
             href={hero.showreelYoutube}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-400 transition-colors hover:text-white"
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-white"
           >
             <Youtube className="h-3.5 w-3.5" />
             YouTube
@@ -83,8 +83,8 @@ export default function ShowreelSection({
       </div>
 
       {hasError ? (
-        <div className="flex aspect-video flex-col items-center justify-center rounded-2xl border border-[#364156] bg-[#232a38]">
-          <p className="mb-4 text-sm text-zinc-500">
+        <div className="flex aspect-video flex-col items-center justify-center rounded-2xl border border-border bg-card">
+          <p className="mb-4 text-sm text-quiet">
             {copy.common.videoUnavailable}
           </p>
           <Button
@@ -104,7 +104,7 @@ export default function ShowreelSection({
           </Button>
         </div>
       ) : (
-        <div className="group relative overflow-hidden rounded-2xl bg-[#161a23] shadow-2xl ring-1 ring-[#364156]">
+        <div className="group relative overflow-hidden rounded-2xl bg-section shadow-2xl ring-1 ring-border">
           <video
             ref={videoRef}
             src={hero.showreelUrl}
@@ -192,7 +192,7 @@ export default function ShowreelSection({
       )}
 
       {hasError && (
-        <p className="mt-3 text-center text-xs text-zinc-600">
+        <p className="mt-3 text-center text-xs text-quiet">
           {copy.common.youtubeHosted}
         </p>
       )}

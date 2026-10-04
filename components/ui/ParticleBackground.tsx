@@ -35,8 +35,8 @@ export function ParticleBackground() {
     const nodeSpeed = 0.6;
 
     // Node colors (Teal/Cyber style matching website primary color)
-    const nodeColor = "rgba(92, 157, 152, 0.8)";
-    const glowColor = "rgba(92, 157, 152, 0.5)";
+    const nodeColor = "rgba(88, 207, 200, 0.8)";
+    const glowColor = "rgba(88, 207, 200, 0.5)";
 
     const nodes: Node[] = [];
 
@@ -83,7 +83,7 @@ export function ParticleBackground() {
           ctx.beginPath();
           ctx.moveTo(node.x, node.y);
           ctx.lineTo(mouseRef.current.x, mouseRef.current.y);
-          ctx.strokeStyle = `rgba(92, 157, 152, ${opacity * 0.6})`;
+          ctx.strokeStyle = `rgba(88, 207, 200, ${opacity * 0.6})`;
           ctx.lineWidth = 1.5;
           ctx.stroke();
         }
@@ -111,7 +111,7 @@ export function ParticleBackground() {
             ctx.moveTo(node.x, node.y);
             ctx.lineTo(targetNode.x, targetNode.y);
             // Dynamic line color
-            ctx.strokeStyle = `rgba(92, 157, 152, ${opacity * 0.4})`;
+            ctx.strokeStyle = `rgba(88, 207, 200, ${opacity * 0.4})`;
             ctx.lineWidth = 1;
             ctx.stroke();
           }

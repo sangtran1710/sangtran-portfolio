@@ -8,9 +8,9 @@ export default function QualityGatePreview() {
   const [mode, setMode] = useState<"blocked" | "ready">("blocked");
 
   return (
-    <div className="overflow-hidden rounded-xl border border-[#364156] bg-[#161a23]">
+    <div className="overflow-hidden rounded-xl border border-border bg-section">
       {/* Tab Header Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#364156] bg-[#232a38] px-5 py-4 sm:px-6">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border bg-card px-5 py-4 sm:px-6">
         <div className="flex items-center gap-2">
           {mode === "blocked" ? (
             <ShieldAlert className="h-5 w-5 text-rose-400" />
@@ -22,14 +22,14 @@ export default function QualityGatePreview() {
           </span>
         </div>
 
-        <div className="inline-flex rounded-lg border border-[#364156] bg-[#161a23] p-1">
+        <div className="inline-flex rounded-lg border border-border bg-section p-1">
           <button
             type="button"
             onClick={() => setMode("blocked")}
             className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition-all ${
               mode === "blocked"
                 ? "bg-rose-950/80 text-rose-300 border border-rose-500/40 shadow-sm"
-                : "text-zinc-400 hover:text-white"
+                : "text-muted-foreground hover:text-white"
             }`}
           >
             <AlertOctagon className="h-3.5 w-3.5 text-rose-400" />
@@ -41,7 +41,7 @@ export default function QualityGatePreview() {
             className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition-all ${
               mode === "ready"
                 ? "bg-emerald-950/80 text-emerald-300 border border-emerald-500/40 shadow-sm"
-                : "text-zinc-400 hover:text-white"
+                : "text-muted-foreground hover:text-white"
             }`}
           >
             <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
@@ -51,7 +51,7 @@ export default function QualityGatePreview() {
       </div>
 
       {/* Screen Preview */}
-      <div className="relative aspect-[16/9] w-full bg-[#161a23]">
+      <div className="relative aspect-[16/9] w-full bg-section">
         <Image
           src={
             mode === "blocked"
@@ -70,16 +70,16 @@ export default function QualityGatePreview() {
       </div>
 
       {/* Explanation Banner */}
-      <div className="border-t border-[#364156] bg-[#232a38] p-5 sm:p-6">
+      <div className="border-t border-border bg-card p-5 sm:p-6">
         {mode === "blocked" ? (
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-rose-400 text-xs font-semibold uppercase tracking-wider">
               <span className="h-2 w-2 rounded-full bg-rose-500 animate-pulse" />
               Status: 1 Error, 1 Warning | Submission Locked
             </div>
-            <p className="text-sm leading-relaxed text-zinc-300">
+            <p className="text-sm leading-relaxed text-muted-foreground">
               The automated scan flagged a disallowed <code className="text-rose-300 bg-rose-950/60 px-1 py-0.5 rounded">_vfx</code> substring 
-              in <code className="text-zinc-200">fire_pillar_vfx</code>, and marked particle capacity at <code className="text-amber-300 bg-amber-950/60 px-1 py-0.5 rounded">RISK (&gt;30k budget)</code>. 
+              in <code className="text-foreground">fire_pillar_vfx</code>, and marked particle capacity at <code className="text-amber-300 bg-amber-950/60 px-1 py-0.5 rounded">RISK (&gt;30k budget)</code>.
               The tool locks the changelist creation button until naming errors are resolved, preventing bad commits from reaching the Perforce mainline.
             </p>
           </div>
@@ -89,7 +89,7 @@ export default function QualityGatePreview() {
               <span className="h-2 w-2 rounded-full bg-emerald-500" />
               Status: Ready | All Checks Passed
             </div>
-            <p className="text-sm leading-relaxed text-zinc-300">
+            <p className="text-sm leading-relaxed text-muted-foreground">
               All 8 naming conventions, required <code className="text-emerald-300 bg-emerald-950/60 px-1 py-0.5 rounded">.thumbnail</code> presence, 
               parent <code className="text-emerald-300 bg-emerald-950/60 px-1 py-0.5 rounded">.assetkit</code> hierarchy, and particle count budgets 
               are verified. The changelist staging action unlocks and pre-formats the dual-format commit description automatically.

@@ -15,8 +15,8 @@ export function VideoPlayer({
   caption?: string;
 }) {
   return (
-    <figure className="my-8 rounded-xl overflow-hidden border border-[#364156] bg-[#232a38] shadow-2xl transition-all">
-      <div className="relative aspect-video w-full bg-[#161a23]">
+    <figure className="my-8 rounded-xl overflow-hidden border border-border bg-card shadow-2xl transition-all">
+      <div className="relative aspect-video w-full bg-section">
         <video
           src={src}
           poster={poster}
@@ -27,7 +27,7 @@ export function VideoPlayer({
         />
       </div>
       {caption && (
-        <figcaption className="px-4 py-3 text-xs text-slate-300 bg-[#161a23] border-t border-[#364156] leading-relaxed">
+        <figcaption className="px-4 py-3 text-xs text-muted-foreground bg-section border-t border-border leading-relaxed">
           {caption}
         </figcaption>
       )}
@@ -52,8 +52,8 @@ export function TextureCard({
 }) {
   const text = caption || description;
   return (
-    <div className="group rounded-xl border border-[#364156] bg-[#232a38] p-3 hover:border-[#4b5a75] transition-colors">
-      <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-[#161a23] border border-[#364156] mb-2.5">
+    <div className="group rounded-xl border border-border bg-card p-3 hover:border-border-hover transition-colors">
+      <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-section border border-border mb-2.5">
         <Image
           src={src}
           alt={title}
@@ -62,20 +62,20 @@ export function TextureCard({
           className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
         {channel && (
-          <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/75 backdrop-blur-sm border border-zinc-700/60 text-[10px] font-mono text-teal-300">
+          <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/75 backdrop-blur-sm border border-border/60 text-[10px] font-mono text-teal-300">
             {channel}
           </div>
         )}
       </div>
       <div className="flex items-center justify-between mb-0.5">
-        <h4 className="text-sm font-semibold text-zinc-200">{title}</h4>
+        <h4 className="text-sm font-semibold text-foreground">{title}</h4>
         {type && (
-          <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#161a23] border border-[#364156] text-slate-300 font-mono">
+          <span className="text-[10px] px-1.5 py-0.5 rounded bg-section border border-border text-muted-foreground font-mono">
             {type}
           </span>
         )}
       </div>
-      {text && <p className="text-xs text-zinc-400 leading-snug">{text}</p>}
+      {text && <p className="text-xs text-muted-foreground leading-snug">{text}</p>}
     </div>
   );
 }
@@ -90,7 +90,7 @@ export function TextureGallery({
   children: React.ReactNode;
 }) {
   return (
-    <div className="my-6 rounded-xl border border-[#364156] bg-[#161a23] p-4">
+    <div className="my-6 rounded-xl border border-border bg-section p-4">
       {(title || description) && (
         <div className="mb-3">
           {title && (
@@ -100,7 +100,7 @@ export function TextureGallery({
             </h3>
           )}
           {description && (
-            <p className="text-xs text-zinc-400 leading-relaxed">{description}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">{description}</p>
           )}
         </div>
       )}
@@ -118,11 +118,11 @@ export function ProductionNotice({
   children?: React.ReactNode;
 }) {
   return (
-    <aside className="my-6 border-l-2 border-[#5eb3ab] bg-[#232a38] px-4 py-3 text-xs text-slate-300 rounded-r-xl">
-      <div className="leading-relaxed text-zinc-400">
+    <aside className="my-6 border-l-2 border-primary bg-card px-4 py-3 text-xs text-muted-foreground rounded-r-xl">
+      <div className="leading-relaxed text-muted-foreground">
         {children || (
           <span>
-            <strong className="text-zinc-200 font-medium">Production note:</strong> Offline Houdini workflows only. No proprietary engine captures or tools are shown.
+            <strong className="text-foreground font-medium">Production note:</strong> Offline Houdini workflows only. No proprietary engine captures or tools are shown.
           </span>
         )}
       </div>

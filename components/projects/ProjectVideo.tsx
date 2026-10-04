@@ -24,7 +24,7 @@ export default function ProjectVideo({
 
   return (
     <div>
-      <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-[#364156] bg-[#161a23]">
+      <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-border bg-section">
         {isPlaying ? (
           <iframe
             src={playerUrl}
@@ -61,7 +61,7 @@ export default function ProjectVideo({
         href={watchUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-3 inline-flex items-center gap-1 text-sm text-[#a7d2ce] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#a7d2ce]"
+        className="mt-3 inline-flex items-center gap-1 text-sm text-primary-hover underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-hover"
       >
         Watch on YouTube if the video does not play here ↗
       </a>

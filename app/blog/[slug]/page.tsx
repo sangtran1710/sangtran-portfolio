@@ -66,14 +66,14 @@ export default function BlogPostPage({ params }: Props) {
   if (!post) notFound();
 
   return (
-    <div className="min-h-screen bg-[#1c212c] pt-28 pb-24 relative overflow-hidden">
+    <div className="min-h-screen bg-background pt-28 pb-24 relative overflow-hidden">
       <MathGridBackground />
       <div className="mx-auto max-w-2xl px-6 relative z-10">
 
         {/* Back */}
         <Link
           href="/articles"
-          className="inline-flex items-center gap-1.5 text-sm text-zinc-500 hover:text-white transition-colors mb-10"
+          className="inline-flex items-center gap-1.5 text-sm text-quiet hover:text-white transition-colors mb-10"
         >
           <ArrowLeft className="h-4 w-4" />
           All articles
@@ -84,11 +84,11 @@ export default function BlogPostPage({ params }: Props) {
           {/* Tags */}
           {post.tags?.length > 0 && (
             <div className="flex items-center gap-2 mb-5 flex-wrap">
-              <Tag className="h-3.5 w-3.5 text-zinc-500 shrink-0 mr-0.5" />
+              <Tag className="h-3.5 w-3.5 text-quiet shrink-0 mr-0.5" />
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center rounded-md border border-[#364156] bg-[#161a23] px-2.5 py-0.5 text-xs font-mono text-slate-300"
+                  className="inline-flex items-center rounded-md border border-border bg-section px-2.5 py-0.5 text-xs font-mono text-muted-foreground"
                 >
                   {tag}
                 </span>
@@ -100,12 +100,12 @@ export default function BlogPostPage({ params }: Props) {
             {post.title}
           </h1>
 
-          <p className="text-zinc-400 text-base leading-relaxed mb-6">
+          <p className="text-muted-foreground text-base leading-relaxed mb-6">
             {post.description}
           </p>
 
           {/* Meta bar */}
-          <div className="flex items-center gap-4 text-xs text-slate-400 border-b border-[#364156] pb-8">
+          <div className="flex items-center gap-4 text-xs text-muted-foreground border-b border-border pb-8">
             <time dateTime={post.date}>
               {new Date(post.date).toLocaleDateString("en-US", {
                 year: "numeric",
@@ -129,15 +129,15 @@ export default function BlogPostPage({ params }: Props) {
         <div className="prose prose-invert prose-zinc max-w-none
           prose-headings:font-bold prose-headings:text-white prose-headings:tracking-tight
           prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
-          prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-zinc-200
-          prose-p:text-zinc-400 prose-p:leading-relaxed prose-p:text-[15px]
+          prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-foreground
+          prose-p:text-muted-foreground prose-p:leading-relaxed prose-p:text-[15px]
           prose-a:text-teal-400 prose-a:no-underline hover:prose-a:text-teal-300 hover:prose-a:underline
-          prose-strong:text-zinc-200 prose-strong:font-semibold
-          prose-code:text-[#5eb3ab] prose-code:bg-[#161a23] prose-code:border prose-code:border-[#364156] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-none prose-code:after:content-none
-          prose-pre:bg-[#161a23] prose-pre:border prose-pre:border-[#364156] prose-pre:rounded-xl
-          prose-blockquote:border-l-[#5eb3ab] prose-blockquote:text-slate-300
-          prose-hr:border-[#364156]
-          prose-li:text-slate-300 prose-li:leading-relaxed
+          prose-strong:text-foreground prose-strong:font-semibold
+          prose-code:text-primary prose-code:bg-section prose-code:border prose-code:border-border prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-none prose-code:after:content-none
+          prose-pre:bg-section prose-pre:border prose-pre:border-border prose-pre:rounded-xl
+          prose-blockquote:border-l-primary prose-blockquote:text-muted-foreground
+          prose-hr:border-border
+          prose-li:text-muted-foreground prose-li:leading-relaxed
           prose-ul:my-4 prose-ol:my-4
         ">
           <MDXRemote source={post.content} components={{ 
@@ -148,31 +148,31 @@ export default function BlogPostPage({ params }: Props) {
           }} />
         </div>
 
-        <aside className="mt-16 rounded-xl border border-[#364156] bg-[#232a38] p-6 sm:p-8">
+        <aside className="mt-16 rounded-xl border border-border bg-card p-6 sm:p-8">
           <h2 className="text-lg font-semibold text-white">Want to talk through any of this?</h2>
-          <p className="mt-2 text-sm leading-relaxed text-slate-300">
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
             If you have a question about a setup, need a hand with a technical problem, or spotted something I should fix, send me a note.
           </p>
           <a
             href={`mailto:${SITE.email}?subject=${encodeURIComponent(`Question about ${post.title}`)}`}
-            className="mt-5 inline-flex rounded-full border border-[#5eb3ab]/40 px-4 py-2 text-sm font-medium text-[#5eb3ab] transition-colors hover:border-[#5eb3ab] hover:bg-[#5eb3ab]/10"
+            className="mt-5 inline-flex rounded-full border border-primary/40 px-4 py-2 text-sm font-medium text-primary transition-colors hover:border-primary hover:bg-primary/10"
           >
             Email me ↗
           </a>
         </aside>
 
         {/* Footer */}
-        <div className="mt-16 pt-8 border-t border-[#364156] flex items-center justify-between">
+        <div className="mt-16 pt-8 border-t border-border flex items-center justify-between">
           <Link
             href="/articles"
-            className="inline-flex items-center gap-1.5 text-sm text-zinc-500 hover:text-white transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm text-quiet hover:text-white transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to all articles
           </Link>
           <Link
             href="/portfolio"
-            className="text-sm text-zinc-500 hover:text-teal-400 transition-colors"
+            className="text-sm text-quiet hover:text-teal-400 transition-colors"
           >
             View my work &rarr;
           </Link>

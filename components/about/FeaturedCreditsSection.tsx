@@ -15,15 +15,15 @@ export default function FeaturedCreditsSection() {
       <h2 className="mb-2 font-kanit text-2xl font-normal tracking-tight text-white sm:text-3xl">
         {copy.about.featuredCredits}
       </h2>
-      <p className="mb-8 max-w-2xl text-sm leading-6 text-slate-400">
+      <p className="mb-8 max-w-2xl text-sm leading-6 text-muted-foreground">
         {copy.about.featuredCreditsBody}
       </p>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {credits.map((item, index) => (
           <div key={`${item.image}-${index}`}>
-            <article className="overflow-hidden rounded-xl border border-[#364156] bg-[#161a23] transition-colors duration-200 hover:border-[#5eb3ab]/60">
-              <div className="relative aspect-[3/4] border-b border-[#364156] bg-[#1c212c]">
+            <article className="overflow-hidden rounded-xl border border-border bg-section transition-colors duration-200 hover:border-primary/60">
+              <div className="relative aspect-[3/4] border-b border-border bg-background">
                 <Image
                   src={item.image}
                   alt={item.title ?? "Credit"}
@@ -40,7 +40,7 @@ export default function FeaturedCreditsSection() {
                     </p>
                   )}
                   {item.subtitle && (
-                    <p className="mt-0.5 text-xs text-slate-400">
+                    <p className="mt-0.5 text-xs text-muted-foreground">
                       {item.subtitle}
                     </p>
                   )}

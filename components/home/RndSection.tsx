@@ -19,7 +19,7 @@ function Thumbnail({ project, sizes }: { project: RndProject; sizes: string }) {
 
   if (broken) {
     return (
-      <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-800/80 text-white/20">
+      <div className="absolute inset-0 flex flex-col items-center justify-center bg-card/80 text-white/20">
         <ImageOff className="h-8 w-8 mb-1" />
         <span className="text-[10px] uppercase tracking-wider">{project.title}</span>
       </div>
@@ -159,22 +159,22 @@ export default function RndSection() {
           >
             <article className="flex h-full flex-col">
               {/* Visual Showcase - Pure flat image with subtle hairline border */}
-              <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-[#364156]/70 bg-[#161a23] transition-colors duration-300 group-hover:border-[#5eb3ab]/60">
+              <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-border/70 bg-section transition-colors duration-300 group-hover:border-primary/60">
                 <Thumbnail project={project} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
               </div>
 
               {/* Typography & Editorial Metadata */}
               <div className="flex flex-1 flex-col pt-3.5">
-                <p className="text-[10px] font-mono uppercase tracking-[0.16em] text-[#5eb3ab]">
+                <p className="text-[10px] font-mono uppercase tracking-[0.16em] text-primary">
                   {project.category}
                 </p>
 
-                <h3 className="mt-1 text-base font-medium tracking-tight text-white transition-colors duration-200 group-hover:text-[#5eb3ab] line-clamp-1">
+                <h3 className="mt-1 text-base font-medium tracking-tight text-white transition-colors duration-200 group-hover:text-primary line-clamp-1">
                   {project.title}
                 </h3>
 
                 {project.tools && project.tools.length > 0 && (
-                  <p className="mt-1.5 text-xs font-mono text-slate-400">
+                  <p className="mt-1.5 text-xs font-mono text-muted-foreground">
                     {project.tools.slice(0, 3).join(" · ")}
                   </p>
                 )}
@@ -186,34 +186,34 @@ export default function RndSection() {
 
       {/* ── Tier 3: Older Commercial Work & Archive (Collapsed Accordion) ── */}
       {archiveProjects.length > 0 && (
-        <div className="mt-16 pt-10 border-t border-[#364156]">
+        <div className="mt-16 pt-10 border-t border-border">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <p className="text-xs font-mono uppercase tracking-widest text-[#5eb3ab] mb-2.5">
+              <p className="text-xs font-mono uppercase tracking-widest text-primary mb-2.5">
                 {isVi ? "Dự án trước đây · Motion / CG / Film" : "Earlier work · Motion / CG / Film"}
               </p>
               <button
                 type="button"
                 onClick={() => setIsArchiveOpen((prev) => !prev)}
-                className="group inline-flex items-center gap-3 rounded-lg border border-[#364156] bg-[#161a23] px-4 py-2.5 text-sm font-medium text-slate-300 transition-all hover:border-[#4b5a75] hover:bg-[#232a38] hover:text-white"
+                className="group inline-flex items-center gap-3 rounded-lg border border-border bg-section px-4 py-2.5 text-sm font-medium text-muted-foreground transition-all hover:border-border-hover hover:bg-card hover:text-white"
               >
                 <span>
                   {isVi
                     ? (isArchiveOpen ? "Thu gọn lưu trữ" : "Xem lưu trữ →")
                     : (isArchiveOpen ? "Hide archive" : "View archive →")}
                 </span>
-                <span className="rounded bg-[#232a38] border border-[#364156] px-2 py-0.5 text-xs font-mono text-slate-300">
+                <span className="rounded bg-card border border-border px-2 py-0.5 text-xs font-mono text-muted-foreground">
                   {archiveProjects.length}
                 </span>
                 <ChevronDown
                   className={cn(
-                    "h-4 w-4 text-slate-400 transition-transform duration-300",
+                    "h-4 w-4 text-muted-foreground transition-transform duration-300",
                     isArchiveOpen && "rotate-180 text-white"
                   )}
                 />
               </button>
             </div>
-            <p className="text-xs text-slate-400 max-w-md">
+            <p className="text-xs text-muted-foreground max-w-md">
               {isVi
                 ? "Dự án thử nghiệm AI, môi trường 3D crypto và video thương mại thời kỳ đầu."
                 : "AI filmmaking experiments, crypto 3D environments, and earlier commercial TVCs."}
@@ -229,14 +229,14 @@ export default function RndSection() {
                   className="group block"
                 >
                   <article className="flex flex-col">
-                    <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-[#364156]/70 bg-[#161a23] transition-colors duration-200 group-hover:border-[#5eb3ab]/60">
+                    <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-border/70 bg-section transition-colors duration-200 group-hover:border-primary/60">
                       <Thumbnail project={project} sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" />
                     </div>
                     <div className="pt-2">
-                      <p className="text-[9px] font-mono uppercase tracking-wider text-slate-400">
+                      <p className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground">
                         {project.year || "Archive"}
                       </p>
-                      <h4 className="mt-0.5 text-xs font-medium text-white transition-colors duration-200 group-hover:text-[#5eb3ab] line-clamp-1">
+                      <h4 className="mt-0.5 text-xs font-medium text-white transition-colors duration-200 group-hover:text-primary line-clamp-1">
                         {project.title}
                       </h4>
                     </div>

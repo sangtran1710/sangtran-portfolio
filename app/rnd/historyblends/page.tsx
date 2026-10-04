@@ -23,12 +23,12 @@ export const metadata: Metadata = {
 
 export default function HistoryBlendsPage() {
     return (
-        <div className="min-h-screen bg-zinc-950 pt-24 pb-16">
+        <div className="min-h-screen bg-background pt-24 pb-16">
             <div className="mx-auto max-w-4xl px-6">
                 {/* Back link */}
                 <Link
                     href="/portfolio#rnd"
-                    className="inline-flex items-center gap-1.5 text-sm text-zinc-400 hover:text-white transition-colors mb-8"
+                    className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-white transition-colors mb-8"
                 >
                     <ArrowLeft className="h-4 w-4" />
                     Back to Experiments
@@ -40,21 +40,21 @@ export default function HistoryBlendsPage() {
                         <Badge variant="secondary" className="bg-teal-500/10 text-teal-400 hover:bg-teal-500/20">
                             AI Content Creation
                         </Badge>
-                        <Badge variant="secondary" className="bg-zinc-800 text-zinc-300">
+                        <Badge variant="secondary" className="bg-card text-muted-foreground">
                             Generative Filmmaking
                         </Badge>
                     </div>
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-[0.1em] text-white mb-4">
                         History<span className="text-teal-400">Blends</span>
                     </h1>
-                    <p className="text-zinc-400 text-lg">
+                    <p className="text-muted-foreground text-lg">
                         Directing and producing historical narratives exclusively using
                         generative AI tools and prompt engineering.
                     </p>
                 </div>
 
                 {/* Hero Image / Video */}
-                <div className="relative w-full overflow-hidden rounded-xl bg-zinc-950 mb-10 border border-white/10"
+                <div className="relative w-full overflow-hidden rounded-xl bg-background mb-10 border border-white/10"
                     style={{ paddingTop: "56.25%" }}>
                     <iframe
                         src="https://www.youtube.com/embed/2xLceh37Gsk?start=259"
@@ -70,10 +70,10 @@ export default function HistoryBlendsPage() {
                     <div className="lg:col-span-2 space-y-10">
                         <section>
                             <h2 className="text-xl font-bold uppercase tracking-wider text-white mb-4">Project Overview</h2>
-                            <p className="text-zinc-400 leading-relaxed text-base">
+                            <p className="text-muted-foreground leading-relaxed text-base">
                                 HistoryBlends is an experimental storytelling project exploring end-to-end historical sequence production with Sora, Veo-2, and Midjourney. The goal was to establish a repeatable generative pipeline combining cinematic composition, shot pacing, and voiceover synchronization.
                             </p>
-                            <p className="text-zinc-400 leading-relaxed text-base mt-4">
+                            <p className="text-muted-foreground leading-relaxed text-base mt-4">
                                 Producing consistent historical footage required structured prompt architecture to mitigate temporal artifacts, maintain visual continuity across shots, and match scene tone with voiceover pacing.
                             </p>
                         </section>
@@ -85,41 +85,41 @@ export default function HistoryBlendsPage() {
 
                             <div className="space-y-8">
                                 <div className="relative pl-6 border-l-2 border-teal-500/30">
-                                    <h3 className="text-lg font-semibold text-zinc-200 mb-2 flex items-center gap-2">
+                                    <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
                                         <span className="text-xs font-mono text-teal-400">01</span>
                                         Script Analysis & Shot Breakdown
                                     </h3>
-                                    <p className="text-zinc-400 text-sm leading-relaxed">
+                                    <p className="text-muted-foreground text-sm leading-relaxed">
                                         Breaking down historical facts and narratives into vivid, shot-by-shot visual descriptions. I use advanced prompting to analyze the pacing and extract physical characteristics of the subjects, environments, and required camera movements for each scene.
                                     </p>
                                 </div>
 
                                 <div className="relative pl-6 border-l-2 border-teal-500/30">
-                                    <h3 className="text-lg font-semibold text-zinc-200 mb-2 flex items-center gap-2">
+                                    <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
                                         <span className="text-xs font-mono text-teal-400">02</span>
                                         Concept Direction & Style Bible
                                     </h3>
-                                    <p className="text-zinc-400 text-sm leading-relaxed">
+                                    <p className="text-muted-foreground text-sm leading-relaxed">
                                         Utilizing Midjourney to establish the visual language, character designs, and initial mood boards. Creating a consistent style guide ensures that the subsequent motion generation remains cohesive.
                                     </p>
                                 </div>
 
                                 <div className="relative pl-6 border-l-2 border-teal-500/30">
-                                    <h3 className="text-lg font-semibold text-zinc-200 mb-2 flex items-center gap-2">
+                                    <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
                                         <span className="text-xs font-mono text-teal-400">03</span>
                                         Generative Motion (Sora & Veo-2)
                                     </h3>
-                                    <p className="text-zinc-400 text-sm leading-relaxed">
+                                    <p className="text-muted-foreground text-sm leading-relaxed">
                                         Translating still concepts into cinematic motion. This step involves highly specific prompt engineering to control camera angles (e.g., &quot;tracking shot&quot;, &quot;rack focus&quot;), lighting, and character actions, minimizing hallucinatory glitches while retaining historical authenticity.
                                     </p>
                                 </div>
 
                                 <div className="relative pl-6 border-l-2 border-teal-500/30">
-                                    <h3 className="text-lg font-semibold text-zinc-200 mb-2 flex items-center gap-2">
+                                    <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
                                         <span className="text-xs font-mono text-teal-400">04</span>
                                         Editorial & Audio Synchronization
                                     </h3>
-                                    <p className="text-zinc-400 text-sm leading-relaxed">
+                                    <p className="text-muted-foreground text-sm leading-relaxed">
                                         Piecing together the generated clips and syncing them meticulously with the voiceover and sound effects. The visuals must breathe with the script to maintain an attractive flow and prevent viewer fatigue.
                                     </p>
                                 </div>
@@ -130,32 +130,32 @@ export default function HistoryBlendsPage() {
 
                     {/* Sidebar */}
                     <div className="space-y-6">
-                        <div className="rounded-xl border border-white/10 bg-zinc-900/50 p-6">
-                            <h3 className="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-4">
+                        <div className="rounded-xl border border-white/10 bg-section/50 p-6">
+                            <h3 className="text-xs font-semibold uppercase tracking-widest text-quiet mb-4">
                                 AI Tech Stack
                             </h3>
                             <div className="flex flex-wrap gap-2">
                                 {["Sora", "Veo-2", "ChatGPT", "Midjourney", "Prompt Engineering"].map((tech) => (
-                                    <Badge key={tech} variant="outline" className="border-zinc-700 bg-zinc-950 text-zinc-300">
+                                    <Badge key={tech} variant="outline" className="border-border bg-background text-muted-foreground">
                                         {tech}
                                     </Badge>
                                 ))}
                             </div>
                         </div>
 
-                        <div className="rounded-xl border border-white/10 bg-zinc-900/50 p-6 space-y-5">
+                        <div className="rounded-xl border border-white/10 bg-section/50 p-6 space-y-5">
                             <div>
-                                <p className="text-xs text-zinc-500 uppercase tracking-widest">Role</p>
-                                <p className="text-sm font-medium text-zinc-200 mt-1">Creator / AI Director</p>
+                                <p className="text-xs text-quiet uppercase tracking-widest">Role</p>
+                                <p className="text-sm font-medium text-foreground mt-1">Creator / AI Director</p>
                             </div>
 
                             <div>
-                                <p className="text-xs text-zinc-500 uppercase tracking-widest">Platform</p>
-                                <p className="text-sm font-medium text-zinc-200 mt-1">YouTube</p>
+                                <p className="text-xs text-quiet uppercase tracking-widest">Platform</p>
+                                <p className="text-sm font-medium text-foreground mt-1">YouTube</p>
                             </div>
 
                             <div>
-                                <p className="text-xs text-zinc-500 uppercase tracking-widest">Status</p>
+                                <p className="text-xs text-quiet uppercase tracking-widest">Status</p>
                                 <p className="text-sm font-medium text-teal-400 mt-1">Ongoing R&D</p>
                             </div>
 

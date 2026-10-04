@@ -49,7 +49,7 @@ export default function BackstorySection() {
     <section
       ref={sectionRef}
       id="backstory"
-      className="relative min-h-[80vh] py-24 lg:py-32 overflow-hidden bg-[#1c212c]"
+      className="relative min-h-[80vh] py-24 lg:py-32 overflow-hidden bg-background"
     >
       <motion.div
         className="absolute inset-0 opacity-[0.045] will-change-transform"
@@ -65,8 +65,8 @@ export default function BackstorySection() {
           aria-hidden
         />
       </motion.div>
-      <div className="absolute inset-0 bg-[#0b0e14]/90" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0b0e14]/50 to-[#0b0e14]" />
+      <div className="absolute inset-0 bg-background/90" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
 
       <div className="relative mx-auto max-w-4xl px-4 sm:px-6 md:px-8">
         <h2
@@ -79,7 +79,7 @@ export default function BackstorySection() {
         <div ref={timelineRef} className="relative max-w-3xl mx-auto pb-8">
           {/* Scroll-driven timeline vertical line */}
           <motion.div
-            className="absolute left-6 md:left-8 top-6 bottom-0 w-[2px] -translate-x-1/2 bg-gradient-to-b from-[#5c9d98] via-[#5c9d98]/30 to-transparent origin-top"
+            className="absolute left-6 md:left-8 top-6 bottom-0 w-[2px] -translate-x-1/2 bg-gradient-to-b from-primary via-primary/30 to-transparent origin-top"
             style={
               !prefersReducedMotion
                 ? { scaleY: lineScale }
@@ -104,22 +104,22 @@ export default function BackstorySection() {
                   {/* Timeline Node - perfectly aligned with the line */}
                   <div className="absolute left-6 md:left-8 top-8 -translate-x-1/2 flex items-center justify-center z-10">
                     <motion.div
-                      className="w-5 h-5 rounded-full bg-stone-900 border-4 border-stone-800 ring-2 ring-[#5c9d98]/20 flex items-center justify-center transition-all duration-300 group-hover:scale-125 group-hover:ring-[#5c9d98]/50 group-hover:border-stone-700"
+                      className="w-5 h-5 rounded-full bg-stone-900 border-4 border-stone-800 ring-2 ring-primary/20 flex items-center justify-center transition-all duration-300 group-hover:scale-125 group-hover:ring-primary/50 group-hover:border-stone-700"
                       initial={{ scale: 0 }}
                       whileInView={{ scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.12 + 0.2, type: "spring", stiffness: 200 }}
                     >
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#5c9d98] shadow-[0_0_8px_rgba(92,157,152,0.4)] transition-all duration-300 group-hover:bg-[#6aa9a4]" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(88,207,200,0.4)] transition-all duration-300 group-hover:bg-primary-hover" />
                     </motion.div>
                   </div>
 
                   {/* Single Column Card Content */}
                   <div className="flex-1 pl-16 md:pl-20 pr-0 sm:pr-4">
-                    <div className="p-5 md:p-6 rounded-2xl bg-white/[0.02] border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.2)] transition-all duration-300 group-hover:shadow-[0_20px_40px_rgba(92,157,152,0.06)] group-hover:border-[#5c9d98]/50 group-hover:-translate-y-1">
+                    <div className="p-5 md:p-6 rounded-2xl bg-white/[0.02] border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.2)] transition-all duration-300 group-hover:shadow-[0_20px_40px_rgba(88,207,200,0.06)] group-hover:border-primary/50 group-hover:-translate-y-1">
                       <h3 className="font-bold text-white text-lg md:text-xl tracking-wide">{exp.role}</h3>
                       <p className="font-medium text-sm mt-1 flex flex-wrap items-center gap-2">
-                        <span className="text-[#5c9d98] font-semibold">{exp.company}</span>
+                        <span className="text-primary font-semibold">{exp.company}</span>
                         <span className="text-stone-700 text-xs">|</span>
                         <span className="text-stone-400">{exp.duration}</span>
                       </p>
@@ -169,7 +169,7 @@ export default function BackstorySection() {
         >
           <MagneticButton
             href="/about"
-            className="group inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-8 py-3.5 text-sm font-semibold text-stone-300 hover:text-white transition-all duration-300 ease-out hover:bg-white/10 hover:border-[#5c9d98]/50 hover:shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+            className="group inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-8 py-3.5 text-sm font-semibold text-stone-300 hover:text-white transition-all duration-300 ease-out hover:bg-white/10 hover:border-primary/50 hover:shadow-sm hover:scale-[1.02] active:scale-[0.98]"
           >
             {copy.home.backstoryCta}
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2} />

@@ -27,7 +27,10 @@ const config: Config = {
   		},
   		colors: {
   			background: 'hsl(var(--background))',
+			section: 'hsl(var(--section))',
   			foreground: 'hsl(var(--foreground))',
+			quiet: 'hsl(var(--quiet-foreground))',
+			'primary-hover': 'hsl(var(--primary-hover))',
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
@@ -57,6 +60,7 @@ const config: Config = {
   				foreground: 'hsl(var(--destructive-foreground))'
   			},
   			border: 'hsl(var(--border))',
+			'border-hover': 'hsl(var(--border-hover))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
   			chart: {

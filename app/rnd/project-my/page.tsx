@@ -43,7 +43,7 @@ export default function ProjectMyPage() {
     }
 
     return (
-        <main className="min-h-screen bg-zinc-950 text-foreground selection:bg-teal-500/30">
+        <main className="min-h-screen bg-background text-foreground selection:bg-teal-500/30">
             <div className="relative mx-auto max-w-4xl px-6 py-24 sm:py-32">
                 <Link
                     href="/portfolio#rnd"
@@ -80,7 +80,7 @@ export default function ProjectMyPage() {
 
                 {/* Video Player */}
                 <div className="mb-16">
-                    <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-white/10 shadow-2xl bg-zinc-900">
+                    <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-white/10 shadow-2xl bg-section">
                         <video
                             src="/video/project-my.mp4"
                             poster="/video/project-my-poster.jpg"
@@ -102,7 +102,7 @@ export default function ProjectMyPage() {
                         This project focuses on advanced simulation, lighting, and rendering techniques to achieve cinematic visual quality.
                     </p>
 
-                    <div className="grid sm:grid-cols-2 gap-8 mt-12 bg-zinc-900/50 p-6 sm:p-8 rounded-xl border border-white/5">
+                    <div className="grid sm:grid-cols-2 gap-8 mt-12 bg-section/50 p-6 sm:p-8 rounded-xl border border-white/5">
                         <div>
                             <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-3">Role</h3>
                             <ul className="space-y-2 text-sm text-white/70">

@@ -93,7 +93,7 @@ export default function ProjectDetailPage({ params }: Props) {
       {/* Back link */}
       <Link
         href="/portfolio"
-        className="inline-flex items-center gap-1.5 text-sm text-zinc-400 hover:text-white transition-colors mb-8"
+        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-white transition-colors mb-8"
       >
         <ArrowLeft className="h-4 w-4" />
         All Work
@@ -108,7 +108,7 @@ export default function ProjectDetailPage({ params }: Props) {
             </Badge>
           ))}
           {project.engine && (
-            <Badge variant="outline" className="border-[#5eb3ab]/40 text-[#5eb3ab] text-xs">
+            <Badge variant="outline" className="border-primary/40 text-primary text-xs">
               {project.engine}
             </Badge>
           )}
@@ -116,12 +116,12 @@ export default function ProjectDetailPage({ params }: Props) {
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-2">
           {project.title}
         </h1>
-        <p className="text-sm sm:text-base text-zinc-400">
+        <p className="text-sm sm:text-base text-muted-foreground">
           {project.role} · {project.duration ?? project.year}
           {project.client && (
             <>
               {" @ "}
-              <span className="text-[#5eb3ab] font-medium">{project.client}</span>
+              <span className="text-primary font-medium">{project.client}</span>
             </>
           )}
         </p>
@@ -139,7 +139,7 @@ export default function ProjectDetailPage({ params }: Props) {
           />
         </div>
       ) : project.thumbnail ? (
-        <div className="relative h-72 sm:h-96 overflow-hidden rounded-2xl bg-zinc-900 mb-10 border border-white/10">
+        <div className="relative h-72 sm:h-96 overflow-hidden rounded-2xl bg-section mb-10 border border-white/10">
           <Image
             src={project.thumbnail}
             alt={project.title}
@@ -158,7 +158,7 @@ export default function ProjectDetailPage({ params }: Props) {
           </h2>
           <div className="space-y-2">
             {project.contributions.map((item, i) => (
-              <p key={i} className="text-sm sm:text-base leading-relaxed text-zinc-300">
+              <p key={i} className="text-sm sm:text-base leading-relaxed text-muted-foreground">
                 {item}
               </p>
             ))}
@@ -172,7 +172,7 @@ export default function ProjectDetailPage({ params }: Props) {
             </h3>
             <div className="space-y-2">
               {technicalNotes.slice(0, 3).map((note, i) => (
-                <p key={i} className="text-sm sm:text-base leading-relaxed text-zinc-400">
+                <p key={i} className="text-sm sm:text-base leading-relaxed text-muted-foreground">
                   {note}
                 </p>
               ))}
@@ -198,7 +198,7 @@ export default function ProjectDetailPage({ params }: Props) {
                 className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs font-medium text-white transition-colors hover:bg-white/10"
               >
                 Official Steam Store
-                <ArrowUpRight className="h-3.5 w-3.5 text-[#5eb3ab]" />
+                <ArrowUpRight className="h-3.5 w-3.5 text-primary" />
               </a>
             )}
           </div>
@@ -207,14 +207,14 @@ export default function ProjectDetailPage({ params }: Props) {
             {project.evidenceBreakdown.map((item, i) => (
               <figure
                 key={i}
-                className="overflow-hidden rounded-2xl border border-[#364156] bg-[#232a38] shadow-xl"
+                className="overflow-hidden rounded-2xl border border-border bg-card shadow-xl"
               >
                 {item.link ? (
                   <a
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative block aspect-video w-full bg-[#161a23] overflow-hidden cursor-pointer"
+                    className="group relative block aspect-video w-full bg-section overflow-hidden cursor-pointer"
                     aria-label={`Watch ${item.title}`}
                   >
                     <Image
@@ -231,7 +231,7 @@ export default function ProjectDetailPage({ params }: Props) {
                     </div>
                   </a>
                 ) : (
-                  <div className="relative aspect-video w-full bg-[#161a23]">
+                  <div className="relative aspect-video w-full bg-section">
                     <Image
                       src={item.image}
                       alt={item.title}
@@ -241,25 +241,25 @@ export default function ProjectDetailPage({ params }: Props) {
                     />
                   </div>
                 )}
-                <figcaption className="border-t border-[#364156] bg-[#161a23] p-5 sm:p-6">
+                <figcaption className="border-t border-border bg-section p-5 sm:p-6">
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                     <h3 className="text-base font-semibold text-white">
                       {item.title}
                     </h3>
                     <div className="flex items-center gap-2">
                       {item.tag && (
-                        <span className="rounded bg-white/10 px-2 py-0.5 text-[11px] font-mono text-[#a7d2ce]">
+                        <span className="rounded bg-white/10 px-2 py-0.5 text-[11px] font-mono text-primary-hover">
                           {item.tag}
                         </span>
                       )}
                     </div>
                   </div>
-                  <p className="text-sm leading-relaxed text-zinc-300">
+                  <p className="text-sm leading-relaxed text-muted-foreground">
                     {item.caption}
                   </p>
                   {item.timestamps && item.timestamps.length > 0 && (
                     <div className="mt-4 pt-3.5 border-t border-white/5">
-                      <div className="text-[11px] font-mono text-zinc-500 mb-2 uppercase tracking-wider">
+                      <div className="text-[11px] font-mono text-quiet mb-2 uppercase tracking-wider">
                         Timestamps
                       </div>
                       <div className="flex flex-wrap gap-2">
@@ -269,12 +269,12 @@ export default function ProjectDetailPage({ params }: Props) {
                             href={ts.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-1.5 text-xs text-zinc-200 transition-all hover:border-[#5eb3ab]/50 hover:bg-[#5eb3ab]/10 hover:text-white"
+                            className="group inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-1.5 text-xs text-foreground transition-all hover:border-primary/50 hover:bg-primary/10 hover:text-white"
                           >
-                            <Play className="h-3 w-3 fill-[#5eb3ab] text-[#5eb3ab] group-hover:scale-110 transition-transform" />
-                            <span className="font-mono text-[#a7d2ce] font-semibold">{ts.time}</span>
-                            <span className="text-zinc-300 group-hover:text-white">{ts.label}</span>
-                            <ArrowUpRight className="h-3 w-3 text-zinc-500 group-hover:text-zinc-300" />
+                            <Play className="h-3 w-3 fill-primary text-primary group-hover:scale-110 transition-transform" />
+                            <span className="font-mono text-primary-hover font-semibold">{ts.time}</span>
+                            <span className="text-muted-foreground group-hover:text-white">{ts.label}</span>
+                            <ArrowUpRight className="h-3 w-3 text-quiet group-hover:text-muted-foreground" />
                           </a>
                         ))}
                       </div>
@@ -307,9 +307,9 @@ export default function ProjectDetailPage({ params }: Props) {
                   href={watchUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col overflow-hidden rounded-xl border border-[#364156] bg-[#232a38] transition-all hover:border-[#4b5a75] hover:bg-[#2b3445]"
+                  className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-border-hover hover:bg-card"
                 >
-                  <div className="relative aspect-video w-full overflow-hidden bg-[#161a23]">
+                  <div className="relative aspect-video w-full overflow-hidden bg-section">
                     <Image
                       src={`https://img.youtube.com/vi/${id}/sddefault.jpg`}
                       alt={clip.title}
@@ -324,11 +324,11 @@ export default function ProjectDetailPage({ params }: Props) {
                     </div>
                   </div>
                   <div className="p-4 flex-1 flex flex-col justify-between">
-                    <h3 className="text-sm font-semibold text-white group-hover:text-[#a7d2ce] transition-colors line-clamp-1">
+                    <h3 className="text-sm font-semibold text-white group-hover:text-primary-hover transition-colors line-clamp-1">
                       {clip.title}
                     </h3>
                     {clip.caption && (
-                      <p className="mt-1.5 text-xs text-zinc-400 line-clamp-2 leading-relaxed">
+                      <p className="mt-1.5 text-xs text-muted-foreground line-clamp-2 leading-relaxed">
                         {clip.caption}
                       </p>
                     )}
@@ -352,7 +352,7 @@ export default function ProjectDetailPage({ params }: Props) {
               {project.images.map((img, i) => (
                 <div
                   key={i}
-                  className="relative aspect-video overflow-hidden rounded-xl bg-[#161a23] border border-[#364156]"
+                  className="relative aspect-video overflow-hidden rounded-xl bg-section border border-border"
                 >
                   <Image
                     src={img}
@@ -368,34 +368,34 @@ export default function ProjectDetailPage({ params }: Props) {
         )}
 
       {/* 4. Compact Metadata at Bottom */}
-      <div className="rounded-2xl border border-[#364156] bg-[#232a38] p-5 sm:p-6 text-xs text-slate-300">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-4 border-b border-[#364156]">
+      <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 text-xs text-muted-foreground">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-4 border-b border-border">
           <div>
-            <p className="text-[10px] font-mono uppercase tracking-wider text-zinc-500">Role</p>
+            <p className="text-[10px] font-mono uppercase tracking-wider text-quiet">Role</p>
             <p className="font-medium text-white mt-1 text-sm">{project.role}</p>
           </div>
           <div>
-            <p className="text-[10px] font-mono uppercase tracking-wider text-zinc-500">Engine</p>
-            <p className="font-medium text-[#5eb3ab] mt-1 text-sm">{project.engine || "Proprietary"}</p>
+            <p className="text-[10px] font-mono uppercase tracking-wider text-quiet">Engine</p>
+            <p className="font-medium text-primary mt-1 text-sm">{project.engine || "Proprietary"}</p>
           </div>
           <div>
-            <p className="text-[10px] font-mono uppercase tracking-wider text-zinc-500">Platform</p>
+            <p className="text-[10px] font-mono uppercase tracking-wider text-quiet">Platform</p>
             <p className="font-medium text-white mt-1 text-sm">{project.platform || "Console / PC"}</p>
           </div>
           <div>
-            <p className="text-[10px] font-mono uppercase tracking-wider text-zinc-500">Client / Studio</p>
+            <p className="text-[10px] font-mono uppercase tracking-wider text-quiet">Client / Studio</p>
             <p className="font-medium text-white mt-1 text-sm">{project.client || "Sparx*"}</p>
           </div>
         </div>
 
         <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 mr-1">Tech Stack:</span>
+            <span className="text-[10px] font-mono uppercase tracking-wider text-quiet mr-1">Tech Stack:</span>
             {project.techStack.map((tech) => (
               <Badge
                 key={tech}
                 variant="outline"
-                className="text-[11px] font-normal border-white/10 bg-white/[0.03] text-zinc-300"
+                className="text-[11px] font-normal border-white/10 bg-white/[0.03] text-muted-foreground"
               >
                 {tech}
               </Badge>
@@ -403,9 +403,9 @@ export default function ProjectDetailPage({ params }: Props) {
           </div>
 
           <div className="flex items-center gap-4">
-            <p className="text-[11px] text-zinc-400">
+            <p className="text-[11px] text-muted-foreground">
               Production Credit:{" "}
-              <span className="text-zinc-200 font-medium">
+              <span className="text-foreground font-medium">
                 {project.productionCredit ??
                   (project.role.toLowerCase().includes("freelance")
                     ? `Freelance / ${project.client}`
@@ -422,7 +422,7 @@ export default function ProjectDetailPage({ params }: Props) {
                 className="inline-flex items-center gap-1 rounded-lg border border-white/20 bg-white/5 px-2.5 py-1 text-xs font-medium text-white hover:bg-white/10 transition-colors"
               >
                 Steam Store
-                <ArrowUpRight className="h-3 w-3 text-[#5eb3ab]" />
+                <ArrowUpRight className="h-3 w-3 text-primary" />
               </a>
             )}
           </div>

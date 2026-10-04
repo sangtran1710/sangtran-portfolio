@@ -83,12 +83,12 @@ export default function AmbientAudioPlayer() {
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: 8, scale: 0.96 }}
               transition={{ duration: 0.16, ease: [0.22, 1, 0.36, 1] }}
-              className="pointer-events-none hidden sm:flex items-center gap-2.5 rounded-full border border-[#364156] bg-[#232a38]/95 px-3 py-1.5 backdrop-blur-md shadow-lg"
+              className="pointer-events-none hidden sm:flex items-center gap-2.5 rounded-full border border-border bg-card/95 px-3 py-1.5 backdrop-blur-md shadow-lg"
             >
               {/* Mini Equalizer Bars */}
               <div className="flex items-end gap-[2px] h-3 w-3">
                 <motion.span
-                  className="w-[2px] rounded-full bg-[#5c9d98]"
+                  className="w-[2px] rounded-full bg-primary"
                   animate={{
                     height: isPlaying ? [3, 11, 5, 12, 3] : 3,
                   }}
@@ -99,7 +99,7 @@ export default function AmbientAudioPlayer() {
                   }}
                 />
                 <motion.span
-                  className="w-[2px] rounded-full bg-[#5c9d98]"
+                  className="w-[2px] rounded-full bg-primary"
                   animate={{
                     height: isPlaying ? [7, 3, 12, 6, 7] : 3,
                   }}
@@ -111,7 +111,7 @@ export default function AmbientAudioPlayer() {
                   }}
                 />
                 <motion.span
-                  className="w-[2px] rounded-full bg-[#5c9d98]"
+                  className="w-[2px] rounded-full bg-primary"
                   animate={{
                     height: isPlaying ? [10, 5, 3, 9, 10] : 3,
                   }}
@@ -141,7 +141,7 @@ export default function AmbientAudioPlayer() {
           type="button"
           onClick={togglePlay}
           aria-label={isPlaying ? "Pause ambient sound" : "Play ambient sound"}
-          className="group relative flex h-10 w-10 items-center justify-center rounded-full border border-[#364156] bg-[#232a38]/95 p-0 backdrop-blur-md shadow-[0_8px_20px_rgba(0,0,0,0.5)] transition-all duration-200 hover:scale-105 hover:border-[#4b5a75] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5eb3ab]"
+          className="group relative flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/95 p-0 backdrop-blur-md shadow-[0_8px_20px_rgba(0,0,0,0.5)] transition-all duration-200 hover:scale-105 hover:border-border-hover focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           {/* Vinyl Disc SVG */}
           <motion.div
@@ -160,7 +160,7 @@ export default function AmbientAudioPlayer() {
               xmlns="http://www.w3.org/2000/svg"
             >
               {/* Outer Vinyl Body */}
-              <circle cx="20" cy="20" r="19" fill="#12161c" stroke="#252c38" strokeWidth="1" />
+              <circle cx="20" cy="20" r="19" fill="#12171D" stroke="#252C35" strokeWidth="1" />
               
               {/* Concentric Grooves */}
               <circle cx="20" cy="20" r="16" stroke="rgba(255,255,255,0.08)" strokeWidth="0.8" />
@@ -168,19 +168,19 @@ export default function AmbientAudioPlayer() {
               <circle cx="20" cy="20" r="10" stroke="rgba(255,255,255,0.07)" strokeWidth="0.8" />
 
               {/* Center Record Label */}
-              <circle cx="20" cy="20" r="6.5" fill="#5c9d98" />
-              <circle cx="20" cy="20" r="4.5" fill="#467b77" />
+              <circle cx="20" cy="20" r="6.5" fill="#58CFC8" />
+              <circle cx="20" cy="20" r="4.5" fill="#58CFC8" />
 
               {/* Center Spindle Hole */}
-              <circle cx="20" cy="20" r="1.8" fill="#0b0e13" />
+              <circle cx="20" cy="20" r="1.8" fill="#0D1015" />
             </svg>
           </motion.div>
 
           {/* Indicator Dot when playing */}
           {isPlaying && (
             <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#5c9d98] opacity-75" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#5c9d98]" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
             </span>
           )}
         </button>

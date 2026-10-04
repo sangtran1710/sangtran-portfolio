@@ -64,13 +64,13 @@ export default function SocialStrip() {
       href: `mailto:${SITE.email}`,
       icon: Mail,
       label: "Email",
-      color: "hover:text-[#5c9d98] hover:border-[#5c9d98]/40 hover:shadow-[0_0_15px_rgba(92,157,152,0.15)]",
+      color: "hover:text-primary hover:border-primary/40 hover:shadow-[0_0_15px_rgba(88,207,200,0.15)]",
     },
     {
       href: SOCIALS.resume,
       icon: FileText,
       label: "Resume",
-      color: "hover:text-[#5c9d98] hover:border-[#5c9d98]/40 hover:shadow-[0_0_15px_rgba(92,157,152,0.15)]",
+      color: "hover:text-primary hover:border-primary/40 hover:shadow-[0_0_15px_rgba(88,207,200,0.15)]",
     },
   ];
 
@@ -94,7 +94,7 @@ export default function SocialStrip() {
               title={label}
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className={`w-10 h-10 rounded-full border border-[#364156] bg-[#232a38]/90 backdrop-blur-md flex items-center justify-center text-slate-300 transition-all duration-300 ${color}`}
+              className={`w-10 h-10 rounded-full border border-border bg-card/90 backdrop-blur-md flex items-center justify-center text-muted-foreground transition-all duration-300 ${color}`}
             >
               <Icon className="w-4 h-4" strokeWidth={1.8} />
             </motion.a>

@@ -61,20 +61,20 @@ export default function Navbar() {
   }, [router]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 w-full border-b border-[#364156] bg-[#1c212c]/90 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 w-full border-b border-border/60 bg-background/55 backdrop-blur-sm">
       <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-6 sm:px-8 lg:px-12">
         {/* Logo */}
         <Link href="/" className="group flex flex-row items-baseline gap-0.5 font-kanit leading-none">
           <span className="text-[1.75rem] font-bold text-white transition-colors group-hover:text-white/85">
             HT
           </span>
-          <span className="text-[1.75rem] font-bold leading-none text-[#5eb3ab]">
+          <span className="text-[1.75rem] font-bold leading-none text-primary">
             .
           </span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Primary navigation">
+        <nav className="hidden items-center gap-1.5 md:flex" aria-label="Primary navigation">
           {navLinks.map(({ href, label }) => {
             const isActive =
               href === "/"
@@ -93,7 +93,7 @@ export default function Navbar() {
                 onMouseEnter={() => prefetchRoute(href)}
                 onFocus={() => prefetchRoute(href)}
                 className={cn(
-                  "relative inline-flex px-3 py-2 text-[0.9375rem] font-medium transition-colors duration-200",
+                  "relative inline-flex px-[0.8rem] py-2 text-base font-medium transition-colors duration-200",
                   isActive
                     ? "text-white"
                     : "text-white/65 hover:text-white",
@@ -103,7 +103,7 @@ export default function Navbar() {
                 {isActive && (
                   <motion.span
                     layoutId="navbar-active-indicator"
-                    className="absolute inset-x-3 bottom-0 h-[2px] bg-[#5eb3ab]"
+                    className="absolute inset-x-3 bottom-0 h-[2px] bg-primary"
                     transition={{
                       type: "spring",
                       stiffness: 400,
@@ -128,7 +128,7 @@ export default function Navbar() {
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-72 border-[#364156] bg-[#1c212c] p-0 text-white">
+          <SheetContent side="right" className="w-72 border-border bg-background p-0 text-white">
             <motion.div
               className="flex flex-col pt-20 px-6 gap-5"
               variants={containerVariants}
