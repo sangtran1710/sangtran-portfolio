@@ -359,6 +359,24 @@ export const PROJECTS: Project[] = [
         tag: "Official Trailer Frame",
       },
       {
+        image: "/images/projects/spider-man-2/symbiote-scene.webp",
+        title: "Symbiote encounter",
+        caption: "Public game image for project context, not a shot-specific credit.",
+        tag: "Project Image",
+      },
+      {
+        image: "/images/projects/spider-man-2/miles-venom-electricity.webp",
+        title: "Miles' Venom electricity",
+        caption: "Public game image for project context, not a shot-specific credit.",
+        tag: "Project Image",
+      },
+      {
+        image: "/images/projects/spider-man-2/sandman-battle.jpg",
+        title: "Sandman battle",
+        caption: "Public game image for project context, not a shot-specific credit.",
+        tag: "Project Image",
+      },
+      {
         image: "/images/achivements/SpiderMan2.webp",
         title: "Official In-Game End Credits",
         caption: "FX Artist credit under Sparx* - A Virtuos Studio in Marvel's Spider-Man 2 official credits roll.",
