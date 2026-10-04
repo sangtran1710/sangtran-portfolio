@@ -6,8 +6,15 @@ import Link from "next/link";
 import { Clock } from "lucide-react";
 import type { BlogPostMeta } from "@/lib/blog";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { formatDateByLocale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+
+const articleTeasers: Record<string, string> = {
+  "ue5-procedural-terminal-shader": "I rebuilt an old-screen flicker as a material—no flipbook needed.",
+  "stormfront-volumetric-cloud-lightning": "A storm sky that moves and flashes without eating the frame budget.",
+  "houdini-destructibles-and-vfx-pipeline": "Big Houdini sims are fun. Getting them into a game is the hard part.",
+  "destructible-separate-mesh-tool": "I got tired of cleaning up fracture pieces by hand, so I made a tool.",
+  "math-for-vfx-shaders": "The bits of math I keep reaching for when an effect needs to move.",
+};
 
 export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
   const { locale } = useLanguage();
@@ -60,17 +67,14 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
 
   const headingText = isVi ? "Ghi chép Kỹ thuật & R&D" : "Technical Notes & R&D";
   const subtitleText = isVi
-    ? "Ghi chép thực chiến về Niagara VFX, shader HLSL, toán mô phỏng và công cụ pipeline trong game AAA."
-    : "Field notes on real-time VFX, HLSL shader mechanics, simulation math, and production pipeline tools.";
+    ? "Vài điều mình rút ra khi làm VFX, shader và công cụ."
+    : "A few things I figured out while making VFX, shaders, and tools.";
 
   return (
     <div className="min-h-screen pt-24 sm:pt-28 pb-20 text-white bg-background">
       <main className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <header className="mb-12 max-w-2xl">
-          <span className="text-xs font-mono uppercase tracking-[0.2em] text-primary">
-            {isVi ? "GHI CHÉP THỰC CHIẾN" : "TECHNICAL JOURNAL & LAB NOTES"}
-          </span>
-          <h1 className="mt-2 text-4xl font-kanit font-normal tracking-tight text-white sm:text-5xl">
+          <h1 className="text-4xl font-kanit font-normal tracking-tight text-white sm:text-5xl">
             {headingText}
           </h1>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
@@ -164,8 +168,6 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
                           <Clock className="h-3 w-3" />
                           {post.readTime}
                         </span>
-                        <span className="text-quiet">/</span>
-                        <span className="text-muted-foreground">{formatDateByLocale(post.date, locale)}</span>
                       </div>
 
                       <h2 className="mt-2 text-xl font-medium tracking-tight text-white transition-colors duration-200 group-hover:text-primary font-kanit">
@@ -174,13 +176,7 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
 
                       {post.description && (
                         <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground line-clamp-2">
-                          {post.description}
-                        </p>
-                      )}
-
-                      {post.tags && post.tags.length > 0 && (
-                        <p className="mt-3 text-xs font-mono text-muted-foreground">
-                          {post.tags.slice(0, 4).join(" · ")}
+                          {articleTeasers[post.slug] ?? post.description}
                         </p>
                       )}
                     </div>

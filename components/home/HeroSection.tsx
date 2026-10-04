@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
@@ -8,8 +8,20 @@ import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { getLocalizedHero } from "@/lib/portfolio-content";
 
+const heroImages = [
+  "/images/hero-wolverine-night-assault.webp",
+  "/images/hero-wolverine-explosion.webp",
+  "/images/showreel/shot-01-fortnite.webp",
+  "/images/showreel/shot-03-magic.webp",
+  "/projects/celestial-legion-vfx/energy-burst.jpg",
+  "/projects/erlangmon-vfx/poster.webp",
+];
+const subscribe = () => () => {};
+
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [activeImage, setActiveImage] = useState(0);
+  const mounted = useSyncExternalStore(subscribe, () => true, () => false);
   const { locale } = useLanguage();
   const hero = getLocalizedHero(locale);
   const isVi = locale === "vi";
@@ -21,27 +33,40 @@ export default function HeroSection() {
   const contentOpacity = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
   const contentY = useTransform(scrollYProgress, [0, 0.55], [0, -28]);
 
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    const interval = window.setInterval(() => {
+      setActiveImage((current) => (current + 1) % heroImages.length);
+    }, 7000);
+    return () => window.clearInterval(interval);
+  }, [prefersReducedMotion]);
+
   return (
     <section
       ref={sectionRef}
       className="relative flex min-h-[70svh] items-end overflow-hidden bg-background pt-[4.5rem] sm:min-h-[66svh]"
     >
       <div className="absolute inset-0">
-        <Image
-          src="/images/hero-wolverine-night-assault.webp"
-          alt="Marvel's Wolverine Real-Time VFX by Henry Tran"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[50%_30%] opacity-90 brightness-105"
-        />
+        {heroImages.map((src, index) => (
+          <Image
+            key={src}
+            src={src}
+            alt=""
+            fill
+            priority={index === 0}
+            loading={index === 0 ? undefined : "eager"}
+            sizes="100vw"
+            aria-hidden="true"
+            className={`object-cover object-[50%_30%] brightness-105 transition-opacity duration-1000 ease-in-out motion-reduce:transition-none ${activeImage === index ? "opacity-90" : "opacity-0"}`}
+          />
+        ))}
       </div>
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(13,16,21,0.86)_0%,rgba(13,16,21,0.46)_45%,rgba(13,16,21,0.12)_100%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_45%_at_53%_29%,rgba(255,255,255,0.09),transparent_75%)] mix-blend-screen" />
       <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(0deg,rgba(13,16,21,0.96)_0%,rgba(13,16,21,0)_100%)]" />
 
       <motion.div
-        style={prefersReducedMotion ? undefined : { opacity: contentOpacity, y: contentY }}
+        style={mounted && prefersReducedMotion ? undefined : { opacity: contentOpacity, y: contentY }}
         className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 sm:px-8 sm:pb-20 lg:px-12 lg:pb-24"
       >
         <div className="max-w-3xl">

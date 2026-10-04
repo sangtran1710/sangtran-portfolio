@@ -148,16 +148,13 @@ export default function BlogPostPage({ params }: Props) {
           }} />
         </div>
 
-        <aside className="mt-16 rounded-xl border border-border bg-card p-6 sm:p-8">
-          <h2 className="text-lg font-semibold text-white">Want to talk through any of this?</h2>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-            If you have a question about a setup, need a hand with a technical problem, or spotted something I should fix, send me a note.
-          </p>
+        <aside className="mt-16 text-sm leading-relaxed text-muted-foreground">
+          Found something off, or want to compare notes?{" "}
           <a
             href={`mailto:${SITE.email}?subject=${encodeURIComponent(`Question about ${post.title}`)}`}
-            className="mt-5 inline-flex rounded-full border border-primary/40 px-4 py-2 text-sm font-medium text-primary transition-colors hover:border-primary hover:bg-primary/10"
+            className="font-medium text-primary underline decoration-primary/40 underline-offset-4 transition-colors hover:text-primary-hover hover:decoration-primary-hover focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
-            Email me ↗
+            Email me.
           </a>
         </aside>
 
