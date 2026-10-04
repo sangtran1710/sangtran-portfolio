@@ -37,9 +37,9 @@ const SHOTS: ShotCue[] = [
   {
     time: 14,
     timecode: "00:14",
-    title: "Marvel's Wolverine",
+    title: "Marvel's Spider-Man 2",
     client: "Insomniac Games",
-    tools: "Houdini RBD · HLSL",
+    tools: "Proprietary Engine · Houdini",
     thumbnail: "/images/showreel/shot-02-wolverine.webp",
   },
   {
@@ -53,9 +53,9 @@ const SHOTS: ShotCue[] = [
   {
     time: 32,
     timecode: "00:32",
-    title: "Dynamic Wetness & Shaders",
-    client: "Real-Time R&D",
-    tools: "HLSL · Runtime Shader",
+    title: "Until Dawn Remake",
+    client: "Ballistic Moon",
+    tools: "Unreal Engine 5 · Lumen",
     thumbnail: "/images/showreel/shot-04-wetness.webp",
   },
 ];

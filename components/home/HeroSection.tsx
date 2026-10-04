@@ -12,9 +12,6 @@ const heroImages = [
   "/images/hero-wolverine-night-assault.webp",
   "/images/hero-wolverine-explosion.webp",
   "/images/showreel/shot-01-fortnite.webp",
-  "/images/showreel/shot-03-magic.webp",
-  "/projects/celestial-legion-vfx/energy-burst.jpg",
-  "/projects/erlangmon-vfx/poster.webp",
 ];
 const subscribe = () => () => {};
 

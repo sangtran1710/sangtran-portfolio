@@ -20,7 +20,8 @@ export interface Project {
   evidenceBreakdown?: {
     image: string;
     title: string;
-    caption: string;
+    caption?: string;
+    imageOnly?: boolean;
     tag?: string;
     link?: string;
     timestamps?: { time: string; label: string; url: string }[];
@@ -213,7 +214,7 @@ export const PROJECTS: Project[] = [
       "Houdini simulations and destruction shaders for cinematic sequences",
       "Gameplay trigger volumes and interactive combat FX integration",
     ],
-    techStack: ["Proprietary Engine", "Houdini", "HLSL", "Perforce"],
+    techStack: ["Proprietary Engine", "Houdini", "EmberGen"],
     engine: "Proprietary Engine",
     constraints: [
       "PS5 60 FPS performance & memory budgets",
@@ -361,20 +362,17 @@ export const PROJECTS: Project[] = [
       {
         image: "/images/projects/spider-man-2/symbiote-scene.webp",
         title: "Symbiote encounter",
-        caption: "Public game image for project context, not a shot-specific credit.",
-        tag: "Project Image",
+        imageOnly: true,
       },
       {
         image: "/images/projects/spider-man-2/miles-venom-electricity.webp",
         title: "Miles' Venom electricity",
-        caption: "Public game image for project context, not a shot-specific credit.",
-        tag: "Project Image",
+        imageOnly: true,
       },
       {
         image: "/images/projects/spider-man-2/sandman-battle.jpg",
         title: "Sandman battle",
-        caption: "Public game image for project context, not a shot-specific credit.",
-        tag: "Project Image",
+        imageOnly: true,
       },
       {
         image: "/images/achivements/SpiderMan2.webp",
