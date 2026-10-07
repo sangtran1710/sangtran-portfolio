@@ -43,7 +43,7 @@ test.describe("Marvel's Wolverine Integration Audit", () => {
     const wolverineCard = page.locator('a[href="/projects/wolverine"]').first();
     await expect(wolverineCard).toBeVisible();
     await expect(wolverineCard.getByRole("heading", { name: "Marvel's Wolverine" })).toBeVisible();
-    await expect(wolverineCard.getByText("Senior VFX Artist · Insomniac Games")).toBeVisible();
+    await expect(wolverineCard.getByText("Senior VFX Artist · Sparx* (Virtuos) for Insomniac Games")).toBeVisible();
 
     await page.screenshot({
       path: path.join(ARTIFACT_DIR, "wolverine-portfolio-list.png"),
@@ -57,7 +57,7 @@ test.describe("Marvel's Wolverine Integration Audit", () => {
 
     // Header checks
     await expect(page.locator("h1")).toHaveText("Marvel's Wolverine");
-    await expect(page.getByText("Senior VFX Artist · 2026 @ Insomniac Games")).toBeVisible();
+    await expect(page.getByText("Senior VFX Artist · Sparx* (Virtuos) for Insomniac Games · 2026")).toBeVisible();
 
     // Screenshot of project detail page with poster and video
     await page.screenshot({
@@ -76,8 +76,8 @@ test.describe("Marvel's Wolverine Integration Audit", () => {
     expect(src).toContain("lbiMqaLTKlQ");
 
     // In-game gameplay VFX check
-    await expect(page.getByText("In-Game Gameplay: Bullet Impacts & Trigger Volumes (02:29)")).toBeVisible();
-    await expect(page.locator('a[href="https://youtu.be/9JdiQpn4SvQ?t=149"]').first()).toBeVisible();
+    await expect(page.getByText("Official gameplay footage")).toBeVisible();
+    await expect(page.locator('a[href="https://youtu.be/9JdiQpn4SvQ"]').first()).toBeVisible();
 
     // Behind-the-scenes breakdown check
     await expect(page.getByText("Official Behind-the-Scenes: VFX & Combat Development")).toBeVisible();
@@ -88,16 +88,11 @@ test.describe("Marvel's Wolverine Integration Audit", () => {
 
     // In-game cinematic cutscenes check
     await expect(page.getByText("In-Game Cinematic Cutscenes", { exact: true })).toBeVisible();
-    await expect(page.getByText("Cinematic VFX", { exact: true })).toBeVisible();
-    await expect(page.locator('a[href="https://youtu.be/3boUBsYHY3I?t=1347"]').first()).toBeVisible();
-    await expect(page.locator('a[href="https://youtu.be/3boUBsYHY3I?t=2926"]').first()).toBeVisible();
-    await expect(page.locator('a[href="https://youtu.be/3boUBsYHY3I?t=2979"]').first()).toBeVisible();
-    await expect(page.locator('a[href="https://youtu.be/3boUBsYHY3I?t=4272"]').first()).toBeVisible();
-    await expect(page.locator('a[href="https://youtu.be/3boUBsYHY3I?t=7130"]').first()).toBeVisible();
+    await expect(page.locator('a[href="https://youtu.be/3boUBsYHY3I"]').first()).toBeVisible();
 
     // ArtBlast video links check
-    await expect(page.getByText("ArtBlast: Warehouse Explosion")).toBeVisible();
-    await expect(page.getByText("ArtBlast: Night Assault")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Warehouse Explosion" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Night Assault" })).toBeVisible();
 
     // In-game evidence check
     await expect(page.getByText("In-Game End Credits", { exact: true })).toBeVisible();
@@ -106,7 +101,7 @@ test.describe("Marvel's Wolverine Integration Audit", () => {
     await expect(creditLink).toBeVisible();
 
     // Visual breakdown check
-    await expect(page.getByText("Selected Breakdown")).toBeVisible();
+    await expect(page.getByText("Cinematic VFX, Project Context & Credits")).toBeVisible();
   });
 
   test("Home page features Marvel's Wolverine as first project in Selected Work", async ({ page }) => {

@@ -36,6 +36,8 @@ export interface Project {
   platform?: string;
   /** Client / studio name e.g. "Insomniac Games" */
   client?: string;
+  /** Studio or vendor through which the work was delivered. */
+  studio?: string;
   /** Short summary of work done (one paragraph) */
   workSummary?: string;
   /** Visual style: "stylized" | "realistic" */
@@ -52,6 +54,14 @@ export interface Project {
   productionCredit?: string;
   /** Optional custom URL if this doesn't use the standard /projects/[slug] route */
   link?: string;
+}
+
+export function getProjectByline(project: Project): string {
+  if (project.studio) {
+    const client = project.projectType !== "film" && project.client ? ` for ${project.client}` : "";
+    return `${project.role} · ${project.studio}${client}`;
+  }
+  return `${project.role}${project.client ? ` · Client: ${project.client}` : ""}`;
 }
 
 export interface Experience {
@@ -204,6 +214,7 @@ export const PROJECTS: Project[] = [
     platform: "PlayStation 5",
     style: "realistic",
     client: "Insomniac Games",
+    studio: "Sparx* (Virtuos)",
     workSummary:
       "Real-time VFX and simulation for Marvel's Wolverine on PS5.",
     description:
@@ -234,67 +245,39 @@ export const PROJECTS: Project[] = [
     productionCredit: "Credited under Sparx* / Insomniac Games",
     videoUrl: "https://www.youtube.com/embed/lbiMqaLTKlQ",
     videoPoster: "/images/projects/wolverine/wolverine-video-poster.webp",
-    videoTitle: "Jean TK Explosion (In-Game Cinematic VFX)",
+    videoTitle: "Official in-game cinematic (project context)",
     evidenceBreakdown: [
       {
+        image: "/images/projects/wolverine/wolverine-artblast-explosion.webp",
+        title: "Warehouse Explosion",
+        caption: "Cinematic VFX I was primarily responsible for on Marvel's Wolverine.",
+        tag: "My Cinematic VFX",
+      },
+      {
+        image: "/images/projects/wolverine/wolverine-artblast-hangar.webp",
+        title: "Night Assault",
+        caption: "Cinematic VFX I was primarily responsible for on Marvel's Wolverine.",
+        tag: "My Cinematic VFX",
+      },
+      {
         image: "/images/projects/wolverine/wolverine-madripoor.webp",
-        title: "In-Game Gameplay: Bullet Impacts & Trigger Volumes (02:29)",
-        caption: "Real-time bullet projectiles, hit impacts, explosion dynamics, and environmental trigger volume interactions activated as character enters combat zones.",
-        tag: "Gameplay VFX",
-        link: "https://youtu.be/9JdiQpn4SvQ?t=149",
-        timestamps: [
-          { time: "02:29", label: "Demo Combat, Explosions & Trigger Volumes", url: "https://youtu.be/9JdiQpn4SvQ?t=149" },
-        ],
+        title: "Official gameplay footage",
+        link: "https://youtu.be/9JdiQpn4SvQ",
       },
       {
         image: "/images/projects/wolverine/wolverine-behind-the-scenes.webp",
         title: "Official Behind-the-Scenes: VFX & Combat Development",
-        caption: "Official Marvel Entertainment featurette detailing in-engine combat development, character dismemberment VFX coordination, Berserker rage post-processing, Helix claw AOE dynamics, and real-time PS5 runtime performance.",
-        tag: "Behind The Scenes",
         link: "https://www.youtube.com/watch?v=HafvPBjOHxQ",
-        timestamps: [
-          { time: "01:07", label: "Dismemberment & Blood/Sparks VFX", url: "https://youtu.be/HafvPBjOHxQ?t=67" },
-          { time: "01:21", label: "Berserker Rage Post-FX", url: "https://youtu.be/HafvPBjOHxQ?t=81" },
-          { time: "01:40", label: "Claw Friction & Impact Resistance", url: "https://youtu.be/HafvPBjOHxQ?t=100" },
-          { time: "02:09", label: "Helix Claws & AOE Attack VFX", url: "https://youtu.be/HafvPBjOHxQ?t=129" },
-          { time: "03:07", label: "Mutant Blood Magic & Glyphs", url: "https://youtu.be/HafvPBjOHxQ?t=187" },
-          { time: "03:40", label: "Real-Time PS5 In-Frame Performance", url: "https://youtu.be/HafvPBjOHxQ?t=220" },
-        ],
       },
       {
         image: "/images/projects/wolverine/wolverine-hero.webp",
         title: "In-Game Gameplay: Aggressive & Stealth Combat",
-        caption: "Real-time stealth takedowns, claw impact particle emitters, environmental blood decals, and aggressive in-engine combat gameplay on PS5.",
-        tag: "Gameplay VFX",
         link: "https://www.youtube.com/watch?v=iQYeXYa2Tfo",
       },
       {
         image: "/images/projects/wolverine/wolverine-action.webp",
         title: "In-Game Cinematic Cutscenes",
-        caption: "Real-time character combat, claw impacts, sparks, telekinesis simulations, and in-engine cinematic sequences in proprietary engine.",
-        tag: "Cinematic VFX",
-        link: "https://youtu.be/3boUBsYHY3I?t=1347",
-        timestamps: [
-          { time: "22:27", label: "Combat & Claw Sparks", url: "https://youtu.be/3boUBsYHY3I?t=1347" },
-          { time: "48:46", label: "Jean TK & Warehouse", url: "https://youtu.be/3boUBsYHY3I?t=2926" },
-          { time: "49:39", label: "Gunship Extraction", url: "https://youtu.be/3boUBsYHY3I?t=2979" },
-          { time: "1:11:12", label: "Facility Infiltration", url: "https://youtu.be/3boUBsYHY3I?t=4272" },
-          { time: "1:58:50", label: "Berserker Rage & Combat", url: "https://youtu.be/3boUBsYHY3I?t=7130" },
-        ],
-      },
-      {
-        image: "/images/projects/wolverine/wolverine-artblast-explosion.webp",
-        title: "ArtBlast: Warehouse Explosion",
-        caption: "Volumetric fire simulation, shockwave lighting, and anamorphic flares.",
-        tag: "Production VFX",
-        link: "https://youtu.be/3boUBsYHY3I?t=2926",
-      },
-      {
-        image: "/images/projects/wolverine/wolverine-artblast-hangar.webp",
-        title: "ArtBlast: Night Assault",
-        caption: "Gunship thrusters, muzzle flashes, laser tracers, and impact blood.",
-        tag: "Production VFX",
-        link: "https://youtu.be/3boUBsYHY3I?t=2979",
+        link: "https://youtu.be/3boUBsYHY3I",
       },
       {
         image: "/images/projects/wolverine/wolverine-credit-evidence.webp",
@@ -317,6 +300,7 @@ export const PROJECTS: Project[] = [
     platform: "PlayStation 5",
     style: "realistic",
     client: "Insomniac Games",
+    studio: "Sparx* (Virtuos)",
     workSummary:
       "Created cinematic, gameplay, and UI VFX for Insomniac Games' PS5 release.",
     description:
@@ -350,13 +334,11 @@ export const PROJECTS: Project[] = [
       {
         image: "/images/projects/spider-man-2/story-water.webp",
         title: "Waterfront action",
-        caption: "Public story trailer frame, shown for project context rather than shot-specific credit.",
         tag: "Official Trailer Frame",
       },
       {
         image: "/images/projects/spider-man-2/story-fire.webp",
         title: "Fire and debris",
-        caption: "Public story trailer frame, shown for project context rather than shot-specific credit.",
         tag: "Official Trailer Frame",
       },
       {
@@ -394,6 +376,7 @@ export const PROJECTS: Project[] = [
     platform: "PC, Console, Mobile",
     style: "stylized",
     client: "Epic Games",
+    studio: "Sparx* (Virtuos)",
     workSummary:
       "Created real-time VFX for weapon skins and the Remix Finale live event trailer.",
     description:
@@ -444,6 +427,7 @@ export const PROJECTS: Project[] = [
     platform: "PlayStation 5 / PC",
     style: "realistic",
     client: "Amazon Games",
+    studio: "Sparx* (Virtuos)",
     workSummary:
       "Cloth and hair simulation, with water, lightning, fire, and explosion FX for the New World: Aeternum trailer.",
     description:
@@ -499,6 +483,7 @@ export const PROJECTS: Project[] = [
     platform: "PlayStation 5 / PC",
     style: "realistic",
     client: "Ballistic Moon",
+    studio: "Sparx* (Virtuos)",
     workSummary:
       "Cinematic lighting for key sequences in the PS5 remake.",
     description:
@@ -633,6 +618,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "black-knight",
+    projectType: "film",
     thumbnail: "/images/Black_Knight_Thumbnail.jpg",
     title: "Black Knight",
     role: "FX Houdini Artist",
@@ -641,6 +627,7 @@ export const PROJECTS: Project[] = [
     duration: "2023",
     platform: "Netflix (4K HDR)",
     client: "Netflix",
+    studio: "BadClay Studio",
     workSummary:
       "Destruction, pyro, and atmospheric simulation for the Netflix original series.",
     description:

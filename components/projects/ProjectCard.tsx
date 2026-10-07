@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import type { Project } from "@/data/portfolio";
+import { getProjectByline, type Project } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
 interface ProjectCardProps {
@@ -20,7 +20,7 @@ export default function ProjectCard({
   supporting = false,
   className,
 }: ProjectCardProps) {
-  const credit = project.client ? `${project.role} · ${project.client}` : project.role;
+  const credit = getProjectByline(project);
   const primaryCategory = project.categories?.[0] || "aaa";
   const categoryLabel = primaryCategory === "aaa" ? "AAA Production" : `${primaryCategory.toUpperCase()} Production`;
 

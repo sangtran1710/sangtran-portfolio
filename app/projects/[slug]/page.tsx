@@ -5,7 +5,7 @@ import Image from "next/image";
 import { ArrowLeft, ArrowUpRight, Play } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import ProjectVideo from "@/components/projects/ProjectVideo";
-import { PROJECTS } from "@/data/portfolio";
+import { PROJECTS, getProjectByline } from "@/data/portfolio";
 import { absoluteUrl } from "@/lib/seo";
 
 interface Props {
@@ -117,13 +117,7 @@ export default function ProjectDetailPage({ params }: Props) {
           {project.title}
         </h1>
         <p className="text-sm sm:text-base text-muted-foreground">
-          {project.role} · {project.duration ?? project.year}
-          {project.client && (
-            <>
-              {" @ "}
-              <span className="text-primary font-medium">{project.client}</span>
-            </>
-          )}
+          {getProjectByline(project)} · {project.duration ?? project.year}
         </p>
       </div>
 
@@ -187,8 +181,17 @@ export default function ProjectDetailPage({ params }: Props) {
           <div className="mb-6 flex flex-wrap items-center justify-between gap-2">
             <div>
               <h2 className="text-base font-semibold text-white">
-                Selected Breakdown
+                {project.slug === "wolverine" || project.slug === "spider-man-2"
+                  ? project.slug === "wolverine" ? "Cinematic VFX, Project Context & Credits" : "Project Context & Credits"
+                  : "Selected Breakdown"}
               </h2>
+              {(project.slug === "wolverine" || project.slug === "spider-man-2") && (
+                <p className="mt-1 text-sm text-muted-foreground">
+                  {project.slug === "wolverine"
+                    ? "Warehouse Explosion and Night Assault are cinematic VFX I handled. Other public footage is project context, not shot-by-shot attribution."
+                    : "Public footage and images shown for project context, not shot-by-shot attribution."}
+                </p>
+              )}
             </div>
             {project.steamUrl && (
               <a
@@ -383,8 +386,12 @@ export default function ProjectDetailPage({ params }: Props) {
             <p className="font-medium text-white mt-1 text-sm">{project.platform || "Console / PC"}</p>
           </div>
           <div>
-            <p className="text-[10px] font-mono uppercase tracking-wider text-quiet">Client / Studio</p>
-            <p className="font-medium text-white mt-1 text-sm">{project.client || "Sparx*"}</p>
+            <p className="text-[10px] font-mono uppercase tracking-wider text-quiet">
+              {project.studio ? project.projectType === "film" ? "Studio / Release" : "Studio / Client" : "Client"}
+            </p>
+            <p className="font-medium text-white mt-1 text-sm">
+              {project.studio ? `${project.studio} / ${project.client}` : project.client}
+            </p>
           </div>
         </div>
 
