@@ -52,16 +52,6 @@ export default function ClientEndorsementsSection() {
               &ldquo;{featuredReview.review}&rdquo;
             </blockquote>
 
-            <div className="flex flex-wrap items-center gap-1.5 mt-3">
-              {featuredReview.tags.slice(0, 3).map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded border border-border bg-card px-2 py-0.5 text-[11px] font-mono text-muted-foreground"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
           </div>
 
           <div className="flex items-center md:self-center flex-shrink-0">

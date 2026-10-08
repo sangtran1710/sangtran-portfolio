@@ -33,10 +33,7 @@ export default function ProfileSection() {
             )}
           </div>
           <div className="max-w-3xl">
-            <span className="text-xs font-mono uppercase tracking-[0.2em] text-primary">
-              {isVi ? "GIỚI THIỆU" : "ABOUT THE ARTIST"}
-            </span>
-            <h2 className="mt-2 text-3xl font-medium tracking-tight text-white sm:text-4xl">Henry Tran</h2>
+            <h2 className="text-3xl font-medium tracking-tight text-white sm:text-4xl">Henry Tran</h2>
             <p className="mt-5 text-base sm:text-lg leading-relaxed text-muted-foreground">{profile.paragraph}</p>
             <Link href="/about" className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
               {isVi ? "Đọc thêm về kinh nghiệm" : "More about my experience"}

@@ -85,7 +85,7 @@ export const UI_COPY = {
     portfolio: {
       title: "Selected production work.",
       body:
-        "A curated selection of real-time VFX, cinematic work, and technical art. Released projects are prioritized; R&D and tool experiments are grouped separately below.",
+        "Games, cinematics, and tools I've worked on.",
       selectedProjects: "Released projects",
       gameSectionTitle: "Game Production (Real-time)",
       gameSectionBody: "Real-time VFX and engine integration across AAA console releases, live events, and commercial indie games.",
@@ -109,7 +109,7 @@ export const UI_COPY = {
       featuredCredits: "Featured Credits",
       featuredCreditsBody:
         "Released productions where my credit appears in the final project.",
-      clientEndorsements: "Client Endorsements & Recommendations",
+      clientEndorsements: "Client feedback",
       clientEndorsementsBody:
         "Verified feedback from freelance production and technical VFX contracts on Upwork (All 5.0 ★).",
       viewVerifiedReview: "View Upwork verification",
@@ -214,7 +214,7 @@ export const UI_COPY = {
     portfolio: {
       title: "Portfolio chọn lọc, ưu tiên dự án đã ship.",
       body:
-        "Một bộ tuyển chọn tập trung vào VFX đã sẵn sàng cho launch, cinematic và technical art. Các dự án đã ship và sẵn sàng để trình bày được đặt lên trước; phần thử nghiệm và R&D nằm bên dưới.",
+        "Game, cinematic và công cụ tôi đã tham gia thực hiện.",
       selectedProjects: "Dự án chọn lọc",
       gameSectionTitle: "Dự án Game (Real-time)",
       gameSectionBody: "Visual effects real-time và tích hợp engine cho game console AAA, live events và game indie thương mại.",

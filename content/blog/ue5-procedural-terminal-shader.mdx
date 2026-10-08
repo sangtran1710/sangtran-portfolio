@@ -1,45 +1,35 @@
 ---
-title: "Procedural Terminal Shader: Glitch, Scanlines & Emissive Breath in UE5"
-description: "A real-time material study translating a 2D motion graphic into a fully procedural, parameter-driven terminal shader in Unreal Engine 5."
+title: "Procedural Terminal Shader in UE5"
+description: "An old-screen glitch rebuilt as a real-time material."
 date: "2026-09-30"
 thumbnail: "/assets/blog/ue5-terminal-shader/poster-terminal-hero.webp"
 tags: ["Unreal Engine", "Shader", "Technical Art", "Material Graph", "VFX Study"]
 readTime: "2 min"
 ---
 
-I took inspiration from this [Biohazard Warning VJ Loop](https://pin.it/3Uew9ebLj) and rebuilt it inside Unreal Engine as a runtime procedural shader instead of relying on a video clip or flipbook texture.
-
-The result is a single unlit masked material with zero texture streaming cost, combining horizontal glitch slices, CRT scanlines, and an organic emissive breathing pulse.
+I liked the rhythm of this [Biohazard VJ loop](https://pin.it/3Uew9ebLj), so I rebuilt it in Unreal as a material instead of playing a video. Glitch slices, scanlines, and the slow glow all run from a few exposed controls.
 
 <VideoPlayer
   src="/assets/blog/ue5-terminal-shader/ue5-biohazard-terminal-study.mp4"
+  previewSrc="/assets/blog/ue5-terminal-shader/terminal-preview.mp4"
   poster="/assets/blog/ue5-terminal-shader/poster-terminal-hero.webp"
-  caption="Real-time Unreal Engine 5 viewport demonstration showing material instance parameter tuning and node graph architecture."
+  caption="Material preview in Unreal."
 />
 
----
+## How it moves
 
-## Breakdown & Material Controls
+The UVs are split into horizontal bands. Each band gets a short random offset, so the glitch arrives in bursts instead of constant noise. Scanlines come from tiled sine waves; a slower pulse drives the emissive glow.
 
-To make the glitch feel mechanical rather than uniform static noise, UV coordinates are quantized into horizontal bands with step divisions and randomized jitter offsets. 
+![Material instance controls for timing, scanlines, and glow](/assets/blog/ue5-terminal-shader/instance-parameters.webp)
 
-All core behaviors are exposed directly on the material instance (`MI_Biohazard_Terminal`), letting artists tune timing, scanline density, and glitch intensity on the fly:
+The material instance exposes timing, density, and intensity. `GlitchForce` also lets a gameplay event trigger a burst directly.
 
-![Material Instance Details panel showing exposed parameter groups](/assets/blog/ue5-terminal-shader/instance-parameters.webp)
+## Inside the material
 
-- **Glitch timing**: `BurstInterval`, `GlitchDuration`, and `BurstChance` control random glitch spikes, with `GlitchForce` available as a direct override for scripted gameplay events.
-- **Scanlines & Breath**: High-frequency UV sine tiling for CRT phosphor lines, combined with a slow sine pulse scaling emissive intensity.
+I kept distortion, noise, logo sampling, and scanlines in separate graph sections before combining them for Emissive and Opacity Mask.
 
----
+![Material graph overview](/assets/blog/ue5-terminal-shader/material-graph-overview.webp)
 
-## Graph Organization (172 nodes, 27 parameters)
+![Final composite nodes](/assets/blog/ue5-terminal-shader/material-composite-nodes.webp)
 
-Because procedural math networks can get messy quickly, the master material (`M_Biohazard_Terminal_Clean`) is divided into dedicated functional blocks:
-
-![Overview of the modular color-coded material graph in Unreal Engine 5](/assets/blog/ue5-terminal-shader/material-graph-overview.webp)
-
-UV slice distortion, jitter noise, logo sampling, and scanlines are calculated in separate passes before feeding into the final composite block to drive Emissive and Opacity Mask.
-
-![Detailed view of the Composite stage combining emissive layers and opacity masks](/assets/blog/ue5-terminal-shader/material-composite-nodes.webp)
-
-Building it procedurally keeps the memory footprint at zero, maintains sharp sub-pixel detail at any camera distance, and allows instant color and timing variations directly in engine.
+It's still one unlit masked material—easy to recolor or retime without making another flipbook.

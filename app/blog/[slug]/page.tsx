@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Clock, Tag } from "lucide-react";
+import { ArrowLeft, Clock } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { SITE } from "@/data/portfolio";
@@ -81,28 +81,9 @@ export default function BlogPostPage({ params }: Props) {
 
         {/* Header */}
         <header className="mb-10">
-          {/* Tags */}
-          {post.tags?.length > 0 && (
-            <div className="flex items-center gap-2 mb-5 flex-wrap">
-              <Tag className="h-3.5 w-3.5 text-quiet shrink-0 mr-0.5" />
-              {post.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="inline-flex items-center rounded-md border border-border bg-section px-2.5 py-0.5 text-xs font-mono text-muted-foreground"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
-
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight mb-4">
             {post.title}
           </h1>
-
-          <p className="text-muted-foreground text-base leading-relaxed mb-6">
-            {post.description}
-          </p>
 
           {/* Meta bar */}
           <div className="flex items-center gap-4 text-xs text-muted-foreground border-b border-border pb-8">

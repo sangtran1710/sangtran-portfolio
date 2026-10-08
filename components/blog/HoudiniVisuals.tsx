@@ -1,34 +1,94 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Layers } from "lucide-react";
 
 export function VideoPlayer({
   src,
+  previewSrc,
   poster,
   caption,
 }: {
   src: string;
+  previewSrc?: string;
   poster?: string;
   title?: string;
   caption?: string;
 }) {
+  const previewRef = useRef<HTMLVideoElement>(null);
+  const [showFullVideo, setShowFullVideo] = useState(false);
+
+  useEffect(() => {
+    const video = previewRef.current;
+    if (!video || !previewSrc || showFullVideo) return;
+
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let isVisible = false;
+    const observer = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+      if (isVisible && !motionPreference.matches) {
+        void video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    }, { threshold: 0.35 });
+
+    const handleMotionChange = () => {
+      if (motionPreference.matches) video.pause();
+      else if (isVisible) {
+        void video.play().catch(() => {});
+      }
+    };
+
+    observer.observe(video);
+    motionPreference.addEventListener("change", handleMotionChange);
+    return () => {
+      observer.disconnect();
+      motionPreference.removeEventListener("change", handleMotionChange);
+      video.pause();
+    };
+  }, [previewSrc, showFullVideo]);
+
   return (
-    <figure className="my-8 rounded-xl overflow-hidden border border-border bg-card shadow-2xl transition-all">
+    <figure className="my-8 rounded-xl overflow-hidden border border-border bg-card">
       <div className="relative aspect-video w-full bg-section">
-        <video
-          src={src}
-          poster={poster}
-          controls
-          playsInline
-          preload="metadata"
-          className="w-full h-full object-cover"
-        />
+        {previewSrc && !showFullVideo ? (
+          <video
+            ref={previewRef}
+            src={previewSrc}
+            poster={poster}
+            muted
+            loop
+            playsInline
+            preload="none"
+            aria-label="Silent loop preview"
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <video
+            src={src}
+            poster={poster}
+            controls
+            autoPlay={showFullVideo}
+            playsInline
+            preload="metadata"
+            className="w-full h-full object-cover"
+          />
+        )}
       </div>
-      {caption && (
-        <figcaption className="px-4 py-3 text-xs text-muted-foreground bg-section border-t border-border leading-relaxed">
-          {caption}
+      {(caption || previewSrc) && (
+        <figcaption className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 text-xs text-muted-foreground bg-section border-t border-border leading-relaxed">
+          {caption && <span>{caption}</span>}
+          {previewSrc && !showFullVideo && (
+            <button
+              type="button"
+              onClick={() => setShowFullVideo(true)}
+              className="text-primary underline underline-offset-4 hover:text-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              Watch full clip
+            </button>
+          )}
         </figcaption>
       )}
     </figure>

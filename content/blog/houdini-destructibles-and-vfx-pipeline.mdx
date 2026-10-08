@@ -1,147 +1,87 @@
 ---
 title: "Getting Houdini Destruction into Real Time"
-description: "Big simulations are fun. Getting them to run in real time is the tricky part. Here are a few ways I turned Houdini work into lighter assets."
+description: "A few ways I turn heavy simulation into lighter assets."
 date: "2026-05-12"
 tags: ["Houdini", "Destructibles", "Technical Art", "VFX Pipeline", "AAA VFX"]
 thumbnail: "/assets/blog/houdini-wolverine-destructibles/poster-rbd-bridge.webp"
-readTime: "5 min"
+readTime: "3 min"
 ---
 
-Destruction work for real-time projects isn't just about blowing meshes apart. It's about turning expensive physics simulations into lightweight, runtime-ready data.
-
-I used Houdini mainly to move heavy offline simulation into reusable textures, atlases, and pre-fractured assets.
+The interesting part of a big simulation is often what survives the trip into a game. These are a few Houdini setups I used to turn offline work into fracture pieces, textures, and emitter data.
 
 <ProductionNotice>
-  <strong className="text-zinc-200 font-medium">Production note:</strong> Offline Houdini workflows and isolated real-time VFX validation tests. No proprietary engine code or confidential game assets shown.
+  <strong className="text-zinc-200 font-medium">Production note:</strong> Offline workflows and isolated real-time tests only. No proprietary engine code or confidential game assets shown.
 </ProductionNotice>
 
----
-
-## 1. Multi-Stage RBD & Forcefield Collapse
+## Staged collapse
 
 <VideoPlayer
   src="/assets/blog/houdini-wolverine-destructibles/wolverine-houdini-rbd-bridge.mp4"
   poster="/assets/blog/houdini-wolverine-destructibles/poster-rbd-bridge.webp"
-  caption="Bullet solver setup handling progressive structural failure across a suspension bridge span."
+  caption="Bridge collapse test in Houdini."
 />
 
-Large structures look unnatural when pieces shatter all at once. I broke the collapse into sequential phases:
+A bridge reads better when its structure fails in stages. I used a constraint hierarchy for the main frame, a directional forcefield to guide the break, and a separate pass for smaller debris.
 
-- **Constraint hierarchy**: Primary framing held by stiff `Glue` constraints, which switch to `Soft` and `ConeTwist` as stress builds up to allow plastic bending before release.
-- **Directional forcefield**: Rather than passive collisions, an animated directional velocity volume pushes through the structure to drive failure along realistic load lines.
-- **Debris separation**: High-frequency surface concrete shards are split from structural core chunks for downstream LOD and culling.
-
----
-
-## 2. Modular Prop Destruction & Clustering
+## Repeatable prop fractures
 
 <VideoPlayer
   src="/assets/blog/houdini-wolverine-destructibles/wolverine-houdini-prop-destruction.mp4"
+  previewSrc="/assets/blog/houdini-wolverine-destructibles/prop-preview.mp4"
   poster="/assets/blog/houdini-wolverine-destructibles/poster-prop-destruction.webp"
-  caption="Exploded view showing interior structural ribs, metal panel separation, and collision piece clusters."
+  caption="Fractured prop setup in Houdini."
 />
 
-Level designers placed dozens of industrial props across environments, such as rooftop HVAC units, electrical boxes, and ducts. Cutting each one by hand was impractical, so I used Houdini to prepare the fractured pieces for simulation and real-time use.
+For repeated industrial props, the setup separates inside faces from the outer shell and groups tiny shards into larger clusters. That saves hand cleanup and keeps the rigid-body count manageable.
 
-### What the setup handled:
-- **Interior vs. exterior cuts**: Automatic vertex color and material ID assignment between pristine outer metal and interior concrete/metal cut faces.
-- **Cluster grouping**: Clumping tiny Voronoi shards into larger physical clusters to keep rigid body counts within real-time physics budgets.
-
----
-
-## 3. Ground Impact Cracks & COP Vector Displacement Baker
-
-Combat impacts need physical bite on the floor. Standard heightmaps only push vertices along a single normal vector, which can't produce lateral tearing, undercut rock edges, or jagged trench lips.
-
-For ground strikes, I authored procedural crack growth networks in Houdini that bake full **3D Vector Displacement Maps (VDM)** and tangent normal maps through **COP (Compositing Operators)** networks.
+## Ground cracks
 
 <VideoPlayer
   src="/assets/blog/houdini-wolverine-destructibles/wolverine-houdini-vector-displacement.mp4"
   poster="/assets/blog/houdini-wolverine-destructibles/poster-vector-displacement.webp"
-  caption="Custom COP graph baking 3D spatial delta offsets and tangent normals directly from fracture curves."
+  caption="COP bake for crack displacement and normals."
 />
 
-### Crack Mesh: Ground Fracture Suite
+A heightmap can only push along the surface normal. For cracks with lateral tearing, I baked 3D vector displacement and tangent normals in Houdini COPs.
+
 <TextureGallery>
-  <TextureCard
-    src="/assets/blog/houdini-wolverine-destructibles/crack_mesh_growing_crack_c.webp"
-    title="Color / Mask"
-    caption="Blend + fracture isolation"
-  />
-  <TextureCard
-    src="/assets/blog/houdini-wolverine-destructibles/crack_mesh_growing_crack_disp_m.webp"
-    title="Vector Displacement"
-    caption="3D positional offset (dx, dy, dz)"
-  />
-  <TextureCard
-    src="/assets/blog/houdini-wolverine-destructibles/crack_mesh_growing_crack_n.webp"
-    title="Tangent Normal"
-    caption="Surface micro-detail"
-  />
+  <TextureCard src="/assets/blog/houdini-wolverine-destructibles/crack_mesh_growing_crack_c.webp" title="Color / Mask" />
+  <TextureCard src="/assets/blog/houdini-wolverine-destructibles/crack_mesh_growing_crack_disp_m.webp" title="Vector Displacement" />
+  <TextureCard src="/assets/blog/houdini-wolverine-destructibles/crack_mesh_growing_crack_n.webp" title="Tangent Normal" />
 </TextureGallery>
 
-### Crack Mesh: Growing Roots Suite
+The same bake works for the growing-root variant:
+
 <TextureGallery>
-  <TextureCard
-    src="/assets/blog/houdini-wolverine-destructibles/crack_mesh_growing_roots_c.webp"
-    title="Color / Mask"
-    caption="Organic blend + tendril mask"
-  />
-  <TextureCard
-    src="/assets/blog/houdini-wolverine-destructibles/crack_mesh_growing_roots_disp_m.webp"
-    title="Vector Displacement"
-    caption="3D positional offset (dx, dy, dz)"
-  />
-  <TextureCard
-    src="/assets/blog/houdini-wolverine-destructibles/crack_mesh_growing_roots_n.webp"
-    title="Tangent Normal"
-    caption="Surface micro-detail"
-  />
+  <TextureCard src="/assets/blog/houdini-wolverine-destructibles/crack_mesh_growing_roots_c.webp" title="Color / Mask" />
+  <TextureCard src="/assets/blog/houdini-wolverine-destructibles/crack_mesh_growing_roots_disp_m.webp" title="Vector Displacement" />
+  <TextureCard src="/assets/blog/houdini-wolverine-destructibles/crack_mesh_growing_roots_n.webp" title="Tangent Normal" />
 </TextureGallery>
 
----
-
-## 4. 3D Volume Slicing to Texture Sheet
-
-High-resolution volumetric simulations are generally too expensive to reproduce directly at runtime at the same fidelity.
-
-To bring dense smoke and shockwave plumes into the project without simulating 3D fluid grids dynamically, I set up a slicing pipeline (`slice_vdb`):
+## Volume slices
 
 <VideoPlayer
   src="/assets/blog/houdini-wolverine-destructibles/wolverine-houdini-volume-texture.mp4"
   poster="/assets/blog/houdini-wolverine-destructibles/poster-volume-texture.webp"
-  caption="Slicing high-resolution volumetric smoke simulations into contiguous grid sheets for real-time raymarching."
+  caption="Slicing a smoke volume into a texture sheet."
 />
 
-1. **Field clamp & normalize**: Normalize VDB density and temperature to $[0, 1]$ bounds.
-2. **Equidistant slicing**: Slice the 3D voxel volume into discrete planar cross-sections (50 Z-slices).
-3. **Atlas packing**: Pack cross-sections into a single 4096&times;4096 power-of-two texture sheet.
-4. **Shader raymarch**: At runtime, a lightweight custom shader steps through the slice coordinates to reconstruct volumetric depth without requiring runtime 3D fluid simulation.
+The `slice_vdb` setup normalizes density and temperature, cuts the volume into 50 Z-slices, and packs them into a 4096 × 4096 atlas for a runtime raymarch shader. It trades a live fluid simulation for texture data that is easier to budget.
 
----
-
-## 5. Liquid Impact & Particle Fluid Splats
-
-Fast-moving melee combat and blunt impacts require convincing fluid reactions: droplet arcs, secondary spray, and ground splats that ground the hit in the environment.
-
-Simulating fluid dynamics directly at runtime is too unpredictable and costly for a 60 FPS budget. Instead, I simulated the primary splash dynamics in Houdini to author particle emitter data and surface impact behaviors:
+## Liquid impacts
 
 <VideoPlayer
   src="/assets/blog/houdini-wolverine-destructibles/wolverine-houdini-liquid-splash.mp4"
   poster="/assets/blog/houdini-wolverine-destructibles/poster-liquid-splash.webp"
-  caption="Houdini particle fluid setup (AVFX_liquid) isolating primary splash plumes, droplet breakups, and ground collision contact points."
+  caption="Offline splash simulation."
 />
 
-From the simulation network, the splash data is separated into two deliverables:
-- **Velocity & spray emitters**: Primary splash arcs and trailing droplets packaged into lightweight particle spawn templates.
-- **Surface splat masks**: Collision contact positions driving runtime decals and mesh splats with specular roughness variation on ground materials.
+I split the splash into velocity-driven spray and contact masks for surface splats, then checked the result in a real-time viewport:
 
 <VideoPlayer
   src="/assets/blog/houdini-wolverine-destructibles/wolverine-runtime-liquid-splash.mp4"
   poster="/assets/blog/houdini-wolverine-destructibles/poster-runtime-liquid-splash.webp"
-  caption="Real-time viewport validation showing directional droplet velocity, ground contact decals, and specular wetness response."
+  caption="Isolated real-time splash test."
 />
 
----
-
-The core goal across these setups was always the same: keep the artist control and simulation fidelity of Houdini, but package the output into clean, optimized data (compact textures, clustered shards, and lightweight atlases) that runtime shaders and collision systems can consume within production frame budgets.
+The common thread is keeping control of the look offline while giving the runtime something lighter to draw.

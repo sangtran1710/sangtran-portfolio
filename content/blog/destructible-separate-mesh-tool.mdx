@@ -1,49 +1,30 @@
 ---
-title: "The Blender Tool I Made for Fractured Meshes"
-description: "Cleaning up fracture pieces by hand got old fast, so I made a tool to pull out break surfaces, build emitter meshes, and set up FX UVs."
+title: "A Blender Tool for Fractured Meshes"
+description: "A small tool for the cleanup I kept doing by hand."
 date: "2026-04-17"
 tags: ["Blender", "Python", "Technical Art", "VFX", "Pipeline Tools"]
 thumbnail: "/assets/blog/destructible-separate-mesh-tool/separated-crack-mesh.webp"
-readTime: "3 min"
+readTime: "2 min"
 ---
 
-When fractured props come out of physics simulations, they are usually dense, multi-material meshes that take a lot of repetitive cleanup before they are usable for VFX. You have to locate the fracture material, isolate internal break surfaces, strip out the untouched outer hull, generate lightweight emitter cards, and make sure UV directions align for scrolling textures.
+Fractured props arrive with dense geometry, mixed materials, and UVs that rarely suit VFX. I wrote a Blender operator to handle the cleanup I kept repeating.
 
-Doing that by hand across dozens of assets is slow and error-prone, so I wrote this Blender Python operator to handle the whole cleanup and prep pass in a few clicks.
+## Find the break surfaces
 
----
+Pick the fracture material; the tool isolates those faces and removes the outer shell.
 
-## Isolating fracture surfaces
+![Fracture material selected in Blender](/assets/blog/destructible-separate-mesh-tool/destructible-material-selected.webp)
 
-The tool scans the selected mesh and lists its assigned materials directly in the operator panel. Selecting the internal crack material isolates those faces and purges exterior shell geometry.
+![Isolated break surfaces](/assets/blog/destructible-separate-mesh-tool/separated-crack-mesh.webp)
 
-![Fracture material preview in Blender](/assets/blog/destructible-separate-mesh-tool/destructible-material-selected.webp)
+## Make lighter emitters
 
-Once split, only the internal break geometry remains, cleaned of zero-area faces and ready for emitter generation or mesh extraction.
+It finds separate fracture islands, spaces out their center points, and places simple triangle cards there. The effect can spawn along the break without carrying the full mesh into the particle system.
 
-![Separated crack mesh ready for cleanup](/assets/blog/destructible-separate-mesh-tool/separated-crack-mesh.webp)
+![Emitter cards generated from the fracture](/assets/blog/destructible-separate-mesh-tool/vfx-emitter-generated.webp)
 
----
+## Check the UV flow
 
-## Generating lightweight emitter meshes
+Flat cards, long shards, and ribbon-like cracks need different unwraps. A noise preview makes it easy to spot a shard whose texture flows the wrong way before export.
 
-Feeding dense fracture geometry into a runtime particle system is wasteful. 
-
-Instead, the tool breaks the isolated fracture faces into loose islands, calculates their center points, filters out points that sit within a minimum proximity threshold, and generates minimal single-triangle emitter cards at those coordinates. This gives particle systems an accurate spawn volume without pushing thousands of unnecessary vertices into the engine.
-
-![Generated VFX emitter from separated cracks](/assets/blog/destructible-separate-mesh-tool/vfx-emitter-generated.webp)
-
----
-
-## Aligning UV flow for erosion shaders
-
-Dissolve edges, crack glows, and erosion shaders depend on consistent UV orientation. Manually unwrapping dozens of loose shards usually produces mismatched flow vectors where textures scroll against the grain of the crack.
-
-The tool inspects shard topology and assigns an appropriate layout:
-- **Face Grid** for flat emitter cards, packing them into normalized coordinate space.
-- **Flow & Caps** for elongated shards, unwrapping along their length so panning noise follows the fracture path naturally.
-- **Straight Strip** for continuous ribbon-like cracks.
-
-![Noise flow preview for FX UV validation](/assets/blog/destructible-separate-mesh-tool/noise-flow-preview.webp)
-
-A procedural noise preview in the viewport lets me verify that flow directions and dissolve gradients read correctly before exporting FBX meshes into the runtime pipeline.
+![Noise-flow preview in Blender](/assets/blog/destructible-separate-mesh-tool/noise-flow-preview.webp)

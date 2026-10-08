@@ -1,69 +1,25 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Clock } from "lucide-react";
 import type { BlogPostMeta } from "@/lib/blog";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { cn } from "@/lib/utils";
 
 const articleTeasers: Record<string, string> = {
   "ue5-procedural-terminal-shader": "I rebuilt an old-screen flicker as a material—no flipbook needed.",
   "stormfront-volumetric-cloud-lightning": "A storm sky that moves and flashes without eating the frame budget.",
   "houdini-destructibles-and-vfx-pipeline": "Big Houdini sims are fun. Getting them into a game is the hard part.",
   "destructible-separate-mesh-tool": "I got tired of cleaning up fracture pieces by hand, so I made a tool.",
-  "math-for-vfx-shaders": "The bits of math I keep reaching for when an effect needs to move.",
 };
 
 export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
   const { locale } = useLanguage();
   const isVi = locale === "vi";
 
-  // Default to "all" so Next.js static prerender generates full article cards in HTML
-  const [activeTab, setActiveTab] = useState<"all" | "tools" | "math">("all");
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      const tab = params.get("tab");
-      if (tab === "math" || tab === "tools") {
-        requestAnimationFrame(() => {
-          setActiveTab(tab);
-        });
-      }
-    }
-  }, []);
-
-  const handleTabChange = (tab: "all" | "tools" | "math") => {
-    setActiveTab(tab);
-    if (typeof window !== "undefined") {
-      const url = new URL(window.location.href);
-      if (tab === "all") {
-        url.searchParams.delete("tab");
-      } else {
-        url.searchParams.set("tab", tab);
-      }
-      window.history.replaceState({}, "", url.pathname + (url.search ? url.search : ""));
-    }
-  };
-
-  const isMathPost = (post: BlogPostMeta) =>
-    post.tags.includes("Math") || post.slug.startsWith("math-");
-
-  const toolPosts = posts.filter(
-    (post) => !isMathPost(post) && post.slug !== "ue5-material-library-portal"
+  const displayedPosts = posts.filter(
+    (post) => post.slug !== "math-for-vfx-shaders" && post.slug !== "ue5-material-library-portal"
   );
-  const mathPosts = posts.filter((post) => isMathPost(post));
-
-  const allPosts = [...toolPosts, ...mathPosts];
-
-  const displayedPosts = 
-    activeTab === "tools" 
-      ? toolPosts 
-      : activeTab === "math" 
-        ? mathPosts 
-        : allPosts;
 
   const headingText = isVi ? "Ghi chép Kỹ thuật & R&D" : "Technical Notes & R&D";
   const subtitleText = isVi
@@ -82,58 +38,12 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
           </p>
         </header>
 
-        {/* Clean Filter Tabs */}
-        <div className="mb-10 flex flex-wrap gap-2 border-b border-border/60 pb-4">
-          <button
-            type="button"
-            onClick={() => handleTabChange("all")}
-            className={cn(
-              "px-4 py-1.5 text-xs font-mono transition-colors",
-              activeTab === "all"
-                ? "border-b-2 border-primary font-medium text-white"
-                : "text-muted-foreground hover:text-white"
-            )}
-          >
-            <span>{isVi ? "Tất cả" : "All Notes"}</span>
-            <span className="ml-1.5 text-quiet">({allPosts.length})</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => handleTabChange("tools")}
-            className={cn(
-              "px-4 py-1.5 text-xs font-mono transition-colors",
-              activeTab === "tools"
-                ? "border-b-2 border-primary font-medium text-white"
-                : "text-muted-foreground hover:text-white"
-            )}
-          >
-            <span>{isVi ? "Công cụ & Pipeline" : "Tools & Pipeline"}</span>
-            <span className="ml-1.5 text-quiet">({toolPosts.length})</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => handleTabChange("math")}
-            className={cn(
-              "px-4 py-1.5 text-xs font-mono transition-colors",
-              activeTab === "math"
-                ? "border-b-2 border-primary font-medium text-white"
-                : "text-muted-foreground hover:text-white"
-            )}
-          >
-            <span>{isVi ? "Toán cho VFX" : "Math for VFX"}</span>
-            <span className="ml-1.5 text-quiet">({mathPosts.length})</span>
-          </button>
-        </div>
-
         {/* Flat Editorial Article Grid */}
         <section>
           <div className="grid gap-10 md:grid-cols-2">
             {displayedPosts.map((post, index) => {
-              const isMath = isMathPost(post);
               const isVfxStudy = post.tags.includes("VFX Study");
-              const categoryBadge = isMath ? "Math for VFX" : isVfxStudy ? "VFX Study" : "Pipeline Tool";
+              const categoryBadge = isVfxStudy ? "VFX Study" : "Pipeline Tool";
 
               return (
                 <article
@@ -149,10 +59,7 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
                           alt={post.title}
                           fill
                           priority={index === 0}
-                          className={cn(
-                            "transition-transform duration-500 ease-out group-hover:scale-[1.02]",
-                            isMath ? "object-contain p-4" : "object-cover"
-                          )}
+                          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
                           sizes="(max-width: 768px) 100vw, 50vw"
                         />
                       </div>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Menu } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -30,6 +30,7 @@ const itemVariants = {
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
+  const logoTransition = useRef<Animation | null>(null);
   const [open, setOpen] = useState(false);
   const { copy } = useLanguage();
   const navLinks = [
@@ -44,6 +45,18 @@ export default function Navbar() {
     if (href.endsWith(".html")) return;
     router.prefetch(href.split("#")[0]);
   };
+
+  useLayoutEffect(() => {
+    const transition = logoTransition.current;
+    if (!transition) return;
+
+    transition.cancel();
+    logoTransition.current = null;
+    document.getElementById("main")?.animate(
+      [{ opacity: 0 }, { opacity: 1 }],
+      { duration: 360, easing: "ease-out" }
+    );
+  }, [pathname]);
 
   useEffect(() => {
     const warmNavigation = () => {
@@ -60,11 +73,44 @@ export default function Navbar() {
     return () => clearTimeout(timeoutId);
   }, [router]);
 
+  const handleLogoClick = async (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (
+      pathname === "/" ||
+      event.button !== 0 ||
+      event.metaKey || event.ctrlKey || event.shiftKey || event.altKey ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) return;
+
+    event.preventDefault();
+    if (logoTransition.current) return;
+
+    const main = document.getElementById("main");
+    if (!main) {
+      router.push("/");
+      return;
+    }
+
+    const transition = main.animate(
+      [{ opacity: 1 }, { opacity: 0 }],
+      { duration: 260, easing: "ease-in-out", fill: "forwards" }
+    );
+    logoTransition.current = transition;
+    await transition.finished.catch(() => {});
+    if (logoTransition.current !== transition) return;
+    router.push("/");
+    window.setTimeout(() => {
+      if (logoTransition.current === transition) {
+        transition.cancel();
+        logoTransition.current = null;
+      }
+    }, 1500);
+  };
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 w-full border-b border-border/60 bg-background/55 backdrop-blur-sm">
       <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-6 sm:px-8 lg:px-12">
         {/* Logo */}
-        <Link href="/" className="group flex flex-row items-baseline gap-0.5 font-kanit leading-none">
+        <Link href="/" onClick={handleLogoClick} className="group flex flex-row items-baseline gap-0.5 font-kanit leading-none">
           <span className="text-[1.75rem] font-bold text-white transition-colors group-hover:text-white/85">
             HT
           </span>

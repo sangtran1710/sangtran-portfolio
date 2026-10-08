@@ -39,10 +39,7 @@ export default function TechnicalSpotlight() {
     <section id="technical-spotlight" className="border-t border-border/60 bg-background">
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-24">
         <div className="mb-12 max-w-2xl">
-          <span className="text-xs font-mono uppercase tracking-[0.2em] text-primary">
-            {isVi ? "NGHIÊN CỨU & CÔNG CỤ" : "R&D & TECHNICAL SPOTLIGHT"}
-          </span>
-          <h2 className="mt-2 text-3xl font-medium tracking-tight text-white sm:text-4xl">
+          <h2 className="text-3xl font-medium tracking-tight text-white sm:text-4xl">
             {copy.home.technicalSpotlight}
           </h2>
         </div>

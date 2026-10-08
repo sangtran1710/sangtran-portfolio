@@ -53,7 +53,7 @@ export default function ExperienceTimeline() {
         >
           <ArrowDownToLine className="h-3.5 w-3.5" />
           <span>
-            {isVi ? "Tải CV PDF để xem chi tiết đầy đủ trách nhiệm kỹ thuật →" : "Download full PDF resume for granular technical details →"}
+            {isVi ? "Tải CV PDF" : "Download CV (PDF)"}
           </span>
         </a>
       </div>
