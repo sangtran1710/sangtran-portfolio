@@ -31,6 +31,7 @@ export default function ProjectGrid() {
           <button
             key={value}
             type="button"
+            aria-pressed={active === value}
             onClick={() => setActive(value)}
             className={cn(
               "relative pb-1 text-sm font-medium transition-colors duration-200",
@@ -45,7 +46,7 @@ export default function ProjectGrid() {
       </div>
 
       {filtered.length > 0 ? (
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div key={active} className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 animate-in fade-in duration-200">
           {filtered.map((project, index) => (
             <ProjectCard key={project.slug} project={project} priority={index < 3} />
           ))}

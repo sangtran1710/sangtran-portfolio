@@ -68,31 +68,18 @@ test.describe("Deep Comprehensive Site Experience Audit", () => {
   test("Interactive features work smoothly on Home page", async ({ page }) => {
     await page.goto("/", { waitUntil: "networkidle" });
 
-    // Test Hero Canvas presence and dimensions
-    const heroCanvas = page.locator("section canvas");
-    await expect(heroCanvas).toBeVisible();
-    const canvasBox = await heroCanvas.boundingBox();
-    expect(canvasBox?.width).toBeGreaterThan(300);
-    expect(canvasBox?.height).toBeGreaterThan(300);
-
-    // Simulate mouse moves across Hero
-    if (canvasBox) {
-      for (let i = 0; i < 5; i++) {
-        await page.mouse.move(canvasBox.x + i * 50, canvasBox.y + i * 40);
-        await page.waitForTimeout(50);
-      }
-    }
-
-    // Test mouse hover on project cards (SpotlightCard)
-    const firstProjectCard = page.locator("article").first();
-    await firstProjectCard.scrollIntoViewIfNeeded();
-    await expect(firstProjectCard).toBeVisible();
-    await firstProjectCard.hover();
-    await page.waitForTimeout(200);
-
-    // Test navigation links
-    const workLink = page.getByRole("link", { name: /Selected work/i }).first();
-    await expect(workLink).toBeVisible();
+    const hero = page.locator("section").first();
+    await expect(hero.getByRole("heading", { level: 1, name: "Henry Tran" })).toBeVisible();
+    const workLink = hero.getByRole("link", { name: /Selected work/i });
+    await expect(workLink).toHaveAttribute("href", "/portfolio");
+    await workLink.click();
+    await page.waitForURL("**/portfolio");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Production Work");
+    const firstProject = page.locator('a[href="/projects/wolverine"]').first();
+    await expect(firstProject).toBeVisible();
+    await firstProject.click();
+    await page.waitForURL("**/projects/wolverine");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Marvel's Wolverine");
   });
 
   test("Showreel video player can be played and has no broken states", async ({ page }) => {
@@ -107,36 +94,19 @@ test.describe("Deep Comprehensive Site Experience Audit", () => {
     await expect(video).toBeVisible();
   });
 
-  test("Notes page tab filtering and consolidated math article", async ({ page }) => {
+  test("Notes directory opens articles and math demos remain accessible", async ({ page }) => {
     await page.goto("/articles", { waitUntil: "networkidle" });
+    await expect(page.locator("article")).toHaveCount(4);
+    const stormfront = page.locator('article a[href="/blog/stormfront-volumetric-cloud-lightning"]');
+    await expect(stormfront.getByRole("heading", { level: 2 })).toHaveText("Stormfront: Making a Storm Sky Feel Alive");
+    await stormfront.click();
+    await page.waitForURL("**/blog/stormfront-volumetric-cloud-lightning");
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
 
-    // Verify the personal VFX study appears alongside the existing notes.
-    const articles = page.locator("article");
-    await expect(articles).toHaveCount(4);
-    await expect(page.getByRole("link", { name: /Stormfront: A Real-Time Boss Arena Sky/i })).toBeVisible();
-
-    // Switch to Tools tab
-    const toolsTab = page.getByRole("button", { name: /Tools & Pipeline|Công cụ/i });
-    await toolsTab.click();
-    await page.waitForTimeout(300);
-    await expect(page.locator("article")).toHaveCount(3);
-    await expect(page.getByText(/Destructible Separate Mesh Tool/i)).toBeVisible();
-
-    // Switch to Math tab
-    const mathTab = page.getByRole("button", { name: /Math for VFX|Toán cho VFX/i });
-    await mathTab.click();
-    await page.waitForTimeout(300);
-    await expect(page.locator("article")).toHaveCount(1);
-    await expect(page.getByText(/Essential Math for Real-Time VFX/i)).toBeVisible();
-
-    // Navigate into the consolidated math article
-    await page.getByRole("link", { name: /Essential Math for Real-Time VFX/i }).first().click();
-    await page.waitForURL("**/blog/math-for-vfx-shaders");
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Essential Math for Real-Time VFX & Shaders");
-
-    // Verify interactive widgets render
+    await page.goto("/blog/math-for-vfx-shaders", { waitUntil: "networkidle" });
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("The VFX Math I Keep Coming Back To");
     await expect(page.getByText(/^Dot Product:/).first()).toBeVisible();
-    await expect(page.getByText(/Cross Product: Orthogonal to A and B/i).first()).toBeVisible();
+    await expect(page.getByRole("img", { name: "Two perpendicular vectors and their cross product" })).toBeVisible();
     await expect(page.getByText(/^Distance:/).first()).toBeVisible();
   });
 

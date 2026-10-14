@@ -410,7 +410,7 @@ export const WorldPositionOffsetVisual = () => {
         <line x1="0" y1="0" x2="400" y2="0" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeDasharray="4" />
         {Array.from({ length: 21 }).map((_, i) => {
           const x = i * 20;
-          const y = Math.sin(x * 0.05 - time * 3) * 40;
+          const y = svgNumber(Math.sin(x * 0.05 - time * 3) * 40);
           return (
             <g key={i}>
               <line x1={x} y1="0" x2={x} y2={y} stroke="#3b82f6" strokeWidth="2" opacity="0.5" />
@@ -418,7 +418,7 @@ export const WorldPositionOffsetVisual = () => {
             </g>
           );
         })}
-        <path d={`M 0 ${Math.sin(-time * 3) * 40} ` + Array.from({length: 20}).map((_, i) => `L ${(i+1)*20} ${Math.sin((i+1)*20*0.05 - time*3)*40}`).join(' ')} fill="none" stroke="#fff" strokeWidth="2" />
+        <path d={`M 0 ${svgNumber(Math.sin(-time * 3) * 40)} ` + Array.from({length: 20}).map((_, i) => `L ${(i+1)*20} ${svgNumber(Math.sin((i+1)*20*0.05 - time*3)*40)}`).join(' ')} fill="none" stroke="#fff" strokeWidth="2" />
         <text x="10" y="-80" fill="#fff" fontSize="14" fontFamily="monospace">
           WPO = VertexNormal * Sin(Time)
         </text>

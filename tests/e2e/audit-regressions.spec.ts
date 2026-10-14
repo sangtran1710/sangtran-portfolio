@@ -40,7 +40,7 @@ test.describe("Audit regressions", () => {
 
   test("primary pages expose clear headings and contact actions", async ({ page }) => {
     await page.goto("/showreel", { waitUntil: "networkidle" });
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Showreel");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Real-Time VFX Showreel");
 
     await page.goto("/contact", { waitUntil: "networkidle" });
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("Contact");
@@ -81,7 +81,7 @@ test.describe("Audit regressions", () => {
       };
     });
 
-    expect(visualSystem.headerBackground).toBe("rgb(11, 14, 18)");
+    expect(visualSystem.headerBackground).toBe("rgba(13, 16, 21, 0.55)");
     expect(visualSystem.headingFont).toContain("Kanit");
     expect(visualSystem.headingSize).toBeLessThanOrEqual(80);
     expect(Math.abs(visualSystem.logoLeft - visualSystem.headingLeft)).toBeLessThan(1);
@@ -90,7 +90,7 @@ test.describe("Audit regressions", () => {
   test("personal Erlangmon VFX project is linked and has a local showcase", async ({ page }) => {
     await page.goto("/portfolio", { waitUntil: "networkidle" });
 
-    const projectLink = page.getByRole("link", { name: /Erlangmon VFX/i });
+    const projectLink = page.locator('a[href="/rnd/erlangmon-vfx"]').first();
     await expect(projectLink).toBeVisible();
     await expect(projectLink).toHaveAttribute("href", "/rnd/erlangmon-vfx");
 

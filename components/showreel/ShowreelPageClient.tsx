@@ -13,10 +13,11 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { HERO } from "@/data/portfolio";
+import { HERO, PROJECTS } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
 interface ShotCue {
+  projectSlug: string;
   time: number;
   timecode: string;
   title: string;
@@ -27,6 +28,7 @@ interface ShotCue {
 
 const SHOTS: ShotCue[] = [
   {
+    projectSlug: "fortnite-remix",
     time: 0,
     timecode: "00:00",
     title: "Fortnite – Remix Finale",
@@ -35,6 +37,7 @@ const SHOTS: ShotCue[] = [
     thumbnail: "/images/showreel/shot-01-fortnite.webp",
   },
   {
+    projectSlug: "spider-man-2",
     time: 14,
     timecode: "00:14",
     title: "Marvel's Spider-Man 2",
@@ -43,6 +46,7 @@ const SHOTS: ShotCue[] = [
     thumbnail: "/images/showreel/shot-02-wolverine.webp",
   },
   {
+    projectSlug: "new-world",
     time: 24,
     timecode: "00:24",
     title: "New World: Aeternum",
@@ -51,6 +55,7 @@ const SHOTS: ShotCue[] = [
     thumbnail: "/images/showreel/shot-03-magic.webp",
   },
   {
+    projectSlug: "until-dawn",
     time: 32,
     timecode: "00:32",
     title: "Until Dawn Remake",
@@ -294,6 +299,31 @@ export default function ShowreelPageClient() {
             );
           })}
         </div>
+        <section aria-labelledby="contributions-heading" className="mt-14 border-t border-border pt-10">
+          <h2 id="contributions-heading" className="font-kanit text-2xl font-normal text-white">
+            My contributions
+          </h2>
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+            This reel is a selection of my work. The summaries below describe my broader contributions
+            to each project, including work beyond the shots shown here.
+          </p>
+          <div className="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+            {SHOTS.map((shot) => {
+              const project = PROJECTS.find((item) => item.slug === shot.projectSlug);
+              if (!project) return null;
+              return (
+                <div key={shot.projectSlug}>
+                  <Link href={`/projects/${shot.projectSlug}`} className="text-base font-medium text-white transition-colors hover:text-primary">
+                    {shot.title}
+                  </Link>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {project.contributions.join(" ")}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </section>
       </main>
     </div>
   );

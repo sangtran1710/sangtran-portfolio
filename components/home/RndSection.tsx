@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState, useMemo, useCallback } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ChevronDown, ImageOff } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -115,6 +116,7 @@ const ARCHIVE_SLUGS = new Set([
 /*  MAIN COMPONENT                                                     */
 /* ================================================================== */
 export default function RndSection() {
+  const reducedMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
   const [inView, setInView] = useState(true);
   const [isArchiveOpen, setIsArchiveOpen] = useState(false);
@@ -220,8 +222,17 @@ export default function RndSection() {
             </p>
           </div>
 
+          <AnimatePresence initial={false}>
           {isArchiveOpen && (
-            <div className="mt-8 grid gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 animate-in fade-in duration-300">
+            <motion.div
+              key="archive"
+              initial={{ height: reducedMotion ? "auto" : 0, opacity: reducedMotion ? 1 : 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: reducedMotion ? 0 : 0.2, ease: "easeOut" }}
+              className="overflow-hidden"
+            >
+            <div className="pt-8 grid gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
               {archiveProjects.map((project) => (
                 <CardLink
                   key={project.title}
@@ -244,7 +255,9 @@ export default function RndSection() {
                 </CardLink>
               ))}
             </div>
+            </motion.div>
           )}
+          </AnimatePresence>
         </div>
       )}
     </div>

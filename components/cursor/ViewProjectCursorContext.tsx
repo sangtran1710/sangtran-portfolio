@@ -7,7 +7,7 @@ import {
   useEffect,
   useRef,
 } from "react";
-import { motion, useSpring } from "framer-motion";
+import { motion, useSpring, useReducedMotion } from "framer-motion";
 
 type CursorState = {
   mouseX: number;
@@ -28,12 +28,14 @@ export function ViewProjectCursorProvider({
 }: {
   children: React.ReactNode;
 }) {
+  const reducedMotion = useReducedMotion();
   const [mouseX, setMouseX] = useState(0);
   const [mouseY, setMouseY] = useState(0);
   const [isOverProjectCard, setOverProjectCard] = useState(false);
   const rafRef = useRef<number>(0);
 
   useEffect(() => {
+    if (reducedMotion) return;
     const onMove = (e: MouseEvent) => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       rafRef.current = requestAnimationFrame(() => {
@@ -46,7 +48,7 @@ export function ViewProjectCursorProvider({
       window.removeEventListener("mousemove", onMove);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, []);
+  }, [reducedMotion]);
 
   return (
     <CursorContext.Provider
@@ -58,11 +60,11 @@ export function ViewProjectCursorProvider({
       }}
     >
       {children}
-      <ViewProjectCursor
+      {!reducedMotion && isOverProjectCard && <ViewProjectCursor
         x={mouseX}
         y={mouseY}
         visible={isOverProjectCard}
-      />
+      />}
     </CursorContext.Provider>
   );
 }
