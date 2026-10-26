@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { getLocalizedAchievementCredits } from "@/lib/portfolio-content";
 
@@ -15,9 +16,22 @@ export default function FeaturedCreditsSection() {
       <h2 className="mb-2 font-kanit text-2xl font-normal tracking-tight text-white sm:text-3xl">
         {copy.about.featuredCredits}
       </h2>
-      <p className="mb-8 max-w-2xl text-sm leading-6 text-muted-foreground">
+      <p className="mb-3 max-w-2xl text-sm leading-6 text-muted-foreground">
         {copy.about.featuredCreditsBody}
       </p>
+      <a
+        href="https://www.mobygames.com/person/1553845/tran-minh-sang/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mb-8 inline-flex max-w-full items-center gap-1 text-sm text-primary underline decoration-primary/40 underline-offset-4 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+      >
+        <span>
+          {locale === "vi"
+            ? "Xem game credits trên MobyGames · Tran Minh Sang"
+            : "View game credits on MobyGames · Tran Minh Sang"}
+        </span>
+        <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+      </a>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {credits.map((item, index) => (

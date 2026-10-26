@@ -24,12 +24,12 @@ export default function Footer() {
             &copy; {year} Henry Tran.
           </p>
           <span className="hidden sm:inline text-quiet">/</span>
-          <p className="text-xs font-mono text-muted-foreground">
+          <p className="text-sm text-muted-foreground">
             {isVi ? "Kỹ thuật VFX & Shader chuyên sâu" : "Real-Time VFX & Technical Art"}
           </p>
         </div>
 
-        <nav className="flex flex-wrap gap-x-6 gap-y-2 text-xs font-mono uppercase tracking-wider text-muted-foreground" aria-label="Footer navigation">
+        <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground" aria-label="Footer navigation">
           {footerLinks.map(({ href, label }) => (
             <Link key={href} href={href} prefetch={true} className="transition-colors hover:text-primary">
               {label}

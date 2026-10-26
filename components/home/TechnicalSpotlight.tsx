@@ -15,6 +15,7 @@ export default function TechnicalSpotlight() {
         ? "Từ mô phỏng phá hủy trong Houdini đến các asset gọn hơn cho real-time."
         : "Turning Houdini destruction sims into lighter assets for real-time use.",
       image: "/assets/blog/houdini-wolverine-destructibles/poster-rbd-bridge.webp",
+      crop: "object-left scale-[1.9] origin-left",
       link: "/blog/houdini-destructibles-and-vfx-pipeline",
     },
     {
@@ -23,6 +24,7 @@ export default function TechnicalSpotlight() {
         ? "Kiểm tra asset và chuẩn bị Perforce submission."
         : "Asset checks, validation, and Perforce submission in one tool.",
       image: "/projects/vfx-flow/showcase_asset_qc_ready.png",
+      crop: "object-center",
       link: "/rnd/vfx-flow",
     },
     {
@@ -31,12 +33,13 @@ export default function TechnicalSpotlight() {
         ? "Tách fracture faces, tạo emitter mesh và FX UV."
         : "Fracture faces, emitter meshes, and procedural FX UV generation.",
       image: "/assets/blog/destructible-separate-mesh-tool/separated-crack-mesh.webp",
+      crop: "object-center scale-[1.25]",
       link: "/blog/destructible-separate-mesh-tool",
     },
   ];
 
   return (
-    <section id="technical-spotlight" className="border-t border-border/60 bg-background">
+    <section id="technical-spotlight" className="bg-section">
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-24">
         <div className="mb-12 max-w-2xl">
           <h2 className="text-3xl font-medium tracking-tight text-white sm:text-4xl">
@@ -58,7 +61,7 @@ export default function TechnicalSpotlight() {
                     src={item.image}
                     alt={item.title}
                     fill
-                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                    className={`object-cover ${item.crop}`}
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
@@ -68,7 +71,7 @@ export default function TechnicalSpotlight() {
                     {item.title}
                   </h3>
 
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-2 text-base leading-relaxed text-muted-foreground">
                     {item.description}
                   </p>
                 </div>

@@ -15,7 +15,7 @@ export default function FeaturedProjects() {
   return (
     <section
       id="work"
-      className="scroll-mt-24 border-t border-border/60 bg-background"
+      className="scroll-mt-24 bg-background"
     >
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-24">
         <div className="mb-12 flex items-end justify-between">
@@ -38,7 +38,7 @@ export default function FeaturedProjects() {
           {/* Dominant Hero: Marvel's Wolverine */}
           {projects[0] && (
             <ProjectCard
-              project={projects[0]}
+              project={{ ...projects[0], thumbnail: "/images/projects/wolverine/wolverine-artblast-explosion.webp" }}
               priority
               featured
               className="w-full"
@@ -49,7 +49,7 @@ export default function FeaturedProjects() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {projects[1] && (
               <ProjectCard
-                project={projects[1]}
+                project={{ ...projects[1], thumbnail: "/images/projects/spider-man-2/story-fire.webp" }}
                 priority
                 supporting
                 className="w-full"

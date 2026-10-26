@@ -53,8 +53,8 @@ export default function ProjectCard({
 
         {/* Typography & Editorial Metadata */}
         <div className="flex flex-1 flex-col pt-4">
-          <div className="flex items-center gap-2 text-xs font-mono">
-            <span className="uppercase tracking-[0.14em] text-primary">
+          <div className="flex items-center gap-2 text-sm">
+            <span className="text-muted-foreground">
               {categoryLabel}
             </span>
             <span className="text-quiet">/</span>
@@ -75,7 +75,7 @@ export default function ProjectCard({
           </p>
 
           {project.techStack && project.techStack.length > 0 && (
-            <p className="mt-2 text-xs font-mono text-muted-foreground">
+            <p className="mt-2 text-sm text-muted-foreground">
               {project.techStack.slice(0, 3).join(" · ")}
             </p>
           )}

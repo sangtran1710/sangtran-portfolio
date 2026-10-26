@@ -58,28 +58,24 @@ export default function HeroSection() {
           />
         ))}
       </div>
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(13,16,21,0.86)_0%,rgba(13,16,21,0.46)_45%,rgba(13,16,21,0.12)_100%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_45%_at_53%_29%,rgba(255,255,255,0.09),transparent_75%)] mix-blend-screen" />
-      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(0deg,rgba(13,16,21,0.96)_0%,rgba(13,16,21,0)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(13,16,21,0.72)_0%,rgba(13,16,21,0.28)_45%,rgba(13,16,21,0)_100%)]" />
+      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-[linear-gradient(0deg,rgba(13,16,21,0.88)_0%,rgba(13,16,21,0)_100%)]" />
 
       <motion.div
         style={mounted && prefersReducedMotion ? undefined : { opacity: contentOpacity, y: contentY }}
         className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 sm:px-8 sm:pb-20 lg:px-12 lg:pb-24"
       >
         <div className="max-w-3xl">
-          <p className="text-xs font-mono uppercase tracking-[0.24em] text-primary">
-            Senior VFX Artist
-          </p>
-          <h1 className="mt-3 font-kanit text-5xl font-normal leading-none tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h1 className="font-kanit text-5xl font-normal leading-none tracking-tight text-white sm:text-6xl lg:text-7xl">
             {hero.name}
           </h1>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-foreground sm:text-lg">
-            {hero.description}
+            Senior VFX Artist. {hero.description}
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-x-10 gap-y-4 text-base font-medium">
             <Link
               href="/portfolio"
-              className="inline-flex items-center gap-2 border-b-2 border-primary pb-1.5 text-white transition-colors hover:text-primary"
+              className="inline-flex min-h-12 items-center gap-3 rounded-full bg-primary px-6 py-3 text-background transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
             >
               {isVi ? "Xem dự án" : "Selected work"}
               <ArrowUpRight className="h-4 w-4" />
@@ -95,7 +91,7 @@ export default function HeroSection() {
                   img2.src = "/projects/erlangmon-vfx/cel-shading.webp";
                 }
               }}
-              className="inline-flex items-center gap-2 border-b border-slate-300 pb-1.5 text-white transition-colors hover:border-white hover:text-primary"
+              className="inline-flex min-h-12 items-center gap-2 py-3 text-white transition-colors hover:text-primary"
             >
               {isVi ? "Phân tích kỹ thuật" : "Technical breakdown"}
               <ArrowUpRight className="h-4 w-4" />

@@ -3,7 +3,6 @@ import HeroSection from "@/components/home/HeroSection";
 import ProfileSection from "@/components/home/ProfileSection";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
 import TechnicalSpotlight from "@/components/home/TechnicalSpotlight";
-import ContactSection from "@/components/home/ContactSection";
 import { SITE } from "@/data/portfolio";
 
 export const metadata: Metadata = {
@@ -29,7 +28,6 @@ export default function HomePage() {
       <FeaturedProjects />
       <TechnicalSpotlight />
       <ProfileSection />
-      <ContactSection />
     </>
   );
 }
