@@ -55,12 +55,13 @@ export const metadata: Metadata = {
     title: SITE.title,
     description: SITE.description,
     type: "website",
+    siteName: "Henry Tran VFX",
     images: [
       {
-        url: "/images/NWA.jpg",
+        url: "/images/og-main.jpg",
         width: 1200,
         height: 630,
-        alt: "Henry Tran VFX artist portfolio preview",
+        alt: "Henry Tran — Senior VFX Artist Portfolio",
       },
     ],
   },
@@ -68,7 +69,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE.title,
     description: SITE.description,
-    images: ["/images/NWA.jpg"],
+    images: ["/images/og-main.jpg"],
   },
 };
 

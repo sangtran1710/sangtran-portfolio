@@ -3,19 +3,33 @@ import { ArticlesDirectory } from "@/components/articles/ArticlesDirectory";
 import { getAllPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "Articles",
+  title: "Technical Notes & R&D",
   description:
-    "Notes from my VFX work: shaders, math, Houdini, and the tools I build along the way.",
+    "Field notes on real-time VFX, HLSL shader mechanics, simulation math, and production pipeline tools by Henry Tran.",
   alternates: {
     canonical: "/articles",
   },
   openGraph: {
-    title: "Articles - Henry Tran",
+    title: "Technical Notes & Shader R&D | Henry Tran",
     description:
-      "Notes from my VFX work: shaders, math, Houdini, and the tools I build along the way.",
+      "Field notes on real-time VFX, HLSL shader mechanics, simulation math, and production pipeline tools by Henry Tran.",
     url: "/articles",
     type: "website",
-    images: ["/images/NWA.jpg"],
+    images: [
+      {
+        url: "/images/og-main.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Technical Notes & Shader R&D by Henry Tran",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Technical Notes & Shader R&D | Henry Tran",
+    description:
+      "Field notes on real-time VFX, HLSL shader mechanics, simulation math, and production pipeline tools by Henry Tran.",
+    images: ["/images/og-main.jpg"],
   },
 };
 

@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = PROJECTS.find((p) => p.slug === params.slug);
   if (!project) return {};
   const url = `/projects/${project.slug}`;
-  const image = project.thumbnail || "/images/NWA.jpg";
+  const image = project.thumbnail || "/images/og-main.jpg";
   return {
     title: `${project.title} - VFX Project`,
     description: project.description,

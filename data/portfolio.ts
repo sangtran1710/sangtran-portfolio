@@ -78,9 +78,9 @@ export interface SkillGroup {
 }
 
 export const SITE = {
-  title: "Henry Tran - Technical VFX Artist",
+  title: "Henry Tran — Senior VFX Artist",
   description:
-    "Technical VFX Artist specializing in production-ready effects, shaders, and pipelines for AAA games, cinematics, and launch content.",
+    "Senior VFX Artist specializing in real-time effects, shaders, and engine tools for AAA games, in-engine cinematics, and interactive experiences.",
   email: "sangminhtran1710@gmail.com",
   logo: "/images/logo.webp",
 };

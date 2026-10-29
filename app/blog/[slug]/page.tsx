@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(params.slug);
   if (!post) return {};
   const url = `/blog/${post.slug}`;
-  const image = post.thumbnail || "/images/NWA.jpg";
+  const image = post.thumbnail || "/images/og-main.jpg";
   return {
     title: post.title,
     description: post.description,

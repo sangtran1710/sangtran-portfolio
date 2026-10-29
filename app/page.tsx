@@ -18,6 +18,20 @@ export const metadata: Metadata = {
     description: SITE.description,
     url: "/",
     type: "website",
+    images: [
+      {
+        url: "/images/og-main.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Henry Tran — Senior VFX Artist Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE.title,
+    description: SITE.description,
+    images: ["/images/og-main.jpg"],
   },
 };
 
