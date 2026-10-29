@@ -11,4 +11,5 @@ Apply this rule before handing work back to the user.
 7. Do not leave generated cache/output files staged or modified. `.next`, `out`, coverage, test reports, logs, and temp files must stay ignored.
 8. Final response must include what changed, the exact verification command, and whether lint/build passed with zero warnings. For UI work, always verify that Playwright screenshot QA passed and where the screenshots were generated.
 9. **Automated QA Requirement**: Every time any task is finished, the agent must run the E2E Playwright tests and self-verify the site's layout/functionality rather than asking the user to manually verify.
+10. **Zero AI-Slop & Impeccable Quality Gate**: All UI work must strictly follow the Studio Slate design system in `DESIGN.md`. Before handoff, run `npx impeccable detect app components` to guarantee 0 anti-pattern detections (no cards-in-cards nesting, no corner icon overlays, no tag pill spam, no colored side-tabs, no gimmick widgets, no flashbang light themes).
 

@@ -7,6 +7,7 @@ const config = [
       "**/out/**",
       "**/build/**",
       "**/coverage/**",
+      "**/.claude/**",
       "next-env.d.ts",
     ],
   },

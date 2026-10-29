@@ -42,3 +42,5 @@ next-env.d.ts
 
 # editor / local
 .cursor/
+.claude/skills/impeccable/scripts/bin/
+.claude/worktrees/

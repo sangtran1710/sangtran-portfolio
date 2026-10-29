@@ -178,11 +178,11 @@ export function ProductionNotice({
   children?: React.ReactNode;
 }) {
   return (
-    <aside className="my-6 border-l-2 border-primary bg-card px-4 py-3 text-xs text-muted-foreground rounded-r-xl">
-      <div className="leading-relaxed text-muted-foreground">
+    <aside className="my-6 rounded-lg border border-[#364156] bg-[#161a23] px-4 py-3 text-xs text-slate-400">
+      <div className="leading-relaxed text-slate-400">
         {children || (
           <span>
-            <strong className="text-foreground font-medium">Production note:</strong> Offline Houdini workflows only. No proprietary engine captures or tools are shown.
+            <strong className="text-white font-medium">Production note:</strong> Offline Houdini workflows only. No proprietary engine captures or tools are shown.
           </span>
         )}
       </div>
