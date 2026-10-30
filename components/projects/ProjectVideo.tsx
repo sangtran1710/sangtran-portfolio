@@ -10,6 +10,7 @@ interface ProjectVideoProps {
   poster: string;
   title: string;
   videoTitle?: string;
+  localVideoUrl?: string;
 }
 
 export default function ProjectVideo({
@@ -18,21 +19,34 @@ export default function ProjectVideo({
   poster,
   title,
   videoTitle,
+  localVideoUrl,
 }: ProjectVideoProps) {
   const [isPlaying, setIsPlaying] = useState(false);
+  const isLocal = Boolean(localVideoUrl || embedUrl.startsWith("/") || embedUrl.endsWith(".mp4"));
+  const videoSrc = localVideoUrl || embedUrl;
   const playerUrl = `${embedUrl}${embedUrl.includes("?") ? "&" : "?"}autoplay=1`;
 
   return (
     <div>
       <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-border bg-section">
         {isPlaying ? (
-          <iframe
-            src={playerUrl}
-            title={title}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="absolute inset-0 h-full w-full"
-          />
+          isLocal ? (
+            <video
+              src={videoSrc}
+              controls
+              autoPlay
+              playsInline
+              className="absolute inset-0 h-full w-full bg-black object-contain"
+            />
+          ) : (
+            <iframe
+              src={playerUrl}
+              title={title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 h-full w-full"
+            />
+          )
         ) : (
           <button
             type="button"
@@ -57,14 +71,16 @@ export default function ProjectVideo({
           </button>
         )}
       </div>
-      <a
-        href={watchUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-3 inline-flex items-center gap-1 text-sm text-primary-hover underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-hover"
-      >
-        Watch on YouTube if the video does not play here ↗
-      </a>
+      {watchUrl && (
+        <a
+          href={watchUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-flex items-center gap-1 text-sm text-primary-hover underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-hover"
+        >
+          {isLocal ? "Watch Full Gameplay Stream (11h52m) on YouTube ↗" : "Watch on YouTube if the video does not play here ↗"}
+        </a>
+      )}
     </div>
   );
 }

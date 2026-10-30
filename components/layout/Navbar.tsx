@@ -62,7 +62,7 @@ export default function Navbar() {
   }, [router]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 w-full border-b border-border/60 bg-background/55 backdrop-blur-sm">
+    <header className="fixed inset-x-0 top-0 z-50 w-full border-b border-border/70 bg-background/90 backdrop-blur-md">
       <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-6 sm:px-8 lg:px-12">
         {/* Logo */}
         <Link href="/" className="group flex flex-row items-baseline gap-0.5 font-kanit leading-none">

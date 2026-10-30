@@ -58,6 +58,7 @@ const CATEGORY_LABELS: Record<string, string> = {
 };
 
 function getYoutubeEmbedUrl(url: string): string {
+  if (url.startsWith("/")) return url;
   if (url.includes("/embed/")) return url;
   const match = url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
   if (match) return `https://www.youtube.com/embed/${match[1]}`;
@@ -126,7 +127,7 @@ export default function ProjectDetailPage({ params }: Props) {
         <div className="mb-10">
           <ProjectVideo
             embedUrl={embedUrl}
-            watchUrl={getYoutubeWatchUrl(project.videoUrl!)}
+            watchUrl={project.watchUrl || getYoutubeWatchUrl(project.videoUrl!)}
             poster={project.videoPoster || project.thumbnail || "/images/NWA.jpg"}
             title={project.title}
             videoTitle={project.videoTitle}
@@ -212,7 +213,18 @@ export default function ProjectDetailPage({ params }: Props) {
                 key={i}
                 className="overflow-hidden rounded-2xl border border-border bg-card shadow-xl"
               >
-                {item.link ? (
+                {item.video ? (
+                  <div className="relative aspect-video w-full bg-black overflow-hidden">
+                    <video
+                      src={item.video}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      poster={item.image}
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
+                ) : item.link ? (
                   <a
                     href={item.link}
                     target="_blank"

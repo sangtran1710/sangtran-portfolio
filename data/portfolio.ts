@@ -12,13 +12,16 @@ export interface Project {
   contributions: string[];
   techStack: string[];
   videoUrl?: string;
+  watchUrl?: string;
   videoPoster?: string;
   videoTitle?: string;
+  previewVideo?: string;
   images?: string[];
   /** Breakdown: URL + VFX name + optional caption (Behance-style: video -> text -> video -> image) */
   breakdownClips?: { url: string; title: string; caption?: string }[];
   evidenceBreakdown?: {
     image: string;
+    video?: string;
     title: string;
     caption?: string;
     imageOnly?: boolean;
@@ -243,15 +246,35 @@ export const PROJECTS: Project[] = [
       "Houdini simulation pipelines for destruction and debris integrated into runtime shaders",
     ],
     productionCredit: "Credited under Sparx* / Insomniac Games",
-    videoUrl: "https://www.youtube.com/embed/lbiMqaLTKlQ",
+    videoUrl: "/video/wolverine-master-reel.mp4",
+    watchUrl: "https://www.youtube.com/watch?v=G4sMyUQ6s3w",
     videoPoster: "/images/projects/wolverine/wolverine-video-poster.webp",
-    videoTitle: "Official in-game cinematic (project context)",
+    videoTitle: "Marvel's Wolverine - Master VFX Showreel (55s)",
+    previewVideo: "/video/previews/wolverine-preview.mp4",
     evidenceBreakdown: [
       {
+        image: "/images/projects/wolverine/wolverine-hero.webp",
+        video: "/video/wolverine/wolverine-helix-core.mp4",
+        title: "Helix Engine Activation & Boss Sequence",
+        caption: "Gameplay VFX: Buồng chứa Helix Engine, luồng năng lượng psychic đa tầng và hiệu ứng shockwave diện rộng trong trận chiến boss.",
+        tag: "Hero VFX Asset",
+        link: "https://youtu.be/G4sMyUQ6s3w?t=39594",
+      },
+      {
         image: "/images/projects/wolverine/wolverine-artblast-explosion.webp",
-        title: "Warehouse Explosion",
-        caption: "Cinematic VFX I was primarily responsible for on Marvel's Wolverine.",
-        tag: "My Cinematic VFX",
+        video: "/video/wolverine/wolverine-warehouse-destruction.mp4",
+        title: "Trask Warehouse Explosion & Destruction Sim",
+        caption: "Mô phỏng vỡ vụn kính, rào chắn năng lượng telekinesis của Jean Grey và vụ nổ lửa volumetric thứ cấp.",
+        tag: "Simulation & Pyro",
+        link: "https://youtu.be/3boUBsYHY3I?t=2926",
+      },
+      {
+        image: "/images/projects/wolverine/wolverine-action.webp",
+        video: "/video/wolverine/wolverine-combat-sparks.mp4",
+        title: "Adamantium Claws & Combat Impacts",
+        caption: "Tia lửa móng vuốt mật độ cao, vệt chém năng lượng tốc độ cao và hệ thống máu me takedown thời gian thực.",
+        tag: "Gameplay VFX",
+        link: "https://youtu.be/G4sMyUQ6s3w?t=2861",
       },
       {
         image: "/images/projects/wolverine/wolverine-artblast-hangar.webp",
@@ -329,6 +352,7 @@ export const PROJECTS: Project[] = [
     ],
     productionCredit: "Credited under Sparx* / Insomniac Games",
     videoUrl: "https://www.youtube.com/embed/bgqGdIoa52s?start=1",
+    previewVideo: "/video/previews/spider-man-2-preview.mp4",
     evidenceBreakdown: [
       {
         image: "/images/projects/spider-man-2/story-water.webp",
@@ -403,6 +427,7 @@ export const PROJECTS: Project[] = [
       "Complied with Epic Games Niagara pipeline standards, LOD rules, and drawcall budgets",
     ],
     videoUrl: "https://www.youtube.com/embed/c-rtUmJPLQM?start=272",
+    previewVideo: "/video/previews/fortnite-preview.mp4",
     productionCredit: "Credited under Sparx* / Epic Games",
     breakdownClips: [
       { url: "https://www.youtube.com/watch?v=4NifXy2W_Uk", title: "Weapon Skin VFX" },
@@ -447,6 +472,7 @@ export const PROJECTS: Project[] = [
       "Hair was a lot of small adjustments in Niagara: curl noise strength, frequency, direction, then another look at how the strands moved. It's easier to judge in motion than in a still frame.",
     ],
     videoUrl: "https://www.youtube.com/embed/qK8jtTMHCRU",
+    previewVideo: "/video/previews/new-world-preview.mp4",
     evidenceBreakdown: [
       {
         image: "/assets/projects/new-world/cloth-and-collision.webp",
@@ -505,6 +531,7 @@ export const PROJECTS: Project[] = [
       "Volumetric fog and shadow optimization targeting PS5 60 FPS performance budgets",
     ],
     videoUrl: "https://www.youtube.com/embed/8nApBGPy0ao",
+    previewVideo: "/video/previews/until-dawn-preview.mp4",
     productionCredit: "Credited under Sparx* / Ballistic Moon",
   },
   {

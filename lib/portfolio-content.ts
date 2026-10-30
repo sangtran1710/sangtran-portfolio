@@ -277,7 +277,9 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
   },
   wolverine: {
     role: "Senior VFX Artist",
-    videoTitle: "Jean TK Explosion (Cutscene VFX Trong Game)",
+    videoTitle: "Marvel's Wolverine - Master VFX Showreel (55s)",
+    videoUrl: "/video/wolverine-master-reel.mp4",
+    watchUrl: "https://www.youtube.com/watch?v=G4sMyUQ6s3w",
     breakdownClips: [
       {
         url: "https://youtu.be/lbiMqaLTKlQ",
@@ -310,6 +312,30 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
       "Profiling GPU và triệt tiêu overdraw in-engine",
     ],
     evidenceBreakdown: [
+      {
+        image: "/images/projects/wolverine/wolverine-hero.webp",
+        video: "/video/wolverine/wolverine-helix-core.mp4",
+        title: "Kích Hoạt Helix Engine & Boss VFX",
+        caption: "Gameplay VFX: Buồng chứa Helix Engine, luồng năng lượng psychic đa tầng và hiệu ứng shockwave diện rộng trong trận chiến boss.",
+        tag: "Hero VFX Asset",
+        link: "https://youtu.be/G4sMyUQ6s3w?t=39594",
+      },
+      {
+        image: "/images/projects/wolverine/wolverine-artblast-explosion.webp",
+        video: "/video/wolverine/wolverine-warehouse-destruction.mp4",
+        title: "Vụ Nổ Nhà Kho Trask & Mô Phỏng Phá Hủy",
+        caption: "Mô phỏng vỡ vụn kính, rào chắn năng lượng telekinesis của Jean Grey và vụ nổ lửa volumetric thứ cấp.",
+        tag: "Simulation & Pyro",
+        link: "https://youtu.be/3boUBsYHY3I?t=2926",
+      },
+      {
+        image: "/images/projects/wolverine/wolverine-action.webp",
+        video: "/video/wolverine/wolverine-combat-sparks.mp4",
+        title: "Móng Vuốt Adamantium & Va Chạm Combat",
+        caption: "Tia lửa móng vuốt mật độ cao, vệt chém năng lượng tốc độ cao và hệ thống máu me takedown thời gian thực.",
+        tag: "Gameplay VFX",
+        link: "https://youtu.be/G4sMyUQ6s3w?t=2861",
+      },
       {
         image: "/images/projects/wolverine/wolverine-madripoor.webp",
         title: "Gameplay Trong Game: Đạn Bắn & Trigger Volume (02:29)",

@@ -15,20 +15,20 @@ export default function FeaturedProjects() {
   return (
     <section
       id="work"
-      className="scroll-mt-24 bg-background"
+      className="scroll-mt-24 border-b border-border bg-background"
     >
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-24">
-        <div className="mb-12 flex items-end justify-between">
+        <div className="mb-12 flex flex-wrap items-end justify-between gap-4 border-b border-border pb-6">
           <div>
-            <h2 className="text-3xl font-medium tracking-tight text-white sm:text-4xl">
+            <h2 className="font-kanit text-3xl font-normal tracking-tight text-white sm:text-4xl">
               {copy.home.selectedWork}
             </h2>
           </div>
           <Link
             href="/portfolio"
-            className="hidden items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary sm:inline-flex"
+            className="hidden items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-muted-foreground transition-colors hover:text-primary sm:inline-flex"
           >
-            {isVi ? "Xem tất cả" : "View all work"}
+            {isVi ? "Xem tất cả dự án" : "View all work"}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
@@ -38,9 +38,13 @@ export default function FeaturedProjects() {
           {/* Dominant Hero: Marvel's Wolverine */}
           {projects[0] && (
             <ProjectCard
-              project={{ ...projects[0], thumbnail: "/images/projects/wolverine/wolverine-artblast-explosion.webp" }}
+              project={{
+                ...projects[0],
+                thumbnail: "/images/projects/wolverine/wolverine-artblast-explosion.webp",
+              }}
               priority
               featured
+              indexLabel="01"
               className="w-full"
             />
           )}
@@ -49,9 +53,13 @@ export default function FeaturedProjects() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {projects[1] && (
               <ProjectCard
-                project={{ ...projects[1], thumbnail: "/images/projects/spider-man-2/story-fire.webp" }}
+                project={{
+                  ...projects[1],
+                  thumbnail: "/images/projects/spider-man-2/story-fire.webp",
+                }}
                 priority
                 supporting
+                indexLabel="02"
                 className="w-full"
               />
             )}
@@ -59,6 +67,7 @@ export default function FeaturedProjects() {
               <ProjectCard
                 project={projects[2]}
                 supporting
+                indexLabel="03"
                 className="w-full"
               />
             )}
@@ -68,9 +77,9 @@ export default function FeaturedProjects() {
         <div className="mt-8 text-center sm:hidden">
           <Link
             href="/portfolio"
-            className="inline-flex items-center gap-2 border-b border-white/25 pb-1 text-sm font-medium text-white/75 transition-colors hover:border-white hover:text-white"
+            className="inline-flex items-center gap-2 border-b border-border pb-1 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-white"
           >
-            View all work
+            {isVi ? "Xem tất cả dự án" : "View all work"}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
