@@ -190,8 +190,8 @@ export default function ProjectDetailPage({ params }: Props) {
               {(project.slug === "wolverine" || project.slug === "spider-man-2") && (
                 <p className="mt-1 text-sm text-muted-foreground">
                   {project.slug === "wolverine"
-                    ? "Warehouse Explosion and Night Assault are cinematic VFX I handled. Other public footage is project context, not shot-by-shot attribution."
-                    : "Public footage and images shown for project context, not shot-by-shot attribution."}
+                    ? "Handled cinematic & gameplay VFX shots."
+                    : "Public footage shown for project context."}
                 </p>
               )}
             </div>
