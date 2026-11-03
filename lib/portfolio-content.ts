@@ -315,7 +315,8 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
       {
         image: "/images/projects/wolverine/wolverine-hero.webp",
         video: "/video/wolverine/wolverine-helix-core.mp4",
-        title: "Kích Hoạt Helix Engine & Boss VFX",
+          loopVideo: "/video/wolverine/loops/wolverine-loop-helix-core.mp4",
+          title: "Kích Hoạt Helix Engine & Boss VFX",
         caption: "Gameplay VFX: Buồng chứa Helix Engine, luồng năng lượng psychic đa tầng và hiệu ứng shockwave diện rộng trong trận chiến boss.",
         tag: "Hero VFX Asset",
         link: "https://youtu.be/G4sMyUQ6s3w?t=39594",
@@ -323,7 +324,8 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
       {
         image: "/images/projects/wolverine/wolverine-artblast-explosion.webp",
         video: "/video/wolverine/wolverine-warehouse-destruction.mp4",
-        title: "Vụ Nổ Nhà Kho Trask & Mô Phỏng Phá Hủy",
+          loopVideo: "/video/wolverine/loops/wolverine-loop-glass-fracture.mp4",
+          title: "Vụ Nổ Nhà Kho Trask & Mô Phỏng Phá Hủy",
         caption: "Mô phỏng vỡ vụn kính, rào chắn năng lượng telekinesis của Jean Grey và vụ nổ lửa volumetric thứ cấp.",
         tag: "Simulation & Pyro",
         link: "https://youtu.be/3boUBsYHY3I?t=2926",
@@ -331,7 +333,8 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
       {
         image: "/images/projects/wolverine/wolverine-action.webp",
         video: "/video/wolverine/wolverine-combat-sparks.mp4",
-        title: "Móng Vuốt Adamantium & Va Chạm Combat",
+          loopVideo: "/video/wolverine/loops/wolverine-loop-combat-sparks.mp4",
+          title: "Móng Vuốt Adamantium & Va Chạm Combat",
         caption: "Tia lửa móng vuốt mật độ cao, vệt chém năng lượng tốc độ cao và hệ thống máu me takedown thời gian thực.",
         tag: "Gameplay VFX",
         link: "https://youtu.be/G4sMyUQ6s3w?t=2861",
@@ -391,7 +394,8 @@ const VI_PROJECTS: Record<string, Partial<Project>> = {
       },
       {
         image: "/images/projects/wolverine/wolverine-artblast-hangar.webp",
-        title: "ArtBlast: Đột Kích Đêm",
+          loopVideo: "/video/wolverine/loops/wolverine-loop-tk-barrier.mp4",
+          title: "ArtBlast: Trường Lực Telekinesis Nhà Kho",
         caption: "Lửa phản lực tàu bay, chớp nòng súng, vệt laser và hiệu ứng máu va chạm.",
         tag: "Production VFX",
         link: "https://youtu.be/3boUBsYHY3I?t=2979",

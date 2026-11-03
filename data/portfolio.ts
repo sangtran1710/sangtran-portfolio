@@ -22,6 +22,7 @@ export interface Project {
   evidenceBreakdown?: {
     image: string;
     video?: string;
+    loopVideo?: string;
     title: string;
     caption?: string;
     imageOnly?: boolean;
@@ -255,6 +256,7 @@ export const PROJECTS: Project[] = [
       {
         image: "/images/projects/wolverine/wolverine-hero.webp",
         video: "/video/wolverine/wolverine-helix-core.mp4",
+        loopVideo: "/video/wolverine/loops/wolverine-loop-helix-core.mp4",
         title: "Helix Engine Activation & Boss Sequence",
         caption: "Gameplay VFX: Buồng chứa Helix Engine, luồng năng lượng psychic đa tầng và hiệu ứng shockwave diện rộng trong trận chiến boss.",
         tag: "Hero VFX Asset",
@@ -263,6 +265,7 @@ export const PROJECTS: Project[] = [
       {
         image: "/images/projects/wolverine/wolverine-artblast-explosion.webp",
         video: "/video/wolverine/wolverine-warehouse-destruction.mp4",
+        loopVideo: "/video/wolverine/loops/wolverine-loop-glass-fracture.mp4",
         title: "Trask Warehouse Explosion & Destruction Sim",
         caption: "Mô phỏng vỡ vụn kính, rào chắn năng lượng telekinesis của Jean Grey và vụ nổ lửa volumetric thứ cấp.",
         tag: "Simulation & Pyro",
@@ -271,6 +274,7 @@ export const PROJECTS: Project[] = [
       {
         image: "/images/projects/wolverine/wolverine-action.webp",
         video: "/video/wolverine/wolverine-combat-sparks.mp4",
+        loopVideo: "/video/wolverine/loops/wolverine-loop-combat-sparks.mp4",
         title: "Adamantium Claws & Combat Impacts",
         caption: "Tia lửa móng vuốt mật độ cao, vệt chém năng lượng tốc độ cao và hệ thống máu me takedown thời gian thực.",
         tag: "Gameplay VFX",
@@ -278,7 +282,8 @@ export const PROJECTS: Project[] = [
       },
       {
         image: "/images/projects/wolverine/wolverine-artblast-hangar.webp",
-        title: "Night Assault",
+        loopVideo: "/video/wolverine/loops/wolverine-loop-tk-barrier.mp4",
+        title: "Night Assault: Telekinesis Barrier Wall",
         caption: "Cinematic VFX I was primarily responsible for on Marvel's Wolverine.",
         tag: "My Cinematic VFX",
       },
