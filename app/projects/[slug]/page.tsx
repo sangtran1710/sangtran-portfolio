@@ -123,62 +123,11 @@ export default function ProjectDetailPage({ params }: Props) {
         </p>
       </div>
 
-      {/* 1. Hero Video embed or banner image */}
-      {embedUrl ? (
-        <div className="mb-10">
-          <ProjectVideo
-            embedUrl={embedUrl}
-            watchUrl={project.watchUrl || getYoutubeWatchUrl(project.videoUrl!)}
-            poster={project.videoPoster || project.thumbnail || "/images/NWA.jpg"}
-            title={project.title}
-            videoTitle={project.videoTitle}
-          />
-        </div>
-      ) : project.thumbnail ? (
-        <div className="relative h-72 sm:h-96 overflow-hidden rounded-2xl bg-section mb-10 border border-white/10">
-          <Image
-            src={project.thumbnail}
-            alt={project.title}
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-      ) : null}
-
-      {/* 2. Editorial: My Contribution & Technical Notes */}
-      <div className="mb-14 space-y-8 max-w-3xl">
-        <div>
-          <h2 className="text-base sm:text-lg font-semibold tracking-tight text-white mb-3">
-            My Contribution
-          </h2>
-          <div className="space-y-2">
-            {project.contributions.map((item, i) => (
-              <p key={i} className="text-sm sm:text-base leading-relaxed text-muted-foreground">
-                {item}
-              </p>
-            ))}
-          </div>
-        </div>
-
-        {technicalNotes.length > 0 && (
-          <div>
-            <h3 className="text-base sm:text-lg font-semibold tracking-tight text-white mb-3">
-              Technical Notes
-            </h3>
-            <div className="space-y-2">
-              {technicalNotes.slice(0, 3).map((note, i) => (
-                <p key={i} className="text-sm sm:text-base leading-relaxed text-muted-foreground">
-                  {note}
-                </p>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* 3. Selected Breakdown (Visual Showcase) */}
-      {project.evidenceBreakdown && project.evidenceBreakdown.length > 0 && (
+      {/* Project Media & Breakdown Content */}
+      {project.evidenceBreakdown && project.evidenceBreakdown.length > 0 ? (
+        <>
+          {/* 1. Selected Breakdown (GIFs / Micro-loops at TOP) */}
+          {project.evidenceBreakdown && project.evidenceBreakdown.length > 0 && (
         <div className="mb-12">
           <div className="mb-6 flex flex-wrap items-center justify-between gap-2">
             <div>
@@ -265,6 +214,116 @@ export default function ProjectDetailPage({ params }: Props) {
             ))}
           </div>
         </div>
+      )}
+
+          {/* 2. Editorial: My Contribution & Technical Notes */}
+          <div className="mb-14 space-y-8 max-w-3xl">
+        <div>
+          <h2 className="text-base sm:text-lg font-semibold tracking-tight text-white mb-3">
+            My Contribution
+          </h2>
+          <div className="space-y-2">
+            {project.contributions.map((item, i) => (
+              <p key={i} className="text-sm sm:text-base leading-relaxed text-muted-foreground">
+                {item}
+              </p>
+            ))}
+          </div>
+        </div>
+
+        {technicalNotes.length > 0 && (
+          <div>
+            <h3 className="text-base sm:text-lg font-semibold tracking-tight text-white mb-3">
+              Technical Notes
+            </h3>
+            <div className="space-y-2">
+              {technicalNotes.slice(0, 3).map((note, i) => (
+                <p key={i} className="text-sm sm:text-base leading-relaxed text-muted-foreground">
+                  {note}
+                </p>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+          {/* 3. Full Video Showreel (Video at BOTTOM) */}
+          {embedUrl ? (
+            <div className="mb-14">
+              <div className="mb-4">
+                <h2 className="text-base sm:text-lg font-semibold tracking-tight text-white mb-1">
+                  Master VFX Showreel
+                </h2>
+                <p className="text-sm text-muted-foreground">
+                  Complete compiled reel featuring high-pace gameplay and cinematic VFX sequences.
+                </p>
+              </div>
+              <ProjectVideo
+                embedUrl={embedUrl}
+                watchUrl={project.watchUrl || getYoutubeWatchUrl(project.videoUrl!)}
+                poster={project.videoPoster || project.thumbnail || "/images/NWA.jpg"}
+                title={project.title}
+                videoTitle={project.videoTitle}
+              />
+            </div>
+          ) : null}
+        </>
+      ) : (
+        <>
+          {/* Hero Video embed or banner image (for projects without breakdown items) */}
+          {embedUrl ? (
+        <div className="mb-10">
+          <ProjectVideo
+            embedUrl={embedUrl}
+            watchUrl={project.watchUrl || getYoutubeWatchUrl(project.videoUrl!)}
+            poster={project.videoPoster || project.thumbnail || "/images/NWA.jpg"}
+            title={project.title}
+            videoTitle={project.videoTitle}
+          />
+        </div>
+      ) : project.thumbnail ? (
+        <div className="relative h-72 sm:h-96 overflow-hidden rounded-2xl bg-section mb-10 border border-white/10">
+          <Image
+            src={project.thumbnail}
+            alt={project.title}
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      ) : null}
+
+          {/* Editorial: My Contribution & Technical Notes */}
+          <div className="mb-14 space-y-8 max-w-3xl">
+        <div>
+          <h2 className="text-base sm:text-lg font-semibold tracking-tight text-white mb-3">
+            My Contribution
+          </h2>
+          <div className="space-y-2">
+            {project.contributions.map((item, i) => (
+              <p key={i} className="text-sm sm:text-base leading-relaxed text-muted-foreground">
+                {item}
+              </p>
+            ))}
+          </div>
+        </div>
+
+        {technicalNotes.length > 0 && (
+          <div>
+            <h3 className="text-base sm:text-lg font-semibold tracking-tight text-white mb-3">
+              Technical Notes
+            </h3>
+            <div className="space-y-2">
+              {technicalNotes.slice(0, 3).map((note, i) => (
+                <p key={i} className="text-sm sm:text-base leading-relaxed text-muted-foreground">
+                  {note}
+                </p>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+        </>
       )}
 
       {/* Breakdown clips (e.g. Fortnite: 5-6 premier clips in responsive grid) */}
