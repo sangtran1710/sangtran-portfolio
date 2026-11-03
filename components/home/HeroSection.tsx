@@ -7,6 +7,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { ArrowUpRight, Play } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { getLocalizedHero } from "@/lib/portfolio-content";
+import { useCanHover } from "@/lib/use-media";
 
 interface HeroShot {
   id: string;
@@ -66,6 +67,7 @@ export default function HeroSection() {
   const hero = getLocalizedHero(locale);
   const isVi = locale === "vi";
   const prefersReducedMotion = useReducedMotion();
+  const canHover = useCanHover();
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
@@ -131,7 +133,7 @@ export default function HeroSection() {
                 sizes="100vw"
                 className="object-cover object-[50%_30%]"
               />
-              {!prefersReducedMotion && (
+              {!prefersReducedMotion && canHover && (
                 <video
                   ref={(el) => {
                     videoRefs.current[index] = el;

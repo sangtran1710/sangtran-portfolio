@@ -219,7 +219,7 @@ export default function ProjectDetailPage({ params }: Props) {
                       src={item.video}
                       controls
                       playsInline
-                      preload="metadata"
+                      preload="none"
                       poster={item.image}
                       className="h-full w-full object-contain"
                     />

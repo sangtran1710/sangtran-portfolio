@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowUpRight, Play } from "lucide-react";
 import { useReducedMotion } from "framer-motion";
 import { getProjectByline, type Project } from "@/data/portfolio";
+import { useCanHover } from "@/lib/use-media";
 import { cn } from "@/lib/utils";
 
 interface ProjectCardProps {
@@ -28,6 +29,7 @@ export default function ProjectCard({
   const [isHovering, setIsHovering] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
   const prefersReducedMotion = useReducedMotion();
+  const canHover = useCanHover();
 
   const credit = getProjectByline(project);
   const primaryCategory = project.categories?.[0] || "aaa";
@@ -36,7 +38,8 @@ export default function ProjectCard({
       ? "AAA Production"
       : `${primaryCategory.toUpperCase()} Production`;
 
-  const hasPreviewVideo = Boolean(project.previewVideo) && !prefersReducedMotion;
+  // Only enable preview videos on Desktop devices with fine pointer and hover support
+  const hasPreviewVideo = Boolean(project.previewVideo) && !prefersReducedMotion && canHover;
 
   const handleMouseEnter = () => {
     setIsHovering(true);
@@ -93,7 +96,7 @@ export default function ProjectCard({
               muted
               loop
               playsInline
-              preload="metadata"
+              preload="none"
               onCanPlay={() => setVideoReady(true)}
               aria-hidden="true"
               className={cn(

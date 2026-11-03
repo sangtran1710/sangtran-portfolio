@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowUpRight, MoveHorizontal } from "lucide-react";
 import { useReducedMotion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { useCanHover } from "@/lib/use-media";
 
 interface Pass {
   id: string;
@@ -331,10 +332,11 @@ function SpotlightCard({
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [hovering, setHovering] = useState(false);
   const [ready, setReady] = useState(false);
+  const canHover = useCanHover();
 
   const enter = () => {
     setHovering(true);
-    if (!prefersReducedMotion && videoRef.current) {
+    if (!prefersReducedMotion && canHover && videoRef.current) {
       videoRef.current.currentTime = 0;
       void videoRef.current.play().catch(() => {});
     }
@@ -344,7 +346,7 @@ function SpotlightCard({
     videoRef.current?.pause();
   };
 
-  const showVideo = hovering && ready && !prefersReducedMotion;
+  const showVideo = hovering && ready && !prefersReducedMotion && canHover;
 
   return (
     <Link href={item.link} onMouseEnter={enter} onMouseLeave={leave} onFocus={enter} onBlur={leave} className="group block h-full">
@@ -357,7 +359,7 @@ function SpotlightCard({
             className={`object-cover transition-opacity duration-300 ${item.crop} ${showVideo ? "opacity-0" : "opacity-100"}`}
             sizes="(max-width: 768px) 100vw, 33vw"
           />
-          {!prefersReducedMotion && (
+          {!prefersReducedMotion && canHover && (
             <video
               ref={videoRef}
               src={item.previewVideo}
