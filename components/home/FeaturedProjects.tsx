@@ -44,7 +44,6 @@ export default function FeaturedProjects() {
               }}
               priority
               featured
-              indexLabel="01"
               className="w-full"
             />
           )}
@@ -59,7 +58,6 @@ export default function FeaturedProjects() {
                 }}
                 priority
                 supporting
-                indexLabel="02"
                 className="w-full"
               />
             )}
@@ -67,7 +65,6 @@ export default function FeaturedProjects() {
               <ProjectCard
                 project={projects[2]}
                 supporting
-                indexLabel="03"
                 className="w-full"
               />
             )}

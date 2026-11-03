@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Play } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useReducedMotion } from "framer-motion";
 import { getProjectByline, type Project } from "@/data/portfolio";
 import { useCanHover } from "@/lib/use-media";
@@ -106,29 +106,7 @@ export default function ProjectCard({
             />
           )}
 
-          {/* Top-left Index + Live Motion Status HUD */}
-          <div className="pointer-events-none absolute left-3 top-3 flex items-center gap-2">
-            {indexLabel && (
-              <span className="rounded-sm border border-border bg-background/90 px-2 py-0.5 text-[11px] font-mono text-white">
-                {indexLabel}
-              </span>
-            )}
-            {hasPreviewVideo && isHovering && (
-              <span className="inline-flex items-center gap-1.5 rounded-sm border border-border bg-background/90 px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-foreground">
-                <Play className="h-2.5 w-2.5 fill-current text-primary" />
-                Preview
-              </span>
-            )}
-          </div>
-
-          {/* Bottom-right Platform / Engine Spec */}
-          {(project.platform || project.engine) && (
-            <div className="pointer-events-none absolute bottom-3 right-3 hidden sm:block">
-              <span className="rounded-sm border border-border bg-background/90 px-2.5 py-1 text-[11px] font-mono text-foreground">
-                {[project.platform, project.engine].filter(Boolean).join(" · ")}
-              </span>
-            </div>
-          )}
+          
         </div>
 
         {/* Typography & Technical Metadata */}
