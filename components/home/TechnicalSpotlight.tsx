@@ -39,8 +39,8 @@ export default function TechnicalSpotlight() {
       tab: isVi ? "Bake vết nứt (Houdini COPs)" : "Crack bake (Houdini COPs)",
       title: isVi ? "Một vết nứt, ba texture" : "One crack, three textures",
       summary: isVi
-        ? "Heightmap chỉ đẩy được theo pháp tuyến. Với vết nứt có độ toác ngang, mình bake vector displacement và tangent normal trong Houdini COPs. Kéo thanh để so các kênh cùng UV."
-        : "A heightmap can only push along the surface normal. For cracks that tear sideways, I baked vector displacement and tangent normals in Houdini COPs. Drag to compare the channels in the same UV space.",
+        ? "Bake vector displacement và tangent normal trong Houdini COPs cho vết nứt toác bề mặt."
+        : "Vector displacement and tangent normal bakes for directional fracture surfaces.",
       tools: "Houdini COPs",
       mode: "wipe",
       passes: [
@@ -71,8 +71,8 @@ export default function TechnicalSpotlight() {
       tab: isVi ? "Dọn mesh phá hủy (Blender)" : "Fracture cleanup (Blender)",
       title: isVi ? "Từ mesh nặng đến emitter nhẹ" : "From heavy mesh to light emitters",
       summary: isVi
-        ? "Tool Blender Python mình viết để làm phần dọn dẹp hay lặp lại: tách mặt nứt, bỏ vỏ ngoài, rồi đặt card tam giác ở tâm mỗi mảnh để effect spawn dọc vết vỡ."
-        : "A Blender Python operator for cleanup I kept repeating: isolate the break faces, drop the outer shell, then place triangle cards at each island centre so the effect can spawn along the break.",
+        ? "Tool Blender Python tự động tách mặt nứt và sinh card emitter tại tâm mỗi mảnh vỡ."
+        : "Automated Blender Python tool isolating fracture seams and generating center emitter cards.",
       tools: "Blender · Python",
       mode: "steps",
       passes: [
@@ -122,8 +122,8 @@ export default function TechnicalSpotlight() {
     {
       title: "Houdini Destruction",
       description: isVi
-        ? "Từ mô phỏng phá hủy trong Houdini đến các asset gọn hơn cho real-time."
-        : "Turning Houdini destruction sims into lighter assets for real-time use.",
+        ? "Tối ưu mô phỏng phá hủy Houdini cho real-time."
+        : "Houdini destruction sims converted for real-time.",
       image: "/assets/blog/houdini-wolverine-destructibles/poster-rbd-bridge.webp",
       previewVideo: "/assets/blog/houdini-wolverine-destructibles/prop-preview.mp4",
       crop: "object-left scale-[1.9] origin-left",
@@ -132,8 +132,8 @@ export default function TechnicalSpotlight() {
     {
       title: "VFX Flow",
       description: isVi
-        ? "Kiểm tra asset và chuẩn bị Perforce submission."
-        : "Asset checks, validation, and Perforce submission in one tool.",
+        ? "Kiểm tra asset và Perforce submission pipeline."
+        : "Perforce asset validation and submission tool.",
       image: "/projects/vfx-flow/showcase_asset_qc_ready.png",
       previewVideo: "/projects/vfx-flow/showcase.mp4",
       crop: "object-center",
@@ -142,8 +142,8 @@ export default function TechnicalSpotlight() {
     {
       title: "Stormfront",
       description: isVi
-        ? "Mây thể tích và tia chớp hai nhịp trong Unreal."
-        : "A volumetric storm bank and a two-beat lightning flash in Unreal.",
+        ? "Mây thể tích và tia chớp hai nhịp trong Unreal Engine."
+        : "Volumetric storm clouds and dynamic lightning in Unreal.",
       image: "/assets/blog/stormfront/poster-wide.jpg",
       previewVideo: "/assets/blog/stormfront/storm-preview.mp4",
       crop: "object-center",

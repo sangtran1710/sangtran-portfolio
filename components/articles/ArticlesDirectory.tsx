@@ -7,10 +7,10 @@ import type { BlogPostMeta } from "@/lib/blog";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const articleTeasers: Record<string, string> = {
-  "ue5-procedural-terminal-shader": "I rebuilt an old-screen flicker as a material—no flipbook needed.",
-  "stormfront-volumetric-cloud-lightning": "A storm sky that moves and flashes without eating the frame budget.",
-  "houdini-destructibles-and-vfx-pipeline": "Big Houdini sims are fun. Getting them into a game is the hard part.",
-  "destructible-separate-mesh-tool": "I got tired of cleaning up fracture pieces by hand, so I made a tool.",
+  "ue5-procedural-terminal-shader": "Procedural CRT screen flicker shader in Unreal Engine 5.",
+  "stormfront-volumetric-cloud-lightning": "Volumetric storm clouds and dynamic lightning system.",
+  "houdini-destructibles-and-vfx-pipeline": "Optimizing Houdini destruction simulations for real-time engines.",
+  "destructible-separate-mesh-tool": "Python tool isolating fracture seams and generating emitter cards.",
 };
 
 export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
@@ -21,21 +21,15 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
     (post) => post.slug !== "math-for-vfx-shaders" && post.slug !== "ue5-material-library-portal"
   );
 
-  const headingText = isVi ? "Ghi chép Kỹ thuật & R&D" : "Technical Notes & R&D";
-  const subtitleText = isVi
-    ? "Vài điều mình rút ra khi làm VFX, shader và công cụ."
-    : "A few things I figured out while making VFX, shaders, and tools.";
+  const headingText = isVi ? "Ghi chép Kỹ thuật" : "Technical Notes";
 
   return (
     <div className="min-h-screen pt-24 sm:pt-28 pb-20 text-white bg-background">
       <main className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-        <header className="mb-12 max-w-2xl">
+        <header className="mb-10 max-w-2xl border-b border-border pb-6">
           <h1 className="text-4xl font-kanit font-normal tracking-tight text-white sm:text-5xl">
             {headingText}
           </h1>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            {subtitleText}
-          </p>
         </header>
 
         {/* Flat Editorial Article Grid */}

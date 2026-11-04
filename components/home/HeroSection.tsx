@@ -164,7 +164,7 @@ export default function HeroSection() {
               {hero.name}
             </h1>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-foreground sm:text-lg">
-              Senior VFX Artist. {hero.description}
+              Senior VFX Artist · Real-Time VFX & Engine Shaders
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4 text-base font-medium">

@@ -301,9 +301,6 @@ export default function ShowreelPageClient() {
         </div>
         {/* Minimalist Bottom Bar */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-muted-foreground">
-          <p className="font-light">
-            All shots featured are real-time gameplay & in-engine cinematic VFX.
-          </p>
           <Link
             href="/portfolio"
             className="inline-flex items-center gap-1.5 font-mono text-xs text-primary hover:underline"
@@ -311,6 +308,9 @@ export default function ShowreelPageClient() {
             Explore All Projects
             <ExternalLink className="h-3 w-3" />
           </Link>
+          <span className="font-mono text-[11px] text-neutral-500">
+            Sparx* · Insomniac Games · Epic Games · Amazon Games
+          </span>
         </div>
       </main>
     </div>

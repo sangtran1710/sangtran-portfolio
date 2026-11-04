@@ -175,11 +175,6 @@ export default function RndSection() {
                   {project.title}
                 </h3>
 
-                {project.tools && project.tools.length > 0 && (
-                  <p className="mt-1.5 text-xs font-mono text-muted-foreground">
-                    {project.tools.slice(0, 3).join(" · ")}
-                  </p>
-                )}
               </div>
             </article>
           </CardLink>
@@ -188,38 +183,28 @@ export default function RndSection() {
 
       {/* ── Tier 3: Older Commercial Work & Archive (Collapsed Accordion) ── */}
       {archiveProjects.length > 0 && (
-        <div className="mt-16 pt-10 border-t border-border">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div>
-              <p className="text-xs font-mono uppercase tracking-widest text-primary mb-2.5">
-                {isVi ? "Dự án trước đây · Motion / CG / Film" : "Earlier work · Motion / CG / Film"}
-              </p>
-              <button
-                type="button"
-                onClick={() => setIsArchiveOpen((prev) => !prev)}
-                className="group inline-flex items-center gap-3 rounded-lg border border-border bg-section px-4 py-2.5 text-sm font-medium text-muted-foreground transition-all hover:border-border-hover hover:bg-card hover:text-white"
-              >
-                <span>
-                  {isVi
-                    ? (isArchiveOpen ? "Thu gọn lưu trữ" : "Xem lưu trữ →")
-                    : (isArchiveOpen ? "Hide archive" : "View archive →")}
-                </span>
-                <span className="rounded bg-card border border-border px-2 py-0.5 text-xs font-mono text-muted-foreground">
-                  {archiveProjects.length}
-                </span>
-                <ChevronDown
-                  className={cn(
-                    "h-4 w-4 text-muted-foreground transition-transform duration-300",
-                    isArchiveOpen && "rotate-180 text-white"
-                  )}
-                />
-              </button>
-            </div>
-            <p className="text-xs text-muted-foreground max-w-md">
-              {isVi
-                ? "Dự án thử nghiệm AI, môi trường 3D crypto và video thương mại thời kỳ đầu."
-                : "AI filmmaking experiments, crypto 3D environments, and earlier commercial TVCs."}
-            </p>
+        <div className="mt-14 pt-8 border-t border-border">
+          <div className="flex items-center justify-between gap-4">
+            <button
+              type="button"
+              onClick={() => setIsArchiveOpen((prev) => !prev)}
+              className="group inline-flex items-center gap-3 rounded-lg border border-border bg-section px-4 py-2.5 text-sm font-medium text-muted-foreground transition-all hover:border-border-hover hover:bg-card hover:text-white"
+            >
+              <span>
+                {isVi
+                  ? (isArchiveOpen ? "Thu gọn lưu trữ" : "Xem dự án trước đây →")
+                  : (isArchiveOpen ? "Hide archive" : "Earlier Work (Archive) →")}
+              </span>
+              <span className="rounded bg-card border border-border px-2 py-0.5 text-xs font-mono text-muted-foreground">
+                {archiveProjects.length}
+              </span>
+              <ChevronDown
+                className={cn(
+                  "h-4 w-4 text-muted-foreground transition-transform duration-300",
+                  isArchiveOpen && "rotate-180 text-white"
+                )}
+              />
+            </button>
           </div>
 
           <AnimatePresence initial={false}>
