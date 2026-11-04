@@ -184,50 +184,62 @@ export default function HeroSection() {
               </Link>
             </div>
 
-            {/* Mobile: quiet caption for the shot currently playing */}
-            <p className="mt-8 text-xs font-mono text-muted-foreground lg:hidden">
-              {currentShot.title} · {currentShot.meta}
-            </p>
+            {/* Mobile: quiet caption with direct link for the shot currently playing */}
+            <div className="mt-8 lg:hidden">
+              <Link
+                href={currentShot.href}
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground hover:text-primary transition-colors"
+              >
+                <span>{currentShot.title} · {currentShot.meta}</span>
+                <ArrowUpRight className="h-3.5 w-3.5 text-primary" />
+              </Link>
+            </div>
           </div>
 
           {/* Desktop shot selector */}
-          <div className="hidden lg:block" role="tablist" aria-label={isVi ? "Chọn shot" : "Choose shot"}>
+          <div className="hidden lg:block">
             <ol className="divide-y divide-border border-y border-border">
               {HERO_SHOTS.map((shot, index) => {
                 const isActive = activeShot === index;
                 return (
                   <li key={shot.id}>
-                    <button
-                      type="button"
-                      role="tab"
-                      aria-selected={isActive}
-                      onClick={() => {
+                    <Link
+                      href={shot.href}
+                      onMouseEnter={() => {
                         setActiveShot(index);
                         setUserLocked(true);
                       }}
-                      className={`flex w-full items-baseline gap-4 py-3 text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary ${
+                      onFocus={() => {
+                        setActiveShot(index);
+                        setUserLocked(true);
+                      }}
+                      className={`group flex w-full items-baseline justify-between gap-4 py-3 text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary ${
                         isActive ? "text-white" : "text-muted-foreground hover:text-white"
                       }`}
                     >
-                      <span className={`font-mono text-xs ${isActive ? "text-primary" : "text-quiet"}`}>
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <span className="flex-1">
-                        <span className="block text-sm font-medium">{shot.title}</span>
-                        <span className="block text-xs text-muted-foreground">{shot.meta}</span>
-                      </span>
-                    </button>
+                      <div className="flex items-baseline gap-4">
+                        <span className={`font-mono text-xs ${isActive ? "text-primary font-semibold" : "text-quiet"}`}>
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <span>
+                          <span className="block text-sm font-medium transition-colors group-hover:text-primary">
+                            {shot.title}
+                          </span>
+                          <span className="block text-xs text-muted-foreground">
+                            {shot.meta}
+                          </span>
+                        </span>
+                      </div>
+                      <ArrowUpRight
+                        className={`h-3.5 w-3.5 transition-all group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
+                          isActive ? "text-primary opacity-100" : "text-muted-foreground/40 opacity-0 group-hover:opacity-100"
+                        }`}
+                      />
+                    </Link>
                   </li>
                 );
               })}
             </ol>
-            <Link
-              href={currentShot.href}
-              className="mt-3 inline-flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-primary"
-            >
-              {isVi ? "Xem dự án này" : "Open this project"}
-              <ArrowUpRight className="h-3.5 w-3.5" />
-            </Link>
           </div>
         </div>
       </motion.div>
