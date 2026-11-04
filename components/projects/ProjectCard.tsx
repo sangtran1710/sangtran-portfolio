@@ -106,16 +106,28 @@ export default function ProjectCard({
             />
           )}
 
-          
+          {project.mobyGamesUrl && (
+            <div className="absolute top-2.5 left-2.5 z-10 pointer-events-none">
+              <span className="rounded bg-black/80 px-2 py-0.5 text-[10px] font-mono font-medium tracking-wide text-primary border border-primary/40 backdrop-blur-md">
+                MobyGames Credit
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Typography & Technical Metadata */}
         <div className="flex flex-1 flex-col pt-4">
           <div className="flex items-center justify-between gap-2 text-xs font-mono uppercase tracking-wider">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <span className="text-primary">{categoryLabel}</span>
               <span className="text-quiet">/</span>
               <span className="text-muted-foreground">{project.year}</span>
+              {project.mobyGamesUrl && (
+                <>
+                  <span className="text-quiet">/</span>
+                  <span className="text-primary font-medium tracking-normal">MobyGames</span>
+                </>
+              )}
             </div>
             <span className="inline-flex items-center gap-1 text-muted-foreground transition-colors group-hover:text-primary">
               <span>Breakdown</span>

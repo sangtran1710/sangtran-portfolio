@@ -117,7 +117,7 @@ export default function ProjectDetailPage({ params }: Props) {
   // =========================================================================
   if (isWolverineBehance) {
     return (
-      <article className="w-full bg-[#07090D] text-foreground pb-24 pt-4">
+      <article className="w-full bg-[#07090D] text-foreground pb-24 pt-20 sm:pt-24">
         {/* HEADER */}
         <header className="mx-auto max-w-6xl px-6 pt-10 pb-12 sm:pt-16 sm:pb-16">
           <div className="flex items-center justify-between mb-8">
@@ -171,6 +171,20 @@ export default function ProjectDetailPage({ params }: Props) {
             Real-time gameplay and cinematic visual effects for Marvel&apos;s Wolverine on PlayStation 5.
             Authored combat impact VFX, volumetric explosion simulations, environmental destruction, and proprietary engine particle systems.
           </p>
+
+          {project.mobyGamesUrl && (
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <a
+                href={project.mobyGamesUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-primary/50 bg-primary/10 px-4 py-2 text-xs font-mono font-medium text-white hover:bg-primary/20 hover:border-primary transition-all shadow-sm"
+              >
+                <span>Verified Game Credit on MobyGames</span>
+                <ArrowUpRight className="h-3.5 w-3.5 text-primary" />
+              </a>
+            </div>
+          )}
         </header>
 
         {/* 1. HERO KEY VISUAL (Helix Engine Chamber Activation) */}
@@ -501,7 +515,7 @@ export default function ProjectDetailPage({ params }: Props) {
   }
 
   return (
-    <article className="w-full bg-[#07090D] text-foreground pb-24 pt-4">
+    <article className="w-full bg-[#07090D] text-foreground pb-24 pt-20 sm:pt-24">
       {/* 1. TOP BREADCRUMB / ACTION BAR */}
       <div className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-6 flex items-center justify-between">
         <Link
@@ -569,6 +583,20 @@ export default function ProjectDetailPage({ params }: Props) {
           <p className="max-w-2xl mx-auto text-sm sm:text-base text-neutral-300 font-light leading-relaxed mt-6">
             {project.description || project.workSummary}
           </p>
+        )}
+
+        {project.mobyGamesUrl && (
+          <div className="mt-6 flex justify-center">
+            <a
+              href={project.mobyGamesUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-primary/50 bg-primary/10 px-4 py-2 text-xs font-mono font-medium text-white hover:bg-primary/20 hover:border-primary transition-all shadow-sm"
+            >
+              <span>Verified Game Credit on MobyGames</span>
+              <ArrowUpRight className="h-3.5 w-3.5 text-primary" />
+            </a>
+          </div>
         )}
       </header>
 
