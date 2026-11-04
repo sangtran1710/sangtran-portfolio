@@ -105,49 +105,58 @@ export default function ProjectDetailPage({ params }: Props) {
   // HKIA T2 LED / BEHANCE ART-DIRECTED CINEMATIC CASE STUDY: WOLVERINE
   // Full-bleed widescreen visuals, frameless media, editorial typography
   // =========================================================================
+  // =========================================================================
+  // BEHANCE-STYLE CLEAN ARTWORK SHOWCASE: WOLVERINE
+  // Quiet typography, auto-looping visuals, zero AI-filler text, zero clutter
+  // =========================================================================
   if (isWolverineBehance) {
     return (
-      <article className="w-full bg-[#07090D] text-foreground pb-24 pt-4 selection:bg-primary/30">
-        {/* 1. EDITORIAL HEADER & TITLE */}
+      <article className="w-full bg-[#07090D] text-foreground pb-24 pt-4">
+        {/* HEADER */}
         <header className="mx-auto max-w-6xl px-6 pt-10 pb-12 sm:pt-16 sm:pb-16">
           <Link
             href="/portfolio"
-            className="group inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-white transition-colors mb-10"
+            className="group inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-white transition-colors mb-8"
           >
             <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
             All Work
           </Link>
 
-          <div className="flex flex-wrap items-center gap-2.5 mb-5">
+          <div className="flex flex-wrap items-center gap-2 mb-4">
             {project.categories.map((cat) => (
-              <Badge key={cat} variant="secondary" className="bg-white/10 text-white text-[11px] font-mono border-0 tracking-wider">
+              <Badge key={cat} variant="secondary" className="bg-white/10 text-white text-[11px] font-mono border-0">
                 {CATEGORY_LABELS[cat] ?? cat}
               </Badge>
             ))}
             {project.engine && (
-              <Badge variant="outline" className="border-primary/40 text-primary text-[11px] font-mono tracking-wider">
+              <Badge variant="outline" className="border-primary/40 text-primary text-[11px] font-mono">
                 {project.engine}
               </Badge>
             )}
             {project.platform && (
-              <Badge variant="outline" className="border-white/20 text-muted-foreground text-[11px] font-mono tracking-wider">
+              <Badge variant="outline" className="border-white/20 text-muted-foreground text-[11px] font-mono">
                 {project.platform}
               </Badge>
             )}
           </div>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-kanit font-extrabold uppercase tracking-tight text-white mb-4">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-kanit font-extrabold uppercase tracking-tight text-white mb-3">
             {project.title}
           </h1>
 
-          <p className="text-sm sm:text-base text-muted-foreground font-light tracking-wide">
+          <p className="text-sm sm:text-base text-muted-foreground font-light">
             {getProjectByline(project)} · {project.duration ?? project.year}
+          </p>
+
+          <p className="max-w-2xl text-sm sm:text-base text-neutral-300 font-light leading-relaxed mt-6">
+            Real-time gameplay and cinematic visual effects for Marvel&apos;s Wolverine on PlayStation 5.
+            Authored combat impact VFX, volumetric explosion simulations, environmental destruction, and proprietary engine particle systems.
           </p>
         </header>
 
-        {/* 2. HERO KEY VISUAL (Widescreen 1440px Frameless) */}
+        {/* 1. HERO KEY VISUAL (Helix Engine Chamber Activation) */}
         {heroLoopItem && (
-          <section aria-label="Hero VFX Asset Loop" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-24 sm:mb-32">
+          <section aria-label="Helix Engine VFX" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-20 sm:mb-28">
             <div className="overflow-hidden rounded-xl sm:rounded-2xl bg-black">
               <BreakdownMedia
                 image={heroLoopItem.image}
@@ -157,59 +166,17 @@ export default function ProjectDetailPage({ params }: Props) {
                 link={heroLoopItem.link}
               />
             </div>
-            <div className="mt-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-3 border-b border-white/10 pb-5">
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="text-[11px] font-mono tracking-widest uppercase text-primary font-semibold">
-                  01 / KEY VISUAL
-                </span>
-                <h3 className="text-base sm:text-lg font-semibold text-white">
-                  {heroLoopItem.title}
-                </h3>
-                {heroLoopItem.tag && (
-                  <span className="rounded bg-primary/10 border border-primary/20 px-2 py-0.5 text-[10px] font-mono text-primary font-medium">
-                    {heroLoopItem.tag}
-                  </span>
-                )}
-              </div>
-              {heroLoopItem.caption && (
-                <p className="text-xs sm:text-sm text-neutral-400 font-light max-w-xl text-left sm:text-right leading-relaxed">
-                  {heroLoopItem.caption}
-                </p>
-              )}
+            <div className="mt-3 flex items-center justify-between border-b border-white/10 pb-3">
+              <h3 className="text-sm sm:text-base font-medium text-white/90">
+                {heroLoopItem.title}
+              </h3>
             </div>
           </section>
         )}
 
-        {/* 3. EDITORIAL MANIFESTO 01 (Production Mandate & Creative Scope) */}
-        <section
-          aria-label="Production Mandate & Creative Scope"
-          className="mx-auto max-w-5xl px-6 mb-24 sm:mb-32"
-        >
-          <div className="flex items-center gap-2 text-[11px] font-mono tracking-widest uppercase text-primary font-semibold mb-4">
-            <Sparkles className="h-3.5 w-3.5" />
-            01 / Production Mandate & Creative Scope
-          </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 font-kanit">
-            Real-Time Gameplay & Cinematic VFX on PS5
-          </h2>
-          <p className="text-base sm:text-lg leading-relaxed text-neutral-300 font-light mb-14 max-w-3xl">
-            Senior VFX Artist at Sparx* - A Virtuos Studio, delivering real-time gameplay and cinematic visual effects for Insomniac Games. Designed, simulated, and integrated combat systems, environmental destruction, and dynamic atmospheric elements targeting rock-solid 60 FPS performance on PlayStation 5.
-          </p>
-          <div className="grid gap-8 sm:grid-cols-3 border-t border-white/10 pt-8">
-            {project.contributions.map((c, idx) => (
-              <div key={idx} className="flex flex-col justify-between">
-                <span className="text-[11px] font-mono text-primary uppercase tracking-widest mb-3">
-                  Core Mandate 0{idx + 1}
-                </span>
-                <p className="text-sm text-neutral-300 leading-relaxed font-light">{c}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* 4. SIMULATION BREAKDOWN (Widescreen 1440px Frameless) */}
+        {/* 2. SIMULATION BREAKDOWN (Trask Warehouse Fireball) */}
         {pyroLoopItem && (
-          <section aria-label="Simulation & Pyro Breakdown" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-24 sm:mb-32">
+          <section aria-label="Warehouse Simulation VFX" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-20 sm:mb-28">
             <div className="overflow-hidden rounded-xl sm:rounded-2xl bg-black">
               <BreakdownMedia
                 image={pyroLoopItem.image}
@@ -219,72 +186,26 @@ export default function ProjectDetailPage({ params }: Props) {
                 link={pyroLoopItem.link}
               />
             </div>
-            <div className="mt-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-3 border-b border-white/10 pb-5">
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="text-[11px] font-mono tracking-widest uppercase text-amber-400 font-semibold">
-                  02 / SIMULATION & PYRO
-                </span>
-                <h3 className="text-base sm:text-lg font-semibold text-white">
-                  {pyroLoopItem.title}
-                </h3>
-                {pyroLoopItem.tag && (
-                  <span className="rounded bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 text-[10px] font-mono text-amber-400 font-medium">
-                    {pyroLoopItem.tag}
-                  </span>
-                )}
-              </div>
-              {pyroLoopItem.caption && (
-                <p className="text-xs sm:text-sm text-neutral-400 font-light max-w-xl text-left sm:text-right leading-relaxed">
-                  {pyroLoopItem.caption}
-                </p>
-              )}
+            <div className="mt-3 flex items-center justify-between border-b border-white/10 pb-3">
+              <h3 className="text-sm sm:text-base font-medium text-white/90">
+                {pyroLoopItem.title}
+              </h3>
             </div>
           </section>
         )}
 
-        {/* 5. EDITORIAL MANIFESTO 02 (Simulation Workflows & Engine Profiling) */}
-        <section
-          aria-label="Simulation Workflows & Engine Profiling"
-          className="mx-auto max-w-5xl px-6 mb-24 sm:mb-32"
-        >
-          <div className="flex items-center gap-2 text-[11px] font-mono tracking-widest uppercase text-primary font-semibold mb-4">
-            <Layers className="h-3.5 w-3.5" />
-            02 / Simulation Workflows & Engine Profiling
-          </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 font-kanit">
-            Houdini Pyro Pipelines & In-Engine Constraints
-          </h2>
-          <p className="text-base sm:text-lg leading-relaxed text-neutral-300 font-light mb-14 max-w-3xl">
-            Simulation workflows developed in Houdini and EmberGen, packed into optimized vector displacement textures, flipbooks, and vertex animation meshes for Insomniac&apos;s proprietary engine. Executed continuous GPU profiling passes to eliminate overdraw hotspots in tight combat arenas.
-          </p>
-          <div className="grid gap-8 sm:grid-cols-3 border-t border-white/10 pt-8">
-            {technicalNotes.map((note, idx) => (
-              <div key={idx} className="flex flex-col justify-between">
-                <span className="text-[11px] font-mono text-primary uppercase tracking-widest mb-3">
-                  Constraint 0{idx + 1}
-                </span>
-                <p className="text-sm text-neutral-300 leading-relaxed font-light">{note}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* 6. REAL-TIME GAMEPLAY & COMBAT CAPTURES (Behance Rhythm Gallery) */}
-        <section aria-label="Cinematic & Combat VFX Breakdown" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-28 sm:mb-36">
-          <div className="max-w-5xl mb-12">
-            <div className="flex items-center gap-2 text-[11px] font-mono tracking-widest uppercase text-primary font-semibold mb-3">
-              <Flame className="h-3.5 w-3.5" />
-              Real-Time Gameplay & Combat Captures
-            </div>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-3 font-kanit">
+        {/* 3. COMBAT & GAMEPLAY CAPTURES */}
+        <section aria-label="Cinematic & Combat VFX Breakdown" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-24 sm:mb-32">
+          <div className="mb-8">
+            <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-kanit">
               Cinematic VFX, Project Context & Credits
             </h2>
-            <p className="text-sm sm:text-base text-neutral-400 font-light">
-              Handled cinematic & gameplay VFX shots. Looping real-time combat & destruction captures.
+            <p className="text-xs sm:text-sm text-neutral-400 font-light">
+              Looping real-time combat & destruction captures.
             </p>
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-2">
+          <div className="grid gap-8 sm:grid-cols-2">
             {combatLoopItems.map((item, i) => (
               <div
                 key={i}
@@ -301,30 +222,18 @@ export default function ProjectDetailPage({ params }: Props) {
                     link={item.link}
                   />
                 </div>
-                <div className="mt-4 flex flex-col justify-between border-b border-white/10 pb-5">
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
-                    <h3 className="text-sm sm:text-base font-semibold text-white">
-                      {item.title}
-                    </h3>
-                    {item.tag && (
-                      <span className="rounded bg-white/10 px-2 py-0.5 text-[10px] font-mono text-primary-hover">
-                        {item.tag}
-                      </span>
-                    )}
-                  </div>
-                  {item.caption && (
-                    <p className="text-xs text-neutral-400 leading-relaxed font-light">
-                      {item.caption}
-                    </p>
-                  )}
+                <div className="mt-2.5 flex items-center justify-between border-b border-white/10 pb-2.5">
+                  <h3 className="text-sm font-medium text-white/90">
+                    {item.title}
+                  </h3>
                   {item.link && (
                     <a
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-3 inline-flex items-center gap-1 text-[11px] font-mono text-primary hover:underline"
+                      className="text-[11px] font-mono text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
                     >
-                      Source Footage
+                      Footage
                       <ArrowUpRight className="h-3 w-3" />
                     </a>
                   )}
@@ -334,19 +243,15 @@ export default function ProjectDetailPage({ params }: Props) {
           </div>
         </section>
 
-        {/* 7. FULL SHOWREEL PRESENTATION (Master Reel 55s) */}
+        {/* 4. FULL SHOWREEL (55s) */}
         {embedUrl && (
-          <section aria-label="Master VFX Showreel" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-28 sm:mb-36">
-            <div className="max-w-5xl mb-10">
-              <div className="flex items-center gap-2 text-[11px] font-mono tracking-widest uppercase text-primary font-semibold mb-3">
-                <Video className="h-3.5 w-3.5" />
-                03 / Full Showreel Presentation
-              </div>
-              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-3 font-kanit">
+          <section aria-label="Master VFX Showreel" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-24 sm:mb-32">
+            <div className="mb-6">
+              <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-kanit">
                 Master VFX Showreel (55s)
               </h2>
-              <p className="text-sm sm:text-base text-neutral-400 font-light">
-                Complete compiled reel featuring high-pace gameplay and cinematic VFX sequences on PlayStation 5.
+              <p className="text-xs sm:text-sm text-neutral-400 font-light">
+                Compiled gameplay and cinematic VFX sequences on PlayStation 5.
               </p>
             </div>
             <div className="overflow-hidden rounded-xl sm:rounded-2xl bg-black">
@@ -361,24 +266,20 @@ export default function ProjectDetailPage({ params }: Props) {
           </section>
         )}
 
-        {/* 8. IN-GAME ATTRIBUTION & REFERENCE ARCHIVE */}
-        <section aria-label="In-Game Proof & References" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-28 sm:mb-36">
-          <div className="max-w-5xl mb-10">
-            <div className="flex items-center gap-2 text-[11px] font-mono tracking-widest uppercase text-primary font-semibold mb-3">
-              <Cpu className="h-3.5 w-3.5" />
-              04 / In-Game Attribution & References
-            </div>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-3 font-kanit">
+        {/* 5. IN-GAME CREDITS & REFERENCE ARCHIVE */}
+        <section aria-label="In-Game Proof & References" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-24 sm:mb-32">
+          <div className="mb-6">
+            <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-kanit">
               In-Game End Credits & Reference Footage
             </h2>
-            <p className="text-sm sm:text-base text-neutral-400 font-light">
+            <p className="text-xs sm:text-sm text-neutral-400 font-light">
               Official production verification and reference combat development archives.
             </p>
           </div>
 
           {/* Featured In-Game End Credits Frame */}
           {creditsItem && (
-            <div className="mb-14">
+            <div className="mb-10">
               <div className="overflow-hidden rounded-xl sm:rounded-2xl border border-primary/30 bg-black">
                 <BreakdownMedia
                   image={creditsItem.image}
@@ -388,22 +289,15 @@ export default function ProjectDetailPage({ params }: Props) {
                   link={creditsItem.link}
                 />
               </div>
-              <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6">
-                <div>
-                  <div className="flex items-center gap-2.5 mb-1.5">
-                    <h3 className="text-base sm:text-lg font-semibold text-white">
-                      {creditsItem.title}
-                    </h3>
-                    {creditsItem.tag && (
-                      <span className="rounded bg-primary/20 border border-primary/30 px-2.5 py-0.5 text-xs font-mono text-primary font-medium">
-                        {creditsItem.tag}
-                      </span>
-                    )}
-                  </div>
-                  {creditsItem.caption && (
-                    <p className="text-xs sm:text-sm text-neutral-400 font-light">
-                      {creditsItem.caption}
-                    </p>
+              <div className="mt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
+                <div className="flex items-center gap-2.5">
+                  <h3 className="text-sm sm:text-base font-medium text-white">
+                    {creditsItem.title}
+                  </h3>
+                  {creditsItem.tag && (
+                    <span className="rounded bg-primary/20 border border-primary/30 px-2 py-0.5 text-xs font-mono text-primary font-medium">
+                      {creditsItem.tag}
+                    </span>
                   )}
                 </div>
                 {creditsItem.link && (
@@ -411,10 +305,10 @@ export default function ProjectDetailPage({ params }: Props) {
                     href={creditsItem.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-5 py-2.5 text-xs font-medium text-white transition-colors hover:bg-primary/20 shrink-0"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-primary/20 shrink-0"
                   >
                     Verify on YouTube
-                    <ArrowUpRight className="h-3.5 w-3.5 text-primary" />
+                    <ArrowUpRight className="h-3 w-3 text-primary" />
                   </a>
                 )}
               </div>
@@ -422,16 +316,16 @@ export default function ProjectDetailPage({ params }: Props) {
           )}
 
           {/* 4-Card Reference Grid */}
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2">
             {referenceFootageItems.map((refItem, idx) => (
               <a
                 key={idx}
                 href={refItem.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.02] p-4 transition-all hover:border-primary/50 hover:bg-white/[0.05]"
+                className="group flex items-center gap-3.5 rounded-xl border border-white/10 bg-white/[0.02] p-3.5 transition-all hover:border-primary/50 hover:bg-white/[0.04]"
               >
-                <div className="relative h-20 w-32 shrink-0 overflow-hidden rounded-lg bg-black border border-white/10">
+                <div className="relative h-16 w-24 shrink-0 overflow-hidden rounded-lg bg-black border border-white/10">
                   <Image
                     src={refItem.image}
                     alt={refItem.title}
@@ -439,14 +333,14 @@ export default function ProjectDetailPage({ params }: Props) {
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition-colors">
-                    <Play className="h-4 w-4 fill-white text-white" />
+                    <Play className="h-3.5 w-3.5 fill-white text-white" />
                   </div>
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h4 className="text-sm font-semibold text-white group-hover:text-primary transition-colors line-clamp-1">
+                  <h4 className="text-xs sm:text-sm font-medium text-white group-hover:text-primary transition-colors line-clamp-1">
                     {refItem.title}
                   </h4>
-                  <p className="mt-1.5 text-[11px] font-mono text-muted-foreground flex items-center gap-1">
+                  <p className="mt-0.5 text-[11px] font-mono text-muted-foreground flex items-center gap-1">
                     Public Footage
                     <ArrowUpRight className="h-3 w-3 text-quiet group-hover:text-primary transition-colors" />
                   </p>
@@ -456,36 +350,36 @@ export default function ProjectDetailPage({ params }: Props) {
           </div>
         </section>
 
-        {/* 9. PRODUCTION COLOPHON / TECH SPECS */}
-        <footer className="mx-auto max-w-5xl px-6 pt-16 border-t border-white/15">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 pb-8 border-b border-white/10">
+        {/* 6. PRODUCTION COLOPHON / TECH SPECS */}
+        <footer className="mx-auto max-w-5xl px-6 pt-12 border-t border-white/15">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pb-6 border-b border-white/10">
             <div>
               <p className="text-[10px] font-mono uppercase tracking-widest text-primary">Role</p>
-              <p className="font-medium text-white mt-1.5 text-sm">{project.role}</p>
+              <p className="font-medium text-white mt-1 text-sm">{project.role}</p>
             </div>
             <div>
               <p className="text-[10px] font-mono uppercase tracking-widest text-primary">Engine</p>
-              <p className="font-medium text-white mt-1.5 text-sm">{project.engine || "Proprietary Engine"}</p>
+              <p className="font-medium text-white mt-1 text-sm">{project.engine || "Proprietary Engine"}</p>
             </div>
             <div>
               <p className="text-[10px] font-mono uppercase tracking-widest text-primary">Platform</p>
-              <p className="font-medium text-white mt-1.5 text-sm">{project.platform || "PlayStation 5"}</p>
+              <p className="font-medium text-white mt-1 text-sm">{project.platform || "PlayStation 5"}</p>
             </div>
             <div>
               <p className="text-[10px] font-mono uppercase tracking-widest text-primary">Studio / Client</p>
-              <p className="font-medium text-white mt-1.5 text-sm">
+              <p className="font-medium text-white mt-1 text-sm">
                 {project.studio ? `${project.studio} / ${project.client}` : project.client}
               </p>
             </div>
           </div>
 
-          <div className="pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mr-2">Tech Stack:</span>
+          <div className="pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex flex-wrap items-center gap-1.5">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mr-1.5">Tools:</span>
               {project.techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="text-xs font-mono px-2.5 py-1 rounded border border-white/10 bg-white/[0.03] text-neutral-300"
+                  className="text-xs font-mono px-2 py-0.5 rounded border border-white/10 bg-white/[0.03] text-neutral-300"
                 >
                   {tech}
                 </span>
