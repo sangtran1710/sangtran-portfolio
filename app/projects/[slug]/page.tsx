@@ -95,11 +95,17 @@ export default function ProjectDetailPage({ params }: Props) {
 
   // Separate Wolverine items into thematic Behance blocks
   const wolverineItems = project.evidenceBreakdown || [];
-  const heroLoopItem = wolverineItems[0]; // Helix Engine Chamber Activation
-  const pyroLoopItem = wolverineItems[1]; // Trask Warehouse Volumetric Fireball
-  const combatLoopItems = wolverineItems.slice(2, 7); // Electric Shockwave, Building Collapse, Outpost, Blood, TK Barrier
-  const referenceFootageItems = wolverineItems.slice(7, 11); // Gameplay, BTS, Combat, Cutscenes
-  const creditsItem = wolverineItems[11]; // In-Game End Credits
+  const heroLoopItem = wolverineItems.find((i) => i.title.includes("Helix Engine")) || wolverineItems[0];
+  const pyroLoopItem = wolverineItems.find((i) => i.title.includes("Warehouse")) || wolverineItems[1];
+  const creditsItem = wolverineItems.find((i) => i.title.includes("Credits"));
+  const referenceFootageItems = wolverineItems.filter((i) =>
+    ["Official gameplay", "Behind-the-Scenes", "Aggressive & Stealth", "Cinematic Cutscenes"].some((k) =>
+      i.title.toLowerCase().includes(k.toLowerCase())
+    )
+  );
+  const combatLoopItems = wolverineItems.filter(
+    (i) => i.loopVideo && i !== heroLoopItem && i !== pyroLoopItem && i !== creditsItem
+  );
 
   // =========================================================================
   // HKIA T2 LED / BEHANCE ART-DIRECTED CINEMATIC CASE STUDY: WOLVERINE
@@ -243,7 +249,64 @@ export default function ProjectDetailPage({ params }: Props) {
           </div>
         </section>
 
-        {/* 4. FULL SHOWREEL (55s) */}
+        {/* 4. PRODUCTION STILLS & IN-ENGINE LIGHTING (ArtBlast Gallery) */}
+        <section aria-label="Production Stills & Visual Development" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-24 sm:mb-32">
+          <div className="mb-8">
+            <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-kanit">
+              Production Stills & Environment Volumetrics
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-400 font-light">
+              High-resolution in-engine frames, dynamic lighting & architectural destruction.
+            </p>
+          </div>
+
+          <div className="grid gap-8 sm:grid-cols-2">
+            {[
+              {
+                src: "/images/projects/wolverine/wolverine-artblast-hangar.webp",
+                title: "Trask Research Facility & Volumetric Hangar",
+                dim: "2560 × 1440",
+              },
+              {
+                src: "/images/projects/wolverine/wolverine-artblast-explosion.webp",
+                title: "High-Density Industrial Blast Compound",
+                dim: "2560 × 1440",
+              },
+              {
+                src: "/images/projects/wolverine/wolverine-madripoor.webp",
+                title: "Madripoor Underworld Environment & Night Lighting",
+                dim: "1600 × 900",
+              },
+              {
+                src: "/images/projects/wolverine/wolverine-action.webp",
+                title: "Visceral Combat Stance & Silhouette Lighting",
+                dim: "1600 × 900",
+              },
+            ].map((still, idx) => (
+              <figure key={idx} className="group flex flex-col justify-between">
+                <div className="relative aspect-video w-full overflow-hidden rounded-xl sm:rounded-2xl bg-black border border-white/5">
+                  <Image
+                    src={still.src}
+                    alt={still.title}
+                    fill
+                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                    sizes="(max-width: 1024px) 100vw, 1400px"
+                  />
+                </div>
+                <figcaption className="mt-2.5 flex items-center justify-between border-b border-white/10 pb-2.5">
+                  <h3 className="text-sm font-medium text-white/90">
+                    {still.title}
+                  </h3>
+                  <span className="text-[11px] font-mono text-neutral-500">
+                    {still.dim}
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        {/* 5. FULL SHOWREEL (55s) */}
         {embedUrl && (
           <section aria-label="Master VFX Showreel" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-24 sm:mb-32">
             <div className="mb-6">

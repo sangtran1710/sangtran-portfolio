@@ -288,6 +288,23 @@ export const PROJECTS: Project[] = [
         link: "https://youtu.be/G4sMyUQ6s3w?t=1710",
       },
       {
+        image: "/images/projects/wolverine/wolverine-combat-sparks.webp",
+        loopVideo: "/video/wolverine/loops/wolverine-loop-combat-sparks.mp4",
+        title: "Claw Kinetic Sparks & Melee Impact",
+        caption: "Adamantium claw collision sparks, directional bursts, and surface ablation.",
+        tag: "Combat VFX",
+        link: "https://youtu.be/G4sMyUQ6s3w?t=3420",
+      },
+      {
+        image: "/images/projects/wolverine/wolverine-glass-fracture.webp",
+        loopVideo: "/video/wolverine/loops/wolverine-loop-glass-fracture.mp4",
+        title: "Architectural Glass Fracture & Shockwave",
+        caption: "Procedural glass shattering, debris dispersal, and dynamic impulse waves.",
+        tag: "Destruction VFX",
+        link: "https://youtu.be/G4sMyUQ6s3w?t=2105",
+      },
+
+      {
         image: "/images/projects/wolverine/wolverine-outpost-explosion.webp",
         loopVideo: "/video/wolverine/loops/wolverine-loop-outpost-explosion.mp4",
         title: "Night Assault: Outpost Explosion",
