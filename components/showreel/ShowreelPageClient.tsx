@@ -299,31 +299,19 @@ export default function ShowreelPageClient() {
             );
           })}
         </div>
-        <section aria-labelledby="contributions-heading" className="mt-14 border-t border-border pt-10">
-          <h2 id="contributions-heading" className="font-kanit text-2xl font-normal text-white">
-            My contributions
-          </h2>
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-            This reel is a selection of my work. The summaries below describe my broader contributions
-            to each project, including work beyond the shots shown here.
+        {/* Minimalist Bottom Bar */}
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-muted-foreground">
+          <p className="font-light">
+            All shots featured are real-time gameplay & in-engine cinematic VFX.
           </p>
-          <div className="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2">
-            {SHOTS.map((shot) => {
-              const project = PROJECTS.find((item) => item.slug === shot.projectSlug);
-              if (!project) return null;
-              return (
-                <div key={shot.projectSlug}>
-                  <Link href={`/projects/${shot.projectSlug}`} className="text-base font-medium text-white transition-colors hover:text-primary">
-                    {shot.title}
-                  </Link>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {project.contributions.join(" ")}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </section>
+          <Link
+            href="/portfolio"
+            className="inline-flex items-center gap-1.5 font-mono text-xs text-primary hover:underline"
+          >
+            Explore All Projects
+            <ExternalLink className="h-3 w-3" />
+          </Link>
+        </div>
       </main>
     </div>
   );
