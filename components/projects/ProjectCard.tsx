@@ -135,12 +135,6 @@ export default function ProjectCard({
           <p className="mt-1 text-sm font-normal text-foreground">
             {credit}
           </p>
-
-          {project.techStack && project.techStack.length > 0 && (
-            <p className="mt-2 text-xs font-mono text-muted-foreground">
-              {project.techStack.slice(0, 4).join(" · ")}
-            </p>
-          )}
         </div>
       </article>
     </Link>
