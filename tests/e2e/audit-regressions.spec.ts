@@ -81,7 +81,7 @@ test.describe("Audit regressions", () => {
       };
     });
 
-    expect(visualSystem.headerBackground).toBe("rgba(13, 16, 21, 0.55)");
+    expect(visualSystem.headerBackground).toBe("rgba(13, 16, 21, 0.9)");
     expect(visualSystem.headingFont).toContain("Kanit");
     expect(visualSystem.headingSize).toBeLessThanOrEqual(80);
     expect(Math.abs(visualSystem.logoLeft - visualSystem.headingLeft)).toBeLessThan(1);
