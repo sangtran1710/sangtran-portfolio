@@ -31,6 +31,7 @@ export interface Project {
     timestamps?: { time: string; label: string; url: string }[];
   }[];
   steamUrl?: string;
+  mobyGamesUrl?: string;
   isFeatured?: boolean;
   /** Short punchy 1-line discipline highlight for visual card e.g. "Gameplay VFX · Houdini · Proprietary Engine" */
   cardHighlight?: string;
@@ -356,6 +357,7 @@ export const PROJECTS: Project[] = [
       },
     ],
     isFeatured: true,
+    mobyGamesUrl: "https://www.mobygames.com/person/1553845/tran-minh-sang/",
   },
   {
     slug: "spider-man-2",
@@ -429,9 +431,11 @@ export const PROJECTS: Project[] = [
         title: "Official In-Game End Credits",
         caption: "FX Artist credit under Sparx* - A Virtuos Studio in Marvel's Spider-Man 2 official credits roll.",
         tag: "Credit Verification",
+        link: "https://www.mobygames.com/person/1553845/tran-minh-sang/",
       },
     ],
     isFeatured: true,
+    mobyGamesUrl: "https://www.mobygames.com/person/1553845/tran-minh-sang/",
   },
   {
     slug: "fortnite-remix",

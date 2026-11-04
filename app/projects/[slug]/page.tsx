@@ -120,13 +120,26 @@ export default function ProjectDetailPage({ params }: Props) {
       <article className="w-full bg-[#07090D] text-foreground pb-24 pt-4">
         {/* HEADER */}
         <header className="mx-auto max-w-6xl px-6 pt-10 pb-12 sm:pt-16 sm:pb-16">
-          <Link
-            href="/portfolio"
-            className="group inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-white transition-colors mb-8"
-          >
-            <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
-            All Work
-          </Link>
+          <div className="flex items-center justify-between mb-8">
+            <Link
+              href="/portfolio"
+              className="group inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-white transition-colors"
+            >
+              <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
+              All Work
+            </Link>
+            {project.mobyGamesUrl && (
+              <a
+                href={project.mobyGamesUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-primary hover:text-white transition-colors"
+              >
+                MobyGames Credit
+                <ArrowUpRight className="h-3 w-3" />
+              </a>
+            )}
+          </div>
 
           <div className="flex flex-wrap items-center gap-2 mb-4">
             {project.categories.map((cat) => (
@@ -363,17 +376,30 @@ export default function ProjectDetailPage({ params }: Props) {
                     </span>
                   )}
                 </div>
-                {creditsItem.link && (
-                  <a
-                    href={creditsItem.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-primary/20 shrink-0"
-                  >
-                    Verify on YouTube
-                    <ArrowUpRight className="h-3 w-3 text-primary" />
-                  </a>
-                )}
+                <div className="flex flex-wrap items-center gap-2 shrink-0">
+                  {creditsItem.link && (
+                    <a
+                      href={creditsItem.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-primary/20 shrink-0"
+                    >
+                      Verify on YouTube
+                      <ArrowUpRight className="h-3 w-3 text-primary" />
+                    </a>
+                  )}
+                  {project.mobyGamesUrl && (
+                    <a
+                      href={project.mobyGamesUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-white/10 shrink-0"
+                    >
+                      MobyGames Credit
+                      <ArrowUpRight className="h-3 w-3 text-primary" />
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           )}
@@ -449,12 +475,25 @@ export default function ProjectDetailPage({ params }: Props) {
               ))}
             </div>
 
-            <p className="text-xs text-muted-foreground">
-              Production Credit:{" "}
-              <span className="text-white font-medium">
-                {project.productionCredit ?? "Sparx* (Virtuos) for Insomniac Games"}
-              </span>
-            </p>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <p className="text-xs text-muted-foreground">
+                Production Credit:{" "}
+                <span className="text-white font-medium">
+                  {project.productionCredit ?? "Sparx* (Virtuos) for Insomniac Games"}
+                </span>
+              </p>
+              {project.mobyGamesUrl && (
+                <a
+                  href={project.mobyGamesUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs font-mono text-primary hover:text-white transition-colors"
+                >
+                  Verified on MobyGames
+                  <ArrowUpRight className="h-3 w-3" />
+                </a>
+              )}
+            </div>
           </div>
         </footer>
       </article>
@@ -472,17 +511,30 @@ export default function ProjectDetailPage({ params }: Props) {
           <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
           All Work
         </Link>
-        {project.steamUrl && (
-          <a
-            href={project.steamUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-xs font-mono text-muted-foreground hover:text-white transition-colors"
-          >
-            Official Store
-            <ArrowUpRight className="h-3 w-3" />
-          </a>
-        )}
+        <div className="flex items-center gap-4">
+          {project.mobyGamesUrl && (
+            <a
+              href={project.mobyGamesUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-xs font-mono text-primary hover:text-white transition-colors"
+            >
+              MobyGames Credit
+              <ArrowUpRight className="h-3 w-3" />
+            </a>
+          )}
+          {project.steamUrl && (
+            <a
+              href={project.steamUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-xs font-mono text-muted-foreground hover:text-white transition-colors"
+            >
+              Official Store
+              <ArrowUpRight className="h-3 w-3" />
+            </a>
+          )}
+        </div>
       </div>
 
       {/* 2. EDITORIAL HERO HEADER */}
@@ -555,13 +607,13 @@ export default function ProjectDetailPage({ params }: Props) {
                     link={item.link}
                   />
                 </div>
-                <figcaption className="mt-2.5 flex items-center justify-between border-b border-white/10 pb-2.5">
-                  <div className="flex items-baseline gap-2">
+                <figcaption className="mt-2.5 flex items-center justify-between gap-3 border-b border-white/10 pb-2.5">
+                  <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 min-w-0">
                     <h3 className="text-sm font-medium text-white/90">
                       {item.title}
                     </h3>
                     {item.tag && (
-                      <span className="text-[11px] font-mono text-neutral-400">
+                      <span className="text-[11px] font-mono text-neutral-400 whitespace-nowrap">
                         · {item.tag}
                       </span>
                     )}
@@ -571,9 +623,13 @@ export default function ProjectDetailPage({ params }: Props) {
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[11px] font-mono text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+                      className={`text-[11px] font-mono transition-colors flex items-center gap-1 shrink-0 ${
+                        item.link.includes("mobygames")
+                          ? "text-primary hover:text-white font-medium"
+                          : "text-muted-foreground hover:text-primary"
+                      }`}
                     >
-                      Footage
+                      {item.link.includes("mobygames") ? "MobyGames Credit" : "Footage"}
                       <ArrowUpRight className="h-3 w-3" />
                     </a>
                   ) : item.timestamps && item.timestamps.length > 0 ? (
@@ -824,7 +880,7 @@ export default function ProjectDetailPage({ params }: Props) {
             ))}
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4">
             <p className="text-xs text-muted-foreground">
               Production Credit:{" "}
               <span className="text-white font-medium">
@@ -836,6 +892,17 @@ export default function ProjectDetailPage({ params }: Props) {
                     : "Sparx* - A Virtuos Studio")}
               </span>
             </p>
+            {project.mobyGamesUrl && (
+              <a
+                href={project.mobyGamesUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-xs font-mono text-primary hover:text-white transition-colors"
+              >
+                MobyGames Credit
+                <ArrowUpRight className="h-3 w-3" />
+              </a>
+            )}
             {project.steamUrl && (
               <a
                 href={project.steamUrl}
