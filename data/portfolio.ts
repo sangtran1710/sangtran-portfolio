@@ -273,28 +273,12 @@ export const PROJECTS: Project[] = [
         link: "https://youtu.be/3boUBsYHY3I?t=2926",
       },
       {
-        image: "/assets/blog/houdini-wolverine-destructibles/poster-rbd-bridge.webp",
-        video: "/assets/blog/houdini-wolverine-destructibles/wolverine-houdini-rbd-bridge.mp4",
-        loopVideo: "/video/wolverine/loops/wolverine-loop-rbd-bridge.mp4",
-        title: "Houdini RBD Bridge Destruction Simulation",
-        caption: "Procedural bridge destruction, rigid body dynamics & constraint network pipeline.",
-        tag: "Houdini Simulation",
-      },
-      {
         image: "/images/projects/wolverine/wolverine-building-collapse.webp",
         loopVideo: "/video/wolverine/loops/wolverine-loop-building-collapse.mp4",
         title: "Burning Estate Collapse & Aerial Leap",
         caption: "Volumetric embers, architectural fracture & dynamic character leap.",
         tag: "Destruction & Pyro",
         link: "https://youtu.be/G4sMyUQ6s3w?t=1710",
-      },
-      {
-        image: "/assets/blog/houdini-wolverine-destructibles/poster-liquid-splash.webp",
-        video: "/assets/blog/houdini-wolverine-destructibles/wolverine-houdini-liquid-splash.mp4",
-        loopVideo: "/video/wolverine/loops/wolverine-loop-liquid-splash.mp4",
-        title: "Houdini FLIP Fluid & Impact Splash Simulation",
-        caption: "Custom FLIP fluid solver passes, surface tension meshing & directional impact splashes.",
-        tag: "Fluid Simulation",
       },
       {
         image: "/images/projects/wolverine/wolverine-glass-fracture.webp",

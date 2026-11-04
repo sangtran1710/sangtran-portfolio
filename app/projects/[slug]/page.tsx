@@ -234,7 +234,7 @@ export default function ProjectDetailPage({ params }: Props) {
               Cinematic VFX, Project Context & Credits
             </h2>
             <p className="text-xs sm:text-sm text-neutral-400 font-light">
-              Looping real-time combat & destruction captures.
+              Looping in-engine cinematic & destruction captures.
             </p>
           </div>
 
