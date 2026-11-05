@@ -106,6 +106,9 @@ export default function Navbar() {
                   prefetchRoute(href);
                 }}
                 onBlur={() => setHoveredNav(null)}
+                onClick={() => {
+                  setHoveredNav(null);
+                }}
                 className={cn(
                   "relative inline-flex items-center px-4 py-1.5 text-sm font-medium transition-colors duration-200 rounded-full focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary",
                   isActive
@@ -117,7 +120,7 @@ export default function Navbar() {
                 {isActive && !reducedMotion && (
                   <motion.div
                     layoutId="navbar-active-pill"
-                    className="absolute inset-0 rounded-full bg-white/[0.12] border border-white/20 shadow-[0_2px_12px_rgba(0,0,0,0.4),0_0_12px_rgba(88,207,200,0.15)]"
+                    className="pointer-events-none absolute inset-0 select-none rounded-full bg-white/[0.12] border border-white/20 shadow-[0_2px_12px_rgba(0,0,0,0.4),0_0_12px_rgba(88,207,200,0.15)]"
                     transition={{
                       type: "spring",
                       stiffness: 450,
@@ -130,7 +133,7 @@ export default function Navbar() {
                 {isHovered && !isActive && !reducedMotion && (
                   <motion.div
                     layoutId="navbar-hover-capsule"
-                    className="absolute inset-0 rounded-full bg-white/[0.07]"
+                    className="pointer-events-none absolute inset-0 select-none rounded-full bg-white/[0.07]"
                     transition={{
                       type: "spring",
                       stiffness: 450,
@@ -139,7 +142,7 @@ export default function Navbar() {
                   />
                 )}
 
-                <span className="relative z-10">{label}</span>
+                <span className="pointer-events-none relative z-10 select-none">{label}</span>
               </Link>
             );
           })}

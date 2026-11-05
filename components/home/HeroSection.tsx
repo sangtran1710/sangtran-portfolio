@@ -220,11 +220,11 @@ export default function HeroSection() {
                       {isActive && (
                         <motion.div
                           layoutId="hero-shot-active-pill"
-                          className="absolute inset-0 rounded-xl bg-white/[0.07] border border-white/10 shadow-sm"
+                          className="pointer-events-none absolute inset-0 select-none rounded-xl bg-white/[0.07] border border-white/10 shadow-sm"
                           transition={{ type: "spring", stiffness: 450, damping: 32 }}
                         />
                       )}
-                      <div className="relative z-10 flex items-center gap-3.5">
+                      <div className="pointer-events-none relative z-10 flex items-center gap-3.5 select-none">
                         <span
                           className={`font-mono text-xs transition-colors ${
                             isActive ? "font-semibold text-primary" : "text-quiet group-hover:text-primary/70"

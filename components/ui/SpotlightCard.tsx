@@ -6,30 +6,34 @@ interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
   spotlightColor?: string;
+  spotlightSize?: number;
 }
 
 export default function SpotlightCard({
   children,
   className = "",
-  spotlightColor = "rgba(88, 207, 200, 0.14)",
+  spotlightColor = "rgba(88, 207, 200, 0.12)",
+  spotlightSize = 480,
   ...props
 }: SpotlightCardProps) {
   const divRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState<{ x: number; y: number }>({ x: -1000, y: -1000 });
-  const [opacity, setOpacity] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!divRef.current) return;
     const rect = divRef.current.getBoundingClientRect();
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    divRef.current.style.setProperty("--spotlight-x", `${x}px`);
+    divRef.current.style.setProperty("--spotlight-y", `${y}px`);
   }, []);
 
   const handleMouseEnter = useCallback(() => {
-    setOpacity(1);
+    setIsHovered(true);
   }, []);
 
   const handleMouseLeave = useCallback(() => {
-    setOpacity(0);
+    setIsHovered(false);
   }, []);
 
   return (
@@ -38,15 +42,15 @@ export default function SpotlightCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`group relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.02] transition-colors duration-500 hover:border-white/20 ${className}`}
+      className={`group relative overflow-hidden transition-all duration-300 ${className}`}
       {...props}
     >
-      {/* Soft spotlight radial glow following the mouse cursor */}
+      {/* High-performance CSS variable spotlight glow (zero React re-renders on mousemove) */}
       <div
-        className="pointer-events-none absolute -inset-px transition-opacity duration-300"
+        className="pointer-events-none absolute -inset-px transition-opacity duration-300 select-none"
         style={{
-          opacity,
-          background: `radial-gradient(420px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 70%)`,
+          opacity: isHovered ? 1 : 0,
+          background: `radial-gradient(${spotlightSize}px circle at var(--spotlight-x, -1000px) var(--spotlight-y, -1000px), ${spotlightColor}, transparent 70%)`,
         }}
         aria-hidden
       />

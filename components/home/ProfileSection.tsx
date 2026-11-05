@@ -106,8 +106,8 @@ export default function ProfileSection() {
 
           {/* Card 2: MobyGames Verified Industry Proof */}
           <SpotlightCard
-            className="rounded-2xl border border-primary/25 bg-gradient-to-br from-section/90 via-section/50 to-primary/5 p-6 sm:p-8 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(0,0,0,0.5),0_0_24px_rgba(88,207,200,0.12)] flex flex-col justify-between"
-            spotlightColor="rgba(75, 184, 255, 0.16)"
+            className="rounded-2xl border border-primary/25 bg-gradient-to-br from-section/90 via-section/50 to-primary/5 p-6 sm:p-8 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(0,0,0,0.5),0_0_24px_rgba(88,207,200,0.08)] flex flex-col justify-between"
+            spotlightColor="rgba(88, 207, 200, 0.12)"
           >
             <div>
               <div className="flex items-center justify-between gap-2">

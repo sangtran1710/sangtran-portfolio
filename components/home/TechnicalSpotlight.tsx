@@ -179,11 +179,11 @@ export default function TechnicalSpotlight() {
                   {active && (
                     <motion.div
                       layoutId="study-tab-pill"
-                      className="absolute inset-0 rounded-full bg-white/[0.14] border border-white/20 shadow-[0_2px_12px_rgba(0,0,0,0.5),0_0_16px_rgba(88,207,200,0.2)]"
+                      className="pointer-events-none absolute inset-0 select-none rounded-full bg-white/[0.14] border border-white/20 shadow-[0_2px_12px_rgba(0,0,0,0.5),0_0_16px_rgba(88,207,200,0.2)]"
                       transition={{ type: "spring", stiffness: 450, damping: 32 }}
                     />
                   )}
-                  <span className="relative z-10">{s.tab}</span>
+                  <span className="pointer-events-none relative z-10 select-none">{s.tab}</span>
                 </button>
               );
             })}
@@ -226,11 +226,11 @@ export default function TechnicalSpotlight() {
                       {selected && (
                         <motion.div
                           layoutId="pass-tab-pill"
-                          className="absolute inset-0 rounded-full bg-primary/15 border border-primary/30 shadow-[0_0_12px_rgba(88,207,200,0.2)]"
+                          className="pointer-events-none absolute inset-0 select-none rounded-full bg-primary/15 border border-primary/30 shadow-[0_0_12px_rgba(88,207,200,0.2)]"
                           transition={{ type: "spring", stiffness: 450, damping: 32 }}
                         />
                       )}
-                      <span className="relative z-10">{pass.label}</span>
+                      <span className="pointer-events-none relative z-10 select-none">{pass.label}</span>
                     </button>
                   );
                 })}
