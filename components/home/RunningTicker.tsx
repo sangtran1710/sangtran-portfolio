@@ -62,7 +62,7 @@ export default function RunningTicker() {
                 </svg>
               )}
               <span>{item.name}</span>
-              <span className="text-quiet font-normal select-none ml-6">/</span>
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary/40 select-none ml-6" />
             </div>
           ))}
         </div>

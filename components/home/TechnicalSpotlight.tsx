@@ -46,7 +46,7 @@ export default function TechnicalSpotlight() {
       passes: [
         {
           id: "c",
-          label: "Color / Mask",
+          label: "Base Color + Mask",
           image: "/assets/blog/houdini-wolverine-destructibles/crack_mesh_growing_crack_c.webp",
           note: isVi ? "Mask lan vết nứt" : "Crack growth mask",
         },

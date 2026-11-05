@@ -28,8 +28,8 @@ export default function Footer() {
     <footer className="border-t border-border bg-section">
       <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-10 text-sm text-muted-foreground sm:px-8 md:flex-row md:items-center md:justify-between lg:px-12">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
-          <p className="font-medium text-foreground">&copy; {year} Henry Tran.</p>
-          <span className="hidden text-quiet sm:inline">/</span>
+          <p className="font-medium text-foreground">&copy; {year} Henry Tran</p>
+          <span className="hidden text-muted-foreground/30 sm:inline">·</span>
           <p className="text-sm text-muted-foreground">
             {isVi ? "Kỹ thuật VFX & Shader chuyên sâu" : "Real-Time VFX & Technical Art"}
           </p>

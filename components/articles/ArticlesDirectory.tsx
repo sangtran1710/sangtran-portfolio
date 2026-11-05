@@ -64,7 +64,7 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
                         <span className="uppercase tracking-[0.14em] text-primary">
                           {categoryBadge}
                         </span>
-                        <span className="text-quiet">/</span>
+                        <span className="text-muted-foreground/30 font-mono">·</span>
                         <span className="flex items-center gap-1 text-muted-foreground">
                           <Clock className="h-3 w-3" />
                           {post.readTime}
