@@ -351,7 +351,7 @@ function SpotlightCard({
   return (
     <Link href={item.link} onMouseEnter={enter} onMouseLeave={leave} onFocus={enter} onBlur={leave} className="group block h-full">
       <article className="flex h-full flex-col">
-        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-sm border border-border bg-background transition-colors duration-300 group-hover:border-primary">
+        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-border/80 bg-background transition-all duration-300 group-hover:border-primary/60 group-hover:shadow-lg">
           <Image
             src={item.image}
             alt={item.title}
