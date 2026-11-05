@@ -202,7 +202,7 @@ export default function HeroSection() {
               {HERO_SHOTS.map((shot, index) => {
                 const isActive = activeShot === index;
                 return (
-                  <li key={shot.id}>
+                  <li key={shot.id} className="relative">
                     <Link
                       href={shot.href}
                       onMouseEnter={() => {
@@ -213,13 +213,18 @@ export default function HeroSection() {
                         setActiveShot(index);
                         setUserLocked(true);
                       }}
-                      className={`group flex w-full items-center justify-between gap-4 py-3.5 px-3 -mx-3 rounded-md text-left transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary ${
-                        isActive
-                          ? "bg-white/[0.06] text-white shadow-sm"
-                          : "text-muted-foreground hover:bg-white/[0.03] hover:text-white"
+                      className={`group relative flex w-full items-center justify-between gap-4 py-3.5 px-3.5 rounded-xl text-left transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary ${
+                        isActive ? "text-white" : "text-muted-foreground hover:text-white"
                       }`}
                     >
-                      <div className="flex items-center gap-3.5">
+                      {isActive && (
+                        <motion.div
+                          layoutId="hero-shot-active-pill"
+                          className="absolute inset-0 rounded-xl bg-white/[0.07] border border-white/10 shadow-sm"
+                          transition={{ type: "spring", stiffness: 450, damping: 32 }}
+                        />
+                      )}
+                      <div className="relative z-10 flex items-center gap-3.5">
                         <span
                           className={`font-mono text-xs transition-colors ${
                             isActive ? "font-semibold text-primary" : "text-quiet group-hover:text-primary/70"

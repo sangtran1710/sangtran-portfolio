@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, MoveHorizontal } from "lucide-react";
-import { useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { useCanHover } from "@/lib/use-media";
 
@@ -158,7 +158,7 @@ export default function TechnicalSpotlight() {
           <h2 className="font-kanit text-3xl font-normal tracking-tight text-white sm:text-4xl">
             {copy.home.technicalSpotlight}
           </h2>
-          <div className="flex flex-wrap gap-2" role="tablist" aria-label={isVi ? "Chọn nghiên cứu" : "Choose study"}>
+          <div className="flex flex-wrap gap-1.5 rounded-full border border-border/80 bg-background/80 p-1 backdrop-blur-sm" role="tablist" aria-label={isVi ? "Chọn nghiên cứu" : "Choose study"}>
             {studies.map((s, idx) => {
               const active = idx === studyIdx;
               return (
@@ -172,49 +172,69 @@ export default function TechnicalSpotlight() {
                     setPassIdx(s.mode === "wipe" ? 1 : 0);
                     setSplit(50);
                   }}
-                  className={`min-h-10 rounded-sm border px-3.5 py-2 text-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary ${
-                    active
-                      ? "border-primary text-white"
-                      : "border-border text-muted-foreground hover:border-border-hover hover:text-white"
+                  className={`relative rounded-full px-4 py-2 text-xs sm:text-sm font-medium transition-colors duration-200 focus-visible:outline-none ${
+                    active ? "text-white" : "text-muted-foreground hover:text-white"
                   }`}
                 >
-                  {s.tab}
+                  {active && (
+                    <motion.div
+                      layoutId="study-tab-pill"
+                      className="absolute inset-0 rounded-full bg-primary/20 border border-primary/40 shadow-sm"
+                      transition={{ type: "spring", stiffness: 450, damping: 32 }}
+                    />
+                  )}
+                  <span className="relative z-10">{s.tab}</span>
                 </button>
               );
             })}
           </div>
         </div>
 
-        <div className="mb-16 grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:items-start">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={study.id}
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="mb-16 grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:items-start"
+          >
           <div>
             {/* Pass buttons */}
-            <div className="mb-3 flex flex-wrap items-center gap-1.5 text-xs">
+            <div className="mb-4 flex flex-wrap items-center gap-2 text-xs">
               {isWipe && (
-                <span className="mr-2 text-muted-foreground">
-                  {isVi ? "Trái:" : "Left:"} <span className="text-white">{basePass.label}</span>
-                  <span className="mx-2 text-quiet">|</span>
+                <span className="mr-1 font-mono text-muted-foreground">
+                  {isVi ? "Trái:" : "Left:"} <span className="text-white font-medium">{basePass.label}</span>
+                  <span className="mx-2 text-muted-foreground/30">|</span>
                   {isVi ? "Phải:" : "Right:"}
                 </span>
               )}
-              {study.passes.map((pass, idx) => {
-                if (isWipe && idx === 0) return null;
-                const selected = idx === passIdx;
-                return (
-                  <button
-                    key={pass.id}
-                    type="button"
-                    onClick={() => setPassIdx(idx)}
-                    aria-pressed={selected}
-                    className={`min-h-9 rounded-sm border px-2.5 py-1 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary ${
-                      selected
-                        ? "border-primary text-primary"
-                        : "border-border text-muted-foreground hover:text-white"
-                    }`}
-                  >
-                    {pass.label}
-                  </button>
-                );
-              })}
+              <div className="flex items-center gap-1 rounded-full border border-border/60 bg-background/60 p-0.5">
+                {study.passes.map((pass, idx) => {
+                  if (isWipe && idx === 0) return null;
+                  const selected = idx === passIdx;
+                  return (
+                    <button
+                      key={pass.id}
+                      type="button"
+                      onClick={() => setPassIdx(idx)}
+                      aria-pressed={selected}
+                      className={`relative rounded-full px-3 py-1 font-mono text-xs transition-colors duration-200 focus-visible:outline-none ${
+                        selected ? "text-primary font-medium" : "text-muted-foreground hover:text-white"
+                      }`}
+                    >
+                      {selected && (
+                        <motion.div
+                          layoutId="pass-tab-pill"
+                          className="absolute inset-0 rounded-full bg-white/[0.08] border border-primary/30"
+                          transition={{ type: "spring", stiffness: 450, damping: 32 }}
+                        />
+                      )}
+                      <span className="relative z-10">{pass.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             {isWipe ? (
@@ -310,7 +330,8 @@ export default function TechnicalSpotlight() {
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
-        </div>
+          </motion.div>
+        </AnimatePresence>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {spotlights.map((item) => (

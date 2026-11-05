@@ -160,41 +160,41 @@ export default function ProfileSection() {
                 href={SOCIALS.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-foreground hover:text-primary transition-colors"
+                className="text-foreground hover:text-white transition-colors duration-200"
               >
-                LinkedIn ↗
+                LinkedIn
               </a>
               <a
                 href={SOCIALS.artstation}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-foreground hover:text-primary transition-colors"
+                className="text-foreground hover:text-white transition-colors duration-200"
               >
-                ArtStation ↗
+                ArtStation
               </a>
               <a
                 href="https://www.mobygames.com/person/1553845/tran-minh-sang/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-foreground hover:text-primary transition-colors"
+                className="text-foreground hover:text-white transition-colors duration-200"
               >
-                MobyGames ↗
+                MobyGames
               </a>
               <a
                 href={SOCIALS.behance}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-foreground hover:text-primary transition-colors"
+                className="text-foreground hover:text-white transition-colors duration-200"
               >
-                Behance ↗
+                Behance
               </a>
               <a
                 href={SOCIALS.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-foreground hover:text-primary transition-colors"
+                className="text-foreground hover:text-white transition-colors duration-200"
               >
-                GitHub ↗
+                GitHub
               </a>
             </div>
           </div>

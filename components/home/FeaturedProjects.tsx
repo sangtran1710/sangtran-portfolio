@@ -18,18 +18,21 @@ export default function FeaturedProjects() {
       className="scroll-mt-24 border-b border-border bg-background"
     >
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-24">
-        <div className="mb-12 flex flex-wrap items-end justify-between gap-4 border-b border-border pb-6">
+        <div className="mb-8 flex flex-wrap items-baseline justify-between gap-4">
           <div>
             <h2 className="font-kanit text-3xl font-normal tracking-tight text-white sm:text-4xl">
               {copy.home.selectedWork}
             </h2>
+            <p className="mt-1 font-mono text-xs text-muted-foreground uppercase tracking-wider">
+              {isVi ? "Dự án AAA tiêu biểu · 2023 — 2026" : "Featured AAA Productions · 2023 — 2026"}
+            </p>
           </div>
           <Link
             href="/portfolio"
-            className="hidden items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-muted-foreground transition-colors hover:text-primary sm:inline-flex"
+            className="group hidden items-center gap-2 font-mono text-xs uppercase tracking-wider text-muted-foreground hover:text-white transition-colors sm:inline-flex"
           >
-            {isVi ? "Xem tất cả dự án" : "View all work"}
-            <ArrowRight className="h-4 w-4" />
+            <span>{isVi ? "Toàn bộ danh mục dự án" : "All Projects"}</span>
+            <span className="text-primary transition-transform group-hover:translate-x-1">→</span>
           </Link>
         </div>
 
@@ -71,13 +74,13 @@ export default function FeaturedProjects() {
           </div>
         </div>
 
-        <div className="mt-8 text-center sm:hidden">
+        <div className="mt-12 text-center">
           <Link
             href="/portfolio"
-            className="inline-flex items-center gap-2 border-b border-border pb-1 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-white"
+            className="group inline-flex items-center gap-2.5 rounded-full border border-border/80 bg-section/70 hover:bg-section hover:border-primary/50 px-7 py-3 text-sm font-medium text-white transition-all duration-300 shadow-sm"
           >
-            {isVi ? "Xem tất cả dự án" : "View all work"}
-            <ArrowRight className="h-4 w-4" />
+            <span>{isVi ? "Khám phá toàn bộ danh mục dự án & Breakdown" : "Explore All Productions & Technical Breakdowns"}</span>
+            <span className="text-primary transition-transform group-hover:translate-x-1">→</span>
           </Link>
         </div>
       </div>
