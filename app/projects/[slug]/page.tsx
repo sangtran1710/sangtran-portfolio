@@ -96,9 +96,6 @@ export default function ProjectDetailPage({ params }: Props) {
   // Separate Wolverine items into thematic Behance blocks
   const wolverineItems = project.evidenceBreakdown || [];
   const heroLoopItem = wolverineItems.find((i) => i.title.includes("Helix Engine")) || wolverineItems[0];
-  const inEngineAssetItem = wolverineItems.find((i) =>
-    i.title.includes("Mutant Teleport") || i.title.includes(".visualeffect")
-  );
   const pyroLoopItem = wolverineItems.find((i) => i.title.includes("Warehouse")) || wolverineItems[1];
   const creditsItem = wolverineItems.find((i) => i.title.includes("Credits"));
   const referenceFootageItems = wolverineItems.filter((i) =>
@@ -107,7 +104,7 @@ export default function ProjectDetailPage({ params }: Props) {
     )
   );
   const combatLoopItems = wolverineItems.filter(
-    (i) => i.loopVideo && i !== heroLoopItem && i !== pyroLoopItem && i !== creditsItem
+    (i) => i !== heroLoopItem && i !== pyroLoopItem && i !== creditsItem && !referenceFootageItems.includes(i)
   );
 
   // =========================================================================
@@ -208,93 +205,6 @@ export default function ProjectDetailPage({ params }: Props) {
           </section>
         )}
 
-        {/* 2. IN-ENGINE PROPRIETARY VFX ASSET SHOWCASE (Compact Editorial Bento Card) */}
-        {inEngineAssetItem && (
-          <section aria-label="In-Engine VFX Authoring" className="mx-auto max-w-5xl px-4 sm:px-8 mb-20 sm:mb-28">
-            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 backdrop-blur-sm transition-all duration-300 hover:border-white/20 shadow-lg">
-              <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
-                {/* Technical Copy & YouTube Action */}
-                <div className="lg:col-span-5 flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center gap-2 mb-2.5 font-mono text-[11px] uppercase tracking-wider text-primary">
-                      <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-                      <span>Proprietary Engine Asset · Insomniac</span>
-                    </div>
-
-                    <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white font-kanit">
-                      Mutant Teleport Recharging
-                    </h2>
-
-                    <div className="mt-2.5 mb-3.5 inline-block">
-                      <span className="rounded bg-white/5 border border-white/10 px-2 py-0.5 font-mono text-[11px] text-neutral-300">
-                        enm_htcmutant_teleport_recharging_purple.visualeffect
-                      </span>
-                    </div>
-
-                    <p className="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
-                      Direct viewport capture from Insomniac&apos;s proprietary 3D <code className="text-white/90 font-mono text-xs">.visualeffect</code> editor (Dock Window 20). Authored character-bound energy ribbons, adapted luminance curves, and charging dissipation for real-time PS5 execution.
-                    </p>
-
-                    <div className="mt-4 flex flex-wrap gap-2 font-mono text-[11px] text-neutral-500">
-                      <span className="rounded bg-black/40 border border-white/5 px-2 py-0.5">Near: 0.0</span>
-                      <span className="rounded bg-black/40 border border-white/5 px-2 py-0.5">Far: 10000.0</span>
-                      <span className="rounded bg-black/40 border border-white/5 px-2 py-0.5">Lum: 11.36</span>
-                      <span className="rounded bg-black/40 border border-white/5 px-2 py-0.5 text-primary/80">Real-Time PS5 Budget</span>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 pt-5 border-t border-white/10">
-                    <a
-                      href="https://www.youtube.com/watch?v=_g9fzTlKCVQ"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2.5 rounded-full bg-red-600 hover:bg-red-500 px-5 py-2.5 text-xs font-medium text-white transition-all shadow-[0_4px_16px_rgba(220,38,38,0.35)] hover:shadow-[0_6px_24px_rgba(220,38,38,0.55)] hover:scale-[1.02] active:scale-[0.98]"
-                    >
-                      <svg className="h-3.5 w-3.5 fill-white shrink-0" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                      </svg>
-                      <span>Watch Full Breakdown on YouTube</span>
-                      <span className="font-mono text-[11px] opacity-75">(4:33)</span>
-                    </a>
-                  </div>
-                </div>
-
-                {/* Compact, Crisp Image Card (Native resolution, zero low-res blur) */}
-                <div className="lg:col-span-7">
-                  <a
-                    href="https://www.youtube.com/watch?v=_g9fzTlKCVQ"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative block aspect-[1000/515] w-full max-w-[580px] mx-auto overflow-hidden rounded-xl border border-white/10 bg-black shadow-xl transition-all duration-300 hover:border-primary/50 hover:shadow-[0_16px_36px_rgba(0,0,0,0.7),0_0_24px_rgba(88,207,200,0.15)] hover:-translate-y-0.5"
-                  >
-                    <Image
-                      src={inEngineAssetItem.image}
-                      alt={inEngineAssetItem.title}
-                      fill
-                      priority
-                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-                      sizes="(max-width: 1024px) 100vw, 580px"
-                    />
-
-                    {/* YouTube Play Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/25 transition-all duration-300 group-hover:bg-black/10">
-                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-black/60 backdrop-blur-md border border-white/20 shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:bg-red-600 group-hover:border-red-500">
-                        <Play className="ml-0.5 h-6 w-6 fill-white text-white transition-colors" />
-                      </div>
-                    </div>
-
-                    {/* Window Title Header Pill */}
-                    <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 rounded bg-black/70 px-2 py-0.5 font-mono text-[10px] text-white/80 border border-white/10 backdrop-blur-md">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                      <span>Dock Window 20: 3D Viewport</span>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
         {/* 2. SIMULATION BREAKDOWN (Trask Warehouse Fireball) */}
         {pyroLoopItem && (
           <section aria-label="Warehouse Simulation VFX" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-20 sm:mb-28">
@@ -315,14 +225,14 @@ export default function ProjectDetailPage({ params }: Props) {
           </section>
         )}
 
-        {/* 3. COMBAT & GAMEPLAY CAPTURES */}
+        {/* 3. COMBAT, CINEMATIC & VIEWPORT CAPTURES */}
         <section aria-label="Cinematic & Combat VFX Breakdown" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-24 sm:mb-32">
           <div className="mb-8">
             <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-kanit">
-              Cinematic VFX, Project Context & Credits
+              Cinematic & Gameplay VFX
             </h2>
             <p className="text-xs sm:text-sm text-neutral-400 font-light">
-              Looping in-engine cinematic & destruction captures.
+              Looping in-engine cinematic, simulation, and proprietary viewport captures.
             </p>
           </div>
 
@@ -331,7 +241,7 @@ export default function ProjectDetailPage({ params }: Props) {
               <div
                 key={i}
                 className={`flex flex-col justify-between ${
-                  i === combatLoopItems.length - 1 ? "sm:col-span-2" : ""
+                  i === combatLoopItems.length - 1 && combatLoopItems.length % 2 === 1 ? "sm:col-span-2" : ""
                 }`}
               >
                 <div className="overflow-hidden rounded-xl sm:rounded-2xl bg-black">
@@ -354,7 +264,7 @@ export default function ProjectDetailPage({ params }: Props) {
                       rel="noopener noreferrer"
                       className="text-[11px] font-mono text-muted-foreground hover:text-primary hover:underline underline-offset-2 transition-colors flex items-center gap-1"
                     >
-                      Footage
+                      {item.link.includes("youtube.com") || item.link.includes("youtu.be") ? "YouTube" : "Footage"}
                     </a>
                   )}
                 </div>

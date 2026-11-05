@@ -265,9 +265,9 @@ export const PROJECTS: Project[] = [
       },
       {
         image: "/images/projects/wolverine/wolverine-mutant-teleport-recharge.webp",
-        title: "In-Engine VFX: Mutant Teleport Recharging (.visualeffect)",
-        caption: "Direct viewport capture from Insomniac's proprietary .visualeffect tool (Dock Window 20): dynamic energy ribbons & character-bound charging field.",
-        tag: "Proprietary Engine Asset",
+        title: "In-Engine Viewport: Mutant Teleport Recharging",
+        caption: "Direct viewport capture from Insomniac's proprietary 3D .visualeffect editor.",
+        tag: "Engine Asset",
         link: "https://www.youtube.com/watch?v=_g9fzTlKCVQ",
       },
       {
@@ -278,6 +278,30 @@ export const PROJECTS: Project[] = [
         caption: "Primary volumetric explosion & secondary flame shockwaves.",
         tag: "Simulation & Pyro",
         link: "https://youtu.be/3boUBsYHY3I?t=2926",
+      },
+      {
+        image: "/images/projects/wolverine/wolverine-sentinel-launch.webp",
+        loopVideo: "/video/wolverine/loops/wolverine-loop-sentinel-launch.mp4",
+        title: "Sentinel Awakening & Rocket Thrusters",
+        caption: "Giant Sentinel optical ignition, thruster flames & vertical launch plumes.",
+        tag: "Cinematic VFX",
+        link: "https://youtu.be/G4sMyUQ6s3w?t=39640",
+      },
+      {
+        image: "/images/projects/wolverine/wolverine-jean-telekinesis.webp",
+        loopVideo: "/video/wolverine/loops/wolverine-loop-jean-telekinesis.mp4",
+        title: "Jean Grey: Psionic Hover & Telekinesis",
+        caption: "Psychic particle swirling, glowing magenta eyes & kinetic hovering.",
+        tag: "Cinematic VFX",
+        link: "https://youtu.be/G4sMyUQ6s3w?t=12619",
+      },
+      {
+        image: "/images/projects/wolverine/wolverine-rain-fire.webp",
+        loopVideo: "/video/wolverine/loops/wolverine-loop-rain-fire.mp4",
+        title: "Tactical Aftermath: Rain, Fire & Volumetric Smoke",
+        caption: "Atmospheric weather simulation, wet surface reflections & ground fires.",
+        tag: "Cinematic Atmosphere",
+        link: "https://youtu.be/3boUBsYHY3I?t=3644",
       },
       {
         image: "/images/projects/wolverine/wolverine-building-collapse.webp",

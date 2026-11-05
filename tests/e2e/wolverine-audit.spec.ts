@@ -99,7 +99,7 @@ test.describe("Marvel's Wolverine Integration Audit", () => {
     await expect(creditLink).toBeVisible();
 
     // Visual breakdown check
-    await expect(page.getByText("Cinematic VFX, Project Context & Credits")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Cinematic & Gameplay VFX" })).toBeVisible();
   });
 
   test("Home page features Marvel's Wolverine as first project in Selected Work", async ({ page }) => {
