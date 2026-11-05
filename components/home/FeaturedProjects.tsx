@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { getLocalizedFeaturedProjects } from "@/lib/portfolio-content";
 import ProjectCard from "@/components/projects/ProjectCard";
@@ -18,7 +19,13 @@ export default function FeaturedProjects() {
       className="scroll-mt-24 border-b border-border bg-background"
     >
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-24">
-        <div className="mb-8 flex flex-wrap items-baseline justify-between gap-4">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="mb-8 flex flex-wrap items-baseline justify-between gap-4"
+        >
           <div>
             <h2 className="font-kanit text-3xl font-normal tracking-tight text-white sm:text-4xl">
               {copy.home.selectedWork}
@@ -34,10 +41,16 @@ export default function FeaturedProjects() {
             <span>{isVi ? "Toàn bộ danh mục dự án" : "All Projects"}</span>
             <span className="text-primary transition-transform group-hover:translate-x-1">→</span>
           </Link>
-        </div>
+        </motion.div>
 
         {/* Editorial Rhythm: 1 Dominant Hero + 2 Supporting Releases */}
-        <div className="space-y-12">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="space-y-12"
+        >
           {/* Dominant Hero: Marvel's Wolverine */}
           {projects[0] && (
             <ProjectCard
@@ -72,17 +85,23 @@ export default function FeaturedProjects() {
               />
             )}
           </div>
-        </div>
+        </motion.div>
 
-        <div className="mt-12 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="mt-12 text-center"
+        >
           <Link
             href="/portfolio"
-            className="group inline-flex items-center gap-2.5 rounded-full border border-border/80 bg-section/70 hover:bg-section hover:border-primary/50 px-7 py-3 text-sm font-medium text-white transition-all duration-300 shadow-sm"
+            className="group inline-flex items-center gap-2.5 rounded-full border border-border/80 bg-section/70 hover:bg-section hover:border-primary/50 px-7 py-3 text-sm font-medium text-white transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:shadow-[0_0_24px_rgba(88,207,200,0.2)] shadow-sm"
           >
             <span>{isVi ? "Khám phá toàn bộ danh mục dự án & Breakdown" : "Explore All Productions & Technical Breakdowns"}</span>
             <span className="text-primary transition-transform group-hover:translate-x-1">→</span>
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

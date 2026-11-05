@@ -32,6 +32,7 @@ export default function Navbar() {
   const router = useRouter();
   const reducedMotion = useReducedMotion();
   const [open, setOpen] = useState(false);
+  const [hoveredNav, setHoveredNav] = useState<string | null>(null);
   const { copy } = useLanguage();
   const navLinks = [
     { href: "/", label: "Home" },
@@ -75,7 +76,11 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-1.5 md:flex" aria-label="Primary navigation">
+        <nav
+          className="hidden items-center gap-1 md:flex"
+          aria-label="Primary navigation"
+          onMouseLeave={() => setHoveredNav(null)}
+        >
           {navLinks.map(({ href, label }) => {
             const isActive =
               href === "/"
@@ -85,26 +90,46 @@ export default function Navbar() {
                   : href === "/portfolio"
                     ? pathname.startsWith("/portfolio") || pathname.startsWith("/projects")
                   : pathname.startsWith(href);
+            const isHovered = hoveredNav === href;
 
             return (
               <Link
                 key={href}
                 href={href}
                 prefetch={true}
-                onMouseEnter={() => prefetchRoute(href)}
-                onFocus={() => prefetchRoute(href)}
+                onMouseEnter={() => {
+                  setHoveredNav(href);
+                  prefetchRoute(href);
+                }}
+                onFocus={() => {
+                  setHoveredNav(href);
+                  prefetchRoute(href);
+                }}
+                onBlur={() => setHoveredNav(null)}
                 className={cn(
-                  "relative inline-flex px-[0.8rem] py-2 text-base font-medium transition-colors duration-200",
+                  "relative inline-flex items-center px-3.5 py-1.5 text-base font-medium transition-colors duration-200 rounded-full",
                   isActive
                     ? "text-white"
                     : "text-white/65 hover:text-white",
                 )}
               >
-                {label}
+                {/* Floating hover capsule that glides across items */}
+                {isHovered && !reducedMotion && (
+                  <motion.span
+                    layoutId="navbar-hover-capsule"
+                    className="absolute inset-0 rounded-full bg-white/[0.08]"
+                    transition={{
+                      type: "spring",
+                      stiffness: 450,
+                      damping: 32,
+                    }}
+                  />
+                )}
+                {/* Active page indicator */}
                 {isActive && (
                   <motion.span
                     layoutId={reducedMotion ? undefined : "navbar-active-indicator"}
-                    className="absolute inset-x-3 bottom-0 h-[2px] bg-primary"
+                    className="absolute inset-x-3 -bottom-1 h-[2px] bg-primary rounded-full shadow-[0_0_8px_rgba(88,207,200,0.6)]"
                     transition={{
                       type: "spring",
                       stiffness: 400,
@@ -112,6 +137,7 @@ export default function Navbar() {
                     }}
                   />
                 )}
+                <span className="relative z-10">{label}</span>
               </Link>
             );
           })}

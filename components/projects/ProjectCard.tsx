@@ -65,10 +65,10 @@ export default function ProjectCard({
       className={cn("group block h-full", className)}
     >
       <article className="flex h-full flex-col">
-        {/* Viewport Frame — Crisp architectural edge + hover motion loop */}
+        {/* Viewport Frame — Tactile Framer lift + hover motion loop */}
         <div
           className={cn(
-            "relative w-full overflow-hidden rounded-sm border border-border bg-section transition-colors duration-300 group-hover:border-primary",
+            "relative w-full overflow-hidden rounded-xl border border-border/80 bg-section transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-primary/50 group-hover:-translate-y-1.5 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.7),0_0_28px_rgba(88,207,200,0.1)] group-active:scale-[0.99]",
             featured ? "aspect-[16/9]" : "aspect-[16/10]"
           )}
         >
@@ -78,7 +78,7 @@ export default function ProjectCard({
             fill
             priority={priority}
             className={cn(
-              "object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]",
+              "object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]",
               isHovering && videoReady && hasPreviewVideo ? "opacity-0" : "opacity-100"
             )}
             sizes={

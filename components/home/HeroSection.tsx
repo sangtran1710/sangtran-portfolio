@@ -167,19 +167,21 @@ export default function HeroSection() {
               Senior VFX Artist · Real-Time VFX & Engine Shaders
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4 text-base font-medium">
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 text-base font-medium">
               <Link
                 href="/portfolio"
-                className="inline-flex min-h-12 items-center justify-center rounded-sm bg-primary px-6 py-3 text-background transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+                className="group inline-flex min-h-12 items-center justify-center rounded-full bg-primary px-7 py-3 text-background font-medium transition-all duration-300 ease-out hover:bg-white hover:scale-[1.03] active:scale-[0.97] hover:shadow-[0_0_24px_rgba(88,207,200,0.35)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
               >
                 {isVi ? "Xem dự án" : "Selected work"}
               </Link>
               <Link
                 href="/showreel"
-                className="inline-flex min-h-12 items-center gap-2.5 py-3 text-white transition-colors hover:text-primary"
+                className="group inline-flex min-h-12 items-center gap-2.5 px-4 py-3 text-white transition-all duration-300 ease-out hover:text-primary hover:scale-[1.03] active:scale-[0.97]"
               >
-                <Play className="h-3.5 w-3.5 fill-current" />
-                Showreel
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 border border-white/20 transition-all duration-300 group-hover:bg-primary group-hover:border-primary group-hover:text-background group-hover:scale-110">
+                  <Play className="h-3 w-3 fill-current ml-0.5" />
+                </div>
+                <span>Showreel</span>
               </Link>
             </div>
 
