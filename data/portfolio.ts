@@ -268,6 +268,7 @@ export const PROJECTS: Project[] = [
         title: "In-Engine VFX: Mutant Teleport Recharging (.visualeffect)",
         caption: "Direct viewport capture from Insomniac's proprietary .visualeffect tool (Dock Window 20): dynamic energy ribbons & character-bound charging field.",
         tag: "Proprietary Engine Asset",
+        link: "https://www.youtube.com/watch?v=_g9fzTlKCVQ",
       },
       {
         image: "/images/projects/wolverine/wolverine-artblast-explosion.webp",

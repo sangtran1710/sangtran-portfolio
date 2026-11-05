@@ -224,23 +224,54 @@ export default function ProjectDetailPage({ params }: Props) {
                   Direct viewport capture from Insomniac&apos;s proprietary 3D <code className="text-white/90 font-mono text-xs">.visualeffect</code> editor. Authored character-bound energy ribbons, adapted luminance curves, and charging dissipation for real-time PS5 execution.
                 </p>
               </div>
-              <div className="hidden sm:flex items-center gap-2 font-mono text-xs text-neutral-400">
-                <span className="rounded bg-white/5 border border-white/10 px-2.5 py-1 text-neutral-300">
+              <div className="flex items-center gap-3 font-mono text-xs text-neutral-400">
+                <span className="hidden sm:inline-block rounded bg-white/5 border border-white/10 px-2.5 py-1 text-neutral-300">
                   enm_htcmutant_teleport_recharging_purple.visualeffect
                 </span>
+                <a
+                  href="https://www.youtube.com/watch?v=_g9fzTlKCVQ"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-red-500/30 bg-red-500/10 px-3.5 py-1.5 text-xs font-medium text-white transition-all hover:bg-red-500/20 hover:border-red-500/50 hover:text-white"
+                >
+                  <svg className="h-3.5 w-3.5 fill-red-500" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                  <span>Watch on YouTube</span>
+                </a>
               </div>
             </div>
 
-            <div className="relative aspect-[1000/515] w-full overflow-hidden rounded-xl sm:rounded-2xl border border-white/10 bg-black shadow-2xl group">
+            <a
+              href="https://www.youtube.com/watch?v=_g9fzTlKCVQ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative block aspect-[1000/515] w-full overflow-hidden rounded-xl sm:rounded-2xl border border-white/10 bg-black shadow-2xl transition-all duration-300 hover:border-primary/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(88,207,200,0.15)]"
+            >
               <Image
                 src={inEngineAssetItem.image}
                 alt={inEngineAssetItem.title}
                 fill
                 priority
-                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.01]"
+                className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
                 sizes="(max-width: 1024px) 100vw, 1400px"
               />
-            </div>
+
+              {/* YouTube Play Overlay */}
+              <div className="absolute inset-0 flex items-center justify-center bg-black/30 transition-all duration-300 group-hover:bg-black/10">
+                <div className="flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:bg-red-600 group-hover:border-red-500">
+                  <Play className="ml-1 h-7 w-7 sm:h-8 sm:w-8 fill-white text-white transition-colors" />
+                </div>
+              </div>
+
+              {/* Bottom Badge inside Card */}
+              <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 flex items-center gap-2 rounded-full border border-white/15 bg-black/80 px-3.5 py-1.5 backdrop-blur-md shadow-lg">
+                <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+                <span className="font-mono text-xs text-white font-medium">
+                  Watch Full Breakdown on YouTube (4:33)
+                </span>
+              </div>
+            </a>
 
             <div className="mt-3 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-3 font-mono text-xs text-neutral-400">
               <span className="text-white/90 font-medium">
