@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ArrowUpRight, Play, Sparkles, Layers, Cpu, Flame, Video } from "lucide-react";
+import { ArrowLeft, Play, Sparkles, Layers, Cpu, Flame, Video } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import ProjectVideo from "@/components/projects/ProjectVideo";
 import BreakdownMedia from "@/components/projects/BreakdownMedia";
@@ -133,10 +133,9 @@ export default function ProjectDetailPage({ params }: Props) {
                 href={project.mobyGamesUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-mono text-primary hover:text-white transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-primary hover:text-white hover:underline underline-offset-4 transition-colors"
               >
                 MobyGames Credit
-                <ArrowUpRight className="h-3 w-3" />
               </a>
             )}
           </div>
@@ -181,7 +180,6 @@ export default function ProjectDetailPage({ params }: Props) {
                 className="inline-flex items-center gap-2 rounded-full border border-primary/50 bg-primary/10 px-4 py-2 text-xs font-mono font-medium text-white hover:bg-primary/20 hover:border-primary transition-all shadow-sm"
               >
                 <span>Verified Game Credit on MobyGames</span>
-                <ArrowUpRight className="h-3.5 w-3.5 text-primary" />
               </a>
             </div>
           )}
@@ -264,10 +262,9 @@ export default function ProjectDetailPage({ params }: Props) {
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[11px] font-mono text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+                      className="text-[11px] font-mono text-muted-foreground hover:text-primary hover:underline underline-offset-2 transition-colors flex items-center gap-1"
                     >
                       Footage
-                      <ArrowUpRight className="h-3 w-3" />
                     </a>
                   )}
                 </div>
@@ -399,7 +396,6 @@ export default function ProjectDetailPage({ params }: Props) {
                       className="inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-primary/20 shrink-0"
                     >
                       Verify on YouTube
-                      <ArrowUpRight className="h-3 w-3 text-primary" />
                     </a>
                   )}
                   {project.mobyGamesUrl && (
@@ -410,7 +406,6 @@ export default function ProjectDetailPage({ params }: Props) {
                       className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-white/10 shrink-0"
                     >
                       MobyGames Credit
-                      <ArrowUpRight className="h-3 w-3 text-primary" />
                     </a>
                   )}
                 </div>
@@ -445,7 +440,6 @@ export default function ProjectDetailPage({ params }: Props) {
                   </h4>
                   <p className="mt-0.5 text-[11px] font-mono text-muted-foreground flex items-center gap-1">
                     Public Footage
-                    <ArrowUpRight className="h-3 w-3 text-quiet group-hover:text-primary transition-colors" />
                   </p>
                 </div>
               </a>
@@ -501,10 +495,9 @@ export default function ProjectDetailPage({ params }: Props) {
                   href={project.mobyGamesUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs font-mono text-primary hover:text-white transition-colors"
+                  className="inline-flex items-center gap-1 text-xs font-mono text-primary hover:text-white hover:underline underline-offset-4 transition-colors"
                 >
                   Verified on MobyGames
-                  <ArrowUpRight className="h-3 w-3" />
                 </a>
               )}
             </div>
@@ -531,10 +524,9 @@ export default function ProjectDetailPage({ params }: Props) {
               href={project.mobyGamesUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-xs font-mono text-primary hover:text-white transition-colors"
+              className="inline-flex items-center gap-1 text-xs font-mono text-primary hover:text-white hover:underline underline-offset-4 transition-colors"
             >
               MobyGames Credit
-              <ArrowUpRight className="h-3 w-3" />
             </a>
           )}
           {project.steamUrl && (
@@ -542,10 +534,9 @@ export default function ProjectDetailPage({ params }: Props) {
               href={project.steamUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-xs font-mono text-muted-foreground hover:text-white transition-colors"
+              className="inline-flex items-center gap-1 text-xs font-mono text-muted-foreground hover:text-white hover:underline underline-offset-4 transition-colors"
             >
               Official Store
-              <ArrowUpRight className="h-3 w-3" />
             </a>
           )}
         </div>
@@ -594,7 +585,6 @@ export default function ProjectDetailPage({ params }: Props) {
               className="inline-flex items-center gap-2 rounded-full border border-primary/50 bg-primary/10 px-4 py-2 text-xs font-mono font-medium text-white hover:bg-primary/20 hover:border-primary transition-all shadow-sm"
             >
               <span>Verified Game Credit on MobyGames</span>
-              <ArrowUpRight className="h-3.5 w-3.5 text-primary" />
             </a>
           </div>
         )}
@@ -658,7 +648,6 @@ export default function ProjectDetailPage({ params }: Props) {
                       }`}
                     >
                       {item.link.includes("mobygames") ? "MobyGames Credit" : "Footage"}
-                      <ArrowUpRight className="h-3 w-3" />
                     </a>
                   ) : item.timestamps && item.timestamps.length > 0 ? (
                     <div className="flex items-center gap-2">
@@ -671,7 +660,6 @@ export default function ProjectDetailPage({ params }: Props) {
                           className="text-[11px] font-mono text-primary-hover hover:underline flex items-center gap-0.5"
                         >
                           {ts.time}
-                          <ArrowUpRight className="h-2.5 w-2.5" />
                         </a>
                       ))}
                     </div>
@@ -733,7 +721,6 @@ export default function ProjectDetailPage({ params }: Props) {
                     </h3>
                     <span className="text-[11px] font-mono text-muted-foreground group-hover:text-white transition-colors flex items-center gap-1">
                       Watch
-                      <ArrowUpRight className="h-3 w-3" />
                     </span>
                   </div>
                   {clip.caption && (
@@ -925,10 +912,9 @@ export default function ProjectDetailPage({ params }: Props) {
                 href={project.mobyGamesUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs font-mono text-primary hover:text-white transition-colors"
+                className="inline-flex items-center gap-1 text-xs font-mono text-primary hover:text-white hover:underline underline-offset-4 transition-colors"
               >
                 MobyGames Credit
-                <ArrowUpRight className="h-3 w-3" />
               </a>
             )}
             {project.steamUrl && (
@@ -936,10 +922,9 @@ export default function ProjectDetailPage({ params }: Props) {
                 href={project.steamUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs font-mono text-muted-foreground hover:text-white transition-colors"
+                className="inline-flex items-center gap-1 text-xs font-mono text-muted-foreground hover:text-white hover:underline underline-offset-4 transition-colors"
               >
                 Steam
-                <ArrowUpRight className="h-3 w-3" />
               </a>
             )}
           </div>

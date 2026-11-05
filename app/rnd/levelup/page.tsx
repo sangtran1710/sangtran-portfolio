@@ -128,7 +128,6 @@ export default function LevelUpPage() {
                                     className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-zinc-950 transition-colors hover:bg-zinc-200"
                                 >
                                     View Case Study
-                                    <ArrowLeft className="h-4 w-4 rotate-[135deg]" />
                                 </a>
                             </div>
                         </div>

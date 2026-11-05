@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, Youtube } from "lucide-react";
+import { ArrowLeft, Youtube } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Erlangmon VFX",
@@ -95,7 +95,6 @@ export default function ErlangmonVfxPage() {
           >
             <Youtube className="h-4 w-4" aria-hidden="true" />
             Watch on YouTube
-            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
       </section>

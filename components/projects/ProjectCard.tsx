@@ -3,7 +3,6 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { useReducedMotion } from "framer-motion";
 import { getProjectByline, type Project } from "@/data/portfolio";
 import { useCanHover } from "@/lib/use-media";

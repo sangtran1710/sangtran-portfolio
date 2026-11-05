@@ -78,7 +78,7 @@ export default function ProjectVideo({
           rel="noopener noreferrer"
           className="mt-3 inline-flex items-center gap-1 text-sm text-primary-hover underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-hover"
         >
-          {isLocal ? "Watch Full Gameplay Stream (11h52m) on YouTube ↗" : "Watch on YouTube if the video does not play here ↗"}
+          {isLocal ? "Watch Full Gameplay Stream (11h52m) on YouTube" : "Watch on YouTube if the video does not play here"}
         </a>
       )}
     </div>

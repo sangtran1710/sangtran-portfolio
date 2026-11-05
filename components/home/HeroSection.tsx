@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, Play } from "lucide-react";
+import { Play } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { getLocalizedHero } from "@/lib/portfolio-content";
 import { useCanHover } from "@/lib/use-media";
@@ -170,10 +170,9 @@ export default function HeroSection() {
             <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4 text-base font-medium">
               <Link
                 href="/portfolio"
-                className="inline-flex min-h-12 items-center gap-3 rounded-sm bg-primary px-6 py-3 text-background transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+                className="inline-flex min-h-12 items-center justify-center rounded-sm bg-primary px-6 py-3 text-background transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
               >
                 {isVi ? "Xem dự án" : "Selected work"}
-                <ArrowUpRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/showreel"
@@ -191,7 +190,6 @@ export default function HeroSection() {
                 className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-section/80 px-4 py-2 text-xs font-mono text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors"
               >
                 <span>{currentShot.title} · {currentShot.meta}</span>
-                <ArrowUpRight className="h-3.5 w-3.5 text-primary" />
               </Link>
             </div>
           </div>
@@ -255,13 +253,6 @@ export default function HeroSection() {
                         >
                           {isVi ? "Xem dự án" : "Open project"}
                         </span>
-                        <ArrowUpRight
-                          className={`h-3.5 w-3.5 transition-all duration-200 ${
-                            isActive
-                              ? "text-primary opacity-100 translate-x-0.5 -translate-y-0.5"
-                              : "text-muted-foreground/40 opacity-0 group-hover:opacity-100 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                          }`}
-                        />
                       </div>
                     </Link>
                   </li>

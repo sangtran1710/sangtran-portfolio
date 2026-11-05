@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { getLocalizedAchievementCredits } from "@/lib/portfolio-content";
 
@@ -59,10 +58,9 @@ export default function FeaturedCreditsSection() {
                 href="https://www.mobygames.com/person/1553845/tran-minh-sang/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2.5 text-xs sm:text-sm font-medium text-background transition-colors hover:bg-white"
+                className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2.5 text-xs sm:text-sm font-medium text-background transition-colors hover:bg-white"
               >
                 <span>{locale === "vi" ? "Mở hồ sơ trên MobyGames" : "View Live on MobyGames"}</span>
-                <ArrowUpRight className="h-4 w-4" />
               </a>
             </div>
           </div>

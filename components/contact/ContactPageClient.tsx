@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { SOCIALS, SITE } from "@/data/portfolio";
 
 const links = [
@@ -30,7 +30,6 @@ export default function ContactPageClient() {
             className="mt-10 inline-flex items-center gap-3 border-b border-white/50 pb-2 text-xl font-medium tracking-tight transition-colors hover:border-white hover:text-primary-hover sm:text-3xl"
           >
             {SITE.email}
-            <ArrowUpRight className="h-5 w-5" />
           </a>
         </div>
 
@@ -44,7 +43,6 @@ export default function ContactPageClient() {
               className="flex items-center justify-between py-5 text-lg text-white/70 transition-colors hover:text-white"
             >
               {link.label}
-              <ArrowUpRight className="h-4 w-4" />
             </a>
           ))}
         </nav>

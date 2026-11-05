@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { getLocalizedProfile, getLocalizedSite } from "@/lib/portfolio-content";
 import { SOCIALS } from "@/data/portfolio";
@@ -48,7 +47,6 @@ export default function ProfileSection() {
               <span className="border-b border-primary/40 pb-0.5 transition-colors group-hover:border-primary">
                 {site.email}
               </span>
-              <ArrowUpRight className="h-4 w-4 sm:h-6 sm:w-6 text-primary transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 shrink-0" />
             </a>
           </div>
         </div>
@@ -92,10 +90,9 @@ export default function ProfileSection() {
             <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-border/50 pt-6">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-1.5 font-mono text-xs font-medium text-white transition-colors hover:text-primary"
+                className="inline-flex items-center gap-1.5 font-mono text-xs font-medium text-white transition-colors hover:text-primary hover:underline underline-offset-4"
               >
                 <span>{isVi ? "Đọc chi tiết kinh nghiệm & kỹ năng" : "Full background & studio experience"}</span>
-                <ArrowUpRight className="h-3.5 w-3.5 text-primary" />
               </Link>
               <span className="font-mono text-xs text-muted-foreground/60">
                 Unreal Engine · Niagara · Houdini
@@ -143,7 +140,6 @@ export default function ProfileSection() {
                 className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.08] hover:bg-primary hover:text-background px-3.5 py-1.5 text-xs font-medium text-white transition-all"
               >
                 <span>View Profile</span>
-                <ArrowUpRight className="h-3.5 w-3.5" />
               </a>
             </div>
           </div>

@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, MoveHorizontal } from "lucide-react";
+import { MoveHorizontal } from "lucide-react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { useCanHover } from "@/lib/use-media";
@@ -324,10 +324,9 @@ export default function TechnicalSpotlight() {
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">{study.summary}</p>
             <Link
               href={study.href}
-              className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-white transition-colors hover:text-primary"
+              className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-white transition-colors hover:text-primary hover:underline underline-offset-4"
             >
               {study.linkLabel}
-              <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
           </motion.div>
