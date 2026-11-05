@@ -96,6 +96,9 @@ export default function ProjectDetailPage({ params }: Props) {
   // Separate Wolverine items into thematic Behance blocks
   const wolverineItems = project.evidenceBreakdown || [];
   const heroLoopItem = wolverineItems.find((i) => i.title.includes("Helix Engine")) || wolverineItems[0];
+  const inEngineAssetItem = wolverineItems.find((i) =>
+    i.title.includes("Mutant Teleport") || i.title.includes(".visualeffect")
+  );
   const pyroLoopItem = wolverineItems.find((i) => i.title.includes("Warehouse")) || wolverineItems[1];
   const creditsItem = wolverineItems.find((i) => i.title.includes("Credits"));
   const referenceFootageItems = wolverineItems.filter((i) =>
@@ -201,6 +204,51 @@ export default function ProjectDetailPage({ params }: Props) {
               <h3 className="text-sm sm:text-base font-medium text-white/90">
                 {heroLoopItem.title}
               </h3>
+            </div>
+          </section>
+        )}
+
+        {/* 2. IN-ENGINE PROPRIETARY VFX ASSET SHOWCASE */}
+        {inEngineAssetItem && (
+          <section aria-label="In-Engine VFX Authoring" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-20 sm:mb-28">
+            <div className="mb-6 flex flex-wrap items-baseline justify-between gap-4">
+              <div>
+                <div className="flex items-center gap-2 mb-2 font-mono text-[11px] uppercase tracking-wider text-primary">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+                  <span>Proprietary Engine Asset · Insomniac Games</span>
+                </div>
+                <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white font-kanit">
+                  In-Engine VFX Authoring: Mutant Teleport Recharging
+                </h2>
+                <p className="mt-1 text-xs sm:text-sm text-neutral-400 font-light max-w-2xl">
+                  Direct viewport capture from Insomniac&apos;s proprietary 3D <code className="text-white/90 font-mono text-xs">.visualeffect</code> editor. Authored character-bound energy ribbons, adapted luminance curves, and charging dissipation for real-time PS5 execution.
+                </p>
+              </div>
+              <div className="hidden sm:flex items-center gap-2 font-mono text-xs text-neutral-400">
+                <span className="rounded bg-white/5 border border-white/10 px-2.5 py-1 text-neutral-300">
+                  enm_htcmutant_teleport_recharging_purple.visualeffect
+                </span>
+              </div>
+            </div>
+
+            <div className="relative aspect-[1000/515] w-full overflow-hidden rounded-xl sm:rounded-2xl border border-white/10 bg-black shadow-2xl group">
+              <Image
+                src={inEngineAssetItem.image}
+                alt={inEngineAssetItem.title}
+                fill
+                priority
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.01]"
+                sizes="(max-width: 1024px) 100vw, 1400px"
+              />
+            </div>
+
+            <div className="mt-3 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-3 font-mono text-xs text-neutral-400">
+              <span className="text-white/90 font-medium">
+                Dock Window 20: 3D Viewport & Energy Simulation
+              </span>
+              <span className="text-[11px] text-neutral-500">
+                Near: 0.0 · Far: 10000.0 · Lum: 11.36 · Real-Time PS5 Budget
+              </span>
             </div>
           </section>
         )}
