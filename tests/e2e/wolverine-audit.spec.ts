@@ -16,7 +16,7 @@ test.describe("Marvel's Wolverine Integration Audit", () => {
     await expect(articles).toHaveCount(3);
 
     // Verify Wolverine credit text
-    await expect(creditsSection.getByText("Marvel's Wolverine")).toBeVisible();
+    await expect(creditsSection.getByText("Marvel's Wolverine").first()).toBeVisible();
     await expect(creditsSection.getByText("Senior VFX Artist").first()).toBeVisible();
 
     // Capture screenshot of credits section

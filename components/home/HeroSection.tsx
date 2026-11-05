@@ -188,7 +188,7 @@ export default function HeroSection() {
             <div className="mt-8 lg:hidden">
               <Link
                 href={currentShot.href}
-                className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground hover:text-primary transition-colors"
+                className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-section/80 px-4 py-2 text-xs font-mono text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors"
               >
                 <span>{currentShot.title} · {currentShot.meta}</span>
                 <ArrowUpRight className="h-3.5 w-3.5 text-primary" />
@@ -198,7 +198,7 @@ export default function HeroSection() {
 
           {/* Desktop shot selector */}
           <div className="hidden lg:block">
-            <ol className="divide-y divide-border border-y border-border">
+            <ol className="divide-y divide-border/60 border-y border-border">
               {HERO_SHOTS.map((shot, index) => {
                 const isActive = activeShot === index;
                 return (
@@ -213,28 +213,51 @@ export default function HeroSection() {
                         setActiveShot(index);
                         setUserLocked(true);
                       }}
-                      className={`group flex w-full items-baseline justify-between gap-4 py-3 text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary ${
-                        isActive ? "text-white" : "text-muted-foreground hover:text-white"
+                      className={`group flex w-full items-center justify-between gap-4 py-3.5 px-3 -mx-3 rounded-md text-left transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary ${
+                        isActive
+                          ? "bg-white/[0.06] text-white shadow-sm"
+                          : "text-muted-foreground hover:bg-white/[0.03] hover:text-white"
                       }`}
                     >
-                      <div className="flex items-baseline gap-4">
-                        <span className={`font-mono text-xs ${isActive ? "text-primary font-semibold" : "text-quiet"}`}>
+                      <div className="flex items-center gap-3.5">
+                        <span
+                          className={`font-mono text-xs transition-colors ${
+                            isActive ? "font-semibold text-primary" : "text-quiet group-hover:text-primary/70"
+                          }`}
+                        >
                           {String(index + 1).padStart(2, "0")}
                         </span>
-                        <span>
-                          <span className="block text-sm font-medium transition-colors group-hover:text-primary">
+                        <div>
+                          <span
+                            className={`block text-sm font-medium transition-colors ${
+                              isActive ? "text-white" : "group-hover:text-primary"
+                            }`}
+                          >
                             {shot.title}
                           </span>
                           <span className="block text-xs text-muted-foreground">
                             {shot.meta}
                           </span>
-                        </span>
+                        </div>
                       </div>
-                      <ArrowUpRight
-                        className={`h-3.5 w-3.5 transition-all group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
-                          isActive ? "text-primary opacity-100" : "text-muted-foreground/40 opacity-0 group-hover:opacity-100"
-                        }`}
-                      />
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        <span
+                          className={`text-[11px] font-mono transition-all duration-200 ${
+                            isActive
+                              ? "text-primary opacity-100"
+                              : "text-muted-foreground/60 opacity-0 group-hover:opacity-100 group-hover:text-primary"
+                          }`}
+                        >
+                          {isVi ? "Xem dự án" : "Open project"}
+                        </span>
+                        <ArrowUpRight
+                          className={`h-3.5 w-3.5 transition-all duration-200 ${
+                            isActive
+                              ? "text-primary opacity-100 translate-x-0.5 -translate-y-0.5"
+                              : "text-muted-foreground/40 opacity-0 group-hover:opacity-100 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                          }`}
+                        />
+                      </div>
                     </Link>
                   </li>
                 );

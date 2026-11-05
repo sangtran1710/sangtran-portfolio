@@ -124,9 +124,9 @@ export default function TechnicalSpotlight() {
       description: isVi
         ? "Tối ưu mô phỏng phá hủy Houdini cho real-time."
         : "Houdini destruction sims converted for real-time.",
-      image: "/assets/blog/houdini-wolverine-destructibles/poster-rbd-bridge.webp",
-      previewVideo: "/assets/blog/houdini-wolverine-destructibles/prop-preview.mp4",
-      crop: "object-left scale-[1.9] origin-left",
+      image: "/images/projects/wolverine/wolverine-building-collapse.webp",
+      previewVideo: "/video/wolverine/loops/wolverine-loop-building-collapse.mp4",
+      crop: "object-center",
       link: "/blog/houdini-destructibles-and-vfx-pipeline",
     },
     {

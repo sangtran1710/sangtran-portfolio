@@ -16,22 +16,68 @@ export default function FeaturedCreditsSection() {
       <h2 className="mb-2 font-kanit text-2xl font-normal tracking-tight text-white sm:text-3xl">
         {copy.about.featuredCredits}
       </h2>
-      <p className="mb-3 max-w-2xl text-sm leading-6 text-muted-foreground">
+      <p className="mb-6 max-w-2xl text-sm leading-6 text-muted-foreground">
         {copy.about.featuredCreditsBody}
       </p>
-      <a
-        href="https://www.mobygames.com/person/1553845/tran-minh-sang/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mb-8 inline-flex max-w-full items-center gap-1 text-sm text-primary underline decoration-primary/40 underline-offset-4 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
-      >
-        <span>
-          {locale === "vi"
-            ? "Xem game credits trên MobyGames · Tran Minh Sang"
-            : "View game credits on MobyGames · Tran Minh Sang"}
-        </span>
-        <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" />
-      </a>
+
+      {/* Official MobyGames Verified Profile Card */}
+      <div className="mb-10 overflow-hidden rounded-xl border border-primary/30 bg-gradient-to-r from-section via-section/90 to-section/80 p-6 sm:p-8 shadow-lg">
+        <div className="grid gap-6 lg:grid-cols-[1fr_320px] lg:items-center">
+          <div>
+            <div className="flex flex-wrap items-center gap-2.5">
+              <span className="rounded-full border border-primary/25 bg-primary/10 px-3 py-1 font-mono text-xs font-medium text-primary">
+                Official Industry Database
+              </span>
+              <span className="font-mono text-xs text-muted-foreground">Moby ID: 1553845</span>
+            </div>
+
+            <h3 className="mt-3 font-kanit text-2xl font-normal tracking-tight text-white sm:text-3xl">
+              Tran Minh Sang · Verified Credits
+            </h3>
+
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              {locale === "vi"
+                ? "Chứng thực hồ sơ nhà phát triển trên cơ sở dữ liệu game MobyGames quốc tế với 2 tựa game AAA từ Insomniac Games & PlayStation Studios."
+                : "Verified game developer profile on the international MobyGames database, crediting production roles on PlayStation Studios AAA releases."}
+            </p>
+
+            <ul className="mt-4 space-y-1.5 text-xs sm:text-sm text-foreground">
+              <li className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                <span className="font-medium text-white">Marvel&apos;s Wolverine</span>
+                <span className="text-muted-foreground">(2026) · Senior VFX Artists</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                <span className="font-medium text-white">Marvel&apos;s Spider-Man 2</span>
+                <span className="text-muted-foreground">(2023) · FX Artists</span>
+              </li>
+            </ul>
+
+            <div className="mt-6 flex flex-wrap items-center gap-4">
+              <a
+                href="https://www.mobygames.com/person/1553845/tran-minh-sang/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2.5 text-xs sm:text-sm font-medium text-background transition-colors hover:bg-white"
+              >
+                <span>{locale === "vi" ? "Mở hồ sơ trên MobyGames" : "View Live on MobyGames"}</span>
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-border/80 bg-background/50 shadow-inner group">
+            <Image
+              src="/images/achivements/mobygames-profile.webp"
+              alt="MobyGames Verified Profile — Tran Minh Sang"
+              fill
+              className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+              sizes="(max-width: 1024px) 100vw, 320px"
+            />
+          </div>
+        </div>
+      </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {credits.map((item, index) => (
