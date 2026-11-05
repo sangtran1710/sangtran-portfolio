@@ -75,9 +75,9 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop nav */}
+        {/* Desktop nav — Framer segmented dock with spring physics */}
         <nav
-          className="hidden items-center gap-1 md:flex"
+          className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/[0.03] p-1.5 backdrop-blur-md shadow-inner md:flex"
           aria-label="Primary navigation"
           onMouseLeave={() => setHoveredNav(null)}
         >
@@ -107,17 +107,17 @@ export default function Navbar() {
                 }}
                 onBlur={() => setHoveredNav(null)}
                 className={cn(
-                  "relative inline-flex items-center px-3.5 py-1.5 text-base font-medium transition-colors duration-200 rounded-full",
+                  "relative inline-flex items-center px-4 py-1.5 text-sm font-medium transition-colors duration-200 rounded-full focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary",
                   isActive
-                    ? "text-white"
-                    : "text-white/65 hover:text-white",
+                    ? "text-white font-semibold"
+                    : "text-neutral-400 hover:text-white"
                 )}
               >
-                {/* Floating hover capsule that glides across items */}
-                {isHovered && !reducedMotion && (
-                  <motion.span
-                    layoutId="navbar-hover-capsule"
-                    className="absolute inset-0 rounded-full bg-white/[0.08]"
+                {/* Active page indicator: sleek glowing spring pill */}
+                {isActive && !reducedMotion && (
+                  <motion.div
+                    layoutId="navbar-active-pill"
+                    className="absolute inset-0 rounded-full bg-white/[0.12] border border-white/20 shadow-[0_2px_12px_rgba(0,0,0,0.4),0_0_12px_rgba(88,207,200,0.15)]"
                     transition={{
                       type: "spring",
                       stiffness: 450,
@@ -125,18 +125,20 @@ export default function Navbar() {
                     }}
                   />
                 )}
-                {/* Active page indicator */}
-                {isActive && (
-                  <motion.span
-                    layoutId={reducedMotion ? undefined : "navbar-active-indicator"}
-                    className="absolute inset-x-3 -bottom-1 h-[2px] bg-primary rounded-full shadow-[0_0_8px_rgba(88,207,200,0.6)]"
+
+                {/* Floating hover capsule that glides across items */}
+                {isHovered && !isActive && !reducedMotion && (
+                  <motion.div
+                    layoutId="navbar-hover-capsule"
+                    className="absolute inset-0 rounded-full bg-white/[0.07]"
                     transition={{
                       type: "spring",
-                      stiffness: 400,
-                      damping: 32,
+                      stiffness: 450,
+                      damping: 30,
                     }}
                   />
                 )}
+
                 <span className="relative z-10">{label}</span>
               </Link>
             );

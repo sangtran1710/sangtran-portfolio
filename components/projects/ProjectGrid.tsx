@@ -28,61 +28,77 @@ export default function ProjectGrid() {
 
   return (
     <div>
-      <div className="mb-12 flex flex-wrap items-center gap-2 border-b border-border/60 pb-5" role="tablist">
-        {filters.map(({ value, label }) => {
-          const isSelected = active === value;
-          return (
-            <button
-              key={value}
-              type="button"
-              role="tab"
-              aria-selected={isSelected}
-              aria-pressed={isSelected}
-              onClick={() => setActive(value)}
-              className={cn(
-                "relative rounded-full px-4 py-2 text-xs sm:text-sm font-medium transition-colors duration-200 focus-visible:outline-none",
-                isSelected
-                  ? "text-primary font-medium"
-                  : "text-muted-foreground hover:text-white"
-              )}
-            >
-              {isSelected && !prefersReducedMotion && (
-                <motion.div
-                  layoutId="portfolio-filter-pill"
-                  className="absolute inset-0 rounded-full bg-primary/10 border border-primary/30 shadow-sm"
-                  transition={{ type: "spring", stiffness: 450, damping: 32 }}
-                />
-              )}
-              <span className="relative z-10">{label}</span>
-            </button>
-          );
-        })}
+      {/* Framer Segmented Dock Header */}
+      <div className="mb-12 flex flex-wrap items-center justify-between gap-4 border-b border-border/60 pb-6">
+        <div className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] p-1.5 backdrop-blur-md shadow-inner" role="tablist">
+          {filters.map(({ value, label }) => {
+            const isSelected = active === value;
+            return (
+              <button
+                key={value}
+                type="button"
+                role="tab"
+                aria-selected={isSelected}
+                aria-pressed={isSelected}
+                onClick={() => setActive(value)}
+                className={cn(
+                  "relative rounded-full px-5 py-2 text-xs sm:text-sm font-medium transition-colors duration-200 focus-visible:outline-none",
+                  isSelected
+                    ? "text-white font-semibold"
+                    : "text-neutral-400 hover:text-white"
+                )}
+              >
+                {isSelected && !prefersReducedMotion && (
+                  <motion.div
+                    layoutId="portfolio-filter-pill"
+                    className="absolute inset-0 rounded-full bg-white/[0.14] border border-white/20 shadow-[0_2px_12px_rgba(0,0,0,0.5),0_0_16px_rgba(88,207,200,0.2)]"
+                    transition={{ type: "spring", stiffness: 450, damping: 32 }}
+                  />
+                )}
+                <span className="relative z-10">{label}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="font-mono text-xs text-neutral-400">
+          <span>{filtered.length} {filtered.length === 1 ? "Production" : "Productions"}</span>
+        </div>
       </div>
 
-      <AnimatePresence mode="wait">
-        {filtered.length > 0 ? (
-          <motion.div
-            key={active}
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={prefersReducedMotion ? undefined : { opacity: 0, y: -8 }}
-            transition={{ duration: 0.25, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-          >
+      {filtered.length > 0 ? (
+        <motion.div
+          layout
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          <AnimatePresence mode="popLayout">
             {filtered.map((project, index) => (
-              <ProjectCard key={project.slug} project={project} priority={index < 3} />
+              <motion.div
+                layout
+                key={project.slug}
+                initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.95, y: 16 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.95, y: -12 }}
+                transition={{
+                  duration: 0.35,
+                  ease: [0.16, 1, 0.3, 1],
+                  delay: index * 0.04,
+                }}
+              >
+                <ProjectCard project={project} priority={index < 3} />
+              </motion.div>
             ))}
-          </motion.div>
-        ) : (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="flex w-full flex-col items-center justify-center rounded-xl border border-dashed border-border py-16"
-          >
-            <p className="text-sm text-white/55">{copy.common.noProjects}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </AnimatePresence>
+        </motion.div>
+      ) : (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="flex w-full flex-col items-center justify-center rounded-xl border border-dashed border-border py-16"
+        >
+          <p className="text-sm text-white/55">{copy.common.noProjects}</p>
+        </motion.div>
+      )}
     </div>
   );
 }
