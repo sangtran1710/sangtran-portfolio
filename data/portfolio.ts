@@ -255,7 +255,7 @@ export const PROJECTS: Project[] = [
     previewVideo: "/video/previews/wolverine-preview.mp4",
     evidenceBreakdown: [
       {
-        image: "/images/projects/wolverine/wolverine-hero.webp",
+        image: "/images/projects/wolverine/wolverine-helix-core.webp",
         video: "/video/wolverine/wolverine-helix-core.mp4",
         loopVideo: "/video/wolverine/loops/wolverine-loop-helix-core.mp4",
         title: "Helix Engine Chamber Activation",
