@@ -112,7 +112,7 @@ export default function AboutPageClient() {
                     <MapPin className="h-3.5 w-3.5 text-primary" />
                     {about.location}
                   </span>
-                  <span className="h-3.5 w-px bg-border" />
+                  <span className="hidden sm:inline-block h-3.5 w-px bg-border" />
                   <div className="flex items-center gap-3">
                     {socialLinks.map(({ href, icon: Icon, label, custom }) => (
                       <a
