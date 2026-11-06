@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Copy, Check, Terminal, ExternalLink } from "lucide-react";
+import { Copy, Check, Terminal } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -71,7 +71,6 @@ export function ContactTerminal({ children }: { children: React.ReactNode }) {
                 className="ml-2 px-1 text-[#e6db74] hover:bg-white/10 rounded outline-none focus:outline-none focus-visible:ring-0 transition-colors flex items-center gap-2"
               >
                 &quot;sang-tran-94686b160&quot;
-                <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity text-stone-400" />
               </a>
             </div>
             <div className="flex items-start group">
@@ -83,7 +82,6 @@ export function ContactTerminal({ children }: { children: React.ReactNode }) {
                 className="ml-2 px-1 text-[#e6db74] hover:bg-white/10 rounded outline-none focus:outline-none focus-visible:ring-0 transition-colors flex items-center gap-2"
               >
                 &quot;download_pdf()&quot;
-                <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity text-stone-400" />
               </a>
             </div>
           </div>

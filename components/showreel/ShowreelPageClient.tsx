@@ -8,7 +8,6 @@ import {
   Pause,
   Volume2,
   VolumeX,
-  ExternalLink,
   Youtube,
   ArrowLeft,
 } from "lucide-react";
@@ -160,7 +159,6 @@ export default function ShowreelPageClient() {
           >
             <Youtube className="h-3.5 w-3.5 text-red-400" />
             <span>YouTube 4K</span>
-            <ExternalLink className="h-3 w-3" />
           </a>
         </div>
 
@@ -306,7 +304,6 @@ export default function ShowreelPageClient() {
             className="inline-flex items-center gap-1.5 font-mono text-xs text-primary hover:underline"
           >
             Explore All Projects
-            <ExternalLink className="h-3 w-3" />
           </Link>
           <span className="font-mono text-[11px] text-neutral-500">
             Sparx* · Insomniac Games · Epic Games · Amazon Games

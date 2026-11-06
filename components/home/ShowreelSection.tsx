@@ -7,7 +7,6 @@ import {
   Pause,
   Volume2,
   VolumeX,
-  ExternalLink,
   Youtube,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -77,7 +76,6 @@ export default function ShowreelSection({
           >
             <Youtube className="h-3.5 w-3.5" />
             YouTube
-            <ExternalLink className="h-3 w-3" />
           </a>
         </div>
       </div>
@@ -99,7 +97,6 @@ export default function ShowreelSection({
             >
               <Youtube className="h-5 w-5" strokeWidth={1.5} />
               {copy.common.watchOnYoutube}
-              <ExternalLink className="h-4 w-4" strokeWidth={1.5} />
             </a>
           </Button>
         </div>

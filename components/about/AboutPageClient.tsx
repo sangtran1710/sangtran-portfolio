@@ -15,7 +15,7 @@ import {
   Linkedin,
   Mail,
   MapPin,
-  ExternalLink,
+  Download,
   ArrowLeft,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -138,7 +138,7 @@ export default function AboutPageClient() {
                   >
                     <a href={SOCIALS.resume} target="_blank" rel="noopener noreferrer">
                       {copy.about.downloadResume}
-                      <ExternalLink className="h-4 w-4" strokeWidth={2} />
+                      <Download className="h-4 w-4" />
                     </a>
                   </Button>
                   <Button
