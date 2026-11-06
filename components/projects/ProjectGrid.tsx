@@ -60,10 +60,6 @@ export default function ProjectGrid() {
             );
           })}
         </div>
-
-        <div className="font-mono text-xs text-neutral-400">
-          <span>{filtered.length} {filtered.length === 1 ? "Production" : "Productions"}</span>
-        </div>
       </div>
 
       {filtered.length > 0 ? (
