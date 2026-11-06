@@ -8,7 +8,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { SOCIALS } from "@/data/portfolio";
+import { SITE, SOCIALS } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
 const containerVariants = {
@@ -204,6 +204,47 @@ export default function Navbar() {
               >
                 {copy.nav.resume}
               </motion.a>
+
+              {/* Quick Contact Footer in Mobile Drawer */}
+              <motion.div
+                variants={itemVariants}
+                className="mt-6 pt-6 border-t border-white/10 flex flex-col gap-3"
+              >
+                <a
+                  href={`mailto:${SITE.email}`}
+                  className="font-mono text-xs text-primary hover:underline flex items-center gap-2"
+                >
+                  <span>{SITE.email}</span>
+                </a>
+                <div className="flex items-center gap-3 pt-0.5 text-neutral-400">
+                  <a
+                    href={SOCIALS.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors text-xs font-mono"
+                  >
+                    LinkedIn
+                  </a>
+                  <span className="text-white/20">·</span>
+                  <a
+                    href={SOCIALS.artstation}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors text-xs font-mono"
+                  >
+                    ArtStation
+                  </a>
+                  <span className="text-white/20">·</span>
+                  <a
+                    href={SOCIALS.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors text-xs font-mono"
+                  >
+                    GitHub
+                  </a>
+                </div>
+              </motion.div>
             </motion.div>
           </SheetContent>
         </Sheet>
