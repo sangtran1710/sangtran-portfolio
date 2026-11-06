@@ -114,7 +114,7 @@ export const ABOUT = {
     "Technical VFX Artist specializing in real-time gameplay effects, custom shaders, GPU optimization, and production engine integration.",
     "AAA production experience across Marvel's Wolverine, Marvel's Spider-Man 2, and Fortnite, working across Niagara, proprietary engines, and Perforce pipelines.",
   ],
-  location: "Ho Chi Minh City, Vietnam",
+  location: "Ho Chi Minh City, Vietnam · APAC (GMT+7)",
 };
 
 /** For home Profile section. portraitImage = front, portraitImageSecondary = back (flips on hover). */

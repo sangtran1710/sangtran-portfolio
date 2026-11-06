@@ -33,7 +33,7 @@ const VI_ABOUT = {
     "Technical VFX Artist chuyên về real-time gameplay effects, custom shader, tối ưu GPU và tích hợp engine.",
     "Kinh nghiệm thực chiến AAA qua Marvel's Wolverine, Marvel's Spider-Man 2 và Fortnite, làm việc với Niagara, proprietary engine và pipeline Perforce.",
   ],
-  location: "TP. Hồ Chí Minh, Việt Nam",
+  location: "TP. Hồ Chí Minh, Việt Nam · APAC (GMT+7)",
 };
 
 const VI_PROFILE = {
