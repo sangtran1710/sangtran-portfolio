@@ -5,7 +5,7 @@ export const UI_COPY = {
     nav: {
       home: "Home",
       reel: "Reel",
-      blog: "Articles",
+      blog: "VFX Studies",
       about: "About",
       portfolio: "Portfolio",
       resume: "Resume",
@@ -134,7 +134,7 @@ export const UI_COPY = {
     nav: {
       home: "Trang chủ",
       reel: "Reel",
-      blog: "Articles",
+      blog: "Nghiên cứu VFX",
       about: "Giới thiệu",
       portfolio: "Portfolio",
       resume: "Hồ sơ",

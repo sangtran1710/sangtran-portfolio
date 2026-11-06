@@ -65,7 +65,7 @@ test.describe("Audit regressions", () => {
 
     await page.goto("/", { waitUntil: "networkidle" });
     const nav = page.getByRole("navigation", { name: "Primary navigation" });
-    await expect(nav.getByRole("link")).toHaveText(["Home", "Work", "Showreel", "Notes", "About", "Contact"]);
+    await expect(nav.getByRole("link")).toHaveText(["Home", "Work", "Showreel", "VFX Studies", "About", "Contact"]);
 
     const visualSystem = await page.evaluate(() => {
       const header = document.querySelector("header");

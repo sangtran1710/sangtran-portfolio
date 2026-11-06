@@ -38,7 +38,7 @@ export default function Navbar() {
     { href: "/", label: "Home" },
     { href: "/portfolio", label: "Work" },
     { href: "/showreel", label: "Showreel" },
-    { href: "/articles", label: "Notes" },
+    { href: "/articles", label: "VFX Studies" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
   ];

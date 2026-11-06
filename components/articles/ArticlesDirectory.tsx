@@ -21,7 +21,7 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
     (post) => post.slug !== "math-for-vfx-shaders" && post.slug !== "ue5-material-library-portal"
   );
 
-  const headingText = isVi ? "Ghi chép Kỹ thuật" : "Technical Notes";
+  const headingText = isVi ? "Nghiên cứu VFX" : "VFX Studies";
 
   return (
     <div className="min-h-screen pt-24 sm:pt-28 pb-20 text-white bg-background">

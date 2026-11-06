@@ -3,9 +3,9 @@ import { ArticlesDirectory } from "@/components/articles/ArticlesDirectory";
 import { getAllPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "Technical Notes & R&D",
+  title: "VFX Studies & Technical Notes",
   description:
-    "Field notes on real-time VFX, HLSL shader mechanics, simulation math, and production pipeline tools by Henry Tran.",
+    "Field studies on real-time VFX, HLSL shader mechanics, simulation math, and production pipeline tools by Henry Tran.",
   alternates: {
     canonical: "/articles",
   },
