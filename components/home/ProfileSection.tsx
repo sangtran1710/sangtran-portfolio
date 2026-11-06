@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import SpotlightCard from "@/components/ui/SpotlightCard";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { getLocalizedProfile, getLocalizedSite } from "@/lib/portfolio-content";
 import { SOCIALS } from "@/data/portfolio";
@@ -20,12 +19,6 @@ export default function ProfileSection() {
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:px-12 lg:py-28">
         {/* Editorial Contact Header */}
         <div className="max-w-4xl">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3.5 py-1 font-mono text-xs text-primary">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-            <span>
-              {isVi ? "Sẵn sàng cho dự án AAA & Hợp đồng Technical VFX" : "Available for AAA Production & Senior VFX Roles"}
-            </span>
-          </div>
 
           <h2 className="font-kanit text-4xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-white leading-[1.08]">
             {isVi ? (
@@ -55,10 +48,7 @@ export default function ProfileSection() {
         {/* Bento Identity & Verified Credentials */}
         <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-[1.35fr_1fr]">
           {/* Card 1: Artist Bio & Experience */}
-          <SpotlightCard
-            className="rounded-2xl border border-border/80 bg-section/70 p-6 sm:p-8 backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(0,0,0,0.5),0_0_24px_rgba(88,207,200,0.08)]"
-            spotlightColor="rgba(88, 207, 200, 0.12)"
-          >
+          <div className="rounded-2xl border border-border/80 bg-section/70 p-6 sm:p-8 backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:shadow-[0_12px_28px_rgba(0,0,0,0.45)]">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
               <div className="relative h-24 w-24 sm:h-28 sm:w-28 shrink-0 overflow-hidden rounded-2xl border border-border/80 bg-background shadow-md">
                 {!avatarError ? (
@@ -102,13 +92,10 @@ export default function ProfileSection() {
                 Unreal Engine · Niagara · Houdini
               </span>
             </div>
-          </SpotlightCard>
+          </div>
 
           {/* Card 2: MobyGames Verified Industry Proof */}
-          <SpotlightCard
-            className="rounded-2xl border border-primary/25 bg-gradient-to-br from-section/90 via-section/50 to-primary/5 p-6 sm:p-8 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(0,0,0,0.5),0_0_24px_rgba(88,207,200,0.08)] flex flex-col justify-between"
-            spotlightColor="rgba(88, 207, 200, 0.12)"
-          >
+          <div className="rounded-2xl border border-primary/25 bg-section/70 p-6 sm:p-8 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:shadow-[0_12px_28px_rgba(0,0,0,0.45)] flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
@@ -149,7 +136,7 @@ export default function ProfileSection() {
                 <span>View Profile</span>
               </a>
             </div>
-          </SpotlightCard>
+          </div>
         </div>
 
         {/* Clean Framer Social Channels Bar */}

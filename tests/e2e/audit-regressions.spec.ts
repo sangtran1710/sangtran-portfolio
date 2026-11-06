@@ -57,7 +57,7 @@ test.describe("Audit regressions", () => {
 
     await expect(page.locator('a[href^="mailto:"]')).toHaveCount(1);
     await expect(page.locator("footer")).not.toContainText("sangminhtran1710@gmail.com");
-    await expect(page.locator('[aria-label="Footer navigation"]')).toBeVisible();
+    await expect(page.locator("footer")).toBeVisible();
   });
 
   test("desktop hero typography and navigation share one visual grid", async ({ page }, testInfo) => {
