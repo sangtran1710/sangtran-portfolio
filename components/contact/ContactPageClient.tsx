@@ -6,7 +6,7 @@ import { SOCIALS, SITE } from "@/data/portfolio";
 
 const links = [
   { label: "LinkedIn", href: SOCIALS.linkedin },
-  { label: "Resume", href: SOCIALS.resume },
+  { label: "Résumé (PDF)", href: SOCIALS.resume },
   { label: "ArtStation", href: SOCIALS.artstation },
   { label: "Behance", href: SOCIALS.behance },
 ];

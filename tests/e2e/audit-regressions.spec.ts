@@ -40,7 +40,7 @@ test.describe("Audit regressions", () => {
 
   test("primary pages expose clear headings and contact actions", async ({ page }) => {
     await page.goto("/showreel", { waitUntil: "networkidle" });
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Real-Time VFX Showreel");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("VFX Showreel");
 
     await page.goto("/contact", { waitUntil: "networkidle" });
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("Contact");
@@ -82,7 +82,7 @@ test.describe("Audit regressions", () => {
     });
 
     expect(visualSystem.headerBackground).toBe("rgba(13, 16, 21, 0.9)");
-    expect(visualSystem.headingFont).toContain("Kanit");
+    expect(visualSystem.headingFont).toContain("Inter");
     expect(visualSystem.headingSize).toBeLessThanOrEqual(80);
     expect(Math.abs(visualSystem.logoLeft - visualSystem.headingLeft)).toBeLessThan(1);
   });

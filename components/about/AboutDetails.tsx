@@ -15,7 +15,7 @@ export default function AboutDetails() {
     <div className="mx-auto max-w-6xl px-6 py-12 text-muted-foreground">
       {/* 1. Production Experience */}
       <section className="mb-16">
-        <h2 className="mb-8 font-kanit text-2xl font-normal tracking-tight text-white sm:text-3xl">
+        <h2 className="mb-8 font-sans text-2xl font-normal tracking-tight text-white sm:text-3xl">
           {copy.about.experience}
         </h2>
         <ExperienceTimeline />
@@ -35,7 +35,7 @@ export default function AboutDetails() {
 
       {/* 4. Core Technical Skills & Software (Compact) */}
       <section className="mb-14">
-        <h3 className="mb-4 text-xs font-mono uppercase tracking-[0.18em] text-primary">
+        <h3 className="mb-4 text-xs font-sans tracking-normal text-primary">
           {copy.about.skillsAndTools}
         </h3>
         <div className="rounded-2xl border border-border bg-section p-5 sm:p-6 divide-y divide-border/50">
@@ -44,14 +44,14 @@ export default function AboutDetails() {
               key={group.name}
               className="py-3 first:pt-0 last:pb-0 flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6"
             >
-              <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground w-44 flex-shrink-0">
+              <span className="text-xs font-sans tracking-normal text-muted-foreground w-44 flex-shrink-0">
                 {group.name}
               </span>
               <div className="flex flex-wrap gap-1.5">
                 {group.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="rounded border border-border bg-card px-2.5 py-0.5 text-xs text-muted-foreground font-mono"
+                    className="rounded border border-border bg-card px-2.5 py-0.5 text-xs text-muted-foreground font-sans"
                   >
                     {skill}
                   </span>
@@ -67,7 +67,7 @@ export default function AboutDetails() {
       {/* 5. Studio Life & Memories (Sparx* · 2022–2023) - Gentle Footnote */}
       <section className="mb-12">
         <div className="mb-6">
-          <h3 className="text-xs font-mono uppercase tracking-[0.18em] text-primary">
+          <h3 className="text-xs font-sans tracking-normal text-primary">
             {locale === "vi" ? "Văn hóa Studio & Hoạt động nhóm" : "Studio Life & Team Culture"}
           </h3>
           <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
@@ -90,7 +90,7 @@ export default function AboutDetails() {
               />
             </div>
             <figcaption className="px-2 pt-3 pb-0.5">
-              <h4 className="text-xs font-mono uppercase tracking-wider text-primary">
+              <h4 className="text-xs font-sans tracking-normal text-primary">
                 {locale === "vi" ? "Team Building bãi biển" : "Studio Beach Team Building"}
               </h4>
               <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
@@ -115,10 +115,10 @@ export default function AboutDetails() {
                 />
               </div>
               <figcaption className="px-1 pt-2 pb-0.5">
-                <h4 className="text-[11px] font-mono uppercase tracking-wider text-primary">
+                <h4 className="text-xs font-sans tracking-normal text-primary">
                   {locale === "vi" ? "Sinh nhật tại studio" : "Studio Birthday"}
                 </h4>
-                <p className="mt-0.5 text-[11px] text-muted-foreground leading-snug">
+                <p className="mt-0.5 text-xs text-muted-foreground leading-snug">
                   {locale === "vi"
                     ? "Món quà và lời chúc viết tay ấm áp từ đồng nghiệp."
                     : "Handwritten card & gift box from studio teammates."}
@@ -138,10 +138,10 @@ export default function AboutDetails() {
                 />
               </div>
               <figcaption className="px-1 pt-2 pb-0.5">
-                <h4 className="text-[11px] font-mono uppercase tracking-wider text-primary">
+                <h4 className="text-xs font-sans tracking-normal text-primary">
                   {locale === "vi" ? "Tiệc tất niên 2023" : "Year-End Gala 2023"}
                 </h4>
-                <p className="mt-0.5 text-[11px] text-muted-foreground leading-snug">
+                <p className="mt-0.5 text-xs text-muted-foreground leading-snug">
                   {locale === "vi"
                     ? "Ăn mừng hoàn thành các cột mốc dự án AAA lớn."
                     : "Celebrating AAA project wraps and milestone deliveries."}

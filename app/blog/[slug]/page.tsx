@@ -76,7 +76,7 @@ export default function BlogPostPage({ params }: Props) {
           className="inline-flex items-center gap-1.5 text-sm text-quiet hover:text-white transition-colors mb-10"
         >
           <ArrowLeft className="h-4 w-4" />
-          All articles
+          All VFX studies
         </Link>
 
         {/* Header */}
@@ -114,7 +114,7 @@ export default function BlogPostPage({ params }: Props) {
           prose-p:text-muted-foreground prose-p:leading-relaxed prose-p:text-[15px]
           prose-a:text-teal-400 prose-a:no-underline hover:prose-a:text-teal-300 hover:prose-a:underline
           prose-strong:text-foreground prose-strong:font-semibold
-          prose-code:text-primary prose-code:bg-section prose-code:border prose-code:border-border prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-none prose-code:after:content-none
+          prose-code:text-primary prose-code:bg-section prose-code:border prose-code:border-border prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-sans prose-code:before:content-none prose-code:after:content-none
           prose-pre:bg-section prose-pre:border prose-pre:border-border prose-pre:rounded-xl
           prose-blockquote:border-l-primary prose-blockquote:text-muted-foreground
           prose-hr:border-border
@@ -146,7 +146,7 @@ export default function BlogPostPage({ params }: Props) {
             className="inline-flex items-center gap-1.5 text-sm text-quiet hover:text-white transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to all articles
+            All VFX studies
           </Link>
           <Link
             href="/portfolio"

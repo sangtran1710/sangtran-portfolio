@@ -21,23 +21,38 @@ export default function BreakdownMedia({
   link,
 }: BreakdownMediaProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
-  // Ensure auto-loop starts playing immediately
+  const userPaused = useRef(false);
+
   useEffect(() => {
-    if (!videoRef.current || prefersReducedMotion) return;
-    const v = videoRef.current;
-    const playPromise = v.play();
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => setIsPlaying(true))
-        .catch(() => setIsPlaying(false));
-    }
+    const element = videoRef.current;
+    if (!element || prefersReducedMotion) return;
+    let visible = false;
+    const syncPlayback = () => {
+      if (visible && !document.hidden && !userPaused.current) {
+        void element.play().catch(() => {});
+      } else {
+        element.pause();
+      }
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting && entry.intersectionRatio >= 0.25;
+      syncPlayback();
+    }, { threshold: 0.25 });
+    observer.observe(element);
+    document.addEventListener("visibilitychange", syncPlayback);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", syncPlayback);
+      element.pause();
+    };
   }, [loopVideo, prefersReducedMotion]);
 
   const togglePlay = () => {
     if (!videoRef.current) return;
+    userPaused.current = !videoRef.current.paused;
     if (videoRef.current.paused) {
       void videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
     } else {
@@ -49,21 +64,21 @@ export default function BreakdownMedia({
   // Case 1: Silent auto-looping micro-video (true GIF behavior, zero UI clutter)
   if (loopVideo && !prefersReducedMotion) {
     return (
-      <div
+      <button
+        type="button"
         onClick={togglePlay}
-        className="group relative aspect-video w-full cursor-pointer overflow-hidden bg-black select-none"
-        role="region"
-        aria-label={`${title} looping VFX preview.`}
+        className="group relative block aspect-video w-full cursor-pointer overflow-hidden bg-black select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        aria-label={`${isPlaying ? "Pause" : "Play"} ${title} preview`}
+        aria-pressed={isPlaying}
       >
         <video
           ref={videoRef}
           src={loopVideo}
           poster={image}
-          autoPlay
           loop
           muted
           playsInline
-          preload="auto"
+          preload="none"
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
           className="h-full w-full object-contain"
@@ -71,13 +86,13 @@ export default function BreakdownMedia({
 
         {/* Minimalist center play icon only shown when user manually pauses */}
         {!isPlaying && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/40 pointer-events-none transition-opacity">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-black/70 border border-white/20 text-white backdrop-blur-sm">
+          <span className="absolute inset-0 flex items-center justify-center bg-black/40 pointer-events-none transition-opacity">
+            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-black/70 border border-white/20 text-white backdrop-blur-sm">
               <Play className="ml-0.5 h-5 w-5 fill-white text-white" />
-            </div>
-          </div>
+            </span>
+          </span>
         )}
-      </div>
+      </button>
     );
   }
 

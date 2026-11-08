@@ -160,11 +160,11 @@ export default function HeroSection() {
       >
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-end">
           <div className="max-w-3xl">
-            <h1 className="font-kanit text-5xl font-normal leading-none tracking-tight text-white sm:text-6xl lg:text-7xl">
+            <h1 className="font-sans text-5xl font-normal leading-none tracking-tight text-white sm:text-6xl lg:text-7xl">
               {hero.name}
             </h1>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-foreground sm:text-lg">
-              Senior VFX Artist · Real-Time VFX & Engine Shaders
+              Senior VFX Artist
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 text-base font-medium">
@@ -189,7 +189,7 @@ export default function HeroSection() {
             <div className="mt-8 lg:hidden">
               <Link
                 href={currentShot.href}
-                className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-section/80 px-4 py-2 text-xs font-mono text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors"
+                className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-section/80 px-4 py-2 text-xs font-sans text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors"
               >
                 <span>{currentShot.title} · {currentShot.meta}</span>
               </Link>
@@ -224,38 +224,9 @@ export default function HeroSection() {
                           transition={{ type: "spring", stiffness: 450, damping: 32 }}
                         />
                       )}
-                      <div className="pointer-events-none relative z-10 flex items-center gap-3.5 select-none">
-                        <span
-                          className={`font-mono text-xs transition-colors ${
-                            isActive ? "font-semibold text-primary" : "text-quiet group-hover:text-primary/70"
-                          }`}
-                        >
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <div>
-                          <span
-                            className={`block text-sm font-medium transition-colors ${
-                              isActive ? "text-white" : "group-hover:text-primary"
-                            }`}
-                          >
-                            {shot.title}
-                          </span>
-                          <span className="block text-xs text-muted-foreground">
-                            {shot.meta}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-1.5 shrink-0">
-                        <span
-                          className={`text-[11px] font-mono transition-all duration-200 ${
-                            isActive
-                              ? "text-primary opacity-100"
-                              : "text-muted-foreground/60 opacity-0 group-hover:opacity-100 group-hover:text-primary"
-                          }`}
-                        >
-                          {isVi ? "Xem dự án" : "Open project"}
-                        </span>
-                      </div>
+                      <span className="relative z-10 text-sm font-medium">
+                        {shot.title}
+                      </span>
                     </Link>
                   </li>
                 );

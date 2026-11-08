@@ -25,10 +25,11 @@ export default function ScrollToTop() {
   }, []);
 
   useEffect(() => {
-    handleScroll();
+    const frame = requestAnimationFrame(handleScroll);
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll, { passive: true });
     return () => {
+      cancelAnimationFrame(frame);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
@@ -51,10 +52,10 @@ export default function ScrollToTop() {
       {visible && (
         <motion.div
           className="fixed bottom-6 right-5 sm:bottom-8 sm:right-8 z-50 flex items-center justify-center"
-          initial={{ opacity: 0, scale: 0.8, y: 14 }}
+          initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.8, y: 14 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 14 }}
-          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: prefersReducedMotion ? 0 : 0.25, ease: [0.16, 1, 0.3, 1] }}
         >
           <button
             type="button"

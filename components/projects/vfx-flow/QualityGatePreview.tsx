@@ -17,7 +17,7 @@ export default function QualityGatePreview() {
           ) : (
             <ShieldCheck className="h-5 w-5 text-emerald-400" />
           )}
-          <span className="font-kanit text-lg font-medium text-white">
+          <span className="font-sans text-lg font-medium text-white">
             Interactive Asset QC Check
           </span>
         </div>
@@ -26,7 +26,7 @@ export default function QualityGatePreview() {
           <button
             type="button"
             onClick={() => setMode("blocked")}
-            className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition-all ${
+            className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold tracking-normal transition-all ${
               mode === "blocked"
                 ? "bg-rose-950/80 text-rose-300 border border-rose-500/40 shadow-sm"
                 : "text-muted-foreground hover:text-white"
@@ -38,7 +38,7 @@ export default function QualityGatePreview() {
           <button
             type="button"
             onClick={() => setMode("ready")}
-            className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition-all ${
+            className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold tracking-normal transition-all ${
               mode === "ready"
                 ? "bg-emerald-950/80 text-emerald-300 border border-emerald-500/40 shadow-sm"
                 : "text-muted-foreground hover:text-white"
@@ -73,7 +73,7 @@ export default function QualityGatePreview() {
       <div className="border-t border-border bg-card p-5 sm:p-6">
         {mode === "blocked" ? (
           <div className="space-y-2">
-            <div className="flex items-center gap-2 text-rose-400 text-xs font-semibold uppercase tracking-wider">
+            <div className="flex items-center gap-2 text-rose-400 text-xs font-semibold tracking-normal">
               <span className="h-2 w-2 rounded-full bg-rose-500 animate-pulse" />
               Status: 1 Error, 1 Warning | Submission Locked
             </div>
@@ -85,7 +85,7 @@ export default function QualityGatePreview() {
           </div>
         ) : (
           <div className="space-y-2">
-            <div className="flex items-center gap-2 text-emerald-400 text-xs font-semibold uppercase tracking-wider">
+            <div className="flex items-center gap-2 text-emerald-400 text-xs font-semibold tracking-normal">
               <span className="h-2 w-2 rounded-full bg-emerald-500" />
               Status: Ready | All Checks Passed
             </div>

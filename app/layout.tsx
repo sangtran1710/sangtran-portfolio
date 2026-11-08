@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Kanit, Roboto_Mono } from "next/font/google";
+import { Inter, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -14,13 +14,6 @@ import { Analytics } from "@vercel/analytics/react";
 const inter = Inter({
   subsets: ["latin", "vietnamese"],
   variable: "--font-inter",
-  display: "swap",
-});
-
-const kanit = Kanit({
-  subsets: ["latin", "vietnamese"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-kanit",
   display: "swap",
 });
 
@@ -80,7 +73,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${kanit.variable} ${mono.variable} dark`}>
+    <html lang="en" className={`${inter.variable} ${mono.variable} dark`}>
       <body className="min-h-screen font-sans bg-background text-foreground antialiased selection:bg-primary/30">
         <LanguageProvider>
           <SkipToContentLink />

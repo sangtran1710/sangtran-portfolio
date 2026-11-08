@@ -74,7 +74,7 @@ test.describe("Deep Comprehensive Site Experience Audit", () => {
     await expect(workLink).toHaveAttribute("href", "/portfolio");
     await workLink.click();
     await page.waitForURL("**/portfolio");
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Production Work");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Selected work");
     const firstProject = page.locator('a[href="/projects/wolverine"]').first();
     await expect(firstProject).toBeVisible();
     await firstProject.click();

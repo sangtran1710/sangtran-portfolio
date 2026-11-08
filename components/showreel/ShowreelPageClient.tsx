@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -30,7 +30,7 @@ const SHOTS: ShotCue[] = [
     projectSlug: "fortnite-remix",
     time: 0,
     timecode: "00:00",
-    title: "Fortnite – Remix Finale",
+    title: "Fortnite: Remix Finale",
     client: "Epic Games",
     tools: "Unreal Engine · Niagara",
     thumbnail: "/images/showreel/shot-01-fortnite.webp",
@@ -74,25 +74,33 @@ export default function ShowreelPageClient() {
 
   const { copy } = useLanguage();
 
-  const handlePlay = () => {
+  const handlePlay = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
-    video.play().catch(() => setHasError(true));
-    setPlaying(true);
     setStarted(true);
-  };
+    void video.play().catch(() => setHasError(true));
+  }, []);
 
-  const togglePlay = () => {
+  const togglePlay = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
-    if (video.paused) {
-      video.play();
-      setPlaying(true);
-    } else {
-      video.pause();
-      setPlaying(false);
-    }
-  };
+    if (video.paused) handlePlay();
+    else video.pause();
+  }, [handlePlay]);
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (event.repeat || event.altKey || event.ctrlKey || event.metaKey ||
+          target?.closest("input, textarea, select, button, a, video, [contenteditable]")) return;
+      if (event.code === "Space" || event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        togglePlay();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [togglePlay]);
 
   const toggleMute = () => {
     const video = videoRef.current;
@@ -106,9 +114,7 @@ export default function ShowreelPageClient() {
     if (!video) return;
     video.currentTime = seconds;
     if (video.paused) {
-      video.play().catch(() => setHasError(true));
-      setPlaying(true);
-      setStarted(true);
+      handlePlay();
     }
   };
 
@@ -140,12 +146,12 @@ export default function ShowreelPageClient() {
         <div className="absolute left-1/2 top-10 h-[380px] w-[800px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(88,207,200,0.08),transparent_70%)] blur-3xl" />
       </div>
 
-      <main className="relative z-10 mx-auto max-w-5xl px-6 sm:px-8">
+      <div className="relative z-10 mx-auto max-w-5xl px-6 sm:px-8">
         {/* Minimal Navigation & Header */}
         <div className="mb-6 flex items-center justify-between">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-muted-foreground transition-colors hover:text-primary"
+            className="inline-flex items-center gap-1.5 text-xs font-sans tracking-normal text-muted-foreground transition-colors hover:text-primary"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             {copy.common.backToHome}
@@ -155,7 +161,7 @@ export default function ShowreelPageClient() {
             href={HERO.showreelYoutube}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground transition-colors hover:text-primary"
+            className="inline-flex items-center gap-1.5 text-xs font-sans text-muted-foreground transition-colors hover:text-primary"
           >
             <Youtube className="h-3.5 w-3.5 text-red-400" />
             <span>YouTube 4K</span>
@@ -164,10 +170,10 @@ export default function ShowreelPageClient() {
 
         {/* Crisp, Confident Title */}
         <div className="mb-6 flex flex-wrap items-baseline justify-between gap-4">
-          <h1 className="font-kanit text-3xl font-medium tracking-tight text-white sm:text-4xl">
-            Real-Time VFX Showreel
+          <h1 className="font-sans text-3xl font-medium tracking-tight text-white sm:text-4xl">
+            VFX Showreel
           </h1>
-          <span className="text-xs font-mono text-muted-foreground">
+          <span className="text-xs font-sans text-muted-foreground">
             00:41 · 4K 60FPS
           </span>
         </div>
@@ -200,6 +206,9 @@ export default function ShowreelPageClient() {
                   controls={started}
                   preload="metadata"
                   className="h-full w-full object-cover"
+                  onPlay={() => { setPlaying(true); setStarted(true); }}
+                  onPause={() => setPlaying(false)}
+                  onVolumeChange={(event) => setMuted(event.currentTarget.muted)}
                   onError={() => setHasError(true)}
                 />
 
@@ -227,12 +236,12 @@ export default function ShowreelPageClient() {
                 )}
 
                 {started && (
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 focus-within:opacity-100">
                     <div className="pointer-events-auto absolute bottom-14 left-4 right-4 flex items-center justify-between">
                       <button
                         type="button"
                         onClick={togglePlay}
-                        className="flex items-center gap-2 rounded-full bg-white/20 px-3.5 py-1.5 text-xs font-mono text-white backdrop-blur-md transition-colors hover:bg-white/30"
+                        className="flex items-center gap-2 rounded-full bg-white/20 px-3.5 py-1.5 text-xs font-sans text-white backdrop-blur-md transition-colors hover:bg-white/30"
                       >
                         {playing ? <Pause className="h-3.5 w-3.5 fill-white" /> : <Play className="h-3.5 w-3.5 fill-white" />}
                         {playing ? "PAUSE" : "PLAY"}
@@ -240,7 +249,9 @@ export default function ShowreelPageClient() {
                       <button
                         type="button"
                         onClick={toggleMute}
-                        className="flex items-center gap-2 rounded-full bg-white/20 px-3 py-1.5 text-xs font-mono text-white backdrop-blur-md transition-colors hover:bg-white/30"
+                        aria-label={muted ? "Unmute showreel" : "Mute showreel"}
+                        aria-pressed={muted}
+                        className="flex items-center gap-2 rounded-full bg-white/20 px-3 py-1.5 text-xs font-sans text-white backdrop-blur-md transition-colors hover:bg-white/30"
                       >
                         {muted ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
                       </button>
@@ -278,7 +289,7 @@ export default function ShowreelPageClient() {
                     className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                     sizes="(max-width: 640px) 50vw, 25vw"
                   />
-                  <div className="absolute bottom-1.5 left-1.5 flex items-center gap-1 rounded bg-black/80 px-1.5 py-0.5 text-[10px] font-mono text-foreground">
+                  <div className="absolute bottom-1.5 left-1.5 flex items-center gap-1 rounded bg-black/80 px-1.5 py-0.5 text-xs font-sans text-foreground">
                     <Play className="h-2 w-2 fill-current text-primary" />
                     <span>{shot.timecode}</span>
                   </div>
@@ -289,7 +300,7 @@ export default function ShowreelPageClient() {
                   <p className="truncate text-xs font-medium text-white transition-colors group-hover:text-primary">
                     {shot.title}
                   </p>
-                  <p className="mt-0.5 truncate text-[11px] font-mono text-muted-foreground">
+                  <p className="mt-0.5 truncate text-xs font-sans text-muted-foreground">
                     {shot.client}
                   </p>
                 </div>
@@ -301,15 +312,15 @@ export default function ShowreelPageClient() {
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-muted-foreground">
           <Link
             href="/portfolio"
-            className="inline-flex items-center gap-1.5 font-mono text-xs text-primary hover:underline"
+            className="inline-flex items-center gap-1.5 font-sans text-xs text-primary hover:underline"
           >
-            Explore All Projects
+            Explore the work
           </Link>
-          <span className="font-mono text-[11px] text-neutral-500">
+          <span className="font-sans text-xs text-muted-foreground">
             Sparx* · Insomniac Games · Epic Games · Amazon Games
           </span>
         </div>
-      </main>
+      </div>
     </div>
   );
 }

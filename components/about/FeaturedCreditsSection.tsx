@@ -12,7 +12,7 @@ export default function FeaturedCreditsSection() {
 
   return (
     <section id="featured-credits" className="mb-20">
-      <h2 className="mb-2 font-kanit text-2xl font-normal tracking-tight text-white sm:text-3xl">
+      <h2 className="mb-2 font-sans text-2xl font-normal tracking-tight text-white sm:text-3xl">
         {copy.about.featuredCredits}
       </h2>
       <p className="mb-6 max-w-2xl text-sm leading-6 text-muted-foreground">
@@ -24,20 +24,20 @@ export default function FeaturedCreditsSection() {
         <div className="grid gap-6 lg:grid-cols-[1fr_320px] lg:items-center">
           <div>
             <div className="flex flex-wrap items-center gap-2.5">
-              <span className="rounded-full border border-primary/25 bg-primary/10 px-3 py-1 font-mono text-xs font-medium text-primary">
-                Official Industry Database
+              <span className="rounded-full border border-primary/25 bg-primary/10 px-3 py-1 font-sans text-xs font-medium text-primary">
+                MobyGames
               </span>
-              <span className="font-mono text-xs text-muted-foreground">Moby ID: 1553845</span>
+              <span className="font-sans text-xs text-muted-foreground">Moby ID: 1553845</span>
             </div>
 
-            <h3 className="mt-3 font-kanit text-2xl font-normal tracking-tight text-white sm:text-3xl">
-              Tran Minh Sang · Verified Credits
+            <h3 className="mt-3 font-sans text-2xl font-normal tracking-tight text-white sm:text-3xl">
+              Tran Minh Sang · Game credits
             </h3>
 
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-2 max-w-[60ch] text-sm leading-relaxed text-muted-foreground">
               {locale === "vi"
                 ? "Chứng thực hồ sơ nhà phát triển trên cơ sở dữ liệu game MobyGames quốc tế với 2 tựa game AAA từ Insomniac Games & PlayStation Studios."
-                : "Verified game developer profile on the international MobyGames database, crediting production roles on PlayStation Studios AAA releases."}
+                : "Find my game credits on MobyGames under Tran Minh Sang."}
             </p>
 
             <ul className="mt-4 space-y-1.5 text-xs sm:text-sm text-foreground">
@@ -60,7 +60,7 @@ export default function FeaturedCreditsSection() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2.5 text-xs sm:text-sm font-medium text-background transition-colors hover:bg-white"
               >
-                <span>{locale === "vi" ? "Mở hồ sơ trên MobyGames" : "View Live on MobyGames"}</span>
+                <span>{locale === "vi" ? "Mở hồ sơ trên MobyGames" : "View MobyGames profile"}</span>
               </a>
             </div>
           </div>

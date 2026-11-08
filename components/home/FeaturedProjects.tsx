@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { getLocalizedFeaturedProjects } from "@/lib/portfolio-content";
 import ProjectCard from "@/components/projects/ProjectCard";
@@ -27,20 +26,12 @@ export default function FeaturedProjects() {
           className="mb-8 flex flex-wrap items-baseline justify-between gap-4"
         >
           <div>
-            <h2 className="font-kanit text-3xl font-normal tracking-tight text-white sm:text-4xl">
+            <h2 className="font-sans text-3xl font-normal tracking-tight text-white sm:text-4xl">
               {copy.home.selectedWork}
             </h2>
-            <p className="mt-1 font-mono text-xs text-muted-foreground uppercase tracking-wider">
-              {isVi ? "Dự án AAA tiêu biểu · 2023 — 2026" : "Featured AAA Productions · 2023 — 2026"}
-            </p>
+
           </div>
-          <Link
-            href="/portfolio"
-            className="group hidden items-center gap-2 font-mono text-xs uppercase tracking-wider text-muted-foreground hover:text-white transition-colors sm:inline-flex"
-          >
-            <span>{isVi ? "Toàn bộ danh mục dự án" : "All Projects"}</span>
-            <span className="text-primary transition-transform group-hover:translate-x-1">→</span>
-          </Link>
+
         </motion.div>
 
         {/* Editorial Rhythm: 1 Dominant Hero + 2 Supporting Releases */}
@@ -87,21 +78,15 @@ export default function FeaturedProjects() {
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="mt-12 text-center"
-        >
+        <div className="mt-10 text-center">
           <Link
             href="/portfolio"
             className="group inline-flex items-center gap-2.5 rounded-full border border-border/80 bg-section/70 hover:bg-section hover:border-primary/50 px-7 py-3 text-sm font-medium text-white transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:shadow-[0_0_24px_rgba(88,207,200,0.2)] shadow-sm"
           >
-            <span>{isVi ? "Khám phá toàn bộ danh mục dự án & Breakdown" : "Explore All Productions & Technical Breakdowns"}</span>
+            <span>{isVi ? "Khám phá toàn bộ danh mục dự án & Breakdown" : "Explore the work"}</span>
             <span className="text-primary transition-transform group-hover:translate-x-1">→</span>
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -31,12 +31,6 @@ export default function ProjectCard({
   const canHover = useCanHover();
 
   const credit = getProjectByline(project);
-  const primaryCategory = project.categories?.[0] || "aaa";
-  const categoryLabel =
-    primaryCategory === "aaa"
-      ? "AAA Production"
-      : `${primaryCategory.toUpperCase()} Production`;
-
   // Only enable preview videos on Desktop devices with fine pointer and hover support
   const hasPreviewVideo = Boolean(project.previewVideo) && !prefersReducedMotion && canHover;
 
@@ -68,7 +62,7 @@ export default function ProjectCard({
         {/* Viewport Frame — Tactile Framer lift + hover motion loop */}
         <div
           className={cn(
-            "relative w-full overflow-hidden rounded-xl border border-border/80 bg-section transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-primary/50 group-hover:-translate-y-1.5 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.7),0_0_28px_rgba(88,207,200,0.1)] group-active:scale-[0.99]",
+            "relative w-full overflow-hidden rounded-xl border border-border/80 bg-section transition-all duration-500 ease-out group-hover:border-primary/50 group-hover:-translate-y-1.5 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.7),0_0_28px_rgba(88,207,200,0.1)] group-active:scale-[0.99]",
             featured ? "aspect-[16/9]" : "aspect-[16/10]"
           )}
         >
@@ -78,7 +72,7 @@ export default function ProjectCard({
             fill
             priority={priority}
             className={cn(
-              "object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]",
+              "object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]",
               isHovering && videoReady && hasPreviewVideo ? "opacity-0" : "opacity-100"
             )}
             sizes={
@@ -105,40 +99,23 @@ export default function ProjectCard({
             />
           )}
 
-          {project.mobyGamesUrl && (
-            <div className="absolute top-2.5 left-2.5 z-10 pointer-events-none">
-              <span className="rounded bg-black/80 px-2 py-0.5 text-[10px] font-mono font-medium tracking-wide text-primary border border-primary/40 backdrop-blur-md">
-                MobyGames Credit
-              </span>
-            </div>
-          )}
         </div>
+
 
         {/* Typography & Technical Metadata */}
         <div className="flex flex-1 flex-col pt-4">
-          <div className="flex items-center gap-2.5 flex-wrap text-xs font-mono">
-            <span className="rounded bg-primary/10 px-2.5 py-0.5 text-[11px] font-medium tracking-wider text-primary border border-primary/20 uppercase">
-              {categoryLabel}
-            </span>
-            <span className="font-mono text-xs text-muted-foreground">{project.year}</span>
-            {project.mobyGamesUrl && (
-              <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-[#4bb8ff] font-medium">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#4bb8ff]" />
-                MobyGames
-              </span>
-            )}
-          </div>
+          <p className="text-sm text-muted-foreground">{project.year}</p>
 
           <h3
             className={cn(
-              "mt-1.5 font-kanit font-normal tracking-tight text-white transition-colors duration-200 group-hover:text-primary",
+              "mt-1.5 font-sans font-normal tracking-tight text-white transition-colors duration-200 group-hover:text-primary",
               featured ? "text-2xl sm:text-4xl" : "text-xl sm:text-2xl"
             )}
           >
             {project.title}
           </h3>
 
-          <p className="mt-1 text-sm font-normal text-foreground">
+          <p className="mt-1 text-sm font-normal text-foreground [text-wrap:pretty]">
             {credit}
           </p>
         </div>

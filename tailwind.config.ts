@@ -11,12 +11,12 @@ const config: Config = {
   	extend: {
   		fontFamily: {
   			sans: [
-  				'var(--font-inter)',
+        'var(--font-inter)',
   				'system-ui',
   				'sans-serif'
   			],
   			kanit: [
-  				'var(--font-kanit)',
+        'var(--font-inter)',
   				'system-ui',
   				'sans-serif'
   			],

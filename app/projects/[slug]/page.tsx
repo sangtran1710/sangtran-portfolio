@@ -123,7 +123,7 @@ export default function ProjectDetailPage({ params }: Props) {
           <div className="flex items-center justify-between mb-8">
             <Link
               href="/portfolio"
-              className="group inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-white transition-colors"
+              className="group inline-flex items-center gap-2 text-xs font-sans tracking-normal text-muted-foreground hover:text-white transition-colors"
             >
               <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
               All Work
@@ -133,7 +133,7 @@ export default function ProjectDetailPage({ params }: Props) {
                 href={project.mobyGamesUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-mono text-primary hover:text-white hover:underline underline-offset-4 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-sans text-primary hover:text-white hover:underline underline-offset-4 transition-colors"
               >
                 MobyGames Credit
               </a>
@@ -142,23 +142,23 @@ export default function ProjectDetailPage({ params }: Props) {
 
           <div className="flex flex-wrap items-center gap-2 mb-4">
             {project.categories.map((cat) => (
-              <Badge key={cat} variant="secondary" className="bg-white/10 text-white text-[11px] font-mono border-0">
+              <Badge key={cat} variant="secondary" className="bg-white/10 text-white text-[11px] font-sans border-0">
                 {CATEGORY_LABELS[cat] ?? cat}
               </Badge>
             ))}
             {project.engine && (
-              <Badge variant="outline" className="border-primary/40 text-primary text-[11px] font-mono">
+              <Badge variant="outline" className="border-primary/40 text-primary text-[11px] font-sans">
                 {project.engine}
               </Badge>
             )}
             {project.platform && (
-              <Badge variant="outline" className="border-white/20 text-muted-foreground text-[11px] font-mono">
+              <Badge variant="outline" className="border-white/20 text-muted-foreground text-[11px] font-sans">
                 {project.platform}
               </Badge>
             )}
           </div>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-kanit font-extrabold uppercase tracking-tight text-white mb-3">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-sans font-extrabold tracking-tight text-white mb-3">
             {project.title}
           </h1>
 
@@ -167,8 +167,9 @@ export default function ProjectDetailPage({ params }: Props) {
           </p>
 
           <p className="max-w-2xl text-sm sm:text-base text-neutral-300 font-light leading-relaxed mt-6">
-            Real-time gameplay and cinematic visual effects for Marvel&apos;s Wolverine on PlayStation 5.
-            Authored combat impact VFX, volumetric explosion simulations, environmental destruction, and proprietary engine particle systems.
+            My work on Marvel&apos;s Wolverine spans gameplay and cinematics, from fire and destruction to rain, water, and atmosphere.
+            Alongside creating the effects, I worked through the technical challenges of bringing them into the game.
+            This selection offers a glimpse of that broader contribution.
           </p>
 
           {project.mobyGamesUrl && (
@@ -177,7 +178,7 @@ export default function ProjectDetailPage({ params }: Props) {
                 href={project.mobyGamesUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-primary/50 bg-primary/10 px-4 py-2 text-xs font-mono font-medium text-white hover:bg-primary/20 hover:border-primary transition-all shadow-sm"
+                className="inline-flex items-center gap-2 rounded-full border border-primary/50 bg-primary/10 px-4 py-2 text-xs font-sans font-medium text-white hover:bg-primary/20 hover:border-primary transition-all shadow-sm"
               >
                 <span>Verified Game Credit on MobyGames</span>
               </a>
@@ -228,7 +229,7 @@ export default function ProjectDetailPage({ params }: Props) {
         {/* 3. COMBAT, CINEMATIC & VIEWPORT CAPTURES */}
         <section aria-label="Cinematic & Combat VFX Breakdown" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-24 sm:mb-32">
           <div className="mb-8">
-            <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-kanit">
+            <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-sans">
               Cinematic & Gameplay VFX
             </h2>
             <p className="text-xs sm:text-sm text-neutral-400 font-light">
@@ -262,7 +263,7 @@ export default function ProjectDetailPage({ params }: Props) {
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[11px] font-mono text-muted-foreground hover:text-primary hover:underline underline-offset-2 transition-colors flex items-center gap-1"
+                      className="text-[11px] font-sans text-muted-foreground hover:text-primary hover:underline underline-offset-2 transition-colors flex items-center gap-1"
                     >
                       {item.link.includes("youtube.com") || item.link.includes("youtu.be") ? "YouTube" : "Footage"}
                     </a>
@@ -276,7 +277,7 @@ export default function ProjectDetailPage({ params }: Props) {
         {/* 4. PRODUCTION STILLS & IN-ENGINE LIGHTING (ArtBlast Gallery) */}
         <section aria-label="Production Stills & Visual Development" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-24 sm:mb-32">
           <div className="mb-8">
-            <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-kanit">
+            <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-sans">
               Production Stills & Environment Volumetrics
             </h2>
             <p className="text-xs sm:text-sm text-neutral-400 font-light">
@@ -321,7 +322,7 @@ export default function ProjectDetailPage({ params }: Props) {
                   <h3 className="text-sm font-medium text-white/90">
                     {still.title}
                   </h3>
-                  <span className="text-[11px] font-mono text-neutral-500">
+                  <span className="text-[11px] font-sans text-neutral-500">
                     {still.dim}
                   </span>
                 </figcaption>
@@ -334,8 +335,8 @@ export default function ProjectDetailPage({ params }: Props) {
         {embedUrl && (
           <section aria-label="Master VFX Showreel" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-24 sm:mb-32">
             <div className="mb-6">
-              <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-kanit">
-                Master VFX Showreel (55s)
+              <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-sans">
+                Project showreel (55s)
               </h2>
               <p className="text-xs sm:text-sm text-neutral-400 font-light">
                 Compiled gameplay and cinematic VFX sequences on PlayStation 5.
@@ -356,7 +357,7 @@ export default function ProjectDetailPage({ params }: Props) {
         {/* 5. IN-GAME CREDITS & REFERENCE ARCHIVE */}
         <section aria-label="In-Game Proof & References" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-24 sm:mb-32">
           <div className="mb-6">
-            <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-kanit">
+            <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-sans">
               In-Game End Credits & Reference Footage
             </h2>
             <p className="text-xs sm:text-sm text-neutral-400 font-light">
@@ -382,7 +383,7 @@ export default function ProjectDetailPage({ params }: Props) {
                     {creditsItem.title}
                   </h3>
                   {creditsItem.tag && (
-                    <span className="rounded bg-primary/20 border border-primary/30 px-2 py-0.5 text-xs font-mono text-primary font-medium">
+                    <span className="rounded bg-primary/20 border border-primary/30 px-2 py-0.5 text-xs font-sans text-primary font-medium">
                       {creditsItem.tag}
                     </span>
                   )}
@@ -438,7 +439,7 @@ export default function ProjectDetailPage({ params }: Props) {
                   <h4 className="text-xs sm:text-sm font-medium text-white group-hover:text-primary transition-colors line-clamp-1">
                     {refItem.title}
                   </h4>
-                  <p className="mt-0.5 text-[11px] font-mono text-muted-foreground flex items-center gap-1">
+                  <p className="mt-0.5 text-[11px] font-sans text-muted-foreground flex items-center gap-1">
                     Public Footage
                   </p>
                 </div>
@@ -451,19 +452,19 @@ export default function ProjectDetailPage({ params }: Props) {
         <footer className="mx-auto max-w-5xl px-6 pt-12 border-t border-white/15">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pb-6 border-b border-white/10">
             <div>
-              <p className="text-[10px] font-mono uppercase tracking-widest text-primary">Role</p>
+              <p className="text-[10px] font-sans tracking-normal text-primary">Role</p>
               <p className="font-medium text-white mt-1 text-sm">{project.role}</p>
             </div>
             <div>
-              <p className="text-[10px] font-mono uppercase tracking-widest text-primary">Engine</p>
+              <p className="text-[10px] font-sans tracking-normal text-primary">Engine</p>
               <p className="font-medium text-white mt-1 text-sm">{project.engine || "Proprietary Engine"}</p>
             </div>
             <div>
-              <p className="text-[10px] font-mono uppercase tracking-widest text-primary">Platform</p>
+              <p className="text-[10px] font-sans tracking-normal text-primary">Platform</p>
               <p className="font-medium text-white mt-1 text-sm">{project.platform || "PlayStation 5"}</p>
             </div>
             <div>
-              <p className="text-[10px] font-mono uppercase tracking-widest text-primary">Studio / Client</p>
+              <p className="text-[10px] font-sans tracking-normal text-primary">Studio / Client</p>
               <p className="font-medium text-white mt-1 text-sm">
                 {project.studio ? `${project.studio} / ${project.client}` : project.client}
               </p>
@@ -472,11 +473,11 @@ export default function ProjectDetailPage({ params }: Props) {
 
           <div className="pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-1.5">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mr-1.5">Tools:</span>
+              <span className="text-[10px] font-sans tracking-normal text-muted-foreground mr-1.5">Tools:</span>
               {project.techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="text-xs font-mono px-2 py-0.5 rounded border border-white/10 bg-white/[0.03] text-neutral-300"
+                  className="text-xs font-sans px-2 py-0.5 rounded border border-white/10 bg-white/[0.03] text-neutral-300"
                 >
                   {tech}
                 </span>
@@ -495,7 +496,7 @@ export default function ProjectDetailPage({ params }: Props) {
                   href={project.mobyGamesUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs font-mono text-primary hover:text-white hover:underline underline-offset-4 transition-colors"
+                  className="inline-flex items-center gap-1 text-xs font-sans text-primary hover:text-white hover:underline underline-offset-4 transition-colors"
                 >
                   Verified on MobyGames
                 </a>
@@ -513,7 +514,7 @@ export default function ProjectDetailPage({ params }: Props) {
       <div className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-6 flex items-center justify-between">
         <Link
           href="/portfolio"
-          className="group inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-white transition-colors"
+          className="group inline-flex items-center gap-2 text-xs font-sans tracking-normal text-muted-foreground hover:text-white transition-colors"
         >
           <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
           All Work
@@ -524,7 +525,7 @@ export default function ProjectDetailPage({ params }: Props) {
               href={project.mobyGamesUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-xs font-mono text-primary hover:text-white hover:underline underline-offset-4 transition-colors"
+              className="inline-flex items-center gap-1 text-xs font-sans text-primary hover:text-white hover:underline underline-offset-4 transition-colors"
             >
               MobyGames Credit
             </a>
@@ -534,7 +535,7 @@ export default function ProjectDetailPage({ params }: Props) {
               href={project.steamUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-xs font-mono text-muted-foreground hover:text-white hover:underline underline-offset-4 transition-colors"
+              className="inline-flex items-center gap-1 text-xs font-sans text-muted-foreground hover:text-white hover:underline underline-offset-4 transition-colors"
             >
               Official Store
             </a>
@@ -546,23 +547,23 @@ export default function ProjectDetailPage({ params }: Props) {
       <header className="mx-auto max-w-6xl px-6 pt-10 pb-12 sm:pt-16 sm:pb-16 text-center">
         <div className="flex flex-wrap items-center justify-center gap-2 mb-4">
           {project.categories.map((cat) => (
-            <Badge key={cat} variant="secondary" className="bg-white/10 text-white text-[11px] font-mono border-0">
+            <Badge key={cat} variant="secondary" className="bg-white/10 text-white text-[11px] font-sans border-0">
               {CATEGORY_LABELS[cat] ?? cat}
             </Badge>
           ))}
           {project.engine && (
-            <Badge variant="outline" className="border-primary/40 text-primary text-[11px] font-mono">
+            <Badge variant="outline" className="border-primary/40 text-primary text-[11px] font-sans">
               {project.engine}
             </Badge>
           )}
           {project.platform && (
-            <Badge variant="outline" className="border-white/20 text-muted-foreground text-[11px] font-mono">
+            <Badge variant="outline" className="border-white/20 text-muted-foreground text-[11px] font-sans">
               {project.platform}
             </Badge>
           )}
         </div>
 
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-kanit font-extrabold uppercase tracking-tight text-white mb-3">
+        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-sans font-extrabold tracking-tight text-white mb-3">
           {project.title}
         </h1>
 
@@ -582,7 +583,7 @@ export default function ProjectDetailPage({ params }: Props) {
               href={project.mobyGamesUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-primary/50 bg-primary/10 px-4 py-2 text-xs font-mono font-medium text-white hover:bg-primary/20 hover:border-primary transition-all shadow-sm"
+              className="inline-flex items-center gap-2 rounded-full border border-primary/50 bg-primary/10 px-4 py-2 text-xs font-sans font-medium text-white hover:bg-primary/20 hover:border-primary transition-all shadow-sm"
             >
               <span>Verified Game Credit on MobyGames</span>
             </a>
@@ -594,7 +595,7 @@ export default function ProjectDetailPage({ params }: Props) {
       {project.evidenceBreakdown && project.evidenceBreakdown.length > 0 && (
         <section aria-label="Production Breakdown" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-20 sm:mb-28">
           <div className="mb-8">
-            <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-kanit">
+            <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-sans">
               {project.slug === "spider-man-2"
                 ? "Cinematic VFX, Project Context & Credits"
                 : "Production Breakdown"}
@@ -631,7 +632,7 @@ export default function ProjectDetailPage({ params }: Props) {
                       {item.title}
                     </h3>
                     {item.tag && (
-                      <span className="text-[11px] font-mono text-neutral-400 whitespace-nowrap">
+                      <span className="text-[11px] font-sans text-neutral-400 whitespace-nowrap">
                         · {item.tag}
                       </span>
                     )}
@@ -641,7 +642,7 @@ export default function ProjectDetailPage({ params }: Props) {
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`text-[11px] font-mono transition-colors flex items-center gap-1 shrink-0 ${
+                      className={`text-[11px] font-sans transition-colors flex items-center gap-1 shrink-0 ${
                         item.link.includes("mobygames")
                           ? "text-primary hover:text-white font-medium"
                           : "text-muted-foreground hover:text-primary"
@@ -657,7 +658,7 @@ export default function ProjectDetailPage({ params }: Props) {
                           href={ts.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[11px] font-mono text-primary-hover hover:underline flex items-center gap-0.5"
+                          className="text-[11px] font-sans text-primary-hover hover:underline flex items-center gap-0.5"
                         >
                           {ts.time}
                         </a>
@@ -680,7 +681,7 @@ export default function ProjectDetailPage({ params }: Props) {
       {project.breakdownClips && project.breakdownClips.length > 0 && (
         <section aria-label="Selected Breakdown Clips" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-20 sm:mb-28">
           <div className="mb-8">
-            <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-kanit">
+            <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-sans">
               Selected Breakdown Clips
             </h2>
             <p className="text-xs sm:text-sm text-neutral-400 font-light">
@@ -719,7 +720,7 @@ export default function ProjectDetailPage({ params }: Props) {
                     <h3 className="text-sm font-medium text-white/90 group-hover:text-primary transition-colors">
                       {clip.title}
                     </h3>
-                    <span className="text-[11px] font-mono text-muted-foreground group-hover:text-white transition-colors flex items-center gap-1">
+                    <span className="text-[11px] font-sans text-muted-foreground group-hover:text-white transition-colors flex items-center gap-1">
                       Watch
                     </span>
                   </div>
@@ -737,10 +738,10 @@ export default function ProjectDetailPage({ params }: Props) {
 
       {/* 5. MASTER VFX REEL OR HERO DISPLAY */}
       {embedUrl ? (
-        <section aria-label="Master VFX Reel" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-20 sm:mb-28">
+        <section aria-label="Project showreel" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-20 sm:mb-28">
           <div className="mb-6">
-            <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-kanit">
-              Master VFX Reel
+            <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-sans">
+              Project showreel
             </h2>
             <p className="text-xs sm:text-sm text-neutral-400 font-light">
               High-definition in-engine sequences and gameplay montage.
@@ -777,7 +778,7 @@ export default function ProjectDetailPage({ params }: Props) {
       {project.images && project.images.length > 0 && (!project.evidenceBreakdown || project.evidenceBreakdown.length === 0) && (
         <section aria-label="Production Gallery" className="mx-auto max-w-[1440px] px-4 sm:px-8 mb-20 sm:mb-28">
           <div className="mb-8">
-            <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-kanit">
+            <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-1.5 font-sans">
               Production Gallery
             </h2>
             <p className="text-xs sm:text-sm text-neutral-400 font-light">
@@ -800,7 +801,7 @@ export default function ProjectDetailPage({ params }: Props) {
                   <h3 className="text-sm font-medium text-white/90">
                     {project.title} Frame
                   </h3>
-                  <span className="text-[11px] font-mono text-neutral-500">
+                  <span className="text-[11px] font-sans text-neutral-500">
                     Shot {String(i + 1).padStart(2, "0")}
                   </span>
                 </figcaption>
@@ -811,10 +812,10 @@ export default function ProjectDetailPage({ params }: Props) {
       )}
 
       {/* 7. PRODUCTION SCOPE & MANDATE */}
-      <section aria-label="Production Scope & Mandate" className="mx-auto max-w-4xl px-6 mb-20 sm:mb-28">
+      <section aria-label="My part in the production" className="mx-auto max-w-4xl px-6 mb-20 sm:mb-28">
         <div className="border-t border-white/10 pt-10">
-          <h2 className="text-xs font-mono uppercase tracking-widest text-primary mb-4">
-            Production Scope & Mandate
+          <h2 className="text-xs font-sans tracking-normal text-primary mb-4">
+            My part in the production
           </h2>
           <div className="space-y-4">
             {project.contributions.map((item, i) => (
@@ -826,7 +827,7 @@ export default function ProjectDetailPage({ params }: Props) {
 
           {technicalNotes.length > 0 && (
             <div className="mt-8 pt-8 border-t border-white/5">
-              <h3 className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-3">
+              <h3 className="text-xs font-sans tracking-normal text-muted-foreground mb-3">
                 Technical Notes
               </h3>
               <div className="space-y-2">
@@ -845,13 +846,13 @@ export default function ProjectDetailPage({ params }: Props) {
       <footer className="mx-auto max-w-5xl px-6 pt-16 mt-20 border-t border-white/15">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8 text-xs">
           <div>
-            <span className="text-neutral-500 font-mono uppercase tracking-widest block mb-1">
+            <span className="text-neutral-500 font-sans tracking-normal block mb-1">
               Role
             </span>
             <span className="text-white font-medium text-sm">{project.role}</span>
           </div>
           <div>
-            <span className="text-neutral-500 font-mono uppercase tracking-widest block mb-1">
+            <span className="text-neutral-500 font-sans tracking-normal block mb-1">
               Engine
             </span>
             <span className="text-primary font-medium text-sm">
@@ -859,7 +860,7 @@ export default function ProjectDetailPage({ params }: Props) {
             </span>
           </div>
           <div>
-            <span className="text-neutral-500 font-mono uppercase tracking-widest block mb-1">
+            <span className="text-neutral-500 font-sans tracking-normal block mb-1">
               Platform
             </span>
             <span className="text-white font-medium text-sm">
@@ -867,7 +868,7 @@ export default function ProjectDetailPage({ params }: Props) {
             </span>
           </div>
           <div>
-            <span className="text-neutral-500 font-mono uppercase tracking-widest block mb-1">
+            <span className="text-neutral-500 font-sans tracking-normal block mb-1">
               {project.studio
                 ? project.projectType === "film"
                   ? "Studio / Release"
@@ -882,13 +883,13 @@ export default function ProjectDetailPage({ params }: Props) {
 
         <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="text-[11px] font-mono text-neutral-500 uppercase tracking-widest mr-2">
+            <span className="text-[11px] font-sans text-neutral-500 tracking-normal mr-2">
               Tech:
             </span>
             {project.techStack.map((tech) => (
               <span
                 key={tech}
-                className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono text-neutral-300"
+                className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-[11px] font-sans text-neutral-300"
               >
                 {tech}
               </span>
@@ -912,7 +913,7 @@ export default function ProjectDetailPage({ params }: Props) {
                 href={project.mobyGamesUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs font-mono text-primary hover:text-white hover:underline underline-offset-4 transition-colors"
+                className="inline-flex items-center gap-1 text-xs font-sans text-primary hover:text-white hover:underline underline-offset-4 transition-colors"
               >
                 MobyGames Credit
               </a>
@@ -922,7 +923,7 @@ export default function ProjectDetailPage({ params }: Props) {
                 href={project.steamUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs font-mono text-muted-foreground hover:text-white hover:underline underline-offset-4 transition-colors"
+                className="inline-flex items-center gap-1 text-xs font-sans text-muted-foreground hover:text-white hover:underline underline-offset-4 transition-colors"
               >
                 Steam
               </a>

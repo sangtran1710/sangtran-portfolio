@@ -29,16 +29,16 @@ export default function ExperienceTimeline() {
                 <h3 className="text-base font-medium text-white">{exp.role}</h3>
                 <p className="text-sm font-medium text-primary">{exp.company}</p>
               </div>
-              <span className="flex-shrink-0 rounded border border-border bg-section px-2.5 py-0.5 text-xs font-mono text-muted-foreground">
+              <span className="flex-shrink-0 rounded border border-border bg-section px-2.5 py-0.5 text-xs font-sans text-muted-foreground">
                 {exp.duration}
               </span>
             </div>
 
-            <p className="text-sm text-muted-foreground leading-relaxed mt-1">
+            <p className="max-w-[60ch] text-sm text-muted-foreground leading-relaxed [text-wrap:pretty] mt-1">
               {exp.responsibilities[0]}
             </p>
 
-            <p className="mt-2 text-xs font-mono text-muted-foreground">
+            <p className="mt-2 text-xs font-sans text-muted-foreground">
               {exp.technologies}
             </p>
           </div>
@@ -53,7 +53,7 @@ export default function ExperienceTimeline() {
         >
           <ArrowDownToLine className="h-3.5 w-3.5" />
           <span>
-            {isVi ? "Tải CV PDF" : "Download CV (PDF)"}
+            {isVi ? "Tải CV PDF" : "Download résumé (PDF)"}
           </span>
         </a>
       </div>

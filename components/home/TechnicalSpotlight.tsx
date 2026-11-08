@@ -40,7 +40,7 @@ export default function TechnicalSpotlight() {
       title: isVi ? "Một vết nứt, ba texture" : "One crack, three textures",
       summary: isVi
         ? "Bake vector displacement và tangent normal trong Houdini COPs cho vết nứt toác bề mặt."
-        : "Vector displacement and tangent normal bakes for directional fracture surfaces.",
+        : "A closer look at the textures that give a growing fracture its shape and surface detail.",
       tools: "Houdini COPs",
       mode: "wipe",
       passes: [
@@ -64,7 +64,7 @@ export default function TechnicalSpotlight() {
         },
       ],
       href: "/blog/houdini-destructibles-and-vfx-pipeline",
-      linkLabel: isVi ? "Đọc ghi chú pipeline" : "Read the pipeline notes",
+      linkLabel: isVi ? "Đọc ghi chú pipeline" : "Explore the process",
     },
     {
       id: "fracture",
@@ -72,7 +72,7 @@ export default function TechnicalSpotlight() {
       title: isVi ? "Từ mesh nặng đến emitter nhẹ" : "From heavy mesh to light emitters",
       summary: isVi
         ? "Tool Blender Python tự động tách mặt nứt và sinh card emitter tại tâm mỗi mảnh vỡ."
-        : "Automated Blender Python tool isolating fracture seams and generating center emitter cards.",
+        : "A Blender tool I built to separate fracture seams and place effect emitters where each piece breaks.",
       tools: "Blender · Python",
       mode: "steps",
       passes: [
@@ -155,7 +155,7 @@ export default function TechnicalSpotlight() {
     <section id="technical-spotlight" className="scroll-mt-24 border-b border-border bg-section">
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-24">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-6 border-b border-border pb-6">
-          <h2 className="font-kanit text-3xl font-normal tracking-tight text-white sm:text-4xl">
+          <h2 className="font-sans text-3xl font-normal tracking-tight text-white sm:text-4xl">
             {copy.home.technicalSpotlight}
           </h2>
           <div className="flex flex-wrap gap-1.5 rounded-full border border-white/10 bg-white/[0.03] p-1.5 backdrop-blur-md shadow-inner" role="tablist" aria-label={isVi ? "Chọn nghiên cứu" : "Choose study"}>
@@ -199,11 +199,24 @@ export default function TechnicalSpotlight() {
             transition={{ duration: 0.22, ease: "easeOut" }}
             className="mb-16 grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:items-start"
           >
-          <div>
+          <div className="lg:col-start-2 lg:row-start-1">
+            <p className="text-xs font-sans text-primary">{study.tools}</p>
+            <h3 className="mt-2 font-sans text-2xl font-normal tracking-tight text-white sm:text-3xl">
+              {study.title}
+            </h3>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">{study.summary}</p>
+            <Link
+              href={study.href}
+              className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-white transition-colors hover:text-primary hover:underline underline-offset-4"
+            >
+              {study.linkLabel}
+            </Link>
+          </div>
+          <div className="lg:col-start-1 lg:row-start-1">
             {/* Pass buttons */}
             <div className="mb-4 flex flex-wrap items-center gap-2 text-xs">
               {isWipe && (
-                <span className="mr-1 font-mono text-muted-foreground">
+                <span className="mr-1 font-sans text-muted-foreground">
                   {isVi ? "Trái:" : "Left:"} <span className="text-white font-medium">{basePass.label}</span>
                   <span className="mx-2 text-muted-foreground/30">|</span>
                   {isVi ? "Phải:" : "Right:"}
@@ -219,7 +232,7 @@ export default function TechnicalSpotlight() {
                       type="button"
                       onClick={() => setPassIdx(idx)}
                       aria-pressed={selected}
-                      className={`relative rounded-full px-3.5 py-1.5 font-mono text-xs transition-colors duration-200 focus-visible:outline-none ${
+                      className={`relative rounded-full px-3.5 py-1.5 font-sans text-xs transition-colors duration-200 focus-visible:outline-none ${
                         selected ? "text-primary font-medium" : "text-neutral-400 hover:text-white"
                       }`}
                     >
@@ -269,10 +282,10 @@ export default function TechnicalSpotlight() {
                       draggable={false}
                     />
                   </div>
-                  <span className="pointer-events-none absolute left-3 top-3 rounded-sm bg-background/90 px-2 py-0.5 text-[11px] font-mono text-foreground">
+                  <span className="pointer-events-none absolute left-3 top-3 rounded-sm bg-background/90 px-2 py-0.5 text-[11px] font-sans text-foreground">
                     {basePass.label}
                   </span>
-                  <span className="pointer-events-none absolute right-3 top-3 rounded-sm bg-background/90 px-2 py-0.5 text-[11px] font-mono text-primary">
+                  <span className="pointer-events-none absolute right-3 top-3 rounded-sm bg-background/90 px-2 py-0.5 text-[11px] font-sans text-primary">
                     {activePass.label}
                   </span>
                   <div
@@ -316,19 +329,6 @@ export default function TechnicalSpotlight() {
             <p className="mt-2 text-xs text-muted-foreground">{activePass.note}</p>
           </div>
 
-          <div className="lg:pt-10">
-            <p className="text-xs font-mono text-primary">{study.tools}</p>
-            <h3 className="mt-2 font-kanit text-2xl font-normal tracking-tight text-white sm:text-3xl">
-              {study.title}
-            </h3>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">{study.summary}</p>
-            <Link
-              href={study.href}
-              className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-white transition-colors hover:text-primary hover:underline underline-offset-4"
-            >
-              {study.linkLabel}
-            </Link>
-          </div>
           </motion.div>
         </AnimatePresence>
 
@@ -399,7 +399,7 @@ function SpotlightCard({
           <h3 className="text-lg font-medium tracking-tight text-white transition-colors duration-200 group-hover:text-primary sm:text-xl">
             {item.title}
           </h3>
-          <p className="mt-2 text-base leading-relaxed text-muted-foreground">{item.description}</p>
+          <p className="mt-2 text-base leading-relaxed text-muted-foreground [text-wrap:pretty]">{item.description}</p>
         </div>
       </article>
     </Link>

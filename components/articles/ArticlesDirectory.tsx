@@ -25,9 +25,9 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
 
   return (
     <div className="min-h-screen pt-24 sm:pt-28 pb-20 text-white bg-background">
-      <main className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <header className="mb-10 max-w-2xl border-b border-border pb-6">
-          <h1 className="text-4xl font-kanit font-normal tracking-tight text-white sm:text-5xl">
+          <h1 className="text-4xl font-sans font-normal tracking-tight text-white sm:text-5xl">
             {headingText}
           </h1>
         </header>
@@ -37,7 +37,7 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
           <div className="grid gap-10 md:grid-cols-2">
             {displayedPosts.map((post, index) => {
               const isVfxStudy = post.tags.includes("VFX Study");
-              const categoryBadge = isVfxStudy ? "VFX Study" : "Pipeline Tool";
+              const categoryBadge = isVfxStudy ? "VFX study" : post.tags.includes("Pipeline Tools") ? "Pipeline tool" : "Pipeline study";
 
               return (
                 <article
@@ -60,18 +60,18 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
                     )}
 
                     <div className="pt-4">
-                      <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
-                        <span className="uppercase tracking-[0.14em] text-primary">
+                      <div className="flex flex-wrap items-center gap-2 text-xs font-sans">
+                        <span className="tracking-normal text-primary">
                           {categoryBadge}
                         </span>
-                        <span className="text-muted-foreground/30 font-mono">·</span>
+                        <span className="text-muted-foreground/30 font-sans">·</span>
                         <span className="flex items-center gap-1 text-muted-foreground">
                           <Clock className="h-3 w-3" />
                           {post.readTime}
                         </span>
                       </div>
 
-                      <h2 className="mt-2 text-xl font-medium tracking-tight text-white transition-colors duration-200 group-hover:text-primary font-kanit">
+                      <h2 className="mt-2 text-xl font-medium tracking-tight text-white transition-colors duration-200 group-hover:text-primary font-sans">
                         {post.title}
                       </h2>
 
@@ -87,7 +87,7 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
             })}
           </div>
         </section>
-      </main>
+      </div>
     </div>
   );
 }

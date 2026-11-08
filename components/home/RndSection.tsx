@@ -22,7 +22,7 @@ function Thumbnail({ project, sizes }: { project: RndProject; sizes: string }) {
     return (
       <div className="absolute inset-0 flex flex-col items-center justify-center bg-card/80 text-white/20">
         <ImageOff className="h-8 w-8 mb-1" />
-        <span className="text-[10px] uppercase tracking-wider">{project.title}</span>
+        <span className="text-xs tracking-normal">{project.title}</span>
       </div>
     );
   }
@@ -167,7 +167,7 @@ export default function RndSection() {
 
               {/* Typography & Editorial Metadata */}
               <div className="flex flex-1 flex-col pt-3.5">
-                <p className="text-[10px] font-mono uppercase tracking-[0.16em] text-primary">
+                <p className="text-xs font-sans tracking-normal text-primary">
                   {project.category}
                 </p>
 
@@ -195,7 +195,7 @@ export default function RndSection() {
                   ? (isArchiveOpen ? "Thu gọn lưu trữ" : "Xem dự án trước đây →")
                   : (isArchiveOpen ? "Hide archive" : "Earlier Work (Archive) →")}
               </span>
-              <span className="rounded bg-card border border-border px-2 py-0.5 text-xs font-mono text-muted-foreground">
+              <span className="rounded bg-card border border-border px-2 py-0.5 text-xs font-sans text-muted-foreground">
                 {archiveProjects.length}
               </span>
               <ChevronDown
@@ -229,7 +229,7 @@ export default function RndSection() {
                       <Thumbnail project={project} sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" />
                     </div>
                     <div className="pt-2">
-                      <p className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground">
+                      <p className="text-xs font-sans tracking-normal text-muted-foreground">
                         {project.year || "Archive"}
                       </p>
                       <h4 className="mt-0.5 text-xs font-medium text-white transition-colors duration-200 group-hover:text-primary line-clamp-1">

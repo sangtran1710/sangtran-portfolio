@@ -8,7 +8,7 @@
 
 The website (`sangtran-portfolio-website`) is the high-end professional showcase of **Henry Tran**, a Senior VFX Artist with AAA production credits on *Marvel's Wolverine*, *Marvel's Spider-Man 2*, and *Fortnite*.
 
-### Core Aesthetic: Studio Slate (`#1c212c`)
+### Core Aesthetic: Studio Slate (`#0d1015`)
 Inspired by industry benchmarks like `proceduralpixels.com` and modern AAA pipeline tool interfaces:
 - **Calm, Disciplined Authority**: The interface never screams for attention with garish gradients or decorative fluff.
 - **Content-Forward**: High-fidelity gameplay VFX, Niagara systems, HLSL shader passes, and simulation breakdowns do 100% of the emotional and visual heavy lifting. The UI chrome is disciplined, quiet, and razor-sharp.
@@ -21,15 +21,15 @@ Inspired by industry benchmarks like `proceduralpixels.com` and modern AAA pipel
 Every AI coding agent modifying this codebase MUST respect these 7 laws:
 
 ### 1. NO "Cards-in-Cards" Nesting
-- ❌ **Anti-pattern**: Placing an image inside a heavy gray container, which is itself placed inside a bordered card box (`bg-[#232a38] border border-[#364156] p-4`).
-- ✅ **Standard**: The visual asset (image or video) sits directly on the slate canvas or elevated surface, framed only by a crisp hairline border (`border-[#364156]/70`). Typography and metadata flow cleanly underneath without outer padding boxes.
+- ❌ **Anti-pattern**: Placing an image inside a heavy gray container, which is itself placed inside a bordered card box (`bg-[#171d24] border border-[#252c34] p-4`).
+- ✅ **Standard**: The visual asset (image or video) sits directly on the slate canvas or elevated surface, framed only by a crisp hairline border (`border-[#252c34]/70`). Typography and metadata flow cleanly underneath without outer padding boxes.
 
 ### 2. NO Corner Icon Overlays
 - ❌ **Anti-pattern**: Floating a square black button with an `ArrowUpRight` or play icon over the top-right corner of video/image thumbnails on hover.
-- ✅ **Standard**: Hover feedback is expressed through gentle image scale (`scale-[1.02]`), hairline border color shift (`group-hover:border-[#5eb3ab]/60`), and title color transition (`group-hover:text-[#5eb3ab]`).
+- ✅ **Standard**: Hover feedback is expressed through gentle image scale (`scale-[1.02]`), hairline border color shift (`group-hover:border-[#58cfc8]/60`), and title color transition (`group-hover:text-[#58cfc8]`).
 
 ### 3. NO Tag Pill Spam
-- ❌ **Anti-pattern**: Enclosing every engine tool or shader name in individual rounded pill boxes (`rounded border border-[#364156] bg-[#161a23] px-2 py-0.5`).
+- ❌ **Anti-pattern**: Enclosing every engine tool or shader name in individual rounded pill boxes (`rounded border border-[#252c34] bg-[#12171d] px-2 py-0.5`).
 - ✅ **Standard**: Use clean, elegant inline dot-separated strings in monospace font:
   ```tsx
   {project.tools.slice(0, 3).join(" · ")}
@@ -38,7 +38,7 @@ Every AI coding agent modifying this codebase MUST respect these 7 laws:
 
 ### 4. NO Side-Tab / Colored Callout Borders
 - ❌ **Anti-pattern**: `border-l-2 border-primary` or thick colored left borders on cards, blockquotes, and notices (the universal hallmark of AI markdown templates).
-- ✅ **Standard**: Use hairline 4-sided borders (`border border-[#364156] bg-[#161a23] rounded-lg px-4 py-3`).
+- ✅ **Standard**: Use hairline 4-sided borders (`border border-[#252c34] bg-[#12171d] rounded-lg px-4 py-3`).
 
 ### 5. NO Gimmick Widgets
 - ❌ **Anti-pattern**: Lo-Fi vinyl audio players, 2D HTML canvas motes/particles floating on the hero, decorative floating back-to-top buttons.
@@ -62,18 +62,18 @@ Every AI coding agent modifying this codebase MUST respect these 7 laws:
 ### Surfaces & Backgrounds
 | Token | Hex Value | Usage |
 |---|---|---|
-| **Base Slate** | `#1c212c` | Global body canvas, hero backgrounds, cinema backdrop |
-| **Elevated Slate** | `#161a23` | Card wells, thumbnail containers, code blocks, secondary sections |
-| **Surface Accent** | `#232a38` | Interactive button resting states, subtle container fills |
-| **Hairline Border** | `#364156` | Primary structural borders, table lines, dividers (opacity 50-70%) |
-| **Hover Border** | `#4b5a75` | Hover state for interactive cards and buttons |
+| **Base Slate** | `#0d1015` | Global body canvas, hero backgrounds, cinema backdrop |
+| **Elevated Slate** | `#12171d` | Card wells, thumbnail containers, code blocks, secondary sections |
+| **Surface Accent** | `#171d24` | Interactive button resting states, subtle container fills |
+| **Hairline Border** | `#252c34` | Primary structural borders, table lines, dividers (opacity 50-70%) |
+| **Hover Border** | `#38424d` | Hover state for interactive cards and buttons |
 
 ### Accent & Highlights
 | Token | Hex Value | Usage |
 |---|---|---|
-| **Studio Teal** | `#5eb3ab` | Primary kicker text, active tab indicators, timeline dots, primary buttons |
-| **Teal Hover** | `#72c2ba` | Hover fill on primary buttons and active link text |
-| **Teal Glow** | `rgba(94, 179, 171, 0.12)` | Understated radial backdrop glow behind hero / showreel |
+| **Studio Teal** | `#58cfc8` | Primary kicker text, active tab indicators, timeline dots, primary buttons |
+| **Teal Hover** | `#70ddd6` | Hover fill on primary buttons and active link text |
+| **Teal Glow** | `rgba(88, 207, 200, 0.12)` | Understated radial backdrop glow behind hero / showreel |
 
 ### Typography & Text
 | Token | Value | Tailwind Class | Usage |
@@ -88,7 +88,7 @@ Every AI coding agent modifying this codebase MUST respect these 7 laws:
 ## 4. Key Page Layout Patterns
 
 ### A. Homepage (`/`)
-- **Hero**: Clean `Senior VFX Artist` kicker, `Henry Tran` display title in Kanit, 1-line bio, two clear CTAs (`Selected work →`, `Technical breakdown →`).
+- **Hero**: Clean `Senior VFX Artist` kicker, `Henry Tran` display title in Kanit, 1-line bio, two clear CTAs (`Selected work`, `Showreel`).
 - **Spec Sheet Colophon**: 4-column studio colophon directly under hero:
   - `Discipline`: Real-Time VFX · Shaders · Tech Art
   - `Core Engine Stack`: Unreal Engine 5 · Niagara · HLSL · Houdini
@@ -99,12 +99,12 @@ Every AI coding agent modifying this codebase MUST respect these 7 laws:
 ### B. Showreel Page (`/showreel`)
 - **Cinema Theater Model**: Video-first layout with zero paragraph bloat.
 - **Stage Backlight**: Subtle teal-slate radial ambient glow behind the player.
-- **Keyframe Scrubber**: 4 crisp thumbnail keyframes below player (`00:00 Fortnite`, `00:14 Wolverine`, `00:24 New World`, `00:32 Wetness Shader`) that allow direct seeking with a single click.
+- **Keyframe Scrubber**: 4 crisp thumbnail keyframes below player (`00:00 Fortnite`, `00:14 Spider-Man 2`, `00:24 New World`, `00:32 Until Dawn`) that allow direct seeking with a single click.
 
 ### C. About Page (`/about`)
-- Fully integrated in `#1c212c` dark slate.
-- Profile header in `#161a23`/60 with hairline `#364156` border.
-- Experience Timeline uses hairline connector lines and `#5eb3ab` glowing indicator dots.
+- Fully integrated in `#0d1015` dark slate.
+- Profile header in `#12171d`/60 with hairline `#252c34` border.
+- Experience Timeline uses hairline connector lines and `#58cfc8` glowing indicator dots.
 - Upwork verified endorsement and AAA production credits in clean slate cards.
 
 ### D. R&D / Stylized Projects (`/portfolio#rnd`)
@@ -124,3 +124,13 @@ Before committing or handing off any frontend code:
    Must report `0 anti-patterns found`.
 3. **Screenshot Self-Verification**: For visual changes, run Playwright QA tests to verify screenshots under `test-results/ui-screenshots/`.
 4. **Git Hygiene**: Run `git status --short` to ensure no temporary scratch or cache files remain untracked.
+
+## Current content policy
+
+The published portfolio is English-only. Vietnamese copy remains as source material; no language switch is currently offered. Design tokens in `app/globals.css` are the implementation source of truth.
+
+## Typography and editorial update
+
+Use Inter for portfolio headings, navigation, body copy and metadata. Reserve monospace for actual code and shader examples. Do not use uppercase metadata strips or credit badges on thumbnails. Credit sources belong on the project detail page.
+
+Write with a measured editorial voice. Headlines can be evocative; descriptions stay specific and personal. Keep action labels short. Do not use dash punctuation to interrupt sentences. Preserve punctuation in official project names and credits.

@@ -97,10 +97,8 @@ export default function AboutPageClient() {
               </motion.div>
 
               <div>
-                <p className="mb-2 text-xs font-mono uppercase tracking-[0.18em] text-primary">
-                  {copy.about.kicker}
-                </p>
-                <h1 className="mb-3 font-kanit text-4xl font-normal tracking-tight text-white sm:text-5xl lg:text-6xl">
+
+                <h1 className="mb-3 font-sans text-4xl font-normal tracking-tight text-white sm:text-5xl lg:text-6xl">
                   Henry Tran
                 </h1>
                 <p className="mb-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">

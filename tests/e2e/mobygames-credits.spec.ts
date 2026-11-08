@@ -63,14 +63,16 @@ test.describe("MobyGames Credit Verification Audit", () => {
     await expect(footerMobyLink).toHaveAttribute("href", MOBY_URL);
   });
 
-  test("Project cards on /portfolio display MobyGames badge and metadata", async ({ page }) => {
+  test("Project cards keep credit badges off thumbnails and preserve project links", async ({ page }) => {
     await page.goto("http://localhost:3000/portfolio");
     await page.waitForLoadState("networkidle");
 
     const wolverineCard = page.locator('a[href="/projects/wolverine"]').first();
-    await expect(wolverineCard.locator('span:has-text("MobyGames Credit")')).toBeVisible();
+    await expect(wolverineCard.getByRole("heading", { name: "Marvel's Wolverine" })).toBeVisible();
+    await expect(wolverineCard).not.toContainText("MobyGames Credit");
 
     const sm2Card = page.locator('a[href="/projects/spider-man-2"]').first();
-    await expect(sm2Card.locator('span:has-text("MobyGames Credit")')).toBeVisible();
+    await expect(sm2Card.getByRole("heading", { name: "Marvel's Spider-Man 2" })).toBeVisible();
+    await expect(sm2Card).not.toContainText("MobyGames Credit");
   });
 });

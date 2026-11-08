@@ -30,19 +30,17 @@ export default function ProjectGrid() {
     <div>
       {/* Framer Segmented Dock Header */}
       <div className="mb-12 flex flex-wrap items-center justify-between gap-4 border-b border-border/60 pb-6">
-        <div className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] p-1.5 backdrop-blur-md shadow-inner" role="tablist">
+        <div className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] p-1.5 backdrop-blur-md shadow-inner" role="group" aria-label="Filter projects">
           {filters.map(({ value, label }) => {
             const isSelected = active === value;
             return (
               <button
                 key={value}
                 type="button"
-                role="tab"
-                aria-selected={isSelected}
                 aria-pressed={isSelected}
                 onClick={() => setActive(value)}
                 className={cn(
-                  "relative rounded-full px-5 py-2 text-xs sm:text-sm font-medium transition-colors duration-200 focus-visible:outline-none",
+                  "relative rounded-full px-5 py-2 text-xs sm:text-sm font-medium transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
                   isSelected
                     ? "text-white font-semibold"
                     : "text-neutral-400 hover:text-white"
