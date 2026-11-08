@@ -1,0 +1,77 @@
+{
+  "/images/projects/wolverine/wolverine-cover-art-jock.png": {
+    "variants": {
+      "480": "/images/thumbnails/ae47305e8b4c-480.webp",
+      "960": "/images/thumbnails/ae47305e8b4c-960.webp",
+      "1440": "/images/thumbnails/ae47305e8b4c-1440.webp"
+    },
+    "blur": "data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAABwBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdMoRwACacw5Ql1wDtZsosAAD+6pXmhzIsTeRl00x/F+Nh7XdRG2xZNX0QwPSyIpod4UvdcQlL1HTzzfWrPQI/ejtj8YfBX+LFmvmchb++MO6SMYw7Vm7rKsazOWwPOgcl7ZUAAA=="
+  },
+  "/images/spiderman-2-ps5.jpg": {
+    "variants": {
+      "480": "/images/thumbnails/68b326a2ba42-480.webp",
+      "960": "/images/thumbnails/68b326a2ba42-960.webp",
+      "1200": "/images/thumbnails/68b326a2ba42-1440.webp"
+    },
+    "blur": "data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAAAQBACdASoUAAoAPu1iqU2ppaOiMAgBMB2JbACdMoACx7NImj4xRtGYAAD+6PA1cOl7YaIeQb++9TeS/BYesUvJyzLqzXFx50OvkNI0z33foN/k+jR/Mfuc3ebsznbRgEW5kR+k0AKxojrKwma8+5gAAAA="
+  },
+  "/images/optimized/fortnite-live-event.jpg": {
+    "variants": {
+      "480": "/images/thumbnails/bd97ac143414-480.webp",
+      "960": "/images/thumbnails/bd97ac143414-960.webp",
+      "1280": "/images/thumbnails/bd97ac143414-1440.webp"
+    },
+    "blur": "data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAABwBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdMoAlsBBuB+FGlzFTmviIAAD+5Fq6v2YdGPg/kTk5oRjy4s4FpBu6+kIKpajHP0rdCSTDGmsswKKcFo/e8LWcDtOo+AnYOs/jqYQc/QzUKQqK9Yxa/iyyVV3V7zKyDEdyY/0mQJ1Gf6w/Kggzb7cgCGOt/ia0iLTWZgAAAA=="
+  },
+  "/images/optimized/new-world-aeternum.jpg": {
+    "variants": {
+      "480": "/images/thumbnails/dff330c9cd81-480.webp",
+      "960": "/images/thumbnails/dff330c9cd81-960.webp",
+      "1280": "/images/thumbnails/dff330c9cd81-1440.webp"
+    },
+    "blur": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAADQAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JZADCgB6u1xVNyZb9rwAA/t3veWmXVhiPGWq/xbWwIexC84Ajy8fPUPO0MIShXcXGmaHVAz4mVUjAgTA0AA=="
+  },
+  "/images/until-dawn-ps5.jpg": {
+    "variants": {
+      "480": "/images/thumbnails/1380a3933a8d-480.webp",
+      "686": "/images/thumbnails/1380a3933a8d-1440.webp"
+    },
+    "blur": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAADQAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JZQCdACBTW6AEVNkhBAAA/umvAnJV1QtDYPYW5ptZwbJpUZhNr2qf28OFNxsn+9vcEW4fCHz2DIAA"
+  },
+  "/projects/malignant/steam-capsule.jpg": {
+    "variants": {
+      "480": "/images/thumbnails/ba6ef4e5c4db-480.webp",
+      "616": "/images/thumbnails/ba6ef4e5c4db-1440.webp"
+    },
+    "blur": "data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAACwAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdAAq6kKUlICu10AD8gA3D4bCXTEM1N+xKmg8X0d03+QFKGp8idqIDpVTw8IpfooKJlcCQSuRAf7J2X6/jCfFHJWPOh18nOUrCvLzijSPejsf8HxE4Kh73AE2zkbH3rUcMfO6oAA=="
+  },
+  "/images/Black_Knight_Thumbnail.jpg": {
+    "variants": {
+      "480": "/images/thumbnails/2ea51cbddae7-480.webp",
+      "810": "/images/thumbnails/2ea51cbddae7-1440.webp"
+    },
+    "blur": "data:image/webp;base64,UklGRsoAAABXRUJQVlA4IL4AAACQBQCdASoUAB4APu1orE+ppiQiMBgIATAdiUAXZmmInvy+94cplsXVwy6E3gPPVFv3/nsgAAD+5eumgWR//c8YSS9RfZeii6g2jhW58TtmGWcDFXHAdSjn3kAS0Xf1sT0AghnaN47/D5BTRgZ1z/KgkfebJH/KjKKLIx+NWD3nbOhlmoxa8w1jG2HoSm9WFmTsd0AmlTVYeoON+ETI0XXpSeAYtZl/kNE3Ied7qlXoaZHcLQ8dmSBGQqMCgAAA"
+  },
+  "/images/havoc-logo.png": {
+    "variants": {
+      "425": "/images/thumbnails/d02332d16afb-1440.webp"
+    },
+    "blur": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAADwAgCdASoUAAsAPu1iqk4ppaQiMAgBMB2JZQC/OC0kAAD+8G/QPRjFmhYYqguBeuOAAA=="
+  },
+  "/images/projects/wolverine/wolverine-artblast-explosion.webp": {
+    "variants": {
+      "480": "/images/thumbnails/af777f7e5226-480.webp",
+      "960": "/images/thumbnails/af777f7e5226-960.webp",
+      "1440": "/images/thumbnails/af777f7e5226-1440.webp"
+    },
+    "blur": "data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAAAQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdLpWAOSHsSLtyQSRWQAD+5oS+HaagxqUOQ/Jc3UcP5wU+0e8e36XnZqLYGMeL2vh8yl2k4tgCZx2kNcgCpuMd8nxEcWsMS7BlGkdrXk3Ebxy5Y5snRwoZ/kPpt+gAAA=="
+  },
+  "/images/projects/spider-man-2/story-fire.webp": {
+    "variants": {
+      "480": "/images/thumbnails/c5aa6e3d3bb2-480.webp",
+      "960": "/images/thumbnails/c5aa6e3d3bb2-960.webp",
+      "1440": "/images/thumbnails/c5aa6e3d3bb2-1440.webp"
+    },
+    "blur": "data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAABwBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdMoR3ACPfDwjKjn9Oj/coAAD+8N+t0guQWo1zcYzpxlbb5nMVa0w4QCFq5BRja9PNuC41Fk6yjk/uWnQq4Mwh/1VysQbjOxxGaEdulWi+woWuj+eAAAA="
+  }
+}

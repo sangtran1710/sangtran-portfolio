@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Image from "next/image";
+import ProjectThumbnail from "./ProjectThumbnail";
 import Link from "next/link";
 import { useReducedMotion } from "framer-motion";
 import { getProjectByline, type Project } from "@/data/portfolio";
@@ -66,10 +66,9 @@ export default function ProjectCard({
             featured ? "aspect-[16/9]" : "aspect-[16/10]"
           )}
         >
-          <Image
+          <ProjectThumbnail
             src={project.thumbnail}
             alt={project.title}
-            fill
             priority={priority}
             className={cn(
               "object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]",

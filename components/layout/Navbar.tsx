@@ -66,12 +66,14 @@ export default function Navbar() {
     <header className="fixed inset-x-0 top-0 z-50 w-full border-b border-border/70 bg-background/90 backdrop-blur-md">
       <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-6 sm:px-8 lg:px-12">
         {/* Logo */}
-        <Link href="/" className="group flex flex-row items-baseline gap-0.5 font-sans leading-none">
-          <span className="text-[1.75rem] font-bold text-white transition-colors group-hover:text-white/85">
-            HT
-          </span>
-          <span className="text-[1.75rem] font-bold leading-none text-primary">
-            .
+        <Link
+          href="/"
+          aria-label="Henry Tran, home"
+          className="group inline-flex min-h-11 min-w-11 items-center rounded-md font-sans leading-none outline-none transition-colors duration-200 hover:bg-white/[0.04] focus-visible:ring-2 focus-visible:ring-primary/80 focus-visible:ring-offset-4 focus-visible:ring-offset-background motion-reduce:transition-none"
+        >
+          <span aria-hidden="true" className="inline-flex items-baseline gap-0.5 text-[1.75rem] font-bold tracking-tight">
+            <span className="text-white transition-colors duration-200 group-hover:text-primary motion-reduce:transition-none">HT</span>
+            <span className="text-primary">.</span>
           </span>
         </Link>
 

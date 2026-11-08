@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
     "qa:screenshots": "playwright test tests/e2e/screenshot-qa.spec.ts",
-    "visual:generate": "node scripts/generate-openrouter-visual.mjs"
+    "visual:generate": "node scripts/generate-openrouter-visual.mjs",
+    "images:thumbnails": "node scripts/generate-thumbnails.mjs"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.16",

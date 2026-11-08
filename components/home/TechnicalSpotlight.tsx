@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MoveHorizontal } from "lucide-react";
@@ -26,6 +26,21 @@ interface Study {
   passes: Pass[];
   href: string;
   linkLabel: string;
+}
+
+const decodedImages = new Map<string, Promise<void>>();
+function decodeStudyImage(src: string): Promise<void> {
+  const cached = decodedImages.get(src);
+  if (cached) return cached;
+  const pending = new Promise<void>((resolve, reject) => {
+    const image = new window.Image();
+    const timeout = window.setTimeout(() => reject(new Error("Image load timed out")), 15000);
+    image.onload = () => { image.decode().then(resolve, reject).finally(() => window.clearTimeout(timeout)); };
+    image.onerror = () => { window.clearTimeout(timeout); reject(new Error("Image could not load")); };
+    image.src = src;
+  }).catch((error) => { decodedImages.delete(src); throw error; });
+  decodedImages.set(src, pending);
+  return pending;
 }
 
 export default function TechnicalSpotlight() {
@@ -104,6 +119,40 @@ export default function TechnicalSpotlight() {
   const [passIdx, setPassIdx] = useState(1);
   const [split, setSplit] = useState(50);
   const [dragging, setDragging] = useState(false);
+  const selectionRequest = useRef(0);
+  const [pendingStudy, setPendingStudy] = useState<number | null>(null);
+  const [imageError, setImageError] = useState(false);
+  useEffect(() => () => { selectionRequest.current += 1; }, []);
+
+  const warmStudy = (index: number) => Promise.all(studies[index].passes.map((pass) => decodeStudyImage(pass.image)));
+  const selectStudy = async (index: number) => {
+    const request = ++selectionRequest.current;
+    if (index === studyIdx) { setPendingStudy(null); return; }
+    setPendingStudy(index);
+    setImageError(false);
+    try {
+      await warmStudy(index);
+      if (request !== selectionRequest.current) return;
+      setStudyIdx(index);
+      setPassIdx(studies[index].mode === "wipe" ? 1 : 0);
+      setSplit(50);
+    } catch {
+      if (request === selectionRequest.current) setImageError(true);
+    } finally {
+      if (request === selectionRequest.current) setPendingStudy(null);
+    }
+  };
+  const selectPass = async (index: number) => {
+    const request = ++selectionRequest.current;
+    setPendingStudy(null);
+    setImageError(false);
+    try {
+      await decodeStudyImage(studies[studyIdx].passes[index].image);
+      if (request === selectionRequest.current) setPassIdx(index);
+    } catch {
+      if (request === selectionRequest.current) setImageError(true);
+    }
+  };
   const viewportRef = useRef<HTMLDivElement | null>(null);
 
   const study = studies[studyIdx] ?? studies[0];
@@ -167,11 +216,9 @@ export default function TechnicalSpotlight() {
                   type="button"
                   role="tab"
                   aria-selected={active}
-                  onClick={() => {
-                    setStudyIdx(idx);
-                    setPassIdx(s.mode === "wipe" ? 1 : 0);
-                    setSplit(50);
-                  }}
+                  onMouseEnter={() => { void warmStudy(idx).catch(() => {}); }}
+                  onFocus={() => { void warmStudy(idx).catch(() => {}); }}
+                  onClick={() => { void selectStudy(idx); }}
                   className={`relative rounded-full px-5 py-2 text-xs sm:text-sm font-medium transition-colors duration-200 focus-visible:outline-none ${
                     active ? "text-white font-semibold" : "text-neutral-400 hover:text-white"
                   }`}
@@ -190,13 +237,15 @@ export default function TechnicalSpotlight() {
           </div>
         </div>
 
+        <p role="status" className="sr-only">{imageError ? "Unable to load this preview. Please try again." : pendingStudy !== null ? "Loading preview" : ""}</p>
         <AnimatePresence mode="wait">
           <motion.div
             key={study.id}
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
+            aria-busy={pendingStudy !== null}
+            initial={prefersReducedMotion ? false : { opacity: 0.75, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.22, ease: "easeOut" }}
+            exit={prefersReducedMotion ? undefined : { opacity: 0.8, y: -3 }}
+            transition={{ duration: prefersReducedMotion ? 0 : 0.14, ease: "easeOut" }}
             className="mb-16 grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:items-start"
           >
           <div className="lg:col-start-2 lg:row-start-1">
@@ -230,7 +279,7 @@ export default function TechnicalSpotlight() {
                     <button
                       key={pass.id}
                       type="button"
-                      onClick={() => setPassIdx(idx)}
+                      onClick={() => { void selectPass(idx); }}
                       aria-pressed={selected}
                       className={`relative rounded-full px-3.5 py-1.5 font-sans text-xs transition-colors duration-200 focus-visible:outline-none ${
                         selected ? "text-primary font-medium" : "text-neutral-400 hover:text-white"

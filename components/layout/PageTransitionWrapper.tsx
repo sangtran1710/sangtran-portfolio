@@ -15,8 +15,8 @@ export default function PageTransitionWrapper({
   useLayoutEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const animation = contentRef.current?.animate(
-      [{ opacity: 0.65 }, { opacity: 1 }],
-      { duration: 180, easing: "ease-out" }
+      [{ opacity: 0.55, transform: "translateY(6px)" }, { opacity: 1, transform: "translateY(0)" }],
+      { duration: 240, easing: "cubic-bezier(0.2, 0.7, 0.2, 1)" }
     );
     return () => animation?.cancel();
   }, [pathname]);
