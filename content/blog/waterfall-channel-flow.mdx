@@ -1,0 +1,67 @@
+---
+title: "Waterfall & Channel Flow: Houdini Meshes and COP2 Textures"
+description: "Authoring real-time waterfall and shallow-water meshes, vertex masks, and procedural COP2 textures in Houdini for layered dynamic materials."
+date: "2026-11-13"
+thumbnail: "/assets/blog/waterfall-channel-flow/poster_fall.jpg"
+tags: ["Houdini", "COP2", "Real-Time Water", "Shaders", "VFX Study"]
+readTime: "3 min"
+---
+
+I built a real-time **Waterfall & Channel Flow** study to handle the transition from shallow moving water into a falling sheet using Houdini-authored meshes, vertex masks, and procedural textures authored in Houdini COP2. The two previews below show both materials running on isolated meshes in Material View, without scene lighting or gameplay context.
+
+<VideoPlayer
+  src="/assets/blog/waterfall-channel-flow/waterfall_fall_material_view.mp4"
+  poster="/assets/blog/waterfall-channel-flow/poster_fall.jpg"
+  caption="Fall material in motion on an isolated mesh: shallow approach over the lip transitioning into vertical whitewater streaks. The top-left readout is an isolated Material View stat block, not an in-game performance benchmark."
+/>
+
+Right beside the falling sheet, the shallow channel uses a separate long mesh and a multi-layer surface setup to break up repeating foam clusters before the water drops over the end lip.
+
+<VideoPlayer
+  src="/assets/blog/waterfall-channel-flow/waterfall_channel_material_view.mp4"
+  poster="/assets/blog/waterfall-channel-flow/poster_channel.jpg"
+  caption="Channel material on an isolated mesh: crest foam clusters drifting along the shallow surface and rolling over the end lip."
+/>
+
+## Mesh and vertex masks
+
+The **Fall** mesh spans three continuous zones—the shallow approach leading to the lip, the curved rollover, and the vertical falling sheet—so flow UVs stay uninterrupted across the bend. In Houdini, I authored vertex color attributes directly on the geometry to drive shader behavior per region:
+
+- **R = Edge** (border fade and containment)
+- **G = Foam** (localized foam intensity)
+- **B = Motion** (flow weighting across the rollover and drop)
+- **Alpha** (separates the upper approach from the falling sheet)
+
+Primary UVs follow the flow direction, while a secondary UV channel stores speed data (`uv2.y`) for scrolling rates. Both the Fall and Channel branches are exported as separate meshes sharing the exact same pivot (`MODELS_BOUNDS`) so they align cleanly when assembled.
+
+[![Houdini Scene View and Network Editor showing the triangulated Fall mesh, vertex color masks, UV attributes, and shared-pivot export nodes](/assets/blog/waterfall-channel-flow/waterfall_fall_mesh_houdini_view_f020.png)](/assets/blog/waterfall-channel-flow/waterfall_fall_mesh_houdini_view_f020.png)
+
+## Procedural textures authored in Houdini COP2
+
+Both materials rely on packed 1024 × 2048 procedural textures authored in Houdini COP2 so multiple surface signals can be sampled from a single texture fetch.
+
+### Channel Crest Relief
+
+The **Channel Crest Relief** graph packs three scalar maps into RGB:
+
+- **R = Wave height** — drives surface displacement along the shallow flow.
+- **G = Crest foam** — primary foam mask concentrated around wave peaks.
+- **B = Crest foam variation** — secondary foam pattern blended against `G` over time so foam breaks up and evolves within the same crest region rather than sliding as a static decal.
+
+[![Houdini Composite View and COP2 graph for Channel Crest Relief](/assets/blog/waterfall-channel-flow/channel_crest_relief_houdini_view_f020.png)](/assets/blog/waterfall-channel-flow/channel_crest_relief_houdini_view_f020.png)
+
+[![Channel Crest Relief packed RGB and individual R, G, B channel breakdown](/assets/blog/waterfall-channel-flow/channel_crest_relief_c_cop.png)](/assets/blog/waterfall-channel-flow/channel_crest_relief_c_cop.png)
+
+### Fall Whitewater
+
+The **Fall Whitewater** graph combines fine streaks, foam clusters, and vertical bands before packing them with V-seam wrapping and soft fades on both edges:
+
+- **R = Whitewater coverage** — primary streak and foam opacity across the sheet.
+- **G = Relief** — high-frequency surface detail aligned to the whitewater streaks.
+- **B = Broad displacement** — low-frequency deformation across the falling curtain.
+
+[![Fall Whitewater packed RGB and individual R, G, B channel breakdown](/assets/blog/waterfall-channel-flow/fall_whitewater_c_cop.png)](/assets/blog/waterfall-channel-flow/fall_whitewater_c_cop.png)
+
+## Material integration and scope
+
+At runtime, the vertex masks (`Edge`, `Foam`, `Motion`, `Alpha`) and flow/speed UVs control where and how fast the packed COP2 textures scroll, displace, and blend across the rollover. This study focuses strictly on mesh topology, vertex data, procedural COP2 textures, and isolated shader motion; secondary splash/mist emitters, FLIP simulations, and full-scene profiling are outside the scope of these previews.

@@ -5,7 +5,6 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SkipToContentLink from "@/components/layout/SkipToContentLink";
 import PageTransitionWrapper from "@/components/layout/PageTransitionWrapper";
-import ScrollToTop from "@/components/layout/ScrollToTop";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import { SITE } from "@/data/portfolio";
 import { getSiteUrl } from "@/lib/seo";
@@ -82,7 +81,6 @@ export default function RootLayout({
             <PageTransitionWrapper>{children}</PageTransitionWrapper>
           </main>
           <Footer />
-          <ScrollToTop />
           {process.env.VERCEL && <Analytics />}
         </LanguageProvider>
       </body>

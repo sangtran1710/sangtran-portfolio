@@ -15,167 +15,141 @@ export default function ProfileSection() {
   const isVi = locale === "vi";
 
   return (
-    <section id="profile" className="border-t border-border bg-gradient-to-b from-background via-section/30 to-background">
+    <section id="profile" className="bg-section/40">
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:px-12 lg:py-28">
-        <h2 className="mb-8 text-3xl tracking-tight text-white sm:text-4xl">About me</h2>
-        {/* Bento Identity & Verified Credentials */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.35fr_1fr]">
-          {/* Card 1: Artist Bio & Experience */}
-          <div className="rounded-2xl border border-border/80 bg-section/70 p-6 sm:p-8 backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:shadow-[0_12px_28px_rgba(0,0,0,0.45)]">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-              <div className="relative h-24 w-24 sm:h-28 sm:w-28 shrink-0 overflow-hidden rounded-2xl border border-border/80 bg-background shadow-md">
-                {!avatarError ? (
-                  <Image
-                    src={profile.portraitImage}
-                    alt="Henry Tran"
-                    fill
-                    unoptimized
-                    priority
-                    sizes="112px"
-                    className="object-cover object-center"
-                    onError={() => setAvatarError(true)}
-                  />
-                ) : (
-                  <div className="flex h-full items-center justify-center font-sans text-xs text-muted-foreground">HT</div>
-                )}
-              </div>
+        <h2 className="mb-10 font-sans text-4xl font-normal tracking-tight text-white">
+          About me
+        </h2>
 
-              <div>
-                <div className="flex items-baseline gap-2.5 flex-wrap">
-                  <h3 className="font-sans text-2xl font-normal text-white">Henry Tran</h3>
-                  <span className="font-sans text-xs font-medium text-primary">Tran Minh Sang</span>
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
+          {/* Left: Portrait + concise bio */}
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+            <div className="relative aspect-[4/5] w-40 sm:w-44 shrink-0 overflow-hidden rounded-xl bg-section">
+              {!avatarError ? (
+                <Image
+                  src={profile.portraitImage}
+                  alt="Henry Tran"
+                  fill
+                  unoptimized
+                  priority
+                  sizes="176px"
+                  className="object-cover object-center"
+                  onError={() => setAvatarError(true)}
+                />
+              ) : (
+                <div className="flex h-full items-center justify-center font-sans text-sm text-muted-foreground">
+                  HT
                 </div>
-                <p className="mt-1 text-xs sm:text-sm font-medium text-muted-foreground">
-                  {isVi ? "Senior VFX Artist · TP. Hồ Chí Minh, Việt Nam" : "Senior VFX Artist · Ho Chi Minh City, Vietnam"}
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {profile.paragraph}
-                </p>
-              </div>
+              )}
             </div>
 
-            <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-border/50 pt-6">
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-1.5 font-sans text-xs font-medium text-white transition-colors hover:text-primary hover:underline underline-offset-4"
-              >
-                <span>{isVi ? "Đọc chi tiết kinh nghiệm & kỹ năng" : "About my work"}</span>
-              </Link>
-              <span className="font-sans text-xs text-muted-foreground">
-                Unreal Engine · Niagara · Houdini
-              </span>
+            <div className="space-y-4">
+              <p className="font-sans text-[18px] leading-relaxed text-white">
+                {profile.paragraph}
+              </p>
+              <p className="font-sans text-[18px] leading-relaxed text-muted-foreground">
+                {isVi
+                  ? "Senior VFX Artist tại TP. Hồ Chí Minh · Unreal Engine, Niagara & Houdini."
+                  : "Senior VFX Artist in Ho Chi Minh City · Unreal Engine, Niagara & Houdini."}
+              </p>
+              <div>
+                <Link
+                  href="/about"
+                  className="font-sans text-base text-white underline-offset-4 hover:underline"
+                >
+                  {isVi ? "Đọc thêm về kinh nghiệm" : "Read more about my work"}
+                </Link>
+              </div>
             </div>
           </div>
 
-          {/* Card 2: MobyGames Industry Proof */}
-          <div className="rounded-2xl border border-primary/25 bg-section/70 p-6 sm:p-8 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:shadow-[0_12px_28px_rgba(0,0,0,0.45)] flex flex-col justify-between">
+          {/* Right: 2-line credits list */}
+          <div className="flex flex-col justify-between gap-6">
             <div>
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-primary" />
-                  <span className="font-sans text-xs font-medium text-white tracking-normal">
-                    MobyGames
-                  </span>
-                </div>
-                <span className="font-sans text-[11px] text-muted-foreground">ID: 1553845</span>
-              </div>
-
-              <h4 className="mt-4 font-sans text-xl font-normal text-white">
-                Game credits
-              </h4>
-
-              <ul className="mt-4 space-y-2.5 font-sans text-xs">
-                <li className="flex items-start justify-between gap-2 border-b border-border/40 pb-2">
-                  <span className="text-white font-medium">Marvel&apos;s Wolverine</span>
-                  <span className="text-primary text-right font-medium">Senior VFX Artist (2026)</span>
+              <h3 className="mb-4 font-sans text-xl font-normal text-white">
+                {isVi ? "Dự án đã ghi danh" : "Credits"}
+              </h3>
+              <ul className="divide-y divide-border/60 font-sans text-base">
+                <li className="flex items-baseline justify-between gap-4 py-3">
+                  <span className="text-white">Marvel&apos;s Wolverine</span>
+                  <span className="text-muted-foreground">Senior VFX Artist · 2026</span>
                 </li>
-                <li className="flex items-start justify-between gap-2">
-                  <span className="text-white font-medium">Marvel&apos;s Spider-Man 2</span>
-                  <span className="text-muted-foreground text-right">FX Artist (2023)</span>
+                <li className="flex items-baseline justify-between gap-4 py-3">
+                  <span className="text-white">Marvel&apos;s Spider-Man 2</span>
+                  <span className="text-muted-foreground">FX Artist · 2023</span>
                 </li>
               </ul>
-            </div>
-
-            <div className="mt-6 flex items-center justify-between border-t border-border/50 pt-4">
-              <span className="text-xs text-muted-foreground">
-                {isVi ? "Cơ sở dữ liệu game quốc tế" : "Credits listed on MobyGames"}
-              </span>
-              <a
-                href="https://www.mobygames.com/person/1553845/tran-minh-sang/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.08] hover:bg-primary hover:text-background px-3.5 py-1.5 text-xs font-medium text-white transition-all"
-              >
-                <span>View profile</span>
-              </a>
+              <div className="mt-4">
+                <a
+                  href="https://www.mobygames.com/person/1553845/tran-minh-sang/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-sans text-[13px] text-muted-foreground underline-offset-4 hover:text-white hover:underline"
+                >
+                  MobyGames (ID 1553845)
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-          <div className="mt-10">
+        {/* Single primary action: large email */}
+        <div className="mt-14">
+          <a
+            id="contact"
+            href={`mailto:${site.email}`}
+            className="inline-block max-w-full break-all font-sans text-[clamp(1.25rem,5vw,2.25rem)] font-normal tracking-tight text-white underline-offset-8 hover:text-primary hover:underline"
+          >
+            {site.email}
+          </a>
+        </div>
+
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-6 pt-8">
+          <div className="flex flex-wrap items-center gap-6 font-sans text-[13px]">
             <a
-              id="contact"
-              href={`mailto:${site.email}`}
-              className="group inline-flex items-center gap-2 font-sans text-lg sm:text-xl font-normal text-white transition-colors hover:text-primary"
+              href={SOCIALS.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground underline-offset-4 hover:text-white hover:underline"
             >
-              <span className="border-b border-primary/40 pb-0.5 transition-colors group-hover:border-primary">
-                {site.email}
-              </span>
+              LinkedIn
+            </a>
+            <a
+              href={SOCIALS.artstation}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground underline-offset-4 hover:text-white hover:underline"
+            >
+              ArtStation
+            </a>
+            <a
+              href="https://www.mobygames.com/person/1553845/tran-minh-sang/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground underline-offset-4 hover:text-white hover:underline"
+            >
+              MobyGames
+            </a>
+            <a
+              href={SOCIALS.behance}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground underline-offset-4 hover:text-white hover:underline"
+            >
+              Behance
+            </a>
+            <a
+              href={SOCIALS.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground underline-offset-4 hover:text-white hover:underline"
+            >
+              GitHub
             </a>
           </div>
 
-        {/* Clean Framer Social Channels Bar */}
-        <div className="mt-12 flex flex-wrap items-center justify-between gap-6 border-t border-border/60 pt-8">
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6 font-sans text-xs">
-            <span className="text-muted-foreground tracking-normal">
-              {isVi ? "Kết nối:" : "Connect:"}
-            </span>
-            <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-              <a
-                href={SOCIALS.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground hover:text-white transition-colors duration-200"
-              >
-                LinkedIn
-              </a>
-              <a
-                href={SOCIALS.artstation}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground hover:text-white transition-colors duration-200"
-              >
-                ArtStation
-              </a>
-              <a
-                href="https://www.mobygames.com/person/1553845/tran-minh-sang/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground hover:text-white transition-colors duration-200"
-              >
-                MobyGames
-              </a>
-              <a
-                href={SOCIALS.behance}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground hover:text-white transition-colors duration-200"
-              >
-                Behance
-              </a>
-              <a
-                href={SOCIALS.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground hover:text-white transition-colors duration-200"
-              >
-                GitHub
-              </a>
-            </div>
-          </div>
-
-          <div className="font-sans text-xs text-muted-foreground">
-            {isVi ? "TP. Hồ Chí Minh · Múi giờ GMT+7" : "Ho Chi Minh City, Vietnam · APAC (GMT+7)"}
+          <div className="font-sans text-[13px] text-muted-foreground">
+            {isVi ? "TP. Hồ Chí Minh · GMT+7" : "Ho Chi Minh City, Vietnam · APAC (GMT+7)"}
           </div>
         </div>
       </div>

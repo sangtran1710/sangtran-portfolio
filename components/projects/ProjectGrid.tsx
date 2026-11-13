@@ -28,9 +28,8 @@ export default function ProjectGrid() {
 
   return (
     <div>
-      {/* Framer Segmented Dock Header */}
-      <div className="mb-12 flex flex-wrap items-center justify-between gap-4 border-b border-border/60 pb-6">
-        <div className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] p-1.5 backdrop-blur-md shadow-inner" role="group" aria-label="Filter projects">
+      <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
+        <div className="inline-flex flex-wrap items-center gap-1 rounded-md border border-border/80 bg-section/80 p-1" role="group" aria-label="Filter projects">
           {filters.map(({ value, label }) => {
             const isSelected = active === value;
             return (
@@ -40,17 +39,17 @@ export default function ProjectGrid() {
                 aria-pressed={isSelected}
                 onClick={() => setActive(value)}
                 className={cn(
-                  "relative rounded-full px-5 py-2 text-xs sm:text-sm font-medium transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
+                  "relative rounded-md px-4 py-1.5 text-[13px] font-medium transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
                   isSelected
-                    ? "text-white font-semibold"
+                    ? "text-white"
                     : "text-neutral-400 hover:text-white"
                 )}
               >
                 {isSelected && !prefersReducedMotion && (
                   <motion.div
                     layoutId="portfolio-filter-pill"
-                    className="pointer-events-none absolute inset-0 select-none rounded-full bg-white/[0.14] border border-white/20 shadow-[0_2px_12px_rgba(0,0,0,0.5),0_0_16px_rgba(88,207,200,0.2)]"
-                    transition={{ type: "spring", stiffness: 450, damping: 32 }}
+                    className="pointer-events-none absolute inset-0 select-none rounded-md bg-white/[0.1] border border-white/10"
+                    transition={{ type: "spring", stiffness: 450, damping: 34 }}
                   />
                 )}
                 <span className="pointer-events-none relative z-10 select-none">{label}</span>
@@ -63,23 +62,24 @@ export default function ProjectGrid() {
       {filtered.length > 0 ? (
         <motion.div
           layout
-          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-8 md:grid-cols-2"
         >
           <AnimatePresence mode="popLayout">
             {filtered.map((project, index) => (
               <motion.div
                 layout
                 key={project.slug}
-                initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.95, y: 16 }}
+                className={index === 0 ? "md:col-span-2" : undefined}
+                initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.98, y: 12 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.95, y: -12 }}
+                exit={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.98, y: -8 }}
                 transition={{
-                  duration: 0.35,
+                  duration: 0.3,
                   ease: [0.16, 1, 0.3, 1],
-                  delay: index * 0.04,
+                  delay: index * 0.03,
                 }}
               >
-                <ProjectCard project={project} priority={index < 3} />
+                <ProjectCard project={project} featured={index === 0} priority={index < 3} />
               </motion.div>
             ))}
           </AnimatePresence>
@@ -90,7 +90,7 @@ export default function ProjectGrid() {
           animate={{ opacity: 1 }}
           className="flex w-full flex-col items-center justify-center rounded-xl border border-dashed border-border py-16"
         >
-          <p className="text-sm text-white/55">{copy.common.noProjects}</p>
+          <p className="text-[13px] text-white/55">{copy.common.noProjects}</p>
         </motion.div>
       )}
     </div>

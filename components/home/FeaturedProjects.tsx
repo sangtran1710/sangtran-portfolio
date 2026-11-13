@@ -78,13 +78,12 @@ export default function FeaturedProjects() {
           </div>
         </motion.div>
 
-        <div className="mt-10 text-center">
+        <div className="mt-12">
           <Link
             href="/portfolio"
-            className="group inline-flex items-center gap-2.5 rounded-full border border-border/80 bg-section/70 hover:bg-section hover:border-primary/50 px-7 py-3 text-sm font-medium text-white transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:shadow-[0_0_24px_rgba(88,207,200,0.2)] shadow-sm"
+            className="text-base font-normal text-white underline-offset-4 hover:underline"
           >
-            <span>{isVi ? "Khám phá toàn bộ danh mục dự án & Breakdown" : "Explore the work"}</span>
-            <span className="text-primary transition-transform group-hover:translate-x-1">→</span>
+            {isVi ? "Xem toàn bộ dự án →" : "All selected work →"}
           </Link>
         </div>
       </div>

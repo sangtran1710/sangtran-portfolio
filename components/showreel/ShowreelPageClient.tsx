@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { HERO, PROJECTS } from "@/data/portfolio";
+import { mediaUrl } from "@/lib/media";
 import { cn } from "@/lib/utils";
 
 interface ShotCue {
@@ -64,11 +65,14 @@ const SHOTS: ShotCue[] = [
   },
 ];
 
+const STREAM_IFRAME_URL = (process.env.NEXT_PUBLIC_STREAM_IFRAME_URL ?? "").trim();
+
 export default function ShowreelPageClient() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
   const [started, setStarted] = useState(false);
+  const [streamStartTime, setStreamStartTime] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [hasError, setHasError] = useState(false);
 
@@ -110,6 +114,12 @@ export default function ShowreelPageClient() {
   };
 
   const seekTo = (seconds: number) => {
+    if (STREAM_IFRAME_URL) {
+      setStreamStartTime(seconds);
+      setCurrentTime(seconds);
+      setStarted(true);
+      return;
+    }
     const video = videoRef.current;
     if (!video) return;
     video.currentTime = seconds;
@@ -140,18 +150,12 @@ export default function ShowreelPageClient() {
   const activeIndex = getActiveShotIndex();
 
   return (
-    <div className="relative min-h-screen bg-background pt-24 pb-20 text-white">
-      {/* Subtle Cinematic Stage Glow */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[500px] overflow-hidden">
-        <div className="absolute left-1/2 top-10 h-[380px] w-[800px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(88,207,200,0.08),transparent_70%)] blur-3xl" />
-      </div>
-
+    <div className="relative min-h-screen bg-background pt-32 pb-20 text-white">
       <div className="relative z-10 mx-auto max-w-5xl px-6 sm:px-8">
-        {/* Minimal Navigation & Header */}
         <div className="mb-6 flex items-center justify-between">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-xs font-sans tracking-normal text-muted-foreground transition-colors hover:text-primary"
+            className="inline-flex items-center gap-1.5 text-[13px] font-sans text-muted-foreground underline-offset-4 hover:text-white hover:underline"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             {copy.common.backToHome}
@@ -161,46 +165,53 @@ export default function ShowreelPageClient() {
             href={HERO.showreelYoutube}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-sans text-muted-foreground transition-colors hover:text-primary"
+            className="inline-flex items-center gap-1.5 text-[13px] font-sans text-muted-foreground underline-offset-4 hover:text-white hover:underline"
           >
             <Youtube className="h-3.5 w-3.5 text-red-400" />
             <span>YouTube 4K</span>
           </a>
         </div>
 
-        {/* Crisp, Confident Title */}
         <div className="mb-6 flex flex-wrap items-baseline justify-between gap-4">
-          <h1 className="font-sans text-3xl font-medium tracking-tight text-white sm:text-4xl">
+          <h1 className="font-sans text-4xl font-normal tracking-tight text-white">
             VFX Showreel
           </h1>
-          <span className="text-xs font-sans text-muted-foreground">
-            00:41 · 4K 60FPS
+          <span className="text-[13px] font-sans text-muted-foreground">
+            00:41 · 720p 30FPS (4K on YouTube)
           </span>
         </div>
 
-        {/* Cinema Video Player */}
         <div className="relative mb-8">
-          <div className="group relative aspect-video w-full overflow-hidden rounded-xl border border-border bg-section shadow-[0_20px_50px_-12px_rgba(0,0,0,0.85)] ring-1 ring-white/10">
+          <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-border bg-section">
             {hasError ? (
               <div className="flex h-full flex-col items-center justify-center p-6 text-center">
-                <p className="mb-4 text-sm text-muted-foreground">
+                <p className="mb-4 text-base text-muted-foreground">
                   {copy.common.videoUnavailable}
                 </p>
                 <a
                   href={HERO.showreelYoutube}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-md bg-red-600 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-red-500"
+                  className="inline-flex items-center gap-2 rounded-md bg-red-600 px-4 py-2 text-[13px] font-medium text-white transition-colors hover:bg-red-500"
                 >
                   <Youtube className="h-4 w-4" />
                   {copy.common.watchOnYoutube}
                 </a>
               </div>
+            ) : STREAM_IFRAME_URL && started ? (
+              <iframe
+                key={streamStartTime}
+                src={`${STREAM_IFRAME_URL}${STREAM_IFRAME_URL.includes("?") ? "&" : "?"}autoplay=true&startTime=${streamStartTime}`}
+                title="Henry Tran VFX Showreel"
+                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+                allowFullScreen
+                className="h-full w-full border-0"
+              />
             ) : (
               <>
                 <video
                   ref={videoRef}
-                  src={HERO.showreelUrl}
+                  src={mediaUrl(HERO.showreelUrl)}
                   playsInline
                   loop
                   controls={started}
@@ -215,7 +226,14 @@ export default function ShowreelPageClient() {
                 {!started && (
                   <button
                     type="button"
-                    onClick={handlePlay}
+                    onClick={() => {
+                      if (STREAM_IFRAME_URL) {
+                        setStreamStartTime(0);
+                        setStarted(true);
+                        return;
+                      }
+                      handlePlay();
+                    }}
                     aria-label={copy.common.playShowreelVideo}
                     className="group/poster absolute inset-0 flex cursor-pointer items-center justify-center"
                   >
@@ -224,46 +242,20 @@ export default function ShowreelPageClient() {
                       alt="Showreel Poster"
                       fill
                       priority
-                      className="object-cover transition-transform duration-700 ease-out group-hover/poster:scale-[1.015]"
+                      className="object-cover"
                     />
                     <div className="absolute inset-0 bg-black/25 transition-colors group-hover/poster:bg-black/35" />
 
-                    {/* Glassmorphic Play Trigger */}
-                    <div className="relative z-10 flex h-20 w-20 items-center justify-center rounded-full border border-white/30 bg-black/40 text-white shadow-2xl backdrop-blur-md transition-all duration-300 group-hover/poster:scale-110 group-hover/poster:border-primary group-hover/poster:bg-primary group-hover/poster:text-slate-900">
-                      <Play className="ml-1 h-8 w-8 fill-current" />
+                    <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-md bg-primary text-background transition-colors group-hover/poster:bg-primary-hover">
+                      <Play className="ml-0.5 h-7 w-7 fill-current" />
                     </div>
                   </button>
-                )}
-
-                {started && (
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 focus-within:opacity-100">
-                    <div className="pointer-events-auto absolute bottom-14 left-4 right-4 flex items-center justify-between">
-                      <button
-                        type="button"
-                        onClick={togglePlay}
-                        className="flex items-center gap-2 rounded-full bg-white/20 px-3.5 py-1.5 text-xs font-sans text-white backdrop-blur-md transition-colors hover:bg-white/30"
-                      >
-                        {playing ? <Pause className="h-3.5 w-3.5 fill-white" /> : <Play className="h-3.5 w-3.5 fill-white" />}
-                        {playing ? "PAUSE" : "PLAY"}
-                      </button>
-                      <button
-                        type="button"
-                        onClick={toggleMute}
-                        aria-label={muted ? "Unmute showreel" : "Mute showreel"}
-                        aria-pressed={muted}
-                        className="flex items-center gap-2 rounded-full bg-white/20 px-3 py-1.5 text-xs font-sans text-white backdrop-blur-md transition-colors hover:bg-white/30"
-                      >
-                        {muted ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
-                      </button>
-                    </div>
-                  </div>
                 )}
               </>
             )}
           </div>
         </div>
 
-        {/* Visual Shot Scrubber (Interactive Jump Bar) */}
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {SHOTS.map((shot, idx) => {
             const isActive = started && activeIndex === idx;
@@ -274,33 +266,31 @@ export default function ShowreelPageClient() {
                 type="button"
                 onClick={() => seekTo(shot.time)}
                 className={cn(
-                  "group relative flex flex-col overflow-hidden rounded-lg border text-left transition-all duration-200",
+                  "group relative flex flex-col overflow-hidden rounded-md border text-left transition-colors duration-200",
                   isActive
-                    ? "border-primary bg-card shadow-md shadow-primary/10"
+                    ? "border-primary bg-card"
                     : "border-border/70 bg-section/70 hover:border-slate-500 hover:bg-card"
                 )}
               >
-                {/* Visual Thumbnail */}
                 <div className="relative aspect-video w-full overflow-hidden bg-black/40">
                   <Image
                     src={shot.thumbnail}
                     alt={shot.title}
                     fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                    className="object-cover"
                     sizes="(max-width: 640px) 50vw, 25vw"
                   />
-                  <div className="absolute bottom-1.5 left-1.5 flex items-center gap-1 rounded bg-black/80 px-1.5 py-0.5 text-xs font-sans text-foreground">
-                    <Play className="h-2 w-2 fill-current text-primary" />
+                  <div className="absolute bottom-1.5 left-1.5 flex items-center gap-1 rounded bg-black/80 px-1.5 py-0.5 text-[13px] font-sans text-foreground">
+                    <Play className="h-2.5 w-2.5 fill-current text-primary" />
                     <span>{shot.timecode}</span>
                   </div>
                 </div>
 
-                {/* Minimal Label */}
                 <div className="p-2.5">
-                  <p className="truncate text-xs font-medium text-white transition-colors group-hover:text-primary">
+                  <p className="truncate text-[13px] font-medium text-white">
                     {shot.title}
                   </p>
-                  <p className="mt-0.5 truncate text-xs font-sans text-muted-foreground">
+                  <p className="mt-0.5 truncate text-[13px] font-sans text-muted-foreground">
                     {shot.client}
                   </p>
                 </div>
@@ -308,15 +298,14 @@ export default function ShowreelPageClient() {
             );
           })}
         </div>
-        {/* Minimalist Bottom Bar */}
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-muted-foreground">
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 text-[13px] text-muted-foreground">
           <Link
             href="/portfolio"
-            className="inline-flex items-center gap-1.5 font-sans text-xs text-primary hover:underline"
+            className="inline-flex items-center gap-1.5 font-sans text-[13px] text-white underline-offset-4 hover:underline"
           >
-            Explore the work
+            Selected work →
           </Link>
-          <span className="font-sans text-xs text-muted-foreground">
+          <span className="font-sans text-[13px] text-muted-foreground">
             Sparx* · Insomniac Games · Epic Games · Amazon Games
           </span>
         </div>

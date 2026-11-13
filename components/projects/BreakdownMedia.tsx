@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Play } from "lucide-react";
 import { useReducedMotion } from "framer-motion";
+import { mediaUrl } from "@/lib/media";
 
 interface BreakdownMediaProps {
   image: string;
@@ -73,7 +74,7 @@ export default function BreakdownMedia({
       >
         <video
           ref={videoRef}
-          src={loopVideo}
+          src={mediaUrl(loopVideo)}
           poster={image}
           loop
           muted
@@ -101,7 +102,7 @@ export default function BreakdownMedia({
     return (
       <div className="relative aspect-video w-full overflow-hidden bg-black">
         <video
-          src={video}
+          src={mediaUrl(video)}
           controls
           playsInline
           preload="none"

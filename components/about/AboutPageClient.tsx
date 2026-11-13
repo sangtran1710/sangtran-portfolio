@@ -64,90 +64,85 @@ export default function AboutPageClient() {
   );
 
   return (
-    <div className="min-h-screen bg-background pt-20 text-white">
+    <div className="min-h-screen bg-background pt-32 text-white">
       <div ref={heroRef} className="relative overflow-hidden pb-16">
         <AboutHeroBackground />
 
-        <div className="relative z-10 mx-auto max-w-6xl px-6 pt-6">
+        <div className="relative z-10 mx-auto max-w-6xl px-6">
           <Link
             href="/"
-            className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-white"
+            className="mb-8 inline-flex items-center gap-1.5 text-[13px] text-muted-foreground underline-offset-4 hover:text-white hover:underline"
           >
             <ArrowLeft className="h-4 w-4" />
             {copy.common.backToHome}
           </Link>
 
-          <div className="rounded-2xl border border-border bg-section/60 px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12 backdrop-blur-sm">
-            <div className="grid items-start gap-8 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-12">
-              <motion.div
-                className="relative mx-auto lg:mx-0 will-change-transform"
-                style={!prefersReducedMotion ? { y: avatarY } : undefined}
-              >
-                <div className="relative h-64 w-64 overflow-hidden rounded-xl border border-border bg-background sm:h-72 sm:w-72 lg:h-80 lg:w-80">
-                  <Image
-                    src={about.portraitImage || "/images/Portrait/avatar.webp"}
-                    alt="Henry Tran"
-                    fill
-                    unoptimized
-                    priority
-                    className="object-cover object-[center_38%]"
-                    sizes="(max-width: 640px) 256px, (max-width: 1024px) 288px, 320px"
-                  />
-                </div>
-              </motion.div>
+          <div className="grid items-start gap-10 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-14">
+            <motion.div
+              className="relative mx-auto lg:mx-0 will-change-transform"
+              style={!prefersReducedMotion ? { y: avatarY } : undefined}
+            >
+              <div className="relative h-64 w-64 overflow-hidden rounded-xl bg-section sm:h-72 sm:w-72 lg:h-80 lg:w-75">
+                <Image
+                  src={about.portraitImage || "/images/Portrait/avatar.webp"}
+                  alt="Henry Tran"
+                  fill
+                  unoptimized
+                  priority
+                  className="object-cover object-[center_38%]"
+                  sizes="(max-width: 640px) 256px, (max-width: 1024px) 288px, 300px"
+                />
+              </div>
+            </motion.div>
 
-              <div>
+            <div>
+              <h1 className="mb-4 font-sans text-4xl font-normal tracking-tight text-white sm:text-7xl">
+                Henry Tran
+              </h1>
+              <p className="mb-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-xl">
+                {copy.about.shortBio}
+              </p>
 
-                <h1 className="mb-3 font-sans text-4xl font-normal tracking-tight text-white sm:text-5xl lg:text-6xl">
-                  Henry Tran
-                </h1>
-                <p className="mb-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                  {copy.about.shortBio}
-                </p>
-
-                <div className="mb-8 flex flex-wrap items-center gap-4">
-                  <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
-                    <MapPin className="h-3.5 w-3.5 text-primary" />
-                    {about.location}
-                  </span>
-                  <span className="hidden sm:inline-block h-3.5 w-px bg-border" />
-                  <div className="flex items-center gap-3">
-                    {socialLinks.map(({ href, icon: Icon, label, custom }) => (
-                      <a
-                        key={label}
-                        href={href}
-                        target={href.startsWith("mailto") ? undefined : "_blank"}
-                        rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-                        className="text-muted-foreground transition-colors hover:text-white"
-                        aria-label={label}
-                        title={label}
-                      >
-                        {custom ? <BehanceIcon /> : <Icon className="h-4 w-4" />}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap gap-3">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="gap-2.5 rounded-lg border-0 bg-primary font-medium text-section hover:bg-primary-hover"
-                  >
-                    <a href={SOCIALS.resume} target="_blank" rel="noopener noreferrer">
-                      {copy.about.downloadResume}
-                      <Download className="h-4 w-4" />
+              <div className="mb-8 flex flex-wrap items-center gap-4 text-[13px] text-muted-foreground">
+                <span className="inline-flex items-center gap-1.5">
+                  <MapPin className="h-3.5 w-3.5" />
+                  {about.location}
+                </span>
+                <span className="hidden sm:inline-block h-3.5 w-px bg-border" />
+                <div className="flex items-center gap-4">
+                  {socialLinks.map(({ href, icon: Icon, label, custom }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target={href.startsWith("mailto") ? undefined : "_blank"}
+                      rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+                      className="text-muted-foreground transition-colors hover:text-white"
+                      aria-label={label}
+                      title={label}
+                    >
+                      {custom ? <BehanceIcon /> : <Icon className="h-4 w-4" />}
                     </a>
-                  </Button>
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="lg"
-                    className="gap-2.5 rounded-lg border-border bg-section text-foreground hover:bg-card hover:text-white"
-                  >
-                    <Link href="/portfolio">{copy.about.viewPortfolio}</Link>
-                  </Button>
+                  ))}
                 </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-6">
+                <Button
+                  asChild
+                  size="lg"
+                  className="gap-2 rounded-md border-0 bg-primary font-medium text-background hover:bg-primary-hover"
+                >
+                  <a href={SOCIALS.resume} target="_blank" rel="noopener noreferrer">
+                    {copy.about.downloadResume}
+                    <Download className="h-4 w-4" />
+                  </a>
+                </Button>
+                <Link
+                  href="/portfolio"
+                  className="text-base text-white underline-offset-4 hover:underline"
+                >
+                  {copy.about.viewPortfolio} →
+                </Link>
               </div>
             </div>
           </div>

@@ -4,10 +4,10 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { Play } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { getLocalizedHero } from "@/lib/portfolio-content";
 import { useCanHover } from "@/lib/use-media";
+import { mediaUrl, prefersSaveData } from "@/lib/media";
 
 interface HeroShot {
   id: string;
@@ -94,8 +94,20 @@ export default function HeroSection() {
     return () => window.clearInterval(interval);
   }, [prefersReducedMotion, userLocked, inView]);
 
+  const [heroVideoReady, setHeroVideoReady] = useState(false);
+
   useEffect(() => {
-    if (prefersReducedMotion) return;
+    if (prefersReducedMotion || prefersSaveData()) return;
+    if ("requestIdleCallback" in window) {
+      const id = window.requestIdleCallback(() => setHeroVideoReady(true), { timeout: 1000 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const timer = globalThis.setTimeout(() => setHeroVideoReady(true), 250);
+    return () => globalThis.clearTimeout(timer);
+  }, [prefersReducedMotion]);
+
+  useEffect(() => {
+    if (prefersReducedMotion || !heroVideoReady) return;
     videoRefs.current.forEach((video, index) => {
       if (!video) return;
       if (index === activeShot && inView) {
@@ -105,7 +117,7 @@ export default function HeroSection() {
         if (index !== activeShot) video.currentTime = 0;
       }
     });
-  }, [activeShot, inView, prefersReducedMotion]);
+  }, [activeShot, inView, prefersReducedMotion, heroVideoReady]);
 
   const currentShot = HERO_SHOTS[activeShot] ?? HERO_SHOTS[0];
 
@@ -133,16 +145,17 @@ export default function HeroSection() {
                 sizes="100vw"
                 className="object-cover object-[50%_30%]"
               />
-              {!prefersReducedMotion && canHover && (
+              {!prefersReducedMotion && canHover && heroVideoReady && (
                 <video
                   ref={(el) => {
                     videoRefs.current[index] = el;
                   }}
-                  src={shot.videoSrc}
+                  src={mediaUrl(shot.videoSrc)}
+                  poster={shot.poster}
                   muted
                   loop
                   playsInline
-                  preload={index === 0 ? "auto" : "none"}
+                  preload="none"
                   className="absolute inset-0 h-full w-full object-cover object-[50%_30%]"
                 />
               )}
@@ -170,28 +183,24 @@ export default function HeroSection() {
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 text-base font-medium">
               <Link
                 href="/portfolio"
-                className="group inline-flex min-h-12 items-center justify-center rounded-full bg-primary px-7 py-3 text-background font-medium transition-all duration-300 ease-out hover:bg-white hover:scale-[1.03] active:scale-[0.97] hover:shadow-[0_0_24px_rgba(88,207,200,0.35)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+                className="inline-flex min-h-11 items-center justify-center rounded-md bg-primary px-6 py-2.5 text-background font-medium transition-colors duration-200 hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
               >
                 {isVi ? "Xem dự án" : "Selected work"}
               </Link>
               <Link
                 href="/showreel"
-                className="group inline-flex min-h-12 items-center gap-2.5 px-4 py-3 text-white transition-all duration-300 ease-out hover:text-primary hover:scale-[1.03] active:scale-[0.97]"
+                className="inline-flex min-h-11 items-center text-white underline-offset-4 hover:underline"
               >
-                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 border border-white/20 transition-all duration-300 group-hover:bg-primary group-hover:border-primary group-hover:text-background group-hover:scale-110">
-                  <Play className="h-3 w-3 fill-current ml-0.5" />
-                </div>
-                <span>Showreel</span>
+                Showreel
               </Link>
             </div>
 
-            {/* Mobile: quiet caption with direct link for the shot currently playing */}
-            <div className="mt-8 lg:hidden">
+            <div className="mt-6 lg:hidden">
               <Link
                 href={currentShot.href}
-                className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-section/80 px-4 py-2 text-xs font-sans text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors"
+                className="text-[13px] font-sans text-muted-foreground underline-offset-4 hover:text-white hover:underline"
               >
-                <span>{currentShot.title} · {currentShot.meta}</span>
+                {currentShot.title} · {currentShot.meta}
               </Link>
             </div>
           </div>

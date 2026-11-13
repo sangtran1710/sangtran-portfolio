@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { getLocalizedHero } from "@/lib/portfolio-content";
+import { mediaUrl } from "@/lib/media";
 
 interface ShowreelSectionProps {
   headingLevel?: "h1" | "h2";
@@ -104,7 +105,7 @@ export default function ShowreelSection({
         <div className="group relative overflow-hidden rounded-2xl bg-section shadow-2xl ring-1 ring-border">
           <video
             ref={videoRef}
-            src={hero.showreelUrl}
+            src={mediaUrl(hero.showreelUrl)}
             muted
             loop
             playsInline

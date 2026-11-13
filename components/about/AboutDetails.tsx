@@ -13,74 +13,57 @@ export default function AboutDetails() {
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12 text-muted-foreground">
-      {/* 1. Production Experience */}
       <section className="mb-16">
-        <h2 className="mb-8 font-sans text-2xl font-normal tracking-tight text-white sm:text-3xl">
+        <h2 className="mb-8 font-sans text-2xl font-normal tracking-tight text-white sm:text-4xl">
           {copy.about.experience}
         </h2>
         <ExperienceTimeline />
       </section>
 
-      <div className="mb-16 h-px bg-border/70" />
+      <section className="mb-16">
+        <FeaturedCreditsSection />
+      </section>
 
-      {/* 2. Featured Production Credits */}
-      <FeaturedCreditsSection />
+      <section className="mb-16">
+        <ClientEndorsementsSection />
+      </section>
 
-      <div className="mb-16 h-px bg-border/70" />
-
-      {/* 3. Client Endorsements */}
-      <ClientEndorsementsSection />
-
-      <div className="mb-16 h-px bg-border/70" />
-
-      {/* 4. Core Technical Skills & Software (Compact) */}
-      <section className="mb-14">
-        <h3 className="mb-4 text-xs font-sans tracking-normal text-primary">
+      <section className="mb-16">
+        <h3 className="mb-6 font-sans text-xl font-normal text-white">
           {copy.about.skillsAndTools}
         </h3>
-        <div className="rounded-2xl border border-border bg-section p-5 sm:p-6 divide-y divide-border/50">
+        <dl className="divide-y divide-border/60 border-y border-border/60">
           {skillGroups.map((group) => (
             <div
               key={group.name}
-              className="py-3 first:pt-0 last:pb-0 flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6"
+              className="py-3.5 flex flex-col sm:flex-row sm:items-baseline gap-1.5 sm:gap-8"
             >
-              <span className="text-xs font-sans tracking-normal text-muted-foreground w-44 flex-shrink-0">
+              <dt className="text-[13px] font-sans text-muted-foreground w-48 shrink-0">
                 {group.name}
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {group.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="rounded border border-border bg-card px-2.5 py-0.5 text-xs text-muted-foreground font-sans"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
+              </dt>
+              <dd className="text-base text-white">
+                {group.skills.join(" · ")}
+              </dd>
             </div>
           ))}
-        </div>
+        </dl>
       </section>
 
-      <div className="mb-14 h-px bg-border/70" />
-
-      {/* 5. Studio Life & Memories (Sparx* · 2022–2023) - Gentle Footnote */}
       <section className="mb-12">
         <div className="mb-6">
-          <h3 className="text-xs font-sans tracking-normal text-primary">
+          <h3 className="font-sans text-xl font-normal text-white">
             {locale === "vi" ? "Văn hóa Studio & Hoạt động nhóm" : "Studio Life & Team Culture"}
           </h3>
-          <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+          <p className="mt-1 text-[13px] text-muted-foreground leading-relaxed">
             {locale === "vi"
               ? "Những khoảnh khắc gắn kết cùng đồng đội tại Sparx* - A Virtuos Studio (2022–2023)."
               : "Moments of collaboration and milestones with the Sparx* - A Virtuos Studio crew (2022–2023)."}
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-12 items-stretch">
-          {/* Beach Team Building - 16:9 - spans 7 columns */}
-          <figure className="md:col-span-7 flex flex-col overflow-hidden rounded-2xl border border-border bg-section p-3 sm:p-4">
-            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-card">
+        <div className="grid gap-6 md:grid-cols-12 items-start">
+          <figure className="md:col-span-7 flex flex-col">
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-section">
               <Image
                 src="/images/Portrait/sparx-teambuilding.webp"
                 alt="Sparx* Studio Beach Team Building"
@@ -89,11 +72,11 @@ export default function AboutDetails() {
                 sizes="(max-width: 768px) 100vw, 650px"
               />
             </div>
-            <figcaption className="px-2 pt-3 pb-0.5">
-              <h4 className="text-xs font-sans tracking-normal text-primary">
+            <figcaption className="pt-3">
+              <h4 className="text-base font-normal text-white">
                 {locale === "vi" ? "Team Building bãi biển" : "Studio Beach Team Building"}
               </h4>
-              <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+              <p className="mt-1 text-[13px] text-muted-foreground leading-relaxed">
                 {locale === "vi"
                   ? "Tinh thần đồng đội và hoạt động bãi biển cùng anh em đội ngũ sản xuất và VFX tại Sparx* - A Virtuos Studio."
                   : "Team spirit & beach challenges with the Sparx* production & VFX crew."}
@@ -101,11 +84,9 @@ export default function AboutDetails() {
             </figcaption>
           </figure>
 
-          {/* 2 Portrait Cards side by side in the remaining 5 columns */}
           <div className="md:col-span-5 grid grid-cols-2 gap-4">
-            {/* Birthday Card */}
-            <figure className="flex flex-col overflow-hidden rounded-2xl border border-border bg-section p-2.5 sm:p-3">
-              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-card">
+            <figure className="flex flex-col">
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-section">
                 <Image
                   src="/images/Portrait/sparx-birthday.webp"
                   alt="Sparx* Birthday Card"
@@ -114,11 +95,11 @@ export default function AboutDetails() {
                   sizes="(max-width: 768px) 50vw, 250px"
                 />
               </div>
-              <figcaption className="px-1 pt-2 pb-0.5">
-                <h4 className="text-xs font-sans tracking-normal text-primary">
+              <figcaption className="pt-2.5">
+                <h4 className="text-base font-normal text-white">
                   {locale === "vi" ? "Sinh nhật tại studio" : "Studio Birthday"}
                 </h4>
-                <p className="mt-0.5 text-xs text-muted-foreground leading-snug">
+                <p className="mt-0.5 text-[13px] text-muted-foreground leading-snug">
                   {locale === "vi"
                     ? "Món quà và lời chúc viết tay ấm áp từ đồng nghiệp."
                     : "Handwritten card & gift box from studio teammates."}
@@ -126,9 +107,8 @@ export default function AboutDetails() {
               </figcaption>
             </figure>
 
-            {/* Year-End Gala */}
-            <figure className="flex flex-col overflow-hidden rounded-2xl border border-border bg-section p-2.5 sm:p-3">
-              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-card">
+            <figure className="flex flex-col">
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-section">
                 <Image
                   src="/images/Portrait/sparx-yearend.webp"
                   alt="Sparx* Year-End Gala"
@@ -137,11 +117,11 @@ export default function AboutDetails() {
                   sizes="(max-width: 768px) 50vw, 250px"
                 />
               </div>
-              <figcaption className="px-1 pt-2 pb-0.5">
-                <h4 className="text-xs font-sans tracking-normal text-primary">
+              <figcaption className="pt-2.5">
+                <h4 className="text-base font-normal text-white">
                   {locale === "vi" ? "Tiệc tất niên 2023" : "Year-End Gala 2023"}
                 </h4>
-                <p className="mt-0.5 text-xs text-muted-foreground leading-snug">
+                <p className="mt-0.5 text-[13px] text-muted-foreground leading-snug">
                   {locale === "vi"
                     ? "Ăn mừng hoàn thành các cột mốc dự án AAA lớn."
                     : "Celebrating AAA project wraps and milestone deliveries."}

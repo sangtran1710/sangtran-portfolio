@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Layers } from "lucide-react";
+import { mediaUrl } from "@/lib/media";
 
 export function VideoPlayer({
   src,
@@ -56,7 +57,7 @@ export function VideoPlayer({
         {previewSrc && !showFullVideo ? (
           <video
             ref={previewRef}
-            src={previewSrc}
+            src={mediaUrl(previewSrc)}
             poster={poster}
             muted
             loop
@@ -67,7 +68,7 @@ export function VideoPlayer({
           />
         ) : (
           <video
-            src={src}
+            src={mediaUrl(src)}
             poster={poster}
             controls
             autoPlay={showFullVideo}

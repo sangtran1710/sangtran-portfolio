@@ -210,7 +210,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
 export const PROJECTS: Project[] = [
   {
     slug: "wolverine",
-    thumbnail: "/images/projects/wolverine/wolverine-cover-art-jock.png",
+    thumbnail: "/images/projects/wolverine/wolverine-artblast-explosion.webp",
     title: "Marvel's Wolverine",
     role: "Senior VFX Artist",
     cardHighlight: "Gameplay & Cinematic VFX · Proprietary Engine",
@@ -376,7 +376,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "spider-man-2",
-    thumbnail: "/images/spiderman-2-ps5.jpg",
+    thumbnail: "/images/projects/spider-man-2/story-fire.webp",
     title: "Marvel's Spider-Man 2",
     role: "FX Artist",
     cardHighlight: "Gameplay VFX · Houdini · Proprietary Engine",
@@ -600,7 +600,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "malignant",
-    thumbnail: "/projects/malignant/steam-capsule.jpg",
+    thumbnail: "/projects/malignant/malignant-ue5-editor-fire.webp",
     title: "Malignant",
     role: "Technical VFX Artist (Freelance)",
     cardHighlight: "Gore Simulation & Combat VFX · Niagara · LiquiGen",
@@ -736,7 +736,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "havoc",
-    thumbnail: "/images/havoc-logo.png",
+    thumbnail: "/images/havoc-landing-page.webp",
     title: "Havoc",
     role: "VFX Artist (Freelance)",
     cardHighlight: "Combat Ability VFX · Niagara · Unreal Engine",

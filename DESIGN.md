@@ -24,9 +24,9 @@ Every AI coding agent modifying this codebase MUST respect these 7 laws:
 - ❌ **Anti-pattern**: Placing an image inside a heavy gray container, which is itself placed inside a bordered card box (`bg-[#171d24] border border-[#252c34] p-4`).
 - ✅ **Standard**: The visual asset (image or video) sits directly on the slate canvas or elevated surface, framed only by a crisp hairline border (`border-[#252c34]/70`). Typography and metadata flow cleanly underneath without outer padding boxes.
 
-### 2. NO Corner Icon Overlays
-- ❌ **Anti-pattern**: Floating a square black button with an `ArrowUpRight` or play icon over the top-right corner of video/image thumbnails on hover.
-- ✅ **Standard**: Hover feedback is expressed through gentle image scale (`scale-[1.02]`), hairline border color shift (`group-hover:border-[#58cfc8]/60`), and title color transition (`group-hover:text-[#58cfc8]`).
+### 2. NO Stacked Hover Effects
+- ❌ **Anti-pattern**: Combining card lift, drop shadow, teal glow, image zoom, border tint, and title tint on hover, or floating corner icons over thumbnails.
+- ✅ **Standard**: Keep a single quiet hover response—preview video playback on project cards and underline on text links. No image scaling, no teal glow, no card lift.
 
 ### 3. NO Tag Pill Spam
 - ❌ **Anti-pattern**: Enclosing every engine tool or shader name in individual rounded pill boxes (`rounded border border-[#252c34] bg-[#12171d] px-2 py-0.5`).
@@ -68,48 +68,45 @@ Every AI coding agent modifying this codebase MUST respect these 7 laws:
 | **Hairline Border** | `#252c34` | Primary structural borders, table lines, dividers (opacity 50-70%) |
 | **Hover Border** | `#38424d` | Hover state for interactive cards and buttons |
 
-### Accent & Highlights
-| Token | Hex Value | Usage |
+### Accent, Controls & Radii
+| Token | Value | Usage |
 |---|---|---|
-| **Studio Teal** | `#58cfc8` | Primary kicker text, active tab indicators, timeline dots, primary buttons |
-| **Teal Hover** | `#70ddd6` | Hover fill on primary buttons and active link text |
-| **Teal Glow** | `rgba(88, 207, 200, 0.12)` | Understated radial backdrop glow behind hero / showreel |
+| **Studio Teal** | `#58cfc8` | Primary solid CTA (max 1 per screen), active tab underline |
+| **Teal Hover** | `#70ddd6` | Hover fill on primary solid CTA |
+| **Control Radius** | `6px` (`rounded-md`) | Buttons, segmented controls, interactive tabs |
+| **Media Radius** | `12px` (`rounded-xl`) | Video players, project thumbnails, portraits |
 
-### Typography & Text
-| Token | Value | Tailwind Class | Usage |
-|---|---|---|---|
-| **Display Headings** | Kanit (`font-kanit`) | `text-4xl sm:text-5xl font-kanit font-normal` | Page titles, hero name, section headlines |
-| **Body Primary** | Inter / System Sans | `text-slate-200` / `text-white` | Body paragraphs, primary labels |
-| **Body Secondary** | Inter / System Sans | `text-slate-300` / `text-slate-400` | Subtitles, project descriptions, quotes |
-| **Tech Metadata** | Monospace (`font-mono`) | `text-xs font-mono uppercase tracking-[0.16em]` | Kickers, categories, tool stacks, dates |
+### Typography & Scale (Inter Only)
+5-step scale — nothing rendered below `13px`:
+| Step | Size | Usage |
+|---|---|---|
+| **Display** | `72px` (`text-4xl sm:text-7xl`) | Hero name, page titles |
+| **Section** | `36px` (`text-4xl`) | Section headings, primary email CTA |
+| **Card / Sub** | `20px` (`text-xl`) | Card titles, subheadings |
+| **Body** | `16px` (`text-base`) | Paragraphs, descriptions, list items |
+| **Meta** | `13px` (`text-[13px]`) | Years, categories, read times (muted, placed after title/byline) |
+
+Reserve monospace (`font-mono`) strictly for code and shader snippets. Do not use teal kickers above headings. Separate sections using background tone steps (`#0d1015` vs `#12171d`), keeping hairline dividers for real lists only.
 
 ---
 
 ## 4. Key Page Layout Patterns
 
 ### A. Homepage (`/`)
-- **Hero**: Clean `Senior VFX Artist` kicker, `Henry Tran` display title in Kanit, 1-line bio, two clear CTAs (`Selected work`, `Showreel`).
-- **Spec Sheet Colophon**: 4-column studio colophon directly under hero:
-  - `Discipline`: Real-Time VFX · Shaders · Tech Art
-  - `Core Engine Stack`: Unreal Engine 5 · Niagara · HLSL · Houdini
-  - `Production Focus`: AAA Games · In-Engine Cinematics
-  - `Pipeline & Systems`: Perforce Tooling · GPU Optimization · Python
-- **Featured Work**: Flat cards featuring *Marvel's Wolverine*, *Marvel's Spider-Man 2*, and *Fortnite*.
+- **Hero**: `Henry Tran` display title in Inter, `Senior VFX Artist` subtitle, one solid teal CTA (`Selected work`), one underlined text link (`Showreel`).
+- **Selected Work**: 1 featured wide card + 2-column supporting row, hover plays preview video only.
+- **Technical Spotlight**: Left-hand comparison/step viewer + right-hand clickable 3-pass breakdown list.
+- **About Me**: Frameless two-column editorial block (portrait + two `18px` sentences on the left, two-line `16px` credits list on the right, large `28–36px` email CTA).
 
 ### B. Showreel Page (`/showreel`)
-- **Cinema Theater Model**: Video-first layout with zero paragraph bloat.
-- **Stage Backlight**: Subtle teal-slate radial ambient glow behind the player.
-- **Keyframe Scrubber**: 4 crisp thumbnail keyframes below player (`00:00 Fortnite`, `00:14 Spider-Man 2`, `00:24 New World`, `00:32 Until Dawn`) that allow direct seeking with a single click.
+- **Cinema Theater Model**: Video-first layout using native player controls once started, accurate resolution/FPS label matching the local file alongside the YouTube 4K link, and 4 clickable keyframe jump cards below.
 
 ### C. About Page (`/about`)
-- Fully integrated in `#0d1015` dark slate.
-- Profile header in `#12171d`/60 with hairline `#252c34` border.
-- Experience Timeline uses hairline connector lines and `#58cfc8` glowing indicator dots.
-- Upwork verified endorsement and AAA production credits in clean slate cards.
+- Unified `#0d1015` dark slate without nested boxes or skill pill tags.
+- Experience timeline, credits, endorsements, plain-text skill list, and unframed studio photos.
 
-### D. R&D / Stylized Projects (`/portfolio#rnd`)
-- Flat visual cards matching `ProjectCard`: 16:9 thumbnail, uppercase teal category, title with hover transition, inline tool stack.
-- Collapsible archive accordion for earlier commercial and motion graphics work.
+### D. R&D / Earlier Work (`/portfolio#rnd`)
+- 16:9 thumbnail cards (`12px` radius) with title + muted category below, plus a text toggle for earlier commercial archive work.
 
 ---
 

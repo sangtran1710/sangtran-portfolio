@@ -8,6 +8,7 @@ import Link from "next/link";
 import { RND_PROJECTS } from "@/data/portfolio";
 import type { RndProject } from "@/data/portfolio";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { mediaUrl } from "@/lib/media";
 import { cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
@@ -30,7 +31,7 @@ function Thumbnail({ project, sizes }: { project: RndProject; sizes: string }) {
   if (src.endsWith(".mp4") || src.endsWith(".webm")) {
     return (
       <video
-        src={src}
+        src={mediaUrl(src)}
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
         muted
         playsInline
@@ -148,64 +149,45 @@ export default function RndSection() {
 
   return (
     <div ref={sectionRef as unknown as React.RefObject<HTMLDivElement>} className="relative w-full pt-4 pb-16">
-      {/* ── Tier 2: Technical VFX & Pipeline R&D ── */}
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {technicalProjects.map((project, i) => (
           <CardLink
             key={project.title}
             project={project}
-            className={`group block h-full transition-all duration-300 ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            className={`group block h-full transition-opacity duration-300 ${
+              inView ? "opacity-100" : "opacity-0"
             }`}
             style={{ transitionDelay: inView ? `${i * 0.05}s` : "0s" }}
           >
             <article className="flex h-full flex-col">
-              {/* Visual Showcase - Pure flat image with subtle hairline border */}
-              <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-border/70 bg-section transition-colors duration-300 group-hover:border-primary/60">
+              <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-border/80 bg-section">
                 <Thumbnail project={project} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
               </div>
 
-              {/* Typography & Editorial Metadata */}
               <div className="flex flex-1 flex-col pt-3.5">
-                <p className="text-xs font-sans tracking-normal text-primary">
-                  {project.category}
-                </p>
-
-                <h3 className="mt-1 text-base font-medium tracking-tight text-white transition-colors duration-200 group-hover:text-primary line-clamp-1">
+                <h3 className="text-base font-normal tracking-tight text-white group-hover:underline underline-offset-4 line-clamp-1">
                   {project.title}
                 </h3>
-
+                <p className="mt-1 text-[13px] font-sans text-muted-foreground">
+                  {project.category}
+                </p>
               </div>
             </article>
           </CardLink>
         ))}
       </div>
 
-      {/* ── Tier 3: Older Commercial Work & Archive (Collapsed Accordion) ── */}
       {archiveProjects.length > 0 && (
-        <div className="mt-14 pt-8 border-t border-border">
-          <div className="flex items-center justify-between gap-4">
-            <button
-              type="button"
-              onClick={() => setIsArchiveOpen((prev) => !prev)}
-              className="group inline-flex items-center gap-3 rounded-lg border border-border bg-section px-4 py-2.5 text-sm font-medium text-muted-foreground transition-all hover:border-border-hover hover:bg-card hover:text-white"
-            >
-              <span>
-                {isVi
-                  ? (isArchiveOpen ? "Thu gọn lưu trữ" : "Xem dự án trước đây →")
-                  : (isArchiveOpen ? "Hide archive" : "Earlier Work (Archive) →")}
-              </span>
-              <span className="rounded bg-card border border-border px-2 py-0.5 text-xs font-sans text-muted-foreground">
-                {archiveProjects.length}
-              </span>
-              <ChevronDown
-                className={cn(
-                  "h-4 w-4 text-muted-foreground transition-transform duration-300",
-                  isArchiveOpen && "rotate-180 text-white"
-                )}
-              />
-            </button>
-          </div>
+        <div className="mt-14 pt-8">
+          <button
+            type="button"
+            onClick={() => setIsArchiveOpen((prev) => !prev)}
+            className="text-base text-muted-foreground underline-offset-4 transition-colors hover:text-white hover:underline"
+          >
+            {isVi
+              ? (isArchiveOpen ? "Thu gọn lưu trữ" : `Xem dự án trước đây (${archiveProjects.length})`)
+              : (isArchiveOpen ? "Hide archive" : `Earlier work (${archiveProjects.length})`)}
+          </button>
 
           <AnimatePresence initial={false}>
           {isArchiveOpen && (
@@ -225,16 +207,16 @@ export default function RndSection() {
                   className="group block"
                 >
                   <article className="flex flex-col">
-                    <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-border/70 bg-section transition-colors duration-200 group-hover:border-primary/60">
+                    <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-border/80 bg-section">
                       <Thumbnail project={project} sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" />
                     </div>
                     <div className="pt-2">
-                      <p className="text-xs font-sans tracking-normal text-muted-foreground">
-                        {project.year || "Archive"}
-                      </p>
-                      <h4 className="mt-0.5 text-xs font-medium text-white transition-colors duration-200 group-hover:text-primary line-clamp-1">
+                      <h4 className="text-[13px] font-normal text-white group-hover:underline underline-offset-4 line-clamp-1">
                         {project.title}
                       </h4>
+                      <p className="mt-0.5 text-[13px] font-sans text-muted-foreground">
+                        {project.year || "Archive"}
+                      </p>
                     </div>
                   </article>
                 </CardLink>

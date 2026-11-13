@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Play } from "lucide-react";
 import { useState } from "react";
+import { mediaUrl } from "@/lib/media";
 
 interface ProjectVideoProps {
   embedUrl: string;
@@ -32,7 +33,7 @@ export default function ProjectVideo({
         {isPlaying ? (
           isLocal ? (
             <video
-              src={videoSrc}
+              src={mediaUrl(videoSrc)}
               controls
               autoPlay
               playsInline
