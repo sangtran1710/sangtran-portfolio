@@ -18,7 +18,7 @@ export function ArticlesDirectory({ posts }: { posts: BlogPostMeta[] }) {
   const isVi = locale === "vi";
 
   const displayedPosts = posts.filter(
-    (post) => post.slug !== "math-for-vfx-shaders" && post.slug !== "ue5-material-library-portal"
+    (post) => post.slug !== "ue5-material-library-portal"
   );
 
   const headingText = isVi ? "Nghiên cứu VFX" : "VFX Studies";

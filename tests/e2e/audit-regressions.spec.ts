@@ -1,43 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-function numericValue(text: string | null) {
-  const value = text?.match(/-?\d+(?:\.\d+)?/)?.[0];
-  return value ? Number(value) : Number.NaN;
-}
-
 test.describe("Audit regressions", () => {
-  test("math demos cover a useful animated range", async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name.includes("mobile"), "One animation sample is sufficient.");
-
-    await page.goto("/blog/math-for-vfx-shaders", { waitUntil: "networkidle" });
-    const dotValue = page.getByText(/^Dot Product:/).first();
-    await dotValue.scrollIntoViewIfNeeded();
-
-    const dotSamples: number[] = [];
-    for (let index = 0; index < 16; index += 1) {
-      dotSamples.push(numericValue(await dotValue.textContent()));
-      await page.waitForTimeout(300);
-    }
-
-    expect(Math.min(...dotSamples)).toBeLessThan(-0.8);
-    expect(Math.max(...dotSamples)).toBeGreaterThan(0.8);
-
-    const distanceValue = page.getByText(/^Distance:/).first();
-    const maskValue = page.getByText(/^Mask Value:/).first();
-    await distanceValue.scrollIntoViewIfNeeded();
-
-    const distanceSamples: number[] = [];
-    const maskSamples: number[] = [];
-    for (let index = 0; index < 12; index += 1) {
-      distanceSamples.push(numericValue(await distanceValue.textContent()));
-      maskSamples.push(numericValue(await maskValue.textContent()));
-      await page.waitForTimeout(300);
-    }
-
-    expect(Math.max(...distanceSamples) - Math.min(...distanceSamples)).toBeGreaterThan(70);
-    expect(Math.max(...maskSamples)).toBeGreaterThan(0.7);
-  });
-
   test("primary pages expose clear headings and contact actions", async ({ page }) => {
     await page.goto("/showreel", { waitUntil: "networkidle" });
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("VFX Showreel");

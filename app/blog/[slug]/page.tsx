@@ -6,11 +6,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { SITE } from "@/data/portfolio";
 import { absoluteUrl } from "@/lib/seo";
-import { 
-  DotProductVisual, SineWaveVisual, CrossProductVisual, StepVsSmoothstepVisual, MathGridBackground,
-  UvCartesianVisual, UvPanningVisual, UvDistortionVisual, 
-  SphericalMaskVisual, WorldPositionOffsetVisual, DepthFadeVisual
-} from "@/components/blog/MathVisuals";
+import { MathGridBackground } from "@/components/blog/MathVisuals";
 import {
   VideoPlayer,
   TextureCard,
@@ -121,10 +117,7 @@ export default function BlogPostPage({ params }: Props) {
           prose-li:text-muted-foreground prose-li:leading-relaxed
           prose-ul:my-4 prose-ol:my-4
         ">
-          <MDXRemote source={post.content} components={{ 
-            DotProductVisual, SineWaveVisual, CrossProductVisual, StepVsSmoothstepVisual,
-            UvCartesianVisual, UvPanningVisual, UvDistortionVisual, 
-            SphericalMaskVisual, WorldPositionOffsetVisual, DepthFadeVisual,
+          <MDXRemote source={post.content} components={{
             VideoPlayer, TextureCard, TextureGallery, ProductionNotice
           }} />
         </div>

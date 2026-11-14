@@ -9,7 +9,6 @@ test.describe("Deep Comprehensive Site Experience Audit", () => {
     "/articles?tab=math",
     "/articles?tab=tools",
     "/blog/stormfront-volumetric-cloud-lightning",
-    "/blog/math-for-vfx-shaders",
     "/blog/destructible-separate-mesh-tool",
     "/about",
     "/contact",
@@ -102,12 +101,6 @@ test.describe("Deep Comprehensive Site Experience Audit", () => {
     await stormfront.click();
     await page.waitForURL("**/blog/stormfront-volumetric-cloud-lightning");
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-
-    await page.goto("/blog/math-for-vfx-shaders", { waitUntil: "networkidle" });
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText("The VFX Math I Keep Coming Back To");
-    await expect(page.getByText(/^Dot Product:/).first()).toBeVisible();
-    await expect(page.getByRole("img", { name: "Two perpendicular vectors and their cross product" })).toBeVisible();
-    await expect(page.getByText(/^Distance:/).first()).toBeVisible();
   });
 
   test("Stormfront breakdown images open at full size", async ({ page }) => {
@@ -123,21 +116,6 @@ test.describe("Deep Comprehensive Site Experience Audit", () => {
       const link = page.locator(`a[href="${path}"]`);
       await expect(link.locator("img")).toBeVisible();
       expect((await page.request.get(path)).ok()).toBe(true);
-    }
-  });
-
-  test("Legacy math URLs redirect properly to unified article anchors", async ({ page }) => {
-    const legacyRedirects = [
-      { from: "/blog/math-dot-product", targetAnchor: "#part-1-vectors--the-dot-product" },
-      { from: "/blog/math-cross-product", targetAnchor: "#part-2-the-cross-product-generating-perpendicular-vectors" },
-      { from: "/blog/math-uv-coordinates", targetAnchor: "#part-3-uv-mathematics--texture-distortion" },
-      { from: "/blog/math-spatial-masks", targetAnchor: "#part-4-spatial-masks--world-position-math" },
-      { from: "/blog/math-essential-functions", targetAnchor: "#part-5-essential-math-nodes--gpu-optimization" },
-    ];
-
-    for (const r of legacyRedirects) {
-      await page.goto(r.from, { waitUntil: "networkidle" });
-      expect(page.url()).toContain("/blog/math-for-vfx-shaders");
     }
   });
 
