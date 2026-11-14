@@ -269,7 +269,7 @@ export default function TechnicalSpotlight() {
                       disabled={isBaseWipe}
                       onClick={() => { if (!isBaseWipe) void selectPass(idx); }}
                       aria-pressed={isBaseWipe ? undefined : selected}
-                      className={`flex w-full items-baseline justify-between gap-4 py-3.5 text-left transition-colors ${
+                      className={`flex w-full appearance-none items-center justify-between gap-4 rounded-lg bg-transparent py-3.5 text-left transition-colors [-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/60 ${
                         isBaseWipe
                           ? "cursor-default"
                           : "cursor-pointer hover:bg-white/[0.02]"
