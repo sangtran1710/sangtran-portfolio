@@ -74,6 +74,15 @@
     @apply border-border;
   }
 
+  button,
+  [type="button"],
+  [type="reset"],
+  [type="submit"] {
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
   body {
     @apply text-foreground bg-background;
     font-feature-settings: "rlig" 1, "calt" 1;
