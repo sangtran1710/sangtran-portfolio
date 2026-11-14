@@ -943,7 +943,7 @@ export const RND_PROJECTS: RndProject[] = [
     title: "Houdini / Redshift / Unreal Engine R&D",
     category: "Graduation Project",
     tools: ["Houdini", "Redshift", "Unreal Engine"],
-    image: "/video/project-my.mp4",
+    image: "/video/project-my-poster.jpg",
     link: "/rnd/project-my",
     linkLabel: "View project details",
     slug: "project-my",

@@ -391,23 +391,23 @@ export default function TechnicalSpotlight() {
                         strokeLinejoin="round"
                       >
                         {/* Crack front callout */}
-                        <path d="M 110 150 Q 155 185 198 222" />
+                        <path d="M 110 158 Q 155 190 198 222" />
                         <path d="M 190 223 L 200 224 L 197 214" />
                         <circle cx="206" cy="230" r="14" strokeDasharray="4 4" />
                         {/* XYZ offset triad */}
-                        <path d="M 355 370 L 355 322" />
-                        <path d="M 350 330 L 355 320 L 360 330" />
-                        <path d="M 355 370 L 403 370" />
-                        <path d="M 395 365 L 405 370 L 395 375" />
-                        <path d="M 355 370 L 325 398" />
-                        <path d="M 326 389 L 323 400 L 334 397" />
+                        <path d="M 375 370 L 375 322" />
+                        <path d="M 370 330 L 375 320 L 380 330" />
+                        <path d="M 375 370 L 423 370" />
+                        <path d="M 415 365 L 425 370 L 415 375" />
+                        <path d="M 375 370 L 345 398" />
+                        <path d="M 346 389 L 343 400 L 354 397" />
                       </g>
                       <g fill="#58cfc8" fontSize="17" fontFamily="Inter, sans-serif">
-                        <text x="42" y="136">Mask: growth front (0 → 1)</text>
-                        <text x="235" y="426">RGB = XYZ offset, not just height</text>
-                        <text x="362" y="325">Z</text>
-                        <text x="410" y="374">X</text>
-                        <text x="304" y="405">Y</text>
+                        <text x="42" y="146">Mask: growth front (0 → 1)</text>
+                        <text x="282" y="426">RGB = XYZ offset, not just height</text>
+                        <text x="382" y="325">Z</text>
+                        <text x="430" y="374">X</text>
+                        <text x="324" y="405">Y</text>
                       </g>
                     </svg>
                   )}
