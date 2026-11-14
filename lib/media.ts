@@ -1,4 +1,8 @@
-const MEDIA_BASE_URL = (process.env.NEXT_PUBLIC_MEDIA_BASE_URL ?? "").replace(/\/+$/, "");
+const RAW_MEDIA_BASE_URL = (process.env.NEXT_PUBLIC_MEDIA_BASE_URL ?? "").trim();
+const MATCHED_URL = RAW_MEDIA_BASE_URL.match(/^https?:\/\/[^\s"'<>]+$/i)?.[0]
+  ?? RAW_MEDIA_BASE_URL.match(/https?:\/\/[^\s"'<>]+/i)?.[0]
+  ?? "";
+const MEDIA_BASE_URL = MATCHED_URL.replace(/\/+$/, "");
 
 /**
  * Resolves a media path against NEXT_PUBLIC_MEDIA_BASE_URL (e.g. a Cloudflare R2
