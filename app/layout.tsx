@@ -73,11 +73,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${mono.variable} dark`}>
-      <body className="min-h-screen font-sans bg-background text-foreground antialiased selection:bg-primary/30">
+      <body className="flex min-h-screen flex-col font-sans bg-background text-foreground antialiased selection:bg-primary/30">
         <LanguageProvider>
           <SkipToContentLink />
           <Navbar />
-          <main id="main" className="relative">
+          <main id="main" className="relative flex-1">
             <PageTransitionWrapper>{children}</PageTransitionWrapper>
           </main>
           <Footer />

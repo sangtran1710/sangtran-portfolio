@@ -11,12 +11,20 @@ export default function PageTransitionWrapper({
 }) {
   const pathname = usePathname();
   const contentRef = useRef<HTMLDivElement>(null);
+  const isFirstMount = useRef(true);
 
   useLayoutEffect(() => {
+    if (isFirstMount.current) {
+      isFirstMount.current = false;
+      return;
+    }
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const animation = contentRef.current?.animate(
-      [{ opacity: 0.55, transform: "translateY(6px)" }, { opacity: 1, transform: "translateY(0)" }],
-      { duration: 240, easing: "cubic-bezier(0.2, 0.7, 0.2, 1)" }
+      [
+        { opacity: 0, transform: "translateY(4px)" },
+        { opacity: 1, transform: "translateY(0)" },
+      ],
+      { duration: 220, easing: "cubic-bezier(0.16, 1, 0.3, 1)", fill: "both" }
     );
     return () => animation?.cancel();
   }, [pathname]);
