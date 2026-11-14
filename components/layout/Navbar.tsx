@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { SITE, SOCIALS } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
@@ -155,14 +155,15 @@ export default function Navbar() {
           <SheetTrigger asChild className="md:hidden">
             <Button
               variant="ghost"
-              size="icon-sm"
+              size="icon"
               aria-label={copy.nav.openMenu}
-              className="rounded-full text-white hover:bg-white/10"
+              className="min-h-11 min-w-11 rounded-md text-white hover:bg-white/10"
             >
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-72 border-border bg-background p-0 text-white">
+            <SheetTitle className="sr-only">Navigation menu</SheetTitle>
             <motion.div
               className="flex flex-col pt-20 px-6 gap-5"
               variants={containerVariants}

@@ -155,7 +155,7 @@ export default function ShowreelPageClient() {
         <div className="mb-6 flex items-center justify-between">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-[13px] font-sans text-muted-foreground underline-offset-4 hover:text-white hover:underline"
+            className="inline-flex min-h-11 items-center gap-1.5 text-[13px] font-sans text-muted-foreground underline-offset-4 hover:text-white hover:underline"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             {copy.common.backToHome}
@@ -165,7 +165,7 @@ export default function ShowreelPageClient() {
             href={HERO.showreelYoutube}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-[13px] font-sans text-muted-foreground underline-offset-4 hover:text-white hover:underline"
+            className="inline-flex min-h-11 items-center gap-1.5 text-[13px] font-sans text-muted-foreground underline-offset-4 hover:text-white hover:underline"
           >
             <Youtube className="h-3.5 w-3.5 text-red-400" />
             <span>YouTube 4K</span>
@@ -256,7 +256,7 @@ export default function ShowreelPageClient() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {SHOTS.map((shot, idx) => {
             const isActive = started && activeIndex === idx;
 
@@ -301,7 +301,7 @@ export default function ShowreelPageClient() {
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 text-[13px] text-muted-foreground">
           <Link
             href="/portfolio"
-            className="inline-flex items-center gap-1.5 font-sans text-[13px] text-white underline-offset-4 hover:underline"
+            className="inline-flex min-h-11 items-center gap-1.5 font-sans text-[13px] text-white underline-offset-4 hover:underline"
           >
             Selected work →
           </Link>

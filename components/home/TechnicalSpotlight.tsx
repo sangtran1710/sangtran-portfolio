@@ -221,7 +221,7 @@ export default function TechnicalSpotlight() {
                   onMouseEnter={() => { void warmStudy(idx).catch(() => {}); }}
                   onFocus={() => { void warmStudy(idx).catch(() => {}); }}
                   onClick={() => { void selectStudy(idx); }}
-                  className={`relative pb-2 text-[13px] font-medium transition-colors duration-200 focus-visible:outline-none ${
+                  className={`relative inline-flex min-h-11 items-center pb-2 text-[13px] font-medium transition-colors duration-200 focus-visible:outline-none ${
                     active ? "text-white" : "text-neutral-400 hover:text-white"
                   }`}
                 >
@@ -307,7 +307,7 @@ export default function TechnicalSpotlight() {
                 type="button"
                 onClick={() => setShowAnnotations((prev) => !prev)}
                 aria-pressed={showAnnotations}
-                className={`inline-flex items-center rounded-md border px-3 py-1.5 text-[13px] font-medium transition-colors ${
+                className={`inline-flex min-h-11 items-center rounded-md border px-3.5 py-2 text-[13px] font-medium transition-colors ${
                   showAnnotations
                     ? "border-primary bg-primary/15 text-primary"
                     : "border-border/80 bg-background/60 text-muted-foreground hover:text-white"
@@ -402,12 +402,12 @@ export default function TechnicalSpotlight() {
                         <path d="M 355 370 L 325 398" />
                         <path d="M 326 389 L 323 400 L 334 397" />
                       </g>
-                      <g fill="#58cfc8" fontSize="13" fontFamily="Inter, sans-serif">
-                        <text x="52" y="138">Mask: growth front (0 → 1)</text>
-                        <text x="275" y="424">RGB = XYZ offset, not just height</text>
+                      <g fill="#58cfc8" fontSize="17" fontFamily="Inter, sans-serif">
+                        <text x="42" y="136">Mask: growth front (0 → 1)</text>
+                        <text x="235" y="426">RGB = XYZ offset, not just height</text>
                         <text x="362" y="325">Z</text>
                         <text x="410" y="374">X</text>
-                        <text x="308" y="405">Y</text>
+                        <text x="304" y="405">Y</text>
                       </g>
                     </svg>
                   )}
@@ -445,9 +445,9 @@ export default function TechnicalSpotlight() {
                       <polygon points="310,165 326,184 302,188" />
                       <path d="M 332 184 Q 395 215 445 235" />
                     </g>
-                    <g fill="#58cfc8" fontSize="13" fontFamily="Inter, sans-serif">
-                      <text x="56" y="96">Isolate break seam</text>
-                      <text x="390" y="254">Triangle emitter at island centre</text>
+                    <g fill="#58cfc8" fontSize="18" fontFamily="Inter, sans-serif">
+                      <text x="48" y="94">Isolate break seam</text>
+                      <text x="340" y="256">Triangle emitter at island centre</text>
                     </g>
                   </svg>
                 )}

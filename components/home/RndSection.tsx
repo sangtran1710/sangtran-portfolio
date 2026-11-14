@@ -182,7 +182,7 @@ export default function RndSection() {
           <button
             type="button"
             onClick={() => setIsArchiveOpen((prev) => !prev)}
-            className="text-base text-muted-foreground underline-offset-4 transition-colors hover:text-white hover:underline"
+            className="inline-flex min-h-11 items-center text-base text-muted-foreground underline-offset-4 transition-colors hover:text-white hover:underline"
           >
             {isVi
               ? (isArchiveOpen ? "Thu gọn lưu trữ" : `Xem dự án trước đây (${archiveProjects.length})`)
@@ -199,7 +199,7 @@ export default function RndSection() {
               transition={{ duration: reducedMotion ? 0 : 0.2, ease: "easeOut" }}
               className="overflow-hidden"
             >
-            <div className="pt-8 grid gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+            <div className="pt-8 grid gap-6 grid-cols-1 sm:grid-cols-3 lg:grid-cols-4">
               {archiveProjects.map((project) => (
                 <CardLink
                   key={project.title}

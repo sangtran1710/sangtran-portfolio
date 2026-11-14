@@ -24,7 +24,7 @@ export default function ProfileSection() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
           {/* Left: Portrait + concise bio */}
           <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
-            <div className="relative aspect-[4/5] w-40 sm:w-44 shrink-0 overflow-hidden rounded-xl bg-section">
+            <div className="relative mx-auto sm:mx-0 aspect-[4/5] w-40 sm:w-44 shrink-0 overflow-hidden rounded-xl bg-section">
               {!avatarError ? (
                 <Image
                   src={profile.portraitImage}
@@ -55,7 +55,7 @@ export default function ProfileSection() {
               <div>
                 <Link
                   href="/about"
-                  className="font-sans text-base text-white underline-offset-4 hover:underline"
+                  className="inline-flex min-h-11 items-center font-sans text-base text-white underline-offset-4 hover:underline"
                 >
                   {isVi ? "Đọc thêm về kinh nghiệm" : "Read more about my work"}
                 </Link>
@@ -105,12 +105,12 @@ export default function ProfileSection() {
         </div>
 
         <div className="mt-12 flex flex-wrap items-center justify-between gap-6 pt-8">
-          <div className="flex flex-wrap items-center gap-6 font-sans text-[13px]">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-sans text-[13px]">
             <a
               href={SOCIALS.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground underline-offset-4 hover:text-white hover:underline"
+              className="inline-flex min-h-11 items-center text-muted-foreground underline-offset-4 hover:text-white hover:underline"
             >
               LinkedIn
             </a>
@@ -118,7 +118,7 @@ export default function ProfileSection() {
               href={SOCIALS.artstation}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground underline-offset-4 hover:text-white hover:underline"
+              className="inline-flex min-h-11 items-center text-muted-foreground underline-offset-4 hover:text-white hover:underline"
             >
               ArtStation
             </a>
@@ -126,7 +126,7 @@ export default function ProfileSection() {
               href="https://www.mobygames.com/person/1553845/tran-minh-sang/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground underline-offset-4 hover:text-white hover:underline"
+              className="inline-flex min-h-11 items-center text-muted-foreground underline-offset-4 hover:text-white hover:underline"
             >
               MobyGames
             </a>
@@ -134,7 +134,7 @@ export default function ProfileSection() {
               href={SOCIALS.behance}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground underline-offset-4 hover:text-white hover:underline"
+              className="inline-flex min-h-11 items-center text-muted-foreground underline-offset-4 hover:text-white hover:underline"
             >
               Behance
             </a>
@@ -142,7 +142,7 @@ export default function ProfileSection() {
               href={SOCIALS.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground underline-offset-4 hover:text-white hover:underline"
+              className="inline-flex min-h-11 items-center text-muted-foreground underline-offset-4 hover:text-white hover:underline"
             >
               GitHub
             </a>

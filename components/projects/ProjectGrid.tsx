@@ -39,7 +39,7 @@ export default function ProjectGrid() {
                 aria-pressed={isSelected}
                 onClick={() => setActive(value)}
                 className={cn(
-                  "relative rounded-md px-4 py-1.5 text-[13px] font-medium transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
+                  "relative min-h-10 rounded-md px-4 py-2 text-[13px] font-medium transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
                   isSelected
                     ? "text-white"
                     : "text-neutral-400 hover:text-white"

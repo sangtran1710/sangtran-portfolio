@@ -198,7 +198,7 @@ export default function HeroSection() {
             <div className="mt-6 lg:hidden">
               <Link
                 href={currentShot.href}
-                className="text-[13px] font-sans text-muted-foreground underline-offset-4 hover:text-white hover:underline"
+                className="inline-flex min-h-11 items-center text-[13px] font-sans text-muted-foreground underline-offset-4 hover:text-white hover:underline"
               >
                 {currentShot.title} · {currentShot.meta}
               </Link>
